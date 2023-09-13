@@ -3,7 +3,7 @@
 > - Or: http://torrenteditor.com/
 > > QB builtin editor lags & crashes
 ```bash
---> Update Frequency: Every '2 Hrs'
+--> Update Frequency: Every '1 Hr'
 --> Sources:
       --> https://github.com/ngosang/trackerslist '(General)' >> 'trackers_general.txt'
       --> https://github.com/DeSireFire/animeTrackerList '(Anime+Manga)' >> 'trackers_anime.txt'
