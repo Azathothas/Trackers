@@ -42,6 +42,21 @@ jobs:
           find "$GITHUB_WORKSPACE/main/Trackers" -type f -name "*.txt" -exec sed -i '/^[[:space:]]*$/d' {} \;
         continue-on-error: true        
 
+      - name: Clean
+        run: |
+          #Presets
+          set -x ; set +e
+          find . -type f -name '*trackers*.txt' -exec sed -E '/^[[:space:]]*$/d' -i {} \;
+
+      - name: Dos2Unix Everything
+        run: |
+          # Presets
+          set -x ; set +e
+          #--------------#        
+          cd "$GITHUB_WORKSPACE/main"
+          find . -type f -name '*.txt' -exec dos2unix {} \;
+        continue-on-error: true      
+  
       - name: Get DateTime
         run: |
           # Date Time
