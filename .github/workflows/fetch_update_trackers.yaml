@@ -1,0 +1,62 @@
+name: 💾 Fetch || ⏫ Update Torrent Trackers 🧲
+#MAX_RUNTIME: ~ 02 mins
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */1 * * *"  # Every 1 Hr
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      
+    steps:        
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: main  
+          
+      - name: Setup Env
+        run: |
+          # Create Output Dir
+          mkdir -p "$GITHUB_WORKSPACE/main/Trackers"
+     
+     #@latest_Trackers: https://github.com/ngosang/trackerslist
+     #@latest_Trackers(Anime+Manga): https://github.com/DeSireFire/animeTrackerList
+     #@Stable_Trackers: https://newtrackon.com/list
+      - name: Download @Latest Trackers
+        run: |
+          set -x; curl -qflSL "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt" -o "$GITHUB_WORKSPACE/main/trackers_general.txt"
+          set -x; curl -qflSL "https://newtrackon.com/api/stable" -o  "$GITHUB_WORKSPACE/main/trackers_stable.txt"
+          set -x; curl -qflSL "https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt" -o "$GITHUB_WORKSPACE/main/trackers_anime.txt"
+          set +x
+        continue-on-error: true
+        
+      - name: Filter & Sort Trackers
+        run: |
+          cat "$GITHUB_WORKSPACE/main/trackers_general.txt" "$GITHUB_WORKSPACE/main/trackers_stable.txt" | sort -u -o "$GITHUB_WORKSPACE/main/trackers_all_general.txt"
+          cat "$GITHUB_WORKSPACE/main/trackers_general.txt" "$GITHUB_WORKSPACE/main/trackers_stable.txt" "$GITHUB_WORKSPACE/main/trackers_anime.txt" | sort -u -o "$GITHUB_WORKSPACE/main/trackers_all.txt"
+          find "$GITHUB_WORKSPACE/main/Trackers" -type f -name "*.txt" -exec sort -u {} -o {} \;
+          find "$GITHUB_WORKSPACE/main/Trackers" -type f -name "*.txt" -exec sed -i '/^[[:space:]]*$/d' {} \;
+        continue-on-error: true        
+
+      - name: Get DateTime
+        run: |
+          # Date Time
+          NEPALI_TIME=$(TZ='Asia/Kathmandu' date +'%Y-%m-%d (%I:%M:%S %p)')
+          echo "NEPALI_TIME=$NEPALI_TIME" >> $GITHUB_ENV
+          
+      - name: Git Pull
+        run: |
+           cd "$GITHUB_WORKSPACE/main" && git pull origin main
+        continue-on-error: true
+        
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          repository: ./main        
+          commit_user_name: Azathothas # defaults to "github-actions[bot]"
+          commit_user_email: AjamX101@gmail.com # defaults to "41898282+github-actions[bot]@users.noreply.github.com"
+          commit_message: "✅ Fetch latest Trackers 🧲 <-- ${{ env.NEPALI_TIME }} ⌚"
+          #push_options: '--force'
