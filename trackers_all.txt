@@ -617,6 +617,7 @@ http://www.mvgroup.org/tracker.php/announce
 http://www.mvgroup.org:2710/announce
 http://www.nartlof.com.br:6969/announce
 http://www.peckservers.com:9000/announce
+http://www.shnflac.net/announce.php
 http://www.siambt.com/announce.php
 http://www.thetradersden.org/forums/tracker/announce.php
 http://www.thetradersden.org/forums/tracker:80/announce.php
