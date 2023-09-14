@@ -87,3 +87,4 @@ udp://tracker1.bt.moack.co.kr:80/announce
 https://tracker1.ctix.cn:443/announce
 http://montreal.nyap2p.com:8080/announce
 https://tracker2.ctix.cn:443/announce
+udp://tracker.moeking.me:6969/announce
