@@ -81,7 +81,6 @@ udp://tracker.srv00.com:6969/announce
 http://t.publictracker.xyz:6969/announce
 udp://run.publictracker.xyz:6969/announce
 http://buny.uk:6969/announce
-udp://tr2.ysagin.top:2715/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://new-line.net:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
