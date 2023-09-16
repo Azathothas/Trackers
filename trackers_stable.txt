@@ -35,6 +35,7 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://movies.zsw.ca:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.ccp.ovh:6969/announce
+http://t.publictracker.xyz:6969/announce
 udp://epider.me:6969/announce
 udp://uploads.gamecoast.net:6969/announce
 https://tracker.tamersunion.org:443/announce
@@ -48,7 +49,6 @@ udp://odd-hd.fr:6969/announce
 http://shubt.net:2710/announce
 udp://tracker.dler.com:6969/announce
 http://tracker.mywaifu.best:6969/announce
-http://t.publictracker.xyz:6969/announce
 udp://htz3.noho.st:6969/announce
 udp://moonburrow.club:6969/announce
 http://tracker.h0me.cc:8880/announce
@@ -65,11 +65,11 @@ udp://city21.pk:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tk1v6.trackerservers.com:8080/announce
 udp://tk1.trackerservers.com:8080/announce
-udp://open.publictracker.xyz:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
+udp://open.publictracker.xyz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-https://tr.burnabyhighstar.com:443/announce
 udp://tracker2.dler.com:80/announce
+https://tr.burnabyhighstar.com:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://bt.ktrackers.com:6666/announce
