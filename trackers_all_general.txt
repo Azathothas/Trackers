@@ -45,7 +45,6 @@ https://trackers.mlsub.net:443/announce
 https://www.peckservers.com:9443/announce
 udp://107.182.30.76.16clouds.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://204.79.238.89.in-addr.arpa.manitu.net:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://aarsen.me:6969/announce
