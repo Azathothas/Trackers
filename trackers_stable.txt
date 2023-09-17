@@ -46,6 +46,7 @@ udp://static.54.161.216.95.clients.your-server.de:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://private.anonseed.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
+udp://107.182.30.76.16clouds.com:6969/announce
 http://shubt.net:2710/announce
 udp://tracker.dler.com:6969/announce
 http://tracker.mywaifu.best:6969/announce
@@ -54,7 +55,6 @@ udp://moonburrow.club:6969/announce
 http://tracker.h0me.cc:8880/announce
 udp://acxx.de:6969/announce
 udp://public-tracker.cf:6969/announce
-udp://107.182.30.76.16clouds.com:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://open.stealth.si:80/announce
