@@ -65,9 +65,9 @@ udp://tk1v6.trackerservers.com:8080/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker2.dler.com:80/announce
-http://t.publictracker.xyz:6969/announce
 https://tr.burnabyhighstar.com:443/announce
 udp://u4.trakx.crim.ist:1337/announce
+http://t.publictracker.xyz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://open.publictracker.xyz:6969/announce
