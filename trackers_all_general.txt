@@ -28,7 +28,6 @@ http://uraniumhexafluori.de:1919/announce
 http://wepzone.net:6969/announce
 http://www.peckservers.com:9000/announce
 https://1337.abcvg.info:443/announce
-https://k.avc.cx:443/announce
 https://k.avc.cx:443/announce.php
 https://t1.hloli.org:443/announce
 https://tr.burnabyhighstar.com:443/announce
