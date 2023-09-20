@@ -35,6 +35,7 @@ udp://retracker.hotplug.ru:2710/announce
 http://t.acg.rip:6699/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://movies.zsw.ca:6969/announce
+udp://tracker.ccp.ovh:6969/announce
 udp://open.dstud.io:6969/announce
 udp://uploads.gamecoast.net:6969/announce
 https://tracker.tamersunion.org:443/announce
@@ -46,7 +47,6 @@ udp://107.182.30.76.16clouds.com:6969/announce
 udp://yahor.of.by:6969/announce
 udp://tracker.dler.com:6969/announce
 https://tracker.lilithraws.cf:443/announce
-udp://tracker.ccp.ovh:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://epider.me:6969/announce
 udp://htz3.noho.st:6969/announce
