@@ -71,12 +71,12 @@ udp://tamas3.ynh.fr:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://open.publictracker.xyz:6969/announce
 http://t.publictracker.xyz:6969/announce
-udp://exodus.desync.com:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://carr.codes:6969/announce
+udp://exodus.desync.com:6969/announce
 udp://bt2.archive.org:6969/announce
-udp://tracker.theoks.net:6969/announce
 udp://tracker.srv00.com:6969/announce
+udp://tracker.theoks.net:6969/announce
 http://buny.uk:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker4.itzmx.com:2710/announce
