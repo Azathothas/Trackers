@@ -53,10 +53,10 @@ udp://moonburrow.club:6969/announce
 udp://acxx.de:6969/announce
 udp://city21.pk:6969/announce
 udp://mail.segso.net:6969/announce
-http://shubt.net:2710/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://open.stealth.si:80/announce
+http://shubt.net:2710/announce
 udp://bt1.archive.org:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.cyberia.is:6969/announce
