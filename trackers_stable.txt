@@ -56,10 +56,10 @@ udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://city21.pk:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.cyberia.is:6969/announce
-http://tracker.bt4g.com:2095/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 http://shubt.net:2710/announce
+http://tracker.bt4g.com:2095/announce
 udp://tracker2.dler.com:80/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tk1v6.trackerservers.com:8080/announce
@@ -76,8 +76,8 @@ udp://bt2.archive.org:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.theoks.net:6969/announce
-http://tracker.nartlof.com.br:6969/announce
 http://buny.uk:6969/announce
+http://tracker.nartlof.com.br:6969/announce
 http://t.publictracker.xyz:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://new-line.net:6969/announce
