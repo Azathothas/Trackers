@@ -61,10 +61,10 @@ udp://tracker.0x7c0.com:6969/announce
 http://shubt.net:2710/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker2.dler.com:80/announce
+udp://u4.trakx.crim.ist:1337/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tk1v6.trackerservers.com:8080/announce
-udp://u4.trakx.crim.ist:1337/announce
 udp://tk1.trackerservers.com:8080/announce
 http://tracker.ipv6tracker.ru:80/announce
 https://tr.burnabyhighstar.com:443/announce
@@ -83,6 +83,7 @@ udp://sanincode.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
 http://t.publictracker.xyz:6969/announce
 udp://204.79.238.89.in-addr.arpa.manitu.net:6969/announce
-udp://tracker1.bt.moack.co.kr:80/announce
 udp://lloria.fr:6969/announce
+udp://tracker1.bt.moack.co.kr:80/announce
 udp://www.torrent.eu.org:451/announce
+udp://tracker.4.babico.name.tr:3131/announce
