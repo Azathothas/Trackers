@@ -85,7 +85,7 @@ udp://sanincode.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
-udp://sabross.xyz:6969/announce
 http://t.publictracker.xyz:6969/announce
+udp://sabross.xyz:6969/announce
 udp://204.79.238.89.in-addr.arpa.manitu.net:6969/announce
 udp://www.torrent.eu.org:451/announce
