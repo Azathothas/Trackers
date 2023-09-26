@@ -57,9 +57,9 @@ udp://tracker.t-rb.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker2.dler.com:80/announce
-udp://1c.premierzal.ru:6969/announce
 udp://city21.pk:6969/announce
 http://shubt.net:2710/announce
+udp://1c.premierzal.ru:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
