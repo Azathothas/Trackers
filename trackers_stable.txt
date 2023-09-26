@@ -74,8 +74,8 @@ udp://opentracker.io:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.bt4g.com:2095/announce
-udp://tracker.srv00.com:6969/announce
 udp://exodus.desync.com:6969/announce
+udp://tracker.srv00.com:6969/announce
 udp://new-line.net:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://tracker.theoks.net:6969/announce
@@ -87,4 +87,3 @@ udp://tracker1.bt.moack.co.kr:80/announce
 http://t.publictracker.xyz:6969/announce
 udp://204.79.238.89.in-addr.arpa.manitu.net:6969/announce
 udp://www.torrent.eu.org:451/announce
-https://tracker.h3o2.me:443/announce
