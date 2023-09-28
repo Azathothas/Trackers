@@ -72,8 +72,8 @@ udp://carr.codes:6969/announce
 udp://opentracker.io:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://exodus.desync.com:6969/announce
-udp://tracker.4.babico.name.tr:3131/announce
 http://tracker.bt4g.com:2095/announce
+udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://bt.ktrackers.com:6666/announce
