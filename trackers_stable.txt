@@ -57,11 +57,11 @@ https://tracker.lilithraws.org:443/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker2.dler.com:80/announce
-udp://tracker.swateam.org.uk:2710/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://shubt.net:2710/announce
 udp://bt1.archive.org:6969/announce
 udp://tamas3.ynh.fr:6969/announce
+udp://tracker.swateam.org.uk:2710/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tk1v6.trackerservers.com:8080/announce
