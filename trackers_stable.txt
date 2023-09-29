@@ -42,7 +42,6 @@ udp://private.anonseed.com:6969/announce
 udp://public-tracker.cf:6969/announce
 udp://107.182.30.76.16clouds.com:6969/announce
 udp://tracker.fnix.net:6969/announce
-udp://tracker.swateam.org.uk:2710/announce
 https://tracker.lilithraws.cf:443/announce
 udp://epider.me:6969/announce
 udp://lloria.fr:6969/announce
@@ -52,6 +51,7 @@ udp://city21.pk:6969/announce
 udp://mail.segso.net:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://yahor.of.by:6969/announce
+udp://tracker.swateam.org.uk:2710/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.t-rb.org:6969/announce
