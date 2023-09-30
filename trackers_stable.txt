@@ -87,4 +87,3 @@ udp://www.torrent.eu.org:451/announce
 http://p2p.0g.cx:6969/announce
 http://incine.ru:6969/announce
 udp://204.79.238.89.in-addr.arpa.manitu.net:6969/announce
-udp://tracker.6.babico.name.tr:6969/announce
