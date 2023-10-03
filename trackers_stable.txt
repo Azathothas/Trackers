@@ -45,12 +45,12 @@ udp://mail.segso.net:6969/announce
 udp://tracker.fnix.net:6969/announce
 https://tracker.lilithraws.cf:443/announce
 https://tr.burnabyhighstar.com:443/announce
-udp://open.dstud.io:6969/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://lloria.fr:6969/announce
 http://tracker.h0me.cc:8880/announce
 udp://107.182.30.76.16clouds.com:6969/announce
 udp://tracker.dler.com:6969/announce
+udp://open.dstud.io:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 https://tracker.lilithraws.org:443/announce
