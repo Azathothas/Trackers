@@ -65,11 +65,11 @@ udp://u6.trakx.crim.ist:1337/announce
 udp://tk1v6.trackerservers.com:8080/announce
 http://shubt.net:2710/announce
 udp://opentracker.i2p.rocks:6969/announce
+udp://carr.codes:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://z.paranoid.agency:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://open.publictracker.xyz:6969/announce
-udp://carr.codes:6969/announce
 udp://opentracker.io:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
