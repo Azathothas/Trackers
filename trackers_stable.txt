@@ -8,6 +8,7 @@ http://open.acgnxtracker.com:80/announce
 udp://movies.zsw.ca:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://free.publictracker.xyz:6969/announce
+http://tracker.mywaifu.best:6969/announce
 https://tracker.loligirl.cn:443/announce
 https://tracker1.520.jp:443/announce
 udp://thouvenin.cloud:6969/announce
@@ -35,7 +36,6 @@ udp://retracker.hotplug.ru:2710/announce
 http://t.acg.rip:6699/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.ccp.ovh:6969/announce
-http://tracker.mywaifu.best:6969/announce
 udp://htz3.noho.st:6969/announce
 https://tracker.tamersunion.org:443/announce
 http://tracker.h0me.cc:8880/announce
