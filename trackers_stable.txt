@@ -61,9 +61,9 @@ udp://tracker2.dler.com:80/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://city21.pk:6969/announce
 udp://bt1.archive.org:6969/announce
-udp://tamas3.ynh.fr:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://z.paranoid.agency:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 udp://carr.codes:6969/announce
 udp://tk1v6.trackerservers.com:8080/announce
 http://shubt.net:2710/announce
@@ -81,9 +81,9 @@ udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://thinking.duckdns.org:6969/announce
 udp://1c.premierzal.ru:6969/announce
+udp://x.paranoid.agency:6969/announce
 http://buny.uk:6969/announce
 udp://sanincode.com:6969/announce
-udp://x.paranoid.agency:6969/announce
 udp://tracker1.myporn.club:9337/announce
 http://p2p.0g.cx:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
