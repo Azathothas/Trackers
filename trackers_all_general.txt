@@ -141,5 +141,6 @@ udp://v2.iperson.xyz:6969/announce
 udp://wepzone.net:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://x.paranoid.agency:6969/announce
+udp://y.paranoid.agency:6969/announce
 udp://yahor.of.by:6969/announce
 udp://z.paranoid.agency:6969/announce
