@@ -37,6 +37,7 @@ udp://retracker.hotplug.ru:2710/announce
 http://t.acg.rip:6699/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.ccp.ovh:6969/announce
+https://tr.burnabyhighstar.com:443/announce
 udp://epider.me:6969/announce
 udp://htz3.noho.st:6969/announce
 https://tracker.tamersunion.org:443/announce
@@ -45,7 +46,6 @@ udp://private.anonseed.com:6969/announce
 udp://mail.segso.net:6969/announce
 udp://tracker.fnix.net:6969/announce
 https://tracker.lilithraws.cf:443/announce
-https://tr.burnabyhighstar.com:443/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://lloria.fr:6969/announce
 http://tracker.h0me.cc:8880/announce
@@ -80,10 +80,10 @@ udp://tracker.srv00.com:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
+udp://thinking.duckdns.org:6969/announce
 http://buny.uk:6969/announce
 udp://sanincode.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-udp://thinking.duckdns.org:6969/announce
 udp://x.paranoid.agency:6969/announce
 http://incine.ru:6969/announce
 http://p2p.0g.cx:6969/announce
