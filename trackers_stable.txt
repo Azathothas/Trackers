@@ -57,12 +57,12 @@ https://tracker.lilithraws.org:443/announce
 udp://yahor.of.by:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
-http://tracker.gbitt.info:80/announce
-udp://tracker-udp.gbitt.info:80/announce
 udp://carr.codes:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://city21.pk:6969/announce
 udp://z.paranoid.agency:6969/announce
+http://tracker.gbitt.info:80/announce
+udp://tracker-udp.gbitt.info:80/announce
 udp://bt1.archive.org:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
@@ -86,6 +86,6 @@ udp://x.paranoid.agency:6969/announce
 udp://sanincode.com:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://tracker1.myporn.club:9337/announce
-udp://thinking.duckdns.org:6969/announce
-http://incine.ru:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
+http://incine.ru:6969/announce
+udp://thinking.duckdns.org:6969/announce
