@@ -1,9 +1,7 @@
 udp://p4p.arenabg.com:1337/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
-http://tracker.gbitt.info:80/announce
 http://tracker.files.fm:6969/announce
-udp://tracker-udp.gbitt.info:80/announce
 http://open.acgnxtracker.com:80/announce
 udp://movies.zsw.ca:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -35,6 +33,8 @@ http://bvarf.tracker.sh:2086/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 http://t.acg.rip:6699/announce
+http://tracker.gbitt.info:80/announce
+udp://tracker-udp.gbitt.info:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.ccp.ovh:6969/announce
 https://tr.burnabyhighstar.com:443/announce
@@ -82,10 +82,10 @@ http://tracker.bt4g.com:2095/announce
 udp://tracker.theoks.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
 http://buny.uk:6969/announce
-udp://sanincode.com:6969/announce
 udp://x.paranoid.agency:6969/announce
-udp://thinking.duckdns.org:6969/announce
+udp://sanincode.com:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://tracker1.myporn.club:9337/announce
+udp://thinking.duckdns.org:6969/announce
 http://incine.ru:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
