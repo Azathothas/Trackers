@@ -88,4 +88,3 @@ http://p2p.0g.cx:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 http://incine.ru:6969/announce
-udp://thinking.duckdns.org:6969/announce
