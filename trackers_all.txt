@@ -367,6 +367,7 @@ http://proaudiotorrents.org/announce.php
 http://proaudiotorrents.org:80/announce.php
 http://region.nl1.privex.cc:6969/announce
 http://reisub.nsupdate.info:6969/announce
+http://retracker.211.ru:80/announce
 http://retracker.joxnet.ru/announce
 http://retracker.joxnet.ru:80/announce
 http://retracker.ohys.net/announce
