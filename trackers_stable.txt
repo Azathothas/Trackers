@@ -87,5 +87,5 @@ udp://ns1.monolithindustries.com:6969/announce
 udp://open.publictracker.xyz:6969/announce
 udp://tracker1.myporn.club:9337/announce
 http://incine.ru:6969/announce
-udp://tracker1.bt.moack.co.kr:80/announce
 udp://p2p.publictracker.xyz:6969/announce
+udp://tracker1.bt.moack.co.kr:80/announce
