@@ -13,7 +13,6 @@ udp://thouvenin.cloud:6969/announce
 udp://aarsen.me:6969/announce
 udp://moonburrow.club:6969/announce
 udp://static.54.161.216.95.clients.your-server.de:6969/announce
-udp://tracker.tryhackx.org:6969/announce
 udp://acxx.de:6969/announce
 udp://private.anonseed.com:6969/announce
 https://www.peckservers.com:9443/announce
@@ -41,6 +40,7 @@ https://tr.burnabyhighstar.com:443/announce
 udp://epider.me:6969/announce
 udp://htz3.noho.st:6969/announce
 https://tracker.tamersunion.org:443/announce
+udp://tracker.tryhackx.org:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://open.stealth.si:80/announce
 https://tracker.lilithraws.cf:443/announce
