@@ -72,8 +72,8 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://exodus.desync.com:6969/announce
 udp://bt2.archive.org:6969/announce
-udp://open.publictracker.xyz:6969/announce
 udp://opentracker.io:6969/announce
+udp://open.publictracker.xyz:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 http://tracker.bt4g.com:2095/announce
