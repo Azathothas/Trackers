@@ -53,7 +53,6 @@ udp://tracker.dler.com:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://open.dstud.io:6969/announce
 udp://lloria.fr:6969/announce
-http://tracker.h0me.cc:8880/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.cyberia.is:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
@@ -64,6 +63,7 @@ udp://city21.pk:6969/announce
 udp://yahor.of.by:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
+http://tracker.h0me.cc:8880/announce
 udp://tracker2.dler.com:80/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
@@ -79,8 +79,8 @@ udp://opentracker.io:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://bt.ktrackers.com:6666/announce
 udp://x.paranoid.agency:6969/announce
+udp://bt.ktrackers.com:6666/announce
 http://buny.uk:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://1c.premierzal.ru:6969/announce
