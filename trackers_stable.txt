@@ -67,13 +67,13 @@ udp://tracker-udp.gbitt.info:80/announce
 udp://tamas3.ynh.fr:6969/announce
 http://shubt.net:2710/announce
 http://tracker.gbitt.info:80/announce
+http://tracker.bt4g.com:2095/announce
 udp://bt1.archive.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tk1v6.trackerservers.com:8080/announce
 udp://exodus.desync.com:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-http://tracker.bt4g.com:2095/announce
 udp://opentracker.io:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://new-line.net:6969/announce
