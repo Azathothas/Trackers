@@ -70,11 +70,11 @@ udp://tk1v6.trackerservers.com:8080/announce
 udp://exodus.desync.com:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
+http://tracker.k.vu:6969/announce
+udp://tracker.farted.net:6969/announce
 http://tracker.h0me.cc:8880/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://bt2.archive.org:6969/announce
-http://tracker.k.vu:6969/announce
-udp://tracker.farted.net:6969/announce
 https://tracker.imgoingto.icu:443/announce
 udp://opentracker.io:6969/announce
 udp://new-line.net:6969/announce
