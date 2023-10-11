@@ -35,6 +35,7 @@ https://1337.abcvg.info:443/announce
 https://t1.hloli.org:443/announce
 https://tr.burnabyhighstar.com:443/announce
 https://tracker.cloudit.top:443/announce
+https://tracker.fr.eu.org:443/announce
 https://tracker.gbitt.info:443/announce
 https://tracker.imgoingto.icu:443/announce
 https://tracker.ipfsscan.io:443/announce
