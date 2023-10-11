@@ -52,6 +52,7 @@ udp://sanincode.com:6969/announce
 udp://lloria.fr:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
+udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker2.dler.com:80/announce
 https://www.peckservers.com:9443/announce
@@ -60,7 +61,6 @@ udp://y.paranoid.agency:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.farted.net:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://u6.trakx.crim.ist:1337/announce
 http://shubt.net:2710/announce
 udp://z.paranoid.agency:6969/announce
 udp://exodus.desync.com:6969/announce
@@ -81,10 +81,10 @@ udp://new-line.net:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.theoks.net:6969/announce
+http://smurfsoft.com:6969/announce
 udp://movies.zsw.ca:6969/announce
 http://buny.uk:6969/announce
 http://v6-tracker.0g.cx:6969/announce
-http://smurfsoft.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://x.paranoid.agency:6969/announce
