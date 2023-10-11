@@ -81,9 +81,9 @@ udp://new-line.net:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.theoks.net:6969/announce
-http://v6-tracker.0g.cx:6969/announce
 udp://movies.zsw.ca:6969/announce
 http://buny.uk:6969/announce
+http://v6-tracker.0g.cx:6969/announce
 udp://1c.premierzal.ru:6969/announce
 http://smurfsoft.com:6969/announce
 udp://bt.ktrackers.com:6666/announce
