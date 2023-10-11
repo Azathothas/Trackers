@@ -65,11 +65,11 @@ udp://u6.trakx.crim.ist:1337/announce
 http://shubt.net:2710/announce
 udp://z.paranoid.agency:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
+udp://exodus.desync.com:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://carr.codes:6969/announce
 udp://city21.pk:6969/announce
 udp://tk1v6.trackerservers.com:8080/announce
-udp://exodus.desync.com:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 http://tracker.h0me.cc:8880/announce
@@ -90,3 +90,4 @@ udp://x.paranoid.agency:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
 http://incine.ru:6969/announce
+http://smurfsoft.com:6969/announce
