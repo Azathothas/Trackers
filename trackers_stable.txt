@@ -54,7 +54,6 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
-http://tracker.mywaifu.best:6969/announce
 https://www.peckservers.com:9443/announce
 udp://yahor.of.by:6969/announce
 udp://y.paranoid.agency:6969/announce
@@ -64,6 +63,7 @@ udp://tamas3.ynh.fr:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 http://shubt.net:2710/announce
 udp://z.paranoid.agency:6969/announce
+http://tracker.mywaifu.best:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker.gbitt.info:80/announce
