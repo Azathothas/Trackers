@@ -57,13 +57,13 @@ udp://tracker.t-rb.org:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://tamas3.ynh.fr:6969/announce
 https://www.peckservers.com:9443/announce
+http://smurfsoft.com:6969/announce
 udp://yahor.of.by:6969/announce
 udp://y.paranoid.agency:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.farted.net:6969/announce
 http://shubt.net:2710/announce
 udp://z.paranoid.agency:6969/announce
-http://smurfsoft.com:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker.gbitt.info:80/announce
@@ -90,5 +90,5 @@ udp://bt.ktrackers.com:6666/announce
 udp://x.paranoid.agency:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-http://incine.ru:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
+http://incine.ru:6969/announce
