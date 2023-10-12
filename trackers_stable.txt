@@ -36,6 +36,7 @@ udp://tracker.opentrackr.org:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.ccp.ovh:6969/announce
+udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://static.54.161.216.95.clients.your-server.de:6969/announce
 udp://tracker.tryhackx.org:6969/announce
@@ -44,7 +45,6 @@ udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
-udp://u4.trakx.crim.ist:1337/announce
 udp://open.dstud.io:6969/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://107.182.30.76.16clouds.com:6969/announce
@@ -66,6 +66,7 @@ udp://z.paranoid.agency:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker.gbitt.info:80/announce
+http://smurfsoft.com:6969/announce
 udp://city21.pk:6969/announce
 udp://tk1v6.trackerservers.com:8080/announce
 udp://bt1.archive.org:6969/announce
@@ -76,7 +77,6 @@ udp://tk1.trackerservers.com:8080/announce
 udp://bt2.archive.org:6969/announce
 https://tracker.imgoingto.icu:443/announce
 udp://carr.codes:6969/announce
-http://smurfsoft.com:6969/announce
 udp://opentracker.io:6969/announce
 udp://new-line.net:6969/announce
 http://p2p.0g.cx:6969/announce
