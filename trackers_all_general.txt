@@ -12,6 +12,7 @@ http://retracker.211.ru:80/announce
 http://shubt.net:2710/announce
 http://smurfsoft.com:6969/announce
 http://t.acg.rip:6699/announce
+http://tk.trojangogogo.site:8989/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.dler.org:6969/announce
 http://tracker.edkj.club:6969/announce
