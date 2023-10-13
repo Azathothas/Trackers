@@ -61,9 +61,9 @@ udp://tracker2.dler.com:80/announce
 udp://tamas3.ynh.fr:6969/announce
 https://www.peckservers.com:9443/announce
 udp://yahor.of.by:6969/announce
-udp://tracker.t-rb.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.farted.net:6969/announce
+udp://tracker.t-rb.org:6969/announce
 udp://z.paranoid.agency:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
@@ -79,8 +79,8 @@ https://tracker.imgoingto.icu:443/announce
 http://tracker.mywaifu.best:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://opentracker.io:6969/announce
-udp://carr.codes:6969/announce
 udp://new-line.net:6969/announce
+udp://carr.codes:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 http://v6-tracker.0g.cx:6969/announce
