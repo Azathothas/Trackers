@@ -72,11 +72,11 @@ http://tracker.gbitt.info:80/announce
 udp://tk1v6.trackerservers.com:8080/announce
 udp://opentracker.i2p.rocks:6969/announce
 http://tracker.h0me.cc:8880/announce
+http://p2p.0g.cx:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://bt1.archive.org:6969/announce
 udp://bt2.archive.org:6969/announce
 https://tracker.imgoingto.icu:443/announce
-http://p2p.0g.cx:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://opentracker.io:6969/announce
 udp://carr.codes:6969/announce
@@ -91,5 +91,6 @@ udp://bt.ktrackers.com:6666/announce
 udp://x.paranoid.agency:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-http://ipv4announce.sktorrent.eu:6969/announce
 udp://public.publictracker.xyz:6969/announce
+http://ipv4announce.sktorrent.eu:6969/announce
+udp://wepzone.net:6969/announce
