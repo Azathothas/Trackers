@@ -76,13 +76,13 @@ udp://bt1.archive.org:6969/announce
 udp://bt2.archive.org:6969/announce
 https://tracker.imgoingto.icu:443/announce
 http://tracker.mywaifu.best:6969/announce
-http://tracker.k.vu:6969/announce
 udp://opentracker.io:6969/announce
 udp://carr.codes:6969/announce
+http://tracker.k.vu:6969/announce
 udp://new-line.net:6969/announce
 http://v6-tracker.0g.cx:6969/announce
-udp://tracker.farted.net:6969/announce
 udp://tracker.theoks.net:6969/announce
+udp://tracker.farted.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://movies.zsw.ca:6969/announce
 http://buny.uk:6969/announce
