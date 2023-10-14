@@ -3,7 +3,6 @@ http://bt.okmp3.ru:2710/announce
 http://buny.uk:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://incine.ru:6969/announce
-http://ipv4announce.sktorrent.eu:6969/announce
 http://open.acgnxtracker.com:80/announce
 http://open.tracker.ink:6969/announce
 http://p2p.0g.cx:6969/announce
