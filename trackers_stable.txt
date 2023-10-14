@@ -51,10 +51,10 @@ udp://107.182.30.76.16clouds.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
-udp://open.dstud.io:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://public.publictracker.xyz:6969/announce
+udp://open.dstud.io:6969/announce
 udp://lloria.fr:6969/announce
 http://shubt.net:2710/announce
 udp://y.paranoid.agency:6969/announce
@@ -77,10 +77,10 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://bt1.archive.org:6969/announce
 https://tracker.imgoingto.icu:443/announce
-http://tracker.mywaifu.best:6969/announce
 udp://new-line.net:6969/announce
 udp://carr.codes:6969/announce
 udp://bt2.archive.org:6969/announce
+http://tracker.mywaifu.best:6969/announce
 udp://city21.pk:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.srv00.com:6969/announce
@@ -91,5 +91,5 @@ udp://x.paranoid.agency:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-http://ipv4announce.sktorrent.eu:6969/announce
 https://t1.hloli.org:443/announce
+http://ipv4announce.sktorrent.eu:6969/announce
