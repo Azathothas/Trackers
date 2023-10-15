@@ -58,7 +58,6 @@ udp://y.paranoid.agency:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://lloria.fr:6969/announce
-http://tracker.renfei.net:8080/announce
 http://shubt.net:2710/announce
 udp://tracker2.dler.com:80/announce
 https://tracker.imgoingto.icu:443/announce
@@ -67,6 +66,7 @@ udp://z.paranoid.agency:6969/announce
 udp://tracker.cyberia.is:6969/announce
 http://p2p.0g.cx:6969/announce
 https://www.peckservers.com:9443/announce
+http://tracker.renfei.net:8080/announce
 udp://tamas3.ynh.fr:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
@@ -89,7 +89,7 @@ udp://movies.zsw.ca:6969/announce
 http://buny.uk:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://x.paranoid.agency:6969/announce
-udp://bt.ktrackers.com:6666/announce
 udp://tracker1.myporn.club:9337/announce
+udp://bt.ktrackers.com:6666/announce
 udp://ns1.monolithindustries.com:6969/announce
 https://t1.hloli.org:443/announce
