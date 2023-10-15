@@ -1,5 +1,6 @@
 http://1337.abcvg.info:80/announce
 http://bt.okmp3.ru:2710/announce
+http://bt.xcty.eu.org:2095/announce
 http://buny.uk:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://ch3oh.ru:6969/announce
