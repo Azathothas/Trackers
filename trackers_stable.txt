@@ -82,8 +82,8 @@ udp://carr.codes:6969/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://new-line.net:6969/announce
-udp://city21.pk:6969/announce
 udp://tracker.theoks.net:6969/announce
+udp://city21.pk:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://movies.zsw.ca:6969/announce
 http://buny.uk:6969/announce
