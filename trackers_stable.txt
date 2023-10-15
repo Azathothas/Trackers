@@ -55,10 +55,10 @@ udp://sanincode.com:6969/announce
 https://tracker.imgoingto.icu:443/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://public.publictracker.xyz:6969/announce
-udp://open.dstud.io:6969/announce
 udp://y.paranoid.agency:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://exodus.desync.com:6969/announce
+udp://open.dstud.io:6969/announce
 udp://lloria.fr:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://yahor.of.by:6969/announce
