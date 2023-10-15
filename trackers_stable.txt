@@ -83,8 +83,8 @@ udp://new-line.net:6969/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://city21.pk:6969/announce
-http://tracker.renfei.net:8080/announce
 udp://tracker.srv00.com:6969/announce
+http://tracker.renfei.net:8080/announce
 udp://movies.zsw.ca:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://x.paranoid.agency:6969/announce
