@@ -74,14 +74,14 @@ udp://wepzone.net:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://carr.codes:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://city21.pk:6969/announce
 http://tracker.mywaifu.best:6969/announce
+udp://city21.pk:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://new-line.net:6969/announce
 udp://movies.zsw.ca:6969/announce
-udp://lloria.fr:6969/announce
 udp://1c.premierzal.ru:6969/announce
+udp://lloria.fr:6969/announce
 http://smurfsoft.com:6969/announce
 udp://x.paranoid.agency:6969/announce
 https://t1.hloli.org:443/announce
