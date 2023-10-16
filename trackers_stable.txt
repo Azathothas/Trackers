@@ -90,5 +90,4 @@ udp://x.paranoid.agency:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
 udp://ns1.monolithindustries.com:6969/announce
-http://bt.xcty.eu.org:2095/announce
 https://t1.hloli.org:443/announce
