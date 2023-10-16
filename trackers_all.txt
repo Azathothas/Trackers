@@ -235,7 +235,6 @@ http://bt.okmp3.ru:2710/announce
 http://bt.poletracker.org:2710/announce
 http://bt.rghost.net/announce
 http://bt.rghost.net:80/announce
-http://bt.xcty.eu.org:2095/announce
 http://bt.zlofenix.org:81/announce
 http://bt02.nnm-club.cc:2710/announce
 http://bt02.nnm-club.info:2710/announce
