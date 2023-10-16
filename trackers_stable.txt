@@ -73,8 +73,8 @@ udp://tk1v6.trackerservers.com:8080/announce
 udp://bt1.archive.org:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://wepzone.net:6969/announce
-http://tracker.h0me.cc:8880/announce
 udp://opentracker.i2p.rocks:6969/announce
+http://tracker.h0me.cc:8880/announce
 udp://carr.codes:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://new-line.net:6969/announce
@@ -88,5 +88,5 @@ http://tracker.renfei.net:8080/announce
 udp://x.paranoid.agency:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://tracker1.myporn.club:9337/announce
-udp://ns1.monolithindustries.com:6969/announce
 https://t1.hloli.org:443/announce
+udp://ns1.monolithindustries.com:6969/announce
