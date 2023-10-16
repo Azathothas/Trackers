@@ -14,7 +14,6 @@ udp://aarsen.me:6969/announce
 udp://moonburrow.club:6969/announce
 https://tracker.tamersunion.org:443/announce
 https://tracker.lilithraws.org:443/announce
-udp://acxx.de:6969/announce
 udp://private.anonseed.com:6969/announce
 https://trackers.mlsub.net:443/announce
 udp://opentracker.io:6969/announce
@@ -45,6 +44,7 @@ https://tracker.imgoingto.icu:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://static.54.161.216.95.clients.your-server.de:6969/announce
 udp://tracker.tryhackx.org:6969/announce
+udp://acxx.de:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://107.182.30.76.16clouds.com:6969/announce
@@ -59,9 +59,9 @@ udp://exodus.desync.com:6969/announce
 udp://open.dstud.io:6969/announce
 udp://lloria.fr:6969/announce
 udp://z.paranoid.agency:6969/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://yahor.of.by:6969/announce
-udp://tracker.cyberia.is:6969/announce
 http://p2p.0g.cx:6969/announce
 https://www.peckservers.com:9443/announce
 udp://tamas3.ynh.fr:6969/announce
@@ -78,9 +78,9 @@ udp://carr.codes:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://new-line.net:6969/announce
 http://tracker.mywaifu.best:6969/announce
-http://tracker.h0me.cc:8880/announce
 udp://city21.pk:6969/announce
 udp://bt2.archive.org:6969/announce
+http://tracker.h0me.cc:8880/announce
 udp://tracker.srv00.com:6969/announce
 udp://movies.zsw.ca:6969/announce
 udp://1c.premierzal.ru:6969/announce
