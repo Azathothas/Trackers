@@ -84,8 +84,8 @@ http://tracker.mywaifu.best:6969/announce
 udp://city21.pk:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://movies.zsw.ca:6969/announce
-http://tracker.renfei.net:8080/announce
 udp://1c.premierzal.ru:6969/announce
+http://tracker.renfei.net:8080/announce
 udp://x.paranoid.agency:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
