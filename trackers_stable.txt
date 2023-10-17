@@ -67,11 +67,11 @@ udp://tracker.t-rb.org:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker.gbitt.info:80/announce
-udp://tk1v6.trackerservers.com:8080/announce
-udp://mail.segso.net:6969/announce
-udp://tk1.trackerservers.com:8080/announce
 udp://bt1.archive.org:6969/announce
+udp://tk1v6.trackerservers.com:8080/announce
+udp://tk1.trackerservers.com:8080/announce
 udp://wepzone.net:6969/announce
+udp://mail.segso.net:6969/announce
 udp://carr.codes:6969/announce
 udp://city21.pk:6969/announce
 udp://tracker.theoks.net:6969/announce
@@ -86,3 +86,4 @@ udp://bt.ktrackers.com:6666/announce
 udp://tracker1.myporn.club:9337/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://new-line.net:6969/announce
+udp://www.torrent.eu.org:451/announce
