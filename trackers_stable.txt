@@ -85,7 +85,7 @@ https://t1.hloli.org:443/announce
 udp://x.paranoid.agency:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://tracker1.myporn.club:9337/announce
+udp://ns1.monolithindustries.com:6969/announce
 udp://new-line.net:6969/announce
 udp://lloria.fr:6969/announce
-udp://ns1.monolithindustries.com:6969/announce
 http://smurfsoft.com:6969/announce
