@@ -81,8 +81,8 @@ udp://bt2.archive.org:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://movies.zsw.ca:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://x.paranoid.agency:6969/announce
 https://t1.hloli.org:443/announce
+udp://x.paranoid.agency:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://tracker1.myporn.club:9337/announce
 udp://ns1.monolithindustries.com:6969/announce
