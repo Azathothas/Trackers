@@ -70,9 +70,9 @@ http://retracker.211.ru:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker.gbitt.info:80/announce
 udp://tk1v6.trackerservers.com:8080/announce
-udp://bt1.archive.org:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://bt1.archive.org:6969/announce
 udp://carr.codes:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://bt2.archive.org:6969/announce
