@@ -28,7 +28,8 @@ udp://tracker.therarbg.com:6969/announce
 udp://bigfoot1942.sektori.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://evan.im:6969/announce
-udp://x.hz.is:6969/announce
+udp://x.t-1.org:6969/announce
+udp://y.t-1.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 http://tracker.bt4g.com:2095/announce
@@ -86,3 +87,4 @@ udp://www.torrent.eu.org:451/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
+udp://x.hz.is:6969/announce

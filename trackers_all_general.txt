@@ -138,6 +138,8 @@ udp://wepzone.net:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://x.hz.is:6969/announce
 udp://x.paranoid.agency:6969/announce
+udp://x.t-1.org:6969/announce
 udp://y.paranoid.agency:6969/announce
+udp://y.t-1.org:6969/announce
 udp://yahor.of.by:6969/announce
 udp://z.paranoid.agency:6969/announce
