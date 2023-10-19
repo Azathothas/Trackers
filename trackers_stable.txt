@@ -33,7 +33,6 @@ udp://y.t-1.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://public.publictracker.xyz:6969/announce
-udp://tracker.ccp.ovh:6969/announce
 https://tracker.loligirl.cn:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://epider.me:6969/announce
@@ -48,6 +47,7 @@ udp://public-tracker.cf:6969/announce
 udp://107.182.30.76.16clouds.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://open.stealth.si:80/announce
+udp://tracker.ccp.ovh:6969/announce
 udp://sanincode.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://y.paranoid.agency:6969/announce
