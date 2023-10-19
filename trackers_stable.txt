@@ -85,4 +85,5 @@ udp://x.paranoid.agency:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
-udp://city21.pk:6969/announce
+udp://new-line.net:6969/announce
+udp://www.torrent.eu.org:451/announce

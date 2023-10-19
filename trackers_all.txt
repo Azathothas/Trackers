@@ -927,7 +927,6 @@ udp://buddyfly.top:6969/announce
 udp://camera.lei001.com:6969/announce
 udp://carr.codes:6969/announce
 udp://chouchou.top:8080/announce
-udp://city21.pk:6969/announce
 udp://concen.org:6969/announce
 udp://cpe-104-34-3-152.socal.res.rr.com:6969/announce
 udp://cutscloud.duckdns.org:6969/announce
@@ -1103,6 +1102,7 @@ udp://v2.iperson.xyz:6969/announce
 udp://vibe.sleepyinternetfun.xyz:1738/announce
 udp://wepzone.net:6969/announce
 udp://www.peckservers.com:9000/announce
+udp://www.torrent.eu.org:451/announce
 udp://x.paranoid.agency:6969/announce
 udp://x.t-1.org:6969/announce
 udp://y.paranoid.agency:6969/announce
