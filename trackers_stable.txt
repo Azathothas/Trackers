@@ -8,7 +8,6 @@ http://tracker.files.fm:6969/announce
 http://open.acgnxtracker.com:80/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 https://tracker.lilithraws.cf:443/announce
-http://bt.okmp3.ru:2710/announce
 udp://free.publictracker.xyz:6969/announce
 https://tr.burnabyhighstar.com:443/announce
 https://tracker1.520.jp:443/announce
@@ -31,8 +30,10 @@ udp://tracker.therarbg.com:6969/announce
 udp://bigfoot1942.sektori.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://pirate.hz.is:1337/announce
+https://tracker.cloudit.top:443/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://public.publictracker.xyz:6969/announce
+http://bt.okmp3.ru:2710/announce
 https://tracker.loligirl.cn:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://epider.me:6969/announce
@@ -82,7 +83,7 @@ udp://movies.zsw.ca:6969/announce
 https://t1.hloli.org:443/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-udp://bt.ktrackers.com:6666/announce
 udp://www.torrent.eu.org:451/announce
-udp://x.paranoid.agency:6969/announce
+udp://bt.ktrackers.com:6666/announce
 udp://new-line.net:6969/announce
+udp://x.paranoid.agency:6969/announce
