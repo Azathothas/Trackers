@@ -651,6 +651,7 @@ https://abir0dev.github.io/announce
 https://abir0dev.github.io:443/announce
 https://bittorrent.gongt.net/announce
 https://bittorrent.gongt.net:443/announce
+https://bt.080609.xyz:443/announce
 https://bt.endpot.com/announce
 https://carapax.net/announce
 https://carbon-bonsai-621.appspot.com/announce
