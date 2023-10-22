@@ -64,12 +64,12 @@ udp://tracker.t-rb.org:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
+https://tracker.cloudit.top:443/announce
 http://tracker.gbitt.info:80/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://yahor.of.by:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tk1v6.trackerservers.com:8080/announce
-https://tracker.cloudit.top:443/announce
 udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
 udp://bt1.archive.org:6969/announce
