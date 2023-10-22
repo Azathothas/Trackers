@@ -73,8 +73,8 @@ https://tracker.cloudit.top:443/announce
 udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
 udp://carr.codes:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://bt1.archive.org:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://bt2.archive.org:6969/announce
 udp://tracker.theoks.net:6969/announce
 http://tracker.mywaifu.best:6969/announce
