@@ -64,8 +64,8 @@ udp://tamas3.ynh.fr:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
-http://tracker.gbitt.info:80/announce
 http://v6-tracker.0g.cx:6969/announce
+http://tracker.gbitt.info:80/announce
 udp://yahor.of.by:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tk1v6.trackerservers.com:8080/announce
