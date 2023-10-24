@@ -12,7 +12,6 @@ https://tr.burnabyhighstar.com:443/announce
 udp://thouvenin.cloud:6969/announce
 udp://aarsen.me:6969/announce
 udp://uploads.gamecoast.net:6969/announce
-udp://u6.trakx.crim.ist:1337/announce
 https://tracker.tamersunion.org:443/announce
 https://tracker.lilithraws.org:443/announce
 udp://private.anonseed.com:6969/announce
@@ -33,9 +32,9 @@ https://bt.080609.xyz:443/announce
 udp://tracker.opentrackr.org:1337/announce
 https://tracker.lilithraws.cf:443/announce
 https://tracker.loligirl.cn:443/announce
-udp://u4.trakx.crim.ist:1337/announce
 https://tracker1.520.jp:443/announce
 udp://epider.me:6969/announce
+udp://u6.trakx.crim.ist:1337/announce
 udp://static.54.161.216.95.clients.your-server.de:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://acxx.de:6969/announce
@@ -46,6 +45,7 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.ccp.ovh:6969/announce
+udp://u4.trakx.crim.ist:1337/announce
 https://tracker.imgoingto.icu:443/announce
 udp://y.paranoid.agency:6969/announce
 udp://pirate.hz.is:1337/announce
@@ -54,9 +54,9 @@ udp://tracker.dler.com:6969/announce
 udp://open.dstud.io:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tracker2.dler.com:80/announce
-udp://moonburrow.club:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
+udp://moonburrow.club:6969/announce
 https://www.peckservers.com:9443/announce
 http://p2p.0g.cx:6969/announce
 http://v6-tracker.0g.cx:6969/announce
