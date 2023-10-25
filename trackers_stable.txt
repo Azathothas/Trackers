@@ -67,8 +67,8 @@ http://v6-tracker.0g.cx:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tk1v6.trackerservers.com:8080/announce
 https://t1.hloli.org:443/announce
-udp://tracker.srv00.com:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
 udp://carr.codes:6969/announce
 udp://bt1.archive.org:6969/announce
