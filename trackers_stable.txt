@@ -41,13 +41,13 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://sabross.xyz:6969/announce
 udp://bigfoot1942.sektori.org:6969/announce
 udp://tracker.fnix.net:6969/announce
+udp://open.stealth.si:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://open.dstud.io:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://y.paranoid.agency:6969/announce
-udp://open.stealth.si:80/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://u4.trakx.crim.ist:1337/announce
