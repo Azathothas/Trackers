@@ -117,6 +117,7 @@ http://45.63.111.135:2710/announce
 http://45.63.111.135:6961/announce
 http://45.63.111.135:8080/announce
 http://45.67.35.111:6969/announce
+http://46.17.46.112:8080/announce
 http://46.231.241.43:6969/announce
 http://47.243.23.189:6969/announce
 http://47.54.245.23:6969/announce
@@ -651,6 +652,7 @@ https://abir0dev.github.io/announce
 https://abir0dev.github.io:443/announce
 https://bittorrent.gongt.net/announce
 https://bittorrent.gongt.net:443/announce
+https://bt.080609.xyz/announce
 https://bt.080609.xyz:443/announce
 https://bt.endpot.com/announce
 https://carapax.net/announce
