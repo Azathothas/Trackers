@@ -88,4 +88,3 @@ http://ch3oh.ru:6969/announce
 udp://new-line.net:6969/announce
 udp://run-2.publictracker.xyz:6969/announce
 udp://black-bird.ynh.fr:6969/announce
-udp://moonburrow.club:6969/announce
