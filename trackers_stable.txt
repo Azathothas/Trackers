@@ -88,4 +88,3 @@ udp://tracker.theoks.net:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://black-bird.ynh.fr:6969/announce
-http://openwrt.lingyurouqing.xyz:6969/announce
