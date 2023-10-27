@@ -64,8 +64,8 @@ udp://tamas3.ynh.fr:6969/announce
 https://www.peckservers.com:9443/announce
 udp://wepzone.net:6969/announce
 udp://sanincode.com:6969/announce
-udp://1c.premierzal.ru:6969/announce
 http://p2p.0g.cx:6969/announce
+udp://1c.premierzal.ru:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tk1v6.trackerservers.com:8080/announce
 http://v6-tracker.0g.cx:6969/announce
@@ -87,6 +87,6 @@ udp://thinking.duckdns.org:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.theoks.net:6969/announce
 udp://new-line.net:6969/announce
-http://tracker.nartlof.com.br:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+http://tracker.nartlof.com.br:6969/announce
