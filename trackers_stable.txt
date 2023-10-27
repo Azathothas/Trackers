@@ -67,11 +67,11 @@ http://p2p.0g.cx:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tk1v6.trackerservers.com:8080/announce
+https://t1.hloli.org:443/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.srv00.com:6969/announce
-https://t1.hloli.org:443/announce
-udp://private.anonseed.com:6969/announce
 http://v6-tracker.0g.cx:6969/announce
+udp://private.anonseed.com:6969/announce
 udp://bt1.archive.org:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://carr.codes:6969/announce
