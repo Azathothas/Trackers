@@ -58,9 +58,9 @@ https://tracker.imgoingto.icu:443/announce
 udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://tracker.t-rb.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 https://www.peckservers.com:9443/announce
+udp://tracker.t-rb.org:6969/announce
 udp://wepzone.net:6969/announce
 udp://sanincode.com:6969/announce
 http://p2p.0g.cx:6969/announce
