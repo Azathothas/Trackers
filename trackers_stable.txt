@@ -80,11 +80,11 @@ udp://movies.zsw.ca:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://run-2.publictracker.xyz:6969/announce
 udp://yahor.of.by:6969/announce
-udp://thinking.duckdns.org:6969/announce
 udp://tracker1.myporn.club:9337/announce
+udp://thinking.duckdns.org:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
-udp://tracker.theoks.net:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://tracker.theoks.net:6969/announce
 udp://new-line.net:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://tracker.4.babico.name.tr:3131/announce
