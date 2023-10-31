@@ -42,6 +42,7 @@ udp://public-tracker.cf:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://sabross.xyz:6969/announce
 udp://bigfoot1942.sektori.org:6969/announce
+udp://y.paranoid.agency:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://open.stealth.si:80/announce
 udp://tracker.dler.com:6969/announce
@@ -51,7 +52,6 @@ udp://tracker.ccp.ovh:6969/announce
 udp://open.dstud.io:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://107.182.30.76.16clouds.com:6969/announce
-udp://y.paranoid.agency:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://u4.trakx.crim.ist:1337/announce
 https://www.peckservers.com:9443/announce
@@ -70,8 +70,8 @@ udp://tk1.trackerservers.com:8080/announce
 udp://tracker.srv00.com:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://bt1.archive.org:6969/announce
 udp://movies.zsw.ca:6969/announce
+udp://bt1.archive.org:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://carr.codes:6969/announce
 udp://retracker.hotplug.ru:2710/announce
