@@ -87,4 +87,3 @@ udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.cubonegro.lol:6969/announce
 http://incine.ru:6969/announce
 udp://black-bird.ynh.fr:6969/announce
-udp://new-line.net:6969/announce
