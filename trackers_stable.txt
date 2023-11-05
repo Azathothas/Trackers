@@ -82,5 +82,5 @@ udp://bt.ktrackers.com:6666/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.cubonegro.lol:6969/announce
 http://incine.ru:6969/announce
-udp://thinking.duckdns.org:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://thinking.duckdns.org:6969/announce
