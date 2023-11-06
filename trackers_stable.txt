@@ -37,6 +37,7 @@ udp://tracker2.itzmx.com:6961/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker2.dler.com:80/announce
 https://tracker.lilithraws.cf:443/announce
 https://tracker1.520.jp:443/announce
 udp://tracker.tryhackx.org:6969/announce
@@ -44,7 +45,6 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://bigfoot1942.sektori.org:6969/announce
 udp://open.stealth.si:80/announce
-udp://tracker2.dler.com:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://epider.me:6969/announce
 https://www.peckservers.com:9443/announce
@@ -81,5 +81,5 @@ udp://bt.ktrackers.com:6666/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 http://incine.ru:6969/announce
-udp://black-bird.ynh.fr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
+udp://black-bird.ynh.fr:6969/announce
