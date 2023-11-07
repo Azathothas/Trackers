@@ -79,8 +79,8 @@ https://tracker.cloudit.top:443/announce
 udp://evan.im:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
-udp://tracker.6.babico.name.tr:6969/announce
 udp://tracker.anima.nz:6969/announce
+udp://tracker.6.babico.name.tr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 http://incine.ru:6969/announce
 udp://black-bird.ynh.fr:6969/announce
