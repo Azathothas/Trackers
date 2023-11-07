@@ -86,3 +86,4 @@ udp://black-bird.ynh.fr:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://new-line.net:6969/announce
+udp://tracker.anima.nz:6969/announce
