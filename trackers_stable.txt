@@ -36,7 +36,6 @@ http://bvarf.tracker.sh:2086/announce
 udp://pirate.hz.is:1337/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://tracker.skynetcloud.site:6969/announce
-udp://isk.richardsw.club:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker2.dler.com:80/announce
@@ -82,9 +81,9 @@ udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
+udp://tracker.anima.nz:6969/announce
 http://incine.ru:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
-udp://tracker.anima.nz:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://new-line.net:6969/announce
