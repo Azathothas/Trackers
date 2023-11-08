@@ -71,12 +71,12 @@ udp://tk1.trackerservers.com:8080/announce
 udp://tracker.srv00.com:6969/announce
 udp://carr.codes:6969/announce
 udp://bt1.archive.org:6969/announce
+udp://tracker.anima.nz:6969/announce
 udp://bt2.archive.org:6969/announce
 http://v6-tracker.0g.cx:6969/announce
-udp://tracker.anima.nz:6969/announce
 udp://tracker.therarbg.com:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 https://tracker.cloudit.top:443/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://evan.im:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
