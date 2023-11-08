@@ -80,13 +80,13 @@ udp://retracker.hotplug.ru:2710/announce
 udp://evan.im:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://bt.ktrackers.com:6666/announce
+https://tracker2.ctix.cn:443/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
-https://tracker2.ctix.cn:443/announce
 http://incine.ru:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
-udp://tracker1.bt.moack.co.kr:80/announce
 https://tracker1.ctix.cn:443/announce
+udp://tracker1.bt.moack.co.kr:80/announce
 udp://v2.iperson.xyz:6969/announce
 udp://new-line.net:6969/announce
