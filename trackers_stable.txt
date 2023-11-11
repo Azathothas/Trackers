@@ -92,3 +92,4 @@ http://incine.ru:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker.anima.nz:6969/announce
+udp://su-data.com:6969/announce
