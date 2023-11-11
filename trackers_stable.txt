@@ -38,6 +38,7 @@ https://tracker.lilithraws.cf:443/announce
 http://bt.okmp3.ru:2710/announce
 https://tracker1.520.jp:443/announce
 udp://uploads.gamecoast.net:6969/announce
+udp://tracker.edkj.club:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://6.pocketnet.app:6969/announce
@@ -47,7 +48,6 @@ udp://open.stealth.si:80/announce
 udp://tracker2.dler.com:80/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://tracker.edkj.club:6969/announce
 https://www.peckservers.com:9443/announce
 https://trackers.mlsub.net:443/announce
 udp://opentracker.io:6969/announce
@@ -73,8 +73,8 @@ udp://u6.trakx.crim.ist:1337/announce
 udp://tamas3.ynh.fr:6969/announce
 http://t.publictracker.xyz:6969/announce
 udp://bt1.archive.org:6969/announce
-udp://carr.codes:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
+udp://carr.codes:6969/announce
 udp://evan.im:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 http://v6-tracker.0g.cx:6969/announce
