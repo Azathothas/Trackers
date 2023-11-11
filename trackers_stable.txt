@@ -9,6 +9,7 @@ udp://tracker-udp.gbitt.info:80/announce
 http://open.acgnxtracker.com:80/announce
 udp://movies.zsw.ca:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
+https://tracker.lilithraws.cf:443/announce
 udp://free.publictracker.xyz:6969/announce
 https://tr.burnabyhighstar.com:443/announce
 https://tracker.loligirl.cn:443/announce
@@ -33,8 +34,8 @@ udp://pirate.hz.is:1337/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://p4p.arenabg.com:1337/announce
+udp://open.stealth.si:80/announce
 udp://tracker.dler.com:6969/announce
-https://tracker.lilithraws.cf:443/announce
 https://tracker1.520.jp:443/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://tracker.edkj.club:6969/announce
@@ -42,7 +43,6 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://bigfoot1942.sektori.org:6969/announce
 udp://y.paranoid.agency:6969/announce
-udp://open.stealth.si:80/announce
 udp://tracker2.dler.com:80/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://tracker.tryhackx.org:6969/announce
@@ -66,10 +66,10 @@ https://tracker.imgoingto.icu:443/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://opentracker.i2p.rocks:6969/announce
+udp://tracker.6.babico.name.tr:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.ctix.cn:443/announce
-udp://tracker.6.babico.name.tr:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 http://t.publictracker.xyz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
