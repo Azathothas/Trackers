@@ -93,4 +93,3 @@ http://incine.ru:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 http://tracker.renfei.net:8080/announce
 udp://new-line.net:6969/announce
-udp://open.tracker.cl:1337/announce
