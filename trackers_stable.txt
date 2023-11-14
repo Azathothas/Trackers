@@ -90,6 +90,6 @@ udp://tracker.anima.nz:6969/announce
 udp://v2.iperson.xyz:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://black-bird.ynh.fr:6969/announce
-udp://pirate.hz.is:1337/announce
 http://incine.ru:6969/announce
 udp://new-line.net:6969/announce
+udp://pirate.hz.is:1337/announce
