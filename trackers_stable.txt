@@ -92,4 +92,3 @@ udp://tracker1.myporn.club:9337/announce
 udp://black-bird.ynh.fr:6969/announce
 http://incine.ru:6969/announce
 udp://new-line.net:6969/announce
-udp://pirate.hz.is:1337/announce
