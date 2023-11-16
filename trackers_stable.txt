@@ -74,11 +74,11 @@ udp://bt1.archive.org:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://carr.codes:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
-udp://bigfoot1942.sektori.org:6969/announce
+udp://evan.im:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
-udp://evan.im:6969/announce
+udp://bigfoot1942.sektori.org:6969/announce
 http://t.publictracker.xyz:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker.cubonegro.lol:6969/announce
