@@ -66,8 +66,8 @@ http://tracker.mywaifu.best:6969/announce
 https://tracker.imgoingto.icu:443/announce
 https://t1.hloli.org:443/announce
 udp://1c.premierzal.ru:6969/announce
-udp://bigfoot1942.sektori.org:6969/announce
 http://p2p.0g.cx:6969/announce
+udp://bigfoot1942.sektori.org:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.t-rb.org:6969/announce
 https://tracker1.ctix.cn:443/announce
