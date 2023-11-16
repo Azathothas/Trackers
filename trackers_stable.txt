@@ -35,7 +35,6 @@ udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.trafficmgr.net:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker.dler.com:6969/announce
-udp://tracker.filemail.com:6969/announce
 udp://sanincode.com:6969/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://tracker.tryhackx.org:6969/announce
@@ -45,6 +44,7 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://public-tracker.cf:6969/announce
 udp://y.paranoid.agency:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://tracker.filemail.com:6969/announce
 https://www.peckservers.com:9443/announce
 https://trackers.mlsub.net:443/announce
 udp://opentracker.io:6969/announce
