@@ -38,7 +38,6 @@ udp://tracker.dler.com:6969/announce
 udp://sanincode.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.edkj.club:6969/announce
-udp://acxx.de:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://public-tracker.cf:6969/announce
 udp://y.paranoid.agency:6969/announce
@@ -46,6 +45,7 @@ udp://retracker.hotplug.ru:2710/announce
 udp://tracker.filemail.com:6969/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
+udp://acxx.de:6969/announce
 https://www.peckservers.com:9443/announce
 https://trackers.mlsub.net:443/announce
 udp://opentracker.io:6969/announce
