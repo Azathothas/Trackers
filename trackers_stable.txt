@@ -77,8 +77,8 @@ udp://bt1.archive.org:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
-udp://6.pocketnet.app:6969/announce
 http://v6-tracker.0g.cx:6969/announce
+udp://6.pocketnet.app:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tracker.anima.nz:6969/announce
 http://t.publictracker.xyz:6969/announce
