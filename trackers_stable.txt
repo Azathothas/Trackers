@@ -45,11 +45,11 @@ udp://uploads.gamecoast.net:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 https://www.peckservers.com:9443/announce
 https://trackers.mlsub.net:443/announce
-udp://ns1.monolithindustries.com:6969/announce
 udp://tracker2.dler.com:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://epider.me:6969/announce
 udp://opentracker.io:6969/announce
+udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://run-2.publictracker.xyz:6969/announce
 udp://acxx.de:6969/announce
