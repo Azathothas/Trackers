@@ -91,9 +91,9 @@ udp://6.pocketnet.app:6969/announce
 http://tracker.k.vu:6969/announce
 http://t.publictracker.xyz:6969/announce
 udp://tracker.theoks.net:6969/announce
+http://tracker.bt4g.com:2095/announce
 udp://tracker.farted.net:6969/announce
 udp://new-line.net:6969/announce
-http://tracker.bt4g.com:2095/announce
 udp://bt.ktrackers.com:6666/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker1.myporn.club:9337/announce
