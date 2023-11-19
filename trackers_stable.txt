@@ -62,10 +62,10 @@ udp://tracker.6.babico.name.tr:6969/announce
 udp://carr.codes:6969/announce
 udp://107.182.30.76.16clouds.com:6969/announce
 udp://exodus.desync.com:6969/announce
-http://tracker.mywaifu.best:6969/announce
 udp://open.dstud.io:6969/announce
 https://tracker.imgoingto.icu:443/announce
 udp://tracker.t-rb.org:6969/announce
+http://tracker.mywaifu.best:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tk1.trackerservers.com:8080/announce
 https://tracker1.ctix.cn:443/announce
