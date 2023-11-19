@@ -71,11 +71,11 @@ udp://tracker.t-rb.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 https://tracker1.ctix.cn:443/announce
 udp://evan.im:6969/announce
+udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.srv00.com:6969/announce
-udp://bt1.archive.org:6969/announce
-udp://u6.trakx.crim.ist:1337/announce
 http://smurfsoft.com:6969/announce
+udp://u6.trakx.crim.ist:1337/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.anima.nz:6969/announce
@@ -91,10 +91,10 @@ udp://6.pocketnet.app:6969/announce
 http://tracker.k.vu:6969/announce
 http://t.publictracker.xyz:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://new-line.net:6969/announce
-udp://bt.ktrackers.com:6666/announce
 udp://tracker.farted.net:6969/announce
+udp://new-line.net:6969/announce
 http://tracker.bt4g.com:2095/announce
+udp://bt.ktrackers.com:6666/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.torrent.eu.org:451/announce
