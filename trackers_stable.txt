@@ -29,7 +29,6 @@ udp://odd-hd.fr:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://tracker.rev.pm:6969/announce
-https://tracker.yemekyedim.com:443/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker.dler.com:6969/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -81,11 +80,11 @@ http://v6-tracker.0g.cx:6969/announce
 udp://tracker.anima.nz:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://evan.im:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
+udp://evan.im:6969/announce
+udp://tracker1.bt.moack.co.kr:80/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
-udp://tracker1.bt.moack.co.kr:80/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.therarbg.com:6969/announce
 udp://tracker.iperson.xyz:6969/announce
