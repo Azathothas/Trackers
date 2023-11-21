@@ -1,4 +1,3 @@
-udp://tracker.opentrackr.org:1337/announce
 udp://open.stealth.si:80/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://tracker.birkenwald.de:6969/announce
@@ -29,6 +28,7 @@ udp://odd-hd.fr:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://tracker.rev.pm:6969/announce
+udp://tracker.opentrackr.org:1337/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker.dler.com:6969/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -65,10 +65,10 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.t-rb.org:6969/announce
-udp://tracker.filemail.com:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://acxx.de:6969/announce
+udp://tracker.filemail.com:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.farted.net:6969/announce
