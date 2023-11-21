@@ -73,9 +73,9 @@ udp://tracker.srv00.com:6969/announce
 udp://tracker.farted.net:6969/announce
 udp://acxx.de:6969/announce
 http://smurfsoft.com:6969/announce
-udp://tracker.filemail.com:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://v6-tracker.0g.cx:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://1c.premierzal.ru:6969/announce
@@ -96,5 +96,5 @@ udp://tracker.theoks.net:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://new-line.net:6969/announce
-udp://bt.ktrackers.com:6666/announce
 http://tracker1.itzmx.com:8080/announce
+udp://bt.ktrackers.com:6666/announce
