@@ -74,8 +74,8 @@ udp://tracker.srv00.com:6969/announce
 udp://tracker.farted.net:6969/announce
 http://smurfsoft.com:6969/announce
 http://tracker.bt4g.com:2095/announce
-udp://open.dstud.io:6969/announce
 http://v6-tracker.0g.cx:6969/announce
+udp://open.dstud.io:6969/announce
 udp://tracker.anima.nz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://1c.premierzal.ru:6969/announce
@@ -83,9 +83,9 @@ udp://tracker.cubonegro.lol:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 https://tracker.imgoingto.icu:443/announce
 https://tracker.cloudit.top:443/announce
+udp://tracker.torrent.eu.org:451/announce
 udp://tracker.therarbg.com:6969/announce
 udp://evan.im:6969/announce
-udp://tracker.torrent.eu.org:451/announce
 udp://bt2.archive.org:6969/announce
 udp://tracker.iperson.xyz:6969/announce
 udp://6.pocketnet.app:6969/announce
