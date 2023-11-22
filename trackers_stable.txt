@@ -76,8 +76,8 @@ udp://acxx.de:6969/announce
 http://smurfsoft.com:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://v6-tracker.0g.cx:6969/announce
-udp://tracker.filemail.com:6969/announce
 udp://open.dstud.io:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
