@@ -661,6 +661,7 @@ https://bittorrent.gongt.net:443/announce
 https://bt.080609.xyz/announce
 https://bt.080609.xyz:443/announce
 https://bt.endpot.com/announce
+https://bt.nfshost.com/announce
 https://carapax.net/announce
 https://carbon-bonsai-621.appspot.com/announce
 https://carbon-bonsai-621.appspot.com:443/announce
