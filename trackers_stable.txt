@@ -79,8 +79,8 @@ udp://acxx.de:6969/announce
 http://smurfsoft.com:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
-udp://tracker.filemail.com:6969/announce
 http://tracker.nartlof.com.br:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://1c.premierzal.ru:6969/announce
 https://tracker.cloudit.top:443/announce
@@ -97,5 +97,5 @@ udp://v2.iperson.xyz:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker1.myporn.club:9337/announce
-https://tracker.imgoingto.icu:443/announce
 udp://new-line.net:6969/announce
+https://tracker.imgoingto.icu:443/announce
