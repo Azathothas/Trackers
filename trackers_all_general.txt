@@ -31,6 +31,7 @@ http://wepzone.net:6969/announce
 http://wg.mortis.me:6969/announce
 http://www.peckservers.com:9000/announce
 https://1337.abcvg.info:443/announce
+https://bruisedfumblingmotion.sddsdsdsddsdss.repl.co:443/announce
 https://t1.hloli.org:443/announce
 https://tr.burnabyhighstar.com:443/announce
 https://tracker.cloudit.top:443/announce
