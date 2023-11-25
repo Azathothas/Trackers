@@ -51,7 +51,6 @@ udp://run-2.publictracker.xyz:6969/announce
 https://t1.hloli.org:443/announce
 udp://opentracker.io:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
-udp://p4p.arenabg.com:1337/announce
 udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.ccp.ovh:6969/announce
@@ -64,16 +63,17 @@ udp://tracker2.dler.com:80/announce
 udp://carr.codes:6969/announce
 udp://y.paranoid.agency:6969/announce
 udp://tracker2.itzmx.com:6961/announce
+udp://p4p.arenabg.com:1337/announce
 udp://tracker.6.babico.name.tr:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://u6.trakx.crim.ist:1337/announce
+http://smurfsoft.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.srv00.com:6969/announce
 http://tracker1.itzmx.com:8080/announce
-http://smurfsoft.com:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://acxx.de:6969/announce
