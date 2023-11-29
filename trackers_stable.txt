@@ -59,12 +59,12 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://carr.codes:6969/announce
+udp://tracker.t-rb.org:6969/announce
 udp://y.paranoid.agency:6969/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
 http://v6-tracker.0g.cx:6969/announce
-udp://tracker.t-rb.org:6969/announce
 udp://tracker.anima.nz:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://thouvenin.cloud:6969/announce
