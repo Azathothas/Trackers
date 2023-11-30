@@ -47,7 +47,6 @@ udp://u4.trakx.crim.ist:1337/announce
 https://tracker1.ctix.cn:443/announce
 udp://moonburrow.club:6969/announce
 udp://opentracker.io:6969/announce
-http://wg.mortis.me:6969/announce
 http://tracker.rev.pm:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
@@ -62,6 +61,7 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://carr.codes:6969/announce
 http://v6-tracker.0g.cx:6969/announce
+http://wg.mortis.me:6969/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://tracker.anima.nz:6969/announce
@@ -76,16 +76,16 @@ http://tracker1.itzmx.com:8080/announce
 udp://tamas3.ynh.fr:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://evan.im:6969/announce
-udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://1c.premierzal.ru:6969/announce
 http://t.acg.rip:6699/announce
+udp://tracker1.bt.moack.co.kr:80/announce
 https://tracker.cloudit.top:443/announce
 udp://acxx.de:6969/announce
 udp://tracker.therarbg.to:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://open.dstud.io:6969/announce
 udp://wepzone.net:6969/announce
+udp://open.dstud.io:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://bt2.archive.org:6969/announce
@@ -95,6 +95,6 @@ udp://tracker.filemail.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://p4p.arenabg.com:1337/announce
 udp://6.pocketnet.app:6969/announce
-udp://v2.iperson.xyz:6969/announce
 http://ch3oh.ru:6969/announce
+udp://v2.iperson.xyz:6969/announce
 udp://tracker.iperson.xyz:6969/announce
