@@ -96,5 +96,5 @@ udp://tracker1.myporn.club:9337/announce
 udp://p4p.arenabg.com:1337/announce
 udp://6.pocketnet.app:6969/announce
 udp://v2.iperson.xyz:6969/announce
-udp://tracker.iperson.xyz:6969/announce
 http://ch3oh.ru:6969/announce
+udp://tracker.iperson.xyz:6969/announce
