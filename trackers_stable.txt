@@ -77,9 +77,9 @@ udp://tamas3.ynh.fr:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://evan.im:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
+udp://tracker.cubonegro.lol:6969/announce
 udp://1c.premierzal.ru:6969/announce
 http://t.acg.rip:6699/announce
-udp://tracker.cubonegro.lol:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://acxx.de:6969/announce
 udp://tracker.theoks.net:6969/announce
