@@ -35,11 +35,11 @@ udp://tracker.opentrackr.org:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://uploads.gamecoast.net:6969/announce
 https://www.peckservers.com:9443/announce
+udp://opentracker.io:6969/announce
 udp://sabross.xyz:6969/announce
 https://tracker1.520.jp:443/announce
 https://tracker2.ctix.cn:443/announce
 http://p2p.0g.cx:6969/announce
-udp://opentracker.io:6969/announce
 udp://public-tracker.cf:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://u4.trakx.crim.ist:1337/announce
@@ -83,8 +83,8 @@ udp://tracker1.bt.moack.co.kr:80/announce
 udp://acxx.de:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://open.dstud.io:6969/announce
-http://t.acg.rip:6699/announce
 udp://bt2.archive.org:6969/announce
+http://t.acg.rip:6699/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://tracker.farted.net:6969/announce
