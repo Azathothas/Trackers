@@ -38,13 +38,13 @@ udp://run-2.publictracker.xyz:6969/announce
 https://tracker1.520.jp:443/announce
 udp://uploads.gamecoast.net:6969/announce
 https://tracker2.ctix.cn:443/announce
+udp://opentracker.io:6969/announce
 udp://public-tracker.cf:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://u4.trakx.crim.ist:1337/announce
 https://tracker1.ctix.cn:443/announce
 udp://epider.me:6969/announce
 udp://moonburrow.club:6969/announce
-udp://opentracker.io:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.cyberia.is:6969/announce
@@ -87,11 +87,10 @@ udp://open.dstud.io:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://bt2.archive.org:6969/announce
-udp://black-bird.ynh.fr:6969/announce
 udp://tracker.farted.net:6969/announce
+udp://black-bird.ynh.fr:6969/announce
 http://wg.mortis.me:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.filemail.com:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://v2.iperson.xyz:6969/announce
-http://tracker.rev.pm:6969/announce
