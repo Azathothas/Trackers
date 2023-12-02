@@ -58,9 +58,9 @@ udp://tracker.t-rb.org:6969/announce
 udp://y.paranoid.agency:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tracker2.itzmx.com:6961/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://opentracker.i2p.rocks:6969/announce
 https://t1.hloli.org:443/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://carr.codes:6969/announce
 udp://tracker.anima.nz:6969/announce
