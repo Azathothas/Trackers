@@ -44,13 +44,13 @@ http://p2p.0g.cx:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://public-tracker.cf:6969/announce
 udp://tracker.t-rb.org:6969/announce
+udp://tracker2.dler.com:80/announce
 https://tracker1.ctix.cn:443/announce
 udp://epider.me:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
-udp://tracker2.dler.com:80/announce
 udp://opentracker.io:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
@@ -77,10 +77,10 @@ udp://1c.premierzal.ru:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://evan.im:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://tracker1.bt.moack.co.kr:80/announce
-udp://carr.codes:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://acxx.de:6969/announce
+udp://carr.codes:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://open.dstud.io:6969/announce
 http://tracker.gbitt.info:80/announce
