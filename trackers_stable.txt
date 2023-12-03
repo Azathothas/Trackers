@@ -50,7 +50,6 @@ udp://epider.me:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
-udp://opentracker.i2p.rocks:6969/announce
 udp://opentracker.io:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
@@ -59,6 +58,7 @@ http://bvarf.tracker.sh:2086/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
+udp://opentracker.i2p.rocks:6969/announce
 https://t1.hloli.org:443/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
@@ -73,9 +73,9 @@ udp://tk1.trackerservers.com:8080/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tamas3.ynh.fr:6969/announce
 http://tracker.mywaifu.best:6969/announce
+udp://tracker.cubonegro.lol:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://tracker.cubonegro.lol:6969/announce
 udp://evan.im:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://acxx.de:6969/announce
