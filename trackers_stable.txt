@@ -49,12 +49,12 @@ udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://moonburrow.club:6969/announce
+https://t1.hloli.org:443/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://y.paranoid.agency:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://exodus.desync.com:6969/announce
-https://t1.hloli.org:443/announce
 udp://opentracker.io:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.srv00.com:6969/announce
