@@ -582,6 +582,7 @@ http://tracker.zerobytes.xyz:1337/announce
 http://tracker1.bt.moack.co.kr/announce
 http://tracker1.bt.moack.co.kr:80/announce
 http://tracker1.itzmx.com:8080/announce
+http://tracker1.torrentino.com/announce
 http://tracker2.ctix.cn:2095/announce
 http://tracker2.dler.org/announce
 http://tracker2.dler.org:80/announce
