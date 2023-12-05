@@ -47,7 +47,6 @@ https://tracker1.520.jp:443/announce
 udp://epider.me:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.fnix.net:6969/announce
-udp://tracker.birkenwald.de:6969/announce
 udp://moonburrow.club:6969/announce
 https://t1.hloli.org:443/announce
 udp://tracker.0x7c0.com:6969/announce
@@ -56,6 +55,7 @@ http://bvarf.tracker.sh:2086/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.cyberia.is:6969/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://opentracker.io:6969/announce
@@ -70,10 +70,10 @@ http://tracker1.itzmx.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://tracker.cubonegro.lol:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
-https://tracker.cloudit.top:443/announce
+udp://tracker.cubonegro.lol:6969/announce
 udp://evan.im:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://open.dstud.io:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
@@ -84,6 +84,6 @@ udp://black-bird.ynh.fr:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://6.pocketnet.app:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://tracker.anima.nz:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://tracker.anima.nz:6969/announce
 http://t.acg.rip:6699/announce
