@@ -83,9 +83,9 @@ udp://acxx.de:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
-udp://tracker1.myporn.club:9337/announce
-udp://tracker.birkenwald.de:6969/announce
-udp://tracker.filemail.com:6969/announce
 http://incine.ru:6969/announce
+udp://tracker1.myporn.club:9337/announce
+udp://tracker.filemail.com:6969/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 http://t.acg.rip:6699/announce
