@@ -84,5 +84,6 @@ udp://black-bird.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.filemail.com:6969/announce
+udp://open.xxtor.com:3074/announce
 udp://retracker.hotplug.ru:2710/announce
 http://t.acg.rip:6699/announce

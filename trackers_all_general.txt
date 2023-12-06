@@ -77,6 +77,7 @@ udp://open.dstud.io:6969/announce
 udp://open.free-tracker.ga:6969/announce
 udp://open.stealth.si:80/announce
 udp://open.u-p.pw:6969/announce
+udp://open.xxtor.com:3074/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://opentracker.io:6969/announce
 udp://p4p.arenabg.com:1337/announce
