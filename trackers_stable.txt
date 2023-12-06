@@ -85,6 +85,7 @@ udp://acxx.de:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-http://incine.ru:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+http://incine.ru:6969/announce
+udp://private.anonseed.com:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
