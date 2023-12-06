@@ -45,11 +45,11 @@ udp://tracker.skynetcloud.site:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://run-2.publictracker.xyz:6969/announce
-https://tracker1.520.jp:443/announce
 udp://epider.me:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
+https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://y.paranoid.agency:6969/announce
@@ -71,9 +71,9 @@ http://tracker.mywaifu.best:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker.cubonegro.lol:6969/announce
-https://tracker.cloudit.top:443/announce
 udp://evan.im:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
@@ -83,7 +83,7 @@ udp://bt2.archive.org:6969/announce
 udp://acxx.de:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
-http://incine.ru:6969/announce
 udp://tracker.filemail.com:6969/announce
+http://incine.ru:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://retracker.hotplug.ru:2710/announce
