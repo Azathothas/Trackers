@@ -66,10 +66,10 @@ udp://wepzone.net:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://private.anonseed.com:6969/announce
 http://tracker1.itzmx.com:8080/announce
-udp://free.publictracker.xyz:6969/announce
+udp://1c.premierzal.ru:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://1c.premierzal.ru:6969/announce
+udp://free.publictracker.xyz:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
@@ -85,7 +85,7 @@ udp://acxx.de:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
 http://tracker.dump.cl:6969/announce
-udp://tracker1.myporn.club:9337/announce
 udp://tracker.filemail.com:6969/announce
+udp://tracker1.myporn.club:9337/announce
 udp://retracker.hotplug.ru:2710/announce
 http://ipv4announce.sktorrent.eu:6969/announce
