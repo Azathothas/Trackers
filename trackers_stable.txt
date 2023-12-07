@@ -73,8 +73,8 @@ udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 https://tracker.cloudit.top:443/announce
-udp://free.publictracker.xyz:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
+udp://free.publictracker.xyz:6969/announce
 udp://evan.im:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
