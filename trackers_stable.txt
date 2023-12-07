@@ -30,7 +30,6 @@ udp://odd-hd.fr:6969/announce
 udp://tracker.therarbg.com:6969/announce
 udp://sabross.xyz:6969/announce
 https://tracker.yemekyedim.com:443/announce
-udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://uploads.gamecoast.net:6969/announce
@@ -54,9 +53,9 @@ https://t1.hloli.org:443/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://y.paranoid.agency:6969/announce
 udp://tracker2.itzmx.com:6961/announce
-udp://exodus.desync.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.cyberia.is:6969/announce
+udp://exodus.desync.com:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.6.babico.name.tr:6969/announce
@@ -78,6 +77,7 @@ udp://evan.im:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://open.dstud.io:6969/announce
+udp://tracker.mirrorbay.org:6969/announce
 udp://carr.codes:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://black-bird.ynh.fr:6969/announce
