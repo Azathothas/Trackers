@@ -75,9 +75,9 @@ udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://evan.im:6969/announce
+udp://private.anonseed.com:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
-udp://private.anonseed.com:6969/announce
 udp://open.dstud.io:6969/announce
 udp://carr.codes:6969/announce
 udp://bt2.archive.org:6969/announce
