@@ -31,6 +31,7 @@ https://tracker.yemekyedim.com:443/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://tracker.tryhackx.org:6969/announce
+udp://private.anonseed.com:6969/announce
 https://www.peckservers.com:9443/announce
 udp://public-tracker.cf:6969/announce
 http://ch3oh.ru:6969/announce
@@ -41,7 +42,6 @@ udp://tracker.t-rb.org:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tracker2.dler.com:80/announce
-udp://private.anonseed.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
@@ -58,8 +58,8 @@ udp://tracker.6.babico.name.tr:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://exodus.desync.com:6969/announce
-udp://opentracker.io:6969/announce
 udp://tracker.ccp.ovh:6969/announce
+udp://opentracker.io:6969/announce
 udp://thouvenin.cloud:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://bt1.archive.org:6969/announce
@@ -68,10 +68,10 @@ http://tracker1.itzmx.com:8080/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 http://tracker.mywaifu.best:6969/announce
-udp://aarsen.me:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://run-2.publictracker.xyz:6969/announce
+udp://aarsen.me:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
+udp://run-2.publictracker.xyz:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://evan.im:6969/announce
 https://tracker.cloudit.top:443/announce
@@ -79,13 +79,13 @@ http://tracker.dump.cl:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://open.dstud.io:6969/announce
+udp://black-bird.ynh.fr:6969/announce
 udp://carr.codes:6969/announce
 udp://acxx.de:6969/announce
-udp://black-bird.ynh.fr:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://6.pocketnet.app:6969/announce
+https://tracker.jdx3.org:443/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-https://tracker.jdx3.org:443/announce
 udp://retracker.hotplug.ru:2710/announce
 http://ipv4announce.sktorrent.eu:6969/announce
