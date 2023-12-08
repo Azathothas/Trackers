@@ -53,11 +53,11 @@ udp://y.paranoid.agency:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://run-2.publictracker.xyz:6969/announce
 udp://moonburrow.club:6969/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.6.babico.name.tr:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker2.itzmx.com:6961/announce
-udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://opentracker.io:6969/announce
 udp://tracker.ccp.ovh:6969/announce
