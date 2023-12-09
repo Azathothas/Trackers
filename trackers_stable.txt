@@ -55,10 +55,10 @@ udp://moonburrow.club:6969/announce
 https://t1.hloli.org:443/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.6.babico.name.tr:6969/announce
+udp://opentracker.io:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://exodus.desync.com:6969/announce
-udp://opentracker.io:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://thouvenin.cloud:6969/announce
@@ -82,8 +82,8 @@ udp://open.dstud.io:6969/announce
 udp://carr.codes:6969/announce
 udp://acxx.de:6969/announce
 udp://bt2.archive.org:6969/announce
-udp://aarsen.me:6969/announce
 udp://6.pocketnet.app:6969/announce
+udp://aarsen.me:6969/announce
 udp://run-2.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
