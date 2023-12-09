@@ -46,11 +46,11 @@ udp://tracker2.dler.com:80/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
-https://tracker1.520.jp:443/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://y.paranoid.agency:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.srv00.com:6969/announce
+https://tracker1.520.jp:443/announce
 udp://moonburrow.club:6969/announce
 https://t1.hloli.org:443/announce
 udp://tracker2.itzmx.com:6961/announce
@@ -62,8 +62,8 @@ udp://tracker.mirrorbay.org:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://thouvenin.cloud:6969/announce
 udp://tracker.ccp.ovh:6969/announce
-udp://wepzone.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
+udp://wepzone.net:6969/announce
 udp://bt1.archive.org:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tamas3.ynh.fr:6969/announce
