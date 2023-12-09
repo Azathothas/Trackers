@@ -85,6 +85,6 @@ udp://bt2.archive.org:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://aarsen.me:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://run-2.publictracker.xyz:6969/announce
 udp://tracker1.myporn.club:9337/announce
+udp://run-2.publictracker.xyz:6969/announce
 udp://retracker.hotplug.ru:2710/announce
