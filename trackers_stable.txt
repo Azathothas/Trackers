@@ -54,13 +54,13 @@ https://tracker1.520.jp:443/announce
 udp://moonburrow.club:6969/announce
 https://t1.hloli.org:443/announce
 udp://tracker2.itzmx.com:6961/announce
+udp://exodus.desync.com:6969/announce
 udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.6.babico.name.tr:6969/announce
-udp://opentracker.io:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.mirrorbay.org:6969/announce
-udp://exodus.desync.com:6969/announce
 udp://thouvenin.cloud:6969/announce
+udp://opentracker.io:6969/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://wepzone.net:6969/announce
