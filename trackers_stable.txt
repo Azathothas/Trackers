@@ -85,5 +85,5 @@ udp://bt2.archive.org:6969/announce
 udp://epider.me:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.filemail.com:6969/announce
-udp://public-tracker.cf:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://public-tracker.cf:6969/announce
