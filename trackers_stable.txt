@@ -64,14 +64,14 @@ udp://tk1.trackerservers.com:8080/announce
 udp://sabross.xyz:6969/announce
 udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
-udp://tamas3.ynh.fr:6969/announce
 udp://evan.im:6969/announce
 udp://tracker2.itzmx.com:6961/announce
+http://tracker.gbitt.info:80/announce
+udp://tracker-udp.gbitt.info:80/announce
+udp://tamas3.ynh.fr:6969/announce
 udp://wepzone.net:6969/announce
 udp://opentracker.io:6969/announce
 http://tracker1.itzmx.com:8080/announce
-http://tracker.gbitt.info:80/announce
-udp://tracker-udp.gbitt.info:80/announce
 udp://tracker.theoks.net:6969/announce
 http://tracker.dump.cl:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
