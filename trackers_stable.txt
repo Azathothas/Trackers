@@ -46,11 +46,11 @@ udp://tracker.skynetcloud.site:6969/announce
 http://ch3oh.ru:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
+udp://tracker.mirrorbay.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://y.paranoid.agency:6969/announce
-udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.srv00.com:6969/announce
