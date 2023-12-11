@@ -58,9 +58,9 @@ https://t1.hloli.org:443/announce
 https://tracker1.520.jp:443/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://thouvenin.cloud:6969/announce
-udp://sabross.xyz:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://sabross.xyz:6969/announce
 udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tamas3.ynh.fr:6969/announce
