@@ -72,8 +72,8 @@ udp://opentracker.io:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://evan.im:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://tamas3.ynh.fr:6969/announce
 http://tracker.dump.cl:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://open.dstud.io:6969/announce
