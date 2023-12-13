@@ -56,9 +56,9 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
+udp://t.overflow.biz:6969/announce
 udp://moonburrow.club:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://t.overflow.biz:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://thouvenin.cloud:6969/announce
