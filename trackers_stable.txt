@@ -61,10 +61,10 @@ udp://tk1.trackerservers.com:8080/announce
 udp://thouvenin.cloud:6969/announce
 udp://sabross.xyz:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
+udp://tracker2.itzmx.com:6961/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://wepzone.net:6969/announce
-udp://tracker2.itzmx.com:6961/announce
 udp://moonburrow.club:6969/announce
 udp://opentracker.io:6969/announce
 http://tracker1.itzmx.com:8080/announce
