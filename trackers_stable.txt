@@ -49,13 +49,13 @@ udp://y.paranoid.agency:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
+udp://tracker.theoks.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
 http://ch3oh.ru:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-udp://tracker.theoks.net:6969/announce
 udp://thouvenin.cloud:6969/announce
 udp://wepzone.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
@@ -82,8 +82,8 @@ udp://carr.codes:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://epider.me:6969/announce
-udp://static.54.161.216.95.clients.your-server.de:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://static.54.161.216.95.clients.your-server.de:6969/announce
 udp://retracker.hotplug.ru:2710/announce
