@@ -59,10 +59,10 @@ udp://thouvenin.cloud:6969/announce
 udp://wepzone.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
+udp://tracker.theoks.net:6969/announce
 udp://sabross.xyz:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker2.itzmx.com:6961/announce
-udp://tracker.theoks.net:6969/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://moonburrow.club:6969/announce
 udp://bt1.archive.org:6969/announce
