@@ -51,15 +51,15 @@ udp://exodus.desync.com:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.srv00.com:6969/announce
-https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
 udp://retracker.lanta.me:2710/announce
+https://tracker1.520.jp:443/announce
 udp://thouvenin.cloud:6969/announce
-udp://new-line.net:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.mirrorbay.org:6969/announce
 http://tracker.bt4g.com:2095/announce
+udp://new-line.net:6969/announce
 http://ch3oh.ru:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://sabross.xyz:6969/announce
@@ -82,8 +82,8 @@ udp://bt2.archive.org:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://acxx.de:6969/announce
 udp://carr.codes:6969/announce
-udp://epider.me:6969/announce
 udp://tracker1.myporn.club:9337/announce
+udp://epider.me:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://retracker.hotplug.ru:2710/announce
