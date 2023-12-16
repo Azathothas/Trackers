@@ -71,8 +71,8 @@ udp://bt1.archive.org:6969/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://opentracker.io:6969/announce
 http://tracker.mywaifu.best:6969/announce
-udp://tamas3.ynh.fr:6969/announce
 udp://evan.im:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
