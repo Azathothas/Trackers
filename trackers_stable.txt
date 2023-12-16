@@ -54,10 +54,10 @@ udp://tracker.theoks.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
+udp://retracker.lanta.me:2710/announce
 udp://thouvenin.cloud:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-udp://retracker.lanta.me:2710/announce
 udp://tracker.mirrorbay.org:6969/announce
 http://ch3oh.ru:6969/announce
 udp://1c.premierzal.ru:6969/announce
