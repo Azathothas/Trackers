@@ -60,8 +60,8 @@ udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://new-line.net:6969/announce
-http://ch3oh.ru:6969/announce
 udp://1c.premierzal.ru:6969/announce
+http://ch3oh.ru:6969/announce
 udp://sabross.xyz:6969/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://moonburrow.club:6969/announce
