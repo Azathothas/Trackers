@@ -69,8 +69,8 @@ udp://opentracker.io:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker2.itzmx.com:6961/announce
 http://tracker.dump.cl:6969/announce
-udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
+udp://bt1.archive.org:6969/announce
 udp://evan.im:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
@@ -87,3 +87,4 @@ udp://black-bird.ynh.fr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://tracker3.itzmx.com:6961/announce
