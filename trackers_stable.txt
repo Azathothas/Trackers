@@ -25,7 +25,6 @@ udp://tracker.therarbg.com:6969/announce
 udp://sabross.xyz:6969/announce
 udp://y.paranoid.agency:6969/announce
 https://tracker.yemekyedim.com:443/announce
-http://ipv6.rer.lol:6969/announce
 udp://api.alarmasqueretaro.com:3074/announce
 http://tracker.files.fm:6969/announce
 https://tracker.lilithraws.cf:443/announce
@@ -76,14 +75,15 @@ udp://bt1.archive.org:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker1.bt.moack.co.kr:80/announce
-udp://open.xxtor.com:3074/announce
 udp://open.dstud.io:6969/announce
 udp://acxx.de:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://bt2.archive.org:6969/announce
+udp://open.xxtor.com:3074/announce
+http://ipv6.rer.lol:6969/announce
 udp://6.pocketnet.app:6969/announce
-udp://carr.codes:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://carr.codes:6969/announce
 udp://epider.me:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tracker1.myporn.club:9337/announce
