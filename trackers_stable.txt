@@ -71,8 +71,8 @@ udp://tracker.ccp.ovh:6969/announce
 udp://opentracker.io:6969/announce
 udp://1c.premierzal.ru:6969/announce
 http://tracker.mywaifu.best:6969/announce
-udp://open.xxtor.com:3074/announce
 udp://bt1.archive.org:6969/announce
+udp://open.xxtor.com:3074/announce
 udp://evan.im:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://tracker.cloudit.top:443/announce
