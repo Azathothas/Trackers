@@ -51,10 +51,10 @@ udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 http://bvarf.tracker.sh:2086/announce
+udp://exodus.desync.com:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
-udp://exodus.desync.com:6969/announce
 https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
 udp://tracker.srv00.com:6969/announce
