@@ -3,7 +3,6 @@ udp://open.stealth.si:80/announce
 http://tracker.ipv6tracker.ru:80/announce
 http://tracker.bt4g.com:2095/announce
 http://open.acgnxtracker.com:80/announce
-udp://movies.zsw.ca:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.torrent.eu.org:451/announce
@@ -28,6 +27,7 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://api.alarmasqueretaro.com:3074/announce
 udp://www.torrent.eu.org:451/announce
 http://tracker.files.fm:6969/announce
+udp://movies.zsw.ca:6969/announce
 https://tracker.lilithraws.cf:443/announce
 http://p2p.0g.cx:6969/announce
 http://v6-tracker.0g.cx:6969/announce
@@ -38,13 +38,13 @@ udp://tracker.dler.com:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://tracker2.dler.com:80/announce
+udp://tracker.theoks.net:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://private.anonseed.com:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker.cyberia.is:6969/announce
-udp://tracker.theoks.net:6969/announce
 udp://thouvenin.cloud:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.0x7c0.com:6969/announce
@@ -63,10 +63,10 @@ udp://tracker.srv00.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://wepzone.net:6969/announce
+udp://1c.premierzal.ru:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://opentracker.io:6969/announce
 http://tracker1.itzmx.com:8080/announce
-udp://1c.premierzal.ru:6969/announce
 http://ch3oh.ru:6969/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://bt1.archive.org:6969/announce
