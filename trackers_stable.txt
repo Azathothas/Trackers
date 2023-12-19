@@ -69,8 +69,8 @@ http://tracker1.itzmx.com:8080/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://bt1.archive.org:6969/announce
-udp://evan.im:6969/announce
 udp://tracker.ccp.ovh:6969/announce
+udp://evan.im:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker1.bt.moack.co.kr:80/announce
@@ -83,8 +83,8 @@ udp://carr.codes:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://epider.me:6969/announce
-udp://tracker3.itzmx.com:6961/announce
 udp://tracker.cubonegro.lol:6969/announce
-udp://tracker1.myporn.club:9337/announce
+udp://tracker3.itzmx.com:6961/announce
 http://tracker.nartlof.com.br:6969/announce
+udp://tracker1.myporn.club:9337/announce
 udp://retracker.hotplug.ru:2710/announce
