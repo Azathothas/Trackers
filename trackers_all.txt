@@ -959,7 +959,6 @@ udp://fe.dealclub.de:6969/announce
 udp://fh2.cmp-gaming.com:6969/announce
 udp://free.publictracker.xyz:6969/announce
 udp://freedom.1776.ga:6969/announce
-udp://freedomalternative.com:6969/announce
 udp://http://www.peckservers.com:9000/announce
 udp://htz3.noho.st:6969/announce
 udp://hz.is:1337/announce
@@ -967,7 +966,6 @@ udp://ipv4.tracker.harry.lu/announce
 udp://ipv4.tracker.harry.lu:80/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://ipv6.tracker.harry.lu/announce
-udp://isk.richardsw.club:6969/announce
 udp://jutone.com:6969/announce
 udp://keke.re:6969/announce
 udp://kokodayo.site:6969/announce
@@ -1065,6 +1063,7 @@ udp://tracker.cyberia.is:6969/announce
 udp://tracker.ddunlimited.net:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.dler.org:6969/announce
+udp://tracker.dump.cl:6969/announce
 udp://tracker.edkj.club:6969/announce
 udp://tracker.ex.ua:80/announce
 udp://tracker.farted.net:6969/announce
@@ -1075,9 +1074,9 @@ udp://tracker.internetwarriors.net:1337/announce
 udp://tracker.istole.it:80/announce
 udp://tracker.lelux.fi:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
+udp://tracker.moeking.me:6969/announce
 udp://tracker.monitorit4.me:6969/announce
 udp://tracker.ololosh.space:6969/announce
-udp://tracker.openbittorrent.com:6969/announce
 udp://tracker.openbittorrent.com:80/announce
 udp://tracker.openbtba.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
