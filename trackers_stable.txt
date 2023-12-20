@@ -57,9 +57,9 @@ https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
 udp://tracker.srv00.com:6969/announce
 udp://moonburrow.club:6969/announce
-udp://private.anonseed.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://wepzone.net:6969/announce
+udp://private.anonseed.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://opentracker.io:6969/announce
@@ -70,11 +70,11 @@ udp://tracker2.itzmx.com:6961/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://tracker.6.babico.name.tr:6969/announce
-udp://tracker.4.babico.name.tr:3131/announce
 udp://evan.im:6969/announce
+udp://tracker.4.babico.name.tr:3131/announce
 udp://tamas3.ynh.fr:6969/announce
-https://tracker.cloudit.top:443/announce
 udp://tracker.filemail.com:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker3.itzmx.com:6961/announce
 udp://open.dstud.io:6969/announce
@@ -83,9 +83,9 @@ udp://bt2.archive.org:6969/announce
 udp://acxx.de:6969/announce
 udp://carr.codes:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
+udp://www.torrent.eu.org:451/announce
 udp://epider.me:6969/announce
 udp://black-bird.ynh.fr:6969/announce
-udp://www.torrent.eu.org:451/announce
 udp://6.pocketnet.app:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://retracker.hotplug.ru:2710/announce
