@@ -20,6 +20,7 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.therarbg.com:6969/announce
+udp://tracker.fnix.net:6969/announce
 udp://sabross.xyz:6969/announce
 udp://y.paranoid.agency:6969/announce
 https://tracker.yemekyedim.com:443/announce
@@ -33,7 +34,6 @@ http://v6-tracker.0g.cx:6969/announce
 https://trackers.mlsub.net:443/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
-udp://tracker.fnix.net:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.dler.com:6969/announce
 http://tracker.gbitt.info:80/announce
@@ -67,12 +67,12 @@ http://tracker.nartlof.com.br:6969/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
-udp://thouvenin.cloud:6969/announce
 udp://tracker.ccp.ovh:6969/announce
+udp://thouvenin.cloud:6969/announce
 http://ch3oh.ru:6969/announce
 https://tracker.cloudit.top:443/announce
-udp://tracker.filemail.com:6969/announce
 udp://evan.im:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://open.dstud.io:6969/announce
 udp://bt2.archive.org:6969/announce
@@ -80,11 +80,11 @@ udp://new-line.net:6969/announce
 udp://acxx.de:6969/announce
 udp://carr.codes:6969/announce
 udp://epider.me:6969/announce
-udp://tracker.cubonegro.lol:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://tracker.cubonegro.lol:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://tracker.anima.nz:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker1.bt.moack.co.kr:80/announce
-udp://tracker.anima.nz:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://retracker.hotplug.ru:2710/announce
