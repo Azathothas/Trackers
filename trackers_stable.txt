@@ -54,8 +54,8 @@ udp://tracker.t-rb.org:6969/announce
 https://tracker1.520.jp:443/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.srv00.com:6969/announce
-udp://thouvenin.cloud:6969/announce
 https://t1.hloli.org:443/announce
+udp://thouvenin.cloud:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://wepzone.net:6969/announce
@@ -82,8 +82,8 @@ udp://carr.codes:6969/announce
 udp://epider.me:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 http://ipv6.rer.lol:6969/announce
-udp://tracker1.bt.moack.co.kr:80/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker1.myporn.club:9337/announce
 udp://6.pocketnet.app:6969/announce
 udp://tracker.anima.nz:6969/announce
