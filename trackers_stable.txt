@@ -83,11 +83,11 @@ udp://carr.codes:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://epider.me:6969/announce
 udp://black-bird.ynh.fr:6969/announce
-udp://private.anonseed.com:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://private.anonseed.com:6969/announce
 udp://tracker1.myporn.club:9337/announce
-udp://tracker.4.babico.name.tr:3131/announce
 udp://6.pocketnet.app:6969/announce
 udp://tracker.anima.nz:6969/announce
-udp://tracker.6.babico.name.tr:6969/announce
+udp://tracker.4.babico.name.tr:3131/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://tracker.6.babico.name.tr:6969/announce
