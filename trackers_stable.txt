@@ -49,15 +49,15 @@ udp://tracker.0x7c0.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://t.overflow.biz:6969/announce
 udp://exodus.desync.com:6969/announce
-udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.t-rb.org:6969/announce
+udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.520.jp:443/announce
 https://t1.hloli.org:443/announce
-udp://thouvenin.cloud:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://thouvenin.cloud:6969/announce
 udp://wepzone.net:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://1c.premierzal.ru:6969/announce
