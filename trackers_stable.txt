@@ -68,9 +68,9 @@ udp://tracker2.itzmx.com:6961/announce
 udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.ccp.ovh:6969/announce
-udp://thouvenin.cloud:6969/announce
 http://ch3oh.ru:6969/announce
 https://tracker.cloudit.top:443/announce
+udp://thouvenin.cloud:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://evan.im:6969/announce
 udp://tamas3.ynh.fr:6969/announce
