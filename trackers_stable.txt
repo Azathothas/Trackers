@@ -49,9 +49,9 @@ udp://tracker.0x7c0.com:6969/announce
 udp://t.overflow.biz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://exodus.desync.com:6969/announce
-udp://tracker.theoks.net:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
+udp://tracker.theoks.net:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.srv00.com:6969/announce
 https://t1.hloli.org:443/announce
