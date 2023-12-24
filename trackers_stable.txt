@@ -50,8 +50,8 @@ udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.0x7c0.com:6969/announce
 http://tracker.nartlof.com.br:6969/announce
 http://bvarf.tracker.sh:2086/announce
-udp://opentracker.i2p.rocks:6969/announce
 udp://www.torrent.eu.org:451/announce
+udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.520.jp:443/announce
@@ -61,10 +61,10 @@ udp://tracker.t-rb.org:6969/announce
 udp://opentracker.io:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.theoks.net:6969/announce
-udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://bt1.archive.org:6969/announce
 http://tracker1.itzmx.com:8080/announce
 https://tracker.cloudit.top:443/announce
 udp://evan.im:6969/announce
