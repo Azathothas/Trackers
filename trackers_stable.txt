@@ -59,10 +59,10 @@ udp://carr.codes:6969/announce
 https://t1.hloli.org:443/announce
 udp://opentracker.io:6969/announce
 udp://tracker.t-rb.org:6969/announce
-udp://moonburrow.club:6969/announce
 https://tracker1.ctix.cn:443/announce
-http://tracker.mywaifu.best:6969/announce
+udp://moonburrow.club:6969/announce
 https://tracker2.ctix.cn:443/announce
+http://tracker.mywaifu.best:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://bt1.archive.org:6969/announce
