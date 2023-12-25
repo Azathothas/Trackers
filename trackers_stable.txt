@@ -7,7 +7,6 @@ http://open.acgnxtracker.com:80/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.torrent.eu.org:451/announce
-https://tr.burnabyhighstar.com:443/announce
 https://tracker.loligirl.cn:443/announce
 https://tracker.tamersunion.org:443/announce
 udp://tracker.edkj.club:6969/announce
@@ -28,6 +27,7 @@ http://tracker.files.fm:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://movies.zsw.ca:6969/announce
 https://tracker.lilithraws.cf:443/announce
+https://tr.burnabyhighstar.com:443/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 https://tracker.lilithraws.org:443/announce
@@ -84,3 +84,4 @@ udp://black-bird.ynh.fr:6969/announce
 https://tracker1.ctix.cn:443/announce
 https://tracker2.ctix.cn:443/announce
 udp://tracker1.myporn.club:9337/announce
+udp://t.overflow.biz:6969/announce
