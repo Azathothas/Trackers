@@ -77,9 +77,9 @@ udp://acxx.de:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.anima.nz:6969/announce
+udp://new-line.net:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://new-line.net:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker1.myporn.club:9337/announce
 https://tracker1.ctix.cn:443/announce
