@@ -64,9 +64,9 @@ udp://moonburrow.club:6969/announce
 https://tracker2.ctix.cn:443/announce
 http://tracker.mywaifu.best:6969/announce
 udp://wepzone.net:6969/announce
+http://tracker1.itzmx.com:8080/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://bt1.archive.org:6969/announce
-http://tracker1.itzmx.com:8080/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.theoks.net:6969/announce
