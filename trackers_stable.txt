@@ -71,8 +71,8 @@ https://tracker.cloudit.top:443/announce
 udp://tracker.filemail.com:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker2.itzmx.com:6961/announce
-http://ch3oh.ru:6969/announce
 udp://acxx.de:6969/announce
+http://ch3oh.ru:6969/announce
 udp://evan.im:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tamas3.ynh.fr:6969/announce
