@@ -80,8 +80,8 @@ udp://thinking.duckdns.org:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker3.itzmx.com:6961/announce
 udp://1c.premierzal.ru:6969/announce
-udp://tracker1.myporn.club:9337/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://tracker1.myporn.club:9337/announce
 udp://t.overflow.biz:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
