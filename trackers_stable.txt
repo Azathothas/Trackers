@@ -73,8 +73,8 @@ udp://thinking.duckdns.org:6969/announce
 http://ch3oh.ru:6969/announce
 udp://evan.im:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://tracker2.itzmx.com:6961/announce
 udp://open.dstud.io:6969/announce
+udp://tracker2.itzmx.com:6961/announce
 udp://bt2.archive.org:6969/announce
 udp://tracker.anima.nz:6969/announce
 udp://new-line.net:6969/announce
