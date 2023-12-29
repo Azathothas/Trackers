@@ -57,8 +57,8 @@ https://tracker1.520.jp:443/announce
 udp://moonburrow.club:6969/announce
 udp://carr.codes:6969/announce
 udp://tracker.t-rb.org:6969/announce
-udp://retracker01-msk-virt.corbina.net:80/announce
 udp://u6.trakx.crim.ist:1337/announce
+udp://retracker01-msk-virt.corbina.net:80/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.filemail.com:6969/announce
 http://tracker.mywaifu.best:6969/announce
@@ -87,3 +87,4 @@ udp://tracker2.itzmx.com:6961/announce
 udp://open.u-p.pw:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.cubonegro.lol:6969/announce
+udp://tracker.teambelgium.net:6969/announce
