@@ -50,9 +50,9 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://opentracker.io:6969/announce
 http://tracker.nartlof.com.br:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://retracker01-msk-virt.corbina.net:80/announce
 https://tracker2.ctix.cn:443/announce
 https://t1.hloli.org:443/announce
+udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.ctix.cn:443/announce
 https://tracker1.520.jp:443/announce
@@ -69,8 +69,8 @@ udp://wepzone.net:6969/announce
 udp://acxx.de:6969/announce
 https://tracker.cloudit.top:443/announce
 http://ipv6.rer.lol:6969/announce
-udp://thinking.duckdns.org:6969/announce
 udp://evan.im:6969/announce
+udp://thinking.duckdns.org:6969/announce
 http://ch3oh.ru:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tamas3.ynh.fr:6969/announce
