@@ -84,7 +84,7 @@ udp://tracker.therarbg.to:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://open.u-p.pw:6969/announce
-udp://tracker2.itzmx.com:6961/announce
 udp://tracker1.myporn.club:9337/announce
+udp://tracker2.itzmx.com:6961/announce
 udp://tracker.teambelgium.net:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
