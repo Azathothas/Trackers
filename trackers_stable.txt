@@ -87,3 +87,4 @@ udp://tracker.therarbg.to:6969/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://6.pocketnet.app:6969/announce
+udp://jutone.com:6969/announce
