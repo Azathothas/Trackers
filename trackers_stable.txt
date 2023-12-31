@@ -41,8 +41,8 @@ udp://uploads.gamecoast.net:6969/announce
 http://p2p.0g.cx:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 https://trackers.mlsub.net:443/announce
-udp://u4.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
+udp://u4.trakx.crim.ist:1337/announce
 udp://tracker.0x7c0.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tracker.mirrorbay.org:6969/announce
