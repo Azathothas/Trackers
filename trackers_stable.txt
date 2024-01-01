@@ -55,8 +55,8 @@ https://tracker2.ctix.cn:443/announce
 udp://carr.codes:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.t-rb.org:6969/announce
-udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.hentai.gg:6969/announce
+udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.filemail.com:6969/announce
 http://tracker.nartlof.com.br:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -67,13 +67,13 @@ udp://bt1.archive.org:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://acxx.de:6969/announce
-udp://evan.im:6969/announce
 udp://thinking.duckdns.org:6969/announce
+udp://evan.im:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://ch3oh.ru:6969/announce
 https://tracker.cloudit.top:443/announce
-udp://open.dstud.io:6969/announce
 udp://tamas3.ynh.fr:6969/announce
+udp://open.dstud.io:6969/announce
 udp://tracker.anima.nz:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://1c.premierzal.ru:6969/announce
@@ -86,6 +86,6 @@ udp://t.overflow.biz:6969/announce
 udp://btt.service.gongt.me:43079/announce
 udp://jutone.com:6969/announce
 udp://tracker.therarbg.to:6969/announce
-udp://tracker1.myporn.club:9337/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://6.pocketnet.app:6969/announce
+udp://tracker1.myporn.club:9337/announce
