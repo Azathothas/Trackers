@@ -21,7 +21,6 @@ udp://sabross.xyz:6969/announce
 udp://y.paranoid.agency:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://api.alarmasqueretaro.com:3074/announce
-http://00.alarmasqueretaro.com:443/announce
 udp://tracker.cyberia.is:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 http://tracker.files.fm:6969/announce
@@ -70,6 +69,7 @@ udp://acxx.de:6969/announce
 udp://evan.im:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://thinking.duckdns.org:6969/announce
+http://00.alarmasqueretaro.com:443/announce
 http://ipv6.rer.lol:6969/announce
 http://ch3oh.ru:6969/announce
 udp://tracker.anima.nz:6969/announce
