@@ -58,9 +58,9 @@ udp://tracker.t-rb.org:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.filemail.com:6969/announce
 http://tracker.nartlof.com.br:6969/announce
+udp://tracker.hentai.gg:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.srv00.com:6969/announce
-udp://tracker.hentai.gg:6969/announce
 http://tracker.mywaifu.best:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://bt1.archive.org:6969/announce
