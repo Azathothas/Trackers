@@ -108,6 +108,7 @@ udp://tracker.dler.org:6969/announce
 udp://tracker.edkj.club:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.fnix.net:6969/announce
+udp://tracker.hentai.gg:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.moeking.me:6969/announce
 udp://tracker.openbittorrent.com:6969/announce
