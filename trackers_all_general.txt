@@ -31,6 +31,7 @@ https://tr.burnabyhighstar.com:443/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.gbitt.info:443/announce
 https://tracker.gcrreen.xyz:443/announce
+https://tracker.imgoingto.icu:443/announce
 https://tracker.lilithraws.cf:443/announce
 https://tracker.lilithraws.org:443/announce
 https://tracker.loligirl.cn:443/announce
@@ -93,14 +94,12 @@ udp://su-data.com:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://thinking.duckdns.org:6969/announce
-udp://thouvenin.cloud:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://torrents.artixlinux.org:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.anima.nz:6969/announce
 udp://tracker.artixlinux.org:6969/announce
-udp://tracker.ccp.ovh:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.dler.com:6969/announce
@@ -110,8 +109,6 @@ udp://tracker.filemail.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.hentai.gg:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
-udp://tracker.moeking.me:6969/announce
-udp://tracker.openbittorrent.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.srv00.com:6969/announce
