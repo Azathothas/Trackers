@@ -63,10 +63,10 @@ http://tracker.nartlof.com.br:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://wepzone.net:6969/announce
+udp://acxx.de:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
-udp://acxx.de:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://thinking.duckdns.org:6969/announce
