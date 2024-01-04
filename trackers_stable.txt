@@ -83,6 +83,6 @@ udp://open.u-p.pw:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://carr.codes:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://jutone.com:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://6.pocketnet.app:6969/announce
