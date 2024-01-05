@@ -85,4 +85,3 @@ udp://black-bird.ynh.fr:6969/announce
 udp://jutone.com:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://carr.codes:6969/announce
-udp://retracker.hotplug.ru:2710/announce
