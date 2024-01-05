@@ -45,12 +45,12 @@ udp://tracker.0x7c0.com:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
-udp://tracker2.dler.com:80/announce
 https://tracker1.ctix.cn:443/announce
 udp://uploads.gamecoast.net:6969/announce
 udp://tracker.t-rb.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker2.dler.com:80/announce
 https://tracker1.520.jp:443/announce
 https://tracker2.ctix.cn:443/announce
 https://t1.hloli.org:443/announce
