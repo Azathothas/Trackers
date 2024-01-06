@@ -61,8 +61,8 @@ udp://acxx.de:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://bt1.archive.org:6969/announce
 http://tracker.nartlof.com.br:6969/announce
-udp://evan.im:6969/announce
 http://tracker1.itzmx.com:8080/announce
+udp://evan.im:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 https://tracker.cloudit.top:443/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
