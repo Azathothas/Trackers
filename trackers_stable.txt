@@ -82,5 +82,5 @@ udp://tracker3.itzmx.com:6961/announce
 udp://jutone.com:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://6.pocketnet.app:6969/announce
-udp://black-bird.ynh.fr:6969/announce
 udp://tracker.anima.nz:6969/announce
+udp://black-bird.ynh.fr:6969/announce
