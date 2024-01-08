@@ -29,6 +29,7 @@ https://tracker.yemekyedim.com:443/announce
 udp://api.alarmasqueretaro.com:3074/announce
 udp://tracker.jamesthebard.net:6969/announce
 udp://tracker.vds.nz:6969/announce
+http://open.tracker.ink:6969/announce
 udp://movies.zsw.ca:6969/announce
 https://tr.burnabyhighstar.com:443/announce
 https://tracker.lilithraws.org:443/announce
