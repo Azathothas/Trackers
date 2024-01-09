@@ -55,10 +55,10 @@ udp://u4.trakx.crim.ist:1337/announce
 https://tracker1.ctix.cn:443/announce
 https://t1.hloli.org:443/announce
 udp://tracker.dler.com:6969/announce
+udp://new-line.net:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
-udp://new-line.net:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://acxx.de:6969/announce
 udp://evan.im:6969/announce
@@ -81,6 +81,5 @@ udp://bt2.archive.org:6969/announce
 udp://tracker3.itzmx.com:6961/announce
 http://ipv6.rer.lol:6969/announce
 udp://6.pocketnet.app:6969/announce
-udp://black-bird.ynh.fr:6969/announce
 udp://tracker.anima.nz:6969/announce
-udp://tracker.hentai.gg:6969/announce
+udp://black-bird.ynh.fr:6969/announce
