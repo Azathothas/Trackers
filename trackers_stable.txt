@@ -66,8 +66,8 @@ http://tracker1.itzmx.com:8080/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
-udp://evan.im:6969/announce
 udp://open.dstud.io:6969/announce
+udp://evan.im:6969/announce
 udp://p4p.arenabg.com:1337/announce
 http://ch3oh.ru:6969/announce
 http://tracker.nartlof.com.br:6969/announce
