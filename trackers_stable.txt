@@ -72,8 +72,8 @@ udp://p4p.arenabg.com:1337/announce
 http://ch3oh.ru:6969/announce
 http://tracker.nartlof.com.br:6969/announce
 https://tracker.cloudit.top:443/announce
-udp://thinking.duckdns.org:6969/announce
 udp://tracker.vds.nz:6969/announce
+udp://thinking.duckdns.org:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://wepzone.net:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
