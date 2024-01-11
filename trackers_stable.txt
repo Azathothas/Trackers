@@ -27,7 +27,6 @@ udp://sabross.xyz:6969/announce
 udp://y.paranoid.agency:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://api.alarmasqueretaro.com:3074/announce
-udp://tracker.jamesthebard.net:6969/announce
 https://tracker.gcrreen.xyz:443/announce
 udp://martin-gebhardt.eu:25/announce
 https://tr.qfruiti.com:443/announce
@@ -48,6 +47,7 @@ https://tracker2.ctix.cn:443/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://retracker.lanta.me:2710/announce
+udp://tracker.jamesthebard.net:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://moonburrow.club:6969/announce
 udp://uploads.gamecoast.net:6969/announce
@@ -66,9 +66,9 @@ udp://acxx.de:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://evan.im:6969/announce
 http://tracker1.itzmx.com:8080/announce
 http://ch3oh.ru:6969/announce
-udp://evan.im:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
