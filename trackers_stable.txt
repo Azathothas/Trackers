@@ -50,12 +50,12 @@ https://tr.burnabyhighstar.com:443/announce
 https://tracker1.520.jp:443/announce
 udp://new-line.net:6969/announce
 udp://uploads.gamecoast.net:6969/announce
+https://t1.hloli.org:443/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker.cyberia.is:6969/announce
 https://tracker1.ctix.cn:443/announce
-https://t1.hloli.org:443/announce
 http://bvarf.tracker.sh:2086/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.dler.com:6969/announce
