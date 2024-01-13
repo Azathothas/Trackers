@@ -66,8 +66,8 @@ udp://tracker.filemail.com:6969/announce
 udp://open.dstud.io:6969/announce
 http://tracker1.itzmx.com:8080/announce
 https://tracker.cloudit.top:443/announce
-http://ch3oh.ru:6969/announce
 udp://tamas3.ynh.fr:6969/announce
+http://ch3oh.ru:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
