@@ -73,8 +73,8 @@ udp://6.pocketnet.app:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
 udp://p4p.arenabg.com:1337/announce
-http://tracker.nartlof.com.br:6969/announce
 udp://tracker.vds.nz:6969/announce
+http://tracker.nartlof.com.br:6969/announce
 udp://wepzone.net:6969/announce
 udp://evan.im:6969/announce
 udp://tracker.srv00.com:6969/announce
