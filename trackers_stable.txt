@@ -59,10 +59,10 @@ http://bvarf.tracker.sh:2086/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
-udp://acxx.de:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://bt1.archive.org:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
+udp://acxx.de:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://open.dstud.io:6969/announce
 udp://6.pocketnet.app:6969/announce
@@ -86,5 +86,5 @@ udp://thinking.duckdns.org:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://bt2.archive.org:6969/announce
 http://ipv6.rer.lol:6969/announce
-udp://tracker.therarbg.to:6969/announce
 udp://tracker.anima.nz:6969/announce
+udp://tracker.therarbg.to:6969/announce
