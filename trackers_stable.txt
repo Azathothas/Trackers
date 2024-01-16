@@ -74,8 +74,8 @@ http://tracker.mywaifu.best:6969/announce
 http://ch3oh.ru:6969/announce
 udp://r.l5.ca:6969/announce
 http://tracker.nartlof.com.br:6969/announce
-udp://evan.im:6969/announce
 https://tracker.cloudit.top:443/announce
+udp://evan.im:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://wepzone.net:6969/announce
