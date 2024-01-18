@@ -57,8 +57,8 @@ udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://api.alarmasqueretaro.com:3074/announce
-udp://exodus.desync.com:6969/announce
 udp://tracker.t-rb.org:6969/announce
+udp://exodus.desync.com:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://bt1.archive.org:6969/announce
 udp://open.dstud.io:6969/announce
