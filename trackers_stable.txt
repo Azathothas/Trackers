@@ -56,9 +56,9 @@ udp://tracker.cyberia.is:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.qu.ax:6969/announce
-udp://tracker.t-rb.org:6969/announce
 udp://api.alarmasqueretaro.com:3074/announce
 udp://exodus.desync.com:6969/announce
+udp://tracker.t-rb.org:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://bt1.archive.org:6969/announce
 udp://open.dstud.io:6969/announce
@@ -83,9 +83,9 @@ udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
 udp://jutone.com:6969/announce
 udp://tracker3.itzmx.com:6961/announce
-udp://retracker01-msk-virt.corbina.net:80/announce
-udp://open.xxtor.com:3074/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://open.xxtor.com:3074/announce
+udp://retracker01-msk-virt.corbina.net:80/announce
 udp://thinking.duckdns.org:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://explodie.org:6969/announce
