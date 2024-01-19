@@ -30,6 +30,7 @@ udp://martin-gebhardt.eu:25/announce
 https://tr.qfruiti.in:443/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 https://shahidrazi.online:443/announce
+https://bot.ponomar-sibir.ru:443/announce
 udp://opentracker.i2p.rocks:6969/announce
 https://tracker1.520.jp:443/announce
 udp://uploads.gamecoast.net:6969/announce
@@ -75,10 +76,10 @@ http://uraniumhexafluori.de:1919/announce
 udp://new-line.net:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://evan.im:6969/announce
 https://tracker.cloudit.top:443/announce
 http://tracker.mywaifu.best:6969/announce
 http://ch3oh.ru:6969/announce
-udp://evan.im:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
 http://tracker.nartlof.com.br:6969/announce
