@@ -90,3 +90,4 @@ udp://explodie.org:6969/announce
 udp://tracker.therarbg.to:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 http://ipv6.rer.lol:6969/announce
+http://147job.com:6969/announce
