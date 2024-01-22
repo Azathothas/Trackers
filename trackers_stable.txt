@@ -65,11 +65,11 @@ udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.qu.ax:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.vds.nz:6969/announce
-http://147job.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://acxx.de:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
+http://147job.com:6969/announce
 http://uraniumhexafluori.de:1919/announce
 http://tracker1.itzmx.com:8080/announce
 udp://6.pocketnet.app:6969/announce
