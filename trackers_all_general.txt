@@ -114,6 +114,7 @@ udp://tracker.fnix.net:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.openbittorrent.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
+udp://tracker.picotorrent.one:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.skyts.net:6969/announce
 udp://tracker.srv00.com:6969/announce
