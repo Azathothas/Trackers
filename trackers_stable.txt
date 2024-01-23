@@ -30,7 +30,6 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 https://shahidrazi.online:443/announce
-udp://tracker.picotorrent.one:6969/announce
 udp://tracker.dler.com:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://opentracker.i2p.rocks:6969/announce
@@ -80,6 +79,7 @@ https://tracker.cloudit.top:443/announce
 http://ch3oh.ru:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
+udp://tracker.picotorrent.one:6969/announce
 udp://explodie.org:6969/announce
 http://uraniumhexafluori.de:1919/announce
 udp://jutone.com:6969/announce
