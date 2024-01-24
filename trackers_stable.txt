@@ -77,9 +77,9 @@ udp://tk1.trackerservers.com:8080/announce
 udp://evan.im:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.srv00.com:6969/announce
+udp://epider.me:6969/announce
 udp://wepzone.net:6969/announce
 http://ch3oh.ru:6969/announce
-udp://epider.me:6969/announce
 udp://explodie.org:6969/announce
 udp://new-line.net:6969/announce
 udp://jutone.com:6969/announce
