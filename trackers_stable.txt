@@ -29,6 +29,7 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 https://shahidrazi.online:443/announce
+udp://tracker.picotorrent.one:6969/announce
 udp://tracker.dler.com:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://opentracker.i2p.rocks:6969/announce
@@ -53,7 +54,6 @@ https://tracker.gcrreen.xyz:443/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
-udp://tracker.picotorrent.one:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://moonburrow.club:6969/announce
@@ -70,10 +70,10 @@ udp://acxx.de:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
+udp://epider.me:6969/announce
 http://tracker.mywaifu.best:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://6.pocketnet.app:6969/announce
-udp://epider.me:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://evan.im:6969/announce
 https://tracker.cloudit.top:443/announce
