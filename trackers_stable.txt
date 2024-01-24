@@ -89,5 +89,5 @@ udp://thinking.duckdns.org:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://t.acg.rip:6699/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
-http://uraniumhexafluori.de:1919/announce
 udp://new-line.net:6969/announce
+http://uraniumhexafluori.de:1919/announce
