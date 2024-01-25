@@ -49,11 +49,11 @@ udp://odd-hd.fr:6969/announce
 udp://tracker.therarbg.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 https://tracker.jdx3.org:443/announce
+udp://epider.me:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tracker.cyberia.is:6969/announce
 udp://open.dstud.io:6969/announce
-udp://epider.me:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://moonburrow.club:6969/announce
 udp://exodus.desync.com:6969/announce
@@ -76,8 +76,8 @@ udp://6.pocketnet.app:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://evan.im:6969/announce
 udp://explodie.org:6969/announce
-https://tracker.cloudit.top:443/announce
 udp://wepzone.net:6969/announce
+https://tracker.cloudit.top:443/announce
 http://ch3oh.ru:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.therarbg.to:6969/announce
