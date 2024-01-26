@@ -75,8 +75,8 @@ http://tracker1.itzmx.com:8080/announce
 udp://evan.im:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://explodie.org:6969/announce
-udp://wepzone.net:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://wepzone.net:6969/announce
 udp://tracker.therarbg.to:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://jutone.com:6969/announce
@@ -91,5 +91,5 @@ udp://bt2.archive.org:6969/announce
 udp://new-line.net:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://t.overflow.biz:6969/announce
-udp://tracker.anima.nz:6969/announce
 udp://tracker1.myporn.club:9337/announce
+udp://tracker.anima.nz:6969/announce
