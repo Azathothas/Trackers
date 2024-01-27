@@ -77,9 +77,9 @@ udp://evan.im:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tracker.therarbg.to:6969/announce
 udp://wepzone.net:6969/announce
+http://uraniumhexafluori.de:1919/announce
 https://tracker.cloudit.top:443/announce
 http://t.acg.rip:6699/announce
-http://uraniumhexafluori.de:1919/announce
 udp://thinking.duckdns.org:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://jutone.com:6969/announce
