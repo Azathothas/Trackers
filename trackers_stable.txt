@@ -57,15 +57,15 @@ udp://exodus.desync.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://retracker.lanta.me:2710/announce
+udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
-udp://6ahddutb1ucc3cp.ru:6969/announce
 https://tracker.lilithraws.cf:443/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.qu.ax:6969/announce
-udp://www.torrent.eu.org:451/announce
-udp://open.dstud.io:6969/announce
+udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 https://tracker.lilithraws.org:443/announce
+udp://open.dstud.io:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
 http://ipv6.rer.lol:6969/announce
@@ -92,3 +92,4 @@ http://ch3oh.ru:6969/announce
 udp://bt.rer.lol:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
+http://uraniumhexafluori.de:1919/announce
