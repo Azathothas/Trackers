@@ -90,4 +90,3 @@ udp://new-line.net:6969/announce
 udp://tracker.therarbg.to:6969/announce
 http://ch3oh.ru:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
-udp://tracker.vds.nz:6969/announce
