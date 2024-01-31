@@ -45,11 +45,11 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://tracker.cyberia.is:6969/announce
 http://t.acg.rip:6699/announce
 udp://tracker.filemail.com:6969/announce
 udp://su-data.com:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
+udp://tracker.cyberia.is:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://bt1.archive.org:6969/announce
 http://tracker.mywaifu.best:6969/announce
@@ -81,8 +81,8 @@ https://tracker.cloudit.top:443/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker3.itzmx.com:6961/announce
-udp://jutone.com:6969/announce
 udp://bt2.archive.org:6969/announce
+udp://jutone.com:6969/announce
 udp://tracker.anima.nz:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
