@@ -88,8 +88,7 @@ http://tracker.gbitt.info:80/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://jutone.com:6969/announce
+udp://tracker2.dler.com:80/announce
 udp://new-line.net:6969/announce
 udp://tracker.therarbg.to:6969/announce
-udp://tracker2.dler.com:80/announce
 udp://bt.rer.lol:6969/announce
-udp://black-bird.ynh.fr:6969/announce
