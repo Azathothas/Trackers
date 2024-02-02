@@ -36,11 +36,11 @@ https://tr.qfruiti.com:443/announce
 https://tr.qfruiti.in:443/announce
 udp://moonburrow.club:6969/announce
 https://www.peckservers.com:9443/announce
-udp://ipv6.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://odd-hd.fr:6969/announce
 http://bt.okmp3.ru:2710/announce
 https://t1.hloli.org:443/announce
+udp://ipv6.fuuuuuck.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
@@ -90,4 +90,3 @@ udp://tracker-udp.gbitt.info:80/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://new-line.net:6969/announce
 udp://tracker.therarbg.to:6969/announce
-udp://bt.rer.lol:6969/announce
