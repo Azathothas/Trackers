@@ -53,10 +53,10 @@ udp://tracker.cyberia.is:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://bt1.archive.org:6969/announce
 udp://epider.me:6969/announce
+udp://thinking.duckdns.org:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://api.alarmasqueretaro.com:3074/announce
 http://tracker.mywaifu.best:6969/announce
-udp://thinking.duckdns.org:6969/announce
 udp://exodus.desync.com:6969/announce
 https://tracker.lilithraws.cf:443/announce
 udp://tracker.t-rb.org:6969/announce
@@ -88,6 +88,6 @@ http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://new-line.net:6969/announce
 udp://tracker.therarbg.to:6969/announce
-udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.anima.nz:6969/announce
+udp://retracker01-msk-virt.corbina.net:80/announce
 udp://black-bird.ynh.fr:6969/announce
