@@ -11,7 +11,6 @@ http://open.tracker.ink:6969/announce
 http://p2p.0g.cx:6969/announce
 http://r.l5.ca:6969/announce
 http://t.acg.rip:6699/announce
-http://t.overflow.biz:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.dler.org:6969/announce
 http://tracker.edkj.club:6969/announce
@@ -73,6 +72,7 @@ udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://fh2.cmp-gaming.com:6969/announce
 udp://free.publictracker.xyz:6969/announce
+udp://freedomalternative.com:6969/announce
 udp://hz.is:1337/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://mail.artixlinux.org:6969/announce
@@ -86,12 +86,13 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://open.demonii.com:1337/announce
 udp://open.dstud.io:6969/announce
 udp://open.stealth.si:80/announce
+udp://open.tracker.cl:1337/announce
 udp://open.tracker.ink:6969/announce
 udp://open.u-p.pw:6969/announce
 udp://open.xxtor.com:3074/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://opentracker.io:6969/announce
-udp://public.tracker.vraphim.com:6969/announce
+udp://p4p.arenabg.com:1337/announce
 udp://r.l5.ca:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
