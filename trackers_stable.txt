@@ -55,10 +55,10 @@ udp://bt1.archive.org:6969/announce
 udp://epider.me:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://api.alarmasqueretaro.com:3074/announce
+http://tracker.mywaifu.best:6969/announce
 udp://thinking.duckdns.org:6969/announce
 udp://exodus.desync.com:6969/announce
 https://tracker.lilithraws.cf:443/announce
-http://tracker.mywaifu.best:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://retracker.lanta.me:2710/announce
 https://tracker.lilithraws.org:443/announce
@@ -79,8 +79,8 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://open.dstud.io:6969/announce
 udp://wepzone.net:6969/announce
-udp://tracker.srv00.com:6969/announce
 https://tracker.gcrreen.xyz:443/announce
+udp://tracker.srv00.com:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker3.itzmx.com:6961/announce
 udp://bt2.archive.org:6969/announce
@@ -88,5 +88,5 @@ http://tracker.gbitt.info:80/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://new-line.net:6969/announce
 udp://tracker.therarbg.to:6969/announce
-udp://tracker.anima.nz:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://tracker.anima.nz:6969/announce
