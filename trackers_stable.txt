@@ -24,6 +24,7 @@ udp://y.paranoid.agency:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
+https://tr.qfruiti.com:443/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 https://shahidrazi.online:443/announce
 udp://tracker.picotorrent.one:6969/announce
@@ -35,7 +36,6 @@ udp://tracker.0x7c0.com:6969/announce
 udp://tracker.therarbg.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 https://tracker.gcrreen.xyz:443/announce
-https://tr.qfruiti.com:443/announce
 https://tr.qfruiti.in:443/announce
 https://www.peckservers.com:9443/announce
 udp://odd-hd.fr:6969/announce
