@@ -53,12 +53,12 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 https://t1.hloli.org:443/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
-udp://tracker.cyberia.is:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
+udp://bt1.archive.org:6969/announce
 udp://epider.me:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://bt1.archive.org:6969/announce
+udp://tracker.cyberia.is:6969/announce
 https://tracker.lilithraws.cf:443/announce
 udp://retracker.lanta.me:2710/announce
 http://tracker.mywaifu.best:6969/announce
