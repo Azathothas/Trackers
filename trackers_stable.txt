@@ -39,6 +39,7 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://api.alarmasqueretaro.com:3074/announce
 https://tracker.gcrreen.xyz:443/announce
 https://tr.qfruiti.in:443/announce
+https://bot.ponomar-sibir.ru:443/announce
 udp://moonburrow.club:6969/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://odd-hd.fr:6969/announce
@@ -57,7 +58,6 @@ http://tracker.ipv6tracker.ru:80/announce
 udp://epider.me:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://www.torrent.eu.org:451/announce
-https://bot.ponomar-sibir.ru:443/announce
 udp://tracker.cyberia.is:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://explodie.org:6969/announce
