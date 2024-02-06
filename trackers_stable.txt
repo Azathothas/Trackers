@@ -12,7 +12,6 @@ https://tracker.loligirl.cn:443/announce
 https://tracker1.520.jp:443/announce
 udp://uploads.gamecoast.net:6969/announce
 https://tracker.tamersunion.org:443/announce
-udp://tracker.edkj.club:6969/announce
 http://p2p.0g.cx:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 https://trackers.mlsub.net:443/announce
@@ -32,6 +31,7 @@ https://shahidrazi.online:443/announce
 udp://tracker.picotorrent.one:6969/announce
 udp://open.stealth.si:80/announce
 http://tracker.files.fm:6969/announce
+udp://tracker.edkj.club:6969/announce
 https://www.peckservers.com:9443/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
