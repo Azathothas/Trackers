@@ -30,6 +30,7 @@ http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 https://shahidrazi.online:443/announce
 udp://tracker.picotorrent.one:6969/announce
 udp://open.stealth.si:80/announce
+http://t.acg.rip:6699/announce
 http://tracker.files.fm:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
@@ -37,7 +38,6 @@ udp://tracker.therarbg.com:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 https://tracker.gcrreen.xyz:443/announce
 https://tr.qfruiti.in:443/announce
-http://t.acg.rip:6699/announce
 udp://moonburrow.club:6969/announce
 https://www.peckservers.com:9443/announce
 udp://odd-hd.fr:6969/announce
