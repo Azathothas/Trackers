@@ -50,9 +50,9 @@ http://bvarf.tracker.sh:2086/announce
 udp://exodus.desync.com:6969/announce
 udp://thinking.duckdns.org:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+udp://tracker.t-rb.org:6969/announce
 udp://tracker.filemail.com:6969/announce
 https://t1.hloli.org:443/announce
-udp://tracker.t-rb.org:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://epider.me:6969/announce
