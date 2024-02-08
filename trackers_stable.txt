@@ -49,11 +49,11 @@ udp://tracker.t-rb.org:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://exodus.desync.com:6969/announce
 udp://epider.me:6969/announce
-http://p2p.0g.cx:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://bt1.archive.org:6969/announce
+http://p2p.0g.cx:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://explodie.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
