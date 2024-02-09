@@ -60,9 +60,9 @@ udp://tracker.filemail.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
-http://p2p.0g.cx:6969/announce
 http://tracker.mywaifu.best:6969/announce
 https://t1.hloli.org:443/announce
+http://p2p.0g.cx:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 http://tracker1.itzmx.com:8080/announce
@@ -84,7 +84,7 @@ https://tr.burnabyhighstar.com:443/announce
 udp://tracker3.itzmx.com:6961/announce
 udp://new-line.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://pirate.t-1.org:1337/announce
-udp://bt2.archive.org:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+udp://bt2.archive.org:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://pirate.t-1.org:1337/announce
