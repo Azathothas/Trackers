@@ -73,8 +73,8 @@ udp://tk1.trackerservers.com:8080/announce
 https://tracker.lilithraws.cf:443/announce
 https://tracker.lilithraws.org:443/announce
 udp://evan.im:6969/announce
-https://tr.burnabyhighstar.com:443/announce
 udp://wepzone.net:6969/announce
+https://tr.burnabyhighstar.com:443/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.moeking.me:6969/announce
 udp://su-data.com:6969/announce
@@ -86,7 +86,7 @@ udp://new-line.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://pirate.t-1.org:1337/announce
 http://tracker.gbitt.info:80/announce
-udp://tracker-udp.gbitt.info:80/announce
 udp://bt2.archive.org:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://tracker-udp.gbitt.info:80/announce
 udp://tracker.therarbg.to:6969/announce
