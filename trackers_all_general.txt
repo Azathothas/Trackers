@@ -29,7 +29,6 @@ http://v6-tracker.0g.cx:6969/announce
 http://wepzone.net:6969/announce
 http://wg.mortis.me:6969/announce
 http://www.peckservers.com:9000/announce
-https://bot.ponomar-sibir.ru:443/announce
 https://opentracker.i2p.rocks:443/announce
 https://shahidrazi.online:443/announce
 https://t1.hloli.org:443/announce
