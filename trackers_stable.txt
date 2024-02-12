@@ -25,6 +25,7 @@ https://tr.qfruiti.com:443/announce
 https://tr.qfruiti.in:443/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 https://shahidrazi.online:443/announce
+http://torrent.hificode.in:6969/announce
 udp://open.stealth.si:80/announce
 http://tracker.files.fm:6969/announce
 https://tracker.loligirl.cn:443/announce
@@ -86,4 +87,3 @@ udp://new-line.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://bt.rer.lol:6969/announce
-udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
