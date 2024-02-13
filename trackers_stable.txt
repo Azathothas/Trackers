@@ -62,9 +62,9 @@ udp://tamas3.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 http://tracker.mywaifu.best:6969/announce
-udp://uploads.gamecoast.net:6969/announce
 https://t1.hloli.org:443/announce
 http://tracker1.itzmx.com:8080/announce
+udp://uploads.gamecoast.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://evan.im:6969/announce
 udp://tracker.filemail.com:6969/announce
