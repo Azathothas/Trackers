@@ -45,9 +45,9 @@ udp://tracker.tryhackx.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://epider.me:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+http://tracker.ipv6tracker.ru:80/announce
 udp://tracker.edkj.club:6969/announce
 udp://explodie.org:6969/announce
-http://tracker.ipv6tracker.ru:80/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://www.torrent.eu.org:451/announce
@@ -69,9 +69,9 @@ https://tracker.lilithraws.org:443/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://black-bird.ynh.fr:6969/announce
 udp://new-line.net:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
-udp://black-bird.ynh.fr:6969/announce
 udp://wepzone.net:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.srv00.com:6969/announce
