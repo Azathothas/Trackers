@@ -71,9 +71,9 @@ udp://tracker.qu.ax:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://new-line.net:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://wepzone.net:6969/announce
-https://tracker.cloudit.top:443/announce
 udp://tracker.srv00.com:6969/announce
 udp://pirate.t-1.org:1337/announce
 http://p2p.0g.cx:6969/announce
