@@ -2,7 +2,6 @@ http://t.acg.rip:6699/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.files.fm:6969/announce
 http://open.acgnxtracker.com:80/announce
-udp://tracker2.dler.com:80/announce
 udp://movies.zsw.ca:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 https://tracker1.520.jp:443/announce
@@ -28,6 +27,7 @@ https://shahidrazi.online:443/announce
 http://torrent.hificode.in:6969/announce
 udp://open.stealth.si:80/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker2.dler.com:80/announce
 udp://open.xxtor.com:3074/announce
 https://tracker.loligirl.cn:443/announce
 udp://odd-hd.fr:6969/announce
