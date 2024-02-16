@@ -46,8 +46,8 @@ http://bvarf.tracker.sh:2086/announce
 udp://epider.me:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
-udp://tracker.edkj.club:6969/announce
 udp://explodie.org:6969/announce
+udp://tracker.edkj.club:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://www.torrent.eu.org:451/announce
@@ -59,8 +59,8 @@ udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
-udp://evan.im:6969/announce
 https://t1.hloli.org:443/announce
+udp://evan.im:6969/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tk1.trackerservers.com:8080/announce
