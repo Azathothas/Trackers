@@ -63,8 +63,8 @@ udp://tracker.cubonegro.lol:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://6.pocketnet.app:6969/announce
 http://v6-tracker.0g.cx:6969/announce
-udp://new-line.net:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
+udp://new-line.net:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.qu.ax:6969/announce
