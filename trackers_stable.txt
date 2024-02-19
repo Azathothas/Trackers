@@ -48,8 +48,8 @@ http://ipv6.rer.lol:6969/announce
 udp://explodie.org:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://retracker.lanta.me:2710/announce
-udp://bt1.archive.org:6969/announce
 https://tracker.lilithraws.org:443/announce
+udp://bt1.archive.org:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
@@ -65,8 +65,8 @@ udp://6.pocketnet.app:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://new-line.net:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
-udp://opentracker.i2p.rocks:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://opentracker.i2p.rocks:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://pirate.t-1.org:1337/announce
