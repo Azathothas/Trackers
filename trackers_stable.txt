@@ -54,13 +54,13 @@ udp://tracker.mirrorbay.org:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://tracker.edkj.club:6969/announce
 udp://tracker.cyberia.is:6969/announce
+udp://tracker.edkj.club:6969/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://6.pocketnet.app:6969/announce
 http://v6-tracker.0g.cx:6969/announce
@@ -69,8 +69,8 @@ udp://black-bird.ynh.fr:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://tracker.srv00.com:6969/announce
 udp://pirate.t-1.org:1337/announce
+udp://tracker.srv00.com:6969/announce
 http://p2p.0g.cx:6969/announce
 udp://evan.im:6969/announce
 udp://wepzone.net:6969/announce
