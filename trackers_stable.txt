@@ -82,4 +82,3 @@ udp://tracker.therarbg.to:6969/announce
 udp://wepzone.net:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://bt.rer.lol:6969/announce
-udp://jutone.com:6969/announce
