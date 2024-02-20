@@ -25,6 +25,7 @@ http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 https://shahidrazi.online:443/announce
 udp://open.stealth.si:80/announce
 udp://tracker.dler.com:6969/announce
+udp://exodus.desync.com:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://open.xxtor.com:3074/announce
 https://tracker.loligirl.cn:443/announce
@@ -34,7 +35,6 @@ udp://tracker.therarbg.com:6969/announce
 udp://tracker.moeking.me:6969/announce
 udp://tracker.picotorrent.one:6969/announce
 udp://tracker.opentrackr.org:1337/announce
-udp://exodus.desync.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://martin-gebhardt.eu:25/announce

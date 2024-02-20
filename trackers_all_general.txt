@@ -2,6 +2,7 @@ http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 http://bt.okmp3.ru:2710/announce
 http://bvarf.tracker.sh:2086/announce
+http://canardscitrons.nohost.me:6969/announce
 http://ch3oh.ru:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://open.acgnxtracker.com:80/announce
@@ -69,7 +70,6 @@ udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://fh2.cmp-gaming.com:6969/announce
 udp://free.publictracker.xyz:6969/announce
-udp://freedomalternative.com:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://isk.richardsw.club:6969/announce
