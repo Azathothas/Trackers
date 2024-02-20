@@ -65,11 +65,11 @@ udp://6.pocketnet.app:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://new-line.net:6969/announce
-udp://black-bird.ynh.fr:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
+udp://black-bird.ynh.fr:6969/announce
 udp://pirate.t-1.org:1337/announce
-udp://tracker.qu.ax:6969/announce
 udp://tracker.srv00.com:6969/announce
+udp://tracker.qu.ax:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://evan.im:6969/announce
 http://p2p.0g.cx:6969/announce
