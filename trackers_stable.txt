@@ -37,10 +37,10 @@ udp://tracker.picotorrent.one:6969/announce
 udp://epider.me:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.fnix.net:6969/announce
+udp://tracker.torrust-demo.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.moeking.me:6969/announce
-udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://www.torrent.eu.org:451/announce
 https://t1.hloli.org:443/announce
