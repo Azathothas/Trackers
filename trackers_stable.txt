@@ -81,6 +81,6 @@ udp://open.dstud.io:6969/announce
 udp://tracker.therarbg.to:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.t-rb.org:6969/announce
+udp://tracker.vds.nz:6969/announce
 udp://bt.rer.lol:6969/announce
 udp://ipv4.rer.lol:2710/announce
-udp://tracker.vds.nz:6969/announce
