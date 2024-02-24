@@ -45,8 +45,8 @@ udp://tracker.opentrackr.org:1337/announce
 udp://www.torrent.eu.org:451/announce
 https://t1.hloli.org:443/announce
 udp://tracker.torrust-demo.com:6969/announce
-udp://ns1.monolithindustries.com:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://ns1.monolithindustries.com:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://bt1.archive.org:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
