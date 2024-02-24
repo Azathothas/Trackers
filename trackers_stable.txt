@@ -66,9 +66,9 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 udp://pirate.t-1.org:1337/announce
 udp://new-line.net:6969/announce
 udp://jutone.com:6969/announce
-udp://tracker.cyberia.is:6969/announce
 udp://tracker.edkj.club:6969/announce
 http://open.acgtracker.com:1096/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://black-bird.ynh.fr:6969/announce
@@ -83,5 +83,5 @@ udp://tracker3.itzmx.com:6961/announce
 udp://tracker.t-rb.org:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://1c.premierzal.ru:6969/announce
-udp://bt.rer.lol:6969/announce
 udp://tracker.jamesthebard.net:6969/announce
+udp://bt.rer.lol:6969/announce
