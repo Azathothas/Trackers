@@ -3,7 +3,6 @@ http://t.acg.rip:6699/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.files.fm:6969/announce
 http://open.acgnxtracker.com:80/announce
-udp://movies.zsw.ca:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://open.xxtor.com:3074/announce
 https://tracker1.520.jp:443/announce
@@ -24,6 +23,7 @@ https://tr.qfruiti.in:443/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://open.stealth.si:80/announce
 udp://tracker.dler.com:6969/announce
+udp://movies.zsw.ca:6969/announce
 http://bt.okmp3.ru:2710/announce
 https://tracker.loligirl.cn:443/announce
 udp://tracker.tryhackx.org:6969/announce
@@ -59,10 +59,10 @@ udp://tamas3.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-udp://evan.im:6969/announce
 http://tracker1.itzmx.com:8080/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
+udp://evan.im:6969/announce
 udp://jutone.com:6969/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
 udp://new-line.net:6969/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://t.overflow.biz:6969/announce
