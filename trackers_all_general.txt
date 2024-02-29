@@ -37,7 +37,6 @@ https://t1.hloli.org:443/announce
 https://tr.burnabyhighstar.com:443/announce
 https://tr.qfruiti.com:443/announce
 https://tr.qfruiti.in:443/announce
-https://tracker.cangku.moe:443/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.gbitt.info:443/announce
 https://tracker.gcrreen.xyz:443/announce
