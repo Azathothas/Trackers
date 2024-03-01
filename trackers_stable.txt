@@ -41,8 +41,8 @@ udp://epider.me:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.moeking.me:6969/announce
 udp://explodie.org:6969/announce
-udp://moonburrow.club:6969/announce
 https://t1.hloli.org:443/announce
+udp://moonburrow.club:6969/announce
 http://v6-tracker.0g.cx:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://ipv6.rer.lol:6969/announce
