@@ -60,8 +60,8 @@ udp://tracker.cubonegro.lol:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://evan.im:6969/announce
 udp://6.pocketnet.app:6969/announce
-http://tracker1.itzmx.com:8080/announce
 udp://tracker.torrust-demo.com:6969/announce
+http://tracker1.itzmx.com:8080/announce
 udp://new-line.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://jutone.com:6969/announce
