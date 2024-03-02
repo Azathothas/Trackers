@@ -77,10 +77,10 @@ udp://opentracker.i2p.rocks:6969/announce
 udp://open.tracker.cl:1337/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.cyberia.is:6969/announce
-udp://tracker.filemail.com:6969/announce
 udp://tracker.edkj.club:6969/announce
 udp://tracker3.itzmx.com:6961/announce
 http://open.acgtracker.com:1096/announce
+udp://tracker.filemail.com:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.qu.ax:6969/announce
