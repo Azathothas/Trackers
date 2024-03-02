@@ -85,5 +85,5 @@ udp://tracker.t-rb.org:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.qu.ax:6969/announce
 https://tracker.gcrreen.xyz:443/announce
-udp://bt.rer.lol:6969/announce
 udp://ryjer.com:6969/announce
+udp://bt.rer.lol:6969/announce
