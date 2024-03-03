@@ -85,4 +85,3 @@ udp://open.dstud.io:6969/announce
 udp://tracker.cyberia.is:6969/announce
 https://tracker.gcrreen.xyz:443/announce
 udp://btt.service.gongt.me:43079/announce
-udp://tracker.qu.ax:6969/announce
