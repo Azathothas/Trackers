@@ -41,9 +41,9 @@ udp://tracker.moeking.me:6969/announce
 udp://moonburrow.club:6969/announce
 https://shahidrazi.online:443/announce
 udp://explodie.org:6969/announce
-udp://api.alarmasqueretaro.com:3074/announce
 http://p2p.0g.cx:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://api.alarmasqueretaro.com:3074/announce
 udp://www.torrent.eu.org:451/announce
 udp://bt1.archive.org:6969/announce
 https://tracker.lilithraws.org:443/announce
