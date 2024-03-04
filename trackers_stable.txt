@@ -67,8 +67,8 @@ udp://new-line.net:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://evan.im:6969/announce
-udp://tracker.srv00.com:6969/announce
 udp://jutone.com:6969/announce
+udp://tracker.srv00.com:6969/announce
 udp://tracker.therarbg.to:6969/announce
 https://tracker.loligirl.cn:443/announce
 udp://tracker.mirrorbay.org:6969/announce
