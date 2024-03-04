@@ -15,7 +15,6 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.therarbg.com:6969/announce
-udp://api.alarmasqueretaro.com:3074/announce
 udp://tracker.jamesthebard.net:6969/announce
 udp://tracker.picotorrent.one:6969/announce
 http://retracker.seven-sky.net:80/announce
@@ -26,6 +25,7 @@ udp://movies.zsw.ca:6969/announce
 https://www.peckservers.com:9443/announce
 http://bvarf.tracker.sh:2086/announce
 https://tracker.yemekyedim.com:443/announce
+udp://api.alarmasqueretaro.com:3074/announce
 https://tr.qfruiti.in:443/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://exodus.desync.com:6969/announce
