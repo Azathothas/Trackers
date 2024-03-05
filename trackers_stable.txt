@@ -54,8 +54,8 @@ udp://api.alarmasqueretaro.com:3074/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.torrust-demo.com:6969/announce
-udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://open.demonii.com:1337/announce
+udp://6ahddutb1ucc3cp.ru:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://1c.premierzal.ru:6969/announce
@@ -83,7 +83,7 @@ udp://tracker3.itzmx.com:6961/announce
 udp://tracker.edkj.club:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.t-rb.org:6969/announce
-udp://btt.service.gongt.me:43079/announce
 https://tracker.gcrreen.xyz:443/announce
 udp://tracker.cyberia.is:6969/announce
+udp://btt.service.gongt.me:43079/announce
 udp://ryjer.com:6969/announce
