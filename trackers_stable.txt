@@ -76,12 +76,12 @@ udp://opentracker.i2p.rocks:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.filemail.com:6969/announce
 http://open.acgtracker.com:1096/announce
-udp://ipv4.rer.lol:2710/announce
 udp://open.dstud.io:6969/announce
+udp://ipv4.rer.lol:2710/announce
 udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.t-rb.org:6969/announce
+udp://btt.service.gongt.me:43079/announce
 udp://tracker.edkj.club:6969/announce
 https://tracker.gcrreen.xyz:443/announce
-udp://btt.service.gongt.me:43079/announce
 udp://ryjer.com:6969/announce
 udp://tracker.qu.ax:6969/announce
