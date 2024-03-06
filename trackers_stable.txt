@@ -75,8 +75,8 @@ udp://black-bird.ynh.fr:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 https://tracker.cloudit.top:443/announce
 http://open.acgtracker.com:1096/announce
-udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://tracker.mirrorbay.org:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.t-rb.org:6969/announce
