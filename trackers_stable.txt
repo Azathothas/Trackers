@@ -79,5 +79,5 @@ udp://open.dstud.io:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://tracker.filemail.com:6969/announce
 http://open.acgtracker.com:1096/announce
-udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.qu.ax:6969/announce
+udp://tracker.mirrorbay.org:6969/announce
