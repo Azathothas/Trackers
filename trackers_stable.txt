@@ -7,7 +7,6 @@ udp://tracker.torrent.eu.org:451/announce
 https://tracker1.520.jp:443/announce
 https://tracker.tamersunion.org:443/announce
 https://trackers.mlsub.net:443/announce
-udp://opentracker.io:6969/announce
 http://tracker.renfei.net:8080/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://ipv6.fuuuuuck.com:6969/announce
@@ -23,6 +22,7 @@ udp://tracker2.dler.com:80/announce
 udp://movies.zsw.ca:6969/announce
 http://bt.okmp3.ru:2710/announce
 https://www.peckservers.com:9443/announce
+udp://opentracker.io:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 https://t1.hloli.org:443/announce
@@ -35,10 +35,10 @@ udp://tracker.opentrackr.org:1337/announce
 udp://exodus.desync.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://tracker.t-rb.org:6969/announce
 https://tracker.gcrreen.xyz:443/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://ns1.monolithindustries.com:6969/announce
+udp://tracker.t-rb.org:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://explodie.org:6969/announce
 http://p2p.0g.cx:6969/announce
@@ -51,12 +51,12 @@ udp://new-line.net:6969/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://u6.trakx.crim.ist:1337/announce
 http://v6-tracker.0g.cx:6969/announce
-udp://tracker.therarbg.to:6969/announce
 https://shahidrazi.online:443/announce
+udp://tracker.therarbg.to:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://retracker.lanta.me:2710/announce
 https://tracker.lilithraws.org:443/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tamas3.ynh.fr:6969/announce
@@ -66,8 +66,8 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.srv00.com:6969/announce
-udp://jutone.com:6969/announce
 https://track3r.site:443/announce
+udp://jutone.com:6969/announce
 https://tracker.loligirl.cn:443/announce
 udp://open.demonii.com:1337/announce
 udp://open.tracker.cl:1337/announce
@@ -77,7 +77,7 @@ https://tracker.cloudit.top:443/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.qu.ax:6969/announce
 http://open.acgtracker.com:1096/announce
-udp://tracker.mirrorbay.org:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://black-bird.ynh.fr:6969/announce
 udp://ryjer.com:6969/announce
+udp://tracker.mirrorbay.org:6969/announce
