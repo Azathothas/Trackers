@@ -51,9 +51,9 @@ udp://new-line.net:6969/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://u6.trakx.crim.ist:1337/announce
 http://v6-tracker.0g.cx:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 https://shahidrazi.online:443/announce
 udp://tracker.therarbg.to:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://retracker.lanta.me:2710/announce
 https://tracker.lilithraws.org:443/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
@@ -65,8 +65,8 @@ udp://6.pocketnet.app:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
-udp://tracker.srv00.com:6969/announce
 https://track3r.site:443/announce
+udp://tracker.srv00.com:6969/announce
 udp://jutone.com:6969/announce
 https://tracker.loligirl.cn:443/announce
 udp://open.demonii.com:1337/announce
@@ -77,7 +77,6 @@ https://tracker.cloudit.top:443/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.qu.ax:6969/announce
 http://open.acgtracker.com:1096/announce
-udp://opentracker.i2p.rocks:6969/announce
 udp://black-bird.ynh.fr:6969/announce
+udp://opentracker.i2p.rocks:6969/announce
 udp://ryjer.com:6969/announce
-udp://tracker.mirrorbay.org:6969/announce

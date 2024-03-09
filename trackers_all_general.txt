@@ -108,7 +108,6 @@ udp://tracker.edkj.club:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.jamesthebard.net:6969/announce
-udp://tracker.mirrorbay.org:6969/announce
 udp://tracker.moeking.me:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://tracker.picotorrent.one:6969/announce
