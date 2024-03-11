@@ -39,8 +39,8 @@ udp://ns1.monolithindustries.com:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://explodie.org:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-udp://www.torrent.eu.org:451/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
+udp://www.torrent.eu.org:451/announce
 http://ipv6.rer.lol:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.t-rb.org:6969/announce
@@ -59,8 +59,8 @@ http://tracker.mywaifu.best:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://6.pocketnet.app:6969/announce
-udp://evan.im:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://evan.im:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://1c.premierzal.ru:6969/announce
 https://track3r.site:443/announce
