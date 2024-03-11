@@ -40,9 +40,9 @@ http://tracker.ipv6tracker.ru:80/announce
 udp://explodie.org:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://www.torrent.eu.org:451/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://bt1.archive.org:6969/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.t-rb.org:6969/announce
 https://tr.qfruiti.in:443/announce
 http://retracker.seven-sky.net:80/announce
