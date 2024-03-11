@@ -925,6 +925,7 @@ udp://95.216.74.39:6969/announce
 udp://95.31.11.224:6969/announce
 udp://960303.xyz:6969/announce
 udp://aaa.army:8866/announce
+udp://aarsen.me:6969/announce
 udp://acxx.de:6969/announce
 udp://admin.52ywp.com:6969/announce
 udp://admin.videoenpoche.info:6969/announce
@@ -1093,6 +1094,7 @@ udp://tracker.swateam.org.uk:2710/announce
 udp://tracker.sylphix.com:6969/announce
 udp://tracker.t-rb.org:6969/announce
 udp://tracker.tcp.exchange:6969/announce
+udp://tracker.theoks.net:6969/announce
 udp://tracker.therarbg.com:6969/announce
 udp://tracker.therarbg.to:6969/announce
 udp://tracker.tiny-vps.com:6969/announce
