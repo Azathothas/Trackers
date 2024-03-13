@@ -17,13 +17,13 @@ udp://tracker.picotorrent.one:6969/announce
 http://tinfoil.space:6969/announce
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
-udp://tracker2.dler.com:80/announce
 udp://movies.zsw.ca:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.0x7c0.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker2.dler.com:80/announce
 https://t1.hloli.org:443/announce
 udp://opentracker.io:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
@@ -62,8 +62,8 @@ udp://6.pocketnet.app:6969/announce
 udp://evan.im:6969/announce
 https://track3r.site:443/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://jutone.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
+udp://jutone.com:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://pirate.t-1.org:1337/announce
 udp://tracker.srv00.com:6969/announce
