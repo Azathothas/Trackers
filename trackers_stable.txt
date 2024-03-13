@@ -42,8 +42,8 @@ http://tracker.ipv6tracker.ru:80/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://p2p.publictracker.xyz:6969/announce
-udp://bt1.archive.org:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://bt1.archive.org:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 https://tr.qfruiti.in:443/announce
 udp://tracker.t-rb.org:6969/announce
@@ -67,13 +67,13 @@ udp://jutone.com:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker.loligirl.cn:443/announce
-udp://open.demonii.com:1337/announce
 udp://pirate.t-1.org:1337/announce
+udp://open.demonii.com:1337/announce
 http://tracker1.itzmx.com:8080/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.qu.ax:6969/announce
 https://tracker.gcrreen.xyz:443/announce
-http://retracker.seven-sky.net:80/announce
 udp://tracker.filemail.com:6969/announce
+http://retracker.seven-sky.net:80/announce
 http://open.acgtracker.com:1096/announce
 udp://tk1.trackerservers.com:8080/announce
