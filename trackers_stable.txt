@@ -59,9 +59,9 @@ udp://tracker.therarbg.to:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 https://tracker.lilithraws.org:443/announce
 https://track3r.site:443/announce
-udp://tamas3.ynh.fr:6969/announce
 udp://6.pocketnet.app:6969/announce
 udp://jutone.com:6969/announce
 udp://evan.im:6969/announce
