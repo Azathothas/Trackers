@@ -47,9 +47,9 @@ udp://tracker.t-rb.org:6969/announce
 https://tr.qfruiti.com:443/announce
 https://tr.qfruiti.in:443/announce
 udp://bt1.archive.org:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://new-line.net:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 https://shahidrazi.online:443/announce
@@ -66,8 +66,8 @@ udp://6.pocketnet.app:6969/announce
 udp://jutone.com:6969/announce
 udp://evan.im:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://pirate.t-1.org:1337/announce
 udp://tracker.srv00.com:6969/announce
+udp://pirate.t-1.org:1337/announce
 https://tracker.loligirl.cn:443/announce
 udp://open.demonii.com:1337/announce
 http://tracker1.itzmx.com:8080/announce
