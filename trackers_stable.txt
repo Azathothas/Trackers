@@ -11,7 +11,6 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://odd-hd.fr:6969/announce
-udp://tracker.fnix.net:6969/announce
 udp://tracker.moeking.me:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://tracker.jamesthebard.net:6969/announce
@@ -22,6 +21,7 @@ http://tracker.bt4g.com:2095/announce
 udp://movies.zsw.ca:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.0x7c0.com:6969/announce
+udp://tracker.fnix.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
