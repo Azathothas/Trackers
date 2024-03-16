@@ -25,16 +25,16 @@ http://bvarf.tracker.sh:2086/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://movies.zsw.ca:6969/announce
-http://bt.okmp3.ru:2710/announce
 https://t1.hloli.org:443/announce
 udp://opentracker.io:6969/announce
+udp://ns1.monolithindustries.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.therarbg.com:6969/announce
-udp://ns1.monolithindustries.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker2.dler.com:80/announce
+http://bt.okmp3.ru:2710/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://explodie.org:6969/announce
@@ -78,4 +78,4 @@ udp://tracker.filemail.com:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tk1.trackerservers.com:8080/announce
 http://tracker.torrentuje.me:2710/announce
-udp://open.xxtor.com:3074/announce
+udp://tracker.cyberia.is:6969/announce
