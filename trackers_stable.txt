@@ -16,13 +16,13 @@ https://tracker.yemekyedim.com:443/announce
 udp://tracker.jamesthebard.net:6969/announce
 udp://tracker.picotorrent.one:6969/announce
 http://tinfoil.space:6969/announce
-http://tracker.bt4g.com:2095/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.moeking.me:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
+http://tracker.bt4g.com:2095/announce
 udp://movies.zsw.ca:6969/announce
 https://t1.hloli.org:443/announce
 udp://opentracker.io:6969/announce
@@ -55,9 +55,9 @@ https://shahidrazi.online:443/announce
 udp://tracker.cubonegro.lol:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 https://track3r.site:443/announce
-http://tracker.mywaifu.best:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.therarbg.to:6969/announce
+http://tracker.mywaifu.best:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://1c.premierzal.ru:6969/announce
