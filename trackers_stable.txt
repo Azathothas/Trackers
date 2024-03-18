@@ -74,8 +74,8 @@ https://tracker.loligirl.cn:443/announce
 udp://open.demonii.com:1337/announce
 http://tracker.torrentuje.me:2710/announce
 https://tracker.gcrreen.xyz:443/announce
-udp://tracker.filemail.com:6969/announce
 http://open.acgtracker.com:1096/announce
+udp://tracker.filemail.com:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
