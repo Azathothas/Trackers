@@ -91,6 +91,7 @@ udp://public.tracker.vraphim.com:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://ryjer.com:6969/announce
+udp://seedpeer.net:6969/announce
 udp://su-data.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tk1.trackerservers.com:8080/announce
