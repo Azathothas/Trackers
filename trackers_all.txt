@@ -563,7 +563,6 @@ http://tracker.tfile.me:80/announce
 http://tracker.tiny-vps.com:6969/announce
 http://tracker.torrentbytes.net/announce.php
 http://tracker.torrentbytes.net:80/announce.php
-http://tracker.torrentuje.me:2710/announce
 http://tracker.torrentyorg.pl/announce
 http://tracker.torrentyorg.pl:80/announce
 http://tracker.trackerfix.com/announce
