@@ -17,7 +17,6 @@ https://tracker.yemekyedim.com:443/announce
 udp://tracker.jamesthebard.net:6969/announce
 udp://tracker.picotorrent.one:6969/announce
 http://tinfoil.space:6969/announce
-udp://seedpeer.net:6969/announce
 udp://movies.zsw.ca:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
@@ -65,6 +64,7 @@ udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://evan.im:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://6.pocketnet.app:6969/announce
+udp://seedpeer.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://jutone.com:6969/announce
