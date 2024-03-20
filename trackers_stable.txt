@@ -35,12 +35,13 @@ udp://opentracker.io:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://explodie.org:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
-udp://d40969.acod.regrucolo.ru:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
-udp://tracker2.dler.com:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://epider.me:6969/announce
+udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker2.dler.com:80/announce
+https://tracker.gcrreen.xyz:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.t-rb.org:6969/announce
 udp://www.torrent.eu.org:451/announce
@@ -48,7 +49,6 @@ https://tracker.lilithraws.org:443/announce
 https://tr.qfruiti.com:443/announce
 https://tr.qfruiti.in:443/announce
 udp://bt1.archive.org:6969/announce
-https://tracker.gcrreen.xyz:443/announce
 https://shahidrazi.online:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
