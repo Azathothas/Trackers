@@ -17,6 +17,7 @@ https://tracker.yemekyedim.com:443/announce
 udp://tracker.jamesthebard.net:6969/announce
 udp://tracker.picotorrent.one:6969/announce
 http://tinfoil.space:6969/announce
+udp://amigacity.xyz:6969/announce
 udp://movies.zsw.ca:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
@@ -72,10 +73,10 @@ udp://open.dstud.io:6969/announce
 http://tracker1.itzmx.com:8080/announce
 https://tracker.loligirl.cn:443/announce
 udp://open.demonii.com:1337/announce
+https://tracker.gcrreen.xyz:443/announce
 udp://pirate.t-1.org:1337/announce
 http://open.acgtracker.com:1096/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
-https://tracker.gcrreen.xyz:443/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
