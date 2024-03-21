@@ -57,10 +57,10 @@ http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://tracker.cubonegro.lol:6969/announce
 https://track3r.site:443/announce
 udp://seedpeer.net:6969/announce
-udp://new-line.net:6969/announce
 http://tracker.mywaifu.best:6969/announce
-udp://tamas3.ynh.fr:6969/announce
+udp://new-line.net:6969/announce
 udp://evan.im:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.therarbg.to:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
