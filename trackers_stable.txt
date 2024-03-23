@@ -52,8 +52,8 @@ https://tr.qfruiti.in:443/announce
 udp://bt1.archive.org:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
-udp://tracker.torrust-demo.com:6969/announce
 udp://seedpeer.net:6969/announce
+udp://tracker.torrust-demo.com:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.qu.ax:6969/announce
 https://track3r.site:443/announce
