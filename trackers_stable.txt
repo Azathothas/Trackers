@@ -46,8 +46,8 @@ http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://bt1.archive.org:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://amigacity.xyz:6969/announce
-udp://tracker.t-rb.org:6969/announce
 udp://tracker.srv00.com:6969/announce
+udp://tracker.t-rb.org:6969/announce
 udp://tracker.therarbg.to:6969/announce
 http://tracker.bt4g.com:2095/announce
 https://tracker.lilithraws.org:443/announce
