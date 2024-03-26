@@ -18,12 +18,12 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.moeking.me:6969/announce
-http://bvarf.tracker.sh:2086/announce
 http://tinfoil.space:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://movies.zsw.ca:6969/announce
 udp://moonburrow.club:6969/announce
 udp://odd-hd.fr:6969/announce
+http://bvarf.tracker.sh:2086/announce
 udp://tracker.opentrackr.org:1337/announce
 http://open.acgnxtracker.com:80/announce
 udp://martin-gebhardt.eu:25/announce
@@ -41,8 +41,8 @@ udp://opentracker.io:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker2.dler.com:80/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
-http://tracker.ipv6tracker.ru:80/announce
 udp://www.torrent.eu.org:451/announce
+http://tracker.ipv6tracker.ru:80/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://amigacity.xyz:6969/announce
 udp://bt1.archive.org:6969/announce
@@ -51,7 +51,6 @@ udp://tracker.t-rb.org:6969/announce
 udp://tracker.therarbg.to:6969/announce
 https://tracker.lilithraws.org:443/announce
 https://shahidrazi.online:443/announce
-http://tracker.bt4g.com:2095/announce
 udp://p2p.publictracker.xyz:6969/announce
 https://tracker.cloudit.top:443/announce
 https://tr.qfruiti.com:443/announce
@@ -59,10 +58,11 @@ https://tr.qfruiti.in:443/announce
 http://tracker.gbitt.info:80/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.vds.nz:6969/announce
+http://tracker.bt4g.com:2095/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://open.demonii.com:1337/announce
-udp://tamas3.ynh.fr:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 https://track3r.site:443/announce
 udp://bt2.archive.org:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
@@ -80,9 +80,9 @@ udp://tracker.filemail.com:6969/announce
 udp://seedpeer.net:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-udp://tracker3.itzmx.com:6961/announce
 https://tracker.ipfsscan.io:443/announce
+udp://tracker3.itzmx.com:6961/announce
+https://bt.ptlsp.com:443/announce
 udp://6.pocketnet.app:6969/announce
 udp://pirate.t-1.org:1337/announce
-https://bt.ptlsp.com:443/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
