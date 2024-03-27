@@ -41,10 +41,10 @@ udp://opentracker.io:6969/announce
 https://tracker.ipfsscan.io:443/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker2.dler.com:80/announce
+udp://open.demonii.com:1337/announce
 http://tracker.gbitt.info:80/announce
 udp://www.torrent.eu.org:451/announce
 http://tracker.ipv6tracker.ru:80/announce
-udp://open.demonii.com:1337/announce
 udp://amigacity.xyz:6969/announce
 http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce
 udp://bt1.archive.org:6969/announce
@@ -74,9 +74,9 @@ udp://new-line.net:6969/announce
 https://tracker.loligirl.cn:443/announce
 udp://1c.premierzal.ru:6969/announce
 udp://seedpeer.net:6969/announce
+http://open.acgtracker.com:1096/announce
 udp://tracker.cyberia.is:6969/announce
 udp://open.dstud.io:6969/announce
-http://open.acgtracker.com:1096/announce
 udp://jutone.com:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
