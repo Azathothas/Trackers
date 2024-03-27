@@ -11,7 +11,6 @@ http://open.tracker.ink:6969/announce
 http://t.acg.rip:6699/announce
 http://t.overflow.biz:6969/announce
 http://tinfoil.space:6969/announce
-http://tr.kxmp.cf:80/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.dler.org:6969/announce
 http://tracker.edkj.club:6969/announce
