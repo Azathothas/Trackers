@@ -77,8 +77,8 @@ udp://seedpeer.net:6969/announce
 udp://tracker.cyberia.is:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tracker.filemail.com:6969/announce
-udp://open.dstud.io:6969/announce
 udp://jutone.com:6969/announce
+udp://open.dstud.io:6969/announce
 udp://opentracker.i2p.rocks:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 https://bt.ptlsp.com:443/announce
