@@ -16,7 +16,6 @@ udp://tracker.torrent.eu.org:451/announce
 https://www.peckservers.com:9443/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.moeking.me:6969/announce
 http://tinfoil.space:6969/announce
@@ -29,6 +28,7 @@ udp://tracker.opentrackr.org:1337/announce
 http://open.acgnxtracker.com:80/announce
 udp://moonburrow.club:6969/announce
 https://t1.hloli.org:443/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://explodie.org:6969/announce
 udp://tracker.tryhackx.org:6969/announce
