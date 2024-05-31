@@ -29,6 +29,7 @@ udp://tracker.darkness.services:6969/announce
 udp://bubu.mapfactor.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.qu.ax:6969/announce
+udp://z.mercax.com:53/announce
 udp://tracker.picotorrent.one:6969/announce
 udp://exodus.desync.com:6969/announce
 http://bt.okmp3.ru:2710/announce
@@ -51,7 +52,6 @@ udp://tracker.dler.com:6969/announce
 udp://tracker.srv00.com:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 http://tracker1.itzmx.com:8080/announce
-udp://z.mercax.com:53/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://seedpeer.net:6969/announce
 https://tracker.cloudit.top:443/announce
@@ -61,9 +61,9 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 udp://bt1.archive.org:6969/announce
 https://tracker.ipfsscan.io:443/announce
 https://t.peer-exchange.download:443/announce
-udp://tk1.trackerservers.com:8080/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tamas3.ynh.fr:6969/announce
+udp://tk1.trackerservers.com:8080/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://odd-hd.fr:6969/announce
@@ -77,6 +77,6 @@ https://tracker.pmman.tech:443/announce
 udp://open.dstud.io:6969/announce
 https://www.peckservers.com:9443/announce
 udp://open-tracker.demonoid.ch:6969/announce
-udp://btt.service.gongt.me:43079/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://btt.service.gongt.me:43079/announce
 http://p2p.0g.cx:6969/announce
