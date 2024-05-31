@@ -840,6 +840,7 @@ https://tracker2.ctix.cn/announce
 https://tracker2.ctix.cn:443/announce
 https://trackers.mlsub.net/announce
 https://trackers.mlsub.net:443/announce
+https://trackers.run:443/announce
 https://trackme.theom.nz/announce
 https://trackme.theom.nz:443/announce
 https://trakx.herokuapp.com/announce
@@ -967,6 +968,7 @@ udp://free.publictracker.xyz:6969/announce
 udp://freedom.1776.ga:6969/announce
 udp://http://www.peckservers.com:9000/announce
 udp://htz3.noho.st:6969/announce
+udp://inferno.demonoid.is:3391/announce
 udp://ipv4.rer.lol:2710/announce
 udp://ipv4.tracker.harry.lu/announce
 udp://ipv4.tracker.harry.lu:80/announce
@@ -1061,6 +1063,7 @@ udp://tracker.4.babico.name.tr:3131/announce
 udp://tracker.army:6969/announce
 udp://tracker.artixlinux.org:6969/announce
 udp://tracker.auctor.tv:6969/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://tracker.bitsearch.to:1337/announce
 udp://tracker.bittor.pw:1337/announce
 udp://tracker.blacksparrowmedia.net:6969/announce
@@ -1102,6 +1105,7 @@ udp://tracker.srv00.com:6969/announce
 udp://tracker.swateam.org.uk:2710/announce
 udp://tracker.sylphix.com:6969/announce
 udp://tracker.tcp.exchange:6969/announce
+udp://tracker.theoks.net:6969/announce
 udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://tracker.trackerfix.com:80/announce
