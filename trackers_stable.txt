@@ -47,9 +47,9 @@ udp://u.peer-exchange.download:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://bvarf.tracker.sh:2086/announce
 udp://open.demonoid.ch:6969/announce
+http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.cyberia.is:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
@@ -66,8 +66,8 @@ udp://open.dstud.io:6969/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://wepzone.net:6969/announce
