@@ -29,9 +29,9 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker.darkness.services:6969/announce
-udp://tracker.breizh.pm:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://bt2.archive.org:6969/announce
+udp://tracker.breizh.pm:6969/announce
 udp://exodus.desync.com:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://amigacity.xyz:6969/announce
@@ -49,14 +49,14 @@ udp://open.demonoid.ch:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-udp://tracker.cyberia.is:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://retracker.lanta.me:2710/announce
-udp://seedpeer.net:6969/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tracker.srv00.com:6969/announce
 http://tracker1.itzmx.com:8080/announce
+udp://seedpeer.net:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://run.publictracker.xyz:6969/announce
 http://isk.richardsw.club:6969/announce
