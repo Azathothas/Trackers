@@ -9,7 +9,6 @@ http://isk.richardsw.club:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 http://open.acgnxtracker.com:80/announce
 http://open.acgtracker.com:1096/announce
-http://p2p.0g.cx:6969/announce
 http://t.overflow.biz:6969/announce
 http://tr.kxmp.cf:80/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce

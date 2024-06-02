@@ -67,8 +67,8 @@ http://tracker.mywaifu.best:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://odd-hd.fr:6969/announce
-udp://tracker.breizh.pm:6969/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://tracker.breizh.pm:6969/announce
 udp://wepzone.net:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tracker.filemail.com:6969/announce
@@ -78,4 +78,3 @@ udp://1c.premierzal.ru:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://new-line.net:6969/announce
 udp://open-tracker.demonoid.ch:6969/announce
-http://p2p.0g.cx:6969/announce
