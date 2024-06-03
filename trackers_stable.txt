@@ -1,5 +1,6 @@
 udp://z.mercax.com:53/announce
 udp://tracker.torrent.eu.org:451/announce
+udp://moonburrow.club:6969/announce
 udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
@@ -14,7 +15,6 @@ udp://tk2v6.trackerservers.com:8080/announce
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
 udp://bubu.mapfactor.com:6969/announce
-udp://moonburrow.club:6969/announce
 https://tracker.tamersunion.org:443/announce
 https://www.peckservers.com:9443/announce
 udp://tracker.fnix.net:6969/announce
@@ -37,8 +37,8 @@ udp://amigacity.xyz:6969/announce
 udp://explodie.org:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://tracker.tryhackx.org:6969/announce
 udp://epider.me:6969/announce
+udp://tracker.tryhackx.org:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 http://bvarf.tracker.sh:2086/announce
@@ -51,13 +51,13 @@ udp://retracker.lanta.me:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://tracker1.itzmx.com:8080/announce
-udp://u.peer-exchange.download:6969/announce
 udp://tracker.srv00.com:6969/announce
 http://isk.richardsw.club:6969/announce
-udp://run.publictracker.xyz:6969/announce
 udp://tracker.cyberia.is:6969/announce
-udp://tracker.qu.ax:6969/announce
+udp://run.publictracker.xyz:6969/announce
+udp://u.peer-exchange.download:6969/announce
 https://tracker.ipfsscan.io:443/announce
+udp://tracker.qu.ax:6969/announce
 https://tracker.cloudit.top:443/announce
 https://t.peer-exchange.download:443/announce
 http://tracker.mywaifu.best:6969/announce
@@ -70,8 +70,8 @@ http://open.acgtracker.com:1096/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://new-line.net:6969/announce
 udp://wepzone.net:6969/announce
-udp://jutone.com:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://jutone.com:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.breizh.pm:6969/announce
