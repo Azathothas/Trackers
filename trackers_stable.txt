@@ -76,6 +76,6 @@ udp://tracker.cubonegro.org:1337/announce
 udp://wepzone.net:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.breizh.pm:6969/announce
-udp://tracker.qu.ax:6969/announce
 https://trackers.run:443/announce
+udp://tracker.qu.ax:6969/announce
 http://p2p.0g.cx:6969/announce
