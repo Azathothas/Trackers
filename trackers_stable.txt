@@ -27,8 +27,8 @@ http://tracker.bt4g.com:2095/announce
 http://tracker.files.fm:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
 http://ipv6.rer.lol:6969/announce
-udp://tracker.darkness.services:6969/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker.darkness.services:6969/announce
 udp://bt2.archive.org:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://bt1.archive.org:6969/announce
@@ -66,14 +66,14 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 udp://new-line.net:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 http://open.acgtracker.com:1096/announce
+http://tracker.dump.cl:6969/announce
 udp://jutone.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-http://tracker.dump.cl:6969/announce
 udp://wepzone.net:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.filemail.com:6969/announce
-udp://tracker.qu.ax:6969/announce
 udp://1c.premierzal.ru:6969/announce
+udp://tracker.qu.ax:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tracker.cubonegro.org:1337/announce
