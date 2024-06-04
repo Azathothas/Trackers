@@ -12,7 +12,6 @@ udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tk2v6.trackerservers.com:8080/announce
-http://tracker.dump.cl:6969/announce
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
 udp://bubu.mapfactor.com:6969/announce
@@ -75,9 +74,9 @@ udp://retracker.hotplug.ru:2710/announce
 udp://tracker.filemail.com:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://tracker.breizh.pm:6969/announce
-udp://u.peer-exchange.download:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://u.peer-exchange.download:6969/announce
+udp://tracker.cubonegro.org:1337/announce
 http://p2p.0g.cx:6969/announce
 udp://ipv4.rer.lol:2710/announce
-udp://tracker.cubonegro.org:1337/announce
