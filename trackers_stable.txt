@@ -11,7 +11,6 @@ http://tracker.renfei.net:8080/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://evan.im:6969/announce
-https://tracker.yemekyedim.com:443/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://amigacity.xyz:6969/announce
@@ -22,6 +21,7 @@ udp://open.stealth.si:80/announce
 https://tracker.tamersunion.org:443/announce
 https://www.peckservers.com:9443/announce
 udp://tracker.fnix.net:6969/announce
+https://tracker.yemekyedim.com:443/announce
 udp://tracker.draatman.uk:6969/announce
 udp://ttr.croco.net:6969/announce
 udp://tracker.silksa.co.za:6969/announce
@@ -66,12 +66,12 @@ udp://open.dstud.io:6969/announce
 udp://odd-hd.fr:6969/announce
 https://trackers.run:443/announce
 udp://tracker.cubonegro.org:1337/announce
+http://tracker.dump.cl:6969/announce
 udp://new-line.net:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-http://tracker.dump.cl:6969/announce
 udp://jutone.com:6969/announce
-udp://tk2.trackerservers.com:8080/announce
 http://open.acgtracker.com:1096/announce
+udp://tk2.trackerservers.com:8080/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.filemail.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
