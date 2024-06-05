@@ -65,10 +65,10 @@ udp://odd-hd.fr:6969/announce
 udp://new-line.net:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://jutone.com:6969/announce
 http://tracker.dump.cl:6969/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
+udp://jutone.com:6969/announce
 https://trackers.run:443/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.filemail.com:6969/announce
