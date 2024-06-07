@@ -1,6 +1,5 @@
 udp://explodie.org:6969/announce
 udp://tracker.torrent.eu.org:451/announce
-udp://bubu.mapfactor.com:6969/announce
 udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
@@ -13,6 +12,7 @@ udp://amigacity.xyz:6969/announce
 https://t.peer-exchange.download:443/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://open.stealth.si:80/announce
+udp://bubu.mapfactor.com:6969/announce
 udp://moonburrow.club:6969/announce
 https://tracker.tamersunion.org:443/announce
 udp://tracker.fnix.net:6969/announce
@@ -36,8 +36,8 @@ udp://bt2.archive.org:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.darkness.services:6969/announce
 udp://bt1.archive.org:6969/announce
-udp://tracker.cubonegro.org:1337/announce
 udp://tracker.gmi.gd:6969/announce
+udp://tracker.cubonegro.org:1337/announce
 udp://epider.me:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.tryhackx.org:6969/announce
@@ -52,8 +52,8 @@ udp://exodus.desync.com:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 http://bvarf.tracker.sh:2086/announce
-https://tracker.cloudit.top:443/announce
 udp://tracker.cyberia.is:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker1.itzmx.com:8080/announce
 udp://run.publictracker.xyz:6969/announce
@@ -67,12 +67,12 @@ udp://seedpeer.net:6969/announce
 udp://odd-hd.fr:6969/announce
 http://isk.richardsw.club:6969/announce
 http://tracker.dump.cl:6969/announce
-udp://new-line.net:6969/announce
 https://trackers.run:443/announce
+udp://new-line.net:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://t.overflow.biz:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://t.overflow.biz:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://jutone.com:6969/announce
 udp://tracker.filemail.com:6969/announce
