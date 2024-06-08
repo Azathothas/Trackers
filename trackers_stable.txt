@@ -49,9 +49,9 @@ udp://tracker.birkenwald.de:6969/announce
 udp://open.demonoid.ch:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.cyberia.is:6969/announce
-udp://exodus.desync.com:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 http://bvarf.tracker.sh:2086/announce
+udp://exodus.desync.com:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker1.itzmx.com:8080/announce
 udp://run.publictracker.xyz:6969/announce
@@ -67,9 +67,9 @@ udp://retracker01-msk-virt.corbina.net:80/announce
 http://isk.richardsw.club:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://retracker.hotplug.ru:2710/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://new-line.net:6969/announce
 https://trackers.run:443/announce
+udp://tracker.deadorbit.nl:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tk2.trackerservers.com:8080/announce
