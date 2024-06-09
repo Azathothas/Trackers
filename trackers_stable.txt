@@ -7,6 +7,7 @@ http://tracker.renfei.net:8080/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
+https://tracker.yemekyedim.com:443/announce
 udp://martin-gebhardt.eu:25/announce
 udp://amigacity.xyz:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
@@ -25,7 +26,6 @@ http://tracker.gbitt.info:80/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.files.fm:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
-https://tracker.yemekyedim.com:443/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://z.mercax.com:53/announce
 https://www.peckservers.com:9443/announce
@@ -38,10 +38,10 @@ udp://retracker.lanta.me:2710/announce
 udp://tracker.darkness.services:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://explodie.org:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://open.demonoid.ch:6969/announce
 udp://tracker.birkenwald.de:6969/announce
@@ -71,12 +71,12 @@ https://trackers.run:443/announce
 udp://tk2.trackerservers.com:8080/announce
 http://open.acgtracker.com:1096/announce
 udp://jutone.com:6969/announce
+https://pybittrack.retiolus.net:443/announce
 udp://tracker.filemail.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-https://t.peer-exchange.download:443/announce
-https://pybittrack.retiolus.net:443/announce
 udp://tracker.breizh.pm:6969/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://1c.premierzal.ru:6969/announce
-udp://t.overflow.biz:6969/announce
+udp://tracker.deadorbit.nl:6969/announce
+https://t.peer-exchange.download:443/announce
 udp://open.publictracker.xyz:6969/announce
+udp://t.overflow.biz:6969/announce
