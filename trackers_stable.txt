@@ -42,12 +42,12 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://explodie.org:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
-udp://open.demonoid.ch:6969/announce
 udp://tracker.cyberia.is:6969/announce
+udp://open.demonoid.ch:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
-udp://www.torrent.eu.org:451/announce
 http://bvarf.tracker.sh:2086/announce
+udp://www.torrent.eu.org:451/announce
 http://open-v6.demonoid.ch:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
@@ -68,9 +68,9 @@ http://isk.richardsw.club:6969/announce
 udp://new-line.net:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://trackers.run:443/announce
+udp://tk2.trackerservers.com:8080/announce
 http://open.acgtracker.com:1096/announce
 https://t.peer-exchange.download:443/announce
-udp://tk2.trackerservers.com:8080/announce
 udp://tracker.filemail.com:6969/announce
 udp://jutone.com:6969/announce
 udp://tk1.trackerservers.com:8080/announce
@@ -79,4 +79,3 @@ udp://1c.premierzal.ru:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://t.overflow.biz:6969/announce
 https://pybittrack.retiolus.net:443/announce
-https://tracker.ipfsscan.io:443/announce
