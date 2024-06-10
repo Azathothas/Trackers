@@ -66,11 +66,11 @@ https://pybittrack.retiolus.net:443/announce
 udp://seedpeer.net:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.srv00.com:6969/announce
-udp://open.publictracker.xyz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://tracker.cubonegro.org:1337/announce
+udp://open.publictracker.xyz:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://new-line.net:6969/announce
+udp://tracker.cubonegro.org:1337/announce
 http://open.acgtracker.com:1096/announce
 udp://jutone.com:6969/announce
 udp://tracker.filemail.com:6969/announce
