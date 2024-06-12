@@ -53,12 +53,12 @@ udp://tracker.darkness.services:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker-udp.gbitt.info:80/announce
-http://open-v6.demonoid.ch:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
-https://pybittrack.retiolus.net:443/announce
+http://open-v6.demonoid.ch:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://open.dstud.io:6969/announce
+https://pybittrack.retiolus.net:443/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker.cloudit.top:443/announce
 http://isk.richardsw.club:6969/announce
@@ -72,8 +72,8 @@ udp://new-line.net:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 http://open.acgtracker.com:1096/announce
 https://torrust.canofsocks.com:443/announce
-udp://tracker.filemail.com:6969/announce
 udp://jutone.com:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://wepzone.net:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tk1.trackerservers.com:8080/announce
