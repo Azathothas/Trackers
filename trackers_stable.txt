@@ -64,9 +64,9 @@ https://tracker.cloudit.top:443/announce
 udp://open.publictracker.xyz:6969/announce
 http://isk.richardsw.club:6969/announce
 udp://seedpeer.net:6969/announce
+https://torrust.canofsocks.com:443/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.srv00.com:6969/announce
-https://torrust.canofsocks.com:443/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://new-line.net:6969/announce
