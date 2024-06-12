@@ -54,11 +54,11 @@ udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://tracker1.itzmx.com:8080/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://run.publictracker.xyz:6969/announce
 udp://open.dstud.io:6969/announce
 http://open-v6.demonoid.ch:6969/announce
-https://tracker.cloudit.top:443/announce
 https://trackers.run:443/announce
 udp://open.publictracker.xyz:6969/announce
 http://tracker.mywaifu.best:6969/announce
@@ -78,4 +78,3 @@ udp://tracker.breizh.pm:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://wepzone.net:6969/announce
 udp://tk1.trackerservers.com:8080/announce
-udp://1c.premierzal.ru:6969/announce
