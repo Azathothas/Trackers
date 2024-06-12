@@ -42,10 +42,10 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://explodie.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://retracker.hotplug.ru:2710/announce
-https://trackers.run:443/announce
 http://tracker.dump.cl:6969/announce
 udp://z.mercax.com:53/announce
 udp://u4.trakx.crim.ist:1337/announce
+https://trackers.run:443/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://odd-hd.fr:6969/announce
 http://bvarf.tracker.sh:2086/announce
@@ -70,8 +70,8 @@ udp://tk2.trackerservers.com:8080/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://new-line.net:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-http://open.acgtracker.com:1096/announce
 https://torrust.canofsocks.com:443/announce
+http://open.acgtracker.com:1096/announce
 udp://jutone.com:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
