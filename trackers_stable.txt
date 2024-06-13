@@ -7,7 +7,6 @@ http://tracker.renfei.net:8080/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
-udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
@@ -16,6 +15,7 @@ udp://bubu.mapfactor.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://open.demonii.com:1337/announce
 https://trackers.mlsub.net:443/announce
+udp://evan.im:6969/announce
 udp://tracker.draatman.uk:6969/announce
 udp://ttr.croco.net:6969/announce
 https://tracker.gcrenwp.top:443/announce
@@ -48,11 +48,11 @@ udp://z.mercax.com:53/announce
 https://pybittrack.retiolus.net:443/announce
 http://bvarf.tracker.sh:2086/announce
 udp://exodus.desync.com:6969/announce
+http://tracker1.itzmx.com:8080/announce
 udp://odd-hd.fr:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://open.dstud.io:6969/announce
-http://tracker1.itzmx.com:8080/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://run.publictracker.xyz:6969/announce
@@ -62,8 +62,8 @@ udp://open.publictracker.xyz:6969/announce
 https://trackers.run:443/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.gmi.gd:6969/announce
-udp://seedpeer.net:6969/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://seedpeer.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 http://isk.richardsw.club:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -75,6 +75,5 @@ udp://tracker.filemail.com:6969/announce
 udp://jutone.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
-udp://wepzone.net:6969/announce
-https://torrust.canofsocks.com:443/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://wepzone.net:6969/announce
