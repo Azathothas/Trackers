@@ -26,10 +26,9 @@ udp://martin-gebhardt.eu:25/announce
 udp://tracker.silksa.co.za:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://tracker.opentrackr.org:1337/announce
-udp://bt2.archive.org:6969/announce
-udp://tracker.gmi.gd:6969/announce
-udp://tracker.dler.com:6969/announce
 udp://tracker.birkenwald.de:6969/announce
+udp://bt2.archive.org:6969/announce
+udp://tracker.dler.com:6969/announce
 udp://open.demonoid.ch:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://u6.trakx.crim.ist:1337/announce
@@ -41,6 +40,7 @@ udp://retracker.lanta.me:2710/announce
 udp://epider.me:6969/announce
 udp://explodie.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
+udp://tracker.gmi.gd:6969/announce
 udp://z.mercax.com:53/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
