@@ -7,7 +7,6 @@ http://ipv6.rer.lol:6969/announce
 http://isk.richardsw.club:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 http://open.acgtracker.com:1096/announce
-http://t.overflow.biz:6969/announce
 http://t1.aag.moe:17715/announce
 http://tr.kxmp.cf:80/announce
 http://tracker.bt4g.com:2095/announce
@@ -21,16 +20,13 @@ http://tracker.mywaifu.best:6969/announce
 http://tracker.opentrackr.org:1337/announce
 http://tracker.qu.ax:6969/announce
 http://tracker.renfei.net:8080/announce
-http://tracker1.bt.moack.co.kr:80/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker2.dler.org:80/announce
-http://wepzone.net:6969/announce
 http://www.peckservers.com:9000/announce
 https://pybittrack.retiolus.net:443/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.gbitt.info:443/announce
 https://tracker.gcrenwp.top:443/announce
-https://tracker.imgoingto.icu:443/announce
 https://tracker.ipfsscan.io:443/announce
 https://tracker.lilithraws.org:443/announce
 https://tracker.loligirl.cn:443/announce
@@ -79,6 +75,7 @@ udp://open.u-p.pw:6969/announce
 udp://opentracker.io:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://p4p.arenabg.com:1337/announce
+udp://public.tracker.vraphim.com:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://retracker.lanta.me:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -95,6 +92,7 @@ udp://tracker.0x7c0.com:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://tracker.bittor.pw:1337/announce
 udp://tracker.breizh.pm:6969/announce
+udp://tracker.ccp.ovh:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://tracker.ddunlimited.net:6969/announce
@@ -117,7 +115,6 @@ udp://tracker.theoks.net:6969/announce
 udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker2.dler.org:80/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
@@ -125,5 +122,4 @@ udp://ttr.croco.net:6969/announce
 udp://u.peer-exchange.download:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
-udp://wepzone.net:6969/announce
 udp://www.torrent.eu.org:451/announce
