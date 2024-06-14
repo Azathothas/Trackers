@@ -21,9 +21,9 @@ https://tracker.gcrenwp.top:443/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://oh.fuuuuuck.com:6969/announce
-http://ipv6.rer.lol:6969/announce
 udp://tracker.silksa.co.za:6969/announce
 http://tracker.bt4g.com:2095/announce
+http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://bt2.archive.org:6969/announce
@@ -72,7 +72,6 @@ http://open.acgtracker.com:1096/announce
 udp://tracker.filemail.com:6969/announce
 udp://jutone.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
-udp://z.mercax.com:53/announce
 udp://tracker.deadorbit.nl:6969/announce
-udp://tk1.trackerservers.com:8080/announce
 udp://u.peer-exchange.download:6969/announce
+udp://tk1.trackerservers.com:8080/announce
