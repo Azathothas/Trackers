@@ -67,9 +67,9 @@ http://isk.richardsw.club:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://new-line.net:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+udp://u.peer-exchange.download:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 http://open.acgtracker.com:1096/announce
-udp://u.peer-exchange.download:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://jutone.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
