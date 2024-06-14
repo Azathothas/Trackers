@@ -75,3 +75,4 @@ udp://tracker.breizh.pm:6969/announce
 udp://z.mercax.com:53/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://u.peer-exchange.download:6969/announce
