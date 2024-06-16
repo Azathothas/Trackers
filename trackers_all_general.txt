@@ -125,3 +125,4 @@ udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://wepzone.net:6969/announce
 udp://www.torrent.eu.org:451/announce
+udp://z.mercax.com:53/announce
