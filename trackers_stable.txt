@@ -70,10 +70,10 @@ udp://tracker.filemail.com:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://jutone.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://z.mercax.com:53/announce
 http://p2p.0g.cx:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
-https://pybittrack.retiolus.net:443/announce
+udp://z.mercax.com:53/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://open-tracker.demonoid.ch:6969/announce
+https://pybittrack.retiolus.net:443/announce
