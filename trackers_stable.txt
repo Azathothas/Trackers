@@ -1,3 +1,4 @@
+udp://open.stealth.si:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://bubu.mapfactor.com:6969/announce
@@ -10,7 +11,6 @@ udp://tracker.fnix.net:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
-udp://open.stealth.si:80/announce
 http://tracker.files.fm:6969/announce
 udp://moonburrow.club:6969/announce
 udp://open.demonii.com:1337/announce
@@ -56,8 +56,8 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 https://trackers.run:443/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker.gmi.gd:6969/announce
-udp://tracker-udp.gbitt.info:80/announce
 http://open-v6.demonoid.ch:6969/announce
+udp://tracker-udp.gbitt.info:80/announce
 https://tracker.cloudit.top:443/announce
 http://isk.richardsw.club:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -75,4 +75,3 @@ udp://tracker.breizh.pm:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://z.mercax.com:53/announce
 udp://tk1.trackerservers.com:8080/announce
-udp://open-tracker.demonoid.ch:6969/announce
