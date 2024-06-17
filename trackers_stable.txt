@@ -10,6 +10,7 @@ udp://amigacity.xyz:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://open.stealth.si:80/announce
 http://tracker.files.fm:6969/announce
+http://bt.okmp3.ru:2710/announce
 udp://bubu.mapfactor.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://open.demonii.com:1337/announce
@@ -20,7 +21,6 @@ udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.gbitt.info:80/announce
 http://tracker.bt4g.com:2095/announce
-http://bt.okmp3.ru:2710/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://tracker.silksa.co.za:6969/announce
 http://ipv6.rer.lol:6969/announce
@@ -35,8 +35,8 @@ udp://epider.me:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://retracker.lanta.me:2710/announce
 udp://bt1.archive.org:6969/announce
-udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
+udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://explodie.org:6969/announce
 udp://open.demonoid.ch:6969/announce
 udp://open.dstud.io:6969/announce
