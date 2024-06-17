@@ -11,13 +11,13 @@ udp://tracker.fnix.net:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
-udp://retracker.hotplug.ru:2710/announce
 http://tracker.files.fm:6969/announce
 udp://moonburrow.club:6969/announce
 udp://open.demonii.com:1337/announce
 https://trackers.mlsub.net:443/announce
 udp://tracker.draatman.uk:6969/announce
 https://tracker.gcrenwp.top:443/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.gbitt.info:80/announce
 http://tracker.bt4g.com:2095/announce
