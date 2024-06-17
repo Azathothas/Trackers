@@ -47,10 +47,10 @@ udp://u4.trakx.crim.ist:1337/announce
 udp://u.peer-exchange.download:6969/announce
 udp://exodus.desync.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
+udp://www.torrent.eu.org:451/announce
 http://tracker1.itzmx.com:8080/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.darkness.services:6969/announce
-udp://www.torrent.eu.org:451/announce
 http://tracker.dump.cl:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 https://trackers.run:443/announce
@@ -65,8 +65,8 @@ udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.srv00.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://new-line.net:6969/announce
-http://tracker.mywaifu.best:6969/announce
 udp://tracker.filemail.com:6969/announce
+http://tracker.mywaifu.best:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://jutone.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
