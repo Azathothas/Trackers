@@ -55,9 +55,9 @@ http://tracker.dump.cl:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 https://trackers.run:443/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://tracker.gmi.gd:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://open-v6.demonoid.ch:6969/announce
-udp://tracker.gmi.gd:6969/announce
 https://tracker.cloudit.top:443/announce
 http://isk.richardsw.club:6969/announce
 udp://seedpeer.net:6969/announce
@@ -76,4 +76,3 @@ udp://tracker.deadorbit.nl:6969/announce
 udp://z.mercax.com:53/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://open-tracker.demonoid.ch:6969/announce
-https://pybittrack.retiolus.net:443/announce
