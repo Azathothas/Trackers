@@ -66,8 +66,8 @@ http://isk.richardsw.club:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://new-line.net:6969/announce
-udp://tracker.filemail.com:6969/announce
 http://open.acgtracker.com:1096/announce
+udp://tracker.filemail.com:6969/announce
 udp://jutone.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 http://p2p.0g.cx:6969/announce
