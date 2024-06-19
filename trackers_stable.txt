@@ -6,6 +6,7 @@ https://tracker.lilithraws.org:443/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
+udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
@@ -14,7 +15,6 @@ http://tracker.files.fm:6969/announce
 udp://moonburrow.club:6969/announce
 https://trackers.mlsub.net:443/announce
 udp://opentracker.io:6969/announce
-udp://evan.im:6969/announce
 udp://tracker.silksa.co.za:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.gbitt.info:80/announce
@@ -59,9 +59,9 @@ udp://tk2.trackerservers.com:8080/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 https://trackers.run:443/announce
 http://open-v6.demonoid.ch:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker.mywaifu.best:6969/announce
-https://tracker.cloudit.top:443/announce
 udp://seedpeer.net:6969/announce
 http://isk.richardsw.club:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
