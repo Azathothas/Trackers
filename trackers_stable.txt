@@ -39,10 +39,10 @@ udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://explodie.org:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://bubu.mapfactor.com:6969/announce
+udp://open.dstud.io:6969/announce
 https://www.peckservers.com:9443/announce
 udp://open.demonoid.ch:6969/announce
 udp://tracker.cyberia.is:6969/announce
-udp://open.dstud.io:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://tracker.dump.cl:6969/announce
@@ -57,8 +57,8 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 https://trackers.run:443/announce
 udp://tk2.trackerservers.com:8080/announce
 http://open-v6.demonoid.ch:6969/announce
-udp://tracker-udp.gbitt.info:80/announce
 udp://new-line.net:6969/announce
+udp://tracker-udp.gbitt.info:80/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://seedpeer.net:6969/announce
