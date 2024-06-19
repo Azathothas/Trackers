@@ -58,8 +58,8 @@ https://trackers.run:443/announce
 udp://tk2.trackerservers.com:8080/announce
 http://open-v6.demonoid.ch:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
-http://tracker.mywaifu.best:6969/announce
 udp://new-line.net:6969/announce
+http://tracker.mywaifu.best:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://seedpeer.net:6969/announce
 http://isk.richardsw.club:6969/announce
