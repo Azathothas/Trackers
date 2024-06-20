@@ -698,6 +698,7 @@ https://pybittrack.retiolus.net:443/announce
 https://seeders-paradise.org/announce
 https://t.btcland.xyz/announce
 https://t.btcland.xyz:443/announce
+https://t.peer-exchange.download:443/announce
 https://t.quic.ws/announce
 https://t.quic.ws:443/announce
 https://t.zerg.pw/announce
