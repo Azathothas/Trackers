@@ -43,11 +43,11 @@ udp://p4p.arenabg.com:1337/announce
 udp://open.dstud.io:6969/announce
 udp://open.demonoid.ch:6969/announce
 http://bvarf.tracker.sh:2086/announce
-https://pybittrack.retiolus.net:443/announce
 http://tracker.dump.cl:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
+https://pybittrack.retiolus.net:443/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker.gmi.gd:6969/announce
 http://tracker1.itzmx.com:8080/announce
@@ -62,10 +62,10 @@ http://open-v6.demonoid.ch:6969/announce
 udp://u.peer-exchange.download:6969/announce
 http://isk.richardsw.club:6969/announce
 udp://seedpeer.net:6969/announce
-udp://tracker-us.silksa.co.za:6969/announce
 http://tracker.mywaifu.best:6969/announce
-https://t.peer-exchange.download:443/announce
+udp://tracker-us.silksa.co.za:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
+https://t.peer-exchange.download:443/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.filemail.com:6969/announce
 http://open.acgtracker.com:1096/announce
