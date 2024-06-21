@@ -28,10 +28,10 @@ udp://oh.fuuuuuck.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://new-line.net:6969/announce
 udp://tracker.opentrackr.org:1337/announce
-udp://u6.trakx.crim.ist:1337/announce
 https://tracker.tamersunion.org:443/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://bt1.archive.org:6969/announce
+udp://u6.trakx.crim.ist:1337/announce
 udp://epider.me:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://exodus.desync.com:6969/announce
