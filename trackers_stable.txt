@@ -7,6 +7,7 @@ udp://tracker.0x7c0.com:6969/announce
 udp://evan.im:6969/announce
 udp://amigacity.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
+https://tracker.madtia.cc:443/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.files.fm:6969/announce
 udp://open.demonii.com:1337/announce
@@ -37,12 +38,12 @@ udp://exodus.desync.com:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://explodie.org:6969/announce
 udp://open.dstud.io:6969/announce
-udp://new-line.net:6969/announce
 https://www.peckservers.com:9443/announce
 http://tracker1.itzmx.com:8080/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://open.demonoid.ch:6969/announce
+udp://new-line.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://tracker.dump.cl:6969/announce
 https://tracker.yemekyedim.com:443/announce
