@@ -39,13 +39,13 @@ udp://tracker.breizh.pm:6969/announce
 http://tracker.k.vu:6969/announce
 udp://martin-gebhardt.eu:25/announce
 https://trackers.run:443/announce
+udp://z.mercax.com:53/announce
 udp://open.dstud.io:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://opentracker.io:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.cyberia.is:6969/announce
-udp://z.mercax.com:53/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://explodie.org:6969/announce
 udp://tracker.birkenwald.de:6969/announce
@@ -73,9 +73,9 @@ udp://p4p.arenabg.com:1337/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://tracker-us.silksa.co.za:6969/announce
-https://tracker2.ctix.cn:443/announce
 udp://open-tracker.demonoid.ch:6969/announce
 udp://u.peer-exchange.download:6969/announce
+https://tracker2.ctix.cn:443/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker1.ctix.cn:443/announce
