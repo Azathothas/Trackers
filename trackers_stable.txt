@@ -36,9 +36,9 @@ http://tracker1.itzmx.com:8080/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.breizh.pm:6969/announce
-http://tracker.k.vu:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://open.dstud.io:6969/announce
+http://tracker.k.vu:6969/announce
 http://bvarf.tracker.sh:2086/announce
 https://trackers.run:443/announce
 udp://opentracker.io:6969/announce
@@ -66,11 +66,11 @@ udp://p2p.publictracker.xyz:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 http://tracker.mywaifu.best:6969/announce
 http://tracker.gbitt.info:80/announce
+udp://tracker.qu.ax:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.filemail.com:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 udp://p4p.arenabg.com:1337/announce
-udp://tracker.qu.ax:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://tracker-us.silksa.co.za:6969/announce
 https://tracker2.ctix.cn:443/announce
