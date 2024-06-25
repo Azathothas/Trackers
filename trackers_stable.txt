@@ -15,10 +15,10 @@ https://trackers.mlsub.net:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.silksa.co.za:6969/announce
-https://pybittrack.retiolus.net:443/announce
 udp://bt2.archive.org:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker.draatman.uk:6969/announce
+https://pybittrack.retiolus.net:443/announce
 http://tracker.renfei.net:8080/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://bt1.archive.org:6969/announce
@@ -45,11 +45,11 @@ udp://opentracker.io:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.cyberia.is:6969/announce
+udp://z.mercax.com:53/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://explodie.org:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.dump.cl:6969/announce
-udp://z.mercax.com:53/announce
 udp://epider.me:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://u4.trakx.crim.ist:1337/announce
@@ -58,9 +58,9 @@ udp://open.demonoid.ch:6969/announce
 https://www.peckservers.com:9443/announce
 udp://odd-hd.fr:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
+udp://tracker.qu.ax:6969/announce
 http://isk.richardsw.club:6969/announce
 https://t.peer-exchange.download:443/announce
-udp://tracker.qu.ax:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://bubu.mapfactor.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
