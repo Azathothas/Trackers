@@ -8,6 +8,7 @@ udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
+https://pybittrack.retiolus.net:443/announce
 http://tracker.files.fm:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://open.demonii.com:1337/announce
@@ -15,7 +16,6 @@ https://trackers.mlsub.net:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.silksa.co.za:6969/announce
-https://pybittrack.retiolus.net:443/announce
 udp://bt2.archive.org:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker.draatman.uk:6969/announce
@@ -38,10 +38,10 @@ udp://tracker.gmi.gd:6969/announce
 udp://tracker.breizh.pm:6969/announce
 http://tracker.k.vu:6969/announce
 udp://martin-gebhardt.eu:25/announce
-udp://tracker.cyberia.is:6969/announce
 udp://open.dstud.io:6969/announce
 http://bvarf.tracker.sh:2086/announce
 https://trackers.run:443/announce
+udp://tracker.cyberia.is:6969/announce
 udp://opentracker.io:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
