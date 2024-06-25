@@ -15,10 +15,10 @@ https://trackers.mlsub.net:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.silksa.co.za:6969/announce
-udp://tracker.cyberia.is:6969/announce
 udp://bt2.archive.org:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker.draatman.uk:6969/announce
+udp://tracker.cyberia.is:6969/announce
 http://tracker.renfei.net:8080/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
