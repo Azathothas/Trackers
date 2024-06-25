@@ -38,9 +38,9 @@ udp://tracker.gmi.gd:6969/announce
 udp://tracker.breizh.pm:6969/announce
 http://tracker.k.vu:6969/announce
 udp://martin-gebhardt.eu:25/announce
+https://trackers.run:443/announce
 udp://open.dstud.io:6969/announce
 http://bvarf.tracker.sh:2086/announce
-https://trackers.run:443/announce
 udp://opentracker.io:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
