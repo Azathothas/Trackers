@@ -21,8 +21,8 @@ http://ipv6.rer.lol:6969/announce
 udp://tracker.draatman.uk:6969/announce
 http://tracker.renfei.net:8080/announce
 udp://oh.fuuuuuck.com:6969/announce
-udp://tracker.opentrackr.org:1337/announce
 udp://bt1.archive.org:6969/announce
+udp://tracker.opentrackr.org:1337/announce
 udp://exodus.desync.com:6969/announce
 https://tracker.tamersunion.org:443/announce
 udp://tracker.dler.com:6969/announce
@@ -41,10 +41,10 @@ udp://martin-gebhardt.eu:25/announce
 udp://open.dstud.io:6969/announce
 http://bvarf.tracker.sh:2086/announce
 https://trackers.run:443/announce
-udp://tracker.cyberia.is:6969/announce
 udp://opentracker.io:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://explodie.org:6969/announce
 udp://tracker.birkenwald.de:6969/announce
@@ -63,8 +63,8 @@ https://t.peer-exchange.download:443/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://bubu.mapfactor.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-http://tracker.mywaifu.best:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
+http://tracker.mywaifu.best:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.filemail.com:6969/announce
