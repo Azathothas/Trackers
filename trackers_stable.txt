@@ -25,8 +25,8 @@ udp://bt1.archive.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://exodus.desync.com:6969/announce
 https://tracker.tamersunion.org:443/announce
-udp://tracker.dler.com:6969/announce
 udp://tracker.qu.ax:6969/announce
+udp://tracker.dler.com:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://seedpeer.net:6969/announce
@@ -48,8 +48,8 @@ udp://opentracker.io:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker.cyberia.is:6969/announce
-udp://tracker.birkenwald.de:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://explodie.org:6969/announce
 udp://epider.me:6969/announce
 https://tracker.cloudit.top:443/announce
