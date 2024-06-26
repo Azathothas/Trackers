@@ -65,11 +65,11 @@ udp://bubu.mapfactor.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://tracker.mywaifu.best:6969/announce
-http://tracker.k.vu:6969/announce
 http://tracker.gbitt.info:80/announce
 udp://u.peer-exchange.download:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://tracker.filemail.com:6969/announce
+http://tracker.k.vu:6969/announce
 http://open-v6.demonoid.ch:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker-udp.gbitt.info:80/announce
@@ -78,5 +78,5 @@ udp://tracker-us.silksa.co.za:6969/announce
 https://tracker2.ctix.cn:443/announce
 udp://tamas3.ynh.fr:6969/announce
 https://tracker1.ctix.cn:443/announce
-udp://jutone.com:6969/announce
 http://p2p.0g.cx:6969/announce
+udp://jutone.com:6969/announce
