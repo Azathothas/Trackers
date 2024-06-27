@@ -10,11 +10,11 @@ udp://amigacity.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
 http://tracker.files.fm:6969/announce
 udp://tracker.torrent.eu.org:451/announce
+udp://moonburrow.club:6969/announce
 udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
 udp://tracker.fnix.net:6969/announce
-udp://moonburrow.club:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.silksa.co.za:6969/announce
 http://ipv6.rer.lol:6969/announce
