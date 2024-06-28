@@ -1,7 +1,6 @@
-http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
+http://1337.abcvg.info:80/announce
 http://bt.okmp3.ru:2710/announce
 http://bvarf.tracker.sh:2086/announce
-http://canardscitrons.nohost.me:6969/announce
 http://ch3oh.ru:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://isk.richardsw.club:6969/announce
@@ -11,7 +10,6 @@ http://p2p.0g.cx:6969/announce
 http://t.overflow.biz:6969/announce
 http://t1.aag.moe:17715/announce
 http://tr.kxmp.cf:80/announce
-http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.dler.org:6969/announce
 http://tracker.dump.cl:6969/announce
@@ -31,7 +29,6 @@ http://www.peckservers.com:9000/announce
 https://pybittrack.retiolus.net:443/announce
 https://t.peer-exchange.download:443/announce
 https://t1.hloli.org:443/announce
-https://tracker-zhuqiy.dgj055.icu:443/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.gbitt.info:443/announce
 https://tracker.gcrenwp.top:443/announce
@@ -64,9 +61,11 @@ udp://evan.im:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://fh2.cmp-gaming.com:6969/announce
+udp://free.publictracker.xyz:6969/announce
 udp://inferno.demonoid.is:3391/announce
 udp://ipv4.rer.lol:2710/announce
 udp://ipv6.fuuuuuck.com:6969/announce
+udp://isk.richardsw.club:6969/announce
 udp://jutone.com:6969/announce
 udp://leet-tracker.moe:1337/announce
 udp://martin-gebhardt.eu:25/announce
@@ -86,7 +85,6 @@ udp://opentracker.io:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://public.publictracker.xyz:6969/announce
-udp://public.tracker.vraphim.com:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://retracker.lanta.me:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -104,11 +102,9 @@ udp://tracker.0x7c0.com:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://tracker.bittor.pw:1337/announce
 udp://tracker.breizh.pm:6969/announce
-udp://tracker.ccp.ovh:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://tracker.ddunlimited.net:6969/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.dler.org:6969/announce
 udp://tracker.draatman.uk:6969/announce
