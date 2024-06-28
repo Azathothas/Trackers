@@ -15,12 +15,12 @@ https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
 udp://tracker.fnix.net:6969/announce
 http://tracker.files.fm:6969/announce
+udp://bubu.mapfactor.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.qu.ax:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker.silksa.co.za:6969/announce
 udp://exodus.desync.com:6969/announce
-udp://bubu.mapfactor.com:6969/announce
 udp://tracker.draatman.uk:6969/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.renfei.net:8080/announce
