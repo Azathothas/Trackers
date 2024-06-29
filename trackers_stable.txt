@@ -56,8 +56,8 @@ udp://u4.trakx.crim.ist:1337/announce
 udp://run.publictracker.xyz:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://open.demonoid.ch:6969/announce
-https://trackers.run:443/announce
 https://www.peckservers.com:9443/announce
+https://trackers.run:443/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.cyberia.is:6969/announce
 http://isk.richardsw.club:6969/announce
