@@ -60,9 +60,9 @@ udp://open.demonoid.ch:6969/announce
 udp://odd-hd.fr:6969/announce
 https://trackers.run:443/announce
 udp://tracker.cyberia.is:6969/announce
-http://isk.richardsw.club:6969/announce
 https://t.peer-exchange.download:443/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+http://isk.richardsw.club:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://u.peer-exchange.download:6969/announce
@@ -73,9 +73,9 @@ udp://tracker-us.silksa.co.za:6969/announce
 udp://open-tracker.demonoid.ch:6969/announce
 http://tracker.mywaifu.best:6969/announce
 http://tracker.ipv6tracker.ru:80/announce
+https://tracker2.ctix.cn:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://tracker1.ctix.cn:443/announce
-https://tracker2.ctix.cn:443/announce
 udp://jutone.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://tracker1.520.jp:443/announce
