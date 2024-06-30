@@ -29,8 +29,8 @@ https://tracker.gcrenwp.top:443/announce
 udp://bt1.archive.org:6969/announce
 https://tracker.tamersunion.org:443/announce
 udp://tracker.dler.com:6969/announce
-udp://tracker.tryhackx.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
+udp://tracker.tryhackx.org:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
@@ -81,4 +81,5 @@ udp://tamas3.ynh.fr:6969/announce
 https://tracker1.520.jp:443/announce
 https://tracker.pmman.tech:443/announce
 udp://tk1.trackerservers.com:8080/announce
+udp://tracker.torrust-demo.com:6969/announce
 udp://wepzone.net:6969/announce
