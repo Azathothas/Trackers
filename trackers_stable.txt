@@ -1,6 +1,7 @@
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
 udp://z.mercax.com:53/announce
+udp://open.demonii.com:1337/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://evan.im:6969/announce
@@ -9,7 +10,6 @@ https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://bubu.mapfactor.com:6969/announce
-udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
 http://tracker1.itzmx.com:8080/announce
@@ -78,8 +78,8 @@ https://tracker1.ctix.cn:443/announce
 http://tracker.ipv6tracker.ru:80/announce
 udp://jutone.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-https://tracker1.520.jp:443/announce
 udp://tracker.torrust-demo.com:6969/announce
+https://tracker1.520.jp:443/announce
 https://tracker.pmman.tech:443/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://wepzone.net:6969/announce
