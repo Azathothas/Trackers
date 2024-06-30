@@ -19,9 +19,9 @@ http://tracker.files.fm:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.silksa.co.za:6969/announce
-udp://bt2.archive.org:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.draatman.uk:6969/announce
+udp://bt2.archive.org:6969/announce
 http://tracker.renfei.net:8080/announce
 http://ipv6.rer.lol:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
@@ -76,9 +76,9 @@ https://pybittrack.retiolus.net:443/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker1.ctix.cn:443/announce
 udp://jutone.com:6969/announce
-http://tracker.ipv6tracker.ru:80/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
+http://tracker.ipv6tracker.ru:80/announce
 https://tracker1.520.jp:443/announce
 https://tracker.pmman.tech:443/announce
 udp://tk1.trackerservers.com:8080/announce
