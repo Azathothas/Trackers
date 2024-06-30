@@ -46,11 +46,11 @@ udp://tracker.darkness.services:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://opentracker.io:6969/announce
 udp://tracker.gmi.gd:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
 https://www.peckservers.com:9443/announce
 http://tracker.dump.cl:6969/announce
 udp://explodie.org:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://epider.me:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
