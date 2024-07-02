@@ -1,6 +1,5 @@
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
-udp://z.mercax.com:53/announce
 udp://open.demonii.com:1337/announce
 http://tracker1.itzmx.com:8080/announce
 udp://ipv6.fuuuuuck.com:6969/announce
@@ -8,14 +7,15 @@ udp://tracker.0x7c0.com:6969/announce
 udp://evan.im:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 https://tracker.yemekyedim.com:443/announce
+https://t.peer-exchange.download:443/announce
 udp://exodus.desync.com:6969/announce
+udp://z.mercax.com:53/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://bubu.mapfactor.com:6969/announce
 https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://amigacity.xyz:6969/announce
-https://t.peer-exchange.download:443/announce
 http://tracker.files.fm:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.qu.ax:6969/announce
@@ -55,9 +55,9 @@ udp://retracker01-msk-virt.corbina.net:80/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://run.publictracker.xyz:6969/announce
 udp://open.demonoid.ch:6969/announce
-http://tracker.dump.cl:6969/announce
 udp://explodie.org:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+http://tracker.dump.cl:6969/announce
 udp://odd-hd.fr:6969/announce
 https://trackers.run:443/announce
 udp://p2p.publictracker.xyz:6969/announce
@@ -65,8 +65,8 @@ udp://tracker.cyberia.is:6969/announce
 udp://u.peer-exchange.download:6969/announce
 https://tracker.cloudit.top:443/announce
 https://pybittrack.retiolus.net:443/announce
-http://isk.richardsw.club:6969/announce
 https://tracker2.ctix.cn:443/announce
+http://isk.richardsw.club:6969/announce
 udp://tracker.filemail.com:6969/announce
 https://tracker1.ctix.cn:443/announce
 udp://p4p.arenabg.com:1337/announce
@@ -74,8 +74,8 @@ http://open-v6.demonoid.ch:6969/announce
 https://tracker1.520.jp:443/announce
 udp://tracker-us.silksa.co.za:6969/announce
 udp://open-tracker.demonoid.ch:6969/announce
-http://tracker.gbitt.info:80/announce
 udp://tamas3.ynh.fr:6969/announce
+http://tracker.gbitt.info:80/announce
 udp://jutone.com:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
