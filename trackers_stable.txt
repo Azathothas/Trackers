@@ -75,8 +75,8 @@ https://tracker1.520.jp:443/announce
 udp://tracker-us.silksa.co.za:6969/announce
 udp://open-tracker.demonoid.ch:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-http://tracker.gbitt.info:80/announce
 udp://jutone.com:6969/announce
+http://tracker.gbitt.info:80/announce
 http://tracker.mywaifu.best:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 https://tracker.pmman.tech:443/announce
