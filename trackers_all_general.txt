@@ -5,7 +5,6 @@ http://canardscitrons.nohost.me:6969/announce
 http://ch3oh.ru:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://isk.richardsw.club:6969/announce
-http://open-v6.demonoid.ch:6969/announce
 http://open.acgtracker.com:1096/announce
 http://t1.aag.moe:17715/announce
 http://tracker.bt4g.com:2095/announce
