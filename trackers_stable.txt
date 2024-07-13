@@ -52,6 +52,7 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
+https://t.peer-exchange.download:443/announce
 udp://explodie.org:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://open.publictracker.xyz:6969/announce
@@ -60,7 +61,6 @@ https://www.peckservers.com:9443/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://t1.aag.moe:17715/announce
 http://tracker.dump.cl:6969/announce
-https://t.peer-exchange.download:443/announce
 https://t1.hloli.org:443/announce
 https://trackers.run:443/announce
 udp://tamas3.ynh.fr:6969/announce
