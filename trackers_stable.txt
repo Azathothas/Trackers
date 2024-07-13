@@ -22,13 +22,13 @@ udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
 udp://amigacity.xyz:6969/announce
 http://ipv6.rer.lol:6969/announce
-http://bt.okmp3.ru:2710/announce
+https://t.peer-exchange.download:443/announce
 https://tracker.gcrenwp.top:443/announce
+http://bt.okmp3.ru:2710/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://mikrotik2.draatman.net:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
-https://t.peer-exchange.download:443/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://bt2.archive.org:6969/announce
