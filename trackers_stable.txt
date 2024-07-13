@@ -10,7 +10,6 @@ udp://tracker.0x7c0.com:6969/announce
 udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://tracker.draatman.uk:6969/announce
-https://t.peer-exchange.download:443/announce
 udp://tracker.xor.st:6969/announce
 udp://tracker1.t-1.org:6969/announce
 udp://tracker3.t-1.org:6969/announce
@@ -22,6 +21,7 @@ udp://tracker.torrent.eu.org:451/announce
 udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
 udp://amigacity.xyz:6969/announce
+https://t.peer-exchange.download:443/announce
 http://ipv6.rer.lol:6969/announce
 https://tracker.gcrenwp.top:443/announce
 http://bt.okmp3.ru:2710/announce
@@ -53,10 +53,10 @@ udp://www.torrent.eu.org:451/announce
 udp://tracker.tryhackx.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
+udp://open.demonoid.ch:6969/announce
 udp://explodie.org:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://open.publictracker.xyz:6969/announce
-udp://open.demonoid.ch:6969/announce
 https://www.peckservers.com:9443/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://t1.aag.moe:17715/announce
