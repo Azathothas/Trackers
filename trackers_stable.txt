@@ -27,12 +27,12 @@ udp://run.publictracker.xyz:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://wepzone.net:6969/announce
+udp://opentracker.io:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
-udp://mikrotik2.draatman.net:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://epider.me:6969/announce
-udp://opentracker.io:6969/announce
+udp://mikrotik2.draatman.net:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://open.demonoid.ch:6969/announce
 udp://tracker.opentrackr.org:1337/announce
