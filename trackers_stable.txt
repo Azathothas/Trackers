@@ -41,10 +41,10 @@ udp://tracker.opentrackr.org:1337/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://open.dstud.io:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://seedpeer.net:6969/announce
 udp://open.demonoid.ch:6969/announce
 udp://bt2.archive.org:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tk2v6.trackerservers.com:8080/announce
@@ -72,8 +72,8 @@ udp://new-line.net:6969/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker1.520.jp:443/announce
 udp://mikrotik2.draatman.net:6969/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
 https://tracker.pmman.tech:443/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
 udp://ryjer.com:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker4.itzmx.com:2710/announce
