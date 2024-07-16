@@ -1,3 +1,4 @@
+udp://tracker.birkenwald.de:6969/announce
 udp://z.mercax.com:53/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://bubu.mapfactor.com:6969/announce
@@ -21,7 +22,6 @@ udp://tracker.t-1.org:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://open.stealth.si:80/announce
 udp://exodus.desync.com:6969/announce
-udp://tracker.birkenwald.de:6969/announce
 http://tracker.files.fm:6969/announce
 udp://open.demonii.com:1337/announce
 udp://wepzone.net:6969/announce
@@ -56,10 +56,10 @@ udp://tamas3.ynh.fr:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://www.torrent.eu.org:451/announce
 udp://explodie.org:6969/announce
-udp://open.publictracker.xyz:6969/announce
-udp://tracker.gmi.gd:6969/announce
 http://isk.richardsw.club:6969/announce
 https://t.peer-exchange.download:443/announce
+udp://tracker.gmi.gd:6969/announce
+udp://open.publictracker.xyz:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
@@ -72,10 +72,11 @@ udp://new-line.net:6969/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker1.520.jp:443/announce
 https://tracker.pmman.tech:443/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
-udp://mikrotik2.draatman.net:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://ryjer.com:6969/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
+udp://mikrotik2.draatman.net:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://jutone.com:6969/announce
 udp://tracker.darkness.services:6969/announce
+http://open.acgtracker.com:1096/announce
