@@ -50,15 +50,15 @@ udp://tk2v6.trackerservers.com:8080/announce
 udp://tracker.cyberia.is:6969/announce
 udp://moonburrow.club:6969/announce
 http://tracker.dump.cl:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 udp://www.torrent.eu.org:451/announce
 https://pybittrack.retiolus.net:443/announce
 http://tracker.bt4g.com:2095/announce
-udp://tamas3.ynh.fr:6969/announce
 http://bvarf.tracker.sh:2086/announce
-udp://u.peer-exchange.download:6969/announce
 udp://explodie.org:6969/announce
 http://isk.richardsw.club:6969/announce
 https://t.peer-exchange.download:443/announce
+udp://u.peer-exchange.download:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.filemail.com:6969/announce
