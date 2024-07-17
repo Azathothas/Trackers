@@ -18,13 +18,13 @@ udp://tracker3.t-1.org:6969/announce
 udp://tracker.t-1.org:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://open.stealth.si:80/announce
-udp://exodus.desync.com:6969/announce
 http://tracker.files.fm:6969/announce
 udp://open.demonii.com:1337/announce
 udp://wepzone.net:6969/announce
 https://tracker.lilithraws.org:443/announce
 https://tracker.yemekyedim.com:443/announce
 udp://tracker.draatman.uk:6969/announce
+udp://exodus.desync.com:6969/announce
 udp://run.publictracker.xyz:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://bt.okmp3.ru:2710/announce
@@ -69,8 +69,8 @@ https://trackers.run:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 http://open.acgtracker.com:1096/announce
 http://tracker.mywaifu.best:6969/announce
-udp://new-line.net:6969/announce
 https://tracker1.520.jp:443/announce
+udp://new-line.net:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://ryjer.com:6969/announce
