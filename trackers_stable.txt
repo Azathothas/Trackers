@@ -1,8 +1,9 @@
+udp://p4p.arenabg.com:1337/announce
 udp://tracker.birkenwald.de:6969/announce
-udp://z.mercax.com:53/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://bubu.mapfactor.com:6969/announce
 https://tracker.tamersunion.org:443/announce
+https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
 udp://opentracker.io:6969/announce
 http://tracker1.itzmx.com:8080/announce
@@ -16,12 +17,11 @@ udp://tracker.xor.st:6969/announce
 udp://tracker1.t-1.org:6969/announce
 udp://tracker3.t-1.org:6969/announce
 udp://tracker.t-1.org:6969/announce
-udp://p4p.arenabg.com:1337/announce
 udp://open.stealth.si:80/announce
 http://tracker.files.fm:6969/announce
+udp://z.mercax.com:53/announce
 udp://open.demonii.com:1337/announce
 udp://wepzone.net:6969/announce
-https://tracker.lilithraws.org:443/announce
 https://tracker.yemekyedim.com:443/announce
 udp://exodus.desync.com:6969/announce
 udp://run.publictracker.xyz:6969/announce
