@@ -50,8 +50,8 @@ udp://explodie.org:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://www.torrent.eu.org:451/announce
-http://tracker.bt4g.com:2095/announce
 udp://tracker.tryhackx.org:6969/announce
+http://tracker.bt4g.com:2095/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tamas3.ynh.fr:6969/announce
