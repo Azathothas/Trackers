@@ -58,11 +58,11 @@ https://t.peer-exchange.download:443/announce
 https://pybittrack.retiolus.net:443/announce
 udp://tracker.filemail.com:6969/announce
 http://isk.richardsw.club:6969/announce
-udp://odd-hd.fr:6969/announce
 udp://tracker.gmi.gd:6969/announce
+udp://odd-hd.fr:6969/announce
+udp://u4.trakx.crim.ist:1337/announce
 udp://open.dstud.io:6969/announce
 https://t1.hloli.org:443/announce
-udp://u4.trakx.crim.ist:1337/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://u.peer-exchange.download:6969/announce
