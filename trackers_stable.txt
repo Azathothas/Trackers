@@ -77,3 +77,4 @@ udp://retracker.hotplug.ru:2710/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://jutone.com:6969/announce
 udp://tracker.darkness.services:6969/announce
+udp://bandito.byterunner.io:6969/announce
