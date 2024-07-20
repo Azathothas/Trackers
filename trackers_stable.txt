@@ -59,9 +59,9 @@ http://isk.richardsw.club:6969/announce
 https://t.peer-exchange.download:443/announce
 https://pybittrack.retiolus.net:443/announce
 udp://tracker.tryhackx.org:6969/announce
+https://trackers.run:443/announce
 udp://open.dstud.io:6969/announce
 udp://odd-hd.fr:6969/announce
-https://trackers.run:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 https://t1.hloli.org:443/announce
 http://tracker.mywaifu.best:6969/announce
@@ -76,4 +76,3 @@ udp://bandito.byterunner.io:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://jutone.com:6969/announce
-udp://new-line.net:6969/announce
