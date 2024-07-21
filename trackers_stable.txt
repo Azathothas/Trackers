@@ -58,8 +58,8 @@ udp://tamas3.ynh.fr:6969/announce
 https://t.peer-exchange.download:443/announce
 https://pybittrack.retiolus.net:443/announce
 udp://tracker.filemail.com:6969/announce
-https://tracker.cloudit.top:443/announce
 http://tracker.mywaifu.best:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://open.dstud.io:6969/announce
 https://t1.hloli.org:443/announce
 udp://odd-hd.fr:6969/announce
