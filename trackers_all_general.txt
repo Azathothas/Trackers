@@ -98,7 +98,6 @@ udp://tracker.ddunlimited.net:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.dler.org:6969/announce
-udp://tracker.draatman.uk:6969/announce
 udp://tracker.edkj.club:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.fnix.net:6969/announce
