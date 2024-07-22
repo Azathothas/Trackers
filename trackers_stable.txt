@@ -49,10 +49,10 @@ http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
 udp://open.demonoid.ch:6969/announce
 https://trackers.run:443/announce
-http://tracker.mywaifu.best:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.filemail.com:6969/announce
 http://isk.richardsw.club:6969/announce
+http://tracker.mywaifu.best:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://t.peer-exchange.download:443/announce
