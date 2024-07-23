@@ -42,9 +42,9 @@ udp://opentracker.io:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://epider.me:6969/announce
 udp://www.torrent.eu.org:451/announce
+https://trackers.run:443/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://seedpeer.net:6969/announce
-https://trackers.run:443/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.bt4g.com:2095/announce
 http://bvarf.tracker.sh:2086/announce
@@ -74,7 +74,7 @@ https://tracker1.520.jp:443/announce
 udp://t.overflow.biz:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 https://tracker.amelia.fun:443/announce
 udp://tracker4.itzmx.com:2710/announce
