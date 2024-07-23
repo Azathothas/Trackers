@@ -71,10 +71,10 @@ udp://bandito.byterunner.io:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 https://tracker.pmman.tech:443/announce
 https://tracker1.520.jp:443/announce
-udp://t.overflow.biz:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
-udp://1c.premierzal.ru:6969/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
 https://tracker.amelia.fun:443/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
+udp://t.overflow.biz:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://1c.premierzal.ru:6969/announce
 udp://tracker4.itzmx.com:2710/announce
