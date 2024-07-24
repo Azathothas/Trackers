@@ -30,13 +30,13 @@ udp://tracker.fnix.net:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://tracker.dler.com:6969/announce
 udp://bt1.archive.org:6969/announce
-udp://wepzone.net:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.t-1.org:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://run.publictracker.xyz:6969/announce
 http://tracker.dump.cl:6969/announce
 udp://explodie.org:6969/announce
+udp://wepzone.net:6969/announce
 udp://opentracker.io:6969/announce
 udp://epider.me:6969/announce
 udp://tk2.trackerservers.com:8080/announce
@@ -67,9 +67,9 @@ udp://btt.service.gongt.me:43079/announce
 udp://u.peer-exchange.download:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
-https://www.peckservers.com:9443/announce
 udp://bandito.byterunner.io:6969/announce
 https://tracker.pmman.tech:443/announce
+https://www.peckservers.com:9443/announce
 https://tracker.amelia.fun:443/announce
 https://tracker1.520.jp:443/announce
 udp://tracker.torrust-demo.com:6969/announce
