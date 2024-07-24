@@ -74,7 +74,7 @@ udp://1c.premierzal.ru:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 https://tracker1.520.jp:443/announce
 udp://tracker.torrust-demo.com:6969/announce
-https://t1.hloli.org:443/announce
-udp://ttk2.nbaonlineservice.com:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
+udp://ttk2.nbaonlineservice.com:6969/announce
+https://t1.hloli.org:443/announce
 udp://tracker4.itzmx.com:2710/announce
