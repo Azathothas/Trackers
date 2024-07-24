@@ -36,10 +36,10 @@ udp://bt2.archive.org:6969/announce
 udp://run.publictracker.xyz:6969/announce
 http://tracker.dump.cl:6969/announce
 udp://explodie.org:6969/announce
-udp://wepzone.net:6969/announce
 udp://opentracker.io:6969/announce
 udp://epider.me:6969/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://wepzone.net:6969/announce
 https://trackers.run:443/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
@@ -54,9 +54,9 @@ udp://tamas3.ynh.fr:6969/announce
 http://isk.richardsw.club:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://open.demonoid.ch:6969/announce
+https://t.peer-exchange.download:443/announce
 udp://moonburrow.club:6969/announce
 https://tracker.cloudit.top:443/announce
-https://t.peer-exchange.download:443/announce
 udp://open.dstud.io:6969/announce
 http://open.acgtracker.com:1096/announce
 http://tracker.mywaifu.best:6969/announce
