@@ -75,3 +75,4 @@ https://tracker1.520.jp:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 https://t.peer-exchange.download:443/announce
 udp://tracker4.itzmx.com:2710/announce
+udp://tracker.torrust-demo.com:6969/announce
