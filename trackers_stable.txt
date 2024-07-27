@@ -24,8 +24,8 @@ udp://tracker.xor.st:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://tracker.dler.com:6969/announce
-udp://u.peer-exchange.download:6969/announce
 udp://amigacity.xyz:6969/announce
+udp://u.peer-exchange.download:6969/announce
 udp://tracker1.t-1.org:6969/announce
 udp://explodie.org:6969/announce
 udp://bt1.archive.org:6969/announce
@@ -66,11 +66,11 @@ udp://tracker.tryhackx.org:6969/announce
 udp://wepzone.net:6969/announce
 udp://t.overflow.biz:6969/announce
 https://tracker.pmman.tech:443/announce
-udp://z.mercax.com:53/announce
 udp://1c.premierzal.ru:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
+udp://z.mercax.com:53/announce
 https://tracker1.520.jp:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
