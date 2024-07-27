@@ -29,14 +29,14 @@ udp://tracker1.t-1.org:6969/announce
 udp://explodie.org:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://bt2.archive.org:6969/announce
-udp://u.peer-exchange.download:6969/announce
 udp://tracker.t-1.org:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 http://tracker.dump.cl:6969/announce
-udp://run.publictracker.xyz:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
+udp://run.publictracker.xyz:6969/announce
 udp://epider.me:6969/announce
+udp://u.peer-exchange.download:6969/announce
 https://pybittrack.retiolus.net:443/announce
 http://tracker.bt4g.com:2095/announce
 udp://p2p.publictracker.xyz:6969/announce
