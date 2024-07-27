@@ -38,9 +38,9 @@ udp://tk2.trackerservers.com:8080/announce
 udp://tracker.t-1.org:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://run.publictracker.xyz:6969/announce
-udp://epider.me:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
+udp://epider.me:6969/announce
 https://pybittrack.retiolus.net:443/announce
 http://tracker.bt4g.com:2095/announce
 udp://opentracker.io:6969/announce
