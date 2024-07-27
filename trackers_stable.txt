@@ -36,12 +36,12 @@ udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://run.publictracker.xyz:6969/announce
 udp://epider.me:6969/announce
-udp://u.peer-exchange.download:6969/announce
 https://pybittrack.retiolus.net:443/announce
 http://tracker.bt4g.com:2095/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
+udp://u.peer-exchange.download:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://opentracker.io:6969/announce
@@ -67,9 +67,9 @@ udp://wepzone.net:6969/announce
 udp://t.overflow.biz:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://1c.premierzal.ru:6969/announce
+udp://u6.trakx.crim.ist:1337/announce
 udp://retracker.hotplug.ru:2710/announce
 http://ipv4announce.sktorrent.eu:6969/announce
-udp://u6.trakx.crim.ist:1337/announce
 https://tracker1.520.jp:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
