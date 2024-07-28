@@ -9,6 +9,7 @@ https://tracker.yemekyedim.com:443/announce
 udp://tracker3.t-1.org:6969/announce
 https://tracker.amelia.fun:443/announce
 udp://open.stealth.si:80/announce
+http://tracker.bt4g.com:2095/announce
 udp://tracker.torrent.eu.org:451/announce
 https://trackers.mlsub.net:443/announce
 udp://ipv6.fuuuuuck.com:6969/announce
@@ -22,7 +23,6 @@ udp://tracker.fnix.net:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker.xor.st:6969/announce
 udp://tracker.cyberia.is:6969/announce
-http://tracker.bt4g.com:2095/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://tracker1.t-1.org:6969/announce
@@ -36,12 +36,12 @@ http://tracker.dump.cl:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://epider.me:6969/announce
+udp://www.torrent.eu.org:451/announce
 https://pybittrack.retiolus.net:443/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
-udp://www.torrent.eu.org:451/announce
 udp://opentracker.io:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.gmi.gd:6969/announce
@@ -74,4 +74,3 @@ https://tracker1.520.jp:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 https://t.peer-exchange.download:443/announce
 udp://tracker4.itzmx.com:2710/announce
-udp://tracker.torrust-demo.com:6969/announce
