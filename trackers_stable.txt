@@ -55,14 +55,14 @@ udp://tamas3.ynh.fr:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://trackers.run:443/announce
 udp://odd-hd.fr:6969/announce
-https://tracker.cloudit.top:443/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://bandito.byterunner.io:6969/announce
 http://open.acgtracker.com:1096/announce
+https://tracker.cloudit.top:443/announce
 http://t1.aag.moe:17715/announce
+udp://t.overflow.biz:6969/announce
 udp://wepzone.net:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://t.overflow.biz:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://u.peer-exchange.download:6969/announce
 https://tracker.pmman.tech:443/announce
