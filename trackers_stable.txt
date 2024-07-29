@@ -47,11 +47,11 @@ udp://t.overflow.biz:6969/announce
 udp://open.demonoid.ch:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
+udp://moonburrow.club:6969/announce
 udp://opentracker.io:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://moonburrow.club:6969/announce
-http://tracker.mywaifu.best:6969/announce
 udp://tamas3.ynh.fr:6969/announce
+http://tracker.mywaifu.best:6969/announce
 udp://amigacity.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://trackers.run:443/announce
@@ -75,3 +75,4 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 https://t.peer-exchange.download:443/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://tracker.darkness.services:6969/announce
