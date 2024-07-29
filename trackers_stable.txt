@@ -60,8 +60,8 @@ udp://tracker.deadorbit.nl:6969/announce
 udp://bandito.byterunner.io:6969/announce
 http://open.acgtracker.com:1096/announce
 http://t1.aag.moe:17715/announce
-udp://wepzone.net:6969/announce
 https://tracker.cloudit.top:443/announce
+udp://wepzone.net:6969/announce
 udp://u.peer-exchange.download:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://retracker.hotplug.ru:2710/announce
