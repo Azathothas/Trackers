@@ -33,11 +33,11 @@ udp://tracker.t-1.org:6969/announce
 http://tracker.dump.cl:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
-udp://epider.me:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://www.torrent.eu.org:451/announce
 https://pybittrack.retiolus.net:443/announce
 udp://run.publictracker.xyz:6969/announce
+udp://epider.me:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
 udp://amigacity.xyz:6969/announce
