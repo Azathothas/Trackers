@@ -65,8 +65,8 @@ udp://wepzone.net:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://u.peer-exchange.download:6969/announce
 https://tracker.pmman.tech:443/announce
-udp://u4.trakx.crim.ist:1337/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://u4.trakx.crim.ist:1337/announce
 udp://1c.premierzal.ru:6969/announce
 https://tracker1.520.jp:443/announce
 udp://u6.trakx.crim.ist:1337/announce
