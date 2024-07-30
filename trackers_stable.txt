@@ -53,8 +53,8 @@ udp://opentracker.io:6969/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://trackers.run:443/announce
-udp://odd-hd.fr:6969/announce
 udp://bandito.byterunner.io:6969/announce
+udp://odd-hd.fr:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 http://t1.aag.moe:17715/announce
 http://open.acgtracker.com:1096/announce
