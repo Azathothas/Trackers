@@ -10,13 +10,13 @@ udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://exodus.desync.com:6969/announce
 https://trackers.mlsub.net:443/announce
-udp://tracker3.t-1.org:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://open.demonii.com:1337/announce
 udp://ipv6.fuuuuuck.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://tracker3.t-1.org:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker.xor.st:6969/announce
@@ -49,9 +49,9 @@ http://isk.richardsw.club:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-udp://opentracker.io:6969/announce
 http://tracker.mywaifu.best:6969/announce
 https://tracker.gcrenwp.top:443/announce
+udp://opentracker.io:6969/announce
 https://trackers.run:443/announce
 udp://bandito.byterunner.io:6969/announce
 udp://odd-hd.fr:6969/announce
