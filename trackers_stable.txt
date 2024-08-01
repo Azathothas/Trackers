@@ -43,14 +43,14 @@ udp://tracker.cyberia.is:6969/announce
 udp://open.dstud.io:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.0x7c0.com:6969/announce
+udp://tracker.breizh.pm:6969/announce
 udp://epider.me:6969/announce
 udp://tracker.gmi.gd:6969/announce
 https://pybittrack.retiolus.net:443/announce
 udp://tracker.filemail.com:6969/announce
-udp://tracker.breizh.pm:6969/announce
+http://isk.richardsw.club:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
-http://isk.richardsw.club:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://bandito.byterunner.io:6969/announce
 http://tracker.mywaifu.best:6969/announce
