@@ -379,6 +379,7 @@ http://retracker.ohys.net/announce
 http://retracker.ohys.net:80/announce
 http://retracker.spark-rostov.ru/announce
 http://retracker.spark-rostov.ru:80/announce
+http://retracker.x2k.ru:80/announce
 http://rfc5746.mywaifu.best:6969/announce
 http://rotracker.ohys.net/announce
 http://rotracker.ohys.net:80/announce
@@ -532,6 +533,7 @@ http://tracker.opentrackr.org:1337/announce
 http://tracker.openzim.org/announce
 http://tracker.pcfreetime.com:6969/announce
 http://tracker.peckservers.com:9000/announce
+http://tracker.phoenix.lol:80/announce
 http://tracker.pimp4003.net/announce
 http://tracker.pow7.com/announce
 http://tracker.pow7.com:80/announce
@@ -693,6 +695,7 @@ https://opentracker.i2p.rocks:443/announce
 https://opentracker.xyz/announce
 https://opentracker.xyz:443/announce
 https://pybittrack.retiolus.net:443/announce
+https://retracker2.x2k.ru:443/announce
 https://seeders-paradise.org/announce
 https://t.btcland.xyz/announce
 https://t.btcland.xyz:443/announce
