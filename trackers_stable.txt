@@ -52,11 +52,11 @@ udp://tamas3.ynh.fr:6969/announce
 http://isk.richardsw.club:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://bandito.byterunner.io:6969/announce
+udp://tracker.breizh.pm:6969/announce
 http://tracker.mywaifu.best:6969/announce
 https://trackers.run:443/announce
 udp://opentracker.io:6969/announce
 udp://odd-hd.fr:6969/announce
-udp://tracker.breizh.pm:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 http://t1.aag.moe:17715/announce
