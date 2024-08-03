@@ -56,10 +56,10 @@ https://trackers.run:443/announce
 http://tracker.mywaifu.best:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
-udp://ipv6.fuuuuuck.com:6969/announce
 udp://opentracker.io:6969/announce
-udp://oh.fuuuuuck.com:6969/announce
+udp://ipv6.fuuuuuck.com:6969/announce
 http://t1.aag.moe:17715/announce
+udp://oh.fuuuuuck.com:6969/announce
 https://pybittrack.retiolus.net:443/announce
 http://open.acgtracker.com:1096/announce
 https://tracker.cloudit.top:443/announce
