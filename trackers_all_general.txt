@@ -119,7 +119,6 @@ udp://tracker.vds.nz:6969/announce
 udp://tracker.xor.st:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker1.myporn.club:9337/announce
-udp://tracker1.t-1.org:6969/announce
 udp://tracker2.dler.org:80/announce
 udp://tracker3.t-1.org:6969/announce
 udp://tracker4.itzmx.com:2710/announce
