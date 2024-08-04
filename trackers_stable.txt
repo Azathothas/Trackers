@@ -22,9 +22,9 @@ http://ipv6.rer.lol:6969/announce
 udp://tracker3.t-1.org:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://p4p.arenabg.com:1337/announce
-udp://tracker.dler.com:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.xor.st:6969/announce
+udp://tracker.dler.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://bt1.archive.org:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
@@ -32,11 +32,11 @@ udp://tk2.trackerservers.com:8080/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.dump.cl:6969/announce
 udp://open.demonoid.ch:6969/announce
+udp://tracker.gmi.gd:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://open.dstud.io:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
-udp://tracker.gmi.gd:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
