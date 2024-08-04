@@ -25,10 +25,10 @@ udp://p4p.arenabg.com:1337/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.xor.st:6969/announce
 udp://tracker.dler.com:6969/announce
+udp://tracker.gmi.gd:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://bt1.archive.org:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
-udp://tracker.gmi.gd:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.dump.cl:6969/announce
@@ -50,9 +50,9 @@ udp://retracker.hotplug.ru:2710/announce
 https://tracker.gcrenwp.top:443/announce
 http://isk.richardsw.club:6969/announce
 https://trackers.run:443/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://odd-hd.fr:6969/announce
+udp://tracker.deadorbit.nl:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://run.publictracker.xyz:6969/announce
 http://t1.aag.moe:17715/announce
