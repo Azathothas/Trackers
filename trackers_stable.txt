@@ -36,9 +36,9 @@ udp://tracker.cyberia.is:6969/announce
 udp://open.dstud.io:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
+udp://tracker.gmi.gd:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://www.torrent.eu.org:451/announce
-udp://tracker.gmi.gd:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://epider.me:6969/announce
 udp://moonburrow.club:6969/announce
@@ -55,12 +55,12 @@ udp://bandito.byterunner.io:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://run.publictracker.xyz:6969/announce
-udp://opentracker.io:6969/announce
 http://t1.aag.moe:17715/announce
 udp://u.peer-exchange.download:6969/announce
 https://pybittrack.retiolus.net:443/announce
 http://open.acgtracker.com:1096/announce
 http://tracker.mywaifu.best:6969/announce
+udp://opentracker.io:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://t.overflow.biz:6969/announce
 udp://wepzone.net:6969/announce
