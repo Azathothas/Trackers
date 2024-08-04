@@ -31,8 +31,8 @@ udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.dump.cl:6969/announce
-udp://open.demonoid.ch:6969/announce
 udp://tracker.gmi.gd:6969/announce
+udp://open.demonoid.ch:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://open.dstud.io:6969/announce
 http://bvarf.tracker.sh:2086/announce
@@ -41,9 +41,9 @@ udp://tk2v6.trackerservers.com:8080/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
 udp://epider.me:6969/announce
-udp://moonburrow.club:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+udp://moonburrow.club:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -68,7 +68,7 @@ udp://amigacity.xyz:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
-https://tracker1.520.jp:443/announce
 https://t.peer-exchange.download:443/announce
+https://tracker1.520.jp:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://tracker4.itzmx.com:2710/announce
