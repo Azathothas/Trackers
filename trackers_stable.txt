@@ -39,11 +39,11 @@ udp://seedpeer.net:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://moonburrow.club:6969/announce
 udp://www.torrent.eu.org:451/announce
+udp://tracker.gmi.gd:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://epider.me:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-udp://tracker.gmi.gd:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -52,8 +52,8 @@ http://isk.richardsw.club:6969/announce
 https://trackers.run:443/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://bandito.byterunner.io:6969/announce
-udp://1c.premierzal.ru:6969/announce
 udp://odd-hd.fr:6969/announce
+udp://1c.premierzal.ru:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://opentracker.io:6969/announce
 http://t1.aag.moe:17715/announce
