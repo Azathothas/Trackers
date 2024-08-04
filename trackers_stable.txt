@@ -44,9 +44,9 @@ udp://epider.me:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.gmi.gd:6969/announce
-udp://tamas3.ynh.fr:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://tamas3.ynh.fr:6969/announce
 http://isk.richardsw.club:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://trackers.run:443/announce
