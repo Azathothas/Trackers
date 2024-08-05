@@ -24,8 +24,8 @@ udp://tracker3.t-1.org:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.xor.st:6969/announce
-udp://tracker.dler.com:6969/announce
 udp://tracker.gmi.gd:6969/announce
+udp://tracker.dler.com:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://tk2.trackerservers.com:8080/announce
@@ -48,10 +48,10 @@ udp://tracker.0x7c0.com:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://tamas3.ynh.fr:6969/announce
 https://trackers.run:443/announce
-http://tracker.bt4g.com:2095/announce
 https://tracker.gcrenwp.top:443/announce
 http://isk.richardsw.club:6969/announce
 https://tracker.cloudit.top:443/announce
+http://tracker.bt4g.com:2095/announce
 udp://bandito.byterunner.io:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
