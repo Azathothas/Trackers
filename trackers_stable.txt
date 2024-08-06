@@ -32,10 +32,10 @@ udp://bt2.archive.org:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://open.demonoid.ch:6969/announce
 http://tracker.dump.cl:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://open.dstud.io:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
@@ -51,12 +51,12 @@ http://isk.richardsw.club:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://tracker.cloudit.top:443/announce
 udp://bandito.byterunner.io:6969/announce
-udp://tracker3.t-1.org:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://run.publictracker.xyz:6969/announce
-udp://u.peer-exchange.download:6969/announce
 https://pybittrack.retiolus.net:443/announce
+udp://tracker3.t-1.org:6969/announce
+udp://u.peer-exchange.download:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://t.overflow.biz:6969/announce
 http://t1.aag.moe:17715/announce
