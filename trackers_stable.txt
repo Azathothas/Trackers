@@ -55,13 +55,13 @@ udp://bandito.byterunner.io:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://run.publictracker.xyz:6969/announce
-http://tracker.bt4g.com:2095/announce
 udp://u.peer-exchange.download:6969/announce
 https://pybittrack.retiolus.net:443/announce
 udp://1c.premierzal.ru:6969/announce
 udp://t.overflow.biz:6969/announce
 http://t1.aag.moe:17715/announce
 http://open.acgtracker.com:1096/announce
+http://tracker.bt4g.com:2095/announce
 http://tracker.mywaifu.best:6969/announce
 udp://wepzone.net:6969/announce
 udp://tracker.tryhackx.org:6969/announce
