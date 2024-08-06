@@ -16,10 +16,10 @@ udp://exodus.desync.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
 https://trackers.mlsub.net:443/announce
 udp://retracker.lanta.me:2710/announce
-udp://explodie.org:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://open.demonii.com:1337/announce
 http://ipv6.rer.lol:6969/announce
+udp://explodie.org:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.xor.st:6969/announce
@@ -39,13 +39,13 @@ udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://seedpeer.net:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
-udp://tracker.filemail.com:6969/announce
 udp://epider.me:6969/announce
 udp://moonburrow.club:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://www.torrent.eu.org:451/announce
-udp://tracker3.t-1.org:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
+udp://tracker3.t-1.org:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://trackers.run:443/announce
 http://isk.richardsw.club:6969/announce
