@@ -45,9 +45,9 @@ https://tracker.pmman.tech:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
-udp://tracker3.t-1.org:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 https://trackers.run:443/announce
+udp://tracker3.t-1.org:6969/announce
 http://isk.richardsw.club:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://tracker.cloudit.top:443/announce
