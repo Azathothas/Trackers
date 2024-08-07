@@ -47,13 +47,13 @@ udp://tamas3.ynh.fr:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 https://trackers.run:443/announce
 http://isk.richardsw.club:6969/announce
-https://pybittrack.retiolus.net:443/announce
 https://bittorrent.service.gongt.me:59443/announce
+https://pybittrack.retiolus.net:443/announce
 https://tracker.cloudit.top:443/announce
+udp://u.peer-exchange.download:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
-udp://u.peer-exchange.download:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://1c.premierzal.ru:6969/announce
 udp://t.overflow.biz:6969/announce
