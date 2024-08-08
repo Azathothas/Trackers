@@ -27,11 +27,11 @@ udp://tracker.xor.st:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
+udp://open.publictracker.xyz:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.dler.com:6969/announce
 https://tracker.pmman.tech:443/announce
 udp://retracker.hotplug.ru:2710/announce
-udp://open.publictracker.xyz:6969/announce
 udp://seedpeer.net:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://tk2.trackerservers.com:8080/announce
