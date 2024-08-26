@@ -54,10 +54,10 @@ http://retracker.x2k.ru:80/announce
 udp://tracker.dler.com:6969/announce
 udp://open.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
-http://smurfsoft.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tk2v6.trackerservers.com:8080/announce
+http://smurfsoft.com:6969/announce
 http://isk.richardsw.club:6969/announce
 http://tracker.dump.cl:6969/announce
 udp://moonburrow.club:6969/announce
