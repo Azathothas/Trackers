@@ -50,8 +50,8 @@ udp://tk2.trackerservers.com:8080/announce
 udp://tracker.tryhackx.org:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://www.torrent.eu.org:451/announce
-http://retracker.x2k.ru:80/announce
 udp://tracker.dler.com:6969/announce
+http://retracker.x2k.ru:80/announce
 udp://open.publictracker.xyz:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
