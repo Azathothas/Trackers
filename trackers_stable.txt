@@ -26,7 +26,6 @@ http://bt.okmp3.ru:2710/announce
 http://tracker1.itzmx.com:8080/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.fnix.net:6969/announce
-udp://martin-gebhardt.eu:25/announce
 udp://seedpeer.net:6969/announce
 https://trackers.run:443/announce
 udp://p4p.arenabg.com:1337/announce
@@ -35,6 +34,7 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://odd-hd.fr:6969/announce
 http://bvarf.tracker.sh:2086/announce
+udp://martin-gebhardt.eu:25/announce
 https://retracker2.x2k.ru:443/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 https://www.peckservers.com:9443/announce
