@@ -37,14 +37,14 @@ http://bvarf.tracker.sh:2086/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://martin-gebhardt.eu:25/announce
 https://retracker2.x2k.ru:443/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 https://www.peckservers.com:9443/announce
 udp://amigacity.xyz:6969/announce
 udp://tracker.gmi.gd:6969/announce
 https://bittorrent.service.gongt.me:59443/announce
-udp://tracker.birkenwald.de:6969/announce
-udp://bt1.archive.org:6969/announce
 udp://trackarr.org:6969/announce
+udp://bt1.archive.org:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker.dler.com:6969/announce
