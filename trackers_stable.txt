@@ -37,12 +37,12 @@ http://bvarf.tracker.sh:2086/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://martin-gebhardt.eu:25/announce
 https://retracker2.x2k.ru:443/announce
+https://bittorrent.service.gongt.me:59443/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 https://www.peckservers.com:9443/announce
 udp://amigacity.xyz:6969/announce
 udp://tracker.gmi.gd:6969/announce
-https://bittorrent.service.gongt.me:59443/announce
 udp://trackarr.org:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://bt2.archive.org:6969/announce
@@ -61,8 +61,8 @@ http://tracker.dump.cl:6969/announce
 udp://moonburrow.club:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://run.publictracker.xyz:6969/announce
-udp://tamas3.ynh.fr:6969/announce
 http://isk.richardsw.club:6969/announce
+udp://tamas3.ynh.fr:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tracker-us.silksa.co.za:6969/announce
@@ -70,6 +70,6 @@ https://tracker.pmman.tech:443/announce
 http://t1.aag.moe:17715/announce
 udp://tracker.darkness.services:6969/announce
 https://tracker1.520.jp:443/announce
-udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
+udp://u4.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
