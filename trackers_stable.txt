@@ -73,3 +73,4 @@ https://tracker1.520.jp:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
+https://threads.canofsocks.com:443/announce
