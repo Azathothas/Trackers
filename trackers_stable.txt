@@ -56,9 +56,9 @@ udp://open.publictracker.xyz:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tracker.filemail.com:6969/announce
+udp://moonburrow.club:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.dump.cl:6969/announce
-udp://moonburrow.club:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://run.publictracker.xyz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
