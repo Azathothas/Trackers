@@ -60,8 +60,8 @@ udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.dump.cl:6969/announce
 udp://run.publictracker.xyz:6969/announce
 https://tracker.lilithraws.org:443/announce
-https://www.peckservers.com:9443/announce
 udp://tamas3.ynh.fr:6969/announce
+https://www.peckservers.com:9443/announce
 http://isk.richardsw.club:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 http://open.acgtracker.com:1096/announce
