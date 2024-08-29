@@ -12,7 +12,6 @@ https://trackers.mlsub.net:443/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://evan.im:6969/announce
-https://tracker.cloudit.top:443/announce
 http://tracker2.itzmx.com:6961/announce
 https://tracker.yemekyedim.com:443/announce
 https://tracker.gcrenwp.top:443/announce
@@ -27,6 +26,7 @@ http://bt.okmp3.ru:2710/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
+https://tracker.cloudit.top:443/announce
 udp://seedpeer.net:6969/announce
 https://trackers.run:443/announce
 https://bittorrent.service.gongt.me:59443/announce
