@@ -46,15 +46,15 @@ udp://trackarr.org:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker.dler.com:6969/announce
 udp://bt1.archive.org:6969/announce
+udp://bt2.archive.org:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 http://tracker.bt4g.com:2095/announce
-udp://bt2.archive.org:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://moonburrow.club:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://open.publictracker.xyz:6969/announce
-udp://run.publictracker.xyz:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+udp://run.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 http://tracker.dump.cl:6969/announce
 udp://tracker.filemail.com:6969/announce
@@ -64,8 +64,8 @@ udp://tamas3.ynh.fr:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 https://www.peckservers.com:9443/announce
 http://isk.richardsw.club:6969/announce
-http://open.acgtracker.com:1096/announce
 udp://tracker.darkness.services:6969/announce
+http://open.acgtracker.com:1096/announce
 udp://tracker-us.silksa.co.za:6969/announce
 http://t1.aag.moe:17715/announce
 https://tracker.pmman.tech:443/announce
