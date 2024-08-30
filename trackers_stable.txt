@@ -53,8 +53,8 @@ udp://www.torrent.eu.org:451/announce
 udp://moonburrow.club:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://open.publictracker.xyz:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://run.publictracker.xyz:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 http://tracker.dump.cl:6969/announce
 udp://tracker.filemail.com:6969/announce
