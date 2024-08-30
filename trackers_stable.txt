@@ -73,4 +73,5 @@ https://tracker1.520.jp:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
+udp://t.overflow.biz:6969/announce
 udp://tk1.trackerservers.com:8080/announce
