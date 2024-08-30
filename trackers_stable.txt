@@ -65,8 +65,8 @@ udp://tamas3.ynh.fr:6969/announce
 http://isk.richardsw.club:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://t.overflow.biz:6969/announce
-udp://tracker-us.silksa.co.za:6969/announce
 http://open.acgtracker.com:1096/announce
+udp://tracker-us.silksa.co.za:6969/announce
 http://t1.aag.moe:17715/announce
 https://tracker.pmman.tech:443/announce
 https://www.peckservers.com:9443/announce
