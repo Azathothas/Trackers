@@ -1,6 +1,5 @@
 udp://open.stealth.si:80/announce
 udp://exodus.desync.com:6969/announce
-http://tracker.files.fm:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://z.mercax.com:53/announce
 udp://tracker.torrent.eu.org:451/announce
@@ -22,6 +21,7 @@ udp://ns575949.ip-51-222-82.net:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://explodie.org:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+http://tracker.files.fm:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://open.demonii.com:1337/announce
 http://tracker1.itzmx.com:8080/announce
@@ -68,8 +68,8 @@ udp://t.overflow.biz:6969/announce
 udp://tracker-us.silksa.co.za:6969/announce
 http://open.acgtracker.com:1096/announce
 http://t1.aag.moe:17715/announce
-https://www.peckservers.com:9443/announce
 https://tracker.pmman.tech:443/announce
+https://www.peckservers.com:9443/announce
 https://tracker1.520.jp:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://u4.trakx.crim.ist:1337/announce
