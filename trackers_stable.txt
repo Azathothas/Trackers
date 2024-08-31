@@ -44,8 +44,8 @@ udp://amigacity.xyz:6969/announce
 udp://tracker.gmi.gd:6969/announce
 https://bittorrent.service.gongt.me:59443/announce
 udp://trackarr.org:6969/announce
-udp://open.demonii.com:1337/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://open.demonii.com:1337/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://bt1.archive.org:6969/announce
@@ -75,4 +75,3 @@ https://tracker1.520.jp:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
-udp://tk1.trackerservers.com:8080/announce
