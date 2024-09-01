@@ -19,6 +19,7 @@ https://pybittrack.retiolus.net:443/announce
 udp://bandito.byterunner.io:6969/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
 udp://serpb.vpsburti.com:6969/announce
+udp://dataforai.com:31332/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://p4p.arenabg.com:1337/announce
 udp://retracker.hotplug.ru:2710/announce
