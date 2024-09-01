@@ -48,10 +48,10 @@ udp://tk2.trackerservers.com:8080/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://bt1.archive.org:6969/announce
+udp://bt2.archive.org:6969/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://bt2.archive.org:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://run.publictracker.xyz:6969/announce
 udp://open.publictracker.xyz:6969/announce
