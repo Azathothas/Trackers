@@ -71,8 +71,8 @@ udp://tracker.torrust-demo.com:6969/announce
 http://t1.aag.moe:17715/announce
 https://www.peckservers.com:9443/announce
 https://tracker1.520.jp:443/announce
-https://bittorrent.service.gongt.me:59443/announce
 https://tracker.pmman.tech:443/announce
+https://bittorrent.service.gongt.me:59443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
