@@ -43,10 +43,10 @@ udp://tracker.gmi.gd:6969/announce
 udp://trackarr.org:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tk2.trackerservers.com:8080/announce
-https://bittorrent.service.gongt.me:59443/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 https://tracker.cloudit.top:443/announce
+https://bittorrent.service.gongt.me:59443/announce
 udp://moonburrow.club:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
@@ -68,8 +68,8 @@ http://isk.richardsw.club:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tracker-us.silksa.co.za:6969/announce
-http://t1.aag.moe:17715/announce
 udp://dataforai.com:31332/announce
+http://t1.aag.moe:17715/announce
 https://www.peckservers.com:9443/announce
 https://tracker1.520.jp:443/announce
 https://tracker.pmman.tech:443/announce
