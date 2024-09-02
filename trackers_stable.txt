@@ -41,8 +41,8 @@ udp://tracker.skynetcloud.site:6969/announce
 udp://amigacity.xyz:6969/announce
 https://trackers.run:443/announce
 udp://tracker.gmi.gd:6969/announce
-https://bittorrent.service.gongt.me:59443/announce
 udp://trackarr.org:6969/announce
+https://bittorrent.service.gongt.me:59443/announce
 udp://seedpeer.net:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker.dler.com:6969/announce
