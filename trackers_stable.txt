@@ -1,6 +1,7 @@
 udp://explodie.org:6969/announce
 udp://open.stealth.si:80/announce
 udp://exodus.desync.com:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://z.mercax.com:53/announce
 udp://tracker.torrent.eu.org:451/announce
@@ -21,7 +22,6 @@ udp://serpb.vpsburti.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker.cyberia.is:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 http://bt.okmp3.ru:2710/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tracker.0x7c0.com:6969/announce
@@ -40,12 +40,12 @@ https://trackers.run:443/announce
 udp://tracker.gmi.gd:6969/announce
 udp://open.dstud.io:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
+udp://tracker.deadorbit.nl:6969/announce
 http://tracker.files.fm:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://open.publictracker.xyz:6969/announce
 udp://moonburrow.club:6969/announce
@@ -59,11 +59,11 @@ udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.filemail.com:6969/announce
 http://tracker.dump.cl:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
-udp://tracker4.itzmx.com:2710/announce
-udp://tk2v6.trackerservers.com:8080/announce
-udp://tracker.torrust-demo.com:6969/announce
 http://tracker.k.vu:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
+udp://tk2v6.trackerservers.com:8080/announce
+udp://tracker4.itzmx.com:2710/announce
+udp://tracker.torrust-demo.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://t.overflow.biz:6969/announce
 http://isk.richardsw.club:6969/announce
