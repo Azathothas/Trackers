@@ -58,8 +58,8 @@ http://retracker.x2k.ru:80/announce
 udp://bt2.archive.org:6969/announce
 udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
