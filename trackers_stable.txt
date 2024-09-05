@@ -12,7 +12,6 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://evan.im:6969/announce
 http://tracker2.itzmx.com:6961/announce
-https://tracker.yemekyedim.com:443/announce
 udp://tracker.deadorbit.nl:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://pybittrack.retiolus.net:443/announce
@@ -27,6 +26,7 @@ udp://retracker.hotplug.ru:2710/announce
 http://bt.okmp3.ru:2710/announce
 http://tracker.k.vu:6969/announce
 udp://tracker.0x7c0.com:6969/announce
+https://tracker.yemekyedim.com:443/announce
 udp://trackarr.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker1.itzmx.com:8080/announce
