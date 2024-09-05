@@ -13,6 +13,7 @@ http://bvarf.tracker.sh:2086/announce
 udp://evan.im:6969/announce
 http://tracker2.itzmx.com:6961/announce
 https://tracker.yemekyedim.com:443/announce
+udp://tracker.deadorbit.nl:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://pybittrack.retiolus.net:443/announce
 udp://bandito.byterunner.io:6969/announce
@@ -24,7 +25,6 @@ udp://retracker.hotplug.ru:2710/announce
 http://bt.okmp3.ru:2710/announce
 http://tracker.k.vu:6969/announce
 udp://tracker.0x7c0.com:6969/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://trackarr.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker1.itzmx.com:8080/announce
@@ -47,8 +47,8 @@ udp://retracker01-msk-virt.corbina.net:80/announce
 udp://moonburrow.club:6969/announce
 udp://seedpeer.net:6969/announce
 udp://run.publictracker.xyz:6969/announce
-udp://open.dstud.io:6969/announce
 udp://tk2.trackerservers.com:8080/announce
+udp://open.dstud.io:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://open.publictracker.xyz:6969/announce
 https://tracker.cloudit.top:443/announce
@@ -65,9 +65,9 @@ udp://tracker4.itzmx.com:2710/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.dump.cl:6969/announce
-http://open.acgtracker.com:1096/announce
 udp://tamas3.ynh.fr:6969/announce
 http://isk.richardsw.club:6969/announce
+http://open.acgtracker.com:1096/announce
 udp://t.overflow.biz:6969/announce
 udp://tracker-us.silksa.co.za:6969/announce
 https://www.peckservers.com:9443/announce
