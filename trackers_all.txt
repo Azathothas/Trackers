@@ -317,6 +317,7 @@ http://lima-peru.subventas.com:443/announce
 http://mail.lakameraobscura.com:6969/announce
 http://masters-tb.com/announce.php
 http://masters-tb.com:80/announce.php
+http://mc.itscraftsoftware.my.id:8804/announce
 http://mediaclub.tv/announce
 http://mediaclub.tv/announce.php
 http://mediaclub.tv:80/announce
@@ -772,6 +773,7 @@ https://tracker.ipfsscan.io/announce
 https://tracker.ipfsscan.io:443/announce
 https://tracker.iriseden.fr/announce
 https://tracker.iriseden.fr:443/announce
+https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.jiesen.life:8443/announce
 https://tracker.kawaii.id/announce
 https://tracker.kitaujisub.site/announce.php?authkey=213|10003|j46n2q

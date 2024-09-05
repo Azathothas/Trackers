@@ -5,6 +5,7 @@ http://bvarf.tracker.sh:2086/announce
 http://canardscitrons.nohost.me:6969/announce
 http://ch3oh.ru:6969/announce
 http://isk.richardsw.club:6969/announce
+http://mc.itscraftsoftware.my.id:8804/announce
 http://open.acgtracker.com:1096/announce
 http://retracker.x2k.ru:80/announce
 http://t.overflow.biz:6969/announce
@@ -33,6 +34,7 @@ https://tracker-zhuqiy.dgj055.icu:443/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.gcrenwp.top:443/announce
 https://tracker.ipfsscan.io:443/announce
+https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.lilithraws.org:443/announce
 https://tracker.pmman.tech:443/announce
 https://tracker.renfei.net:443/announce
