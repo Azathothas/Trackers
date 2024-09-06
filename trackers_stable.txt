@@ -62,8 +62,8 @@ udp://www.torrent.eu.org:451/announce
 http://t1.aag.moe:17715/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://open.dstud.io:6969/announce
 http://tracker.dump.cl:6969/announce
+udp://open.dstud.io:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://isk.richardsw.club:6969/announce
