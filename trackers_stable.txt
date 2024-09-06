@@ -49,15 +49,15 @@ udp://retracker01-msk-virt.corbina.net:80/announce
 udp://moonburrow.club:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tk2.trackerservers.com:8080/announce
-udp://open.publictracker.xyz:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://tracker.tryhackx.org:6969/announce
+udp://open.publictracker.xyz:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://bt1.archive.org:6969/announce
 http://retracker.x2k.ru:80/announce
-udp://bt2.archive.org:6969/announce
 udp://open.demonii.com:1337/announce
 https://tracker.lilithraws.org:443/announce
+udp://bt2.archive.org:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://t1.aag.moe:17715/announce
 udp://p2p.publictracker.xyz:6969/announce
