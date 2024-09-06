@@ -27,13 +27,13 @@ http://bt.okmp3.ru:2710/announce
 http://tracker.k.vu:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 https://tracker.yemekyedim.com:443/announce
+udp://amigacity.xyz:6969/announce
 https://retracker2.x2k.ru:443/announce
 udp://trackarr.org:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker1.itzmx.com:8080/announce
 udp://odd-hd.fr:6969/announce
 udp://martin-gebhardt.eu:25/announce
-udp://amigacity.xyz:6969/announce
 udp://tracker.darkness.services:6969/announce
 https://trackers.run:443/announce
 udp://tracker.gmi.gd:6969/announce
