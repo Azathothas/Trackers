@@ -62,8 +62,8 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
 https://retracker2.x2k.ru:443/announce
 http://tracker.dump.cl:6969/announce
-https://trackers.mlsub.net:443/announce
 udp://tracker4.itzmx.com:2710/announce
+https://trackers.mlsub.net:443/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://mc.itscraftsoftware.my.id:8804/announce
 http://isk.richardsw.club:6969/announce
