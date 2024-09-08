@@ -56,9 +56,9 @@ udp://open.publictracker.xyz:6969/announce
 https://tracker.lilithraws.org:443/announce
 http://retracker.x2k.ru:80/announce
 udp://open.demonii.com:1337/announce
-https://trackers.mlsub.net:443/announce
 udp://bt2.archive.org:6969/announce
 udp://www.torrent.eu.org:451/announce
+https://trackers.mlsub.net:443/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
 https://retracker2.x2k.ru:443/announce
