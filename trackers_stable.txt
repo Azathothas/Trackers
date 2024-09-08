@@ -7,6 +7,7 @@ udp://tracker.torrent.eu.org:451/announce
 udp://tracker.breizh.pm:6969/announce
 https://tracker.tamersunion.org:443/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
+udp://tracker.0x7c0.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://evan.im:6969/announce
@@ -21,7 +22,6 @@ udp://serpb.vpsburti.com:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://p4p.arenabg.com:1337/announce
 http://bt.okmp3.ru:2710/announce
-udp://tracker.0x7c0.com:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 udp://tracker.gmi.gd:6969/announce
@@ -60,9 +60,9 @@ udp://bt2.archive.org:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.filemail.com:6969/announce
-https://trackers.mlsub.net:443/announce
 https://retracker2.x2k.ru:443/announce
 http://tracker.dump.cl:6969/announce
+https://trackers.mlsub.net:443/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://mc.itscraftsoftware.my.id:8804/announce
