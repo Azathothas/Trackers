@@ -9,6 +9,7 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
+udp://amigacity.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://bandito.byterunner.io:6969/announce
 udp://trackarr.org:6969/announce
@@ -21,7 +22,6 @@ http://bt.okmp3.ru:2710/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://odd-hd.fr:6969/announce
 http://tracker2.itzmx.com:6961/announce
-udp://amigacity.xyz:6969/announce
 udp://tracker.darkness.services:6969/announce
 https://pybittrack.retiolus.net:443/announce
 http://jvavav.com:80/announce
