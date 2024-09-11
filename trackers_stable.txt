@@ -49,9 +49,9 @@ https://tracker.lilithraws.org:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 https://tracker.itscraftsoftware.my.id:443/announce
+udp://open.publictracker.xyz:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://bt1.archive.org:6969/announce
-udp://open.publictracker.xyz:6969/announce
 http://mc.itscraftsoftware.my.id:8804/announce
 http://t1.aag.moe:17715/announce
 http://tracker.dump.cl:6969/announce
@@ -69,7 +69,6 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://tracker-us.silksa.co.za:6969/announce
 https://www.peckservers.com:9443/announce
-udp://d13bttrck.duckdns.org:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://tamas3.ynh.fr:6969/announce
 udp://open.dstud.io:6969/announce
