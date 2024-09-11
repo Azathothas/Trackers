@@ -34,12 +34,12 @@ https://trackers.run:443/announce
 udp://tracker.gmi.gd:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
+udp://retracker01-msk-virt.corbina.net:80/announce
 udp://run.publictracker.xyz:6969/announce
 udp://moonburrow.club:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.cyberia.is:6969/announce
-udp://retracker01-msk-virt.corbina.net:80/announce
 udp://tracker.xor.st:6969/announce
 http://tracker.files.fm:6969/announce
 udp://tracker.tryhackx.org:6969/announce
