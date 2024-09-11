@@ -29,7 +29,6 @@ udp://tracker.opentrackr.org:1337/announce
 http://tracker.bt4g.com:2095/announce
 udp://tracker.breizh.pm:6969/announce
 http://tracker.k.vu:6969/announce
-http://tracker1.itzmx.com:8080/announce
 udp://martin-gebhardt.eu:25/announce
 https://trackers.run:443/announce
 udp://tracker.gmi.gd:6969/announce
@@ -37,6 +36,7 @@ udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://moonburrow.club:6969/announce
+http://tracker1.itzmx.com:8080/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
