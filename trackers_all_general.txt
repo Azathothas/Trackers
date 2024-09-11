@@ -53,7 +53,6 @@ udp://bandito.byterunner.io:6969/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 udp://bt.ktrackers.com:6666/announce
 udp://bt.rer.lol:2710/announce
-udp://bt.rer.lol:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://concen.org:6969/announce
@@ -63,7 +62,6 @@ udp://evan.im:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://free.publictracker.xyz:6969/announce
-udp://freedomalternative.com:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://isk.richardsw.club:6969/announce
 udp://jutone.com:6969/announce
@@ -99,7 +97,6 @@ udp://trackarr.org:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://tracker-us.silksa.co.za:6969/announce
 udp://tracker.0x7c0.com:6969/announce
-udp://tracker.auctor.tv:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://tracker.bittor.pw:1337/announce
 udp://tracker.breizh.pm:6969/announce

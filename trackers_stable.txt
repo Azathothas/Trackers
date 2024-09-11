@@ -43,9 +43,9 @@ udp://tracker.gmi.gd:6969/announce
 udp://tracker.xor.st:6969/announce
 http://tracker.files.fm:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-http://tracker1.itzmx.com:8080/announce
 udp://seedpeer.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
+http://tracker1.itzmx.com:8080/announce
 udp://tracker.fnix.net:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://tracker.dler.com:6969/announce
