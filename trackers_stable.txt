@@ -41,11 +41,11 @@ udp://run.publictracker.xyz:6969/announce
 udp://tracker.xor.st:6969/announce
 http://tracker.files.fm:6969/announce
 udp://tracker.tryhackx.org:6969/announce
+http://retracker.x2k.ru:80/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://seedpeer.net:6969/announce
-http://retracker.x2k.ru:80/announce
 udp://tracker.dler.com:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 http://tracker1.itzmx.com:8080/announce
@@ -64,8 +64,8 @@ udp://t.overflow.biz:6969/announce
 https://retracker2.x2k.ru:443/announce
 udp://tracker4.itzmx.com:2710/announce
 http://isk.richardsw.club:6969/announce
-udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.auctor.tv:6969/announce
+udp://tk2v6.trackerservers.com:8080/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tracker-us.silksa.co.za:6969/announce
