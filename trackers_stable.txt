@@ -50,8 +50,8 @@ udp://tracker.dler.com:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tracker.filemail.com:6969/announce
-udp://open.publictracker.xyz:6969/announce
 udp://bt1.archive.org:6969/announce
+udp://open.publictracker.xyz:6969/announce
 http://t1.aag.moe:17715/announce
 http://tracker.dump.cl:6969/announce
 http://mc.itscraftsoftware.my.id:8804/announce
@@ -65,10 +65,10 @@ https://retracker2.x2k.ru:443/announce
 udp://tracker4.itzmx.com:2710/announce
 http://isk.richardsw.club:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
+http://tracker.auctor.tv:6969/announce
 udp://z.mercax.com:53/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tracker-us.silksa.co.za:6969/announce
-http://tracker.auctor.tv:6969/announce
 https://www.peckservers.com:9443/announce
 http://open.acgtracker.com:1096/announce
 http://ipv6.rer.lol:6969/announce
