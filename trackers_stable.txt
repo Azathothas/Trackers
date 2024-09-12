@@ -7,7 +7,6 @@ udp://tracker.0x7c0.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://evan.im:6969/announce
-https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
@@ -18,6 +17,7 @@ udp://z.mercax.com:53/announce
 http://bt.okmp3.ru:2710/announce
 udp://odd-hd.fr:6969/announce
 http://tracker2.itzmx.com:6961/announce
+https://tracker.yemekyedim.com:443/announce
 udp://tracker.darkness.services:6969/announce
 https://tracker.gcrenwp.top:443/announce
 https://pybittrack.retiolus.net:443/announce
@@ -45,10 +45,10 @@ udp://tracker.tryhackx.org:6969/announce
 udp://seedpeer.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.lilithraws.org:443/announce
-http://tracker1.itzmx.com:8080/announce
 udp://tracker.fnix.net:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://tracker.dler.com:6969/announce
+http://tracker1.itzmx.com:8080/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://open.publictracker.xyz:6969/announce
 udp://bt1.archive.org:6969/announce
@@ -75,4 +75,3 @@ https://trackers.mlsub.net:443/announce
 udp://open.dstud.io:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://u4.trakx.crim.ist:1337/announce
-udp://tk1.trackerservers.com:8080/announce
