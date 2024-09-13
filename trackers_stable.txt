@@ -26,6 +26,7 @@ udp://tracker.breizh.pm:6969/announce
 http://tracker.k.vu:6969/announce
 udp://moonburrow.club:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tracker.darkness.services:6969/announce
 https://trackers.run:443/announce
@@ -37,7 +38,6 @@ udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://run.publictracker.xyz:6969/announce
-http://ipv6.rer.lol:6969/announce
 udp://tracker.xor.st:6969/announce
 http://tracker.files.fm:6969/announce
 udp://tracker.tryhackx.org:6969/announce
