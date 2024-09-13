@@ -41,8 +41,8 @@ http://retracker.x2k.ru:80/announce
 http://tracker.files.fm:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://trackarr.org:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
+udp://trackarr.org:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://seedpeer.net:6969/announce
@@ -67,14 +67,14 @@ udp://tracker4.itzmx.com:2710/announce
 http://isk.richardsw.club:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.auctor.tv:6969/announce
-udp://tracker-us.silksa.co.za:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://tracker-us.silksa.co.za:6969/announce
 https://www.peckservers.com:9443/announce
 udp://tamas3.ynh.fr:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://u6.trakx.crim.ist:1337/announce
 https://trackers.mlsub.net:443/announce
-udp://open.dstud.io:6969/announce
 udp://d13bttrck.duckdns.org:6969/announce
+udp://open.dstud.io:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
