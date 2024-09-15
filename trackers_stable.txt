@@ -15,12 +15,12 @@ http://jvavav.com:80/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
 udp://p4p.arenabg.com:1337/announce
-udp://explodie.org:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://odd-hd.fr:6969/announce
 https://tracker.yemekyedim.com:443/announce
 https://tracker.gcrenwp.top:443/announce
 https://pybittrack.retiolus.net:443/announce
+udp://explodie.org:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.k.vu:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
