@@ -18,18 +18,18 @@ udp://p4p.arenabg.com:1337/announce
 http://bt.okmp3.ru:2710/announce
 udp://odd-hd.fr:6969/announce
 https://tracker.yemekyedim.com:443/announce
-https://tracker.gcrenwp.top:443/announce
 https://pybittrack.retiolus.net:443/announce
 udp://explodie.org:6969/announce
 http://tracker.bt4g.com:2095/announce
-http://tracker.k.vu:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tracker.darkness.services:6969/announce
+https://tracker.gcrenwp.top:443/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
+http://tracker.k.vu:6969/announce
 udp://moonburrow.club:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.skynetcloud.site:6969/announce
@@ -68,8 +68,8 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.auctor.tv:6969/announce
-udp://tracker-us.silksa.co.za:6969/announce
 udp://d13bttrck.duckdns.org:6969/announce
+udp://tracker-us.silksa.co.za:6969/announce
 https://www.peckservers.com:9443/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tamas3.ynh.fr:6969/announce
@@ -79,3 +79,4 @@ https://trackers.mlsub.net:443/announce
 udp://open.dstud.io:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 http://tracker.guguan.000.pe:80/announce
+https://tracker1.520.jp:443/announce
