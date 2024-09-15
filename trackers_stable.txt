@@ -8,6 +8,7 @@ udp://ttk2.nbaonlineservice.com:6969/announce
 udp://odd-hd.fr:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://evan.im:6969/announce
+https://tracker.yemekyedim.com:443/announce
 http://ipv6.rer.lol:6969/announce
 udp://amigacity.xyz:6969/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
@@ -18,11 +19,10 @@ http://taciturn-shadow.spb.ru:6969/announce
 https://tracker.bjut.jp:443/announce
 https://mathkangaroo.jp:443/announce
 udp://p4p.arenabg.com:1337/announce
+udp://tracker.birkenwald.de:6969/announce
 http://bt.okmp3.ru:2710/announce
-https://tracker.yemekyedim.com:443/announce
 https://pybittrack.retiolus.net:443/announce
 udp://explodie.org:6969/announce
-udp://tracker.birkenwald.de:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://martin-gebhardt.eu:25/announce
@@ -54,11 +54,11 @@ udp://tk2.trackerservers.com:8080/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker.dump.cl:6969/announce
 http://t1.aag.moe:17715/announce
-udp://tracker.xor.st:6969/announce
 udp://trackarr.org:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://open.demonii.com:1337/announce
+udp://tracker.xor.st:6969/announce
 udp://open.publictracker.xyz:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://bt2.archive.org:6969/announce
