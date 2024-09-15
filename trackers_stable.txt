@@ -67,8 +67,8 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 http://isk.richardsw.club:6969/announce
 http://mc.itscraftsoftware.my.id:8804/announce
-udp://tracker.xor.st:6969/announce
 udp://tracker-us.silksa.co.za:6969/announce
+udp://tracker.xor.st:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://d13bttrck.duckdns.org:6969/announce
 http://tracker.guguan.000.pe:80/announce
