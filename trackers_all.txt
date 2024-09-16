@@ -693,7 +693,6 @@ https://jvavav.com:443/announce
 https://k.avc.cx/announce.php
 https://k.avc.cx:443/announce.php
 https://k3tracker.cc/announce/0b0b5b2bb71770aa0df56f80a4863f07
-https://mathkangaroo.jp:443/announce
 https://nyaa.tracker.wf:7777/announce
 https://open.kickasstracker.com/announce
 https://open.kickasstracker.com:443/announce
@@ -751,7 +750,6 @@ https://tracker.baka.ink/announce
 https://tracker.baka.ink:443/announce
 https://tracker.bangumi.zip/announce
 https://tracker.bangumi.zip:443/announce
-https://tracker.bjut.jp:443/announce
 https://tracker.bt-hash.com/announce
 https://tracker.bt-hash.com:443/announce
 https://tracker.bt4g.com/announce
