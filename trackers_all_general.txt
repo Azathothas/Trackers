@@ -35,6 +35,7 @@ http://tracker2.dler.org:80/announce
 http://tracker2.itzmx.com:6961/announce
 http://tracker3.itzmx.com:6961/announce
 http://wepzone.net:6969/announce
+https://api.ipv4online.uk:443/announce
 https://jvavav.com:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://retracker2.x2k.ru:443/announce
