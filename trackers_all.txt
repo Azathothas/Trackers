@@ -319,7 +319,6 @@ http://lima-peru.subventas.com:443/announce
 http://mail.lakameraobscura.com:6969/announce
 http://masters-tb.com/announce.php
 http://masters-tb.com:80/announce.php
-http://mc.itscraftsoftware.my.id:8804/announce
 http://mediaclub.tv/announce
 http://mediaclub.tv/announce.php
 http://mediaclub.tv:80/announce
@@ -979,7 +978,6 @@ udp://fe.dealclub.de:6969/announce
 udp://fh2.cmp-gaming.com:6969/announce
 udp://free.publictracker.xyz:6969/announce
 udp://freedom.1776.ga:6969/announce
-udp://freedomalternative.com:6969/announce
 udp://http://www.peckservers.com:9000/announce
 udp://htz3.noho.st:6969/announce
 udp://ipv4.rer.lol:2710/announce
