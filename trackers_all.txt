@@ -516,6 +516,7 @@ http://tracker.iro.moe/announce
 http://tracker.istole.it/announce
 http://tracker.k.vu:6969/announce
 http://tracker.kali.org:6969/announce
+http://tracker.kmzs123.com:80/announce
 http://tracker.lelux.fi/announce
 http://tracker.lelux.fi:80/announce
 http://tracker.letpo.com/announce
@@ -667,6 +668,7 @@ https://337hhh.xyz/announce
 https://aaa.army:8866/announce
 https://abir0dev.github.io/announce
 https://abir0dev.github.io:443/announce
+https://api.ipv4online.uk:443/announce
 https://bittorrent.gongt.net/announce
 https://bittorrent.gongt.net:443/announce
 https://bt.080609.xyz/announce
@@ -688,7 +690,6 @@ https://evening-badlands-6215.herokuapp.com/announce
 https://grifon.info:80/announce
 https://hcbt.pp.ua/announce
 https://inferno.demonoid.is/announce
-https://jvavav.com:443/announce
 https://k.avc.cx/announce.php
 https://k.avc.cx:443/announce.php
 https://k3tracker.cc/announce/0b0b5b2bb71770aa0df56f80a4863f07
@@ -978,6 +979,7 @@ udp://fe.dealclub.de:6969/announce
 udp://fh2.cmp-gaming.com:6969/announce
 udp://free.publictracker.xyz:6969/announce
 udp://freedom.1776.ga:6969/announce
+udp://freedomalternative.com:6969/announce
 udp://http://www.peckservers.com:9000/announce
 udp://htz3.noho.st:6969/announce
 udp://ipv4.rer.lol:2710/announce
@@ -986,7 +988,6 @@ udp://ipv4.tracker.harry.lu:80/announce
 udp://ipv6.tracker.harry.lu/announce
 udp://isk.richardsw.club:6969/announce
 udp://jutone.com:6969/announce
-udp://jvavav.com:6969/announce
 udp://keke.re:6969/announce
 udp://kokodayo.site:6969/announce
 udp://laze.cc:6969/announce
@@ -1147,6 +1148,7 @@ udp://v1046920.hosted-by-vdsina.ru:6969/announce
 udp://v2.iperson.xyz:6969/announce
 udp://vibe.sleepyinternetfun.xyz:1738/announce
 udp://wepzone.net:6969/announce
+udp://www.2600.com:6969/announce
 udp://www.peckservers.com:9000/announce
 udp://www.torrent.eu.org:451/announce
 udp://yahor.ftp.sh:6969/announce
