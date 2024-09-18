@@ -60,10 +60,10 @@ http://isk.richardsw.club:6969/announce
 udp://www.torrent.eu.org:451/announce
 https://tracker.cloudit.top:443/announce
 https://retracker2.x2k.ru:443/announce
-udp://bt2.archive.org:6969/announce
 udp://tracker4.itzmx.com:2710/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://d13bttrck.duckdns.org:6969/announce
+udp://bt2.archive.org:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
 http://tracker.kmzs123.com:80/announce
 https://tracker.kmzs123.top:443/announce
