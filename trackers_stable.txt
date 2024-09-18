@@ -82,6 +82,5 @@ udp://open.dstud.io:6969/announce
 https://tracker1.520.jp:443/announce
 udp://opentracker.io:6969/announce
 http://tracker.auctor.tv:6969/announce
-udp://u4.trakx.crim.ist:1337/announce
-udp://tracker.kmzs123.cn:17272/announce
 https://tracker.kmzs123.top:443/announce
+udp://u4.trakx.crim.ist:1337/announce
