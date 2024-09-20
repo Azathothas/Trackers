@@ -64,9 +64,9 @@ udp://d13bttrck.duckdns.org:6969/announce
 udp://bt2.archive.org:6969/announce
 https://retracker2.x2k.ru:443/announce
 udp://tracker4.itzmx.com:2710/announce
-https://tracker.kmzs123.top:443/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+https://tracker.kmzs123.top:443/announce
 https://api.ipv4online.uk:443/announce
 udp://tk2v6.trackerservers.com:8080/announce
 udp://t.overflow.biz:6969/announce
