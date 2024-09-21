@@ -38,9 +38,9 @@ udp://ns575949.ip-51-222-82.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker.files.fm:6969/announce
+udp://open.demonii.com:1337/announce
 udp://bandito.byterunner.io:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
-udp://open.demonii.com:1337/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://seedpeer.net:6969/announce
 udp://bt1.archive.org:6969/announce
@@ -57,10 +57,10 @@ udp://d13bttrck.duckdns.org:6969/announce
 udp://tracker.breizh.pm:6969/announce
 http://t1.aag.moe:17715/announce
 udp://www.torrent.eu.org:451/announce
+https://api.ipv4online.uk:443/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://run.publictracker.xyz:6969/announce
 https://tracker.cloudit.top:443/announce
-https://api.ipv4online.uk:443/announce
 udp://p2p.publictracker.xyz:6969/announce
 https://retracker2.x2k.ru:443/announce
 udp://bt2.archive.org:6969/announce
