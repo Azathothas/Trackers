@@ -19,7 +19,6 @@ http://tracker.bt4g.com:2095/announce
 http://tracker.dler.org:6969/announce
 http://tracker.dump.cl:6969/announce
 http://tracker.files.fm:6969/announce
-http://tracker.guguan.000.pe:80/announce
 http://tracker.k.vu:6969/announce
 http://tracker.mywaifu.best:6969/announce
 http://tracker.opentrackr.org:1337/announce
