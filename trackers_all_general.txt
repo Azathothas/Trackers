@@ -13,7 +13,6 @@ http://t.overflow.biz:6969/announce
 http://t1.aag.moe:17715/announce
 http://taciturn-shadow.spb.ru:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
-http://tracker.auctor.tv:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.dler.org:6969/announce
 http://tracker.files.fm:6969/announce
