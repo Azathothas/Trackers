@@ -65,8 +65,8 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.srv00.com:6969/announce
-udp://amigacity.xyz:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
+udp://amigacity.xyz:6969/announce
 http://open.acgtracker.com:1096/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
