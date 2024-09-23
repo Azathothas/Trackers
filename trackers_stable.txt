@@ -43,16 +43,16 @@ udp://bandito.byterunner.io:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://bt1.archive.org:6969/announce
 http://tracker2.itzmx.com:6961/announce
-udp://tracker.kmzs123.tk:17272/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.cyberia.is:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://trackarr.org:6969/announce
-http://bvarf.tracker.sh:2086/announce
+udp://tracker.kmzs123.tk:17272/announce
 https://api.ipv4online.uk:443/announce
 udp://tracker.filemail.com:6969/announce
 http://tracker.k.vu:6969/announce
+http://bvarf.tracker.sh:2086/announce
 udp://d13bttrck.duckdns.org:6969/announce
 udp://tracker.breizh.pm:6969/announce
 http://t1.aag.moe:17715/announce
@@ -80,5 +80,5 @@ udp://tracker.xor.st:6969/announce
 https://tracker.bjut.jp:443/announce
 udp://open.dstud.io:6969/announce
 https://tracker1.520.jp:443/announce
-udp://amigacity.xyz:6969/announce
 udp://tamas3.ynh.fr:6969/announce
+udp://amigacity.xyz:6969/announce
