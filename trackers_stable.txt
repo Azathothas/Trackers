@@ -34,8 +34,8 @@ udp://moonburrow.club:6969/announce
 udp://tracker.gmi.gd:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
-https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.uraniumhexafluori.de:443/announce
+https://tracker.itscraftsoftware.my.id:443/announce
 udp://tracker.opentrackr.org:1337/announce
 http://tracker.files.fm:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -80,5 +80,3 @@ udp://tracker.xor.st:6969/announce
 https://tracker.bjut.jp:443/announce
 udp://open.dstud.io:6969/announce
 https://tracker1.520.jp:443/announce
-udp://tamas3.ynh.fr:6969/announce
-udp://amigacity.xyz:6969/announce
