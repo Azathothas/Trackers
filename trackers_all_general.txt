@@ -32,6 +32,7 @@ http://wepzone.net:6969/announce
 http://www.peckservers.com:9000/announce
 https://api.ipv4online.uk:443/announce
 https://jvavav.com:443/announce
+https://mathkangaroo.jp:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://retracker2.x2k.ru:443/announce
 https://threads.canofsocks.com:443/announce
@@ -116,6 +117,7 @@ udp://tracker.srv00.com:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
+udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.waaa.moe:6969/announce
 udp://tracker.xor.st:6969/announce

@@ -689,6 +689,7 @@ https://jvavav.com:443/announce
 https://k.avc.cx/announce.php
 https://k.avc.cx:443/announce.php
 https://k3tracker.cc/announce/0b0b5b2bb71770aa0df56f80a4863f07
+https://mathkangaroo.jp:443/announce
 https://nyaa.tracker.wf:7777/announce
 https://open.kickasstracker.com/announce
 https://open.kickasstracker.com:443/announce
@@ -1115,6 +1116,7 @@ udp://tracker.tcp.exchange:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
+udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.trackerfix.com:80/announce
 udp://tracker.trackerfix.com:82/announce
 udp://tracker.tryhackx.org:6969/announce
