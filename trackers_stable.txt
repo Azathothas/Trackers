@@ -80,5 +80,5 @@ udp://tracker.torrust-demo.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://threads.canofsocks.com:443/announce
 https://mathkangaroo.jp:443/announce
-udp://tracker.xor.st:6969/announce
 https://tracker1.520.jp:443/announce
+udp://tracker.xor.st:6969/announce
