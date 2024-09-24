@@ -20,7 +20,6 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
 https://tracker.gcrenwp.top:443/announce
-https://trackers.run:443/announce
 https://pybittrack.retiolus.net:443/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://explodie.org:6969/announce
@@ -33,6 +32,7 @@ udp://tracker.darkness.services:6969/announce
 https://tracker.uraniumhexafluori.de:443/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://moonburrow.club:6969/announce
+https://trackers.run:443/announce
 udp://tracker.gmi.gd:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
@@ -59,8 +59,8 @@ udp://www.torrent.eu.org:451/announce
 udp://bt2.archive.org:6969/announce
 udp://run.publictracker.xyz:6969/announce
 https://retracker2.x2k.ru:443/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.srv00.com:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://tracker.kmzs123.tk:17272/announce
 http://ipv4announce.sktorrent.eu:6969/announce
@@ -78,7 +78,7 @@ udp://tracker.xor.st:6969/announce
 http://rfc5746.mywaifu.best:6969/announce
 https://threads.canofsocks.com:443/announce
 udp://1c.premierzal.ru:6969/announce
-https://tracker1.520.jp:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
+https://tracker1.520.jp:443/announce
 udp://tracker.torrust-demo.com:6969/announce
 https://mathkangaroo.jp:443/announce
