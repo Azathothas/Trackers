@@ -59,8 +59,8 @@ udp://bt2.archive.org:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://run.publictracker.xyz:6969/announce
 https://retracker2.x2k.ru:443/announce
-udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.srv00.com:6969/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tracker4.itzmx.com:2710/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://tracker.kmzs123.tk:17272/announce
@@ -77,8 +77,8 @@ https://trackers.mlsub.net:443/announce
 udp://tracker.xor.st:6969/announce
 udp://1c.premierzal.ru:6969/announce
 http://rfc5746.mywaifu.best:6969/announce
-https://threads.canofsocks.com:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
+https://threads.canofsocks.com:443/announce
 https://tracker1.520.jp:443/announce
 udp://tracker.torrust-demo.com:6969/announce
 https://mathkangaroo.jp:443/announce
