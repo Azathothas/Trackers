@@ -9,7 +9,6 @@ http://ipv6.rer.lol:6969/announce
 http://jvavav.com:80/announce
 http://open.acgtracker.com:1096/announce
 http://retracker.x2k.ru:80/announce
-http://rfc5746.mywaifu.best:6969/announce
 http://t.overflow.biz:6969/announce
 http://t1.aag.moe:17715/announce
 http://taciturn-shadow.spb.ru:6969/announce
