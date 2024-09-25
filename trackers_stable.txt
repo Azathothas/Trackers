@@ -69,11 +69,11 @@ udp://u6.trakx.crim.ist:1337/announce
 https://tracker.bjut.jp:443/announce
 http://open.acgtracker.com:1096/announce
 udp://opentracker.io:6969/announce
-https://trackers.run:443/announce
 https://www.peckservers.com:9443/announce
-http://t1.aag.moe:17715/announce
 udp://tracker.kmzs123.tk:17272/announce
 udp://tracker.torrust-demo.com:6969/announce
+http://t1.aag.moe:17715/announce
+https://trackers.run:443/announce
 https://trackers.mlsub.net:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://1c.premierzal.ru:6969/announce
