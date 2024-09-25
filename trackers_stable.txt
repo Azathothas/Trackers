@@ -22,8 +22,8 @@ http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
 https://tracker.gcrenwp.top:443/announce
 https://pybittrack.retiolus.net:443/announce
-http://taciturn-shadow.spb.ru:6969/announce
 https://tracker.uraniumhexafluori.de:443/announce
+http://taciturn-shadow.spb.ru:6969/announce
 udp://explodie.org:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 https://tracker.lilithraws.org:443/announce
@@ -49,9 +49,9 @@ https://api.ipv4online.uk:443/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.cyberia.is:6969/announce
 http://tracker1.itzmx.com:8080/announce
+udp://tracker.srv00.com:6969/announce
 udp://d13bttrck.duckdns.org:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://tracker.srv00.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
 http://tracker.k.vu:6969/announce
 http://bvarf.tracker.sh:2086/announce
@@ -77,8 +77,7 @@ udp://1c.premierzal.ru:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://mathkangaroo.jp:443/announce
 udp://tracker.kmzs123.tk:17272/announce
+http://tracker.renfei.net:8080/announce
 http://t1.aag.moe:17715/announce
 https://tracker1.520.jp:443/announce
-http://tracker.renfei.net:8080/announce
 https://threads.canofsocks.com:443/announce
-https://trackers.run:443/announce
