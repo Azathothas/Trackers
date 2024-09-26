@@ -20,7 +20,6 @@ udp://open.demonii.com:1337/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
-https://pybittrack.retiolus.net:443/announce
 http://taciturn-shadow.spb.ru:6969/announce
 udp://explodie.org:6969/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -28,6 +27,7 @@ udp://retracker01-msk-virt.corbina.net:80/announce
 https://tracker.lilithraws.org:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.darkness.services:6969/announce
+https://pybittrack.retiolus.net:443/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://moonburrow.club:6969/announce
@@ -74,7 +74,7 @@ https://www.peckservers.com:9443/announce
 udp://u4.trakx.crim.ist:1337/announce
 https://trackers.mlsub.net:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
-udp://1c.premierzal.ru:6969/announce
 https://tracker1.520.jp:443/announce
+udp://1c.premierzal.ru:6969/announce
 https://threads.canofsocks.com:443/announce
 http://tracker.renfei.net:8080/announce
