@@ -24,13 +24,13 @@ https://tracker.gcrenwp.top:443/announce
 https://pybittrack.retiolus.net:443/announce
 http://taciturn-shadow.spb.ru:6969/announce
 udp://explodie.org:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 https://tracker.lilithraws.org:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://serpb.vpsburti.com:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://moonburrow.club:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
@@ -44,8 +44,8 @@ udp://bandito.byterunner.io:6969/announce
 udp://bt1.archive.org:6969/announce
 http://tracker2.itzmx.com:6961/announce
 https://api.ipv4online.uk:443/announce
-udp://tracker.cyberia.is:6969/announce
 udp://tracker.srv00.com:6969/announce
+udp://tracker.cyberia.is:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tracker.fnix.net:6969/announce
 udp://d13bttrck.duckdns.org:6969/announce
