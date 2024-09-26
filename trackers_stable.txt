@@ -13,6 +13,7 @@ udp://trackarr.org:6969/announce
 http://jvavav.com:80/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://tracker.waaa.moe:6969/announce
+http://tr1.aag.moe:2095/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://bt.okmp3.ru:2710/announce
