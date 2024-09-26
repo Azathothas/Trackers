@@ -38,13 +38,13 @@ udp://ns575949.ip-51-222-82.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://p4p.arenabg.com:1337/announce
+udp://tracker.srv00.com:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://bandito.byterunner.io:6969/announce
-udp://tracker.srv00.com:6969/announce
 udp://bt1.archive.org:6969/announce
 udp://tracker.fnix.net:6969/announce
-http://tracker2.itzmx.com:6961/announce
 https://torrent.tracker.durukanbal.com:443/announce
+http://tracker2.itzmx.com:6961/announce
 https://api.ipv4online.uk:443/announce
 http://tracker1.itzmx.com:8080/announce
 udp://d13bttrck.duckdns.org:6969/announce
