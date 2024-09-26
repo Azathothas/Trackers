@@ -77,5 +77,5 @@ udp://u4.trakx.crim.ist:1337/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://1c.premierzal.ru:6969/announce
 https://tracker1.520.jp:443/announce
-http://tracker.renfei.net:8080/announce
 https://threads.canofsocks.com:443/announce
+http://tracker.renfei.net:8080/announce
