@@ -50,8 +50,8 @@ udp://d13bttrck.duckdns.org:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://www.torrent.eu.org:451/announce
 udp://tracker.breizh.pm:6969/announce
+udp://www.torrent.eu.org:451/announce
 udp://tracker.dler.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tk2.trackerservers.com:8080/announce
@@ -76,4 +76,3 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 https://tracker1.520.jp:443/announce
 https://threads.canofsocks.com:443/announce
 udp://1c.premierzal.ru:6969/announce
-http://ipv4announce.sktorrent.eu:6969/announce
