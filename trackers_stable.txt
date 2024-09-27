@@ -36,8 +36,8 @@ udp://tracker.gmi.gd:6969/announce
 http://retracker.x2k.ru:80/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
-udp://p4p.arenabg.com:1337/announce
 udp://tracker.srv00.com:6969/announce
+udp://p4p.arenabg.com:1337/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 udp://bandito.byterunner.io:6969/announce
@@ -56,8 +56,8 @@ udp://tracker.dler.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://tk2.trackerservers.com:8080/announce
 http://tracker.k.vu:6969/announce
-https://retracker2.x2k.ru:443/announce
 udp://p2p.publictracker.xyz:6969/announce
+https://retracker2.x2k.ru:443/announce
 udp://bt2.archive.org:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.torrust-demo.com:6969/announce
@@ -67,13 +67,13 @@ udp://tk2v6.trackerservers.com:8080/announce
 https://tracker.bjut.jp:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 http://open.acgtracker.com:1096/announce
-udp://opentracker.io:6969/announce
 https://mathkangaroo.jp:443/announce
+udp://opentracker.io:6969/announce
 https://www.peckservers.com:9443/announce
 udp://u4.trakx.crim.ist:1337/announce
 https://trackers.mlsub.net:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 https://tracker1.520.jp:443/announce
-udp://1c.premierzal.ru:6969/announce
 https://threads.canofsocks.com:443/announce
+udp://1c.premierzal.ru:6969/announce
