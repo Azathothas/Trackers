@@ -34,7 +34,6 @@ https://mathkangaroo.jp:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://retracker2.x2k.ru:443/announce
 https://threads.canofsocks.com:443/announce
-https://torrent.tracker.durukanbal.com:443/announce
 https://tracker-zhuqiy.dgj055.icu:443/announce
 https://tracker.bjut.jp:443/announce
 https://tracker.cloudit.top:443/announce
@@ -66,6 +65,7 @@ udp://evan.im:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://ipv4.rer.lol:2710/announce
+udp://ismaarino.com:1234/announce
 udp://jutone.com:6969/announce
 udp://jvavav.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
