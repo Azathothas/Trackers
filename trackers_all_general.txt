@@ -33,7 +33,6 @@ https://jvavav.com:443/announce
 https://mathkangaroo.jp:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://retracker2.x2k.ru:443/announce
-https://threads.canofsocks.com:443/announce
 https://tracker-zhuqiy.dgj055.icu:443/announce
 https://tracker.bjut.jp:443/announce
 https://tracker.cloudit.top:443/announce
@@ -65,7 +64,6 @@ udp://evan.im:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://ipv4.rer.lol:2710/announce
-udp://ismaarino.com:1234/announce
 udp://jutone.com:6969/announce
 udp://jvavav.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
@@ -106,6 +104,7 @@ udp://tracker.edkj.club:6969/announce
 udp://tracker.farted.net:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.fnix.net:6969/announce
+udp://tracker.gigantino.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://tracker.skynetcloud.site:6969/announce
