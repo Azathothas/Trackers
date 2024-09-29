@@ -777,7 +777,6 @@ https://tracker.ipfsscan.io/announce
 https://tracker.ipfsscan.io:443/announce
 https://tracker.iriseden.fr/announce
 https://tracker.iriseden.fr:443/announce
-https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.jiesen.life:8443/announce
 https://tracker.kawaii.id/announce
 https://tracker.kitaujisub.site/announce.php?authkey=213|10003|j46n2q
@@ -1056,7 +1055,6 @@ udp://thinking.duckdns.org:6969/announce
 udp://thouvenin.cloud:6969/announce
 udp://tk1.trackerservers.com:8080/announce
 udp://tk2.trackerservers.com:8080/announce
-udp://tk2v6.trackerservers.com:8080/announce
 udp://torrentclub.space:6969/announce
 udp://torrents.artixlinux.org:6969/announce
 udp://tr.bangumi.moe:6969/announce
