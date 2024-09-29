@@ -683,7 +683,6 @@ https://evening-badlands-6215.herokuapp.com/announce
 https://grifon.info:80/announce
 https://hcbt.pp.ua/announce
 https://inferno.demonoid.is/announce
-https://jvavav.com:443/announce
 https://k.avc.cx/announce.php
 https://k.avc.cx:443/announce.php
 https://k3tracker.cc/announce/0b0b5b2bb71770aa0df56f80a4863f07
@@ -745,7 +744,6 @@ https://tracker.baka.ink/announce
 https://tracker.baka.ink:443/announce
 https://tracker.bangumi.zip/announce
 https://tracker.bangumi.zip:443/announce
-https://tracker.bjut.jp:443/announce
 https://tracker.bt-hash.com/announce
 https://tracker.bt-hash.com:443/announce
 https://tracker.bt4g.com/announce
@@ -979,7 +977,6 @@ udp://ipv4.tracker.harry.lu/announce
 udp://ipv4.tracker.harry.lu:80/announce
 udp://ipv6.tracker.harry.lu/announce
 udp://jutone.com:6969/announce
-udp://jvavav.com:6969/announce
 udp://keke.re:6969/announce
 udp://kokodayo.site:6969/announce
 udp://laze.cc:6969/announce
