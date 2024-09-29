@@ -839,7 +839,6 @@ https://tracker1.520.jp/announce
 https://tracker1.520.jp:443/announce
 https://tracker1.ctix.cn/announce
 https://tracker1.ctix.cn:443/announce
-https://tracker1.itzmx.com:8080/announce
 https://tracker1.loli.co.nz/announce
 https://tracker1.loli.co.nz:443/announce
 https://tracker1.wimix.org/announce
