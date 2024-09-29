@@ -52,12 +52,12 @@ udp://tracker.breizh.pm:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.dler.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
-https://tracker.itscraftsoftware.my.id:443/announce
 udp://tk2.trackerservers.com:8080/announce
+https://retracker2.x2k.ru:443/announce
+https://tracker.itscraftsoftware.my.id:443/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.k.vu:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-https://retracker2.x2k.ru:443/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker4.itzmx.com:2710/announce
 https://tracker.bjut.jp:443/announce
