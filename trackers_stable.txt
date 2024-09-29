@@ -44,10 +44,10 @@ udp://bandito.byterunner.io:6969/announce
 https://api.ipv4online.uk:443/announce
 https://retracker2.x2k.ru:443/announce
 udp://bt1.archive.org:6969/announce
-udp://d13bttrck.duckdns.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker2.itzmx.com:6961/announce
+udp://d13bttrck.duckdns.org:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://www.torrent.eu.org:451/announce
@@ -55,8 +55,8 @@ udp://tracker.dler.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.k.vu:6969/announce
-udp://p2p.publictracker.xyz:6969/announce
 https://trackers.mlsub.net:443/announce
+udp://p2p.publictracker.xyz:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 udp://tracker4.itzmx.com:2710/announce
 http://open.acgtracker.com:1096/announce
