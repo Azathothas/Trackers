@@ -35,11 +35,11 @@ udp://tracker.darkness.services:6969/announce
 https://pybittrack.retiolus.net:443/announce
 udp://trackarr.org:6969/announce
 udp://serpb.vpsburti.com:6969/announce
-http://jvavav.com:80/announce
 udp://exodus.desync.com:6969/announce
 udp://evan.im:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://seedpeer.net:6969/announce
+http://jvavav.com:80/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
@@ -58,10 +58,10 @@ udp://tk2.trackerservers.com:8080/announce
 https://tracker.cloudit.top:443/announce
 http://open.acgtracker.com:1096/announce
 udp://opentracker.io:6969/announce
-udp://tracker.gigantino.net:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
+udp://tracker.gigantino.net:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.torrust-demo.com:6969/announce
-udp://run.publictracker.xyz:6969/announce
 http://tracker.renfei.net:8080/announce
+udp://run.publictracker.xyz:6969/announce
 https://tracker1.520.jp:443/announce
