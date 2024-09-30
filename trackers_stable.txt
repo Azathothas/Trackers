@@ -4,6 +4,7 @@ http://tracker.files.fm:6969/announce
 udp://z.mercax.com:53/announce
 udp://tracker.torrent.eu.org:451/announce
 https://tracker.tamersunion.org:443/announce
+https://trackers.mlsub.net:443/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://odd-hd.fr:6969/announce
@@ -11,7 +12,6 @@ udp://evan.im:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://tracker.waaa.moe:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://tracker4.itzmx.com:2710/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://open.demonii.com:1337/announce
@@ -26,7 +26,6 @@ udp://exodus.desync.com:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.srv00.com:6969/announce
-https://trackers.mlsub.net:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
@@ -35,9 +34,9 @@ https://pybittrack.retiolus.net:443/announce
 udp://trackarr.org:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://moonburrow.club:6969/announce
+udp://seedpeer.net:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.fnix.net:6969/announce
-udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://bt1.archive.org:6969/announce
@@ -50,15 +49,17 @@ http://bvarf.tracker.sh:2086/announce
 udp://bt2.archive.org:6969/announce
 http://tracker.k.vu:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-https://p4p.arenabg.com:1337/announce
 udp://tk2.trackerservers.com:8080/announce
+https://p4p.arenabg.com:1337/announce
 http://open.acgtracker.com:1096/announce
 https://tracker.cloudit.top:443/announce
 udp://d13bttrck.duckdns.org:6969/announce
-https://api.ipv4online.uk:443/announce
 udp://opentracker.io:6969/announce
+https://api.ipv4online.uk:443/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://run.publictracker.xyz:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker.renfei.net:8080/announce
 udp://tracker.torrust-demo.com:6969/announce
+udp://tracker.gigantino.net:6969/announce
+https://tracker1.520.jp:443/announce
