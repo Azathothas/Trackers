@@ -51,8 +51,8 @@ udp://tracker.breizh.pm:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.dler.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
-udp://bt2.archive.org:6969/announce
 http://tracker.k.vu:6969/announce
+udp://bt2.archive.org:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 https://tracker.cloudit.top:443/announce
@@ -64,5 +64,4 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://run.publictracker.xyz:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 http://tracker.renfei.net:8080/announce
-https://p4p.arenabg.com:1337/announce
 https://tracker1.520.jp:443/announce
