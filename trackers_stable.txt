@@ -8,7 +8,6 @@ https://tracker.tamersunion.org:443/announce
 https://trackers.mlsub.net:443/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://odd-hd.fr:6969/announce
-udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 https://tracker.gcrenwp.top:443/announce
 udp://tracker.waaa.moe:6969/announce
@@ -32,6 +31,7 @@ http://bt.okmp3.ru:2710/announce
 udp://tracker.srv00.com:6969/announce
 udp://moonburrow.club:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
+udp://evan.im:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tracker.darkness.services:6969/announce
