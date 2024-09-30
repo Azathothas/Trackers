@@ -7,7 +7,6 @@ udp://open.demonii.com:1337/announce
 https://tracker.tamersunion.org:443/announce
 https://trackers.mlsub.net:443/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
-udp://tracker.0x7c0.com:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://evan.im:6969/announce
 https://tracker.gcrenwp.top:443/announce
@@ -17,6 +16,7 @@ udp://tracker.birkenwald.de:6969/announce
 http://tracker.bt4g.com:2095/announce
 https://tracker.lilithraws.org:443/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+udp://tracker.0x7c0.com:6969/announce
 http://jvavav.com:80/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
