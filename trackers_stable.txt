@@ -52,11 +52,11 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://tk2.trackerservers.com:8080/announce
 http://open.acgtracker.com:1096/announce
 https://tracker.cloudit.top:443/announce
+https://tracker.yemekyedim.com:443/announce
 udp://opentracker.io:6969/announce
 udp://tracker.gigantino.net:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 https://p4p.arenabg.com:1337/announce
-https://tracker.yemekyedim.com:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://run.publictracker.xyz:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
