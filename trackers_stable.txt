@@ -63,4 +63,3 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.torrust-demo.com:6969/announce
 http://tracker.renfei.net:8080/announce
 udp://u4.trakx.crim.ist:1337/announce
-udp://tracker.kmzs123.cf:17272/announce
