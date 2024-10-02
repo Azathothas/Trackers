@@ -44,9 +44,9 @@ udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://bt1.archive.org:6969/announce
+udp://tracker.cyberia.is:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.dler.com:6969/announce
-udp://tracker.cyberia.is:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tracker.filemail.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
