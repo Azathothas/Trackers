@@ -59,7 +59,7 @@ https://tracker.cloudit.top:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://opentracker.io:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
-http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.torrust-demo.com:6969/announce
+http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker.renfei.net:8080/announce
 udp://u4.trakx.crim.ist:1337/announce
