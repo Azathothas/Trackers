@@ -46,8 +46,8 @@ udp://tracker.fnix.net:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.cyberia.is:6969/announce
-https://pybittrack.retiolus.net:443/announce
 udp://tracker.breizh.pm:6969/announce
+https://pybittrack.retiolus.net:443/announce
 udp://tracker.filemail.com:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://bt2.archive.org:6969/announce
