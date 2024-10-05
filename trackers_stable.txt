@@ -13,9 +13,9 @@ http://tracker1.itzmx.com:8080/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://tracker3.itzmx.com:6961/announce
 udp://tracker.cloaka.xyz:1337/announce
+udp://explodie.org:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.bt4g.com:2095/announce
-http://tracker.files.fm:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://moonburrow.club:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
@@ -24,7 +24,6 @@ https://tracker.yemekyedim.com:443/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
 udp://tracker.opentrackr.org:1337/announce
-udp://explodie.org:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.srv00.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
@@ -33,6 +32,7 @@ udp://tracker.darkness.services:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://exodus.desync.com:6969/announce
+http://tracker.files.fm:6969/announce
 udp://evan.im:6969/announce
 udp://seedpeer.net:6969/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -44,10 +44,10 @@ udp://tracker.tryhackx.org:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.dler.com:6969/announce
-udp://www.torrent.eu.org:451/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://www.torrent.eu.org:451/announce
 udp://bt2.archive.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://p2p.publictracker.xyz:6969/announce
@@ -68,4 +68,3 @@ udp://u4.trakx.crim.ist:1337/announce
 udp://jutone.com:6969/announce
 http://tracker.renfei.net:8080/announce
 udp://tracker.kmzs123.cf:17272/announce
-http://tr1.aag.moe:2095/announce
