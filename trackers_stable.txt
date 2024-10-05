@@ -63,10 +63,10 @@ udp://u6.trakx.crim.ist:1337/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://opentracker.io:6969/announce
 udp://tracker.kmzs123.cf:17272/announce
-udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.gigantino.net:6969/announce
+udp://tracker.torrust-demo.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
-udp://jutone.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
+udp://jutone.com:6969/announce
 http://tr1.aag.moe:2095/announce
 http://tracker.renfei.net:8080/announce
