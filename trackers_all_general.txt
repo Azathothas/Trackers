@@ -7,7 +7,6 @@ http://ch3oh.ru:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://jvavav.com:80/announce
 http://open.acgtracker.com:1096/announce
-http://t.overflow.biz:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker.bt4g.com:2095/announce
@@ -21,13 +20,11 @@ http://tracker.peckservers.com:9000/announce
 http://tracker.qu.ax:6969/announce
 http://tracker.renfei.net:8080/announce
 http://tracker.waaa.moe:6969/announce
-http://tracker1.bt.moack.co.kr:80/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker2.dler.org:80/announce
 http://tracker3.itzmx.com:6961/announce
 http://tracker4.itzmx.com:2710/announce
 http://www.peckservers.com:9000/announce
-https://jvavav.com:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://retracker.x2k.ru:443/announce
 https://tracker-zhuqiy.dgj055.icu:443/announce
@@ -58,7 +55,6 @@ udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://jutone.com:6969/announce
-udp://jvavav.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://moonburrow.club:6969/announce
 udp://new-line.net:6969/announce
@@ -70,6 +66,7 @@ udp://open.xxtor.com:3074/announce
 udp://opentracker.io:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://p4p.arenabg.com:1337/announce
+udp://public.tracker.vraphim.com:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://retracker.lanta.me:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
@@ -109,7 +106,7 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.vds.nz:6969/announce
 udp://tracker.waaa.moe:6969/announce
-udp://tracker1.myporn.club:9337/announce
+udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker2.dler.org:80/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://tracker3.itzmx.com:6961/announce
