@@ -43,9 +43,9 @@ http://ipv6.rer.lol:6969/announce
 udp://trackarr.org:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://bandito.byterunner.io:6969/announce
-http://jvavav.com:80/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.cyberia.is:6969/announce
+http://jvavav.com:80/announce
 udp://tracker.breizh.pm:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
@@ -53,8 +53,8 @@ udp://bt2.archive.org:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://tracker.k.vu:6969/announce
-https://pybittrack.retiolus.net:443/announce
 https://retracker.x2k.ru:443/announce
+https://pybittrack.retiolus.net:443/announce
 udp://tk2.trackerservers.com:8080/announce
 https://tracker.cloudit.top:443/announce
 http://open.acgtracker.com:1096/announce
@@ -68,5 +68,5 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tr1.aag.moe:2095/announce
 udp://tracker.gigantino.net:6969/announce
 udp://jutone.com:6969/announce
-udp://u4.trakx.crim.ist:1337/announce
 http://tracker.renfei.net:8080/announce
+udp://u4.trakx.crim.ist:1337/announce
