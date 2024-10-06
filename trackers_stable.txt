@@ -8,6 +8,7 @@ https://tracker.lilithraws.org:443/announce
 https://trackers.mlsub.net:443/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://odd-hd.fr:6969/announce
+udp://evan.im:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://tracker.waaa.moe:6969/announce
 http://tracker1.itzmx.com:8080/announce
@@ -20,7 +21,6 @@ udp://tracker-udp.gbitt.info:80/announce
 udp://moonburrow.club:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
-udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
@@ -65,4 +65,6 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://jutone.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://u4.trakx.crim.ist:1337/announce
+udp://open.xxtor.com:3074/announce
 http://tracker.renfei.net:8080/announce
+udp://tracker.kmzs123.cf:17272/announce
