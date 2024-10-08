@@ -16,6 +16,7 @@ udp://tracker.waaa.moe:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://tracker2.itzmx.com:6961/announce
 udp://tracker.cloaka.xyz:1337/announce
+http://tracker.bittor.pw:1337/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://explodie.org:6969/announce
 http://tracker.bt4g.com:2095/announce
@@ -67,5 +68,5 @@ https://tr2.trkb.ru:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://jutone.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
-http://tracker.renfei.net:8080/announce
 http://tr1.aag.moe:2095/announce
+http://tracker.renfei.net:8080/announce
