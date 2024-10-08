@@ -52,8 +52,8 @@ http://bvarf.tracker.sh:2086/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://tracker.files.fm:6969/announce
 udp://tk2.trackerservers.com:8080/announce
-https://retracker.x2k.ru:443/announce
 udp://tracker4.itzmx.com:2710/announce
+https://retracker.x2k.ru:443/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://u6.trakx.crim.ist:1337/announce
