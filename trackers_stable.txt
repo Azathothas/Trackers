@@ -23,6 +23,7 @@ udp://tracker.0x7c0.com:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
+udp://tracker.filemail.com:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.srv00.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
@@ -30,7 +31,6 @@ udp://martin-gebhardt.eu:25/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://exodus.desync.com:6969/announce
-udp://tracker.filemail.com:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -44,9 +44,9 @@ udp://bandito.byterunner.io:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.cyberia.is:6969/announce
 http://bvarf.tracker.sh:2086/announce
-udp://bt1.archive.org:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://tracker.bittor.pw:1337/announce
+udp://bt1.archive.org:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.gigantino.net:6969/announce
 udp://www.torrent.eu.org:451/announce
@@ -61,9 +61,9 @@ udp://jutone.com:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 http://tr1.aag.moe:2095/announce
 udp://opentracker.io:6969/announce
-http://open.acgtracker.com:1096/announce
 udp://u4.trakx.crim.ist:1337/announce
 https://tracker.cloudit.top:443/announce
+http://open.acgtracker.com:1096/announce
 http://tracker.files.fm:6969/announce
 udp://tracker.kmzs123.cf:17272/announce
 https://sparkle.ghostchu-services.top:443/announce
