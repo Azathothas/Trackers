@@ -59,10 +59,9 @@ udp://opentracker.io:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tracker.kmzs123.cf:17272/announce
-http://open.acgtracker.com:1096/announce
 http://tracker1.itzmx.com:8080/announce
-udp://tracker.torrust-demo.com:6969/announce
+http://open.acgtracker.com:1096/announce
 udp://tk2.trackerservers.com:8080/announce
-https://tr2.trkb.ru:443/announce
 http://tracker.renfei.net:8080/announce
 http://tracker.files.fm:6969/announce
+udp://tracker.torrust-demo.com:6969/announce
