@@ -38,10 +38,10 @@ udp://exodus.desync.com:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
+udp://trackarr.org:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.fnix.net:6969/announce
 http://ipv6.rer.lol:6969/announce
-udp://trackarr.org:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://bandito.byterunner.io:6969/announce
@@ -60,8 +60,8 @@ https://retracker.x2k.ru:443/announce
 https://tracker.cloudit.top:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
-https://pybittrack.retiolus.net:443/announce
 udp://tracker.torrust-demo.com:6969/announce
+https://pybittrack.retiolus.net:443/announce
 http://open.acgtracker.com:1096/announce
 http://tracker.renfei.net:8080/announce
 https://tr2.trkb.ru:443/announce
