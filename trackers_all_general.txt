@@ -38,6 +38,7 @@ https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.lilithraws.org:443/announce
 https://tracker.pmman.tech:443/announce
 https://tracker.tamersunion.org:443/announce
+https://tracker.uraniumhexafluori.de:443/announce
 https://tracker.yemekyedim.com:443/announce
 https://trackers.mlsub.net:443/announce
 https://www.peckservers.com:9443/announce
@@ -115,6 +116,7 @@ udp://tracker.waaa.moe:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker2.dler.org:80/announce
+udp://tracker2.itzmx.com:6961/announce
 udp://tracker3.itzmx.com:6961/announce
 udp://tracker4.itzmx.com:2710/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
