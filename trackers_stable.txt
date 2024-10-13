@@ -13,6 +13,9 @@ https://tracker.yemekyedim.com:443/announce
 https://tracker.gcrenwp.top:443/announce
 udp://tracker.waaa.moe:6969/announce
 udp://api.clasificadosrapidos.com:53/announce
+http://tracker1.itzmx.com:8080/announce
+udp://tracker3.itzmx.com:6961/announce
+udp://tracker4.itzmx.com:2710/announce
 http://tracker.bt4g.com:2095/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://moonburrow.club:6969/announce
@@ -35,11 +38,11 @@ udp://exodus.desync.com:6969/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
-udp://tracker.cyberia.is:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.fnix.net:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://trackarr.org:6969/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.dler.com:6969/announce
@@ -58,7 +61,6 @@ https://tracker.cloudit.top:443/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://opentracker.io:6969/announce
 https://pybittrack.retiolus.net:443/announce
-http://tracker1.itzmx.com:8080/announce
 udp://tracker.torrust-demo.com:6969/announce
 http://open.acgtracker.com:1096/announce
 http://tracker.renfei.net:8080/announce
