@@ -61,8 +61,8 @@ udp://jutone.com:6969/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://u4.trakx.crim.ist:1337/announce
 https://retracker.x2k.ru:443/announce
-udp://opentracker.io:6969/announce
 https://tr2.trkb.ru:443/announce
+udp://opentracker.io:6969/announce
 udp://tracker.torrust-demo.com:6969/announce
 http://tracker.renfei.net:8080/announce
 http://open.acgtracker.com:1096/announce
