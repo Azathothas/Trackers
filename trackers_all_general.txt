@@ -30,6 +30,7 @@ http://tracker1.bt.moack.co.kr:80/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker2.dler.org:80/announce
 http://www.peckservers.com:9000/announce
+https://p2p.azu.red:443/announce
 https://retracker.x2k.ru:443/announce
 https://sparkle.ghostchu-services.top:443/announce
 https://tr2.trkb.ru:443/announce
@@ -118,6 +119,7 @@ udp://tracker.waaa.moe:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker1.myporn.club:9337/announce
 udp://tracker2.dler.org:80/announce
+udp://tracker4.itzmx.com:2710/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
