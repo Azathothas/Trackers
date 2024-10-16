@@ -43,11 +43,11 @@ udp://tracker.gmi.gd:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 http://ipv6.rer.lol:6969/announce
+udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.dler.com:6969/announce
-udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.filemail.com:6969/announce
 http://tracker.bittor.pw:1337/announce
 udp://p2p.publictracker.xyz:6969/announce
@@ -65,7 +65,7 @@ udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://jutone.com:6969/announce
 udp://opentracker.io:6969/announce
-udp://tracker.cloaka.xyz:1337/announce
 https://tracker.pmman.tech:443/announce
 http://tracker.renfei.net:8080/announce
 https://retracker.x2k.ru:443/announce
+udp://tracker.cloaka.xyz:1337/announce
