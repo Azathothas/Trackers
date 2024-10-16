@@ -36,6 +36,7 @@ udp://evan.im:6969/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.fnix.net:6969/announce
+udp://tracker.skynetcloud.site:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.darkness.services:6969/announce
@@ -43,7 +44,6 @@ udp://tracker.gmi.gd:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 http://ipv6.rer.lol:6969/announce
-udp://tracker.skynetcloud.site:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://bandito.byterunner.io:6969/announce
@@ -68,4 +68,3 @@ udp://opentracker.io:6969/announce
 https://tracker.pmman.tech:443/announce
 http://tracker.renfei.net:8080/announce
 https://retracker.x2k.ru:443/announce
-udp://tracker.cloaka.xyz:1337/announce
