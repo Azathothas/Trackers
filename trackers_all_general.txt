@@ -8,6 +8,7 @@ http://ipv6.rer.lol:6969/announce
 http://open.acgtracker.com:1096/announce
 http://open.tracker.ink:6969/announce
 http://public.tracker.vraphim.com:6969/announce
+http://smurfsoft.com:6969/announce
 http://t.overflow.biz:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
 http://tr.kxmp.cf:80/announce
