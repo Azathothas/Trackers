@@ -15,7 +15,6 @@ udp://tracker.waaa.moe:6969/announce
 udp://api.clasificadosrapidos.com:53/announce
 https://p2p.azu.red:443/announce
 udp://tk2v6.trackerservers.com:8080/announce
-udp://tracker2.itzmx.com:6961/announce
 http://tracker.bt4g.com:2095/announce
 http://bt.okmp3.ru:2710/announce
 udp://moonburrow.club:6969/announce
