@@ -45,8 +45,8 @@ udp://tracker.darkness.services:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
-http://tracker.bittor.pw:1337/announce
 http://smurfsoft.com:6969/announce
+http://tracker.bittor.pw:1337/announce
 udp://tracker.filemail.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
@@ -65,3 +65,4 @@ http://tracker.renfei.net:8080/announce
 https://tracker.pmman.tech:443/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.cyberia.is:6969/announce
+http://tracker1.itzmx.com:8080/announce
