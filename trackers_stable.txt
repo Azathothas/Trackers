@@ -44,8 +44,8 @@ udp://tracker.tryhackx.org:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://bandito.byterunner.io:6969/announce
-http://tracker.bittor.pw:1337/announce
 https://p2p.azu.red:443/announce
+http://tracker.bittor.pw:1337/announce
 udp://tracker.filemail.com:6969/announce
 http://smurfsoft.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
@@ -60,8 +60,8 @@ udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 https://tracker.cloudit.top:443/announce
 http://tracker1.itzmx.com:8080/announce
-udp://jutone.com:6969/announce
 udp://tracker2.itzmx.com:6961/announce
+udp://jutone.com:6969/announce
 udp://opentracker.io:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 http://tracker.renfei.net:8080/announce
