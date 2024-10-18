@@ -46,8 +46,8 @@ udp://tracker.darkness.services:6969/announce
 udp://bandito.byterunner.io:6969/announce
 http://tracker.bittor.pw:1337/announce
 https://p2p.azu.red:443/announce
-http://smurfsoft.com:6969/announce
 udp://tracker.filemail.com:6969/announce
+http://smurfsoft.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 https://sparkle.ghostchu-services.top:443/announce
 http://bvarf.tracker.sh:2086/announce
