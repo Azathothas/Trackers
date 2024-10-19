@@ -53,8 +53,8 @@ http://bvarf.tracker.sh:2086/announce
 udp://tracker.gigantino.net:6969/announce
 http://public.tracker.vraphim.com:6969/announce
 udp://www.torrent.eu.org:451/announce
-http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker1.itzmx.com:8080/announce
+http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tr1.aag.moe:2095/announce
 udp://opentracker.io:6969/announce
 https://tracker.cloudit.top:443/announce
