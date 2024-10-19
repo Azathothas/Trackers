@@ -52,8 +52,8 @@ http://bvarf.tracker.sh:2086/announce
 udp://tracker.gigantino.net:6969/announce
 http://public.tracker.vraphim.com:6969/announce
 udp://www.torrent.eu.org:451/announce
-http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.xor.st:6969/announce
+http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker1.itzmx.com:8080/announce
 http://tr1.aag.moe:2095/announce
 https://tracker.cloudit.top:443/announce
@@ -62,5 +62,5 @@ udp://jutone.com:6969/announce
 udp://opentracker.io:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://tracker.renfei.net:8080/announce
-https://tracker.pmman.tech:443/announce
 udp://tk2v6.trackerservers.com:8080/announce
+https://tracker.pmman.tech:443/announce
