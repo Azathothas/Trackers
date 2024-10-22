@@ -38,6 +38,7 @@ https://tracker.cloudit.top:443/announce
 https://tracker.gcrenwp.top:443/announce
 https://tracker.ipfsscan.io:443/announce
 https://tracker.itscraftsoftware.my.id:443/announce
+https://tracker.jobser.eu:443/announce
 https://tracker.lilithraws.org:443/announce
 https://tracker.pmman.tech:443/announce
 https://tracker.tamersunion.org:443/announce
