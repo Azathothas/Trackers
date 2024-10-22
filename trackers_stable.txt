@@ -47,8 +47,8 @@ udp://tracker.tryhackx.org:6969/announce
 udp://d13bttrck.duckdns.org:6969/announce
 http://tracker.bittor.pw:1337/announce
 https://www.peckservers.com:9443/announce
-udp://tracker.xor.st:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+udp://tracker.xor.st:6969/announce
 http://public.tracker.vraphim.com:6969/announce
 udp://tracker.filemail.com:6969/announce
 https://sparkle.ghostchu-services.top:443/announce
