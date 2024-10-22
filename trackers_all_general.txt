@@ -33,6 +33,7 @@ http://www.peckservers.com:9000/announce
 https://p2p.azu.red:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://sparkle.ghostchu-services.top:443/announce
+https://torrent.tracker.durukanbal.com:443/announce
 https://tracker-zhuqiy.dgj055.icu:443/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.gcrenwp.top:443/announce
@@ -107,7 +108,6 @@ udp://tracker.srv00.com:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
-udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.waaa.moe:6969/announce
 udp://tracker.xor.st:6969/announce
