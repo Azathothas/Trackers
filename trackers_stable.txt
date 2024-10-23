@@ -50,8 +50,8 @@ http://public.tracker.vraphim.com:6969/announce
 udp://tracker.filemail.com:6969/announce
 https://sparkle.ghostchu-services.top:443/announce
 http://bvarf.tracker.sh:2086/announce
-udp://www.torrent.eu.org:451/announce
 https://tracker.itscraftsoftware.my.id:443/announce
+udp://www.torrent.eu.org:451/announce
 udp://tracker.gigantino.net:6969/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker.bittor.pw:1337/announce
