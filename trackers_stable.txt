@@ -53,10 +53,10 @@ https://torrent.tracker.durukanbal.com:443/announce
 http://bvarf.tracker.sh:2086/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.gigantino.net:6969/announce
-http://tracker.bittor.pw:1337/announce
 https://tracker.itscraftsoftware.my.id:443/announce
-udp://tracker.darkness.services:6969/announce
+http://tracker.bittor.pw:1337/announce
 http://tracker1.itzmx.com:8080/announce
+udp://tracker.darkness.services:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tr1.aag.moe:2095/announce
 https://tracker.cloudit.top:443/announce
