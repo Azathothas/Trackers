@@ -67,4 +67,3 @@ udp://jutone.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://tracker.renfei.net:8080/announce
 udp://u6.trakx.crim.ist:1337/announce
-https://tracker.pmman.tech:443/announce
