@@ -47,8 +47,8 @@ udp://tracker.tryhackx.org:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.xor.st:6969/announce
 http://public.tracker.vraphim.com:6969/announce
-udp://tracker.filemail.com:6969/announce
 https://sparkle.ghostchu-services.top:443/announce
+udp://tracker.filemail.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://www.torrent.eu.org:451/announce
@@ -61,9 +61,9 @@ https://torrent.tracker.durukanbal.com:443/announce
 http://tracker.bittor.pw:1337/announce
 https://tracker.cloudit.top:443/announce
 udp://opentracker.io:6969/announce
-udp://jutone.com:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://tk2v6.trackerservers.com:8080/announce
+udp://jutone.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 http://tracker.renfei.net:8080/announce
 udp://u6.trakx.crim.ist:1337/announce
