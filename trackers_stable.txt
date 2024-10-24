@@ -11,7 +11,6 @@ udp://evan.im:6969/announce
 udp://tracker.skynetcloud.site:6969/announce
 https://tracker.yemekyedim.com:443/announce
 https://tracker.gcrenwp.top:443/announce
-udp://trackarr.org:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
 udp://api.clasificadosrapidos.com:53/announce
@@ -26,6 +25,7 @@ http://ipv6.rer.lol:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://bandito.byterunner.io:6969/announce
+udp://trackarr.org:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://tracker.waaa.moe:6969/announce
 udp://tracker.opentrackr.org:1337/announce
@@ -49,8 +49,8 @@ http://public.tracker.vraphim.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
 https://sparkle.ghostchu-services.top:443/announce
 udp://tracker.filemail.com:6969/announce
-http://bvarf.tracker.sh:2086/announce
 udp://tracker.deadorbit.nl:6969/announce
+http://bvarf.tracker.sh:2086/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.gigantino.net:6969/announce
