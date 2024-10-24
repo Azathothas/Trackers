@@ -40,8 +40,8 @@ udp://martin-gebhardt.eu:25/announce
 https://p2p.azu.red:443/announce
 http://bt.okmp3.ru:2710/announce
 https://www.peckservers.com:9443/announce
-udp://tracker.birkenwald.de:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.xor.st:6969/announce
@@ -50,9 +50,9 @@ udp://tracker.breizh.pm:6969/announce
 https://sparkle.ghostchu-services.top:443/announce
 udp://tracker.filemail.com:6969/announce
 http://bvarf.tracker.sh:2086/announce
+udp://tracker.deadorbit.nl:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://www.torrent.eu.org:451/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.gigantino.net:6969/announce
 http://tracker1.itzmx.com:8080/announce
 http://tr1.aag.moe:2095/announce
