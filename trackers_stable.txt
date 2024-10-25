@@ -41,9 +41,9 @@ https://p2p.azu.red:443/announce
 http://bt.okmp3.ru:2710/announce
 https://www.peckservers.com:9443/announce
 udp://ns1.monolithindustries.com:6969/announce
+udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
-udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.xor.st:6969/announce
 http://public.tracker.vraphim.com:6969/announce
