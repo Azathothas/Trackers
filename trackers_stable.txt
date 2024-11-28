@@ -46,13 +46,13 @@ udp://tracker.breizh.pm:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://bt.okmp3.ru:2710/announce
+https://torrent.tracker.durukanbal.com:443/announce
 udp://serpb.vpsburti.com:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 http://tracker2.itzmx.com:6961/announce
 udp://tracker.dler.com:6969/announce
-https://torrent.tracker.durukanbal.com:443/announce
-udp://seedpeer.net:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
