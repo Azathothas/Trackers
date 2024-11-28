@@ -9,6 +9,7 @@ https://trackers.mlsub.net:443/announce
 https://tracker.ipfsscan.io:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://odd-hd.fr:6969/announce
+udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://amigacity.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
@@ -18,11 +19,9 @@ https://tracker.moeking.me:443/announce
 http://tracker1.itzmx.com:8080/announce
 https://t.213891.xyz:443/announce
 http://tracker.renfei.net:8080/announce
-http://ipv4.rer.lol:2710/announce
 http://tracker3.itzmx.com:6961/announce
 http://tracker4.itzmx.com:2710/announce
 udp://explodie.org:6969/announce
-udp://evan.im:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://open.stealth.si:80/announce
@@ -37,10 +36,10 @@ https://tracker.leechshield.link:443/announce
 http://tracker.beeimg.com:6969/announce
 http://tracker.vraphim.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
+https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.srv00.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.fnix.net:6969/announce
-https://torrent.tracker.durukanbal.com:443/announce
 udp://ismaarino.com:1234/announce
 http://tracker.bt4g.com:2095/announce
 udp://tracker.breizh.pm:6969/announce
@@ -56,9 +55,10 @@ udp://seedpeer.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
+http://ipv4.rer.lol:2710/announce
 udp://tracker.qu.ax:6969/announce
-udp://wepzone.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
+udp://wepzone.net:6969/announce
 http://tracker.bittor.pw:1337/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 https://sparkle.ghostchu-services.top:443/announce
