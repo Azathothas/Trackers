@@ -60,8 +60,8 @@ udp://tracker.qu.ax:6969/announce
 udp://wepzone.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://tracker.bittor.pw:1337/announce
-https://sparkle.ghostchu-services.top:443/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
+https://sparkle.ghostchu-services.top:443/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://saltwood.top:6969/announce
