@@ -103,10 +103,10 @@ udp://evan.im:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://ipv4.rer.lol:2710/announce
+udp://isk.richardsw.club:6969/announce
 udp://ismaarino.com:1234/announce
 udp://jutone.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
-udp://ns-1.x-fins.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://open.demonii.com:1337/announce
@@ -155,5 +155,4 @@ udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
 udp://wepzone.net:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://yahor.of.by:6969/announce
 udp://z.mercax.com:53/announce
