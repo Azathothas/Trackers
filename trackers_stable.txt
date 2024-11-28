@@ -53,9 +53,9 @@ udp://tracker.dler.com:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tracker.filemail.com:6969/announce
-https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.qu.ax:6969/announce
 udp://wepzone.net:6969/announce
 http://bvarf.tracker.sh:2086/announce
