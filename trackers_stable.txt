@@ -67,13 +67,13 @@ https://tracker.cloudit.top:443/announce
 udp://wepzone.net:6969/announce
 udp://retracker.lanta.me:2710/announce
 https://sparkle.ghostchu-services.top:443/announce
-https://api.ipv4online.uk:443/announce
 udp://tracker.kmzs123.tk:17272/announce
+https://api.ipv4online.uk:443/announce
 https://tracker.bjut.jp:443/announce
 https://mathkangaroo.jp:443/announce
 https://tracker.pmman.tech:443/announce
 udp://opentracker.io:6969/announce
 https://retracker.x2k.ru:443/announce
 http://kiryuu-test.mywaifu.best:6969/announce
-https://tr2.trkb.ru:443/announce
 udp://open.dstud.io:6969/announce
+https://tr2.trkb.ru:443/announce
