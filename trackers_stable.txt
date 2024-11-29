@@ -46,9 +46,9 @@ udp://tracker.breizh.pm:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker2.itzmx.com:6961/announce
-https://torrent.tracker.durukanbal.com:443/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://tracker.dler.com:6969/announce
+https://torrent.tracker.durukanbal.com:443/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.filemail.com:6969/announce
@@ -63,13 +63,13 @@ udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 http://tracker.bittor.pw:1337/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 http://saltwood.top:6969/announce
-https://sparkle.ghostchu-services.top:443/announce
 udp://wepzone.net:6969/announce
+https://sparkle.ghostchu-services.top:443/announce
 https://tracker.cloudit.top:443/announce
 udp://retracker.lanta.me:2710/announce
 https://api.ipv4online.uk:443/announce
-udp://tracker.kmzs123.tk:17272/announce
 https://tracker.bjut.jp:443/announce
+udp://tracker.kmzs123.tk:17272/announce
 https://mathkangaroo.jp:443/announce
 udp://opentracker.io:6969/announce
 https://tracker.pmman.tech:443/announce
