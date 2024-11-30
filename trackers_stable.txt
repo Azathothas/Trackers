@@ -22,6 +22,7 @@ http://tracker.renfei.net:8080/announce
 http://tracker3.itzmx.com:6961/announce
 http://tracker4.itzmx.com:2710/announce
 udp://explodie.org:6969/announce
+udp://tracker.0x7c0.com:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://tr4ck3r.duckdns.org:6969/announce
@@ -29,7 +30,6 @@ udp://open.stealth.si:80/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://open.demonii.com:1337/announce
 udp://tracker.qu.ax:6969/announce
-udp://tracker.0x7c0.com:6969/announce
 udp://t.overflow.biz:6969/announce
 https://pybittrack.retiolus.net:443/announce
 udp://trackarr.org:6969/announce
