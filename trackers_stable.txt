@@ -45,11 +45,11 @@ udp://tracker.fnix.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://ismaarino.com:1234/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
-udp://trackarr.org:6969/announce
 http://tracker2.itzmx.com:6961/announce
+udp://trackarr.org:6969/announce
 udp://tracker.breizh.pm:6969/announce
-udp://tracker.dler.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
+udp://tracker.dler.com:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://seedpeer.net:6969/announce
