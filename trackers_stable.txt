@@ -50,8 +50,8 @@ http://tracker2.itzmx.com:6961/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://seedpeer.net:6969/announce
 udp://tracker.dler.com:6969/announce
+udp://seedpeer.net:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://trackarr.org:6969/announce
 http://ipv4.rer.lol:2710/announce
@@ -61,8 +61,8 @@ http://bvarf.tracker.sh:2086/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 http://tracker.bittor.pw:1337/announce
 udp://tracker.gmi.gd:6969/announce
-http://saltwood.top:6969/announce
 udp://tracker.birkenwald.de:6969/announce
+http://saltwood.top:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://retracker.lanta.me:2710/announce
 https://sparkle.ghostchu-services.top:443/announce
