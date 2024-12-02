@@ -55,8 +55,8 @@ udp://tracker.dler.com:6969/announce
 udp://seedpeer.net:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://trackarr.org:6969/announce
 http://ipv4.rer.lol:2710/announce
+udp://trackarr.org:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://bvarf.tracker.sh:2086/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
