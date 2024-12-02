@@ -68,9 +68,9 @@ https://tracker.pmman.tech:443/announce
 https://sparkle.ghostchu-services.top:443/announce
 https://api.ipv4online.uk:443/announce
 https://tracker.bjut.jp:443/announce
+http://taciturn-shadow.spb.ru:6969/announce
 udp://tracker.kmzs123.tk:17272/announce
 https://mathkangaroo.jp:443/announce
-http://taciturn-shadow.spb.ru:6969/announce
 udp://opentracker.io:6969/announce
 udp://wepzone.net:6969/announce
 https://retracker.x2k.ru:443/announce
