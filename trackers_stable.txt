@@ -49,8 +49,8 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker2.itzmx.com:6961/announce
 udp://tracker.breizh.pm:6969/announce
 udp://tracker.birkenwald.de:6969/announce
-udp://tracker.tryhackx.org:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://tracker.tryhackx.org:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://seedpeer.net:6969/announce
 udp://serpb.vpsburti.com:6969/announce
