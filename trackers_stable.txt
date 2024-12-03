@@ -47,8 +47,8 @@ udp://ns1.monolithindustries.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker2.itzmx.com:6961/announce
 udp://tracker.breizh.pm:6969/announce
-udp://open.demonii.com:1337/announce
 udp://tracker.birkenwald.de:6969/announce
+udp://open.demonii.com:1337/announce
 udp://trackarr.org:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.filemail.com:6969/announce
@@ -60,8 +60,8 @@ udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 http://bvarf.tracker.sh:2086/announce
 udp://www.torrent.eu.org:451/announce
 http://ipv4.rer.lol:2710/announce
-udp://tracker.gmi.gd:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
+udp://tracker.gmi.gd:6969/announce
 http://tracker.bittor.pw:1337/announce
 udp://retracker.lanta.me:2710/announce
 https://tracker.cloudit.top:443/announce
