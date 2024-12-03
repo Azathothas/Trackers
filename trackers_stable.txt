@@ -31,11 +31,11 @@ udp://open.stealth.si:80/announce
 http://tracker.vraphim.com:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
+udp://t.overflow.biz:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://tracker.beeimg.com:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.torrent.eu.org:451/announce
-udp://t.overflow.biz:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.gigantino.net:6969/announce
 http://tracker.bt4g.com:2095/announce
