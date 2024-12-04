@@ -45,9 +45,9 @@ udp://tracker.srv00.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker.netmap.top:6969/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://bandito.byterunner.io:6969/announce
-udp://tracker.birkenwald.de:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://trackarr.org:6969/announce
