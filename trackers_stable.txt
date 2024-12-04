@@ -41,11 +41,11 @@ udp://tracker.fnix.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 udp://ismaarino.com:1234/announce
 http://tracker2.itzmx.com:6961/announce
+udp://tracker.birkenwald.de:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker.netmap.top:6969/announce
-udp://tracker.birkenwald.de:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.filemail.com:6969/announce
@@ -61,8 +61,8 @@ udp://www.torrent.eu.org:451/announce
 http://bvarf.tracker.sh:2086/announce
 http://ipv4.rer.lol:2710/announce
 udp://tracker.gmi.gd:6969/announce
-http://tracker.bittor.pw:1337/announce
 udp://retracker.lanta.me:2710/announce
+http://tracker.bittor.pw:1337/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.pmman.tech:443/announce
 udp://open.demonii.com:1337/announce
