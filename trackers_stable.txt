@@ -30,9 +30,9 @@ udp://open.stealth.si:80/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
+udp://tracker.gigantino.net:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.qu.ax:6969/announce
-udp://tracker.gigantino.net:6969/announce
 https://tracker.leechshield.link:443/announce
 udp://explodie.org:6969/announce
 http://tracker.bt4g.com:2095/announce
@@ -57,8 +57,8 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://seedpeer.net:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
-http://bvarf.tracker.sh:2086/announce
 udp://www.torrent.eu.org:451/announce
+http://bvarf.tracker.sh:2086/announce
 http://ipv4.rer.lol:2710/announce
 udp://tracker.gmi.gd:6969/announce
 http://tracker.bittor.pw:1337/announce
