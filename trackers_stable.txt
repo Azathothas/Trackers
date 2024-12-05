@@ -35,7 +35,6 @@ udp://tr4ck3r.duckdns.org:6969/announce
 udp://tracker.gigantino.net:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://bt.okmp3.ru:2710/announce
-https://tr.zukizuki.org:443/announce
 udp://explodie.org:6969/announce
 udp://tracker.fnix.net:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
@@ -44,6 +43,7 @@ http://tracker2.itzmx.com:6961/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
+https://tr.zukizuki.org:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.breizh.pm:6969/announce
 http://tracker.netmap.top:6969/announce
