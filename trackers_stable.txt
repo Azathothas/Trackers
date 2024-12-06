@@ -21,6 +21,7 @@ https://t.213891.xyz:443/announce
 http://tracker.renfei.net:8080/announce
 http://tracker3.itzmx.com:6961/announce
 http://tracker4.itzmx.com:2710/announce
+https://tracker.guguan.us.kg:443/announce
 udp://exodus.desync.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tracker.0x7c0.com:6969/announce
