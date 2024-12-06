@@ -65,8 +65,8 @@ https://tracker.pmman.tech:443/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://tracker.gmi.gd:6969/announce
 http://tracker.bittor.pw:1337/announce
-https://tr.zukizuki.org:443/announce
 udp://tracker.kmzs123.tk:17272/announce
+https://tr.zukizuki.org:443/announce
 udp://open.demonii.com:1337/announce
 http://bvarf.tracker.sh:2086/announce
 https://api.ipv4online.uk:443/announce
