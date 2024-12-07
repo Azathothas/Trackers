@@ -54,13 +54,13 @@ udp://tracker.srv00.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://trackarr.org:6969/announce
 http://ipv4.rer.lol:2710/announce
-http://tracker.netmap.top:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.dev-null.rocks:443/announce
-udp://bandito.byterunner.io:6969/announce
+http://tracker.netmap.top:6969/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
+udp://bandito.byterunner.io:6969/announce
 udp://serpb.vpsburti.com:6969/announce
 http://tracker.bittor.pw:1337/announce
 https://tracker.pmman.tech:443/announce
