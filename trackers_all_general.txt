@@ -13,6 +13,7 @@ http://fleira.no:6969/announce
 http://highteahop.top:6960/announce
 http://home.yxgz.club:6969/announce
 http://ipv4.rer.lol:2710/announce
+http://ipv4announce.sktorrent.eu:6969/announce
 http://kiryuu-test.mywaifu.best:6969/announce
 http://open.acgtracker.com:1096/announce
 http://open.trackerlist.xyz:80/announce
