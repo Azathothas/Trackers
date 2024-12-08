@@ -65,9 +65,9 @@ udp://serpb.vpsburti.com:6969/announce
 http://tracker.bittor.pw:1337/announce
 https://tr.zukizuki.org:443/announce
 udp://open.demonii.com:1337/announce
-https://pybittrack.retiolus.net:443/announce
 udp://tracker.kmzs123.tk:17272/announce
 udp://tracker.gmi.gd:6969/announce
+https://pybittrack.retiolus.net:443/announce
 https://api.ipv4online.uk:443/announce
 udp://tracker.cyberia.is:6969/announce
 https://tracker.bjut.jp:443/announce
@@ -78,3 +78,4 @@ https://tr2.trkb.ru:443/announce
 http://kiryuu-test.mywaifu.best:6969/announce
 http://bvarf.tracker.sh:2086/announce
 http://open.acgtracker.com:1096/announce
+udp://tracker.valete.tf:9999/announce
