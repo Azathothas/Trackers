@@ -768,7 +768,6 @@ https://tracker.cloudit.top:443/announce
 https://tracker.crawfish.cf/announce
 https://tracker.cyber-hub.net/announce
 https://tracker.cyber-hub.net:443/announce
-https://tracker.dev-null.rocks:443/announce
 https://tracker.dmhy.pw/announce
 https://tracker.dmhy.pw:443/announce
 https://tracker.dnlab.net/announce
@@ -1044,7 +1043,6 @@ udp://rep-art.ynh.fr:6969/announce
 udp://retracker.lanta-net.ru:2710/announce
 udp://retracker.lanta.me:2710/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
-udp://rt.tace.ru:6969/announce
 udp://run-2.publictracker.xyz:6969/announce
 udp://run.publictracker.xyz:6969/announce
 udp://rutorrent.frontline-mod.com:6969/announce
