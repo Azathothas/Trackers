@@ -52,9 +52,9 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker.ipfsscan.io:443/announce
 udp://trackarr.org:6969/announce
-https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.pmman.tech:443/announce
 https://tracker.gcrenwp.top:443/announce
+https://tracker.itscraftsoftware.my.id:443/announce
 http://ipv4.rer.lol:2710/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
