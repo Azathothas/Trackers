@@ -26,10 +26,10 @@ udp://retracker.lanta.me:2710/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://tracker.qu.ax:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
-udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 http://tracker.bt4g.com:2095/announce
 udp://odd-hd.fr:6969/announce
+udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 http://tracker2.itzmx.com:6961/announce
 http://tracker1.itzmx.com:8080/announce
 udp://explodie.org:6969/announce
@@ -46,8 +46,8 @@ udp://tracker.gigantino.net:6969/announce
 https://tracker.leechshield.link:443/announce
 udp://open.dstud.io:6969/announce
 udp://seedpeer.net:6969/announce
-udp://tracker.tryhackx.org:6969/announce
 udp://tracker.srv00.com:6969/announce
+udp://tracker.tryhackx.org:6969/announce
 https://tracker.ipfsscan.io:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://trackarr.org:6969/announce
@@ -55,17 +55,17 @@ https://tracker.pmman.tech:443/announce
 https://tracker.gcrenwp.top:443/announce
 http://ipv4.rer.lol:2710/announce
 udp://www.torrent.eu.org:451/announce
-https://tracker.tamersunion.org:443/announce
 udp://bandito.byterunner.io:6969/announce
 udp://tracker.filemail.com:6969/announce
+https://tracker.tamersunion.org:443/announce
 https://tracker.cloudit.top:443/announce
 udp://serpb.vpsburti.com:6969/announce
 https://tr.zukizuki.org:443/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://open.demonii.com:1337/announce
-udp://tracker.kmzs123.tk:17272/announce
 https://tracker.bjut.jp:443/announce
 https://mathkangaroo.jp:443/announce
+udp://tracker.kmzs123.tk:17272/announce
 https://api.ipv4online.uk:443/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://tracker.gmi.gd:6969/announce
@@ -76,3 +76,4 @@ https://retracker.x2k.ru:443/announce
 http://tracker.bittor.pw:1337/announce
 https://tr2.trkb.ru:443/announce
 https://sparkle.ghostchu-services.top:443/announce
+udp://rt.tace.ru:6969/announce
