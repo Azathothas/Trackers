@@ -35,11 +35,11 @@ http://tracker2.itzmx.com:6961/announce
 http://tracker1.itzmx.com:8080/announce
 udp://explodie.org:6969/announce
 udp://t.overflow.biz:6969/announce
+udp://trackarr.org:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 http://tracker3.itzmx.com:6961/announce
 http://tracker4.itzmx.com:2710/announce
-udp://trackarr.org:6969/announce
 udp://tracker.birkenwald.de:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.breizh.pm:6969/announce
