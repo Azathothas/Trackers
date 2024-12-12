@@ -27,10 +27,10 @@ udp://trackarr.org:6969/announce
 https://tracker.leechshield.link:443/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
+udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://ismaarino.com:1234/announce
 http://tracker.bt4g.com:2095/announce
-udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://odd-hd.fr:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://explodie.org:6969/announce
@@ -45,8 +45,8 @@ udp://tracker.breizh.pm:6969/announce
 udp://seedpeer.net:6969/announce
 udp://tracker.gigantino.net:6969/announce
 http://tracker4.itzmx.com:2710/announce
-http://tracker2.itzmx.com:6961/announce
 udp://rt.tace.ru:6969/announce
+http://tracker2.itzmx.com:6961/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 https://tracker.ipfsscan.io:443/announce
