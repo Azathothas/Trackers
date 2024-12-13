@@ -1,6 +1,7 @@
 http://0123456789nonexistent.com:80/announce
 http://0d.kebhana.mx:443/announce
 http://1337.abcvg.info:80/announce
+http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 http://bt.okmp3.ru:2710/announce
 http://bt.poletracker.org:2710/announce
 http://bt1.xxxxbt.cc:6969/announce
@@ -64,6 +65,7 @@ http://www.torrentsnipe.info:2701/announce
 https://api.ipv4online.uk:443/announce
 https://mathkangaroo.jp:443/announce
 https://retracker.x2k.ru:443/announce
+https://sparkle.ghostchu-services.top:443/announce
 https://t.213891.xyz:443/announce
 https://tr.nyacat.pw:443/announce
 https://tr.zukizuki.org:443/announce
@@ -82,6 +84,7 @@ https://tracker.yemekyedim.com:443/announce
 https://trackers.mlsub.net:443/announce
 udp://amigacity.xyz:6969/announce
 udp://bandito.byterunner.io:6969/announce
+udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 udp://bt.ktrackers.com:6666/announce
 udp://bt.rer.lol:2710/announce
 udp://bt.rer.lol:6969/announce
@@ -91,12 +94,13 @@ udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://evan.im:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
-udp://freedomalternative.com:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://ipv4announce.sktorrent.eu:6969/announce
+udp://isk.richardsw.club:6969/announce
 udp://ismaarino.com:1234/announce
 udp://jutone.com:6969/announce
 udp://martin-gebhardt.eu:25/announce
+udp://ns-1.x-fins.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://open.demonii.com:1337/announce
@@ -137,7 +141,6 @@ udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://tracker.vds.nz:6969/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://tracker1.bt.moack.co.kr:80/announce
 udp://tracker1.myporn.club:9337/announce
