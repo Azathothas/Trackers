@@ -47,10 +47,10 @@ http://tracker4.itzmx.com:2710/announce
 udp://tracker.breizh.pm:6969/announce
 udp://seedpeer.net:6969/announce
 http://tracker2.itzmx.com:6961/announce
-udp://tracker.gigantino.net:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 https://tracker.ipfsscan.io:443/announce
+udp://tracker.gigantino.net:6969/announce
 http://ipv4.rer.lol:2710/announce
 udp://www.torrent.eu.org:451/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
