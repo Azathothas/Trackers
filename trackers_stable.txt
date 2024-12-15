@@ -70,6 +70,6 @@ https://mathkangaroo.jp:443/announce
 https://api.ipv4online.uk:443/announce
 udp://tracker.cyberia.is:6969/announce
 https://retracker.x2k.ru:443/announce
-udp://tracker.gmi.gd:6969/announce
 http://tracker.mywaifu.best:6969/announce
+udp://tracker.gmi.gd:6969/announce
 http://open.acgtracker.com:1096/announce
