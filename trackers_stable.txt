@@ -72,4 +72,3 @@ udp://tracker.cyberia.is:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.gmi.gd:6969/announce
 http://open.acgtracker.com:1096/announce
-https://tr2.trkb.ru:443/announce
