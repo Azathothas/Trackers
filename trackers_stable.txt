@@ -35,8 +35,8 @@ udp://tracker.qu.ax:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://rt.tace.ru:6969/announce
-udp://explodie.org:6969/announce
 http://tracker3.itzmx.com:6961/announce
+udp://explodie.org:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.birkenwald.de:6969/announce
@@ -69,7 +69,7 @@ https://tracker.bjut.jp:443/announce
 https://mathkangaroo.jp:443/announce
 https://api.ipv4online.uk:443/announce
 udp://tracker.cyberia.is:6969/announce
-https://retracker.x2k.ru:443/announce
 http://tracker.mywaifu.best:6969/announce
+https://retracker.x2k.ru:443/announce
 udp://tracker.gmi.gd:6969/announce
 http://open.acgtracker.com:1096/announce
