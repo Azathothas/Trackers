@@ -35,8 +35,8 @@ udp://tracker.qu.ax:6969/announce
 udp://odd-hd.fr:6969/announce
 udp://explodie.org:6969/announce
 udp://t.overflow.biz:6969/announce
-http://tracker3.itzmx.com:6961/announce
 udp://rt.tace.ru:6969/announce
+http://tracker3.itzmx.com:6961/announce
 udp://tracker.dler.com:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.birkenwald.de:6969/announce
