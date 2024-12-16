@@ -70,4 +70,5 @@ https://mathkangaroo.jp:443/announce
 https://api.ipv4online.uk:443/announce
 udp://rt.tace.ru:6969/announce
 https://retracker.x2k.ru:443/announce
+http://open.acgtracker.com:1096/announce
 udp://tracker.gmi.gd:6969/announce
