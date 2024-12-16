@@ -54,7 +54,6 @@ udp://tracker.gigantino.net:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
 https://tracker.gcrenwp.top:443/announce
-http://fleira.no:6969/announce
 http://tracker.mywaifu.best:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://bandito.byterunner.io:6969/announce
@@ -64,6 +63,7 @@ udp://tracker.kmzs123.tk:17272/announce
 https://tr.zukizuki.org:443/announce
 udp://open.demonii.com:1337/announce
 udp://serpb.vpsburti.com:6969/announce
+http://fleira.no:6969/announce
 udp://opentracker.io:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://tracker.cyberia.is:6969/announce
