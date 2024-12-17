@@ -7,7 +7,6 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://evan.im:6969/announce
-https://tracker.yemekyedim.com:443/announce
 udp://martin-gebhardt.eu:25/announce
 udp://amigacity.xyz:6969/announce
 udp://trackarr.org:6969/announce
@@ -21,6 +20,7 @@ http://tracker.vraphim.com:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://tracker.fnix.net:6969/announce
+https://tracker.yemekyedim.com:443/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
@@ -58,8 +58,8 @@ udp://bandito.byterunner.io:6969/announce
 https://tracker.cloudit.top:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.filemail.com:6969/announce
-udp://open.demonii.com:1337/announce
 udp://opentracker.io:6969/announce
+udp://open.demonii.com:1337/announce
 udp://serpb.vpsburti.com:6969/announce
 udp://tracker.kmzs123.tk:17272/announce
 http://ipv4announce.sktorrent.eu:6969/announce
