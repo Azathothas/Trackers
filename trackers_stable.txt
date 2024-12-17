@@ -71,4 +71,3 @@ udp://rt.tace.ru:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.deadorbit.nl:6969/announce
 https://tr2.trkb.ru:443/announce
-https://tr.zukizuki.org:443/announce
