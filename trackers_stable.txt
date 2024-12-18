@@ -60,8 +60,8 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://opentracker.io:6969/announce
 udp://tracker.kmzs123.tk:17272/announce
 udp://tracker.filemail.com:6969/announce
-udp://open.demonii.com:1337/announce
 udp://serpb.vpsburti.com:6969/announce
+udp://open.demonii.com:1337/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://tracker.cyberia.is:6969/announce
 https://tracker.bjut.jp:443/announce
