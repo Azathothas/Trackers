@@ -54,8 +54,8 @@ udp://tracker.srv00.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 https://tracker.ipfsscan.io:443/announce
 udp://tracker.gigantino.net:6969/announce
-udp://bandito.byterunner.io:6969/announce
 udp://serpb.vpsburti.com:6969/announce
+udp://bandito.byterunner.io:6969/announce
 udp://opentracker.io:6969/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.kmzs123.tk:17272/announce
