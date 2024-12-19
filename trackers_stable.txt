@@ -70,4 +70,3 @@ https://api.ipv4online.uk:443/announce
 udp://tracker.deadorbit.nl:6969/announce
 https://retracker.x2k.ru:443/announce
 https://tr2.trkb.ru:443/announce
-udp://tracker.qu.ax:6969/announce
