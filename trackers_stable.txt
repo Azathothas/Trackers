@@ -60,14 +60,14 @@ udp://open.demonii.com:1337/announce
 udp://tracker.filemail.com:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://tracker.kmzs123.tk:17272/announce
-https://tracker.pmman.tech:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://tracker.leechshield.link:443/announce
 udp://tracker.deadorbit.nl:6969/announce
+https://tracker.pmman.tech:443/announce
 https://tracker.bjut.jp:443/announce
 https://mathkangaroo.jp:443/announce
 https://api.ipv4online.uk:443/announce
-udp://tracker.cyberia.is:6969/announce
 udp://tr3.ysagin.top:2715/announce
+udp://tracker.cyberia.is:6969/announce
 https://retracker.x2k.ru:443/announce
 https://tr2.trkb.ru:443/announce
