@@ -38,13 +38,13 @@ https://tracker.lilithraws.org:443/announce
 http://tracker4.itzmx.com:2710/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.birkenwald.de:6969/announce
-udp://open.dstud.io:6969/announce
 http://tracker2.itzmx.com:6961/announce
 udp://tracker.breizh.pm:6969/announce
-udp://u4.trakx.crim.ist:1337/announce
+udp://open.dstud.io:6969/announce
 http://tracker.vraphim.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
+udp://u4.trakx.crim.ist:1337/announce
 udp://www.torrent.eu.org:451/announce
 http://ipv4.rer.lol:2710/announce
 udp://tracker.srv00.com:6969/announce
