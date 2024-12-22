@@ -2,7 +2,6 @@ udp://z.mercax.com:53/announce
 http://bt.okmp3.ru:2710/announce
 http://tracker.mywaifu.best:6969/announce
 https://trackers.mlsub.net:443/announce
-udp://tracker.0x7c0.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
@@ -17,6 +16,7 @@ http://tracker.renfei.net:8080/announce
 udp://udp.tracker.projectk.org:23333/announce
 http://tr.movian.eu:6969/announce
 udp://tracker.opentrackr.org:1337/announce
+udp://tracker.0x7c0.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://retracker.lanta.me:2710/announce
 https://tracker.gcrenwp.top:443/announce
@@ -44,8 +44,8 @@ udp://p2p.publictracker.xyz:6969/announce
 http://tracker2.itzmx.com:6961/announce
 udp://open.dstud.io:6969/announce
 http://tracker.vraphim.com:6969/announce
-udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.tryhackx.org:6969/announce
+udp://d40969.acod.regrucolo.ru:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://ipv4.rer.lol:2710/announce
 udp://tracker.srv00.com:6969/announce
