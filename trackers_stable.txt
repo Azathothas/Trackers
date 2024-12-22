@@ -66,6 +66,6 @@ https://mathkangaroo.jp:443/announce
 https://api.ipv4online.uk:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://retracker.x2k.ru:443/announce
-udp://tr3.ysagin.top:2715/announce
 udp://tracker.cyberia.is:6969/announce
+udp://tr3.ysagin.top:2715/announce
 https://tr2.trkb.ru:443/announce
