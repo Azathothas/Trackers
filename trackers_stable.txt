@@ -70,5 +70,4 @@ http://tr1.aag.moe:2095/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.cyberia.is:6969/announce
 https://tr2.trkb.ru:443/announce
-udp://tr3.ysagin.top:2715/announce
 udp://tracker.valete.tf:9999/announce
