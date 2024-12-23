@@ -64,6 +64,7 @@ https://mathkangaroo.jp:443/announce
 https://retracker.x2k.ru:443/announce
 https://sparkle.ghostchu-services.top:443/announce
 https://t.213891.xyz:443/announce
+https://torrent.tracker.durukanbal.com:443/announce
 https://tr.nyacat.pw:443/announce
 https://tr.zukizuki.org:443/announce
 https://tr2.trkb.ru:443/announce
