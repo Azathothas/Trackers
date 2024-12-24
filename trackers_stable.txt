@@ -40,8 +40,8 @@ udp://ns1.monolithindustries.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 https://tracker.bjut.jp:443/announce
 https://mathkangaroo.jp:443/announce
-http://tracker4.itzmx.com:2710/announce
 https://api.ipv4online.uk:443/announce
+http://tracker4.itzmx.com:2710/announce
 http://tracker2.itzmx.com:6961/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.breizh.pm:6969/announce
