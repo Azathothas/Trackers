@@ -59,9 +59,9 @@ udp://bandito.byterunner.io:6969/announce
 http://tr1.aag.moe:2095/announce
 https://tracker.cloudit.top:443/announce
 udp://serpb.vpsburti.com:6969/announce
+udp://cq.kmzs123.cn:17272/announce
 udp://tracker.filemail.com:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
-udp://cq.kmzs123.cn:17272/announce
 https://tracker.ipfsscan.io:443/announce
 udp://tracker.kmzs123.tk:17272/announce
 udp://tr.movian.eu:6969/announce
