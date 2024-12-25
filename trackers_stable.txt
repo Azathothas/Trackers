@@ -69,7 +69,7 @@ udp://tracker.kmzs123.tk:17272/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.cyberia.is:6969/announce
-https://tracker.gcrenwp.top:443/announce
 https://torrent.tracker.durukanbal.com:443/announce
 https://tr2.trkb.ru:443/announce
+https://tracker.gcrenwp.top:443/announce
 udp://tracker.valete.tf:9999/announce
