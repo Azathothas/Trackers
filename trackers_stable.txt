@@ -56,10 +56,10 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 udp://cq.kmzs123.cn:17272/announce
 udp://tracker.srv00.com:6969/announce
-udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
-udp://www.torrent.eu.org:451/announce
+udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://tracker.filemail.com:6969/announce
+udp://www.torrent.eu.org:451/announce
 https://tracker.cloudit.top:443/announce
 udp://tracker.gigantino.net:6969/announce
 udp://tracker.kmzs123.tk:17272/announce
@@ -69,11 +69,10 @@ udp://tr.movian.eu:6969/announce
 udp://opentracker.io:6969/announce
 udp://wepzone.net:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
-udp://tracker-us.silksa.co.za:6969/announce
 https://tr.zukizuki.org:443/announce
+udp://tracker-us.silksa.co.za:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.deadorbit.nl:6969/announce
 https://tr2.trkb.ru:443/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.valete.tf:9999/announce
-udp://tracker.cyberia.is:6969/announce
