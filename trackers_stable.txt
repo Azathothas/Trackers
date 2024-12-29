@@ -76,3 +76,4 @@ https://tr2.trkb.ru:443/announce
 udp://tracker.deadorbit.nl:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.valete.tf:9999/announce
+udp://tracker-udp.gbitt.info:80/announce
