@@ -39,11 +39,11 @@ udp://t.overflow.biz:6969/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 http://tracker4.itzmx.com:2710/announce
+http://ipv4announce.sktorrent.eu:6969/announce
 udp://open.dstud.io:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 http://tr1.aag.moe:2095/announce
 http://tracker2.itzmx.com:6961/announce
-http://ipv4announce.sktorrent.eu:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
@@ -60,8 +60,8 @@ udp://www.torrent.eu.org:451/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://cq.kmzs123.cn:17272/announce
-https://tracker.cloudit.top:443/announce
 udp://tracker.kmzs123.tk:17272/announce
+https://tracker.cloudit.top:443/announce
 https://tracker.ipfsscan.io:443/announce
 https://tracker.guguan.us.kg:443/announce
 udp://tr.movian.eu:6969/announce
@@ -70,9 +70,9 @@ udp://opentracker.io:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://tr.zukizuki.org:443/announce
 udp://tracker-us.silksa.co.za:6969/announce
-udp://tracker.gigantino.net:6969/announce
-https://retracker.x2k.ru:443/announce
 https://tr2.trkb.ru:443/announce
+https://retracker.x2k.ru:443/announce
+udp://tracker.gigantino.net:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 https://torrent.tracker.durukanbal.com:443/announce
