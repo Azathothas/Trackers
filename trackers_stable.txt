@@ -65,8 +65,8 @@ udp://tracker.kmzs123.tk:17272/announce
 https://tracker.ipfsscan.io:443/announce
 https://tracker.guguan.us.kg:443/announce
 udp://tr.movian.eu:6969/announce
-udp://tracker.gigantino.net:6969/announce
 udp://wepzone.net:6969/announce
+udp://tracker.gigantino.net:6969/announce
 udp://opentracker.io:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://tr.zukizuki.org:443/announce
