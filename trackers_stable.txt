@@ -52,8 +52,8 @@ http://tracker.vraphim.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
 http://ipv4.rer.lol:2710/announce
 udp://retracker.hotplug.ru:2710/announce
-udp://d40969.acod.regrucolo.ru:6969/announce
 http://ipv4announce.sktorrent.eu:6969/announce
+udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://cq.kmzs123.cn:17272/announce
