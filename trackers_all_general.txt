@@ -136,7 +136,6 @@ udp://tracker.filemail.com:6969/announce
 udp://tracker.fnix.net:6969/announce
 udp://tracker.gigantino.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
-udp://tracker.internetwarriors.net:1337/announce
 udp://tracker.kmzs123.tk:17272/announce
 udp://tracker.ololosh.space:6969/announce
 udp://tracker.opentrackr.org:1337/announce
