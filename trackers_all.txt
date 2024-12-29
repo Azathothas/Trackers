@@ -1097,11 +1097,13 @@ udp://tracker.btsync.gq:233/announce
 udp://tracker.ccc.de:80/announce
 udp://tracker.ccp.ovh:6969/announce
 udp://tracker.cubonegro.xyz:6969/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://tracker.ddunlimited.net:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.dler.org:6969/announce
+udp://tracker.draatman.uk:6969/announce
 udp://tracker.dump.cl:6969/announce
 udp://tracker.edkj.club:6969/announce
 udp://tracker.ex.ua:80/announce
