@@ -47,8 +47,8 @@ udp://open.dstud.io:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://ns1.monolithindustries.com:6969/announce
 udp://serpb.vpsburti.com:6969/announce
-http://tracker.vraphim.com:6969/announce
 udp://tracker.tryhackx.org:6969/announce
+http://tracker.vraphim.com:6969/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
 http://ipv4.rer.lol:2710/announce
 udp://retracker.hotplug.ru:2710/announce
@@ -72,8 +72,7 @@ udp://tracker.draatman.uk:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://tr.zukizuki.org:443/announce
 udp://tracker-us.silksa.co.za:6969/announce
-https://tr2.trkb.ru:443/announce
 https://torrent.tracker.durukanbal.com:443/announce
+https://tr2.trkb.ru:443/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.deadorbit.nl:6969/announce
-https://tracker.ipfsscan.io:443/announce
