@@ -1,3 +1,4 @@
+udp://tracker.opentrackr.org:1337/announce
 udp://tracker.birkenwald.de:6969/announce
 http://bt.okmp3.ru:2710/announce
 udp://tracker.torrent.eu.org:451/announce
@@ -19,7 +20,6 @@ https://t.213891.xyz:443/announce
 http://tracker.renfei.net:8080/announce
 udp://udp.tracker.projectk.org:23333/announce
 https://tr.nyacat.pw:443/announce
-udp://tracker.opentrackr.org:1337/announce
 udp://explodie.org:6969/announce
 http://tracker.bt4g.com:2095/announce
 http://ipv4announce.sktorrent.eu:6969/announce
@@ -67,13 +67,13 @@ https://tracker.cloudit.top:443/announce
 udp://tr.movian.eu:6969/announce
 udp://tracker.valete.tf:9999/announce
 udp://mikrotik2.draatman.net:6969/announce
-https://tracker.guguan.us.kg:443/announce
 udp://tracker.draatman.uk:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
+https://tracker.guguan.us.kg:443/announce
 udp://opentracker.io:6969/announce
 https://tr.zukizuki.org:443/announce
 udp://tracker-us.silksa.co.za:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
+https://retracker.x2k.ru:443/announce
 https://tr2.trkb.ru:443/announce
 udp://tracker.deadorbit.nl:6969/announce
-https://retracker.x2k.ru:443/announce
