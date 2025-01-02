@@ -74,7 +74,6 @@ https://tracker.bjut.jp:443/announce
 https://tracker.bt4g.com:443/announce
 https://tracker.cloudit.top:443/announce
 https://tracker.gcrenwp.top:443/announce
-https://tracker.guguan.us.kg:443/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 https://tracker.leechshield.link:443/announce
 https://tracker.lilithraws.org:443/announce
