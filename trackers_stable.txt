@@ -70,10 +70,10 @@ udp://tracker.draatman.uk:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://tr.zukizuki.org:443/announce
 udp://opentracker.io:6969/announce
-udp://tracker-us.silksa.co.za:6969/announce
 udp://betelgeuse.freeddns.org:6969/announce
+udp://tracker-us.silksa.co.za:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
-https://retracker.x2k.ru:443/announce
 udp://tracker.deadorbit.nl:6969/announce
+https://retracker.x2k.ru:443/announce
 https://tr2.trkb.ru:443/announce
 udp://r.l5.ca:6969/announce
