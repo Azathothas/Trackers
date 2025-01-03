@@ -4,6 +4,7 @@ http://bt.okmp3.ru:2710/announce
 udp://tracker.torrent.eu.org:451/announce
 https://trackers.mlsub.net:443/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
+udp://tracker.fnix.net:6969/announce
 udp://evan.im:6969/announce
 https://tracker.yemekyedim.com:443/announce
 udp://martin-gebhardt.eu:25/announce
@@ -22,7 +23,6 @@ udp://udp.tracker.projectk.org:23333/announce
 https://tr.nyacat.pw:443/announce
 udp://explodie.org:6969/announce
 http://tracker.bt4g.com:2095/announce
-udp://tracker.fnix.net:6969/announce
 udp://seedpeer.net:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://open.stealth.si:80/announce
