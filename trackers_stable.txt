@@ -23,7 +23,6 @@ udp://udp.tracker.projectk.org:23333/announce
 https://tr.nyacat.pw:443/announce
 udp://explodie.org:6969/announce
 http://tracker.bt4g.com:2095/announce
-udp://seedpeer.net:6969/announce
 http://tracker1.itzmx.com:8080/announce
 udp://open.stealth.si:80/announce
 http://tracker.mywaifu.best:6969/announce
@@ -32,6 +31,7 @@ udp://u6.trakx.crim.ist:1337/announce
 udp://odd-hd.fr:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://retracker.lanta.me:2710/announce
+udp://seedpeer.net:6969/announce
 https://tracker.leechshield.link:443/announce
 http://tracker3.itzmx.com:6961/announce
 udp://exodus.desync.com:6969/announce
@@ -67,11 +67,11 @@ udp://tracker.kmzs123.tk:17272/announce
 udp://betelgeuse.freeddns.org:6969/announce
 udp://mikrotik2.draatman.net:6969/announce
 udp://tracker.draatman.uk:6969/announce
-https://mathkangaroo.jp:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
+https://mathkangaroo.jp:443/announce
 udp://opentracker.io:6969/announce
-https://tr.zukizuki.org:443/announce
 http://tracker.bittor.pw:1337/announce
+https://tr.zukizuki.org:443/announce
 udp://tracker-us.silksa.co.za:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 https://tr2.trkb.ru:443/announce
