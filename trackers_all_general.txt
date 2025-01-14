@@ -50,7 +50,6 @@ http://tracker.renfei.net:8080/announce
 http://tracker.sbsub.com:2710/announce
 http://tracker.srv00.com:6969/announce
 http://tracker.vanitycore.co:6969/announce
-http://tracker.vraphim.com:6969/announce
 http://tracker.waaa.moe:6969/announce
 http://tracker.xiaoduola.xyz:6969/announce
 http://tracker1.itzmx.com:8080/announce
@@ -68,7 +67,6 @@ https://sparkle.ghostchu-services.top:443/announce
 https://torrent.tracker.durukanbal.com:443/announce
 https://tr.nyacat.pw:443/announce
 https://tr.zukizuki.org:443/announce
-https://tr2.trkb.ru:443/announce
 https://tracker-zhuqiy.dgj055.icu:443/announce
 https://tracker.bjut.jp:443/announce
 https://tracker.bt4g.com:443/announce
