@@ -53,7 +53,6 @@ http://tracker.vanitycore.co:6969/announce
 http://tracker.waaa.moe:6969/announce
 http://tracker.xiaoduola.xyz:6969/announce
 http://tracker2.dler.org:80/announce
-http://tracker2.itzmx.com:6961/announce
 http://tracker810.xyz:11450/announce
 http://wepzone.net:6969/announce
 http://www.genesis-sp.org:2710/announce
