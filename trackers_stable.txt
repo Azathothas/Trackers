@@ -47,8 +47,8 @@ udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://tracker.kmzs123.tk:17272/announce
 udp://wepzone.net:6969/announce
-udp://cq.kmzs123.cn:17272/announce
 https://tracker.lilithraws.org:443/announce
+udp://cq.kmzs123.cn:17272/announce
 udp://tracker.filemail.com:6969/announce
 https://tracker.itscraftsoftware.my.id:443/announce
 http://ipv4announce.sktorrent.eu:6969/announce
@@ -59,7 +59,7 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.dler.com:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.gmi.gd:6969/announce
-udp://serpb.vpsburti.com:6969/announce
 https://retracker.x2k.ru:443/announce
+udp://serpb.vpsburti.com:6969/announce
 udp://opentracker.io:6969/announce
 udp://tr3.ysagin.top:2715/announce
