@@ -792,7 +792,6 @@ https://tracker.kitaujisub.site/announce.php?authkey=213|10003|j46n2q
 https://tracker.kitaujisub.site/announce.php?authkey=215|10003|j46n2q
 https://tracker.kuroy.me/announce
 https://tracker.kuroy.me:443/announce
-https://tracker.leechshield.link:443/announce
 https://tracker.lelux.fi/announce
 https://tracker.lelux.fi:443/announce
 https://tracker.lilithraws.cf/announce
@@ -972,6 +971,7 @@ udp://cutscloud.duckdns.org:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://devops.gay:6969/announce
 udp://dht.bt251.com:6969/announce
+udp://discord.heihachi.pw:6969/announce
 udp://download.nerocloud.me:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://elementsbrowser.com:6969/announce
