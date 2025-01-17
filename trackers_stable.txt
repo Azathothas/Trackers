@@ -57,3 +57,4 @@ https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.dler.com:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://opentracker.io:6969/announce
+udp://tr3.ysagin.top:2715/announce
