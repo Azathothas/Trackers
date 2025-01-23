@@ -35,10 +35,10 @@ udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.deadorbit.nl:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 https://tracker.gcrenwp.top:443/announce
+udp://tracker.gigantino.net:6969/announce
 udp://tracker.valete.tf:9999/announce
 http://ipv4.rer.lol:2710/announce
 http://bt.okmp3.ru:2710/announce
-udp://tracker.gigantino.net:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://t.overflow.biz:6969/announce
 udp://tracker.0x7c0.com:6969/announce
@@ -56,4 +56,3 @@ udp://tracker.dler.com:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://opentracker.io:6969/announce
-https://retracker.x2k.ru:443/announce
