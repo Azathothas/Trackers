@@ -12,7 +12,6 @@ http://fleira.no:6969/announce
 http://highteahop.top:6960/announce
 http://home.yxgz.club:6969/announce
 http://ipv4.rer.lol:2710/announce
-http://ipv4announce.sktorrent.eu:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://open.acgtracker.com:1096/announce
 http://open.tracker.cl:1337/announce
@@ -58,7 +57,6 @@ http://wepzone.net:6969/announce
 http://www.genesis-sp.org:2710/announce
 http://www.torrentsnipe.info:2701/announce
 https://api.ipv4online.uk:443/announce
-https://retracker.x2k.ru:443/announce
 https://sparkle.ghostchu-services.top:443/announce
 https://torrent.tracker.durukanbal.com:443/announce
 https://tr.nyacat.pw:443/announce
