@@ -54,5 +54,5 @@ udp://tracker.gmi.gd:6969/announce
 udp://www.torrent.eu.org:451/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://tracker.dler.com:6969/announce
-udp://tracker.valete.tf:9999/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
+udp://tracker.valete.tf:9999/announce
