@@ -21,6 +21,7 @@ https://tracker.moeking.me:443/announce
 http://tracker.renfei.net:8080/announce
 udp://udp.tracker.projectk.org:23333/announce
 https://tr.nyacat.pw:443/announce
+https://tracker.wsaoa.eu.org:443/announce
 udp://open.stealth.si:80/announce
 http://tracker.bt4g.com:2095/announce
 udp://tracker.torrent.eu.org:451/announce
