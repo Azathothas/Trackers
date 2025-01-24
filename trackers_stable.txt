@@ -38,10 +38,10 @@ https://tracker.gcrenwp.top:443/announce
 udp://tracker.gigantino.net:6969/announce
 http://ipv4.rer.lol:2710/announce
 http://bt.okmp3.ru:2710/announce
-udp://tracker.valete.tf:9999/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://t.overflow.biz:6969/announce
+udp://tracker.valete.tf:9999/announce
 udp://tracker.kmzs123.tk:17272/announce
 udp://tracker.srv00.com:6969/announce
 udp://cq.kmzs123.cn:17272/announce
