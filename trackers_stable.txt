@@ -50,10 +50,11 @@ udp://tracker.filemail.com:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://tracker.gmi.gd:6969/announce
 https://tracker.lilithraws.org:443/announce
-https://tracker.wsaoa.eu.org:443/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://tracker.dler.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.kmzs123.tk:17272/announce
+https://tracker.wsaoa.eu.org:443/announce
 udp://cq.kmzs123.cn:17272/announce
+udp://tracker.cyberia.is:6969/announce
