@@ -751,6 +751,7 @@ https://tr.torland.ga:443/announce
 https://tr.zukizuki.org:443/announce
 https://tracker-zhuqiy.dgj055.icu:443/announce
 https://tracker.4.babico.name.tr/announce
+https://tracker.aburaya.live:443/announce
 https://tracker.baka.ink/announce
 https://tracker.baka.ink:443/announce
 https://tracker.bangumi.zip/announce
@@ -1125,7 +1126,6 @@ udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.trackerfix.com:80/announce
 udp://tracker.trackerfix.com:82/announce
 udp://tracker.tryhackx.org:6969/announce
-udp://tracker.valete.tf:9999/announce
 udp://tracker.yangxiaoguozi.cn:6969/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://tracker.zaluan.xyz:6969/announce
