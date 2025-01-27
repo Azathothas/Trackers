@@ -50,8 +50,8 @@ http://ipv4.rer.lol:2710/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://tracker.deadorbit.nl:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
+udp://tracker.deadorbit.nl:6969/announce
 udp://tracker.dler.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://tracker.wsaoa.eu.org:443/announce
