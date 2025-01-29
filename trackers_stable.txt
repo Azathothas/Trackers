@@ -49,9 +49,9 @@ udp://tracker.gmi.gd:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.filemail.com:6969/announce
 udp://www.torrent.eu.org:451/announce
+http://0123456789nonexistent.com:80/announce
 udp://ipv4.rer.lol:2710/announce
 https://torrent.tracker.durukanbal.com:443/announce
-http://0123456789nonexistent.com:80/announce
 udp://tracker.darkness.services:6969/announce
 udp://tracker.dler.com:6969/announce
 https://tracker.wsaoa.eu.org:443/announce
