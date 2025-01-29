@@ -49,13 +49,13 @@ http://ipv6.rer.lol:6969/announce
 udp://tracker.gmi.gd:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.filemail.com:6969/announce
+udp://www.torrent.eu.org:451/announce
 udp://ipv4.rer.lol:2710/announce
 udp://tracker.darkness.services:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
-udp://www.torrent.eu.org:451/announce
-https://tracker.wsaoa.eu.org:443/announce
 udp://tracker.dler.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
+https://tracker.wsaoa.eu.org:443/announce
 udp://tracker.cyberia.is:6969/announce
 udp://opentracker.io:6969/announce
 udp://tr3.ysagin.top:2715/announce
