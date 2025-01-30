@@ -46,9 +46,9 @@ http://0123456789nonexistent.com:80/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
-udp://tracker.darkness.services:6969/announce
 udp://tracker.gmi.gd:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://tracker.darkness.services:6969/announce
 https://tracker.lilithraws.org:443/announce
 udp://tracker.filemail.com:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
@@ -60,5 +60,5 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.cyberia.is:6969/announce
 http://tracker.bittor.pw:1337/announce
 udp://tracker-udp.gbitt.info:80/announce
-udp://opentracker.io:6969/announce
 udp://tr3.ysagin.top:2715/announce
+udp://opentracker.io:6969/announce
