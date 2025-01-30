@@ -42,8 +42,8 @@ http://bt.okmp3.ru:2710/announce
 udp://t.overflow.biz:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 udp://tracker.kmzs123.cn:17272/announce
-http://0123456789nonexistent.com:80/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
+http://0123456789nonexistent.com:80/announce
 udp://tracker.srv00.com:6969/announce
 udp://wepzone.net:6969/announce
 udp://tracker.gmi.gd:6969/announce
@@ -57,8 +57,8 @@ udp://ipv4.rer.lol:2710/announce
 https://tracker.wsaoa.eu.org:443/announce
 udp://tracker.dler.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
-udp://tracker.cyberia.is:6969/announce
 http://tracker.bittor.pw:1337/announce
+udp://tracker.cyberia.is:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 udp://tr3.ysagin.top:2715/announce
 udp://opentracker.io:6969/announce
