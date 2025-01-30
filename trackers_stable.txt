@@ -54,8 +54,8 @@ https://tracker.lilithraws.org:443/announce
 udp://www.torrent.eu.org:451/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://ipv4.rer.lol:2710/announce
-udp://tracker-udp.gbitt.info:80/announce
 https://tracker.kmzs123.com:443/announce
+udp://tracker-udp.gbitt.info:80/announce
 udp://tracker.dler.com:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.cyberia.is:6969/announce
