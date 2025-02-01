@@ -1,10 +1,12 @@
 udp://tracker.opentrackr.org:1337/announce
+udp://p4p.arenabg.com:1337/announce
 udp://explodie.org:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://tracker.birkenwald.de:6969/announce
 http://tracker.mywaifu.best:6969/announce
 udp://u4.trakx.crim.ist:1337/announce
 udp://u6.trakx.crim.ist:1337/announce
+udp://wepzone.net:6969/announce
 udp://tracker.0x7c0.com:6969/announce
 udp://ttk2.nbaonlineservice.com:6969/announce
 udp://evan.im:6969/announce
@@ -22,7 +24,6 @@ udp://udp.tracker.projectk.org:23333/announce
 https://tr.nyacat.pw:443/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://open.demonii.com:1337/announce
-udp://wepzone.net:6969/announce
 udp://tracker.fnix.net:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://tr4ck3r.duckdns.org:6969/announce
@@ -43,14 +44,14 @@ udp://tracker.tryhackx.org:6969/announce
 http://0123456789nonexistent.com:80/announce
 udp://tracker.gigantino.net:6969/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
-udp://tracker.filemail.com:6969/announce
 udp://tracker.gmi.gd:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://tracker.srv00.com:6969/announce
 https://tracker.lilithraws.org:443/announce
 http://tracker.bittor.pw:1337/announce
 udp://tracker.darkness.services:6969/announce
-udp://www.torrent.eu.org:451/announce
 https://torrent.tracker.durukanbal.com:443/announce
+udp://www.torrent.eu.org:451/announce
 http://ipv6.rer.lol:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://tracker.cyberia.is:6969/announce
