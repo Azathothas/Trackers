@@ -57,5 +57,5 @@ udp://tracker.cyberia.is:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://opentracker.io:6969/announce
-udp://tracker.dler.com:6969/announce
 udp://tr3.ysagin.top:2715/announce
+udp://tracker.dler.com:6969/announce
