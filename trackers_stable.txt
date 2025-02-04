@@ -55,8 +55,8 @@ https://tracker.aburaya.live:443/announce
 http://ipv6.rer.lol:6969/announce
 udp://tracker.cyberia.is:6969/announce
 udp://tracker.dler.com:6969/announce
-udp://ipv4.rer.lol:2710/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
+udp://ipv4.rer.lol:2710/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://opentracker.io:6969/announce
 udp://tracker-udp.gbitt.info:80/announce
