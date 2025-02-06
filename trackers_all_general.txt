@@ -86,7 +86,6 @@ udp://ipv4announce.sktorrent.eu:6969/announce
 udp://isk.richardsw.club:6969/announce
 udp://ismaarino.com:1234/announce
 udp://leet-tracker.moe:1337/announce
-udp://martin-gebhardt.eu:25/announce
 udp://ns-1.x-fins.com:6969/announce
 udp://open.demonii.com:1337/announce
 udp://open.dstud.io:6969/announce
