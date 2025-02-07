@@ -32,11 +32,11 @@ udp://tracker.tryhackx.org:6969/announce
 http://0123456789nonexistent.com:80/announce
 udp://tracker.fnix.net:6969/announce
 udp://t.overflow.biz:6969/announce
-https://tracker.lilithraws.org:443/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://tracker.srv00.com:6969/announce
+https://tracker.lilithraws.org:443/announce
 http://tracker.bittor.pw:1337/announce
 udp://exodus.desync.com:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.gigantino.net:6969/announce
 https://tracker.aburaya.live:443/announce
@@ -53,8 +53,8 @@ udp://tracker.yume-hatsuyuki.moe:6969/announce
 udp://tracker.darkness.services:6969/announce
 http://fleira.no:6969/announce
 udp://tracker.dler.com:6969/announce
-https://tracker.kmzs123.com:443/announce
 udp://tracker.breizh.pm:6969/announce
+https://tracker.kmzs123.com:443/announce
 udp://ipv4.rer.lol:2710/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://opentracker.io:6969/announce
