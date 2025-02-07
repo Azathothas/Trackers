@@ -27,10 +27,10 @@ udp://d40969.acod.regrucolo.ru:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 udp://tracker.gmi.gd:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
+http://fleira.no:6969/announce
 udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://p4p.arenabg.com:1337/announce
 udp://tracker.tryhackx.org:6969/announce
-http://fleira.no:6969/announce
 http://0123456789nonexistent.com:80/announce
 udp://tracker.fnix.net:6969/announce
 udp://t.overflow.biz:6969/announce
