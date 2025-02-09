@@ -29,8 +29,8 @@ udp://tracker.gmi.gd:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
 udp://p4p.arenabg.com:1337/announce
-udp://t.overflow.biz:6969/announce
 https://tracker.leechshield.link:443/announce
+udp://t.overflow.biz:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://tracker.tryhackx.org:6969/announce
 https://tracker.lilithraws.org:443/announce
@@ -41,11 +41,11 @@ udp://tracker.cyberia.is:6969/announce
 udp://tracker.gigantino.net:6969/announce
 http://tracker.bittor.pw:1337/announce
 https://torrent.tracker.durukanbal.com:443/announce
-udp://www.torrent.eu.org:451/announce
 udp://exodus.desync.com:6969/announce
+udp://www.torrent.eu.org:451/announce
 udp://tracker.filemail.com:6969/announce
-udp://tracker.fnix.net:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://tracker.fnix.net:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://evan.im:6969/announce
 udp://bandito.byterunner.io:6969/announce
@@ -56,8 +56,9 @@ udp://retracker.lanta.me:2710/announce
 udp://tracker.kmzs123.cn:17272/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
-udp://opentracker.io:6969/announce
 udp://ipv4.rer.lol:2710/announce
+udp://opentracker.io:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 https://retracker.x2k.ru:443/announce
 udp://udp.tracker.projectk.org:23333/announce
+http://tracker.ipv6tracker.ru:80/announce
