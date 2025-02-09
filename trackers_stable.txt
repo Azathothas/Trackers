@@ -43,8 +43,8 @@ http://tracker.bittor.pw:1337/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://exodus.desync.com:6969/announce
 udp://www.torrent.eu.org:451/announce
-udp://retracker.hotplug.ru:2710/announce
 udp://tracker.filemail.com:6969/announce
+udp://retracker.hotplug.ru:2710/announce
 udp://tracker.fnix.net:6969/announce
 http://ipv6.rer.lol:6969/announce
 udp://bandito.byterunner.io:6969/announce
@@ -57,8 +57,8 @@ udp://tracker.dler.com:6969/announce
 udp://tracker.breizh.pm:6969/announce
 udp://ipv4.rer.lol:2710/announce
 udp://opentracker.io:6969/announce
-udp://6ahddutb1ucc3cp.ru:6969/announce
 udp://tracker.kmzs123.cn:17272/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
+udp://6ahddutb1ucc3cp.ru:6969/announce
 https://retracker.x2k.ru:443/announce
 udp://udp.tracker.projectk.org:23333/announce
