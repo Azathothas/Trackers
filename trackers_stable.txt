@@ -43,9 +43,9 @@ udp://tracker.darkness.services:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://bt.ktrackers.com:6666/announce
 udp://evan.im:6969/announce
+http://tracker.ipv6tracker.ru:80/announce
 udp://retracker.lanta.me:2710/announce
 udp://tracker.dler.com:6969/announce
-http://tracker.ipv6tracker.ru:80/announce
 udp://opentracker.io:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.fnix.net:6969/announce
