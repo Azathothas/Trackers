@@ -705,7 +705,6 @@ https://opentracker.xyz/announce
 https://opentracker.xyz:443/announce
 https://retracker.x2k.ru:443/announce
 https://seeders-paradise.org/announce
-https://sparkle.ghostchu-services.top:443/announce
 https://t.btcland.xyz/announce
 https://t.btcland.xyz:443/announce
 https://t.quic.ws/announce
@@ -994,7 +993,6 @@ udp://keke.re:6969/announce
 udp://kokodayo.site:6969/announce
 udp://laze.cc:6969/announce
 udp://leefafa.tk:6969/announce
-udp://leet-tracker.moe:1337/announce
 udp://ln.mtahost.co:6969/announce
 udp://mail.artixlinux.org:6969/announce
 udp://mail.segso.net:6969/announce
@@ -1013,7 +1011,6 @@ udp://ns1.monolithindustries.com:6969/announce
 udp://oh.fuuuuuck.com:6969/announce
 udp://open.4ever.tk:6969/announce
 udp://open.demonii.com:1337/announce
-udp://open.dstud.io:6969/announce
 udp://open.free-tracker.ga:6969/announce
 udp://open.publictracker.xyz:6969/announce
 udp://open.stealth.si/announce
