@@ -37,8 +37,8 @@ http://tracker.bittor.pw:1337/announce
 udp://t.overflow.biz:6969/announce
 udp://www.torrent.eu.org:451/announce
 http://tracker.ipv6tracker.ru:80/announce
-udp://tracker.filemail.com:6969/announce
 http://ipv6.rer.lol:6969/announce
+udp://tracker.filemail.com:6969/announce
 udp://bt.ktrackers.com:6666/announce
 udp://tracker.darkness.services:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
