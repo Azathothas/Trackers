@@ -38,10 +38,10 @@ https://tracker.lilithraws.org:443/announce
 udp://www.torrent.eu.org:451/announce
 udp://bt.ktrackers.com:6666/announce
 http://ipv6.rer.lol:6969/announce
-udp://tracker.filemail.com:6969/announce
 udp://tracker.kmzs123.cn:17272/announce
 udp://tracker.darkness.services:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
+udp://tracker.filemail.com:6969/announce
 udp://evan.im:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://tracker.dler.com:6969/announce
