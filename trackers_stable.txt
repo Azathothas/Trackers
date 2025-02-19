@@ -20,9 +20,9 @@ udp://p2p.publictracker.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
 udp://tracker.valete.tf:9999/announce
 http://tracker.mywaifu.best:6969/announce
-udp://tracker.0x7c0.com:6969/announce
 udp://ismaarino.com:1234/announce
 udp://p4p.arenabg.com:1337/announce
+udp://tracker.0x7c0.com:6969/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
 udp://tracker.gmi.gd:6969/announce
 http://taciturn-shadow.spb.ru:6969/announce
@@ -52,5 +52,5 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.fnix.net:6969/announce
 udp://retracker.hotplug.ru:2710/announce
 https://retracker.x2k.ru:443/announce
-udp://exodus.desync.com:6969/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
+udp://exodus.desync.com:6969/announce
