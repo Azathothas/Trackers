@@ -54,3 +54,4 @@ https://retracker.x2k.ru:443/announce
 udp://retracker.hotplug.ru:2710/announce
 udp://exodus.desync.com:6969/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
+udp://tracker.kmzs123.top:17272/announce
