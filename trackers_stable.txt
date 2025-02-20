@@ -52,4 +52,5 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 https://retracker.x2k.ru:443/announce
 udp://tracker.fnix.net:6969/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://tracker.kmzs123.top:17272/announce
 udp://tracker.yume-hatsuyuki.moe:6969/announce
