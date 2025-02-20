@@ -17,9 +17,9 @@ https://tracker.gcrenwp.top:443/announce
 https://tr.zukizuki.org:443/announce
 udp://tracker.valete.tf:9999/announce
 udp://udp.tracker.projectk.org:23333/announce
-https://tr.nyacat.pw:443/announce
 http://tracker.mywaifu.best:6969/announce
 udp://open.demonii.com:1337/announce
+https://tr.nyacat.pw:443/announce
 udp://ismaarino.com:1234/announce
 udp://p4p.arenabg.com:1337/announce
 udp://d40969.acod.regrucolo.ru:6969/announce
@@ -37,9 +37,9 @@ https://tracker.lilithraws.org:443/announce
 udp://t.overflow.biz:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
+https://tracker.aburaya.live:443/announce
 udp://bt.ktrackers.com:6666/announce
 http://ipv6.rer.lol:6969/announce
-https://tracker.aburaya.live:443/announce
 udp://tracker.kmzs123.cn:17272/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://retracker.lanta.me:2710/announce
