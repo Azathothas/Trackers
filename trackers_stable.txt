@@ -51,5 +51,5 @@ https://retracker.x2k.ru:443/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://evan.im:6969/announce
 udp://tracker.fnix.net:6969/announce
-udp://retracker.hotplug.ru:2710/announce
 https://tracker.wsaoa.eu.org:443/announce
+udp://retracker.hotplug.ru:2710/announce
