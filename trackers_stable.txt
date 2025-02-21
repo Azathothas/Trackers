@@ -38,8 +38,8 @@ https://tracker.aburaya.live:443/announce
 udp://bt.ktrackers.com:6666/announce
 https://tracker.lilithraws.org:443/announce
 http://ipv6.rer.lol:6969/announce
-udp://www.torrent.eu.org:451/announce
 udp://tracker.dler.com:6969/announce
+udp://www.torrent.eu.org:451/announce
 udp://tracker.kmzs123.cn:17272/announce
 udp://tracker.darkness.services:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
@@ -53,3 +53,4 @@ http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.fnix.net:6969/announce
 https://tracker.wsaoa.eu.org:443/announce
 udp://retracker.hotplug.ru:2710/announce
+udp://brokenhelix.loseyourip.com:6969/announce
