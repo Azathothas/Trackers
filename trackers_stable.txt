@@ -45,9 +45,9 @@ https://torrent.tracker.durukanbal.com:443/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://brokenhelix.loseyourip.com:6969/announce
 udp://tracker.filemail.com:6969/announce
-udp://opentracker.io:6969/announce
 https://retracker.x2k.ru:443/announce
 https://tr.nyacat.pw:443/announce
+udp://opentracker.io:6969/announce
 udp://evan.im:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 udp://tracker.kmzs123.cn:17272/announce
