@@ -42,8 +42,8 @@ udp://bt.ktrackers.com:6666/announce
 udp://retracker.lanta.me:2710/announce
 https://tracker.lilithraws.org:443/announce
 udp://evan.im:6969/announce
-udp://t.overflow.biz:6969/announce
 udp://tracker.qu.ax:6969/announce
+udp://t.overflow.biz:6969/announce
 https://torrent.tracker.durukanbal.com:443/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://opentracker.io:6969/announce
