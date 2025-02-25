@@ -447,6 +447,7 @@ http://tr.cili001.com:8070/announce
 http://tr.kxmp.cf/announce
 http://tr.kxmp.cf:80/announce
 http://tr.nyacat.pw/announce
+http://tr.nyacat.pw:80/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
 http://tracker.acgnx.se/announce
 http://tracker.acgnx.se:80/announce
@@ -741,6 +742,7 @@ https://tr.highstar.shop/announce
 https://tr.highstar.shop:443/announce
 https://tr.kxmp.cf:80/announce
 https://tr.nyacat.pw/announce
+https://tr.nyacat.pw:443/announce
 https://tr.ready4.icu/announce
 https://tr.ready4.icu:443/announce
 https://tr.torland.ga/announce
@@ -972,7 +974,6 @@ udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://elementsbrowser.com:6969/announce
 udp://epider.me:6969/announce
 udp://evan.im:6969/announce
-udp://exodus.desync.com:6969/announce
 udp://explodie.org:6969/announce
 udp://f1sh.de:6969/announce
 udp://fe.dealclub.de:6969/announce
@@ -1081,6 +1082,7 @@ udp://tracker.darkness.services:6969/announce
 udp://tracker.ddunlimited.net:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.dler.org:6969/announce
+udp://tracker.dump.cl:6969/announce
 udp://tracker.edkj.club:6969/announce
 udp://tracker.ex.ua:80/announce
 udp://tracker.farted.net:6969/announce
@@ -1109,6 +1111,7 @@ udp://tracker.sylphix.com:6969/announce
 udp://tracker.tcp.exchange:6969/announce
 udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.torrent.eu.org:451/announce
+udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.trackerfix.com:80/announce
 udp://tracker.trackerfix.com:82/announce
 udp://tracker.tryhackx.org:6969/announce
