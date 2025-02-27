@@ -15,12 +15,12 @@ udp://wepzone.net:6969/announce
 udp://ec2-18-191-163-220.us-east-2.compute.amazonaws.com:6969/announce
 udp://p2p.publictracker.xyz:6969/announce
 https://tracker.gcrenwp.top:443/announce
-udp://tracker.valete.tf:9999/announce
 http://bt.okmp3.ru:2710/announce
 http://tracker.mywaifu.best:6969/announce
 udp://ismaarino.com:1234/announce
 udp://tracker.gigantino.net:6969/announce
 https://tr.zukizuki.org:443/announce
+udp://tracker.valete.tf:9999/announce
 udp://tracker.opentrackr.org:1337/announce
 udp://p4p.arenabg.com:1337/announce
 https://tracker.aburaya.live:443/announce
