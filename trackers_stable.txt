@@ -40,8 +40,8 @@ http://ipv6.rer.lol:6969/announce
 udp://tracker.darkness.services:6969/announce
 udp://www.torrent.eu.org:451/announce
 udp://u4.trakx.crim.ist:1337/announce
-udp://u6.trakx.crim.ist:1337/announce
 udp://evan.im:6969/announce
+udp://u6.trakx.crim.ist:1337/announce
 https://tracker.lilithraws.org:443/announce
 udp://t.overflow.biz:6969/announce
 http://tracker-zhuqiy.dgj055.icu:80/announce
