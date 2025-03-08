@@ -40,8 +40,8 @@ http://tracker.bittor.pw:1337/announce
 udp://tracker.darkness.services:6969/announce
 http://ipv6.rer.lol:6969/announce
 http://tracker.privateseedbox.xyz:2710/announce
-udp://evan.im:6969/announce
 http://tinfoil.space:6969/announce
+udp://evan.im:6969/announce
 udp://www.torrent.eu.org:451/announce
 https://tracker.lilithraws.org:443/announce
 udp://opentracker.io:6969/announce
