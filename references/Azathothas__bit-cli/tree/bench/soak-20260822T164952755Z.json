@@ -1,0 +1,137 @@
+{
+  "kind": "soak",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T22:49:53.356Z",
+  "complete": true,
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "minutes": 360,
+    "sample_seconds": 30,
+    "workload": "steady",
+    "payload_mib": 16,
+    "leechers": 2,
+    "churn_connections": 500,
+    "churn_concurrency": 32,
+    "profile": "release",
+    "ceilings": {
+      "rss_mib_per_hour": 0.0,
+      "handles_per_hour": 0.0,
+      "close_wait_per_hour": 0.0
+    }
+  },
+  "info_hash": "35bb0e03ff014dc8d9deea0852ba6698589b7de1",
+  "csv": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\bench\\soak-20260822T164952755Z.csv",
+  "elapsed_hours": 5.9999,
+  "samples": 687,
+  "cycles": {
+    "leech_completed": 1372,
+    "leech_failed": 0,
+    "churn_runs": 0,
+    "churn_connections_total": 0,
+    "progress_events": 720,
+    "load_errors": 0
+  },
+  "slopes": {
+    "rss_bytes": {
+      "column": "rss_bytes",
+      "samples": 687,
+      "first": 14405632.0,
+      "last": 19628032.0,
+      "min": 14315520.0,
+      "max": 20639744.0,
+      "mean": 17646671.0,
+      "slope_per_hour": 854554.777,
+      "r_squared": 0.8066
+    },
+    "peak_rss_bytes": {
+      "column": "peak_rss_bytes",
+      "samples": 687,
+      "first": 14532608.0,
+      "last": 22183936.0,
+      "min": 14532608.0,
+      "max": 22183936.0,
+      "mean": 20566749.34,
+      "slope_per_hour": 1115754.092,
+      "r_squared": 0.7131
+    },
+    "handles": {
+      "column": "handles",
+      "samples": 687,
+      "first": 210.0,
+      "last": 213.0,
+      "min": 201.0,
+      "max": 345.0,
+      "mean": 216.02,
+      "slope_per_hour": -0.315,
+      "r_squared": 0.003
+    },
+    "threads": {
+      "column": "threads",
+      "samples": 687,
+      "first": 29.0,
+      "last": 26.0,
+      "min": 22.0,
+      "max": 80.0,
+      "mean": 27.06,
+      "slope_per_hour": -0.145,
+      "r_squared": 0.0051
+    },
+    "tcp_total": {
+      "column": "tcp_total",
+      "samples": 687,
+      "first": 2.0,
+      "last": 1.0,
+      "min": 1.0,
+      "max": 3.0,
+      "mean": 1.57,
+      "slope_per_hour": -0.075,
+      "r_squared": 0.065
+    },
+    "tcp_close_wait": {
+      "column": "tcp_close_wait",
+      "samples": 687,
+      "first": 0.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "slope_per_hour": 0.0,
+      "r_squared": null
+    },
+    "tcp_established": {
+      "column": "tcp_established",
+      "samples": 687,
+      "first": 1.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 0.56,
+      "slope_per_hour": -0.076,
+      "r_squared": 0.0667
+    }
+  },
+  "rss_mib_per_hour": 0.815,
+  "self_reported": {
+    "peak_rss_bytes": 22183936,
+    "open_handles": 345
+  },
+  "seed_exited_early": false,
+  "verdict": "recorded, not judged: no ceiling was named",
+  "failures": [],
+  "commands": [
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\bin\\bit-cli.exe seed C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\soak.torrent --data C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak --port 0 --no-dht --no-lsd --report-interval 30s --seed-time 21900s --jsonl",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\bin\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\soak.torrent --dir leech-N --peer 127.0.0.1:64475 --no-dht --no-lsd --no-tracker --allow-overwrite --stop-after 120s --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\bin\\loopback-tracker.exe --port 0 --interval 5"
+  ],
+  "notes": [
+    "The subject is the seeder. rss_bytes and handles are read from outside with Get-Process, and the seeder's own progress events carry the same two figures, so self_reported is the cross-check rather than a second measurement.",
+    "slope_per_hour is least squares against elapsed hours. r_squared beside it says whether the line is a trend or noise: a large slope with a low r squared is a spike, not growth.",
+    "peak_rss_bytes is a high-water mark rather than a level, so its slope is bounded below by zero and says nothing on its own. rss_bytes is the series that can fall as well as rise, and it is the one a leak shows in.",
+    "The loopback tracker never expires a peer, so under -Workload announce or all the peer list handed to the seeder grows for the whole run. That is deliberate: it is the shape a busy tracker has, and it is the path T-040's report points at.",
+    "complete is false while the run is still sampling. This file is rewritten after every sample, so a run that is killed leaves the report it had reached rather than nothing at all."
+  ]
+}

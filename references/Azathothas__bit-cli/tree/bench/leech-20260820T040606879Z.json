@@ -1,0 +1,1039 @@
+{
+  "schema_version": "1",
+  "kind": "bench-leech",
+  "generated_at": "2026-08-20T04:06:06.879Z",
+  "bit_cli_version": "0.1.0",
+  "build": {
+    "version": "0.1.0",
+    "target": "x86_64-pc-windows-msvc",
+    "profile": "release",
+    "debug_assertions": false
+  },
+  "host": {
+    "os": {
+      "name": "Windows",
+      "version": "10.0.26200"
+    },
+    "cpu": {
+      "model": "12th Gen Intel(R) Core(TM) i7-12700H",
+      "architecture": "x86_64",
+      "logical_cores": 20
+    },
+    "memory_total": {
+      "bytes": 68321587200,
+      "human": "63.63 GiB"
+    },
+    "network": [
+      {
+        "name": "Hyper-V Virtual Ethernet Adapter #2",
+        "link_speed_bps": 1000000000,
+        "link_speed_human": "1.00 Gbit/s",
+        "up": true
+      },
+      {
+        "name": "ZeroTier Virtual Port",
+        "link_speed_bps": 100000000,
+        "link_speed_human": "100.00 Mbit/s",
+        "up": true
+      }
+    ]
+  },
+  "target": {
+    "kind": "loopback",
+    "name": "payload",
+    "info_hash": "92deeb66b5fa37f909f78dfc13ab2c606bf5c5b8",
+    "total_bytes": 1073741824,
+    "piece_count": 1024,
+    "piece_length_bytes": 1048576,
+    "web_seed": "http://127.0.0.1:65062/"
+  },
+  "parameters": {
+    "runs": 5,
+    "bridge_sweep": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "concurrency": 8,
+    "request_size": "1MiB",
+    "profile": "release"
+  },
+  "stages": {
+    "fetch": {
+      "what": "bit-cli bench webseed: the HTTP path, no bridge, no hashing, no disk",
+      "sustained_rate_bytes": 897476007,
+      "sustained_rate_human": "855.90 MiB/s",
+      "report": {
+        "bytes": {
+          "bytes": 15265169408,
+          "human": "14.22 GiB"
+        },
+        "duration": {
+          "ms": 17009,
+          "human": "17s"
+        },
+        "sustained_rate": {
+          "bytes": 897476007,
+          "human": "855.90 MiB"
+        },
+        "peak_rate": {
+          "bytes": 1096858778,
+          "human": "1.02 GiB"
+        },
+        "requests": 14576,
+        "errors": {
+          "total": 0
+        },
+        "latency": {
+          "connect": {
+            "count": 18,
+            "p50_ms": 1,
+            "p90_ms": 1,
+            "p99_ms": 18,
+            "p999_ms": 18,
+            "max_ms": 18,
+            "mean_ms": 2
+          },
+          "first_byte": {
+            "count": 14558,
+            "p50_ms": 8,
+            "p90_ms": 11,
+            "p99_ms": 16,
+            "p999_ms": 26,
+            "max_ms": 135,
+            "mean_ms": 8
+          },
+          "complete": {
+            "count": 14558,
+            "p50_ms": 8,
+            "p90_ms": 12,
+            "p99_ms": 18,
+            "p999_ms": 30,
+            "max_ms": 136,
+            "mean_ms": 9
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        }
+      }
+    },
+    "leech": {
+      "what": "bit-cli bench leech: HTTP fetch, loopback bridge, piece verification, disk",
+      "sustained_rate_bytes": 306258363,
+      "sustained_rate_human": "292.07 MiB/s",
+      "share_of_fetch": "34.12%",
+      "wall_stats_ms": {
+        "runs": 5,
+        "min": 223556490,
+        "median": 306258363,
+        "max": 356606384,
+        "spread_percent": 59.52
+      },
+      "report": {
+        "bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "duration": {
+          "ms": 3506,
+          "human": "3s"
+        },
+        "sustained_rate": {
+          "bytes": 306258363,
+          "human": "292.07 MiB"
+        },
+        "peak_rate": {
+          "bytes": 388807453,
+          "human": "370.80 MiB"
+        },
+        "requests": 65536,
+        "errors": {
+          "total": 0
+        },
+        "hashing": {
+          "pieces": 1024,
+          "bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "total": {
+            "ms": 3630,
+            "human": "3s"
+          },
+          "rate": {
+            "bytes": 295796645,
+            "human": "282.09 MiB"
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        },
+        "choke": {
+          "choke_events": 0,
+          "unchoke_events": 0,
+          "peak_queue_depth": 1024
+        },
+        "disk": {
+          "read_ops": 16384,
+          "read_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "read_time": {
+            "ms": 3026,
+            "human": "3s"
+          },
+          "write_ops": 65536,
+          "write_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "write_time": {
+            "ms": 14036,
+            "human": "14s"
+          }
+        },
+        "pipeline": {
+          "peak_in_flight": 1024,
+          "mean_in_flight": 410,
+          "requests": 65536,
+          "blocks": 65536,
+          "mean_service_us": 21937,
+          "block_size": {
+            "bytes": 16384,
+            "human": "16.00 KiB"
+          },
+          "window_ceiling": {
+            "bytes": 764790810,
+            "human": "729.36 MiB"
+          }
+        },
+        "peak_peers": 8
+      }
+    }
+  },
+  "bridge_curve": [
+    {
+      "bridges": 1,
+      "web_seed_concurrency": 8,
+      "sustained_rate_bytes": 193362475,
+      "sustained_rate_human": "184.40 MiB/s",
+      "share_of_fetch": "21.55%",
+      "speedup_over_one_bridge": 1.0,
+      "rate_stats_bytes": {
+        "runs": 5,
+        "min": 177978091,
+        "median": 193362475,
+        "max": 214191466,
+        "spread_percent": 20.35
+      },
+      "summary": {
+        "bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "duration": {
+          "ms": 5553,
+          "human": "5s"
+        },
+        "sustained_rate": {
+          "bytes": 193362475,
+          "human": "184.40 MiB"
+        },
+        "peak_rate": {
+          "bytes": 250563341,
+          "human": "238.96 MiB"
+        },
+        "requests": 65536,
+        "errors": {
+          "total": 0
+        },
+        "hashing": {
+          "pieces": 1024,
+          "bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "total": {
+            "ms": 606,
+            "human": "606ms"
+          },
+          "rate": {
+            "bytes": 1771851194,
+            "human": "1.65 GiB"
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        },
+        "choke": {
+          "choke_events": 0,
+          "unchoke_events": 0,
+          "peak_queue_depth": 128
+        },
+        "disk": {
+          "read_ops": 16384,
+          "read_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "read_time": {
+            "ms": 107,
+            "human": "107ms"
+          },
+          "write_ops": 65536,
+          "write_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "write_time": {
+            "ms": 1019,
+            "human": "1s"
+          }
+        },
+        "pipeline": {
+          "peak_in_flight": 128,
+          "mean_in_flight": 34,
+          "requests": 65536,
+          "blocks": 65536,
+          "mean_service_us": 2936,
+          "block_size": {
+            "bytes": 16384,
+            "human": "16.00 KiB"
+          },
+          "window_ceiling": {
+            "bytes": 714288828,
+            "human": "681.20 MiB"
+          }
+        },
+        "peak_peers": 1
+      }
+    },
+    {
+      "bridges": 2,
+      "web_seed_concurrency": 8,
+      "sustained_rate_bytes": 329975975,
+      "sustained_rate_human": "314.69 MiB/s",
+      "share_of_fetch": "36.77%",
+      "speedup_over_one_bridge": 1.707,
+      "rate_stats_bytes": {
+        "runs": 5,
+        "min": 328763571,
+        "median": 329975975,
+        "max": 356724858,
+        "spread_percent": 8.5
+      },
+      "summary": {
+        "bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "duration": {
+          "ms": 3254,
+          "human": "3s"
+        },
+        "sustained_rate": {
+          "bytes": 329975975,
+          "human": "314.69 MiB"
+        },
+        "peak_rate": {
+          "bytes": 395518971,
+          "human": "377.20 MiB"
+        },
+        "requests": 65536,
+        "errors": {
+          "total": 0
+        },
+        "hashing": {
+          "pieces": 1024,
+          "bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "total": {
+            "ms": 792,
+            "human": "792ms"
+          },
+          "rate": {
+            "bytes": 1355734626,
+            "human": "1.26 GiB"
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        },
+        "choke": {
+          "choke_events": 0,
+          "unchoke_events": 0,
+          "peak_queue_depth": 256
+        },
+        "disk": {
+          "read_ops": 16384,
+          "read_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "read_time": {
+            "ms": 274,
+            "human": "274ms"
+          },
+          "write_ops": 65536,
+          "write_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "write_time": {
+            "ms": 1852,
+            "human": "1s"
+          }
+        },
+        "pipeline": {
+          "peak_in_flight": 256,
+          "mean_in_flight": 80,
+          "requests": 65536,
+          "blocks": 65536,
+          "mean_service_us": 3982,
+          "block_size": {
+            "bytes": 16384,
+            "human": "16.00 KiB"
+          },
+          "window_ceiling": {
+            "bytes": 1053315921,
+            "human": "1004.52 MiB"
+          }
+        },
+        "peak_peers": 2
+      }
+    },
+    {
+      "bridges": 4,
+      "web_seed_concurrency": 8,
+      "sustained_rate_bytes": 354838672,
+      "sustained_rate_human": "338.40 MiB/s",
+      "share_of_fetch": "39.54%",
+      "speedup_over_one_bridge": 1.835,
+      "rate_stats_bytes": {
+        "runs": 5,
+        "min": 328763571,
+        "median": 354838672,
+        "max": 390309641,
+        "spread_percent": 18.72
+      },
+      "summary": {
+        "bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "duration": {
+          "ms": 3026,
+          "human": "3s"
+        },
+        "sustained_rate": {
+          "bytes": 354838672,
+          "human": "338.40 MiB"
+        },
+        "peak_rate": {
+          "bytes": 439933429,
+          "human": "419.55 MiB"
+        },
+        "requests": 65536,
+        "errors": {
+          "total": 0
+        },
+        "hashing": {
+          "pieces": 1024,
+          "bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "total": {
+            "ms": 1613,
+            "human": "1s"
+          },
+          "rate": {
+            "bytes": 665679990,
+            "human": "634.84 MiB"
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        },
+        "choke": {
+          "choke_events": 0,
+          "unchoke_events": 0,
+          "peak_queue_depth": 512
+        },
+        "disk": {
+          "read_ops": 16384,
+          "read_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "read_time": {
+            "ms": 1050,
+            "human": "1s"
+          },
+          "write_ops": 65536,
+          "write_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "write_time": {
+            "ms": 5092,
+            "human": "5s"
+          }
+        },
+        "pipeline": {
+          "peak_in_flight": 512,
+          "mean_in_flight": 190,
+          "requests": 65536,
+          "blocks": 65536,
+          "mean_service_us": 8811,
+          "block_size": {
+            "bytes": 16384,
+            "human": "16.00 KiB"
+          },
+          "window_ceiling": {
+            "bytes": 952060833,
+            "human": "907.96 MiB"
+          }
+        },
+        "peak_peers": 4
+      }
+    },
+    {
+      "bridges": 8,
+      "web_seed_concurrency": 8,
+      "sustained_rate_bytes": 306258363,
+      "sustained_rate_human": "292.07 MiB/s",
+      "share_of_fetch": "34.12%",
+      "speedup_over_one_bridge": 1.584,
+      "rate_stats_bytes": {
+        "runs": 5,
+        "min": 223556490,
+        "median": 306258363,
+        "max": 356606384,
+        "spread_percent": 59.52
+      },
+      "summary": {
+        "bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "duration": {
+          "ms": 3506,
+          "human": "3s"
+        },
+        "sustained_rate": {
+          "bytes": 306258363,
+          "human": "292.07 MiB"
+        },
+        "peak_rate": {
+          "bytes": 388807453,
+          "human": "370.80 MiB"
+        },
+        "requests": 65536,
+        "errors": {
+          "total": 0
+        },
+        "hashing": {
+          "pieces": 1024,
+          "bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "total": {
+            "ms": 3630,
+            "human": "3s"
+          },
+          "rate": {
+            "bytes": 295796645,
+            "human": "282.09 MiB"
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        },
+        "choke": {
+          "choke_events": 0,
+          "unchoke_events": 0,
+          "peak_queue_depth": 1024
+        },
+        "disk": {
+          "read_ops": 16384,
+          "read_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "read_time": {
+            "ms": 3026,
+            "human": "3s"
+          },
+          "write_ops": 65536,
+          "write_bytes": {
+            "bytes": 1073741824,
+            "human": "1.00 GiB"
+          },
+          "write_time": {
+            "ms": 14036,
+            "human": "14s"
+          }
+        },
+        "pipeline": {
+          "peak_in_flight": 1024,
+          "mean_in_flight": 410,
+          "requests": 65536,
+          "blocks": 65536,
+          "mean_service_us": 21937,
+          "block_size": {
+            "bytes": 16384,
+            "human": "16.00 KiB"
+          },
+          "window_ceiling": {
+            "bytes": 764790810,
+            "human": "729.36 MiB"
+          }
+        },
+        "peak_peers": 8
+      }
+    }
+  ],
+  "control": {
+    "what": "one bridge carrying the same total HTTP concurrency as the widest step, so the sweep's gain can be attributed to the receive paths rather than to the requests in flight",
+    "bridges": 1,
+    "web_seed_concurrency": 64.0,
+    "sustained_rate_bytes": 157671339,
+    "sustained_rate_human": "150.37 MiB/s",
+    "speedup_over_one_bridge": 0.815,
+    "rate_stats_bytes": {
+      "runs": 5,
+      "min": 132462598,
+      "median": 157671339,
+      "max": 177771825,
+      "spread_percent": 34.21
+    },
+    "summary": {
+      "bytes": {
+        "bytes": 1073741824,
+        "human": "1.00 GiB"
+      },
+      "duration": {
+        "ms": 6810,
+        "human": "6s"
+      },
+      "sustained_rate": {
+        "bytes": 157671339,
+        "human": "150.37 MiB"
+      },
+      "peak_rate": {
+        "bytes": 244970409,
+        "human": "233.62 MiB"
+      },
+      "requests": 65536,
+      "errors": {
+        "total": 0
+      },
+      "hashing": {
+        "pieces": 1024,
+        "bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "total": {
+          "ms": 620,
+          "human": "620ms"
+        },
+        "rate": {
+          "bytes": 1731841651,
+          "human": "1.61 GiB"
+        }
+      },
+      "stalls": {
+        "count": 0,
+        "total": {
+          "ms": 0,
+          "human": "0ms"
+        },
+        "longest": {
+          "ms": 0,
+          "human": "0ms"
+        }
+      },
+      "choke": {
+        "choke_events": 0,
+        "unchoke_events": 0,
+        "peak_queue_depth": 128
+      },
+      "disk": {
+        "read_ops": 16384,
+        "read_bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "read_time": {
+          "ms": 114,
+          "human": "114ms"
+        },
+        "write_ops": 65536,
+        "write_bytes": {
+          "bytes": 1073741824,
+          "human": "1.00 GiB"
+        },
+        "write_time": {
+          "ms": 1016,
+          "human": "1s"
+        }
+      },
+      "pipeline": {
+        "peak_in_flight": 128,
+        "mean_in_flight": 53,
+        "requests": 65536,
+        "blocks": 65536,
+        "mean_service_us": 5552,
+        "block_size": {
+          "bytes": 16384,
+          "human": "16.00 KiB"
+        },
+        "window_ceiling": {
+          "bytes": 377729106,
+          "human": "360.23 MiB"
+        }
+      },
+      "peak_peers": 1
+    }
+  },
+  "attribution": {
+    "bridges": 8,
+    "wall_ms": 3506,
+    "path_time_ms": 28048,
+    "verify_ms": 3630,
+    "verify_share": "12.94%",
+    "disk_read_ms": 3026,
+    "disk_read_share": "10.79%",
+    "disk_write_ms": 14036,
+    "disk_write_share": "50.04%",
+    "notes": [
+      "verify_ms covers reading each piece back and hashing it, so disk_read_ms is inside it rather than beside it",
+      "path_time_ms is wall_ms times the number of bridges. A block is written, and at a piece boundary read back and hashed, inline on the connection that received it, so those times are per receive path and add up across paths."
+    ]
+  },
+  "commands": [
+    {
+      "label": "fetch",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --web-seed http://127.0.0.1:65062/ --web-seed-only --concurrency 8 --request-size 1MiB --duration 20s --warmup 3s --metrics-interval 1s --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\fetch.json --format json",
+      "started_at": "2026-08-20T04:03:17.124Z",
+      "elapsed_ms": 20104,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\fetch.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\fetch.err"
+    },
+    {
+      "label": "leech-1-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-1-1 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-1.json --format json",
+      "started_at": "2026-08-20T04:03:37.261Z",
+      "elapsed_ms": 5157,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-1.err"
+    },
+    {
+      "label": "leech-1-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-1-2 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-2.json --format json",
+      "started_at": "2026-08-20T04:03:42.944Z",
+      "elapsed_ms": 5666,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-2.err"
+    },
+    {
+      "label": "leech-1-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-1-3 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-3.json --format json",
+      "started_at": "2026-08-20T04:03:49.137Z",
+      "elapsed_ms": 5917,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-3.err"
+    },
+    {
+      "label": "leech-1-4",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-1-4 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-4.json --format json",
+      "started_at": "2026-08-20T04:03:55.580Z",
+      "elapsed_ms": 6157,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-4.err"
+    },
+    {
+      "label": "leech-1-5",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-1-5 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-5.json --format json",
+      "started_at": "2026-08-20T04:04:02.221Z",
+      "elapsed_ms": 5694,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-1-5.err"
+    },
+    {
+      "label": "leech-2-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-2-1 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-1.json --format json",
+      "started_at": "2026-08-20T04:04:08.498Z",
+      "elapsed_ms": 3382,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-1.err"
+    },
+    {
+      "label": "leech-2-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-2-2 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-2.json --format json",
+      "started_at": "2026-08-20T04:04:12.427Z",
+      "elapsed_ms": 3479,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-2.err"
+    },
+    {
+      "label": "leech-2-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-2-3 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-3.json --format json",
+      "started_at": "2026-08-20T04:04:16.490Z",
+      "elapsed_ms": 3155,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-3.err"
+    },
+    {
+      "label": "leech-2-4",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-2-4 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-4.json --format json",
+      "started_at": "2026-08-20T04:04:20.149Z",
+      "elapsed_ms": 3181,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-4.err"
+    },
+    {
+      "label": "leech-2-5",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-2-5 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-5.json --format json",
+      "started_at": "2026-08-20T04:04:23.892Z",
+      "elapsed_ms": 3374,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-2-5.err"
+    },
+    {
+      "label": "leech-4-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-4-1 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-1.json --format json",
+      "started_at": "2026-08-20T04:04:27.894Z",
+      "elapsed_ms": 3144,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-1.err"
+    },
+    {
+      "label": "leech-4-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-4-2 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-2.json --format json",
+      "started_at": "2026-08-20T04:04:31.955Z",
+      "elapsed_ms": 3359,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-2.err"
+    },
+    {
+      "label": "leech-4-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-4-3 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-3.json --format json",
+      "started_at": "2026-08-20T04:04:35.907Z",
+      "elapsed_ms": 2877,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-3.err"
+    },
+    {
+      "label": "leech-4-4",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-4-4 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-4.json --format json",
+      "started_at": "2026-08-20T04:04:39.307Z",
+      "elapsed_ms": 3380,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-4.err"
+    },
+    {
+      "label": "leech-4-5",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-4-5 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-5.json --format json",
+      "started_at": "2026-08-20T04:04:43.307Z",
+      "elapsed_ms": 3388,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-4-5.err"
+    },
+    {
+      "label": "leech-8-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-8-1 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-1.json --format json",
+      "started_at": "2026-08-20T04:04:47.265Z",
+      "elapsed_ms": 3147,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-1.err"
+    },
+    {
+      "label": "leech-8-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-8-2 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-2.json --format json",
+      "started_at": "2026-08-20T04:04:51.162Z",
+      "elapsed_ms": 3474,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-2.err"
+    },
+    {
+      "label": "leech-8-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-8-3 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-3.json --format json",
+      "started_at": "2026-08-20T04:04:56.300Z",
+      "elapsed_ms": 4136,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-3.err"
+    },
+    {
+      "label": "leech-8-4",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-8-4 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-4.json --format json",
+      "started_at": "2026-08-20T04:05:02.273Z",
+      "elapsed_ms": 5033,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-4.err"
+    },
+    {
+      "label": "leech-8-5",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-leech-8-5 --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-5.json --format json",
+      "started_at": "2026-08-20T04:05:07.641Z",
+      "elapsed_ms": 6577,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-8-5.err"
+    },
+    {
+      "label": "control-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-control-1 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-1.json --format json",
+      "started_at": "2026-08-20T04:05:14.287Z",
+      "elapsed_ms": 6984,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-1.err"
+    },
+    {
+      "label": "control-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-control-2 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-2.json --format json",
+      "started_at": "2026-08-20T04:05:23.388Z",
+      "elapsed_ms": 8305,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-2.err"
+    },
+    {
+      "label": "control-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-control-3 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-3.json --format json",
+      "started_at": "2026-08-20T04:05:32.569Z",
+      "elapsed_ms": 7249,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-3.err"
+    },
+    {
+      "label": "control-4",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-control-4 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-4.json --format json",
+      "started_at": "2026-08-20T04:05:48.981Z",
+      "elapsed_ms": 6746,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-4.err"
+    },
+    {
+      "label": "control-5",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\leech-out-control-5 --web-seed http://127.0.0.1:65062/ --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-5.json --format json",
+      "started_at": "2026-08-20T04:06:00.616Z",
+      "elapsed_ms": 6232,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-leech\\control-5.err"
+    }
+  ],
+  "notes": [
+    "The page cache is not dropped between stages. Windows has no supported way to do it, and both stages read the same file through the same server, so the cache helps each of them equally.",
+    "The fetch stage runs for a fixed duration; the leech stage runs until the torrent completes. A leech that finishes in under a second is a burst rather than a rate, which is why the payload defaults to 256 MiB.",
+    "peak_in_flight covers the whole run including any warmup, because a high-water mark cannot be narrowed to a window after the fact.",
+    "The same URL attached N times is N bindings and so N bridges. The per-source rows add up to the payload rather than to N copies of it, which is what says the pieces were divided rather than fetched twice.",
+    "The attribution block is read off the last step of the bridge sweep."
+  ]
+}

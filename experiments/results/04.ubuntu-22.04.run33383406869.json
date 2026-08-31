@@ -1,0 +1,799 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "33383406869",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu22",
+      "runner_image_version": "20260824.273.3",
+      "runner_os": "Linux",
+      "sha": "3ec6dcd49c9f88c92e5ee7a76a7cc8bf63cbf86b"
+    },
+    "hostname": "runnervm76wwg",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "repo_commit": "3ec6dcd49c9f88c92e5ee7a76a7cc8bf63cbf86b-dirty",
+    "sample_counts": {
+      "hostnames": 17,
+      "public_resolvers": 3,
+      "queries_per_hostname": 4
+    },
+    "utc": "2026-08-31T10:39:55Z"
+  },
+  "question": "Does this host's resolver answer tracker hostnames the same way public resolvers do?",
+  "results": {
+    "classification_histogram": {
+      "agree": 14,
+      "both_failed": 3
+    },
+    "public_only_hostnames": [],
+    "public_resolvers_reachable": true,
+    "rows": [
+      {
+        "classification": "agree",
+        "hostname": "open.stealth.si",
+        "local": {
+          "addresses": [
+            "151.242.104.187"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 1.477
+        },
+        "public": [
+          {
+            "addresses": [
+              "151.242.104.187"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 6.628
+          },
+          {
+            "addresses": [
+              "151.242.104.187"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 9.43
+          },
+          {
+            "addresses": [
+              "151.242.104.187"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 10.686
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "tracker.torrent.eu.org",
+        "local": {
+          "addresses": [
+            "91.216.110.53"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.335
+        },
+        "public": [
+          {
+            "addresses": [
+              "91.216.110.53"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 7.233
+          },
+          {
+            "addresses": [
+              "89.234.156.205"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 5.528
+          },
+          {
+            "addresses": [
+              "91.216.110.53"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.366
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "open.demonii.com",
+        "local": {
+          "addresses": [
+            "185.121.168.96"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.31
+        },
+        "public": [
+          {
+            "addresses": [
+              "185.121.168.96"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 7.142
+          },
+          {
+            "addresses": [
+              "185.121.168.96"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 8.38
+          },
+          {
+            "addresses": [
+              "185.121.168.96"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.459
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "tracker.opentrackr.org",
+        "local": {
+          "addresses": [
+            "93.158.213.92"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.433
+        },
+        "public": [
+          {
+            "addresses": [
+              "93.158.213.92"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 5.812
+          },
+          {
+            "addresses": [
+              "93.158.213.92"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 5.428
+          },
+          {
+            "addresses": [
+              "93.158.213.92"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.485
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "exodus.desync.com",
+        "local": {
+          "addresses": [
+            "208.83.20.20"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.337
+        },
+        "public": [
+          {
+            "addresses": [
+              "208.83.20.20"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 6.151
+          },
+          {
+            "addresses": [
+              "208.83.20.20"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 73.628
+          },
+          {
+            "addresses": [
+              "208.83.20.20"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.756
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "explodie.org",
+        "local": {
+          "addresses": [
+            "23.157.120.14"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.389
+        },
+        "public": [
+          {
+            "addresses": [
+              "23.157.120.14"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 6.221
+          },
+          {
+            "addresses": [
+              "23.157.120.14"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 6.532
+          },
+          {
+            "addresses": [
+              "23.157.120.14"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.127
+          }
+        ]
+      },
+      {
+        "classification": "both_failed",
+        "hostname": "retracker.hotplug.ru",
+        "local": {
+          "addresses": [],
+          "detail": "gaierror: [Errno -5] No address associated with hostname",
+          "ok": false,
+          "rcode": "-",
+          "rtt_ms": null
+        },
+        "public": [
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 10.051
+          },
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 6.112
+          },
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 8.75
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "whybother.torrentonline.cc",
+        "local": {
+          "addresses": [
+            "92.112.127.62"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.325
+        },
+        "public": [
+          {
+            "addresses": [
+              "92.112.127.62"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 9.663
+          },
+          {
+            "addresses": [
+              "92.112.127.62"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 10.468
+          },
+          {
+            "addresses": [
+              "92.112.127.62"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 12.504
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "tracker.aruku.ovh",
+        "local": {
+          "addresses": [
+            "15.235.207.99"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.352
+        },
+        "public": [
+          {
+            "addresses": [
+              "15.235.207.99"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 21.153
+          },
+          {
+            "addresses": [
+              "15.235.207.99"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 23.331
+          },
+          {
+            "addresses": [
+              "15.235.207.99"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 19.364
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "open.ftorrent.com",
+        "local": {
+          "addresses": [
+            "149.106.106.25"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.392
+        },
+        "public": [
+          {
+            "addresses": [
+              "149.106.106.25"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 15.627
+          },
+          {
+            "addresses": [
+              "149.106.106.25"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 6.389
+          },
+          {
+            "addresses": [
+              "149.106.106.25"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.633
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "tracker.dler.com",
+        "local": {
+          "addresses": [
+            "211.75.205.187",
+            "211.75.205.188",
+            "211.75.210.221"
+          ],
+          "detail": "3 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.452
+        },
+        "public": [
+          {
+            "addresses": [
+              "211.75.205.187",
+              "211.75.205.188",
+              "211.75.210.221"
+            ],
+            "detail": "3 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 6.52
+          },
+          {
+            "addresses": [
+              "211.75.205.187",
+              "211.75.205.188",
+              "211.75.210.221"
+            ],
+            "detail": "3 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 13.406
+          },
+          {
+            "addresses": [
+              "211.75.205.187",
+              "211.75.205.188",
+              "211.75.210.221"
+            ],
+            "detail": "3 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.48
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "bt1.archive.org",
+        "local": {
+          "addresses": [
+            "207.241.226.111"
+          ],
+          "detail": "1 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.333
+        },
+        "public": [
+          {
+            "addresses": [
+              "207.241.226.111"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 6.025
+          },
+          {
+            "addresses": [
+              "207.241.226.111"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 5.418
+          },
+          {
+            "addresses": [
+              "207.241.226.111"
+            ],
+            "detail": "1 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.592
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "tracker.renfei.net",
+        "local": {
+          "addresses": [
+            "104.21.58.176",
+            "172.67.162.102"
+          ],
+          "detail": "2 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 0.39
+        },
+        "public": [
+          {
+            "addresses": [
+              "104.21.58.176",
+              "172.67.162.102"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 7.434
+          },
+          {
+            "addresses": [
+              "104.21.58.176",
+              "172.67.162.102"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 13.94
+          },
+          {
+            "addresses": [
+              "104.21.58.176",
+              "172.67.162.102"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 10.048
+          }
+        ]
+      },
+      {
+        "classification": "both_failed",
+        "hostname": "bt.okmp3.ru",
+        "local": {
+          "addresses": [],
+          "detail": "gaierror: [Errno -2] Name or service not known",
+          "ok": false,
+          "rcode": "-",
+          "rtt_ms": null
+        },
+        "public": [
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 7.284
+          },
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 11.989
+          },
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.21
+          }
+        ]
+      },
+      {
+        "classification": "both_failed",
+        "hostname": "tracker.ipv6tracker.ru",
+        "local": {
+          "addresses": [],
+          "detail": "gaierror: [Errno -5] No address associated with hostname",
+          "ok": false,
+          "rcode": "-",
+          "rtt_ms": null
+        },
+        "public": [
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 8.925
+          },
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 6.08
+          },
+          {
+            "addresses": [],
+            "detail": "0 A record(s)",
+            "ok": false,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.551
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "tracker.leechshield.link",
+        "local": {
+          "addresses": [
+            "104.21.28.104",
+            "172.67.145.215"
+          ],
+          "detail": "2 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 56.702
+        },
+        "public": [
+          {
+            "addresses": [
+              "104.21.28.104",
+              "172.67.145.215"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 7.773
+          },
+          {
+            "addresses": [
+              "104.21.28.104",
+              "172.67.145.215"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 10.497
+          },
+          {
+            "addresses": [
+              "104.21.28.104",
+              "172.67.145.215"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 5.485
+          }
+        ]
+      },
+      {
+        "classification": "agree",
+        "hostname": "1337.abcvg.info",
+        "local": {
+          "addresses": [
+            "104.21.72.244",
+            "172.67.136.175"
+          ],
+          "detail": "2 address(es)",
+          "ok": true,
+          "rcode": "NOERROR",
+          "rtt_ms": 78.21
+        },
+        "public": [
+          {
+            "addresses": [
+              "104.21.72.244",
+              "172.67.136.175"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "cloudflare (1.1.1.1)",
+            "rtt_ms": 8.103
+          },
+          {
+            "addresses": [
+              "104.21.72.244",
+              "172.67.136.175"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "google (8.8.8.8)",
+            "rtt_ms": 16.047
+          },
+          {
+            "addresses": [
+              "104.21.72.244",
+              "172.67.136.175"
+            ],
+            "detail": "2 A record(s)",
+            "ok": true,
+            "rcode": "NOERROR",
+            "resolver": "quad9 (9.9.9.9)",
+            "rtt_ms": 43.377
+          }
+        ]
+      }
+    ]
+  }
+}

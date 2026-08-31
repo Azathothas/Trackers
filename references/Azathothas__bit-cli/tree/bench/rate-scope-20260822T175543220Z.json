@@ -1,0 +1,164 @@
+{
+  "kind": "rate_scope",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T17:55:43.220Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "rate": "8MiB/s",
+    "rate_bytes": 8388608,
+    "web_seed_rate": "24MiB/s",
+    "web_seed_rate_bytes": 25165824,
+    "payload_mib": 128,
+    "tolerance": 0.15,
+    "profile": "release"
+  },
+  "phases": [
+    {
+      "phase": "http_ceiling",
+      "exit_code": 0,
+      "elapsed_ms": 765,
+      "bytes": 134217728,
+      "from_web_seeds": 134217728,
+      "from_peers": 0,
+      "rate": 175448010,
+      "web_seed_rate": 175448010,
+      "peer_rate": 0,
+      "rate_human": "167.32 MiB/s"
+    },
+    {
+      "phase": "http_session_cap",
+      "exit_code": 0,
+      "elapsed_ms": 15252,
+      "bytes": 134217728,
+      "from_web_seeds": 134217728,
+      "from_peers": 0,
+      "rate": 8800008,
+      "web_seed_rate": 8800008,
+      "peer_rate": 0,
+      "rate_human": "8.39 MiB/s"
+    },
+    {
+      "phase": "http_webseed_cap",
+      "exit_code": 0,
+      "elapsed_ms": 15587,
+      "bytes": 134217728,
+      "from_web_seeds": 134217728,
+      "from_peers": 0,
+      "rate": 8610876,
+      "web_seed_rate": 8610876,
+      "peer_rate": 0,
+      "rate_human": "8.21 MiB/s"
+    },
+    {
+      "phase": "http_peer_cap",
+      "exit_code": 0,
+      "elapsed_ms": 843,
+      "bytes": 134217728,
+      "from_web_seeds": 134217728,
+      "from_peers": 0,
+      "rate": 159214387,
+      "web_seed_rate": 159214387,
+      "peer_rate": 0,
+      "rate_human": "151.84 MiB/s"
+    },
+    {
+      "phase": "peer_ceiling",
+      "exit_code": 0,
+      "elapsed_ms": 494,
+      "bytes": 134217728,
+      "from_web_seeds": 0,
+      "from_peers": 134217728,
+      "rate": 271695806,
+      "web_seed_rate": 0,
+      "peer_rate": 271695806,
+      "rate_human": "259.11 MiB/s"
+    },
+    {
+      "phase": "peer_peer_cap",
+      "exit_code": 0,
+      "elapsed_ms": 15210,
+      "bytes": 134217728,
+      "from_web_seeds": 0,
+      "from_peers": 134217728,
+      "rate": 8824308,
+      "web_seed_rate": 0,
+      "peer_rate": 8824308,
+      "rate_human": "8.42 MiB/s"
+    },
+    {
+      "phase": "hybrid_ceiling",
+      "exit_code": 0,
+      "elapsed_ms": 561,
+      "bytes": 134217728,
+      "from_web_seeds": 109051904,
+      "from_peers": 25165824,
+      "rate": 239247287,
+      "web_seed_rate": 194388421,
+      "peer_rate": 44858866,
+      "rate_human": "228.16 MiB/s"
+    },
+    {
+      "phase": "hybrid_webseed_cap",
+      "exit_code": 0,
+      "elapsed_ms": 424,
+      "bytes": 134217728,
+      "from_web_seeds": 5242880,
+      "from_peers": 128974848,
+      "rate": 316551245,
+      "web_seed_rate": 12365283,
+      "peer_rate": 304185962,
+      "rate_human": "301.89 MiB/s"
+    },
+    {
+      "phase": "hybrid_session_cap",
+      "exit_code": 0,
+      "elapsed_ms": 15338,
+      "bytes": 134217728,
+      "from_web_seeds": 62914560,
+      "from_peers": 71303168,
+      "rate": 8750667,
+      "web_seed_rate": 4101875,
+      "peer_rate": 4648792,
+      "rate_human": "8.35 MiB/s"
+    },
+    {
+      "phase": "hybrid_both_caps",
+      "exit_code": 0,
+      "elapsed_ms": 4642,
+      "bytes": 134217728,
+      "from_web_seeds": 89128960,
+      "from_peers": 45088768,
+      "rate": 28913772,
+      "web_seed_rate": 19200551,
+      "peer_rate": 9713220,
+      "rate_human": "27.57 MiB/s"
+    }
+  ],
+  "commands": [
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-http_ceiling --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-http_session_cap --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/ --max-overall-download-rate 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-http_webseed_cap --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/ --web-seed-speed-limit 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-http_peer_cap --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/ --max-peer-rate 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-peer_ceiling --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --peer 127.0.0.1:50776",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-peer_peer_cap --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --peer 127.0.0.1:50776 --max-peer-rate 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-hybrid_ceiling --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/ --peer 127.0.0.1:50776",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-hybrid_webseed_cap --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/ --peer 127.0.0.1:50776 --web-seed-speed-limit 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-hybrid_session_cap --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/ --peer 127.0.0.1:50776 --max-overall-download-rate 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-hybrid_both_caps --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --web-seed http://127.0.0.1:50773/ --peer 127.0.0.1:50776 --max-peer-rate 8MiB/s --web-seed-speed-limit 24MiB/s"
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "from_peers and from_web_seeds are top-level fields of the download report, so the split is read rather than inferred.",
+    "The caps are judged and the splits are recorded. Two sources racing each other is a scheduling outcome, and a fixture that asserts one is asserting something it does not control.",
+    "hybrid_webseed_cap is judged in both directions: HTTP must stay under the cap, and the run as a whole must not, because nothing was asked to bound the peer there.",
+    "http_peer_cap is the row T-132 turns on. The web seed bridge dials into the session as an ordinary peer, so a swarm cap that reached it would be the defect. It must exceed the cap.",
+    "peer_ceiling exists so peer_peer_cap means something: a cap that holds because the peer was slow has measured nothing.",
+    "The entry's acceptance asks for each source to be within 10% of its cap. The upper half is a cap and is judged; the lower half is a scheduling outcome and is arranged rather than asserted, per TODO/RULES.md section 5.",
+    "Rates come from the wall clock and the bytes the report says landed, never from the report's own mean, so a limiter is not measured by the thing it limits.",
+    "A cap is judged as rate plus burst over the run's own length, because a token bucket is a rate and a burst. governor holds one second of quota, which is 16% over on a four second run and 2% over on a sixty second one."
+  ]
+}

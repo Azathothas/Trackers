@@ -1,0 +1,93 @@
+# Line endings are normalised to LF in the repository, on every platform.
+#
+# This file exists rather than relying on a global config setting, because the
+# rule has to travel with the repository. A machine with different settings
+# still produces the right commits.
+#
+# Verify with the command below. The INDEX column is the half that decides what
+# a commit contains, and every tracked text file should read i/lf:
+#
+#   git ls-files --eol
+#
+# The working-tree column is not uniform and does not need to be. A file written
+# by an editor that did not read this file will disagree until it is next
+# checked out. A check that compares the working tree against what this file
+# resolves is the repair, and it produces no git diff because the index is LF
+# on both sides.
+
+* text=auto eol=lf
+
+*.md            text eol=lf
+*.txt           text eol=lf
+*.json          text eol=lf
+*.jsonc         text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.toml          text eol=lf
+*.xml           text eol=lf
+*.html          text eol=lf
+*.css           text eol=lf
+*.sql           text eol=lf
+*.sh            text eol=lf
+*.bash          text eol=lf
+*.zsh           text eol=lf
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
+.editorconfig   text eol=lf
+
+# PowerShell is the one exception, and it is not a preference. Windows
+# PowerShell 5.1 mis-parses a here-string whose terminator arrives with a bare
+# LF, so these keep CRLF in the working tree.
+#
+# A second 5.1 requirement lives in the FILE rather than here: a .ps1 with any
+# non-ASCII byte needs a UTF-8 BOM, because 5.1 decodes a BOM-less file as the
+# system ANSI code page. `text` does not touch a BOM, so the two rules coexist.
+# docs/conventions/shell.md section 8.
+*.ps1           text eol=crlf
+*.psm1          text eol=crlf
+*.psd1          text eol=crlf
+
+# Batch files are read by cmd.exe, which wants CRLF.
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+
+# Anything whose exact bytes are the content. Changing one byte changes what
+# the file IS, so no translation may be applied.
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.webp          binary
+*.ico           binary
+*.pdf           binary
+*.zip           binary
+*.gz            binary
+*.bz2           binary
+*.xz            binary
+*.zst           binary
+*.7z            binary
+*.tar           binary
+*.exe           binary
+*.dll           binary
+*.so            binary
+*.dylib         binary
+*.wasm          binary
+*.bin           binary
+*.iso           binary
+*.woff          binary
+*.woff2         binary
+*.ttf           binary
+*.otf           binary
+*.mp4           binary
+*.webm          binary
+*.mp3           binary
+
+# Generated and noisy in a diff. Collapsed in review, still tracked.
+*.lock          linguist-generated=true
+package-lock.json   linguist-generated=true
+pnpm-lock.yaml      linguist-generated=true
+yarn.lock           linguist-generated=true
+Cargo.lock          linguist-generated=true
+go.sum              linguist-generated=true
+poetry.lock         linguist-generated=true
+uv.lock             linguist-generated=true

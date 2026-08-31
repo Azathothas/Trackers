@@ -1,0 +1,48 @@
+[
+  {
+    "url": "https://api.github.com/repos/XIU2/TrackersListCollection/issues/comments/1831255426",
+    "html_url": "https://github.com/XIU2/TrackersListCollection/pull/90#issuecomment-1831255426",
+    "issue_url": "https://api.github.com/repos/XIU2/TrackersListCollection/issues/90",
+    "id": 1831255426,
+    "node_id": "IC_kwDODKxQ4c5tJr2C",
+    "user": {
+      "login": "XIU2",
+      "id": 54703944,
+      "node_id": "MDQ6VXNlcjU0NzAzOTQ0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54703944?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/XIU2",
+      "html_url": "https://github.com/XIU2",
+      "followers_url": "https://api.github.com/users/XIU2/followers",
+      "following_url": "https://api.github.com/users/XIU2/following{/other_user}",
+      "gists_url": "https://api.github.com/users/XIU2/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/XIU2/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/XIU2/subscriptions",
+      "organizations_url": "https://api.github.com/users/XIU2/orgs",
+      "repos_url": "https://api.github.com/users/XIU2/repos",
+      "events_url": "https://api.github.com/users/XIU2/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/XIU2/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2023-11-29T05:39:44Z",
+    "updated_at": "2023-11-29T05:40:14Z",
+    "body": "什么意思？你是想要将你这两个 Tracker 添加到本项目列表内么？\r\n不过本项目目前已经不再接受单独添加 Tracker 的申请了（单独维护比较费精力，因此现在只做自动化整合了）。\r\n\r\n建议你提交到这两个项目，它们收录后我这边也会自动整合进来的：\r\n- https://github.com/ngosang/trackerslist （提 Issues 提交\r\n- https://newtrackon.com/ （可以自助提交",
+    "author_association": "OWNER",
+    "reactions": {
+      "url": "https://api.github.com/repos/XIU2/TrackersListCollection/issues/comments/1831255426/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  }
+]

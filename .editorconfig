@@ -1,0 +1,33 @@
+# The working-tree half of what .gitattributes does for the index.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.py]
+indent_size = 4
+
+[*.{ps1,psm1,psd1}]
+end_of_line = crlf
+indent_size = 4
+
+[*.md]
+# Two trailing spaces are a hard line break in markdown, so trimming them
+# silently changes rendering.
+trim_trailing_whitespace = false
+
+# The captured reference corpus is somebody else's source. Nothing here edits
+# it, and an editor that reformats it on save breaks every citation into it.
+[references/**]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = false
+indent_style = unset
+indent_size = unset

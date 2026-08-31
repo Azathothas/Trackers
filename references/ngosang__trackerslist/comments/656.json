@@ -1,0 +1,49 @@
+[
+  {
+    "url": "https://api.github.com/repos/ngosang/trackerslist/issues/comments/4759449157",
+    "html_url": "https://github.com/ngosang/trackerslist/issues/656#issuecomment-4759449157",
+    "issue_url": "https://api.github.com/repos/ngosang/trackerslist/issues/656",
+    "id": 4759449157,
+    "node_id": "IC_kwDOA2VHnM8AAAABG69uRQ",
+    "user": {
+      "login": "1265578519",
+      "id": 6442439,
+      "node_id": "MDQ6VXNlcjY0NDI0Mzk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6442439?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/1265578519",
+      "html_url": "https://github.com/1265578519",
+      "followers_url": "https://api.github.com/users/1265578519/followers",
+      "following_url": "https://api.github.com/users/1265578519/following{/other_user}",
+      "gists_url": "https://api.github.com/users/1265578519/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/1265578519/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/1265578519/subscriptions",
+      "organizations_url": "https://api.github.com/users/1265578519/orgs",
+      "repos_url": "https://api.github.com/users/1265578519/repos",
+      "events_url": "https://api.github.com/users/1265578519/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/1265578519/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2026-06-20T18:05:38Z",
+    "updated_at": "2026-06-20T18:05:38Z",
+    "body": "一个服务几千万用户的超大型tracker的服务器宽带使用率并不高，一般不会超过50Mbps，最让人头疼的问题是近几年有个印度的`Markscan`，疯狂给tracker服务器发dmca投诉\n```\nYou need to sponsor a centos-6 64 or 7 vps\nSYSTEM REQUIREMENTS (MINIMUM):\nCpu: 1 core (2 Cores or higher recommended)\nMemory: 512 MB RAM (4 GB or higher recommended)\nStorage: 5 GB available space\nNetwork: 100Mbps\nPort open:\n8080, 6961, 2710\n```\n\n如果多个域名cname指向同一个tracker服务器的ip地址，那么一般每一个域名会导致流量和cpu使用率翻倍，因为客户端产生了两次请求\n被他人域名冒用自己的服务器来使用，这当然是tracker的维护者不希望看到的，而且自己还毫无办法用防火墙去拦截这些流量\n防火墙需要维护连接表，拦截他人域名的流量带来的cpu消耗远比接收占用更多\n尽管ngosang可以从 trackers_best.txt 删除他们，但是地球上还有其它的trackerlist维护者传播这些域名，没办法从源头上彻底解决\n只能期望没有那么多把域名指向他人ip的这些坏人出现了\n",
+    "author_association": "NONE",
+    "pin": null,
+    "reactions": {
+      "url": "https://api.github.com/repos/ngosang/trackerslist/issues/comments/4759449157/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  }
+]

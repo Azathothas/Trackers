@@ -1,0 +1,106 @@
+{
+  "kind": "rate_scope",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T06:17:15.516Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "rate": "8MiB/s",
+    "rate_bytes": 8388608,
+    "payload_mib": 128,
+    "tolerance": 0.15,
+    "profile": "release"
+  },
+  "phases": [
+    {
+      "phase": "http_ceiling",
+      "exit_code": 0,
+      "elapsed_ms": 655,
+      "bytes": 134217728,
+      "from_web_seeds": 134217728,
+      "from_peers": 0,
+      "rate": 204912562,
+      "web_seed_rate": 204912562,
+      "peer_rate": 0,
+      "rate_human": "195.42 MiB/s"
+    },
+    {
+      "phase": "http_session_cap",
+      "exit_code": 0,
+      "elapsed_ms": 15224,
+      "bytes": 134217728,
+      "from_web_seeds": 134217728,
+      "from_peers": 0,
+      "rate": 8816193,
+      "web_seed_rate": 8816193,
+      "peer_rate": 0,
+      "rate_human": "8.41 MiB/s"
+    },
+    {
+      "phase": "http_webseed_cap",
+      "exit_code": 0,
+      "elapsed_ms": 15553,
+      "bytes": 134217728,
+      "from_web_seeds": 134217728,
+      "from_peers": 0,
+      "rate": 8629700,
+      "web_seed_rate": 8629700,
+      "peer_rate": 0,
+      "rate_human": "8.23 MiB/s"
+    },
+    {
+      "phase": "hybrid_ceiling",
+      "exit_code": 0,
+      "elapsed_ms": 361,
+      "bytes": 134217728,
+      "from_web_seeds": 52428800,
+      "from_peers": 81788928,
+      "rate": 371794260,
+      "web_seed_rate": 145232133,
+      "peer_rate": 226562127,
+      "rate_human": "354.57 MiB/s"
+    },
+    {
+      "phase": "hybrid_webseed_cap",
+      "exit_code": 0,
+      "elapsed_ms": 3560,
+      "bytes": 134217728,
+      "from_web_seeds": 5242880,
+      "from_peers": 128974848,
+      "rate": 37701609,
+      "web_seed_rate": 1472719,
+      "peer_rate": 36228890,
+      "rate_human": "35.96 MiB/s"
+    },
+    {
+      "phase": "hybrid_session_cap",
+      "exit_code": 0,
+      "elapsed_ms": 15471,
+      "bytes": 134217728,
+      "from_web_seeds": 67108864,
+      "from_peers": 67108864,
+      "rate": 8675440,
+      "web_seed_rate": 4337720,
+      "peer_rate": 4337720,
+      "rate_human": "8.27 MiB/s"
+    }
+  ],
+  "commands": [
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-http_ceiling --no-torrent-web-seed --web-seed http://127.0.0.1:60621/ --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-http_session_cap --no-torrent-web-seed --web-seed http://127.0.0.1:60621/ --no-dht --no-lsd --no-tracker --port 0 --json --max-overall-download-rate 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-http_webseed_cap --no-torrent-web-seed --web-seed http://127.0.0.1:60621/ --no-dht --no-lsd --no-tracker --port 0 --json --web-seed-speed-limit 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-hybrid_ceiling --no-torrent-web-seed --web-seed http://127.0.0.1:60621/ --no-dht --no-lsd --no-tracker --port 0 --json --peer 127.0.0.1:64413",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-hybrid_webseed_cap --no-torrent-web-seed --web-seed http://127.0.0.1:60621/ --no-dht --no-lsd --no-tracker --port 0 --json --peer 127.0.0.1:64413 --web-seed-speed-limit 8MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\rate-scope\\out-hybrid_session_cap --no-torrent-web-seed --web-seed http://127.0.0.1:60621/ --no-dht --no-lsd --no-tracker --port 0 --json --peer 127.0.0.1:64413 --max-overall-download-rate 8MiB/s"
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "from_peers and from_web_seeds are top-level fields of the download report, so the split is read rather than inferred.",
+    "The caps are judged and the splits are recorded. Two sources racing each other is a scheduling outcome, and a fixture that asserts one is asserting something it does not control.",
+    "hybrid_webseed_cap is judged in both directions: HTTP must stay under the cap, and the run as a whole must not, because nothing bounds the peer. The second is T-132 in one row.",
+    "Rates come from the wall clock and the bytes the report says landed, never from the report's own mean, so a limiter is not measured by the thing it limits."
+  ]
+}

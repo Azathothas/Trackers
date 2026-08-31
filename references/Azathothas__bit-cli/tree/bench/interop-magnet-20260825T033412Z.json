@@ -1,0 +1,489 @@
+{
+  "schema_version": "1",
+  "started_at": "2026-08-25T03:34:28.269Z",
+  "finished_at": "2026-08-25T03:34:52.119Z",
+  "repository": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli",
+  "bit_cli": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe",
+  "bit_cli_version": "bit-cli              0.2.0",
+  "client": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe",
+  "client_version": "aria2 version 1.37.0",
+  "os": "Microsoft Windows 10.0.26200",
+  "payload_bytes": 490012.0,
+  "cases_total": 4,
+  "cases_passed": 4,
+  "cases": [
+    {
+      "name": "v1",
+      "passed": true,
+      "failures": [],
+      "info_hash": "a6291a9a2794b3ff158e6db9d9424e6b166ddca7",
+      "piece_count": 15,
+      "piece_length": 32768,
+      "total_bytes": 490012,
+      "private": false,
+      "announce": "http://127.0.0.1:59126/announce",
+      "web_seed": null,
+      "seed_report": {
+        "bit_cli_version": "0.2.0",
+        "complete": true,
+        "data_directory": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\payload",
+        "elapsed_human": "8s",
+        "elapsed_ms": 8028,
+        "generated_at": "2026-08-25T03:34:37.652Z",
+        "have": {
+          "bytes": 490012,
+          "human": "478.53 KiB"
+        },
+        "info_hash": "a6291a9a2794b3ff158e6db9d9424e6b166ddca7",
+        "kind": "seed",
+        "listen_addr": "[::]:51413",
+        "mean_upload_rate": {
+          "bytes": 61037,
+          "human": "59.61 KiB"
+        },
+        "mean_upload_rate_human": "59.61 KiB/s",
+        "name": "payload",
+        "peers": [
+          {
+            "addr": "127.0.0.1:59134",
+            "choked": 0,
+            "chunks": 0,
+            "connect_ms": 0,
+            "direction": "incoming",
+            "disconnects": [
+              {
+                "at": "2026-08-25T03:34:30.974Z",
+                "reason": "peer disconnected"
+              }
+            ],
+            "downloaded_bytes": 0,
+            "encryption": "rc4",
+            "errors": 1,
+            "state": "not needed",
+            "unchoked": 0,
+            "uploaded_bytes": 490012,
+            "verified_pieces": 0,
+            "web_seed": false
+          }
+        ],
+        "peers_seen": 1,
+        "peers_served": 1,
+        "process": {
+          "cpu_ms": 77,
+          "cpu_system_ms": 46,
+          "cpu_user_ms": 31,
+          "open_handles": 199,
+          "peak_rss_bytes": 25063424,
+          "rss_bytes": 25063424
+        },
+        "ratio": "1.000",
+        "schema_version": "1",
+        "stopped": "idle",
+        "total": {
+          "bytes": 490012,
+          "human": "478.53 KiB"
+        },
+        "trackers": [
+          "http://127.0.0.1:59126/announce"
+        ],
+        "uploaded": {
+          "bytes": 490012,
+          "human": "478.53 KiB"
+        },
+        "uploaded_human": "478.53 KiB"
+      },
+      "web_seed_bytes": null,
+      "steps": [
+        {
+          "label": "v1-create",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe create payload --piece-length 32KiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1.torrent --force --json --announce http://127.0.0.1:59126/announce",
+          "started_at": "2026-08-25T03:34:28.426Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 45,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-create.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-create.err"
+        },
+        {
+          "label": "v1-verify",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe verify C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop --json",
+          "started_at": "2026-08-25T03:34:28.480Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 40,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-verify.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-verify.err"
+        },
+        {
+          "label": "v1-client-show",
+          "command": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe -S C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1.torrent",
+          "started_at": "2026-08-25T03:34:28.522Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 57,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-client-show.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-client-show.err"
+        },
+        {
+          "label": "v1-client-download",
+          "command": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe --dir=C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\out-v1 --enable-dht=false --enable-dht6=false --bt-enable-lpd=false --seed-time=0 --allow-overwrite=true --console-log-level=info --summary-interval=0 --listen-port=6881 --bt-stop-timeout=120 C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1.torrent",
+          "started_at": "2026-08-25T03:34:28.820Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 3189,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-client-download.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\v1-client-download.err"
+        }
+      ],
+      "source_files": {
+        "disc 1/a.flac": {
+          "bytes": 300000,
+          "sha256": "d28df553ab48f1f2483a95ec9b86ee7c44a7a7180d8bc541c8fd79d10a4ba1cc"
+        },
+        "disc 1/b.flac": {
+          "bytes": 150000,
+          "sha256": "e01f664d515582e861790649c3fb98224419b9ce28f25f150e8472b0fff3e50d"
+        },
+        "extras/notes.nfo": {
+          "bytes": 40000,
+          "sha256": "d5692cab45dae55ff3e0c6b7131dfc8bb119b7d8f2fd1af4156657de5f2ba36f"
+        },
+        "tiny.bin": {
+          "bytes": 12,
+          "sha256": "38872bffe6b787160772f7af972f9fa4f80d5875e4668d3ed229af9cf36cebf4"
+        }
+      },
+      "result_files": {
+        "disc 1/a.flac": {
+          "bytes": 300000,
+          "sha256": "d28df553ab48f1f2483a95ec9b86ee7c44a7a7180d8bc541c8fd79d10a4ba1cc"
+        },
+        "disc 1/b.flac": {
+          "bytes": 150000,
+          "sha256": "e01f664d515582e861790649c3fb98224419b9ce28f25f150e8472b0fff3e50d"
+        },
+        "extras/notes.nfo": {
+          "bytes": 40000,
+          "sha256": "d5692cab45dae55ff3e0c6b7131dfc8bb119b7d8f2fd1af4156657de5f2ba36f"
+        },
+        "tiny.bin": {
+          "bytes": 12,
+          "sha256": "38872bffe6b787160772f7af972f9fa4f80d5875e4668d3ed229af9cf36cebf4"
+        }
+      }
+    },
+    {
+      "name": "private",
+      "passed": true,
+      "failures": [],
+      "info_hash": "7240f139d5bbabedba0e2c7522bcafd6b087e8c5",
+      "piece_count": 15,
+      "piece_length": 32768,
+      "total_bytes": 490012,
+      "private": true,
+      "announce": "http://127.0.0.1:59161/announce",
+      "web_seed": null,
+      "seed_report": {
+        "bit_cli_version": "0.2.0",
+        "complete": true,
+        "data_directory": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\payload",
+        "elapsed_human": "8s",
+        "elapsed_ms": 8036,
+        "generated_at": "2026-08-25T03:34:47.149Z",
+        "have": {
+          "bytes": 490012,
+          "human": "478.53 KiB"
+        },
+        "info_hash": "7240f139d5bbabedba0e2c7522bcafd6b087e8c5",
+        "kind": "seed",
+        "listen_addr": "[::]:51413",
+        "mean_upload_rate": {
+          "bytes": 60977,
+          "human": "59.55 KiB"
+        },
+        "mean_upload_rate_human": "59.55 KiB/s",
+        "name": "payload",
+        "peers": [
+          {
+            "addr": "127.0.0.1:59172",
+            "choked": 0,
+            "chunks": 0,
+            "connect_ms": 0,
+            "direction": "incoming",
+            "disconnects": [
+              {
+                "at": "2026-08-25T03:34:40.472Z",
+                "reason": "peer disconnected"
+              }
+            ],
+            "downloaded_bytes": 0,
+            "encryption": "rc4",
+            "errors": 1,
+            "state": "not needed",
+            "unchoked": 0,
+            "uploaded_bytes": 490012,
+            "verified_pieces": 0,
+            "web_seed": false
+          }
+        ],
+        "peers_seen": 1,
+        "peers_served": 1,
+        "process": {
+          "cpu_ms": 31,
+          "cpu_system_ms": 31,
+          "cpu_user_ms": 0,
+          "open_handles": 203,
+          "peak_rss_bytes": 25489408,
+          "rss_bytes": 25489408
+        },
+        "ratio": "1.000",
+        "schema_version": "1",
+        "stopped": "idle",
+        "total": {
+          "bytes": 490012,
+          "human": "478.53 KiB"
+        },
+        "trackers": [
+          "http://127.0.0.1:59161/announce"
+        ],
+        "uploaded": {
+          "bytes": 490012,
+          "human": "478.53 KiB"
+        },
+        "uploaded_human": "478.53 KiB"
+      },
+      "web_seed_bytes": null,
+      "steps": [
+        {
+          "label": "private-create",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe create payload --piece-length 32KiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private.torrent --force --json --private --announce http://127.0.0.1:59161/announce",
+          "started_at": "2026-08-25T03:34:37.896Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 51,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-create.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-create.err"
+        },
+        {
+          "label": "private-verify",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe verify C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop --json",
+          "started_at": "2026-08-25T03:34:37.951Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 61,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-verify.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-verify.err"
+        },
+        {
+          "label": "private-client-show",
+          "command": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe -S C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private.torrent",
+          "started_at": "2026-08-25T03:34:38.014Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 55,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-client-show.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-client-show.err"
+        },
+        {
+          "label": "private-client-download",
+          "command": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe --dir=C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\out-private --enable-dht=false --enable-dht6=false --bt-enable-lpd=false --seed-time=0 --allow-overwrite=true --console-log-level=info --summary-interval=0 --listen-port=6881 --bt-stop-timeout=120 C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private.torrent",
+          "started_at": "2026-08-25T03:34:38.308Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 3213,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-client-download.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\private-client-download.err"
+        }
+      ],
+      "source_files": {
+        "disc 1/a.flac": {
+          "bytes": 300000,
+          "sha256": "d28df553ab48f1f2483a95ec9b86ee7c44a7a7180d8bc541c8fd79d10a4ba1cc"
+        },
+        "disc 1/b.flac": {
+          "bytes": 150000,
+          "sha256": "e01f664d515582e861790649c3fb98224419b9ce28f25f150e8472b0fff3e50d"
+        },
+        "extras/notes.nfo": {
+          "bytes": 40000,
+          "sha256": "d5692cab45dae55ff3e0c6b7131dfc8bb119b7d8f2fd1af4156657de5f2ba36f"
+        },
+        "tiny.bin": {
+          "bytes": 12,
+          "sha256": "38872bffe6b787160772f7af972f9fa4f80d5875e4668d3ed229af9cf36cebf4"
+        }
+      },
+      "result_files": {
+        "disc 1/a.flac": {
+          "bytes": 300000,
+          "sha256": "d28df553ab48f1f2483a95ec9b86ee7c44a7a7180d8bc541c8fd79d10a4ba1cc"
+        },
+        "disc 1/b.flac": {
+          "bytes": 150000,
+          "sha256": "e01f664d515582e861790649c3fb98224419b9ce28f25f150e8472b0fff3e50d"
+        },
+        "extras/notes.nfo": {
+          "bytes": 40000,
+          "sha256": "d5692cab45dae55ff3e0c6b7131dfc8bb119b7d8f2fd1af4156657de5f2ba36f"
+        },
+        "tiny.bin": {
+          "bytes": 12,
+          "sha256": "38872bffe6b787160772f7af972f9fa4f80d5875e4668d3ed229af9cf36cebf4"
+        }
+      }
+    },
+    {
+      "name": "webseed",
+      "passed": true,
+      "failures": [],
+      "info_hash": "a6291a9a2794b3ff158e6db9d9424e6b166ddca7",
+      "piece_count": 15,
+      "piece_length": 32768,
+      "total_bytes": 490012,
+      "private": false,
+      "announce": null,
+      "web_seed": "http://127.0.0.1:59192/",
+      "seed_report": null,
+      "web_seed_bytes": 490012,
+      "steps": [
+        {
+          "label": "webseed-create",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe create payload --piece-length 32KiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed.torrent --force --json --web-seed http://127.0.0.1:59192/",
+          "started_at": "2026-08-25T03:34:47.357Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 50,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-create.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-create.err"
+        },
+        {
+          "label": "webseed-verify",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe verify C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop --json",
+          "started_at": "2026-08-25T03:34:47.410Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 42,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-verify.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-verify.err"
+        },
+        {
+          "label": "webseed-client-show",
+          "command": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe -S C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed.torrent",
+          "started_at": "2026-08-25T03:34:47.454Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 66,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-client-show.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-client-show.err"
+        },
+        {
+          "label": "webseed-client-download",
+          "command": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe --dir=C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\out-webseed --enable-dht=false --enable-dht6=false --bt-enable-lpd=false --seed-time=0 --allow-overwrite=true --console-log-level=info --summary-interval=0 --listen-port=6881 --bt-stop-timeout=120 C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed.torrent",
+          "started_at": "2026-08-25T03:34:47.522Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 2178,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-client-download.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\webseed-client-download.err"
+        }
+      ],
+      "source_files": {
+        "disc 1/a.flac": {
+          "bytes": 300000,
+          "sha256": "d28df553ab48f1f2483a95ec9b86ee7c44a7a7180d8bc541c8fd79d10a4ba1cc"
+        },
+        "disc 1/b.flac": {
+          "bytes": 150000,
+          "sha256": "e01f664d515582e861790649c3fb98224419b9ce28f25f150e8472b0fff3e50d"
+        },
+        "extras/notes.nfo": {
+          "bytes": 40000,
+          "sha256": "d5692cab45dae55ff3e0c6b7131dfc8bb119b7d8f2fd1af4156657de5f2ba36f"
+        },
+        "tiny.bin": {
+          "bytes": 12,
+          "sha256": "38872bffe6b787160772f7af972f9fa4f80d5875e4668d3ed229af9cf36cebf4"
+        }
+      },
+      "result_files": {
+        "disc 1/a.flac": {
+          "bytes": 300000,
+          "sha256": "d28df553ab48f1f2483a95ec9b86ee7c44a7a7180d8bc541c8fd79d10a4ba1cc"
+        },
+        "disc 1/b.flac": {
+          "bytes": 150000,
+          "sha256": "e01f664d515582e861790649c3fb98224419b9ce28f25f150e8472b0fff3e50d"
+        },
+        "extras/notes.nfo": {
+          "bytes": 40000,
+          "sha256": "d5692cab45dae55ff3e0c6b7131dfc8bb119b7d8f2fd1af4156657de5f2ba36f"
+        },
+        "tiny.bin": {
+          "bytes": 12,
+          "sha256": "38872bffe6b787160772f7af972f9fa4f80d5875e4668d3ed229af9cf36cebf4"
+        }
+      }
+    },
+    {
+      "name": "magnet",
+      "passed": true,
+      "failures": [],
+      "info_hash": "a6291a9a2794b3ff158e6db9d9424e6b166ddca7",
+      "written_hash": "a6291a9a2794b3ff158e6db9d9424e6b166ddca7",
+      "magnet": "magnet:?xt=urn:btih:a6291a9a2794b3ff158e6db9d9424e6b166ddca7&dn=payload&xl=490012",
+      "steps": [
+        {
+          "label": "magnet-create",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe create payload --piece-length 32KiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet.torrent --force --json",
+          "started_at": "2026-08-25T03:34:49.754Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 51,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-create.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-create.err"
+        },
+        {
+          "label": "magnet-uri",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe magnet C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet.torrent",
+          "started_at": "2026-08-25T03:34:49.807Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 33,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-uri.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-uri.err"
+        },
+        {
+          "label": "magnet-resolve",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe magnet magnet:?xt=urn:btih:a6291a9a2794b3ff158e6db9d9424e6b166ddca7&dn=payload&xl=490012 --peer 127.0.0.1:51414 --no-dht --no-lsd --no-tracker --output C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\from-magnet.torrent --force",
+          "started_at": "2026-08-25T03:34:50.940Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 1076,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-resolve.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-resolve.err"
+        },
+        {
+          "label": "magnet-reread",
+          "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\debug\\bit-cli.exe info C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\from-magnet.torrent --json",
+          "started_at": "2026-08-25T03:34:52.017Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 40,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-reread.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-reread.err"
+        },
+        {
+          "label": "magnet-client",
+          "command": "C:\\Users\\AjamX\\AppData\\Local\\Microsoft\\WinGet\\Links\\aria2c.exe -S C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\from-magnet.torrent",
+          "started_at": "2026-08-25T03:34:52.058Z",
+          "exit_code": 0,
+          "timed_out": false,
+          "elapsed_ms": 49,
+          "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-client.out",
+          "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\interop\\magnet-client.err"
+        }
+      ]
+    }
+  ],
+  "cases_skipped": []
+}

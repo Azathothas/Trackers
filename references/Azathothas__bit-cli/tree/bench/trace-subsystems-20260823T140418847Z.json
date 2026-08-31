@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-08-23T14:04:33.192Z",
+  "payload_bytes": 2097152,
+  "piece_length": "256KiB",
+  "subsystems": [
+    {
+      "subsystem": "peer",
+      "raises": [
+        "bit_cli::peer",
+        "librqbit::peer_connection"
+      ],
+      "exit_code": 0,
+      "records": 399,
+      "per_target": {
+        "bit_cli::peer": 133,
+        "librqbit::peer_connection": 266
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "handshake",
+      "raises": [
+        "bit_cli::handshake",
+        "librqbit::handshake"
+      ],
+      "exit_code": 0,
+      "records": 5,
+      "per_target": {
+        "bit_cli::handshake": 3,
+        "librqbit::handshake": 2
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "tracker",
+      "raises": [
+        "bit_cli::tracker",
+        "librqbit_tracker_comms"
+      ],
+      "exit_code": 6,
+      "records": 2,
+      "per_target": {
+        "bit_cli::tracker": 2
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "dht",
+      "raises": [
+        "bit_cli::dht",
+        "librqbit_dht"
+      ],
+      "exit_code": 0,
+      "records": 1,
+      "per_target": {
+        "bit_cli::dht": 1
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "http",
+      "raises": [
+        "bit_cli::http"
+      ],
+      "exit_code": 0,
+      "records": 1,
+      "per_target": {
+        "bit_cli::http": 1
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "piece",
+      "raises": [
+        "bit_cli::piece",
+        "librqbit::piece"
+      ],
+      "exit_code": 0,
+      "records": 281,
+      "per_target": {
+        "bit_cli::piece": 128,
+        "librqbit::piece": 153
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "picker",
+      "raises": [
+        "bit_cli::picker",
+        "librqbit::picker"
+      ],
+      "exit_code": 0,
+      "records": 10,
+      "per_target": {
+        "bit_cli::picker": 1,
+        "librqbit::picker": 9
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "disk",
+      "raises": [
+        "bit_cli::disk"
+      ],
+      "exit_code": 0,
+      "records": 82,
+      "per_target": {
+        "bit_cli::disk": 82
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "ratelimit",
+      "raises": [
+        "bit_cli::ratelimit"
+      ],
+      "exit_code": 0,
+      "records": 1,
+      "per_target": {
+        "bit_cli::ratelimit": 1
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "retry",
+      "raises": [
+        "bit_cli::retry"
+      ],
+      "exit_code": 9,
+      "records": 6,
+      "per_target": {
+        "bit_cli::retry": 6
+      },
+      "other_targets": []
+    },
+    {
+      "subsystem": "config",
+      "raises": [
+        "bit_cli::config"
+      ],
+      "exit_code": 0,
+      "records": 3,
+      "per_target": {
+        "bit_cli::config": 3
+      },
+      "other_targets": []
+    }
+  ],
+  "all_but_http": {
+    "traced": "peer,handshake,tracker,dht,piece,picker,disk,ratelimit,retry,config",
+    "stderr_lines": 743,
+    "per_target": {
+      "librqbit::picker": 9,
+      "librqbit_tracker_comms::tracker_comms": 1,
+      "bit_cli::handshake": 3,
+      "bit_cli::peer": 133,
+      "bit_cli::dht": 1,
+      "bit_cli::piece": 128,
+      "librqbit::peer_connection": 266,
+      "librqbit::handshake": 2,
+      "bit_cli::disk": 47,
+      "librqbit::piece": 153
+    }
+  },
+  "http_only": {
+    "stderr_lines": 1,
+    "per_target": {
+      "bit_cli::http": 1
+    }
+  },
+  "untraced": {
+    "stderr_lines": 0
+  },
+  "silent": []
+}

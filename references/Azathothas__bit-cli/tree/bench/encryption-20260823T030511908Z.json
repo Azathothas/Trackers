@@ -1,0 +1,128 @@
+{
+  "kind": "encryption",
+  "schema_version": "1",
+  "generated_at": "2026-08-23T03:05:11.908Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "payload_mib": 8,
+    "payload_bytes": 8388608,
+    "negative_deadline": "25s",
+    "sample_duration": "6s",
+    "profile": "release"
+  },
+  "seeders": {
+    "prefer": "127.0.0.1:63589",
+    "require": "127.0.0.1:63592",
+    "off": "127.0.0.1:63595"
+  },
+  "phases": [
+    {
+      "phase": "prefer_seeder_default",
+      "seeder": "prefer",
+      "leecher": "default",
+      "expect_complete": true,
+      "exit_code": 0,
+      "elapsed_ms": 101,
+      "bytes": 8388608,
+      "negotiated": "rc4",
+      "peer_state": "not needed"
+    },
+    {
+      "phase": "prefer_seeder_off",
+      "seeder": "prefer",
+      "leecher": "off",
+      "expect_complete": true,
+      "exit_code": 0,
+      "elapsed_ms": 73,
+      "bytes": 8388608,
+      "negotiated": "plaintext",
+      "peer_state": "not needed"
+    },
+    {
+      "phase": "prefer_seeder_require",
+      "seeder": "prefer",
+      "leecher": "require",
+      "expect_complete": true,
+      "exit_code": 0,
+      "elapsed_ms": 118,
+      "bytes": 8388608,
+      "negotiated": "rc4",
+      "peer_state": "not needed"
+    },
+    {
+      "phase": "require_seeder_default",
+      "seeder": "require",
+      "leecher": "default",
+      "expect_complete": true,
+      "exit_code": 0,
+      "elapsed_ms": 104,
+      "bytes": 8388608,
+      "negotiated": "rc4",
+      "peer_state": "not needed"
+    },
+    {
+      "phase": "require_seeder_off",
+      "seeder": "require",
+      "leecher": "off",
+      "expect_complete": false,
+      "exit_code": 9,
+      "elapsed_ms": 25048,
+      "bytes": 0,
+      "negotiated": "plaintext",
+      "peer_state": "dead"
+    },
+    {
+      "phase": "off_seeder_default",
+      "seeder": "off",
+      "leecher": "default",
+      "expect_complete": true,
+      "exit_code": 0,
+      "elapsed_ms": 72,
+      "bytes": 8388608,
+      "negotiated": "plaintext",
+      "peer_state": "not needed"
+    },
+    {
+      "phase": "off_seeder_require",
+      "seeder": "off",
+      "leecher": "require",
+      "expect_complete": false,
+      "exit_code": 9,
+      "elapsed_ms": 25050,
+      "bytes": 0,
+      "negotiated": null,
+      "peer_state": "dead"
+    }
+  ],
+  "commands": [
+    "bit-cli --jsonl seed C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --data C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption --port 0 --encryption prefer --no-tracker --no-dht --no-lsd --stop-after 1800s",
+    "bit-cli --jsonl seed C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --data C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption --port 0 --encryption require --no-tracker --no-dht --no-lsd --stop-after 1800s",
+    "bit-cli --jsonl seed C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --data C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption --port 0 --encryption off --no-tracker --no-dht --no-lsd --stop-after 1800s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\out-prefer_seeder_default --peer 127.0.0.1:63589 --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli peers C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --peer 127.0.0.1:63589 --duration 6s --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\out-prefer_seeder_off --peer 127.0.0.1:63589 --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --encryption off",
+    "bit-cli peers C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --peer 127.0.0.1:63589 --duration 6s --no-dht --no-lsd --no-tracker --port 0 --json --encryption off",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\out-prefer_seeder_require --peer 127.0.0.1:63589 --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --encryption require",
+    "bit-cli peers C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --peer 127.0.0.1:63589 --duration 6s --no-dht --no-lsd --no-tracker --port 0 --json --encryption require",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\out-require_seeder_default --peer 127.0.0.1:63592 --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli peers C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --peer 127.0.0.1:63592 --duration 6s --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\out-require_seeder_off --peer 127.0.0.1:63592 --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --encryption off --stop-after 25s",
+    "bit-cli peers C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --peer 127.0.0.1:63592 --duration 6s --no-dht --no-lsd --no-tracker --port 0 --json --encryption off",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\out-off_seeder_default --peer 127.0.0.1:63595 --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli peers C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --peer 127.0.0.1:63595 --duration 6s --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\out-off_seeder_require --peer 127.0.0.1:63595 --no-torrent-web-seed --no-dht --no-lsd --no-tracker --port 0 --json --encryption require --stop-after 25s",
+    "bit-cli peers C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\encryption\\payload.torrent --peer 127.0.0.1:63595 --duration 6s --no-dht --no-lsd --no-tracker --port 0 --json --encryption require"
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "The first three phases are the same seeder process on the same port, so one listening port serving both kinds of peer is measured three times without a restart.",
+    "require_seeder_off and off_seeder_require are the controls. Without them a \require that quietly accepted plaintext would pass every other phase.",
+    "A phase that must not complete asserts zero bytes, which is true however long it ran. The deadline only ends the run.",
+    "The negotiated mode is read from bit-cli peers --json, which carries peers[].encryption. The download report has no peer rows.",
+    "off_seeder_default is the fallback redial: the leecher offers MSE, the seeder does not answer it, and the leecher dials again in plaintext inside the same attempt."
+  ]
+}

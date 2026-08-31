@@ -1,0 +1,564 @@
+{
+  "schema_version": "1",
+  "kind": "bench_webseed_comparison",
+  "todo": "T-001",
+  "generated_at": "2026-08-20T00:18:28.474Z",
+  "bit_cli_version": "0.1.0",
+  "environment": {
+    "build": {
+      "version": "0.1.0",
+      "target": "x86_64-pc-windows-msvc",
+      "profile": "release",
+      "debug_assertions": false
+    },
+    "host": {
+      "os": {
+        "name": "Windows",
+        "version": "10.0.26200"
+      },
+      "cpu": {
+        "model": "12th Gen Intel(R) Core(TM) i7-12700H",
+        "architecture": "x86_64",
+        "logical_cores": 20
+      },
+      "memory_total": {
+        "bytes": 68321587200,
+        "human": "63.63 GiB"
+      },
+      "network": [
+        {
+          "name": "Hyper-V Virtual Ethernet Adapter #2",
+          "link_speed_bps": 1000000000,
+          "link_speed_human": "1.00 Gbit/s",
+          "up": true
+        },
+        {
+          "name": "ZeroTier Virtual Port",
+          "link_speed_bps": 100000000,
+          "link_speed_human": "100.00 Mbit/s",
+          "up": true
+        }
+      ]
+    },
+    "command_line": [
+      "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe",
+      "bench",
+      "webseed",
+      "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent",
+      "--web-seed",
+      "http://127.0.0.1:58845/",
+      "--no-torrent-web-seed",
+      "--web-seed-only",
+      "--duration",
+      "3s",
+      "--warmup",
+      "1s",
+      "--concurrency",
+      "8",
+      "--request-size",
+      "1MiB",
+      "--metrics-interval",
+      "250ms",
+      "--report",
+      "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-1.json",
+      "--format",
+      "json",
+      "--quiet"
+    ],
+    "working_directory": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed",
+    "started_at": {
+      "iso": "2026-08-20T00:17:39.409Z",
+      "epoch_ms": 1787185059409
+    },
+    "finished_at": {
+      "iso": "2026-08-20T00:17:42.422Z",
+      "epoch_ms": 1787185062422
+    },
+    "elapsed": {
+      "ms": 3013,
+      "human": "3s"
+    },
+    "process": {
+      "peak_rss_bytes": 23633920,
+      "rss_bytes": 20426752,
+      "cpu_ms": 2514,
+      "cpu_user_ms": 843,
+      "cpu_system_ms": 1671,
+      "open_handles": 216
+    },
+    "tracing_enabled": false
+  },
+  "tool_versions": {
+    "curl": "curl 8.21.0 (Windows) libcurl/8.21.0 Schannel zlib/1.3.2 WinIDN WinLDAP",
+    "bit_cli": "bit-cli 0.1.0"
+  },
+  "target": {
+    "kind": "loopback",
+    "name": "payload",
+    "info_hash": "056752b4afdfe481756e0c18fce0cce48b7c21f8",
+    "total_bytes": 268435456,
+    "total_human": "256.00 MiB",
+    "piece_count": 256,
+    "web_seed": "http://127.0.0.1:58845/",
+    "file_url": "http://127.0.0.1:58845/payload/movie.bin"
+  },
+  "parameters": {
+    "runs": 5,
+    "concurrency": 8,
+    "request_size": "1MiB",
+    "profile": "release"
+  },
+  "stages": {
+    "ceiling_serial": {
+      "what": "curl, one connection, one request for the whole file",
+      "wall_ms": {
+        "runs": 5,
+        "min": 143,
+        "median": 152.0,
+        "mean": 155.6,
+        "max": 177,
+        "spread": 34,
+        "spread_percent": 23.78,
+        "values": [
+          143,
+          149,
+          152,
+          157,
+          177
+        ]
+      },
+      "rate_bytes_per_sec": 1877171021,
+      "rate_human": "1.75 GiB/s",
+      "cpu_ms": {
+        "runs": 5,
+        "min": 62,
+        "median": 78.0,
+        "mean": 81.2,
+        "max": 94,
+        "spread": 32,
+        "spread_percent": 51.61,
+        "values": [
+          62,
+          78,
+          78,
+          94,
+          94
+        ]
+      }
+    },
+    "ceiling_parallel": {
+      "what": "curl, 8 connections, one contiguous slice each. The ceiling the bit-cli stages are compared against, because they run in the same shape.",
+      "connections": 8,
+      "slice_bytes": 33554432,
+      "wall_ms": {
+        "runs": 5,
+        "min": 100,
+        "median": 103.0,
+        "mean": 113.2,
+        "max": 138,
+        "spread": 38,
+        "spread_percent": 38.0,
+        "values": [
+          100,
+          100,
+          103,
+          125,
+          138
+        ]
+      },
+      "rate_bytes_per_sec": 2684354560,
+      "rate_human": "2.50 GiB/s",
+      "cpu_ms": {
+        "runs": 5,
+        "min": 78,
+        "median": 78.0,
+        "mean": 78.0,
+        "max": 78,
+        "spread": 0,
+        "spread_percent": 0.0,
+        "values": [
+          78,
+          78,
+          78,
+          78,
+          78
+        ]
+      },
+      "speedup_over_serial": 1.43
+    },
+    "fetch": {
+      "what": "bit-cli bench webseed: bit-cli's HTTP fetch path, no bridge, no hashing, no disk",
+      "rate_bytes_per_sec": 1136436732.0,
+      "rate_human": "1.06 GiB/s",
+      "share_of_ceiling": "42.34%",
+      "runs": [
+        1105580879,
+        1135390771,
+        1129637985,
+        1133821829,
+        1136436732
+      ],
+      "peak_rss_bytes": 23633920.0,
+      "cpu_ms": 2796.0
+    },
+    "download": {
+      "what": "bit-cli download --web-seed-only: fetch, loopback bridge, verify, write",
+      "wall_ms": {
+        "runs": 5,
+        "min": 1561,
+        "median": 1569.0,
+        "mean": 1575.8,
+        "max": 1596,
+        "spread": 35,
+        "spread_percent": 2.24,
+        "values": [
+          1561,
+          1567,
+          1569,
+          1586,
+          1596
+        ]
+      },
+      "rate_bytes_per_sec": 171963777,
+      "rate_human": "164.00 MiB/s",
+      "share_of_ceiling": "6.41%",
+      "share_of_fetch": "15.13%",
+      "peak_rss_bytes": 64208896.0,
+      "open_handles": 265.0,
+      "cpu_ms": {
+        "runs": 5,
+        "min": 1937,
+        "median": 2062.0,
+        "mean": 2114.8,
+        "max": 2483,
+        "spread": 546,
+        "spread_percent": 28.19,
+        "values": [
+          1937,
+          1967,
+          2062,
+          2125,
+          2483
+        ]
+      },
+      "time_to_first_verified_piece_ms": {
+        "runs": 5,
+        "min": 103,
+        "median": 108.0,
+        "mean": 110.4,
+        "max": 123,
+        "spread": 20,
+        "spread_percent": 19.42,
+        "values": [
+          103,
+          105,
+          108,
+          113,
+          123
+        ]
+      },
+      "time_to_first_verified_piece_resolution_ms": 100,
+      "loopback_bytes": 268648448,
+      "loopback_bytes_per_payload_byte": 1.000793,
+      "framing_bytes_per_block": 13
+    }
+  },
+  "failure_cases": [
+    {
+      "case": "stall",
+      "description": "the server sends 64 KiB of a response and then stops without closing",
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_ms": 24247,
+      "ended": true
+    },
+    {
+      "case": "416",
+      "description": "the server answers every ranged request with 416",
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_ms": 1081,
+      "ended": true
+    }
+  ],
+  "steps": [
+    {
+      "label": "curl-serial-1",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -o NUL http://127.0.0.1:58845/payload/movie.bin",
+      "started_at": "2026-08-20T00:17:37.804Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 177,
+      "peak_rss_bytes": null,
+      "cpu_ms": 94,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-1.err"
+    },
+    {
+      "label": "curl-serial-2",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -o NUL http://127.0.0.1:58845/payload/movie.bin",
+      "started_at": "2026-08-20T00:17:38.005Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 149,
+      "peak_rss_bytes": null,
+      "cpu_ms": 62,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-2.err"
+    },
+    {
+      "label": "curl-serial-3",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -o NUL http://127.0.0.1:58845/payload/movie.bin",
+      "started_at": "2026-08-20T00:17:38.173Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 143,
+      "peak_rss_bytes": null,
+      "cpu_ms": 78,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-3.err"
+    },
+    {
+      "label": "curl-serial-4",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -o NUL http://127.0.0.1:58845/payload/movie.bin",
+      "started_at": "2026-08-20T00:17:38.337Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 152,
+      "peak_rss_bytes": null,
+      "cpu_ms": 78,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-4.err"
+    },
+    {
+      "label": "curl-serial-5",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -o NUL http://127.0.0.1:58845/payload/movie.bin",
+      "started_at": "2026-08-20T00:17:38.508Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 157,
+      "peak_rss_bytes": null,
+      "cpu_ms": 94,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-serial-5.err"
+    },
+    {
+      "label": "curl-parallel-1",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -Z --parallel-max 8 -K C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel.cfg",
+      "started_at": "2026-08-20T00:17:38.710Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 138,
+      "peak_rss_bytes": null,
+      "cpu_ms": 78,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-1.err"
+    },
+    {
+      "label": "curl-parallel-2",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -Z --parallel-max 8 -K C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel.cfg",
+      "started_at": "2026-08-20T00:17:38.867Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 103,
+      "peak_rss_bytes": null,
+      "cpu_ms": 78,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-2.err"
+    },
+    {
+      "label": "curl-parallel-3",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -Z --parallel-max 8 -K C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel.cfg",
+      "started_at": "2026-08-20T00:17:38.989Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 100,
+      "peak_rss_bytes": null,
+      "cpu_ms": 78,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-3.err"
+    },
+    {
+      "label": "curl-parallel-4",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -Z --parallel-max 8 -K C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel.cfg",
+      "started_at": "2026-08-20T00:17:39.108Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 125,
+      "peak_rss_bytes": null,
+      "cpu_ms": 78,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-4.err"
+    },
+    {
+      "label": "curl-parallel-5",
+      "command": "C:\\Windows\\system32\\curl.exe -sS --http1.1 -Z --parallel-max 8 -K C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel.cfg",
+      "started_at": "2026-08-20T00:17:39.252Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 100,
+      "peak_rss_bytes": null,
+      "cpu_ms": 78,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\curl-parallel-5.err"
+    },
+    {
+      "label": "fetch-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --duration 3s --warmup 1s --concurrency 8 --request-size 1MiB --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-1.json --format json --quiet",
+      "started_at": "2026-08-20T00:17:39.374Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 3054,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2516,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-1.err"
+    },
+    {
+      "label": "fetch-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --duration 3s --warmup 1s --concurrency 8 --request-size 1MiB --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-2.json --format json --quiet",
+      "started_at": "2026-08-20T00:17:42.462Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 3064,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2797,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-2.err"
+    },
+    {
+      "label": "fetch-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --duration 3s --warmup 1s --concurrency 8 --request-size 1MiB --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-3.json --format json --quiet",
+      "started_at": "2026-08-20T00:17:45.546Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 3050,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2625,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-3.err"
+    },
+    {
+      "label": "fetch-4",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --duration 3s --warmup 1s --concurrency 8 --request-size 1MiB --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-4.json --format json --quiet",
+      "started_at": "2026-08-20T00:17:48.618Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 3064,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2688,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-4.err"
+    },
+    {
+      "label": "fetch-5",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --duration 3s --warmup 1s --concurrency 8 --request-size 1MiB --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-5.json --format json --quiet",
+      "started_at": "2026-08-20T00:17:51.702Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 3052,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2750,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\fetch-5.err"
+    },
+    {
+      "label": "download-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\out-1 --web-seed-concurrency 8 --web-seed-chunk-size 1MiB --report-interval 100ms --jsonl",
+      "started_at": "2026-08-20T00:17:54.777Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 1567,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2125,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-1.err"
+    },
+    {
+      "label": "download-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\out-2 --web-seed-concurrency 8 --web-seed-chunk-size 1MiB --report-interval 100ms --jsonl",
+      "started_at": "2026-08-20T00:17:56.398Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 1596,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2000,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-2.err"
+    },
+    {
+      "label": "download-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\out-3 --web-seed-concurrency 8 --web-seed-chunk-size 1MiB --report-interval 100ms --jsonl",
+      "started_at": "2026-08-20T00:17:58.024Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 1586,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2062,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-3.err"
+    },
+    {
+      "label": "download-4",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\out-4 --web-seed-concurrency 8 --web-seed-chunk-size 1MiB --report-interval 100ms --jsonl",
+      "started_at": "2026-08-20T00:17:59.636Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 1561,
+      "peak_rss_bytes": null,
+      "cpu_ms": 2484,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-4.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-4.err"
+    },
+    {
+      "label": "download-5",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58845/ --no-torrent-web-seed --web-seed-only --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\out-5 --web-seed-concurrency 8 --web-seed-chunk-size 1MiB --report-interval 100ms --jsonl",
+      "started_at": "2026-08-20T00:18:01.224Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_ms": 1569,
+      "peak_rss_bytes": null,
+      "cpu_ms": 1938,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-5.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-5.err"
+    },
+    {
+      "label": "download-stall",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:60011/ --web-seed-only --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\out-stall --web-seed-timeout 5s --web-seed-concurrency 2 --timeout 45s --json",
+      "started_at": "2026-08-20T00:18:02.961Z",
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_ms": 24247,
+      "peak_rss_bytes": null,
+      "cpu_ms": 94,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-stall.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-stall.err"
+    },
+    {
+      "label": "download-416",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\target.torrent --web-seed http://127.0.0.1:58443/ --web-seed-only --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\out-416 --timeout 45s --json",
+      "started_at": "2026-08-20T00:18:27.361Z",
+      "exit_code": 1,
+      "timed_out": false,
+      "elapsed_ms": 1081,
+      "peak_rss_bytes": null,
+      "cpu_ms": 16,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-416.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-webseed\\download-416.err"
+    }
+  ],
+  "failures": [],
+  "link": {
+    "fastest_bps": 1000000000,
+    "fastest_human": "Hyper-V Virtual Ethernet Adapter #2 at 1.00 Gbit/s",
+    "download_bits_per_sec": 1375710216,
+    "download_human": "1.38 Gbit/s",
+    "saturates_fastest_link": true
+  },
+  "notes": [
+    "A loopback run has no network cost, so the share of the ceiling is the worst case for bit-cli and the best case for curl. On a real link the network is the bottleneck long before either of them is, which is what the link object is for: it says whether the measured rate would saturate this machine's fastest interface.",
+    "The page cache is not dropped between runs: Windows has no supported way to do it. Both the ceiling and the candidates read the same file through the same server, so the cache helps each of them equally.",
+    "time_to_first_verified_piece is derived from the --jsonl piece_verified event, which is emitted on the --report-interval poll, so its resolution is that interval and not finer. See TODO/cli-surface.md, T-111.",
+    "loopback_bytes counts the BEP 3 piece message framing the bridge writes over loopback: 13 bytes per block on top of the payload. The handshake and the bitfield are one-off and are not counted."
+  ]
+}

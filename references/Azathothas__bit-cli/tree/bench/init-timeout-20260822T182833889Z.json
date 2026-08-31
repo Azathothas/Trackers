@@ -1,0 +1,46 @@
+{
+  "kind": "init_timeout_bound",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T18:28:33.889Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "init_timeout_seconds": 4,
+    "slack_seconds": 30,
+    "dead_port": 53225,
+    "profile": "release"
+  },
+  "cases": [
+    {
+      "case": "selection",
+      "finished": true,
+      "elapsed_s": 4.05,
+      "exit_code": 9,
+      "error_code": "timeout",
+      "phase": null,
+      "message": "magnet:?xt=urn:btih:e547c1d7e06025882711692196f7e219c568ef25&dn=payload&xl=131072: the metadata did not resolve in 4000ms, so --exclude-file and an open-ended --select-file have no file count to work from"
+    },
+    {
+      "case": "no_selection",
+      "finished": true,
+      "elapsed_s": 10.04,
+      "exit_code": 4,
+      "error_code": "source_resolution",
+      "phase": null,
+      "message": "magnet:?xt=urn:btih:e547c1d7e06025882711692196f7e219c568ef25&dn=payload&xl=131072: input address stream exhausted, no way to discover torrent metainfo"
+    }
+  ],
+  "verdict": "fail",
+  "failures": [
+    "selection reported phase '', expected resolving_metadata",
+    "no_selection reported code 'source_resolution', expected timeout",
+    "no_selection reported phase '', expected resolving_metadata"
+  ],
+  "notes": [
+    "selection is the control: --exclude-file forces the branch that already had the bound, so a failure in no_selection cannot be blamed on the fixture.",
+    "The peer completes the handshake and then sends nothing. A closed port stops the run in two seconds and an accept-and-hold listener in ten, both by exhausting the address list rather than by the flag, so either would have passed before the fix.",
+    "The phase is asserted, not only the exit code. An exit that does not say which phase gave up sends a reader to the wrong flag."
+  ]
+}

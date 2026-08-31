@@ -1,0 +1,32 @@
+# Dependency updates.
+#
+# Weekly, not daily. A daily cadence on a small project produces more pull
+# requests than anyone reads, and unread updates are worse than none: they
+# train you to merge without looking.
+#
+# Grouping matters. Ungrouped, a lockfile bump becomes twelve pull requests
+# that each need a CI run.
+
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      # No tool attribution anywhere in this repository history.
+      prefix: ci
+
+  # Uncomment the one that applies.
+  # - package-ecosystem: npm
+  #   directory: /
+  #   schedule:
+  #     interval: weekly
+  #   groups:
+  #     minor-and-patch:
+  #       update-types: [minor, patch]
+  #   commit-message:
+  #     prefix: deps

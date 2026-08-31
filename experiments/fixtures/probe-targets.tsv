@@ -1,0 +1,45 @@
+# Pinned probe targets for experiments 02 and 03.
+#
+# PROVENANCE
+#   source            https://newtrackon.com/api/live
+#   captured          2026-08-29 (UTC) from the authoring sandbox
+#   why this source   newTrackon is an independent uptime monitor. Every entry
+#                     below was on ITS live list at capture time, so a target
+#                     that does not answer us is a disagreement between two
+#                     vantage points -- which is a finding (C-03) -- rather
+#                     than an unknown.
+#   why pinned        TEMPLATE experiments.md: 'every input pinned'. An
+#                     experiment against a live list measures a different thing
+#                     each week and says so nowhere.
+#
+# THIS FILE IS NOT EDITED IN PLACE. A refreshed target set gets a new numbered
+# fixture and a new numbered experiment, so a citation keeps its meaning.
+#
+# CORRECTION 2026-08-29 (recorded, not silent -- RULES 1.2 step 5)
+#   As first committed this file carried 18 rows, of which two were the byte
+#   identical line `udp://tracker.torrent.eu.org:451/announce`. The duplicate
+#   was removed. This is a defect fix, NOT a refreshed target set: the set of
+#   DISTINCT endpoints is unchanged, so the no-edit-in-place rule above (which
+#   exists to stop a citation silently changing what it cites) is not engaged.
+#   The visible consequence is that experiment 02's denominator is 11 distinct
+#   UDP targets, not 12 probes of 11 targets. Any earlier result file quoting
+#   /12 was counting one host twice.
+#
+# Columns: scheme<TAB>url<TAB>port<TAB>oracle_status_at_capture
+udp	udp://open.stealth.si:80/announce	80	live
+udp	udp://tracker.torrent.eu.org:451/announce	451	live
+udp	udp://open.demonii.com:1337/announce	1337	live
+udp	udp://tracker.opentrackr.org:1337/announce	1337	live
+udp	udp://exodus.desync.com:6969/announce	6969	live
+udp	udp://explodie.org:6969/announce	6969	live
+udp	udp://retracker.hotplug.ru:2710/announce	2710	live
+udp	udp://whybother.torrentonline.cc:42069/announce	42069	live
+udp	udp://tracker.aruku.ovh:8081/announce	8081	live
+udp	udp://open.ftorrent.com:443/announce	443	live
+udp	udp://tracker.dler.com:6969/announce	6969	live
+http	http://bt1.archive.org:6969/announce	6969	live
+http	http://tracker.renfei.net:8080/announce	8080	live
+http	http://bt.okmp3.ru:2710/announce	2710	live
+http	http://tracker.ipv6tracker.ru:80/announce	80	live
+https	https://tracker.leechshield.link:443/announce	443	live
+https	https://1337.abcvg.info:443/announce	443	live

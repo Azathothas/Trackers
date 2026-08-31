@@ -1,0 +1,168 @@
+{
+  "schema_version": "1",
+  "kind": "check-prefer",
+  "generated_at": "2026-08-20T05:23:37.592Z",
+  "setup": {
+    "payload_bytes": 1073741824,
+    "piece_length_bytes": 1048576,
+    "web_seed": "http://127.0.0.1:55488/",
+    "web_seed_rate": "unlimited",
+    "peer": "127.0.0.1:55491",
+    "peer_rate": "unlimited",
+    "profile": "release"
+  },
+  "runs": [
+    {
+      "run": 1,
+      "off": {
+        "label": "off-1",
+        "prefer": false,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-off-1 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json",
+        "elapsed_ms": 4099,
+        "from_web_seeds": 536870912,
+        "from_peers": 536870912,
+        "web_seed_share": 0.5,
+        "connections": 1,
+        "http_bytes": 1069547520,
+        "downloaded": 1073741824
+      },
+      "on": {
+        "label": "on-1",
+        "prefer": true,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-on-1 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json --prefer-web-seed",
+        "elapsed_ms": 4076,
+        "from_web_seeds": 711000064,
+        "from_peers": 362741760,
+        "web_seed_share": 0.66217041015625,
+        "connections": 2,
+        "http_bytes": 1073741824,
+        "downloaded": 1073741824
+      },
+      "shift": 0.16217041015625
+    },
+    {
+      "run": 2,
+      "off": {
+        "label": "off-2",
+        "prefer": false,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-off-2 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json",
+        "elapsed_ms": 4069,
+        "from_web_seeds": 493879296,
+        "from_peers": 579862528,
+        "web_seed_share": 0.4599609375,
+        "connections": 1,
+        "http_bytes": 1073741824,
+        "downloaded": 1073741824
+      },
+      "on": {
+        "label": "on-2",
+        "prefer": true,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-on-2 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json --prefer-web-seed",
+        "elapsed_ms": 3069,
+        "from_web_seeds": 675282944,
+        "from_peers": 398458880,
+        "web_seed_share": 0.62890625,
+        "connections": 2,
+        "http_bytes": 1073741824,
+        "downloaded": 1073741824
+      },
+      "shift": 0.1689453125
+    },
+    {
+      "run": 3,
+      "off": {
+        "label": "off-3",
+        "prefer": false,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-off-3 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json",
+        "elapsed_ms": 4077,
+        "from_web_seeds": 495976448,
+        "from_peers": 577765376,
+        "web_seed_share": 0.4619140625,
+        "connections": 1,
+        "http_bytes": 1073741824,
+        "downloaded": 1073741824
+      },
+      "on": {
+        "label": "on-3",
+        "prefer": true,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-on-3 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json --prefer-web-seed",
+        "elapsed_ms": 3065,
+        "from_web_seeds": 659554304,
+        "from_peers": 414187520,
+        "web_seed_share": 0.6142578125,
+        "connections": 2,
+        "http_bytes": 1077936128,
+        "downloaded": 1073741824
+      },
+      "shift": 0.15234375
+    },
+    {
+      "run": 4,
+      "off": {
+        "label": "off-4",
+        "prefer": false,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-off-4 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json",
+        "elapsed_ms": 4064,
+        "from_web_seeds": 491782144,
+        "from_peers": 581959680,
+        "web_seed_share": 0.4580078125,
+        "connections": 1,
+        "http_bytes": 1077936128,
+        "downloaded": 1073741824
+      },
+      "on": {
+        "label": "on-4",
+        "prefer": true,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-on-4 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json --prefer-web-seed",
+        "elapsed_ms": 3072,
+        "from_web_seeds": 670040064,
+        "from_peers": 403701760,
+        "web_seed_share": 0.6240234375,
+        "connections": 2,
+        "http_bytes": 1077936128,
+        "downloaded": 1073741824
+      },
+      "shift": 0.166015625
+    },
+    {
+      "run": 5,
+      "off": {
+        "label": "off-5",
+        "prefer": false,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-off-5 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json",
+        "elapsed_ms": 3077,
+        "from_web_seeds": 489684992,
+        "from_peers": 584056832,
+        "web_seed_share": 0.4560546875,
+        "connections": 1,
+        "http_bytes": 1077936128,
+        "downloaded": 1073741824
+      },
+      "on": {
+        "label": "on-5",
+        "prefer": true,
+        "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\prefer\\out-on-5 --web-seed http://127.0.0.1:55488/ --no-torrent-web-seed --peer 127.0.0.1:55491 --no-tracker --no-dht --no-lsd --port 0 --allow-overwrite --json --prefer-web-seed",
+        "elapsed_ms": 3066,
+        "from_web_seeds": 644874240,
+        "from_peers": 428867584,
+        "web_seed_share": 0.6005859375,
+        "connections": 2,
+        "http_bytes": 1077936128,
+        "downloaded": 1073741824
+      },
+      "shift": 0.14453125
+    }
+  ],
+  "summary": {
+    "pairs": 5,
+    "pairs_shifted_toward_http": 5,
+    "mean_share_without": "46.72%",
+    "mean_share_with": "62.60%",
+    "mean_shift": "15.88%"
+  },
+  "notes": [
+    "Only the mirror named here is used: --no-torrent-web-seed drops the torrent's own url-list, which is empty for this generated torrent and would not be for a real one.",
+    "The peer announces nothing and the leecher is given its address with --peer, so the swarm has exactly two members.",
+    "Neither side is rate limited by default. A cap decides the split by itself, so a flag measured against capped sources measures the caps rather than the flag."
+  ]
+}

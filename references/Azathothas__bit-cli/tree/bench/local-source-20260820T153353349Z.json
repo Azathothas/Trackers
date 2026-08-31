@@ -1,0 +1,244 @@
+{
+  "kind": "check-local-source",
+  "schema_version": "1",
+  "generated_at": "2026-08-20T15:33:53.351Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "blob_size_mib": 64,
+    "blob_bytes": 67108864,
+    "profile": "release"
+  },
+  "payload_sha256": "3e22c7c4caa9957e62587e8db86f4b284013d50176d03f0d8961711c9e4cf832",
+  "cases": [
+    {
+      "case": "exact",
+      "expectation": "a file: source with exact composition completes a torrent with no network",
+      "exit_code": 0,
+      "elapsed_ms": 346,
+      "downloaded_bytes": 67108864,
+      "downloaded_human": "64.00 MiB",
+      "landed_path": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-exact\\payload_c\\a\\b\\c\\file.blob",
+      "sha256": "3e22c7c4caa9957e62587e8db86f4b284013d50176d03f0d8961711c9e4cf832",
+      "hash_matches": true,
+      "source_url": "file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/fixture/cdn/a3f1b2c4-signed-blob.dat",
+      "source_state": "active",
+      "source_error": null,
+      "ok": true,
+      "detail": "exit 0, hash matches"
+    },
+    {
+      "case": "auto",
+      "expectation": "a file: source with auto composition appends the torrent name and path, as BEP 19 does over HTTP",
+      "exit_code": 0,
+      "elapsed_ms": 325,
+      "downloaded_bytes": 71303168,
+      "downloaded_human": "68.00 MiB",
+      "landed_path": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-auto\\payload_c\\a\\b\\c\\file.blob",
+      "sha256": "3e22c7c4caa9957e62587e8db86f4b284013d50176d03f0d8961711c9e4cf832",
+      "hash_matches": true,
+      "source_url": "file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/fixture",
+      "source_state": "active",
+      "source_error": null,
+      "ok": true,
+      "detail": "exit 0, hash matches"
+    },
+    {
+      "case": "shared_a",
+      "expectation": "the same bytes serve a torrent with a different info hash and a 1 MiB piece length",
+      "exit_code": 0,
+      "elapsed_ms": 334,
+      "downloaded_bytes": 67108864,
+      "downloaded_human": "64.00 MiB",
+      "landed_path": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-shared_a\\payload_a\\deep\\nested\\dirs\\file.blob",
+      "sha256": "3e22c7c4caa9957e62587e8db86f4b284013d50176d03f0d8961711c9e4cf832",
+      "hash_matches": true,
+      "source_url": "file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/out-exact/payload_c/a/b/c/file.blob",
+      "source_state": "active",
+      "source_error": null,
+      "ok": true,
+      "detail": "exit 0, hash matches"
+    },
+    {
+      "case": "shared_b",
+      "expectation": "the same bytes serve a torrent with a different info hash and a 512 KiB piece length",
+      "exit_code": 0,
+      "elapsed_ms": 374,
+      "downloaded_bytes": 67108864,
+      "downloaded_human": "64.00 MiB",
+      "landed_path": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-shared_b\\payload_b\\media\\file.blob",
+      "sha256": "3e22c7c4caa9957e62587e8db86f4b284013d50176d03f0d8961711c9e4cf832",
+      "hash_matches": true,
+      "source_url": "file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/out-exact/payload_c/a/b/c/file.blob",
+      "source_state": "active",
+      "source_error": null,
+      "ok": true,
+      "detail": "exit 0, hash matches"
+    },
+    {
+      "case": "wrong_bytes",
+      "expectation": "the per-piece check refuses it and the report names the path and the piece",
+      "exit_code": 1,
+      "elapsed_ms": 1071,
+      "downloaded_bytes": 0,
+      "downloaded_human": "0 B",
+      "landed_path": "",
+      "sha256": null,
+      "hash_matches": false,
+      "source_url": "file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/wrong-bytes.dat",
+      "source_state": "failed",
+      "source_error": "file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/wrong-bytes.dat served piece 0 with hash 23d43e3960786272c1c62e9e880fc832549f4187 but the torrent says cdc3918a0d4996c1439e3ebaed200572df1d392f",
+      "ok": true,
+      "detail": "exit 1, reason names the path and the hash"
+    },
+    {
+      "case": "missing",
+      "expectation": "the source is refused and the report names the path",
+      "exit_code": 1,
+      "elapsed_ms": 1068,
+      "downloaded_bytes": 0,
+      "downloaded_human": "0 B",
+      "landed_path": "",
+      "sha256": null,
+      "hash_matches": false,
+      "source_url": "file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/not-here.dat",
+      "source_state": "failed",
+      "source_error": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\not-here.dat: no such file",
+      "ok": true,
+      "detail": "exit 1, reason names the path"
+    },
+    {
+      "case": "one_invocation",
+      "expectation": "three torrents in one command: C reads the CDN copy, A and B read what C wrote, and all three land byte for byte",
+      "exit_code": 0,
+      "elapsed_ms": 903,
+      "downloaded_bytes": 213909504,
+      "downloaded_human": "204.00 MiB",
+      "landed_path": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-one\\payload_c\\a\\b\\c\\file.blob; C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-one\\payload_a\\deep\\nested\\dirs\\file.blob; C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-one\\payload_b\\media\\file.blob",
+      "sha256": "3e22c7c4caa9957e62587e8db86f4b284013d50176d03f0d8961711c9e4cf832",
+      "hash_matches": true,
+      "source_url": "one binding per torrent, by info hash",
+      "source_state": null,
+      "source_error": null,
+      "sources_from_cdn": 1,
+      "info_hashes": [
+        "e608e60a7a456c108e162968328d7447f3a45abc",
+        "00c47ee9ba51f030957b3ad24d79429b1a0991a9",
+        "17eb3674836ada4e106251a4c1b6e58bd07f1ba3"
+      ],
+      "ok": true,
+      "detail": "exit 0, 1 distinct hash across three torrents, 1 source read the CDN copy"
+    },
+    {
+      "case": "equivalence",
+      "expectation": "nothing is provable across three piece lengths, and the shared file is proven byte for byte across an aligned pair",
+      "exit_code": 0,
+      "elapsed_ms": 0,
+      "downloaded_bytes": 0,
+      "downloaded_human": "0 B",
+      "landed_path": null,
+      "sha256": null,
+      "hash_matches": true,
+      "source_url": null,
+      "source_state": null,
+      "source_error": null,
+      "fixture_matches": [
+        {
+          "index": 0,
+          "path": "deep/nested/dirs/file.blob",
+          "other_index": 1,
+          "other_path": "media/file.blob",
+          "evidence": "length",
+          "proven": false
+        },
+        {
+          "index": 0,
+          "path": "deep/nested/dirs/file.blob",
+          "other_index": 0,
+          "other_path": "a/b/c/file.blob",
+          "evidence": "length",
+          "proven": false
+        },
+        {
+          "index": 1,
+          "path": "deep/other.bin",
+          "other_index": 1,
+          "other_path": "a/extra.bin",
+          "evidence": "length",
+          "proven": false
+        },
+        {
+          "index": 2,
+          "path": "readme.txt",
+          "other_index": 2,
+          "other_path": "notes/changelog.txt",
+          "evidence": "length",
+          "proven": false
+        }
+      ],
+      "fixture_proven": 0,
+      "aligned_matches": [
+        {
+          "index": 0,
+          "path": "file.blob",
+          "other_index": 0,
+          "other_path": "file.blob",
+          "evidence": "piece-hashes",
+          "proven": true,
+          "bytes_proven": 67108864
+        }
+      ],
+      "ok": true,
+      "detail": "4 candidate(s) across the fixture and 0 proven; 1 match across the aligned pair and 1 proven"
+    }
+  ],
+  "shared_file": {
+    "torrents": 3,
+    "piece_lengths": [
+      "2 MiB",
+      "1 MiB",
+      "512 KiB"
+    ],
+    "distinct_hashes": 1,
+    "matches_source": true,
+    "one_invocation": {
+      "info_hashes": [
+        "e608e60a7a456c108e162968328d7447f3a45abc",
+        "00c47ee9ba51f030957b3ad24d79429b1a0991a9",
+        "17eb3674836ada4e106251a4c1b6e58bd07f1ba3"
+      ],
+      "sources_from_cdn": 1,
+      "distinct_hashes": 1,
+      "from_web_seeds": "192.00 MiB",
+      "from_peers": "0 B",
+      "from_resume": "12.00 MiB",
+      "elapsed_ms": 903
+    }
+  },
+  "verdict": "every case behaved as described",
+  "failures": [],
+  "commands": [
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_c.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-exact --web-seed-only --no-torrent-web-seed --port 0 --json --select-file 0 --web-seed-for file:0=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/fixture/cdn/a3f1b2c4-signed-blob.dat --web-seed-mode exact",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_c.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-auto --web-seed-only --no-torrent-web-seed --port 0 --json --web-seed file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/fixture",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_a.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-shared_a --web-seed-only --no-torrent-web-seed --port 0 --json --select-file 0 --web-seed-for file:0=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/out-exact/payload_c/a/b/c/file.blob --web-seed-mode exact",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_b.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-shared_b --web-seed-only --no-torrent-web-seed --port 0 --json --select-file 1 --web-seed-for file:1=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/out-exact/payload_c/a/b/c/file.blob --web-seed-mode exact",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_c.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-wrong --web-seed-only --no-torrent-web-seed --port 0 --json --select-file 0 --web-seed-for file:0=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/wrong-bytes.dat --web-seed-mode exact",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_c.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-missing --web-seed-only --no-torrent-web-seed --port 0 --json --select-file 0 --web-seed-for file:0=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/not-here.dat --web-seed-mode exact",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_c.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_a.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_b.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\out-one -j 1 --web-seed-only --no-torrent-web-seed --web-seed-mode exact --port 0 --web-seed-for e608e60a7a456c108e162968328d7447f3a45abc:file:0=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/fixture/cdn/a3f1b2c4-signed-blob.dat --web-seed-for 00c47ee9ba51f030957b3ad24d79429b1a0991a9:file:0=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/out-one/payload_c/a/b/c/file.blob --web-seed-for 17eb3674836ada4e106251a4c1b6e58bd07f1ba3:file:1=file:///C:/Users/AjamX/Downloads/TEMP/kist/.tmp/local-source/out-one/payload_c/a/b/c/file.blob --json",
+    "bit-cli files C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_a.torrent --against C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_b.torrent --against C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\fixture\\torrent_c.torrent --json",
+    "bit-cli files C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\aligned\\dx.torrent --against C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\local-source\\aligned\\dy.torrent --json"
+  ],
+  "notes": [
+    "No server runs and nothing binds a port. Every byte comes off the local filesystem, so a failure here is bit-cli and not the network.",
+    "The three torrents have three info hashes and three piece lengths, 2 MiB, 1 MiB, and 512 KiB. The shared file's piece boundaries therefore line up in none of them, which is what makes the shared cases worth running.",
+    "shared_a and shared_b read the copy torrent C wrote in the exact case, so the 64 MiB is fetched once and lands three times.",
+    "wrong_bytes uses a file of exactly the right length, so nothing but the per-piece hash check can catch it. That check is --web-seed-verify piece and it is the default.",
+    "one_invocation is the same result in one command. It counts how many sources read the CDN copy and requires exactly one: the other two read what the first torrent wrote, which is what 'fetched once' means when the CDN is a real one.",
+    "The equivalence in one_invocation is declared by the caller and verified by bit-cli rather than trusted. Every piece a file: source serves is hash-checked against the torrent that asked for it before the session sees it, which is what wrong_bytes measures with a file of exactly the right length.",
+    "The equivalence case measures both halves of what the metadata can decide. A .torrent hashes fixed-size pieces of the whole payload rather than files, so two files can be compared by hash only where the pieces cover the same bytes of each: the same piece length, and the same offset modulo it. The three-torrent fixture has three piece lengths, so nothing there is provable and the report says length rather than claiming a match. The aligned pair has one piece length and the shared file at offset zero in both, so its hashes line up and the whole file is proven.",
+    "Two of the fixture's length candidates are files that are not the same bytes at all: deep/other.bin against a/extra.bin, and readme.txt against notes/changelog.txt. Equal length is not evidence, which is exactly why the evidence is reported rather than a yes or no."
+  ]
+}

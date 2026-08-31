@@ -1,0 +1,70 @@
+# 70-build-static-stack
+date        : 2026-08-28T12:03:49Z
+host        : Linux 6.18.44-fc-v22 x86_64, 4 cores
+host distro : Ubuntu 24.04.4 LTS
+compiler    : zig 0.16.0 cc -target riscv64-linux-musl
+target      : riscv64-linux-musl
+openssl tgt : linux64-riscv64 
+prefix      : /home/user/work/out/riscv64
+jobs        : 4
+
+patches applied:
+  patched brotli-1.2.0 with 0001-no-code-model-attribute-on-loongarch.patch
+
+PACKAGE        STATUS   TIME
+zlib           ok         1s
+xz             ok        12s
+bzip2          ok         0s
+zstd           ok         5s
+brotli         ok         8s
+openssl        ok        55s
+libarchive     ok        32s
+nghttp2        ok        12s
+curl           ok        40s
+libgpg-error   ok        15s
+libassuan      ok         8s
+gpgme          ok        15s
+libseccomp     ok         6s
+
+static libs installed:
+  libarchive.a
+  libassuan.a
+  libbrotlicommon.a
+  libbrotlidec.a
+  libbrotlienc.a
+  libbz2.a
+  libcrypto.a
+  libcurl.a
+  libgpg-error.a
+  libgpgme.a
+  liblzma.a
+  libnghttp2.a
+  libseccomp.a
+  libssl.a
+  libz.a
+  libzstd.a
+
+pkg-config files:
+  gpg-error.pc
+  gpgme-glib.pc
+  gpgme.pc
+  libarchive.pc
+  libassuan.pc
+  libbrotlicommon.pc
+  libbrotlidec.pc
+  libbrotlienc.pc
+  libcrypto.pc
+  libcurl.pc
+  liblzma.pc
+  libnghttp2.pc
+  libseccomp.pc
+  libssl.pc
+  libzstd.pc
+  openssl.pc
+  zlib.pc
+
+cross-prefix leak check:
+  none: every absolute path in this prefix points at /home/user/work/out/riscv64
+
+verdict: whole stack built
+logs   : /home/user/work/bld/riscv64/logs

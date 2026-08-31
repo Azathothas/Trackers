@@ -1,0 +1,185 @@
+{
+  "kind": "check-peer-recovery",
+  "schema_version": "1",
+  "generated_at": "2026-08-20T13:07:18.230Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "payload_size": "128MiB",
+    "payload_bytes": 134217728,
+    "rate": "2MiB/s",
+    "cut_after_seconds": 8,
+    "outage_seconds": 40,
+    "stop_timeout": 20,
+    "patient_timeout": 120,
+    "redial_after": 30,
+    "backoff_reach": 70,
+    "port": 62761,
+    "profile": "release"
+  },
+  "payload_sha256": "17b6bf3a53e2527888334c63ab2b8c3eba5a96a26e84da9f68b49b9528d4c2a2",
+  "scenarios": [
+    {
+      "scenario": "patient",
+      "stop_timeout_s": 120,
+      "redial_after_s": 0,
+      "exit_code": 0,
+      "stopped": "completed",
+      "downloaded_bytes": 134217728,
+      "downloaded_human": "128.00 MiB",
+      "cut_at_ms": 9038,
+      "exited_at_ms": null,
+      "gave_up_after_ms": null,
+      "elapsed_ms": 154282,
+      "redials": [],
+      "redial_count": 0,
+      "last_redial_after_cut_ms": null,
+      "sha256": "17b6bf3a53e2527888334c63ab2b8c3eba5a96a26e84da9f68b49b9528d4c2a2",
+      "hash_matches": true,
+      "timeline": [
+        {
+          "at": "2026-08-20T13:02:19.100Z",
+          "t_ms": 11,
+          "event": "download started"
+        },
+        {
+          "at": "2026-08-20T13:02:27.117Z",
+          "t_ms": 8026,
+          "event": "cutting the seeder"
+        },
+        {
+          "at": "2026-08-20T13:03:08.459Z",
+          "t_ms": 49369,
+          "event": "outage over, the download is still running"
+        },
+        {
+          "at": "2026-08-20T13:03:09.295Z",
+          "t_ms": 50204,
+          "event": "the seeder is back on the same port"
+        },
+        {
+          "at": "2026-08-20T13:04:53.375Z",
+          "t_ms": 154282,
+          "event": "the download ended, exit 0"
+        }
+      ]
+    },
+    {
+      "scenario": "impatient",
+      "stop_timeout_s": 20,
+      "redial_after_s": 0,
+      "exit_code": 9,
+      "stopped": "stalled",
+      "downloaded_bytes": 17825792,
+      "downloaded_human": "17.00 MiB",
+      "cut_at_ms": 9026,
+      "exited_at_ms": 28841,
+      "gave_up_after_ms": 19815,
+      "elapsed_ms": 29581,
+      "redials": [],
+      "redial_count": 0,
+      "last_redial_after_cut_ms": null,
+      "sha256": "f273d9d12023f774455c65508686127db2e1ec7b897a46b19e55ec49082da384",
+      "hash_matches": false,
+      "timeline": [
+        {
+          "at": "2026-08-20T13:04:54.883Z",
+          "t_ms": 8,
+          "event": "download started"
+        },
+        {
+          "at": "2026-08-20T13:05:02.896Z",
+          "t_ms": 8021,
+          "event": "cutting the seeder"
+        },
+        {
+          "at": "2026-08-20T13:05:23.716Z",
+          "t_ms": 28841,
+          "event": "the download exited 9 during the outage"
+        },
+        {
+          "at": "2026-08-20T13:05:24.455Z",
+          "t_ms": 29581,
+          "event": "the seeder is back on the same port"
+        },
+        {
+          "at": "2026-08-20T13:05:24.456Z",
+          "t_ms": 29581,
+          "event": "the download ended, exit 9"
+        }
+      ]
+    },
+    {
+      "scenario": "redial",
+      "stop_timeout_s": 120,
+      "redial_after_s": 30,
+      "exit_code": 0,
+      "stopped": "completed",
+      "downloaded_bytes": 134217728,
+      "downloaded_human": "128.00 MiB",
+      "cut_at_ms": 9034,
+      "exited_at_ms": null,
+      "gave_up_after_ms": null,
+      "elapsed_ms": 110633,
+      "redials": [
+        {
+          "at_ms": 38120,
+          "attempt": 1,
+          "peers_dropped": 0,
+          "stalled_ms": 30087
+        }
+      ],
+      "redial_count": 1,
+      "last_redial_after_cut_ms": 29086,
+      "sha256": "17b6bf3a53e2527888334c63ab2b8c3eba5a96a26e84da9f68b49b9528d4c2a2",
+      "hash_matches": true,
+      "timeline": [
+        {
+          "at": "2026-08-20T13:05:26.343Z",
+          "t_ms": 13,
+          "event": "download started"
+        },
+        {
+          "at": "2026-08-20T13:05:34.349Z",
+          "t_ms": 8019,
+          "event": "cutting the seeder"
+        },
+        {
+          "at": "2026-08-20T13:06:15.585Z",
+          "t_ms": 49255,
+          "event": "outage over, the download is still running"
+        },
+        {
+          "at": "2026-08-20T13:06:16.244Z",
+          "t_ms": 49913,
+          "event": "the seeder is back on the same port"
+        },
+        {
+          "at": "2026-08-20T13:07:16.964Z",
+          "t_ms": 110633,
+          "event": "the download ended, exit 0"
+        }
+      ]
+    }
+  ],
+  "verdict": "--redial-after finished a 40s outage in 1 re-dial(s), and the run gave up in 19.8s when told to be less patient",
+  "failures": [],
+  "recorded": [],
+  "commands": [
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\peer-recovery\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\peer-recovery\\out-patient --peer 127.0.0.1:62761 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --max-download-rate 2MiB/s --stop-timeout 120s --report-interval 2s --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\peer-recovery\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\peer-recovery\\out-impatient --peer 127.0.0.1:62761 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --max-download-rate 2MiB/s --stop-timeout 20s --report-interval 2s --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\peer-recovery\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\peer-recovery\\out-redial --peer 127.0.0.1:62761 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --max-download-rate 2MiB/s --stop-timeout 120s --report-interval 2s --json --redial-after 30s"
+  ],
+  "notes": [
+    "The outage is the seeder being killed and restarted on the same port. Disabling a network adapter is a change to the machine and is not done here; what the client sees is the same either way, every peer connection dying at once and nothing reachable for a while.",
+    "The port is chosen once by the OS on a socket that is then closed, because the peer has to come back at the address the client already knows and --port 0 would move it.",
+    "The transfer is held open with --max-download-rate so the outage lands in the middle of it. That cap is measured and holding in TODO/performance.md under T-031.",
+    "gave_up_after_ms is measured from the cut, polled every 500ms, so it is when the run decided rather than when this script noticed.",
+    "The impatient scenario is allowed 15s of slack over --stop-timeout, because the stall clock starts at the last progress rather than at the cut and the report interval quantises when it is checked.",
+    "patient and redial differ in exactly one flag, so the pair is the measurement: same payload, same rate, same outage, same stop timeout. See TODO/peers.md, T-138.",
+    "patient is only failed when the outage is inside librqbit's backoff reach, backoff_reach seconds. Past that, waiting is what T-021 measured and recorded, and failing the build for it would fail the build for an open defect."
+  ]
+}

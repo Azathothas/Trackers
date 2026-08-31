@@ -1,0 +1,598 @@
+{
+  "conditions": {
+    "cache_dir": "fixtures\\source-cache",
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "offline": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "5534abff8c5cf300ecf2efc89792a68b3a3b6352-dirty",
+    "sample_counts": {
+      "distinct_urls": 1346,
+      "sources_configured": 16,
+      "sources_fetched": 16
+    },
+    "user_agent": "trackers/0.1 (+https://github.com/Azathothas/trackers; tracker list census; contact via repository issues)",
+    "utc": "2026-08-31T09:48:44Z",
+    "yggdrasil_range": "200::/7"
+  },
+  "question": "Which URL schemes and reachability networks actually occur across every tracker source this project might consume?",
+  "results": {
+    "derivative_orphans": {
+      "newtrackon_live": {
+        "not_in_any_primary": 0,
+        "total": 79
+      },
+      "newtrackon_stable": {
+        "not_in_any_primary": 0,
+        "total": 53
+      },
+      "ngosang_best": {
+        "not_in_any_primary": 0,
+        "total": 20
+      },
+      "ngosang_http": {
+        "not_in_any_primary": 0,
+        "total": 37
+      },
+      "ngosang_https": {
+        "not_in_any_primary": 0,
+        "total": 14
+      },
+      "ngosang_udp": {
+        "not_in_any_primary": 0,
+        "total": 48
+      },
+      "pkgforge_all": {
+        "not_in_any_primary": 1,
+        "total": 1165
+      },
+      "xiu2_best": {
+        "not_in_any_primary": 0,
+        "total": 77
+      }
+    },
+    "per_source": {
+      "desirefire_all": {
+        "census": {
+          "networks": {
+            "clearnet": 1091
+          },
+          "transport_x_network": {
+            "https|clearnet": 197,
+            "http|clearnet": 650,
+            "udp|clearnet": 237,
+            "wss|clearnet": 7
+          },
+          "transports": {
+            "http": 650,
+            "https": 197,
+            "udp": 237,
+            "wss": 7
+          },
+          "unparseable": []
+        },
+        "entries": 1091,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "url": 1091
+        },
+        "role": "primary",
+        "url": "https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt"
+      },
+      "newtrackon_all": {
+        "census": {
+          "networks": {
+            "clearnet": 261
+          },
+          "transport_x_network": {
+            "https|clearnet": 62,
+            "http|clearnet": 65,
+            "udp|clearnet": 134
+          },
+          "transports": {
+            "http": 65,
+            "https": 62,
+            "udp": 134
+          },
+          "unparseable": []
+        },
+        "entries": 261,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 261,
+          "url": 261
+        },
+        "role": "primary",
+        "url": "https://newtrackon.com/api/all"
+      },
+      "newtrackon_live": {
+        "census": {
+          "networks": {
+            "clearnet": 79
+          },
+          "transport_x_network": {
+            "https|clearnet": 16,
+            "http|clearnet": 14,
+            "udp|clearnet": 49
+          },
+          "transports": {
+            "http": 14,
+            "https": 16,
+            "udp": 49
+          },
+          "unparseable": []
+        },
+        "entries": 79,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 79,
+          "url": 79
+        },
+        "role": "derivative",
+        "url": "https://newtrackon.com/api/live"
+      },
+      "newtrackon_stable": {
+        "census": {
+          "networks": {
+            "clearnet": 53
+          },
+          "transport_x_network": {
+            "https|clearnet": 10,
+            "http|clearnet": 10,
+            "udp|clearnet": 33
+          },
+          "transports": {
+            "http": 10,
+            "https": 10,
+            "udp": 33
+          },
+          "unparseable": []
+        },
+        "entries": 53,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 53,
+          "url": 53
+        },
+        "role": "derivative",
+        "url": "https://newtrackon.com/api/stable"
+      },
+      "ngosang_all": {
+        "census": {
+          "networks": {
+            "clearnet": 99
+          },
+          "transport_x_network": {
+            "https|clearnet": 14,
+            "http|clearnet": 37,
+            "udp|clearnet": 48
+          },
+          "transports": {
+            "http": 37,
+            "https": 14,
+            "udp": 48
+          },
+          "unparseable": []
+        },
+        "entries": 99,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 99,
+          "url": 99
+        },
+        "role": "primary",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt"
+      },
+      "ngosang_best": {
+        "census": {
+          "networks": {
+            "clearnet": 20
+          },
+          "transport_x_network": {
+            "udp|clearnet": 20
+          },
+          "transports": {
+            "udp": 20
+          },
+          "unparseable": []
+        },
+        "entries": 20,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 20,
+          "url": 20
+        },
+        "role": "derivative",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt"
+      },
+      "ngosang_blacklist": {
+        "census": {
+          "networks": {
+            "clearnet": 345,
+            "i2p": 1
+          },
+          "transport_x_network": {
+            "https|clearnet": 28,
+            "http|clearnet": 207,
+            "http|i2p": 1,
+            "udp|clearnet": 107,
+            "wss|clearnet": 2,
+            "ws|clearnet": 1
+          },
+          "transports": {
+            "http": 208,
+            "https": 28,
+            "udp": 107,
+            "ws": 1,
+            "wss": 2
+          },
+          "unparseable": []
+        },
+        "entries": 346,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "had_comment": 346,
+          "url": 346
+        },
+        "role": "blacklist",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/blacklist.txt"
+      },
+      "ngosang_http": {
+        "census": {
+          "networks": {
+            "clearnet": 37
+          },
+          "transport_x_network": {
+            "http|clearnet": 37
+          },
+          "transports": {
+            "http": 37
+          },
+          "unparseable": []
+        },
+        "entries": 37,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 37,
+          "url": 37
+        },
+        "role": "derivative",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_http.txt"
+      },
+      "ngosang_https": {
+        "census": {
+          "networks": {
+            "clearnet": 14
+          },
+          "transport_x_network": {
+            "https|clearnet": 14
+          },
+          "transports": {
+            "https": 14
+          },
+          "unparseable": []
+        },
+        "entries": 14,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 14,
+          "url": 14
+        },
+        "role": "derivative",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_https.txt"
+      },
+      "ngosang_i2p": {
+        "census": {
+          "networks": {
+            "i2p": 13
+          },
+          "transport_x_network": {
+            "http|i2p": 11,
+            "udp|i2p": 2
+          },
+          "transports": {
+            "http": 11,
+            "udp": 2
+          },
+          "unparseable": []
+        },
+        "entries": 13,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 13,
+          "url": 13
+        },
+        "role": "primary",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_i2p.txt"
+      },
+      "ngosang_udp": {
+        "census": {
+          "networks": {
+            "clearnet": 48
+          },
+          "transport_x_network": {
+            "udp|clearnet": 48
+          },
+          "transports": {
+            "udp": 48
+          },
+          "unparseable": []
+        },
+        "entries": 48,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 48,
+          "url": 48
+        },
+        "role": "derivative",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_udp.txt"
+      },
+      "ngosang_ws": {
+        "census": {
+          "networks": {
+            "clearnet": 3
+          },
+          "transport_x_network": {
+            "wss|clearnet": 3
+          },
+          "transports": {
+            "wss": 3
+          },
+          "unparseable": []
+        },
+        "entries": 3,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 3,
+          "url": 3
+        },
+        "role": "primary",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ws.txt"
+      },
+      "ngosang_yggdrasil": {
+        "census": {
+          "networks": {
+            "clearnet": 1
+          },
+          "transport_x_network": {
+            "http|clearnet": 1
+          },
+          "transports": {
+            "http": 1
+          },
+          "unparseable": []
+        },
+        "entries": 1,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 1,
+          "url": 1
+        },
+        "role": "primary",
+        "url": "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_yggdrasil.txt"
+      },
+      "pkgforge_all": {
+        "census": {
+          "networks": {
+            "clearnet": 1165
+          },
+          "transport_x_network": {
+            "https|clearnet": 211,
+            "http|clearnet": 663,
+            "udp|clearnet": 284,
+            "wss|clearnet": 7
+          },
+          "transports": {
+            "http": 663,
+            "https": 211,
+            "udp": 284,
+            "wss": 7
+          },
+          "unparseable": []
+        },
+        "entries": 1165,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "url": 1165
+        },
+        "role": "derivative",
+        "url": "https://raw.githubusercontent.com/pkgforge-security/Trackers/main/trackers_all.txt"
+      },
+      "xiu2_all": {
+        "census": {
+          "networks": {
+            "clearnet": 150
+          },
+          "transport_x_network": {
+            "https|clearnet": 26,
+            "http|clearnet": 45,
+            "udp|clearnet": 78,
+            "wss|clearnet": 1
+          },
+          "transports": {
+            "http": 45,
+            "https": 26,
+            "udp": 78,
+            "wss": 1
+          },
+          "unparseable": []
+        },
+        "entries": 150,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 150,
+          "url": 150
+        },
+        "role": "primary",
+        "url": "https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt"
+      },
+      "xiu2_best": {
+        "census": {
+          "networks": {
+            "clearnet": 77
+          },
+          "transport_x_network": {
+            "https|clearnet": 16,
+            "http|clearnet": 11,
+            "udp|clearnet": 49,
+            "wss|clearnet": 1
+          },
+          "transports": {
+            "http": 11,
+            "https": 16,
+            "udp": 49,
+            "wss": 1
+          },
+          "unparseable": []
+        },
+        "entries": 77,
+        "fetch": {
+          "from": "cache",
+          "ok": true
+        },
+        "looks_like_html": false,
+        "parse_stats": {
+          "blank": 77,
+          "url": 77
+        },
+        "role": "derivative",
+        "url": "https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/best.txt"
+      }
+    },
+    "source_roles": {
+      "desirefire_all": "primary",
+      "newtrackon_all": "primary",
+      "newtrackon_live": "derivative",
+      "newtrackon_stable": "derivative",
+      "ngosang_all": "primary",
+      "ngosang_best": "derivative",
+      "ngosang_blacklist": "blacklist",
+      "ngosang_http": "derivative",
+      "ngosang_https": "derivative",
+      "ngosang_i2p": "primary",
+      "ngosang_udp": "derivative",
+      "ngosang_ws": "primary",
+      "ngosang_yggdrasil": "primary",
+      "pkgforge_all": "derivative",
+      "xiu2_all": "primary",
+      "xiu2_best": "derivative"
+    },
+    "sources_failed": [],
+    "union": {
+      "distinct_urls": 1346,
+      "networks": {
+        "clearnet": 1333,
+        "i2p": 13
+      },
+      "transport_x_network": {
+        "https|clearnet": 251,
+        "http|clearnet": 712,
+        "http|i2p": 11,
+        "udp|clearnet": 360,
+        "udp|i2p": 2,
+        "wss|clearnet": 10
+      },
+      "transports": {
+        "http": 723,
+        "https": 251,
+        "udp": 362,
+        "wss": 10
+      },
+      "unparseable": []
+    },
+    "unique_contribution_primaries_only": {
+      "desirefire_all": {
+        "total": 1091,
+        "unique_among_primaries": 995
+      },
+      "newtrackon_all": {
+        "total": 261,
+        "unique_among_primaries": 146
+      },
+      "ngosang_all": {
+        "total": 99,
+        "unique_among_primaries": 2
+      },
+      "ngosang_i2p": {
+        "total": 13,
+        "unique_among_primaries": 13
+      },
+      "ngosang_ws": {
+        "total": 3,
+        "unique_among_primaries": 3
+      },
+      "ngosang_yggdrasil": {
+        "total": 1,
+        "unique_among_primaries": 1
+      },
+      "xiu2_all": {
+        "total": 150,
+        "unique_among_primaries": 8
+      }
+    },
+    "unknown_networks": [],
+    "unknown_transports": []
+  }
+}

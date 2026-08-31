@@ -1,0 +1,61 @@
+# Line endings are normalised to LF in the index, on every platform.
+#
+# This file exists rather than a global config setting because the rule has to
+# travel with the repository: a contributor whose machine is configured
+# differently still produces the right commits (RULES 15.5).
+#
+# Verify with the command below. The INDEX column decides what a commit
+# contains, and every tracked text file this project owns should read i/lf:
+#
+#   git ls-files --eol
+#
+# The working-tree column is not uniform and does not need to be.
+
+* text=auto eol=lf
+
+*.md            text eol=lf
+*.txt           text eol=lf
+*.tsv           text eol=lf
+*.json          text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.toml          text eol=lf
+*.py            text eol=lf
+*.sh            text eol=lf
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
+.editorconfig   text eol=lf
+
+# PowerShell keeps CRLF in the working tree. Windows PowerShell 5.1 mis-parses
+# a here-string whose terminator arrives with a bare LF.
+*.ps1           text eol=crlf
+*.psm1          text eol=crlf
+*.psd1          text eol=crlf
+
+# The captured reference corpus is byte-exact upstream source. Normalising it
+# would mean the tree no longer holds what the recorded commit holds, and every
+# citation into it verifies a line in somebody else's file. One tracked file is
+# already CRLF for that reason:
+#
+#   references/XIU2__TrackersListCollection/tree/index.html
+#
+# scripts/check-corpus-integrity.py is the gate on the corpus being complete;
+# this line is what keeps it unmodified.
+references/**  -text
+
+# Bytes are the content. No translation may be applied.
+*.png           binary
+*.jpg           binary
+*.gif           binary
+*.ico           binary
+*.pdf           binary
+*.zip           binary
+*.gz            binary
+*.xz            binary
+*.zst           binary
+*.tar           binary
+*.exe           binary
+*.so            binary
+*.wasm          binary
+*.bin           binary
+*.woff2         binary

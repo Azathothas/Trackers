@@ -1,0 +1,40 @@
+name: Bug
+description: Something does not work.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What you did, what happened, what you expected
+      description: >-
+        All three. The third is the one usually missing, and it is the one that
+        says whether this is a bug at all.
+      placeholder: |
+        What I did:
+        What happened:
+        What I expected:
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce it
+      description: >-
+        The smallest sequence that shows it. If it is intermittent, say how
+        often.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: >-
+        Paste the output of the probe, which reports the host, the shell and
+        the tool versions.
+      placeholder: sh scripts/doctor/doctor.sh
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output
+      description: Redact any credential before pasting. Check twice.
+      render: text

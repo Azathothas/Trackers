@@ -1,0 +1,71 @@
+# Dependabot, for the two ecosystems this repository actually resolves.
+#
+# `vendor/` is deliberately absent. Those trees are somebody else's source,
+# reconciled by `scripts/vendor-sync.ps1` against a recorded base commit, and a
+# bot opening a pull request against `vendor/rqbit/Cargo.toml` would rewrite a
+# vendored manifest without touching the base, which is the one state
+# `patches/README.md` says must never happen. `scripts/upstream-scan.ps1` is
+# how upstream is watched instead. See docs/vendoring.md.
+#
+# Grouped on purpose. A separate pull request per crate is sixteen CI runs a
+# week for a lockfile bump nobody reads, and the workflow's concurrency group
+# cancels runs in flight, so the noise costs real coverage.
+
+version: 2
+
+updates:
+  # The workspace. `directory: /` is the root manifest, and cargo resolves the
+  # whole workspace from it, `crates/*` included.
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    groups:
+      # Everything that is not a breaking change, in one pull request. A patch
+      # or minor bump that fails CI is one revert rather than eleven.
+      cargo-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    # Majors arrive on their own, because a major is a change to read rather
+    # than a change to merge.
+    commit-message:
+      prefix: "deps"
+      include: scope
+    labels:
+      - dependencies
+    ignore:
+      # librqbit and its siblings are vendored under vendor/ and redirected
+      # with [patch.crates-io]. A registry bump for one of them cannot reach
+      # the build, so a pull request for it is pure noise. Taking a new
+      # upstream release is scripts/vendor-sync.ps1.
+      - dependency-name: "librqbit"
+      - dependency-name: "librqbit-*"
+
+  # The workflows. This is the ecosystem that mattered: `ilammy/setup-nasm` sat
+  # at an unmaintained v1.5.2 on node20 until a person noticed the runner
+  # warning, and nothing was watching for it.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "ci"
+      include: scope
+    labels:
+      - dependencies
+      - ci

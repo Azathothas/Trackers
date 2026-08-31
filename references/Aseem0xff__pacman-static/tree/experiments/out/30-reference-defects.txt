@@ -1,0 +1,66 @@
+# 30-reference-defects
+date   : 2026-08-28T13:54:26Z
+mussel : 341735f6f65a0e8d482710760c43fc7590719fd7
+aur    : 8c58e7db1c52286bba77fd644ae1d77cc5db9e97
+manjaro: aad8fa5b24a94aa36f01b42eeae5a426b314a2c9
+
+## 1. mussel target coverage
+   Read from the architecture case block of `mussel`, by the XTARGET
+   triples it can emit. A target absent here cannot be built by mussel
+   at all -- there is no flag, it is not a case.
+
+TARGET         IN MUSSEL  EVIDENCE
+x86_64         yes        mussel:508
+aarch64        yes        mussel:259
+riscv64        yes        mussel:443
+loongarch64    NO         no case in the argument parser
+powerpc64le    yes        mussel:435
+
+## 2. the pacman-static PKGBUILD's declared architectures
+
+TARGET         IN aur arch()    IN manjaro arch()
+x86_64         yes              yes
+aarch64        yes              yes
+riscv64        NO               yes
+loongarch64    NO               NO
+powerpc64le    NO               NO
+
+  aur     : arch=('i486' 'i686' 'pentium4' 'x86_64' 'arm' 'armv6h' 'armv7h' 'aarch64')
+  manjaro : arch=('i486' 'i686' 'pentium4' 'x86_64' 'arm' 'armv6h' 'armv7h' 'aarch64' 'riscv64')
+
+## 3. the OpenSSL target case, which is where a declared architecture
+##    stops being a built one
+
+  aur__pacman-static PKGBUILD:256
+    source   : openssltarget='linux64-$CARCH'
+    evaluates: linux64-$CARCH
+    expected : linux64-riscv64   (openssl 3.6.4 Configurations/10-main.conf)
+    ⛔ DEFECT: single-quoted, $CARCH never expands. OpenSSL's
+       Configure is handed a literal and fails.
+  manjaro-contrib__packages-core-pacman-static PKGBUILD:251
+    source   : openssltarget='linux64-$CARCH'
+    evaluates: linux64-$CARCH
+    expected : linux64-riscv64   (openssl 3.6.4 Configurations/10-main.conf)
+    ⛔ DEFECT: single-quoted, $CARCH never expands. OpenSSL's
+       Configure is handed a literal and fails.
+
+## 4. openssl target names that a five-architecture build needs
+   grep -oE '"linux[^"]*"' openssl-3.6.4/Configurations/10-main.conf
+
+   x86_64         linux-x86_64
+   aarch64        linux-aarch64
+   riscv64        linux64-riscv64
+   loongarch64    linux64-loongarch64
+   powerpc64le    linux-ppc64le
+
+   ⚠ Neither reference has a case for loongarch64 or powerpc64le.
+
+verdict:
+  ⛔ mussel does NOT cover every required target
+  ⛔ the riscv64 openssl target does not expand in either PKGBUILD
+
+  manjaro declares riscv64 in arch() and inherits the unexpanded
+  openssl case verbatim: its build() is byte-identical to aur's.
+  sha256 of both build() bodies:
+    c9b3a946296d70c34ecef861d7d9e5852201b0bd4dc1f4453299b2930d909e12  manjaro-contrib__packages-core-pacman-static
+    c9b3a946296d70c34ecef861d7d9e5852201b0bd4dc1f4453299b2930d909e12  aur__pacman-static

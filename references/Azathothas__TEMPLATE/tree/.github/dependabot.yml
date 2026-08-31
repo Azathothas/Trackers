@@ -1,0 +1,38 @@
+# The template's own dependency updates.
+#
+# ⛔ THIS FILE EXISTS BECAUSE ITS ABSENCE WAS A REAL DEFECT. The workflows here
+# pin every action to a commit, which is the right practice and is exactly what
+# turns a pin into a fossil: `actions/checkout` v4 targets Node 20, GitHub
+# deprecated that runtime, and the runs were being force-migrated to Node 24
+# with a warning in a log nobody reads. Pinning without an updater is not
+# hardening, it is deferral.
+#
+# ⚠ The template SHIPS a dependabot scaffold in dotfiles/github/ and did not use
+# one itself. A template that does not practise what it hands out teaches the
+# omission along with the rule.
+#
+# ⭐ Dependabot rewrites the pinned SHA and the `# v5` comment together, so the
+# comment cannot drift from the pin.
+
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      # ⚠ Weekly, not daily. A daily cadence on a repository this size produces
+      # more pull requests than anyone reads, and unread updates are worse than
+      # none: they train you to merge without looking.
+      interval: weekly
+    groups:
+      # ⛔ Ungrouped, one action bump becomes one pull request each, and each
+      # costs a full CI run.
+      actions:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 3
+    commit-message:
+      # ⛔ No tool attribution anywhere in this repository's history.
+      # docs/conventions/git.md.
+      prefix: ci
+    labels:
+      - dependencies

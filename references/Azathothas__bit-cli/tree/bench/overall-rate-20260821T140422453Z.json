@@ -1,0 +1,69 @@
+{
+  "kind": "check-overall-rate",
+  "schema_version": "1",
+  "generated_at": "2026-08-21T14:04:22.454Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "rate": "4MiB/s",
+    "rate_bytes": 4194304,
+    "payload_size": "64MiB",
+    "payload_bytes": 67108864,
+    "bytes_per_torrent": 16777216,
+    "torrents": 4,
+    "tolerance": 0.1,
+    "profile": "release"
+  },
+  "phases": [
+    {
+      "phase": "uncapped",
+      "exit_code": 0,
+      "elapsed_ms": 163,
+      "bytes": 67108864,
+      "bytes_human": "64.00 MiB",
+      "torrents": 4,
+      "rate": 411710822,
+      "rate_human": "392.64 MiB/s"
+    },
+    {
+      "phase": "overall",
+      "exit_code": 0,
+      "elapsed_ms": 15231,
+      "bytes": 67108864,
+      "bytes_human": "64.00 MiB",
+      "torrents": 4,
+      "rate": 4406071,
+      "rate_human": "4.20 MiB/s"
+    },
+    {
+      "phase": "per_torrent",
+      "exit_code": 0,
+      "elapsed_ms": 3251,
+      "bytes": 67108864,
+      "bytes_human": "64.00 MiB",
+      "torrents": 4,
+      "rate": 20642530,
+      "rate_human": "19.69 MiB/s"
+    }
+  ],
+  "over_cap_share": 0.0505,
+  "uncapped_ratio": 93.442,
+  "per_torrent_ratio": 4.685,
+  "verdict": "both scopes hold: 4.20 MiB/s whole-run against a 4MiB/s cap, 19.69 MiB/s with the same number per torrent, 392.64 MiB/s uncapped",
+  "failures": [],
+  "commands": [
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload3.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload4.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\out-uncapped -j 4 --no-torrent-web-seed --web-seed http://127.0.0.1:62596/ --no-dht --no-lsd --no-tracker --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload3.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload4.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\out-overall -j 4 --no-torrent-web-seed --web-seed http://127.0.0.1:62596/ --no-dht --no-lsd --no-tracker --port 0 --json --max-overall-download-rate 4MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload3.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\payload4.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\overall-rate\\out-per-torrent -j 4 --no-torrent-web-seed --web-seed http://127.0.0.1:62596/ --no-dht --no-lsd --no-tracker --port 0 --json --max-download-rate 4MiB/s"
+  ],
+  "notes": [
+    "The sources are HTTP web seeds, not peers. A web seed reaches the session as a peer, so the session limiter bounds it, which is the interaction TODO/multi-source.md T-132 is about.",
+    "Every torrent runs at once: -j is the torrent count, so a cap that held only because the torrents ran in sequence would not pass.",
+    "The rate is computed from the wall clock and the bytes the report says landed, not from the report's own mean.",
+    "Each phase gets a fresh output directory. Reusing one lets the hash check on add find the payload already there and report a rate that measures the disk.",
+    "Phase 3 is the discriminator. Before T-181 both flags reached SessionOptions::ratelimits, so --max-download-rate and --max-overall-download-rate at the same number produced the same run. They now reach two different librqbit fields and the per-torrent one has to let more through."
+  ]
+}

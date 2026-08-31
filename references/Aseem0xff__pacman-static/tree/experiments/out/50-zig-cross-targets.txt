@@ -1,0 +1,20 @@
+# 50-zig-cross-targets
+date            : 2026-08-28T13:54:26Z
+host            : Linux 6.18.44-fc-v22 x86_64
+host distro     : Ubuntu 24.04.4 LTS
+cores           : 4
+zig version     : 0.16.0
+zig path        : /home/user/work/zig/zig
+fixture         : fixtures/libc-surface.c
+qemu-user       : present
+
+TARGET                     BUILD    E_MACHINE  LINKAGE   BYTES    RUN
+x86_64-linux-musl          ok       x86-64     static    52240    ALL_CALLS_RESOLVED
+aarch64-linux-musl         ok       aarch64    static    59824    ALL_CALLS_RESOLVED
+riscv64-linux-musl         ok       riscv64    static    51064    ALL_CALLS_RESOLVED
+loongarch64-linux-musl     ok       loongarch  static    66816    ALL_CALLS_RESOLVED
+powerpc64le-linux-musl     ok       ppc64      static    68872    ALL_CALLS_RESOLVED
+
+verdict: every target built static
+note   : RUN is '-' where no qemu-user emulator for that architecture is
+         installed. '-' means NOT MEASURED, never 'passed'.

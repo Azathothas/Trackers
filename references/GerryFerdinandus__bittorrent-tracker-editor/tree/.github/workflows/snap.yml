@@ -1,0 +1,29 @@
+name: Test build Ubuntu snap on Linux amd64
+
+on:
+    push:
+    pull_request:
+    workflow_dispatch:
+    # Automatic cron build every 6 months to check if everything still works.
+    schedule:
+    - cron: "0 0 1 1/6 *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        submodules: true
+
+    - uses: snapcore/action-build@v1
+
+    - name: Upload Artifact
+      if: ${{ github.actor != 'dependabot[bot]' || (github.event_name != 'push' && github.event_name != 'pull_request') }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: artifact-snap
+        path: "*.snap"
+        compression-level: 0 # no compression. Content is already a zip file
+        if-no-files-found: error

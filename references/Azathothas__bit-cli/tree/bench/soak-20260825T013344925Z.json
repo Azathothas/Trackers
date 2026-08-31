@@ -1,0 +1,201 @@
+{
+  "kind": "soak",
+  "schema_version": "1",
+  "generated_at": "2026-08-25T01:36:45.447Z",
+  "complete": true,
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "minutes": 3,
+    "sample_seconds": 10,
+    "workload": "all",
+    "payload_mib": 16,
+    "leechers": 2,
+    "churn_connections": 20000,
+    "churn_concurrency": 768,
+    "profile": "release",
+    "ceilings": {
+      "rss_mib_per_hour": 0.0,
+      "handles_per_hour": 0.0,
+      "close_wait_per_hour": 0.0,
+      "leech_failure_percent": 5.0
+    },
+    "listener_check": "10s"
+  },
+  "info_hash": "35bb0e03ff014dc8d9deea0852ba6698589b7de1",
+  "csv": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak-reports\\soak-20260825T013344925Z.csv",
+  "elapsed_hours": 0.05,
+  "samples": 8,
+  "cycles": {
+    "leech_completed": 5,
+    "leech_failed": 1,
+    "leech_failed_percent": 16.67,
+    "leech_failures": [
+      {
+        "sample": 7,
+        "elapsed_s": 163,
+        "slot": 0,
+        "exit_code": 9,
+        "said": "    \"bytes\": 16777216, |     \"human\": \"16.00 MiB\" |   } | }"
+      }
+    ],
+    "churn_runs": 6,
+    "churn_connections_total": 120000,
+    "progress_events": 15,
+    "load_errors": 0
+  },
+  "slopes": {
+    "rss_bytes": {
+      "column": "rss_bytes",
+      "samples": 8,
+      "first": 14573568.0,
+      "last": 15237120.0,
+      "min": 14573568.0,
+      "max": 15237120.0,
+      "mean": 14943744.0,
+      "slope_per_hour": 11081741.745,
+      "r_squared": 0.5979,
+      "largest_rise": 438272.0,
+      "largest_rise_hours": 0.015,
+      "largest_fall": -114688.0,
+      "largest_fall_hours": 0.029,
+      "step_share": 0.66
+    },
+    "peak_rss_bytes": {
+      "column": "peak_rss_bytes",
+      "samples": 8,
+      "first": 15032320.0,
+      "last": 15441920.0,
+      "min": 15032320.0,
+      "max": 15441920.0,
+      "mean": 15248384.0,
+      "slope_per_hour": 7787277.246,
+      "r_squared": 0.8675,
+      "largest_rise": 204800.0,
+      "largest_rise_hours": 0.036,
+      "largest_fall": 0.0,
+      "largest_fall_hours": null,
+      "step_share": 0.5
+    },
+    "handles": {
+      "column": "handles",
+      "samples": 8,
+      "first": 210.0,
+      "last": 256.0,
+      "min": 202.0,
+      "max": 352.0,
+      "mean": 251.88,
+      "slope_per_hour": -40.372,
+      "r_squared": 0.0001,
+      "largest_rise": 148.0,
+      "largest_rise_hours": 0.015,
+      "largest_fall": -133.0,
+      "largest_fall_hours": 0.029,
+      "step_share": 3.217
+    },
+    "threads": {
+      "column": "threads",
+      "samples": 8,
+      "first": 29.0,
+      "last": 22.0,
+      "min": 22.0,
+      "max": 29.0,
+      "mean": 23.0,
+      "slope_per_hour": -93.527,
+      "r_squared": 0.4175,
+      "largest_rise": 0.0,
+      "largest_rise_hours": null,
+      "largest_fall": -6.0,
+      "largest_fall_hours": 0.008,
+      "step_share": null
+    },
+    "tcp_total": {
+      "column": "tcp_total",
+      "samples": 8,
+      "first": 220.0,
+      "last": 1.0,
+      "min": 1.0,
+      "max": 228.0,
+      "mean": 56.75,
+      "slope_per_hour": -4597.186,
+      "r_squared": 0.5678,
+      "largest_rise": 8.0,
+      "largest_rise_hours": 0.008,
+      "largest_fall": -227.0,
+      "largest_fall_hours": 0.015,
+      "step_share": null
+    },
+    "tcp_close_wait": {
+      "column": "tcp_close_wait",
+      "samples": 8,
+      "first": 219.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 227.0,
+      "mean": 55.75,
+      "slope_per_hour": -4597.186,
+      "r_squared": 0.5678,
+      "largest_rise": 8.0,
+      "largest_rise_hours": 0.008,
+      "largest_fall": -227.0,
+      "largest_fall_hours": 0.015,
+      "step_share": null
+    },
+    "tcp_established": {
+      "column": "tcp_established",
+      "samples": 8,
+      "first": 0.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "slope_per_hour": 0.0,
+      "r_squared": null,
+      "largest_rise": 0.0,
+      "largest_rise_hours": null,
+      "largest_fall": 0.0,
+      "largest_fall_hours": null,
+      "step_share": null
+    }
+  },
+  "rss_mib_per_hour": 10.568,
+  "self_reported": {
+    "peak_rss_bytes": 15388672,
+    "open_handles": 348,
+    "listener": {
+      "healthy": true,
+      "probes": 13,
+      "failed": 3,
+      "consecutive_failures": 0,
+      "last_rtt_ms": 2,
+      "last_failure": null,
+      "worst_consecutive_failures": 1,
+      "unhealthy_events": 3,
+      "first_unhealthy_elapsed_s": 40
+    }
+  },
+  "seed_exited_early": false,
+  "verdict": "1 ceiling(s) or the run itself did not hold",
+  "failures": [
+    "1 of 6 leech cycles failed, 16.67 percent, over the 5 percent this run treats as still measuring its workload. The seeder stopped answering its own listener probe at t+40s, so the fault is the seeder's"
+  ],
+  "commands": [
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\bin\\bit-cli.exe seed C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\soak.torrent --data C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak --port 0 --no-dht --no-lsd --report-interval 10s --seed-time 480s --jsonl --listener-check 10s",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\bin\\loopback-churn.exe --peer 127.0.0.1:64061 --connections 20000 --concurrency 768 --no-handshake",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\bin\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\soak.torrent --dir leech-N --peer 127.0.0.1:64061 --no-dht --no-lsd --no-tracker --allow-overwrite --stop-after 120s --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\soak\\bin\\loopback-tracker.exe --port 0 --interval 5"
+  ],
+  "notes": [
+    "The subject is the seeder. rss_bytes and handles are read from outside with Get-Process, and the seeder's own progress events carry the same two figures, so self_reported is the cross-check rather than a second measurement.",
+    "slope_per_hour is least squares against elapsed hours. r_squared beside it says whether the line is a trend or noise: a large slope with a low r squared is a spike, not growth.",
+    "largest_rise and largest_fall are the biggest move between two consecutive samples, with the elapsed hour each happened at, and step_share is largest_rise over the run's whole rise. They are here because a slope and an r squared cannot say that a fit spans a step: the run of 2026-08-23T09:01:32Z read 3.708 MiB/h at r squared 0.717 across one interval that rose 11.61 MiB and never came back. Read the magnitude first; step_share is high and meaningless on a run that barely moved. See TODO/memory.md, T-224.",
+    "peak_rss_bytes is a high-water mark rather than a level, so its slope is bounded below by zero and says nothing on its own. rss_bytes is the series that can fall as well as rise, and it is the one a leak shows in.",
+    "The loopback tracker never expires a peer, so under -Workload announce or all the peer list handed to the seeder grows for the whole run. That is deliberate: it is the shape a busy tracker has, and it is the path T-040's report points at.",
+    "complete is false while the run is still sampling. This file is rewritten after every sample, so a run that is killed leaves the report it had reached rather than nothing at all.",
+    "leech_failed_percent is judged whether or not a ceiling is named, because every ceiling here is a statement about the seeder and a seeder nobody is talking to holds all of them. leech_failures says why the first few failed, which is the thing a finished run cannot be asked afterwards. See TODO/memory.md, T-232.",
+    "self_reported.listener is null unless -ListenerCheck was passed. probes and failed are the seeder's own counters, so they are totals for the run; consecutive_failures and healthy are the last event's levels, and worst_consecutive_failures with unhealthy_events say whether the middle of the run differed from its end. The same three figures are the last columns of the CSV, one per sample. See TODO/memory.md, T-232."
+  ]
+}

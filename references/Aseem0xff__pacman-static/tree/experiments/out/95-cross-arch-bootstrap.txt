@@ -1,0 +1,29 @@
+# 95-cross-arch-bootstrap
+date : 2026-08-28T13:48:33Z
+host : Linux 6.18.44-fc-v22 x86_64  ⭐ x86_64, bootstrapping FOREIGN architectures
+qemu : qemu-aarch64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
+
+ARCH           SYNC     INSTALL   PKGS    SIZE    ELF OK
+aarch64        ok       ok        136     790M    ok
+riscv64        ok       ok        135     836M    ok
+loongarch64    ok       SEGV*     137     841M    ok
+powerpc64le    ok       ok        140     835M    ok
+x86_64         ok       ok        137     704M    ok
+
+  SYNC    libcurl + OpenSSL reached that distribution and libarchive
+          parsed its package database
+  INSTALL the full 'base' set unpacked into an empty directory
+  ELF OK  file(1) on the installed /usr/bin/bash reports THAT
+          architecture -- read back, not assumed
+
+⛔ post-transaction hooks fail under qemu-user with
+   'call to execv failed (Exec format error)'. The host kernel has no
+   binfmt handler for the target, so a hook cannot exec inside the
+   chroot. The packages ARE installed. TASKS.md T-13.
+
+⚠ SEGV* = the install COMPLETED (package count and ELF check both
+  pass) and the process then died with SIGSEGV. That is the open
+  intermittent fault in RESEARCH.md §9, not a failed bootstrap.
+  Seen on 1 of the architectures in this run.
+
+verdict: every architecture bootstrapped its own distribution

@@ -1,0 +1,60 @@
+{
+  "kind": "listener_check",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T04:55:50.230Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "poison_connections": 20,
+    "payload_mib": 4,
+    "interval": "2s",
+    "profile": "release"
+  },
+  "cases": [
+    {
+      "case": "healthy",
+      "probes": 3,
+      "failed": 0,
+      "consecutive_failures": 0,
+      "last_rtt_ms": 15,
+      "peer_rows": 0,
+      "peers_seen": 0,
+      "still_running": true
+    },
+    {
+      "case": "poisoned",
+      "load_connected": 20,
+      "load_handshaked": 0,
+      "exit_code": 17,
+      "stopped": "listener_unhealthy",
+      "probes": 6,
+      "failed": 3,
+      "consecutive_failures": 3,
+      "last_failure": "handshake_timeout"
+    },
+    {
+      "case": "off",
+      "exit_code": 9,
+      "stopped": "deadline",
+      "listener_key": false
+    },
+    {
+      "case": "recovery",
+      "served_before": 1,
+      "poison_connections": 20,
+      "connections_to_recover": 20,
+      "ceiling": 70
+    }
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "The probe completes a real handshake for a torrent the seeder holds rather than an unknown one. An unknown info hash is cheaper, and it is the wrong measurement: it resolves to an error inside the session, which adds an entry to the same backlog it is measuring. A completed handshake takes one off instead.",
+    "That costs one peer row per probe, which librqbit keeps in a terminal state and never reclaims. The reported peer list drops them by the port the probe dialled from, which is the mechanism the web seed bridge already uses.",
+    "Three failures in a row is derived, not picked. The accept loop clears one queued check per connection it accepts, so one failure means a backlog a real peer would have cleared by arriving, and three means the backlog outlived three connections.",
+    "The off case exists because poisoned on its own does not prove the flag did anything: the load could have stopped the run by itself.",
+    "recovery runs without the flag on purpose. The probe clears one queued check per answered handshake, so a seeder being probed is a seeder being repaired, and this case is about what a peer that is not us meets."
+  ]
+}

@@ -1,0 +1,49 @@
+# What is open against this repository, and does it survive being checked?
+#
+# ⛔ SEPARATE FROM ci.yml ON PURPOSE, for two reasons. It needs read access to
+# issues and pull requests, which nothing else here does and which is not worth
+# granting to every push. And it costs API calls, so it runs on a schedule and
+# on request rather than on every commit.
+#
+# ⚠ It never merges, closes, comments or approves. It reports. Deciding is the
+# operator's: docs/security/remote-ops.md.
+#
+# ⭐ The reason it exists: a dependency bot's pull request is right almost every
+# time, and that is what makes the wrong one expensive. Nobody is reading by
+# the hundredth bump. This repository was pinned to an action targeting a Node
+# runtime GitHub had deprecated, and the warning sat in a log nobody read.
+
+name: remote-items
+
+on:
+  schedule:
+    # Weekly. ⚠ Matching the dependabot cadence on purpose: checking more often
+    # than things change produces noise, and noise is what stops it being read.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+  pull_request:
+    # ⭐ Also on a pull request that touches a workflow, because that is exactly
+    # when a pin changes and exactly when nobody looks at it twice.
+    paths:
+      - ".github/workflows/**"
+      - "dotfiles/github/workflows/**"
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  verify:
+    name: open items verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: verify every open issue and pull request
+        env:
+          # gh reads this. ⚠ It is the run's own scoped token, not a personal
+          # one, and the permissions above are all it carries.
+          GH_TOKEN: ${{ github.token }}
+        run: sh scripts/common/check-remote-items.sh

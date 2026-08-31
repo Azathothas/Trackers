@@ -1,0 +1,45 @@
+# Load-bearing citations into the reference corpus, and what each line must say.
+#
+# THE QUESTION THIS ANSWERS
+#   `scripts/check-citations.py` proves a cited line EXISTS. It cannot prove the
+#   line says what the citation claims. On 2026-08-31 four documents cited
+#   `ngosang_trackerslist.pas:93` for a `.Clear` call that is on line 98; line 93
+#   is a comment. The citation checker passed it, because 93 is a real line.
+#
+#   So every citation this project's ARGUMENT rests on gets a row here naming a
+#   substring the line must contain. A corpus refresh that moves a line now
+#   fails a gate instead of silently orphaning a claim.
+#
+# FORMAT   path <TAB> line <TAB> substring the line must contain
+#   Paths are relative to the repository root. Blank lines and `#` are ignored.
+#   The substring is matched literally, after both sides are stripped.
+#
+# ADDING A ROW
+#   Add one whenever a document starts resting on a specific line of somebody
+#   else's code. If the line later moves, this fails, and the fix is to re-read
+#   the file and correct BOTH the citation and this row -- never only this row.
+
+# --- newTrackon: the oracle, the opt-out, the cadence, the identity ---
+references/CorralPeltzer__newTrackon/tree/newtrackon/views.py	131	@app.route("/api/<int:percentage>")
+references/CorralPeltzer__newTrackon/tree/newtrackon/views.py	170	return api_percentage(95, added_before=
+references/CorralPeltzer__newTrackon/tree/newtrackon/scraper.py	53	"User-Agent": "qBittorrent/4.3.9"
+references/CorralPeltzer__newTrackon/tree/newtrackon/scraper.py	217	def get_bep_34(
+references/CorralPeltzer__newTrackon/tree/newtrackon/scraper.py	232	def announce_http(url: str, thash: bytes = urandom(20))
+references/CorralPeltzer__newTrackon/tree/newtrackon/scraper.py	234	pid = "-qB4390-"
+references/CorralPeltzer__newTrackon/tree/newtrackon/tracker.py	163	self.interval = 10800
+
+# --- bittorrent-tracker-editor: the only client-side parser evidence ---
+references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/torrent_miscellaneous.pas	174	procedure SanitizeTrackerList
+references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/torrent_miscellaneous.pas	207	procedure RandomizeTrackerList
+references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/torrent_miscellaneous.pas	393	function ValidTrackerURL
+references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/ngosang_trackerslist.pas	98	.Clear;
+
+# --- bit-cli: the only reference that speaks the tracker protocols ---
+references/Azathothas__bit-cli/tree/crates/bit-cli-core/src/tracker.rs	26	0x0417_2710_1980
+references/Azathothas__bit-cli/tree/crates/bit-cli-core/src/tracker.rs	695	pub fn scrape_url
+references/Azathothas__bit-cli/tree/crates/bit-cli-core/src/tracker.rs	717	fn count_of
+references/Azathothas__bit-cli/tree/crates/bit-cli-core/src/tracker.rs	739	min_interval_s: count_of(&value, "min interval")
+references/Azathothas__bit-cli/tree/crates/bit-cli-core/src/peer_id.rs	36	pub const CLIENT_CODE: [u8; 2] = *b"CL";
+
+# --- pkgforge-security/Trackers: the anti-pattern exhibit ---
+references/pkgforge-security__Trackers/tree/.github/workflows/fetch_update_trackers.yaml	42	https://newtrackon.com/api/stable

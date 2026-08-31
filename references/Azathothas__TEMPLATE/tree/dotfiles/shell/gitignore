@@ -1,0 +1,16 @@
+# Shell script projects. Combine with dotfiles/common/gitignore and
+# dotfiles/os-editor/gitignore.
+
+# shellcheck and shfmt leave nothing behind, so this file is mostly about the
+# things a shell project accumulates around itself.
+
+*.bak
+*.orig
+*.rej
+.shellcheckrc.local
+
+# A script that writes a report writes it here. The RUNNERS are tracked source;
+# the CAPTURES are not. A run that IS the evidence for an item goes in
+# deliberately with: git add -f
+out/
+reports/

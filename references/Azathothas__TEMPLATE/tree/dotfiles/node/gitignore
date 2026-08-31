@@ -1,0 +1,33 @@
+# Node, and anything that runs on it. Combine with dotfiles/common/gitignore
+# and dotfiles/os-editor/gitignore.
+
+node_modules/
+.pnpm-store/
+.yarn/cache/
+.yarn/install-state.gz
+.npm/
+
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+.vercel/
+.netlify/
+.output/
+.turbo/
+.parcel-cache/
+*.tsbuildinfo
+
+# ⛔ A lockfile IS committed. It is what makes an install reproducible, and a
+# project without one installs a different dependency tree every time.
+# Listed here as a reminder, not as an ignore.
+# package-lock.json  pnpm-lock.yaml  yarn.lock  bun.lockb
+
+.eslintcache
+.stylelintcache
+
+# Cloudflare Workers local state. Deleting this directory resets ALL local data.
+.wrangler/

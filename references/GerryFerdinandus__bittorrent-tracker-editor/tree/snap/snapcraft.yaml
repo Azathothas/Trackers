@@ -1,0 +1,88 @@
+name: bittorrent-tracker-editor
+adopt-info: mainprogram
+icon: metainfo/io.github.gerryferdinandus.bittorrent-tracker-editor.png
+
+base: core24
+grade: stable
+confinement: strict
+
+platforms:
+ amd64:
+ arm64:
+
+apps:
+  bittorrent-tracker-editor:
+    desktop: io.github.gerryferdinandus.bittorrent-tracker-editor.desktop
+    extensions:
+      - kde-neon-6
+    command: trackereditor
+    plugs:
+      - home
+      - network
+      - removable-media
+
+parts:
+  build_lazarus:
+    source: .
+    plugin: nil
+    build-packages:
+      - curl
+      - build-essential
+      - fpc
+      - libxkbcommon-dev
+
+    build-environment:
+      - LAZARUS_URL_TAR_GZ: "https://github.com/GerryFerdinandus/bittorrent-tracker-editor/releases/download/V1.32.0/lazarus.tar.gz"
+      - LAZARUS_QT_VERSION: "6"
+      - LIB_DIR: "/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+      - LAZARUS_DIR: "$PWD/lazarus"
+    override-build: |
+      #Download lazarus source code. Directory 'lazarus' will be created in the root.
+      curl -L -O $LAZARUS_URL_TAR_GZ
+      tar -xzf *.tar.gz
+
+      #--- Create libQTpas.so and put it in /usr/lib/ and $CRAFT_PART_INSTALL
+      cd "$LAZARUS_DIR/lcl/interfaces/qt${LAZARUS_QT_VERSION}/cbindings/"
+      /snap/kde-qt6-core24-sdk/current/usr/bin/qt6/qmake6
+      make -j$(nproc)
+
+      # copy the libQTpas.so to /usr/lib/ (needed for compile-time linking)
+      cp -av libQt${LAZARUS_QT_VERSION}Pas.* $LIB_DIR/
+
+      # copy the libQTpas.so to snap install directory (needed for run-time linking)
+      cp -av --parents $LIB_DIR/libQt${LAZARUS_QT_VERSION}Pas.* $CRAFT_PART_INSTALL
+
+      #--- Make lazbuild and put the link with extra parameter in /usr/bin/
+      cd "$LAZARUS_DIR"
+      make lazbuild
+      echo "$LAZARUS_DIR/lazbuild --primary-config-path=$LAZARUS_DIR --lazarusdir=$LAZARUS_DIR \$*" > /usr/bin/lazbuild
+      chmod 777 /usr/bin/lazbuild
+
+  mainprogram: # Build and add to snap the main program: trackereditor
+      after: [build_lazarus]
+      source: .
+      plugin: nil
+      parse-info: [metainfo/io.github.gerryferdinandus.bittorrent-tracker-editor.metainfo.xml]
+      override-build: |
+        lazbuild --build-mode=Release --widgetset=qt6 source/project/tracker_editor/trackereditor.lpi
+        install enduser/trackereditor $CRAFT_PART_INSTALL/
+        install metainfo/io.github.gerryferdinandus.bittorrent-tracker-editor.desktop $CRAFT_PART_INSTALL/
+
+# --------------------------------------------------------------
+# Only 3 files are explicitly added in this snap
+# - main program: enduser/trackereditor
+# - desktop file: metainfo/io.github.gerryferdinandus.bittorrent-tracker-editor.desktop
+# - libQt6Pas.so created during the build_lazarus part
+#
+# Create snap. Run from the project root folder:
+# snapcraft pack --verbosity verbose
+#
+# To look what is inside the snap file. Directory 'squashfs-root' will be created in the root folder:
+# unsquashfs *.snap
+#
+# Install the snap:
+# sudo snap install --devmode ./*.snap 
+#
+# Run the snap
+# snap run bittorrent-tracker-editor
+# --------------------------------------------------------------

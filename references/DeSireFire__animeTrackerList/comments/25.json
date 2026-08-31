@@ -1,0 +1,49 @@
+[
+  {
+    "url": "https://api.github.com/repos/DeSireFire/animeTrackerList/issues/comments/1178755757",
+    "html_url": "https://github.com/DeSireFire/animeTrackerList/issues/25#issuecomment-1178755757",
+    "issue_url": "https://api.github.com/repos/DeSireFire/animeTrackerList/issues/25",
+    "id": 1178755757,
+    "node_id": "IC_kwDOCz5w9M5GQmKt",
+    "user": {
+      "login": "DeSireFire",
+      "id": 18726905,
+      "node_id": "MDQ6VXNlcjE4NzI2OTA1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18726905?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/DeSireFire",
+      "html_url": "https://github.com/DeSireFire",
+      "followers_url": "https://api.github.com/users/DeSireFire/followers",
+      "following_url": "https://api.github.com/users/DeSireFire/following{/other_user}",
+      "gists_url": "https://api.github.com/users/DeSireFire/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/DeSireFire/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/DeSireFire/subscriptions",
+      "organizations_url": "https://api.github.com/users/DeSireFire/orgs",
+      "repos_url": "https://api.github.com/users/DeSireFire/repos",
+      "events_url": "https://api.github.com/users/DeSireFire/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/DeSireFire/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2022-07-08T09:19:09Z",
+    "updated_at": "2022-07-08T09:46:47Z",
+    "body": "> 建议转移到github.io一劳永逸\r\n您好~感谢反馈，\r\n如果github.io指的是gitpage的话，直接使用”本地接口“的链接就行了，我只是在repo上套了个域名罢了。\r\n如果是原生访问github，可以不使用cdn，用原生的githubusercontent就好。\r\n还可以尝试将cdn.jsdelivr.net改为fastly.jsdelivr.net的方式绕过。\r\nreadme中都有提供的。",
+    "author_association": "OWNER",
+    "pin": null,
+    "reactions": {
+      "url": "https://api.github.com/repos/DeSireFire/animeTrackerList/issues/comments/1178755757/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  }
+]

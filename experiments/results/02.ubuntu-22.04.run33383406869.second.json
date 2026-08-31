@@ -1,0 +1,252 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "33383406869",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu22",
+      "runner_image_version": "20260824.273.3",
+      "runner_os": "Linux",
+      "sha": "3ec6dcd49c9f88c92e5ee7a76a7cc8bf63cbf86b"
+    },
+    "hostname": "runnervm76wwg",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "public_ipv4": "20.109.38.118",
+    "public_ipv4_org": "AS8075 Microsoft Corporation",
+    "python": "3.10.12",
+    "repo_commit": "3ec6dcd49c9f88c92e5ee7a76a7cc8bf63cbf86b-dirty",
+    "sample_counts": {
+      "control_runs": 2,
+      "max_retries_per_target": 1,
+      "probes_per_target": 1,
+      "udp_targets": 11
+    },
+    "spec": "BEP 15, fetched 2026-08-29",
+    "targets_fixture": "fixtures/probe-targets.tsv",
+    "timeout_s": 5.0,
+    "utc": "2026-08-31T10:40:09Z"
+  },
+  "question": "Does a BEP 15 connect handshake complete against known-good UDP trackers from this host, and if not, is it the network, the trackers, or the probe?",
+  "results": {
+    "control": {
+      "all_ok": true,
+      "datagrams_received_by_control": 2,
+      "note": "loopback BEP 15 responder started by this process; two runs",
+      "runs": [
+        {
+          "attempts": 1,
+          "detail": "connection_id=0x0123456789abcdef",
+          "families": [
+            "ipv4"
+          ],
+          "ok": true,
+          "resolved_ip": "127.0.0.1",
+          "rtt_ms": 0.125,
+          "rung": "protocol_valid"
+        },
+        {
+          "attempts": 1,
+          "detail": "connection_id=0x0123456789abcdef",
+          "families": [
+            "ipv4"
+          ],
+          "ok": true,
+          "resolved_ip": "127.0.0.1",
+          "rtt_ms": 0.054,
+          "rung": "protocol_valid"
+        }
+      ]
+    },
+    "subjects": [
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x41898b4431d25b03",
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "open.stealth.si",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 80,
+        "resolved_ip": "151.242.104.187",
+        "rtt_ms": 103.915,
+        "rung": "protocol_valid",
+        "url": "udp://open.stealth.si:80/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x2fcc8ed899a37483",
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "tracker.torrent.eu.org",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 451,
+        "resolved_ip": "91.216.110.53",
+        "rtt_ms": 97.357,
+        "rung": "protocol_valid",
+        "url": "udp://tracker.torrent.eu.org:451/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x0c27d7d40005bb2e",
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "open.demonii.com",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 1337,
+        "resolved_ip": "185.121.168.96",
+        "rtt_ms": 232.139,
+        "rung": "protocol_valid",
+        "url": "udp://open.demonii.com:1337/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x5c39487dc2bb21bf",
+        "families": [
+          "ipv4"
+        ],
+        "host": "tracker.opentrackr.org",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 1337,
+        "resolved_ip": "93.158.213.92",
+        "rtt_ms": 94.2,
+        "rung": "protocol_valid",
+        "url": "udp://tracker.opentrackr.org:1337/announce"
+      },
+      {
+        "attempts": 2,
+        "detail": "timeout after 5.0s",
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "exodus.desync.com",
+        "ok": false,
+        "oracle_at_capture": "live",
+        "port": 6969,
+        "resolved_ip": "208.83.20.20",
+        "rtt_ms": null,
+        "rung": "datagram_sent",
+        "url": "udp://exodus.desync.com:6969/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x5554bd980005bee3",
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "explodie.org",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 6969,
+        "resolved_ip": "23.157.120.14",
+        "rtt_ms": 81.494,
+        "rung": "protocol_valid",
+        "url": "udp://explodie.org:6969/announce"
+      },
+      {
+        "detail": "resolves only to ['ipv6']; this probe is IPv4-only",
+        "families": [
+          "ipv6"
+        ],
+        "host": "retracker.hotplug.ru",
+        "ok": false,
+        "oracle_at_capture": "live",
+        "port": 2710,
+        "resolved_ip": "2a04:ac00:1:3dd8::1:2710",
+        "rtt_ms": null,
+        "rung": "no_ipv4_address",
+        "url": "udp://retracker.hotplug.ru:2710/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x000000006a955a09",
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "whybother.torrentonline.cc",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 42069,
+        "resolved_ip": "92.112.127.62",
+        "rtt_ms": 399.084,
+        "rung": "protocol_valid",
+        "url": "udp://whybother.torrentonline.cc:42069/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0xbee54d420024ea03",
+        "families": [
+          "ipv4"
+        ],
+        "host": "tracker.aruku.ovh",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 8081,
+        "resolved_ip": "15.235.207.99",
+        "rtt_ms": 226.238,
+        "rung": "protocol_valid",
+        "url": "udp://tracker.aruku.ovh:8081/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x3fe08bef000ea5c4",
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "open.ftorrent.com",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 443,
+        "resolved_ip": "149.106.106.25",
+        "rtt_ms": 50.954,
+        "rung": "protocol_valid",
+        "url": "udp://open.ftorrent.com:443/announce"
+      },
+      {
+        "attempts": 1,
+        "detail": "connection_id=0x70142701794c4360",
+        "families": [
+          "ipv4"
+        ],
+        "host": "tracker.dler.com",
+        "ok": true,
+        "oracle_at_capture": "live",
+        "port": 6969,
+        "resolved_ip": "211.75.205.187",
+        "rtt_ms": 186.691,
+        "rung": "protocol_valid",
+        "url": "udp://tracker.dler.com:6969/announce"
+      }
+    ],
+    "summary": {
+      "connect_ok": 9,
+      "max_rtt_ms": 399.084,
+      "median_rtt_ms": 103.915,
+      "min_rtt_ms": 50.954,
+      "oracle_said_live_at_capture": 11,
+      "rung_histogram": {
+        "datagram_sent": 1,
+        "no_ipv4_address": 1,
+        "protocol_valid": 9
+      },
+      "spoke_bep15_at_all": 9,
+      "udp_targets": 11
+    }
+  }
+}

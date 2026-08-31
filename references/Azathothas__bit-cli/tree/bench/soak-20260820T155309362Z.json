@@ -1,0 +1,132 @@
+{
+  "kind": "soak",
+  "schema_version": "1",
+  "generated_at": "2026-08-20T18:38:50.451Z",
+  "complete": false,
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "minutes": 360,
+    "sample_seconds": 30,
+    "workload": "idle",
+    "payload_mib": 16,
+    "leechers": 2,
+    "churn_connections": 500,
+    "churn_concurrency": 32,
+    "profile": "release",
+    "ceilings": {
+      "rss_mib_per_hour": 0.0,
+      "handles_per_hour": 0.0,
+      "close_wait_per_hour": 0.0
+    }
+  },
+  "info_hash": "35bb0e03ff014dc8d9deea0852ba6698589b7de1",
+  "csv": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\bench\\soak-20260820T155309362Z.csv",
+  "elapsed_hours": 2.7614,
+  "samples": 315,
+  "cycles": {
+    "leech_completed": 0,
+    "leech_failed": 0,
+    "churn_runs": 0,
+    "churn_connections_total": 0,
+    "progress_events": 332
+  },
+  "slopes": {
+    "rss_bytes": {
+      "column": "rss_bytes",
+      "samples": 315,
+      "first": 13778944.0,
+      "last": 12980224.0,
+      "min": 12976128.0,
+      "max": 14331904.0,
+      "mean": 14128573.36,
+      "slope_per_hour": -160906.315,
+      "r_squared": 0.1059
+    },
+    "peak_rss_bytes": {
+      "column": "peak_rss_bytes",
+      "samples": 315,
+      "first": 13778944.0,
+      "last": 14331904.0,
+      "min": 13778944.0,
+      "max": 14331904.0,
+      "mean": 14273259.68,
+      "slope_per_hour": 100604.666,
+      "r_squared": 0.4686
+    },
+    "handles": {
+      "column": "handles",
+      "samples": 315,
+      "first": 188.0,
+      "last": 188.0,
+      "min": 188.0,
+      "max": 188.0,
+      "mean": 188.0,
+      "slope_per_hour": 0.0,
+      "r_squared": null
+    },
+    "threads": {
+      "column": "threads",
+      "samples": 315,
+      "first": 25.0,
+      "last": 21.0,
+      "min": 21.0,
+      "max": 25.0,
+      "mean": 21.07,
+      "slope_per_hour": -0.125,
+      "r_squared": 0.071
+    },
+    "tcp_total": {
+      "column": "tcp_total",
+      "samples": 315,
+      "first": 1.0,
+      "last": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "slope_per_hour": 0.0,
+      "r_squared": null
+    },
+    "tcp_close_wait": {
+      "column": "tcp_close_wait",
+      "samples": 315,
+      "first": 0.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "slope_per_hour": 0.0,
+      "r_squared": null
+    },
+    "tcp_established": {
+      "column": "tcp_established",
+      "samples": 315,
+      "first": 0.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "slope_per_hour": 0.0,
+      "r_squared": null
+    }
+  },
+  "rss_mib_per_hour": -0.153,
+  "self_reported": {
+    "peak_rss_bytes": 14331904,
+    "open_handles": 188
+  },
+  "seed_exited_early": false,
+  "verdict": "in flight: 315 samples over 2.76 of the 6 hours asked for",
+  "failures": [],
+  "commands": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\soak-idle\\bin\\bit-cli.exe seed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\soak-idle\\soak.torrent --data C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\soak-idle --port 0 --no-dht --no-lsd --report-interval 30s --seed-time 21900s --jsonl --no-tracker",
+  "notes": [
+    "The subject is the seeder. rss_bytes and handles are read from outside with Get-Process, and the seeder's own progress events carry the same two figures, so self_reported is the cross-check rather than a second measurement.",
+    "slope_per_hour is least squares against elapsed hours. r_squared beside it says whether the line is a trend or noise: a large slope with a low r squared is a spike, not growth.",
+    "peak_rss_bytes is a high-water mark rather than a level, so its slope is bounded below by zero and says nothing on its own. rss_bytes is the series that can fall as well as rise, and it is the one a leak shows in.",
+    "The loopback tracker never expires a peer, so under -Workload announce or all the peer list handed to the seeder grows for the whole run. That is deliberate: it is the shape a busy tracker has, and it is the path T-040's report points at.",
+    "complete is false while the run is still sampling. This file is rewritten after every sample, so a run that is killed leaves the report it had reached rather than nothing at all."
+  ]
+}

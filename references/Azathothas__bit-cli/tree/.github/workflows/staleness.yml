@@ -1,0 +1,73 @@
+# Is the browser bit-cli claims to be still the browser people run?
+#
+# Separate from `ci.yml` on purpose, and it is a schedule rather than a push
+# trigger. A browser shipping a new major is not a defect in a commit, so it
+# must not turn a push red: the golden under `fingerprints/` is what an
+# ordinary push asserts, and this is what notices that the golden itself has
+# gone stale.
+#
+# When it goes red the run's own output carries the replacement values, so the
+# session that picks it up applies a diff rather than doing the work again.
+# See TODO/cli-surface.md, T-244.
+
+name: Staleness
+
+on:
+  schedule:
+    # Mondays at 06:17 UTC. Chrome ships on a Tuesday, so a Monday run reports
+    # the release that has settled rather than the one landing that day, and
+    # the odd minute keeps it off the hour, where every scheduled job on
+    # GitHub queues at once.
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_GATE: stable
+
+jobs:
+  versions:
+    name: The browser version the profile claims
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      # No toolchain and no build: this reads three vendor endpoints and one
+      # constant out of page.rs.
+      - name: Chrome, Firefox and Edge against BROWSER_MAJOR
+        shell: pwsh
+        run: ./scripts/check-browser-version.ps1 -Out .tmp/browser-versions.json
+      - name: The report, whichever way it went
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: browser-versions
+          path: .tmp/browser-versions.json
+          if-no-files-found: warn
+
+  fingerprint:
+    name: The fingerprint against a real browser
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+      - uses: Swatinem/rust-cache@v2.9.2
+      - run: cargo build --release --workspace --bins --examples --locked
+      # The runner image ships Chrome. With none the check exits 2 and names
+      # every path it looked at, which is the case that has to keep working:
+      # a check that fails a build because a machine has no browser is a check
+      # somebody disables.
+      - name: Chrome against fingerprints/bit-cli-browser.json
+        shell: pwsh
+        run: ./scripts/check-browser-fingerprint.ps1 -Out .tmp/browser-fingerprint.json
+      - name: The capture and the replacement it recommends
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: browser-fingerprint
+          path: .tmp/browser-fingerprint.json
+          if-no-files-found: warn

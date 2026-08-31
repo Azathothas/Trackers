@@ -1,0 +1,38 @@
+# Python. Combine with dotfiles/common/gitignore and
+# dotfiles/os-editor/gitignore.
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+build/
+dist/
+develop-eggs/
+eggs/
+.eggs/
+sdist/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Virtual environments. ⚠ A committed venv is unusable on any other machine and
+# is usually hundreds of megabytes.
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.hypothesis/
+
+.ipynb_checkpoints/
+
+# ⛔ A lockfile IS committed: poetry.lock, uv.lock, requirements.txt when it is
+# pinned. Listed as a reminder, not as an ignore.

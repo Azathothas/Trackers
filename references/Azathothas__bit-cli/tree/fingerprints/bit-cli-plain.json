@@ -1,0 +1,27 @@
+{
+  "schema": "fingerprint/2",
+  "captured": "2026-08-30T02:29:47.961Z",
+  "note": "Captured off the wire by loopback-tlsprobe. ja4 and ja4_r come from a --raw capture, headers from a --plain one, akamai and h2_headers from a real handshake the probe's own CA makes verifiable. ja3 is recorded and never asserted, because it preserves wire order and flakes.",
+  "bit_cli": "bit-cli 0.2.0",
+  "fingerprint": {
+    "profile": "plain",
+    "ja4": "t13i1011h2_61a7ad8aa9b6_69ed562cf35e",
+    "ja4_r": "t13i1011h2_00ff,1301,1302,1303,c02b,c02c,c02f,c030,cca8,cca9_0005,000a,000b,000d,0017,001b,0023,002b,002d,0033_0503,0403,0807,0806,0805,0804,0601,0501,0401",
+    "ja3": "f156170dd56a59cee6c4d7b51a417b0e",
+    "headers": [
+      "accept",
+      "user-agent",
+      "accept-encoding"
+    ],
+    "akamai": "2:0;4:2097152;5:16384;6:16384|5177345|0|m,s,a,p",
+    "h2_headers": [
+      ":method",
+      ":scheme",
+      ":authority",
+      ":path",
+      "accept",
+      "user-agent",
+      "accept-encoding"
+    ]
+  }
+}

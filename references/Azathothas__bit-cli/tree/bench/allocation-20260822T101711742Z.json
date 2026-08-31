@@ -1,0 +1,77 @@
+{
+  "schema_version": "1",
+  "kind": "allocation_check",
+  "todo": "T-012",
+  "generated_at": "2026-08-22T10:17:11.742Z",
+  "payload_bytes": 33554432,
+  "payload_human": "32.00 MiB",
+  "volume": "C",
+  "filesystem": "NTFS",
+  "source_sha256": "b68ec54964417d11a770915116ae65c232886c19513c50790a581a8b2a84f313",
+  "methods": [
+    {
+      "method": "none",
+      "reserved_apparent_bytes": 33554432,
+      "reserved_apparent_human": "32.00 MiB",
+      "reserved_allocated_bytes": 33554432,
+      "reserved_allocated_human": "32.00 MiB",
+      "reserved_sparse_flag": false,
+      "volume_free_delta_bytes": 33566720,
+      "volume_free_delta_human": "32.01 MiB",
+      "reserve_ms": 8112,
+      "download_ms": 210,
+      "payload_matches_source": true,
+      "warnings": []
+    },
+    {
+      "method": "sparse",
+      "reserved_apparent_bytes": 33554432,
+      "reserved_apparent_human": "32.00 MiB",
+      "reserved_allocated_bytes": 0,
+      "reserved_allocated_human": "0 B",
+      "reserved_sparse_flag": true,
+      "volume_free_delta_bytes": 69632,
+      "volume_free_delta_human": "68.00 KiB",
+      "reserve_ms": 8089,
+      "download_ms": 198,
+      "payload_matches_source": true,
+      "warnings": []
+    },
+    {
+      "method": "prealloc",
+      "reserved_apparent_bytes": 33554432,
+      "reserved_apparent_human": "32.00 MiB",
+      "reserved_allocated_bytes": 33554432,
+      "reserved_allocated_human": "32.00 MiB",
+      "reserved_sparse_flag": false,
+      "volume_free_delta_bytes": 33562624,
+      "volume_free_delta_human": "32.01 MiB",
+      "reserve_ms": 8120,
+      "download_ms": 238,
+      "payload_matches_source": true,
+      "warnings": []
+    },
+    {
+      "method": "falloc",
+      "reserved_apparent_bytes": 33554432,
+      "reserved_apparent_human": "32.00 MiB",
+      "reserved_allocated_bytes": 33554432,
+      "reserved_allocated_human": "32.00 MiB",
+      "reserved_sparse_flag": false,
+      "volume_free_delta_bytes": 33464320,
+      "volume_free_delta_human": "31.91 MiB",
+      "reserve_ms": 8105,
+      "download_ms": 233,
+      "payload_matches_source": true,
+      "warnings": [
+        "warning: --file-allocation falloc is not available here, so prealloc was used instead: SetFileValidData needs SeManageVolumePrivilege, which this process does not hold"
+      ]
+    }
+  ],
+  "failures": [],
+  "notes": [
+    "The measurement that separates the methods is taken before any payload arrives: the torrent is added against a source that answers nothing, so the files are created and sized and nothing is downloaded. Volume free space either side of that is the number a capacity plan is made from.",
+    "GetCompressedFileSize reports zero for a sparse NTFS file even when it holds data, so it is recorded and not asserted on. \fsutil sparse queryflag is the reliable per-file signal and volume free space is the reliable per-volume one.",
+    "Every method is also run to completion and the result hashed against the source, because an allocation method that loses data is worse than one that reserves nothing."
+  ]
+}

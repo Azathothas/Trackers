@@ -1,0 +1,49 @@
+[
+  {
+    "url": "https://api.github.com/repos/GerryFerdinandus/bittorrent-tracker-editor/issues/comments/2021201530",
+    "html_url": "https://github.com/GerryFerdinandus/bittorrent-tracker-editor/issues/50#issuecomment-2021201530",
+    "issue_url": "https://api.github.com/repos/GerryFerdinandus/bittorrent-tracker-editor/issues/50",
+    "id": 2021201530,
+    "node_id": "IC_kwDOAf2j2M54eRZ6",
+    "user": {
+      "login": "GerryFerdinandus",
+      "id": 6232089,
+      "node_id": "MDQ6VXNlcjYyMzIwODk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6232089?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/GerryFerdinandus",
+      "html_url": "https://github.com/GerryFerdinandus",
+      "followers_url": "https://api.github.com/users/GerryFerdinandus/followers",
+      "following_url": "https://api.github.com/users/GerryFerdinandus/following{/other_user}",
+      "gists_url": "https://api.github.com/users/GerryFerdinandus/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/GerryFerdinandus/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/GerryFerdinandus/subscriptions",
+      "organizations_url": "https://api.github.com/users/GerryFerdinandus/orgs",
+      "repos_url": "https://api.github.com/users/GerryFerdinandus/repos",
+      "events_url": "https://api.github.com/users/GerryFerdinandus/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/GerryFerdinandus/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2024-03-26T18:36:54Z",
+    "updated_at": "2024-03-26T18:36:54Z",
+    "body": "No plan to upgrade to a newer GTK version.\r\nThe [graphics library](https://wiki.lazarus.freepascal.org/Roadmap) I used does not support GTK3 or GTK4.\r\n\r\nGTK3 is also not present in the [current minimum supported list](https://forum.lazarus.freepascal.org/index.php/topic,65612.0.html?PHPSESSID=cjth32qlbm1q65bln4bp9stu14).\r\n**FreeBSD/Linux:**\r\n  gtk 2.24 for gtk2, qt4.5 for qt, qt5.6 for qt5, Qt6.2 for qt6, 32 or 64bit.\r\n\r\nIn the future I will add qt5 and qt6 release build for users who don't use 'Snapcraft' or 'Flathub'",
+    "author_association": "OWNER",
+    "pin": null,
+    "reactions": {
+      "url": "https://api.github.com/repos/GerryFerdinandus/bittorrent-tracker-editor/issues/comments/2021201530/reactions",
+      "total_count": 1,
+      "+1": 1,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  }
+]

@@ -1,0 +1,15 @@
+# Rust. Combine with dotfiles/common/gitignore and
+# dotfiles/os-editor/gitignore.
+
+/target/
+**/*.rs.bk
+*.pdb
+
+# ⛔ Cargo.lock IS committed for a binary, because it is what makes a build
+# reproducible. It is conventionally NOT committed for a library. Decide once,
+# say which this is, and hold to it.
+
+# Criterion benchmark output. The RUNNERS are tracked source; the CAPTURES are
+# not. A run that IS the evidence for an item goes in deliberately:
+#   git add -f bench/the-one-that-matters.json
+/criterion/

@@ -1,0 +1,34 @@
+{
+  "schema": "toolkit-pin/1",
+  "note": "Digests are of the bytes the raw endpoint serves at `ref`, read from that endpoint and not from a working tree. A .ps1 is CRLF in a checkout and LF in the index, so a locally computed digest disagrees with what the endpoint serves.",
+  "repository": "Azathothas/ToolKit",
+  "ref": "bf119301411e7d081499b772686e5116d80aff0f",
+  "captured": "2026-08-31",
+  "route": "https://raw.githubusercontent.com/Azathothas/ToolKit/<ref>/<path>",
+  "files": {
+    "doctor.sh": {
+      "path": "scripts/doctor/doctor.sh",
+      "sha256": "4a2a89d526101595a50a003790dd29ffb789bd055de97aa9174388412d6c98eb",
+      "bytes": 23151,
+      "role": "probe, POSIX shell"
+    },
+    "doctor.ps1": {
+      "path": "scripts/doctor/doctor.ps1",
+      "sha256": "8441d4a608baa8c32f4ae731c6ce17715cadefb3a894defd805504d576ce7ac3",
+      "bytes": 29695,
+      "role": "probe, PowerShell"
+    },
+    "git-sync.sh": {
+      "path": "scripts/common/git-sync.sh",
+      "sha256": "2d3bab31b36cc8c443e39251d05639608957fa4a73cc285bacf83ef3c80abd13",
+      "bytes": 13018,
+      "role": "commit and push, POSIX shell"
+    },
+    "git-sync.ps1": {
+      "path": "scripts/common/git-sync.ps1",
+      "sha256": "713e184ef01bea42050620d6fdcf2660e4b8795fb430273f0f7d86faac90fd95",
+      "bytes": 17743,
+      "role": "commit and push, PowerShell"
+    }
+  }
+}

@@ -1,0 +1,863 @@
+{
+  "schema_version": "1",
+  "kind": "bench-leech",
+  "generated_at": "2026-08-22T09:08:48.152Z",
+  "bit_cli_version": "0.1.0",
+  "build": {
+    "version": "0.1.0",
+    "target": "x86_64-pc-windows-msvc",
+    "profile": "release",
+    "debug_assertions": false
+  },
+  "host": {
+    "os": {
+      "name": "Windows",
+      "version": "10.0.26200"
+    },
+    "cpu": {
+      "model": "12th Gen Intel(R) Core(TM) i7-12700H",
+      "architecture": "x86_64",
+      "logical_cores": 20
+    },
+    "memory_total": {
+      "bytes": 68321587200,
+      "human": "63.63 GiB"
+    },
+    "network": [
+      {
+        "name": "Hyper-V Virtual Ethernet Adapter #2",
+        "link_speed_bps": 1000000000,
+        "link_speed_human": "1.00 Gbit/s",
+        "up": true
+      },
+      {
+        "name": "ZeroTier Virtual Port",
+        "link_speed_bps": 100000000,
+        "link_speed_human": "100.00 Mbit/s",
+        "up": true
+      }
+    ]
+  },
+  "target": {
+    "kind": "loopback",
+    "name": "payload",
+    "info_hash": "575b16a0fa0d3c74840fa203756b72cb5be0f1be",
+    "total_bytes": 536870912,
+    "piece_count": 512,
+    "piece_length_bytes": 1048576,
+    "web_seed": "http://127.0.0.1:63600/"
+  },
+  "parameters": {
+    "runs": 3,
+    "connection_sweep": [
+      8
+    ],
+    "leech_duration": "600s",
+    "concurrency": 8,
+    "request_size": "1MiB",
+    "profile": "release"
+  },
+  "stages": {
+    "fetch": {
+      "what": "bit-cli bench webseed: the HTTP path, no bridge, no hashing, no disk",
+      "sustained_rate_bytes": 1094085826,
+      "sustained_rate_human": "1.02 GiB/s",
+      "report": {
+        "bytes": {
+          "bytes": 18603835392,
+          "human": "17.33 GiB"
+        },
+        "duration": {
+          "ms": 17004,
+          "human": "17s"
+        },
+        "sustained_rate": {
+          "bytes": 1094085826,
+          "human": "1.02 GiB/s"
+        },
+        "peak_rate": {
+          "bytes": 1167183695,
+          "human": "1.09 GiB/s"
+        },
+        "requests": 17760,
+        "errors": {
+          "total": 0
+        },
+        "latency": {
+          "connect": {
+            "count": 18,
+            "p50_ms": 1,
+            "p90_ms": 1,
+            "p99_ms": 1,
+            "p999_ms": 1,
+            "max_ms": 1,
+            "mean_ms": 1
+          },
+          "first_byte": {
+            "count": 17742,
+            "p50_ms": 6,
+            "p90_ms": 8,
+            "p99_ms": 13,
+            "p999_ms": 18,
+            "max_ms": 31,
+            "mean_ms": 6
+          },
+          "complete": {
+            "count": 17742,
+            "p50_ms": 7,
+            "p90_ms": 9,
+            "p99_ms": 14,
+            "p999_ms": 20,
+            "max_ms": 32,
+            "mean_ms": 7
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        }
+      }
+    },
+    "leech": {
+      "what": "bit-cli bench leech: HTTP fetch, loopback bridge, piece verification, disk",
+      "sustained_rate_bytes": 425412767,
+      "sustained_rate_human": "405.71 MiB/s",
+      "share_of_fetch": "38.88%",
+      "wall_stats_ms": {
+        "runs": 3,
+        "min": 425412767,
+        "median": 425412767,
+        "max": 534731984,
+        "spread_percent": 25.7
+      },
+      "report": {
+        "bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "duration": {
+          "ms": 1262,
+          "human": "1s"
+        },
+        "sustained_rate": {
+          "bytes": 425412767,
+          "human": "405.71 MiB/s"
+        },
+        "peak_rate": {
+          "bytes": 592773120,
+          "human": "565.31 MiB/s"
+        },
+        "requests": 32768,
+        "errors": {
+          "total": 0
+        },
+        "hashing": {
+          "pieces": 512,
+          "bytes": {
+            "bytes": 536870912,
+            "human": "512.00 MiB"
+          },
+          "total": {
+            "ms": 1362,
+            "human": "1s"
+          },
+          "rate": {
+            "bytes": 394178349,
+            "human": "375.92 MiB/s"
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        },
+        "choke": {
+          "choke_events": 0,
+          "unchoke_events": 0,
+          "peak_queue_depth": 1024
+        },
+        "disk": {
+          "read_ops": 8192,
+          "read_bytes": {
+            "bytes": 536870912,
+            "human": "512.00 MiB"
+          },
+          "read_time": {
+            "ms": 1105,
+            "human": "1s"
+          },
+          "write_ops": 32768,
+          "write_bytes": {
+            "bytes": 536870912,
+            "human": "512.00 MiB"
+          },
+          "write_time": {
+            "ms": 5101,
+            "human": "5s"
+          }
+        },
+        "pipeline": {
+          "peak_in_flight": 1024,
+          "mean_in_flight": 245,
+          "requests": 32768,
+          "blocks": 32768,
+          "mean_service_us": 9471,
+          "block_size": {
+            "bytes": 16384,
+            "human": "16.00 KiB"
+          },
+          "window_ceiling": {
+            "bytes": 1771430260,
+            "human": "1.65 GiB"
+          }
+        },
+        "peak_peers": 8
+      }
+    }
+  },
+  "connection_curve": [
+    {
+      "connections": 8,
+      "web_seed_concurrency": 8,
+      "sustained_rate_bytes": 425412767,
+      "sustained_rate_human": "405.71 MiB/s",
+      "share_of_fetch": "38.88%",
+      "speedup_over_one_connection": null,
+      "rate_stats_bytes": {
+        "runs": 3,
+        "min": 425412767,
+        "median": 425412767,
+        "max": 534731984,
+        "spread_percent": 25.7
+      },
+      "amplification": {
+        "served": 536870912,
+        "http": 549453824,
+        "ratio": 1.023
+      },
+      "summary": {
+        "bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "duration": {
+          "ms": 1262,
+          "human": "1s"
+        },
+        "sustained_rate": {
+          "bytes": 425412767,
+          "human": "405.71 MiB/s"
+        },
+        "peak_rate": {
+          "bytes": 592773120,
+          "human": "565.31 MiB/s"
+        },
+        "requests": 32768,
+        "errors": {
+          "total": 0
+        },
+        "hashing": {
+          "pieces": 512,
+          "bytes": {
+            "bytes": 536870912,
+            "human": "512.00 MiB"
+          },
+          "total": {
+            "ms": 1362,
+            "human": "1s"
+          },
+          "rate": {
+            "bytes": 394178349,
+            "human": "375.92 MiB/s"
+          }
+        },
+        "stalls": {
+          "count": 0,
+          "total": {
+            "ms": 0,
+            "human": "0ms"
+          },
+          "longest": {
+            "ms": 0,
+            "human": "0ms"
+          }
+        },
+        "choke": {
+          "choke_events": 0,
+          "unchoke_events": 0,
+          "peak_queue_depth": 1024
+        },
+        "disk": {
+          "read_ops": 8192,
+          "read_bytes": {
+            "bytes": 536870912,
+            "human": "512.00 MiB"
+          },
+          "read_time": {
+            "ms": 1105,
+            "human": "1s"
+          },
+          "write_ops": 32768,
+          "write_bytes": {
+            "bytes": 536870912,
+            "human": "512.00 MiB"
+          },
+          "write_time": {
+            "ms": 5101,
+            "human": "5s"
+          }
+        },
+        "pipeline": {
+          "peak_in_flight": 1024,
+          "mean_in_flight": 245,
+          "requests": 32768,
+          "blocks": 32768,
+          "mean_service_us": 9471,
+          "block_size": {
+            "bytes": 16384,
+            "human": "16.00 KiB"
+          },
+          "window_ceiling": {
+            "bytes": 1771430260,
+            "human": "1.65 GiB"
+          }
+        },
+        "peak_peers": 8
+      },
+      "sources": [
+        {
+          "index": 0,
+          "label": "http://127.0.0.1:63600/",
+          "kind": "web_seed",
+          "bytes": {
+            "bytes": 536870912,
+            "human": "512.00 MiB"
+          },
+          "rate": {
+            "bytes": 425412767,
+            "human": "405.71 MiB/s"
+          },
+          "requests": 32768,
+          "errors": 0,
+          "connections": 8,
+          "http_bytes": {
+            "bytes": 549453824,
+            "human": "524.00 MiB"
+          }
+        }
+      ]
+    }
+  ],
+  "control": {
+    "what": "one connection carrying the same total HTTP concurrency as the widest step, so the sweep's gain can be attributed to the receive paths rather than to the requests in flight",
+    "connections": 1,
+    "web_seed_concurrency": 64.0,
+    "sustained_rate_bytes": 194588949,
+    "sustained_rate_human": "185.57 MiB/s",
+    "speedup_over_one_connection": null,
+    "rate_stats_bytes": {
+      "runs": 3,
+      "min": 192703127,
+      "median": 194588949,
+      "max": 194730109,
+      "spread_percent": 1.05
+    },
+    "summary": {
+      "bytes": {
+        "bytes": 536870912,
+        "human": "512.00 MiB"
+      },
+      "duration": {
+        "ms": 2759,
+        "human": "2s"
+      },
+      "sustained_rate": {
+        "bytes": 194588949,
+        "human": "185.57 MiB/s"
+      },
+      "peak_rate": {
+        "bytes": 255958875,
+        "human": "244.10 MiB/s"
+      },
+      "requests": 32768,
+      "errors": {
+        "total": 0
+      },
+      "hashing": {
+        "pieces": 512,
+        "bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "total": {
+          "ms": 306,
+          "human": "306ms"
+        },
+        "rate": {
+          "bytes": 1754480104,
+          "human": "1.63 GiB/s"
+        }
+      },
+      "stalls": {
+        "count": 0,
+        "total": {
+          "ms": 0,
+          "human": "0ms"
+        },
+        "longest": {
+          "ms": 0,
+          "human": "0ms"
+        }
+      },
+      "choke": {
+        "choke_events": 0,
+        "unchoke_events": 0,
+        "peak_queue_depth": 128
+      },
+      "disk": {
+        "read_ops": 8192,
+        "read_bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "read_time": {
+          "ms": 54,
+          "human": "54ms"
+        },
+        "write_ops": 32768,
+        "write_bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "write_time": {
+          "ms": 468,
+          "human": "468ms"
+        }
+      },
+      "pipeline": {
+        "peak_in_flight": 128,
+        "mean_in_flight": 36,
+        "requests": 32768,
+        "blocks": 32768,
+        "mean_service_us": 3042,
+        "block_size": {
+          "bytes": 16384,
+          "human": "16.00 KiB"
+        },
+        "window_ceiling": {
+          "bytes": 689399079,
+          "human": "657.46 MiB"
+        }
+      },
+      "peak_peers": 1
+    }
+  },
+  "repeated_url": {
+    "what": "the same URL named N times, so N separate sources with N fetchers and N window caches, against --web-seed-connections N which is N connections sharing one",
+    "connections": 8.0,
+    "web_seed_concurrency": 8,
+    "sustained_rate_bytes": 426765430,
+    "sustained_rate_human": "407.00 MiB/s",
+    "speedup_over_one_connection": null,
+    "rate_stats_bytes": {
+      "runs": 3,
+      "min": 352508806,
+      "median": 426765430,
+      "max": 428468405,
+      "spread_percent": 21.55
+    },
+    "amplification": {
+      "served": 536870912,
+      "http": 2126512128,
+      "ratio": 3.961
+    },
+    "summary": {
+      "bytes": {
+        "bytes": 536870912,
+        "human": "512.00 MiB"
+      },
+      "duration": {
+        "ms": 1258,
+        "human": "1s"
+      },
+      "sustained_rate": {
+        "bytes": 426765430,
+        "human": "407.00 MiB/s"
+      },
+      "peak_rate": {
+        "bytes": 458424320,
+        "human": "437.19 MiB/s"
+      },
+      "requests": 32768,
+      "errors": {
+        "total": 0
+      },
+      "hashing": {
+        "pieces": 512,
+        "bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "total": {
+          "ms": 1662,
+          "human": "1s"
+        },
+        "rate": {
+          "bytes": 323027022,
+          "human": "308.06 MiB/s"
+        }
+      },
+      "stalls": {
+        "count": 0,
+        "total": {
+          "ms": 0,
+          "human": "0ms"
+        },
+        "longest": {
+          "ms": 0,
+          "human": "0ms"
+        }
+      },
+      "choke": {
+        "choke_events": 0,
+        "unchoke_events": 0,
+        "peak_queue_depth": 1024
+      },
+      "disk": {
+        "read_ops": 8192,
+        "read_bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "read_time": {
+          "ms": 1381,
+          "human": "1s"
+        },
+        "write_ops": 32768,
+        "write_bytes": {
+          "bytes": 536870912,
+          "human": "512.00 MiB"
+        },
+        "write_time": {
+          "ms": 6155,
+          "human": "6s"
+        }
+      },
+      "pipeline": {
+        "peak_in_flight": 1024,
+        "mean_in_flight": 339,
+        "requests": 32768,
+        "blocks": 32768,
+        "mean_service_us": 13033,
+        "block_size": {
+          "bytes": 16384,
+          "human": "16.00 KiB"
+        },
+        "window_ceiling": {
+          "bytes": 1287287347,
+          "human": "1.20 GiB"
+        }
+      },
+      "peak_peers": 8
+    },
+    "sources": [
+      {
+        "index": 0,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 68157440,
+          "human": "65.00 MiB"
+        },
+        "rate": {
+          "bytes": 54179205,
+          "human": "51.67 MiB/s"
+        },
+        "requests": 4160,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 272629760,
+          "human": "260.00 MiB"
+        }
+      },
+      {
+        "index": 1,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 67108864,
+          "human": "64.00 MiB"
+        },
+        "rate": {
+          "bytes": 53345678,
+          "human": "50.87 MiB/s"
+        },
+        "requests": 4096,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 264241152,
+          "human": "252.00 MiB"
+        }
+      },
+      {
+        "index": 2,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 67108864,
+          "human": "64.00 MiB"
+        },
+        "rate": {
+          "bytes": 53345678,
+          "human": "50.87 MiB/s"
+        },
+        "requests": 4096,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 264241152,
+          "human": "252.00 MiB"
+        }
+      },
+      {
+        "index": 3,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 66060288,
+          "human": "63.00 MiB"
+        },
+        "rate": {
+          "bytes": 52512152,
+          "human": "50.08 MiB/s"
+        },
+        "requests": 4032,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 264241152,
+          "human": "252.00 MiB"
+        }
+      },
+      {
+        "index": 4,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 67108864,
+          "human": "64.00 MiB"
+        },
+        "rate": {
+          "bytes": 53345678,
+          "human": "50.87 MiB/s"
+        },
+        "requests": 4096,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 264241152,
+          "human": "252.00 MiB"
+        }
+      },
+      {
+        "index": 5,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 67108864,
+          "human": "64.00 MiB"
+        },
+        "rate": {
+          "bytes": 53345678,
+          "human": "50.87 MiB/s"
+        },
+        "requests": 4096,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 264241152,
+          "human": "252.00 MiB"
+        }
+      },
+      {
+        "index": 6,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 67108864,
+          "human": "64.00 MiB"
+        },
+        "rate": {
+          "bytes": 53345678,
+          "human": "50.87 MiB/s"
+        },
+        "requests": 4096,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 268435456,
+          "human": "256.00 MiB"
+        }
+      },
+      {
+        "index": 7,
+        "label": "http://127.0.0.1:63600/",
+        "kind": "web_seed",
+        "bytes": {
+          "bytes": 67108864,
+          "human": "64.00 MiB"
+        },
+        "rate": {
+          "bytes": 53345678,
+          "human": "50.87 MiB/s"
+        },
+        "requests": 4096,
+        "errors": 0,
+        "connections": 1,
+        "http_bytes": {
+          "bytes": 264241152,
+          "human": "252.00 MiB"
+        }
+      }
+    ]
+  },
+  "attribution": {
+    "bridges": 8,
+    "wall_ms": 1262,
+    "path_time_ms": 10096,
+    "verify_ms": 1362,
+    "verify_share": "13.49%",
+    "disk_read_ms": 1105,
+    "disk_read_share": "10.94%",
+    "disk_write_ms": 5101,
+    "disk_write_share": "50.52%",
+    "notes": [
+      "verify_ms covers reading each piece back and hashing it, so disk_read_ms is inside it rather than beside it",
+      "path_time_ms is wall_ms times the number of bridges. A block is written, and at a piece boundary read back and hashed, inline on the connection that received it, so those times are per receive path and add up across paths."
+    ]
+  },
+  "commands": [
+    {
+      "label": "fetch",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --web-seed http://127.0.0.1:63600/ --web-seed-only --no-torrent-web-seed --concurrency 8 --request-size 1MiB --duration 20s --warmup 3s --metrics-interval 1s --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\fetch.json --format json",
+      "started_at": "2026-08-22T09:08:09.361Z",
+      "elapsed_ms": 20068,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\fetch.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\fetch.err"
+    },
+    {
+      "label": "leech-8-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-leech-8-1 --web-seed http://127.0.0.1:63600/ --web-seed-connections 8 --no-torrent-web-seed --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-1.json --format json",
+      "started_at": "2026-08-22T09:08:29.479Z",
+      "elapsed_ms": 1375,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-1.err"
+    },
+    {
+      "label": "leech-8-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-leech-8-2 --web-seed http://127.0.0.1:63600/ --web-seed-connections 8 --no-torrent-web-seed --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-2.json --format json",
+      "started_at": "2026-08-22T09:08:31.110Z",
+      "elapsed_ms": 1372,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-2.err"
+    },
+    {
+      "label": "leech-8-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-leech-8-3 --web-seed http://127.0.0.1:63600/ --web-seed-connections 8 --no-torrent-web-seed --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-3.json --format json",
+      "started_at": "2026-08-22T09:08:32.710Z",
+      "elapsed_ms": 1112,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-8-3.err"
+    },
+    {
+      "label": "control-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-control-1 --web-seed http://127.0.0.1:63600/ --web-seed-connections 1 --no-torrent-web-seed --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-1.json --format json",
+      "started_at": "2026-08-22T09:08:34.030Z",
+      "elapsed_ms": 2869,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-1.err"
+    },
+    {
+      "label": "control-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-control-2 --web-seed http://127.0.0.1:63600/ --web-seed-connections 1 --no-torrent-web-seed --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-2.json --format json",
+      "started_at": "2026-08-22T09:08:37.132Z",
+      "elapsed_ms": 2909,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-2.err"
+    },
+    {
+      "label": "control-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-control-3 --web-seed http://127.0.0.1:63600/ --web-seed-connections 1 --no-torrent-web-seed --web-seed-only --web-seed-concurrency 64 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-3.json --format json",
+      "started_at": "2026-08-22T09:08:40.299Z",
+      "elapsed_ms": 2847,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\control-3.err"
+    },
+    {
+      "label": "repeated-1",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-repeated-1 --no-torrent-web-seed --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-1.json --format json",
+      "started_at": "2026-08-22T09:08:43.395Z",
+      "elapsed_ms": 1667,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-1.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-1.err"
+    },
+    {
+      "label": "repeated-2",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-repeated-2 --no-torrent-web-seed --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-2.json --format json",
+      "started_at": "2026-08-22T09:08:45.303Z",
+      "elapsed_ms": 1351,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-2.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-2.err"
+    },
+    {
+      "label": "repeated-3",
+      "command": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe bench leech C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\target.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\leech-out-repeated-3 --no-torrent-web-seed --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed http://127.0.0.1:63600/ --web-seed-only --web-seed-concurrency 8 --port 0 --duration 600s --warmup 0s --metrics-interval 250ms --report C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-3.json --format json",
+      "started_at": "2026-08-22T09:08:46.692Z",
+      "elapsed_ms": 1364,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-3.out",
+      "stderr": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\bench-leech\\repeated-3.err"
+    }
+  ],
+  "notes": [
+    "The page cache is not dropped between stages. Windows has no supported way to do it, and both stages read the same file through the same server, so the cache helps each of them equally.",
+    "The fetch stage runs for a fixed duration; the leech stage runs until the torrent completes. A leech that finishes in under a second is a burst rather than a rate, which is why the payload defaults to 256 MiB.",
+    "peak_in_flight covers the whole run including any warmup, because a high-water mark cannot be narrowed to a window after the fact.",
+    "The same URL attached N times is N bindings and so N bridges. The per-source rows add up to the payload rather than to N copies of it, which is what says the pieces were divided rather than fetched twice.",
+    "The attribution block is read off the last step of the bridge sweep."
+  ]
+}

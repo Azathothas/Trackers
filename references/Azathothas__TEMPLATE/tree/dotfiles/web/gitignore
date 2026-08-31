@@ -1,0 +1,23 @@
+# Front-end and static sites, on top of the node file. Combine with
+# dotfiles/node/gitignore, dotfiles/common/gitignore and
+# dotfiles/os-editor/gitignore.
+
+.cache/
+.temp/
+public/build/
+storybook-static/
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Generated asset manifests
+.vite/
+stats.html
+bundle-analysis.html
+
+# ⚠ A build output directory is ignored while its INDEX file may be tracked.
+# Check which your host expects before assuming.

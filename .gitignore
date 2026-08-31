@@ -1,0 +1,75 @@
+# Every path rule here is anchored with a leading slash so it applies to THIS
+# repository's own output and nothing else. An unanchored `out/` matches `out/`
+# at any depth, including inside a captured upstream tree under `references/`,
+# which is how 20 files of somebody else's committed instrument output were
+# silently dropped from every clone (correction 23).
+# `scripts/check-corpus-integrity.py` is the gate that keeps this true.
+#
+# The corollary is that a rule copied from anywhere is anchored before it is
+# added. `.gitignore` also only applies to files git is not ALREADY tracking,
+# so adding a line never untracks anything. Check with `git ls-files`.
+
+# -- credentials. Listed before any such file exists, so one can never be
+# -- staged by accident. A rule added after the fact leaves a window.
+/.env
+/.env.*
+/.dev.vars
+/.dev.vars.*
+*.pem
+*.key
+*.p12
+*.pfx
+/credentials.json
+/service-account*.json
+*.token
+
+# -- Python
+__pycache__/
+*.pyc
+/.venv/
+/.mypy_cache/
+/.ruff_cache/
+/.pytest_cache/
+
+# -- this project's build output
+/out/
+/out.staging/
+/out.previous/
+/coverage/
+/.coverage
+
+# -- session-local scratch (inputs, working notes). Never part of the
+# -- published tree, and never where evidence is kept: nothing untracked
+# -- survives a session. docs/methodology/references.md section 4.
+/.tmp/
+
+# -- operating system and editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+desktop.ini
+/.vscode/
+/.idea/
+*.swp
+*~
+
+# -- agent-local settings, which are the contributor's and not the project's
+/.claude/settings.local.json
+/CLAUDE.local.md
+
+# -- Windows reserved device names. Two different things create one as a real
+# -- file and only the first is something you wrote: a `2>/dev/null` redirect
+# -- under a shell that does not map it, and a tool passing `NUL` as a filename
+# -- argument. A tracked one breaks `git stash` and cannot be removed by `rm`.
+/nul
+/NUL
+/CON
+/PRN
+/AUX
+/COM[1-9]
+/LPT[1-9]
+
+# ⛔ `references/` is NOT ignored, and that is deliberate. The corpus is the
+# evidence: a conclusion nobody can re-check is an opinion, and a sweep that
+# kept its data in an ignored directory lost it entirely.
+# docs/methodology/references.md.

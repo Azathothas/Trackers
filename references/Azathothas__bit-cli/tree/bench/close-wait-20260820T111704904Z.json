@@ -1,0 +1,88 @@
+{
+  "kind": "check-close-wait",
+  "schema_version": "1",
+  "generated_at": "2026-08-20T11:17:04.908Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "connections": 2000,
+    "concurrency": 64,
+    "settle_s": 30,
+    "ceiling": 0,
+    "profile": "release"
+  },
+  "info_hash": "eab35a8f7efc34bd321f16baa3944c35573a2115",
+  "rounds": [
+    {
+      "mode": "handshake",
+      "connections_asked": 2000,
+      "connections_completed": 2000,
+      "connections_failed": 0,
+      "elapsed_ms": 209,
+      "states_before": {
+        "Listen": 1
+      },
+      "states_after": {
+        "Listen": 1
+      },
+      "close_wait_during": 0,
+      "close_wait_after": 0,
+      "handles_before": 188,
+      "handles_after": 228,
+      "settle_s": 30,
+      "close_wait_after_drain": 0,
+      "states_after_drain": {
+        "Listen": 1
+      },
+      "handles_after_drain": 228,
+      "drain_connections": 100,
+      "listening_after": true,
+      "panicked": false,
+      "ok": true
+    },
+    {
+      "mode": "no-handshake",
+      "connections_asked": 2000,
+      "connections_completed": 2000,
+      "connections_failed": 0,
+      "elapsed_ms": 2647,
+      "states_before": {
+        "Listen": 1
+      },
+      "states_after": {
+        "CloseWait": 986,
+        "Listen": 1
+      },
+      "close_wait_during": 986,
+      "close_wait_after": 986,
+      "handles_before": 188,
+      "handles_after": 1210,
+      "settle_s": 30,
+      "close_wait_after_drain": 92,
+      "states_after_drain": {
+        "CloseWait": 92,
+        "Listen": 1
+      },
+      "handles_after_drain": 1246,
+      "drain_connections": 100,
+      "listening_after": true,
+      "panicked": false,
+      "ok": true
+    }
+  ],
+  "verdict": "the listener survived both modes; the stuck socket counts are recorded, not judged",
+  "failures": [],
+  "commands": [
+    "loopback-churn --peer 127.0.0.1:52580 --connections 2000 --concurrency 64 --info-hash eab35a8f7efc34bd321f16baa3944c35573a2115",
+    "loopback-churn --peer 127.0.0.1:58362 --connections 2000 --concurrency 64 --no-handshake"
+  ],
+  "notes": [
+    "CLOSE_WAIT means the peer sent FIN and the local side never called close. A socket in TIME_WAIT is the opposite and is normal, which is why the state counts are reported in full rather than as one number.",
+    "Each mode gets its own seeder, so one mode's residue cannot be charged to the other.",
+    "close_wait_during is read the moment the churn stops and close_wait_after once the settle has passed, so the pair says whether time alone releases anything. close_wait_after_drain is read after a few ordinary connections, and the drop from the settled count to that one is what says the residue is a stalled queue rather than a leak.",
+    "panicked reads the seeder's own stderr. librqbit's accept loop panics when its pending handshake check set is full and one of those checks fails, which kills the listener while the process keeps running. See TODO/peers.md, T-020."
+  ]
+}

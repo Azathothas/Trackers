@@ -1,0 +1,53 @@
+# C and C++. Combine with dotfiles/common/gitignore and
+# dotfiles/os-editor/gitignore.
+
+*.o
+*.obj
+*.lo
+*.slo
+*.ko
+*.a
+*.lib
+*.la
+*.lai
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Build directories
+build/
+_build/
+cmake-build-*/
+out/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+compile_commands.json
+_deps/
+
+# Autotools
+.deps/
+.libs/
+autom4te.cache/
+config.log
+config.status
+Makefile.in
+configure
+
+# Debug
+*.dSYM/
+*.su
+*.idb
+*.pdb

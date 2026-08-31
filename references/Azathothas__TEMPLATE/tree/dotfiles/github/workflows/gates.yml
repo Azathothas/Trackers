@@ -1,0 +1,108 @@
+# The gates, in CI. Part (a) of the three-part gate.
+# docs/methodology/gate.md
+#
+# This runs the SAME checks the local gate runs. It is a second place they run,
+# not a second set of rules. When they diverge, the local one is what a session
+# actually experiences and this one is the defect.
+#
+# PIN EVERY THIRD-PARTY ACTION TO A COMMIT, NOT A TAG. A tag moves, and a moved
+# tag runs code you did not review with the permissions you granted. Resolve
+# the commit for a tag with:
+#
+#   gh api repos/actions/checkout/git/ref/tags/v4 --jq .object.sha
+#
+# then write it as:  uses: actions/checkout@THE_SHA  # v4
+
+name: gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Least privilege at the top level. A job needing more says so itself.
+permissions:
+  contents: read
+
+# A newer push cancels an in-flight run for the same ref. On the default branch
+# that can cancel the run for a commit nobody looks at again, so it is scoped
+# to pull requests only.
+concurrency:
+  group: gates-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      # The probe. Cheap, and it makes a CI failure legible.
+      - name: probe the runner
+        run: sh scripts/doctor/doctor.sh --fast
+
+      # ⭐ Part (a) of the gate, in one command, rather than a list of steps
+      # that drifts from the list in docs/methodology/gate.md.
+      #
+      # ⛔ --strict IS THE CI MODE. A skipped check is not a passed one, and on
+      # a runner the tools are installed on purpose: a SKIP here means the
+      # install broke, not that the machine is modest. On a laptop, drop it.
+      #
+      # ⚠ Delete this step only if the project did not take the checks. Do not
+      # leave it commented out beside a hand-written list of the same checks:
+      # two lists is how one of them stops being maintained.
+      - name: the gate
+        run: sh scripts/common/check-gate.sh --strict
+
+      # Ecosystem setup. Uncomment the one that applies.
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version-file: .nvmrc
+      #     cache: npm
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version-file: .python-version
+      # - uses: dtolnay/rust-toolchain@stable
+      # - uses: actions/setup-go@v5
+      #   with:
+      #     go-version-file: go.mod
+
+      # - name: install
+      #   run: THE_INSTALL_COMMAND
+
+      # The gates. Each on its own step, so the log says WHICH failed: a single
+      # combined step reports one failure for six checks. And each unpiped: a
+      # check piped into anything reports the pipeline status, so a guard that
+      # failed reads as green.
+
+      # - name: typecheck
+      #   run: THE_COMMAND
+      # - name: lint
+      #   run: THE_COMMAND
+      # - name: format
+      #   run: THE_COMMAND
+      # - name: test
+      #   run: THE_COMMAND
+
+      - name: shell scripts parse
+        run: |
+          fail=0
+          for f in $(git ls-files '*.sh'); do
+            sh -n "$f" || fail=1
+          done
+          exit $fail
+
+      - name: line endings match .gitattributes
+        run: |
+          # git own answer, not a second table of rules.
+          bad=$(git ls-files --eol | grep -v 'i/lf' | grep -v 'i/-text' || true)
+          if [ -n "$bad" ]; then
+            echo "$bad"
+            echo "index endings disagree with .gitattributes"
+            exit 1
+          fi
+          echo clean

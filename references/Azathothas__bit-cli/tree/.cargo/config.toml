@@ -1,0 +1,76 @@
+# Link flags for the three release targets.
+#
+# The promise every release artifact makes is the same: it runs on a machine
+# with nothing installed. On Windows that means no Visual C++ redistributable,
+# on Linux no loader and no shared objects at all.
+# `pwsh scripts/check-static.ps1 -Path <binary>` is what proves it, in CI on
+# all three targets, and it reads the binary rather than trusting these lines.
+#
+# Note for anyone editing `ci.yml`: setting the `RUSTFLAGS` environment
+# variable **replaces** everything below rather than adding to it. That is how
+# CI once built a Windows binary against the dynamic CRT. See
+# `TODO/cli-surface.md`, T-146.
+#
+# What each flag is for:
+#
+#   target-feature=+crt-static
+#       Link the C runtime into the binary. On MSVC this is the difference
+#       between needing VCRUNTIME140.dll and not. On musl it is already the
+#       default and this says so rather than relying on it.
+#   prefer-dynamic=no
+#       Link the Rust standard library statically. Also already the default,
+#       and also worth stating: a binary that needs libstd-*.so is a binary
+#       that runs on the machine that built it and nowhere else.
+#   link-self-contained=yes
+#       Use the crt objects and libc that ship with the Rust toolchain instead
+#       of whatever the host's musl-tools happens to be. It makes the artifact
+#       depend on the pinned toolchain rather than on the runner image.
+#   link-arg=-Wl,--build-id=none
+#       Drop the build-id note. Its content varies between otherwise identical
+#       builds, and this repository cares about reproducible output: see
+#       `TODO/create-seed.md`, T-085.
+#
+# Deliberately not set, having been considered:
+#
+#   opt-level=z, debuginfo=none, strip=symbols, lto, embed-bitcode
+#       `[profile.release]` in `Cargo.toml` is where a profile belongs, and it
+#       already sets opt-level 3, fat LTO, one codegen unit, and strip. Size is
+#       explicitly not the goal here, so `opt-level=z` would trade the thing
+#       that matters for the thing that does not.
+#   default-linker-libraries=yes
+#       It lets the linker add its own default libraries, which is the
+#       opposite of the guarantee above.
+#   -Wl,-Bstatic, -Wl,--static
+#       Redundant with `+crt-static` on these targets, and passing `--static`
+#       can conflict with the self-contained crt objects. The check script is
+#       the guarantee; a second flag saying the same thing is not.
+#   linker=clang, -fuse-ld=mold
+#       Build-time only. They change how fast a link runs, not what comes out
+#       of it, and both are extra toolchain to install and keep working.
+
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static", "-C", "prefer-dynamic=no"]
+
+[target.x86_64-unknown-linux-musl]
+rustflags = [
+    "-C",
+    "target-feature=+crt-static",
+    "-C",
+    "prefer-dynamic=no",
+    "-C",
+    "link-self-contained=yes",
+    "-C",
+    "link-arg=-Wl,--build-id=none",
+]
+
+[target.aarch64-unknown-linux-musl]
+rustflags = [
+    "-C",
+    "target-feature=+crt-static",
+    "-C",
+    "prefer-dynamic=no",
+    "-C",
+    "link-self-contained=yes",
+    "-C",
+    "link-arg=-Wl,--build-id=none",
+]

@@ -1,0 +1,497 @@
+object FormTrackerModify: TFormTrackerModify
+  Left = 429
+  Height = 607
+  Top = 183
+  Width = 1179
+  AllowDropFiles = True
+  Caption = 'Bittorrent Tracker Editor'
+  ClientHeight = 607
+  ClientWidth = 1179
+  Constraints.MinHeight = 500
+  Constraints.MinWidth = 700
+  Font.Height = -11
+  Menu = MainMenu
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '3.6.0.0'
+  object PageControl: TPageControl
+    Left = 0
+    Height = 607
+    Top = 0
+    Width = 1179
+    ActivePage = TabSheetTrackersList
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheetTrackersList: TTabSheet
+      Caption = 'Trackers List'
+      ClientHeight = 581
+      ClientWidth = 1171
+      object PanelTop: TPanel
+        Left = 0
+        Height = 581
+        Top = 0
+        Width = 1171
+        Align = alClient
+        ClientHeight = 581
+        ClientWidth = 1171
+        TabOrder = 0
+        object GroupBoxNewTracker: TGroupBox
+          Left = 1
+          Height = 201
+          Top = 1
+          Width = 1169
+          Align = alTop
+          Caption = 'Add new trackers to torrent file(s).'
+          ClientHeight = 183
+          ClientWidth = 1165
+          Constraints.MinHeight = 100
+          TabOrder = 0
+          object MemoNewTrackers: TMemo
+            Left = 0
+            Height = 183
+            Top = 0
+            Width = 1165
+            Align = alClient
+            ScrollBars = ssAutoBoth
+            TabOrder = 0
+          end
+        end
+        object GroupBoxPresentTracker: TGroupBox
+          Left = 1
+          Height = 373
+          Top = 207
+          Width = 1169
+          Align = alClient
+          Caption = 'Present trackers in all torrent files. Select the one that you want to keep.'
+          ClientHeight = 355
+          ClientWidth = 1165
+          Constraints.MinHeight = 100
+          ParentBidiMode = False
+          TabOrder = 1
+          object StringGridTrackerOnline: TStringGrid
+            Left = 0
+            Height = 355
+            Top = 0
+            Width = 1165
+            Align = alClient
+            ColCount = 0
+            FixedCols = 0
+            FixedRows = 0
+            Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goEditing, goSmoothScroll]
+            RowCount = 0
+            TabOrder = 0
+            TitleFont.Height = -11
+          end
+        end
+        object Splitter1: TSplitter
+          Cursor = crVSplit
+          Left = 1
+          Height = 5
+          Top = 202
+          Width = 1169
+          Align = alTop
+          ResizeAnchor = akTop
+        end
+      end
+    end
+    object TabSheetPublicPrivateTorrent: TTabSheet
+      Caption = 'Public/Private'
+      ClientHeight = 581
+      ClientWidth = 1171
+      object PanelTopPublicTorrent: TPanel
+        Left = 0
+        Height = 581
+        Top = 0
+        Width = 1171
+        Align = alClient
+        ClientHeight = 581
+        ClientWidth = 1171
+        TabOrder = 0
+        object GroupBoxPublicPrivateTorrent: TGroupBox
+          Left = 1
+          Height = 579
+          Top = 1
+          Width = 1169
+          Align = alClient
+          Caption = 'Checked items are public torrent.  WARNING: change public/private setting will change torrent Hash info.'
+          ClientHeight = 561
+          ClientWidth = 1165
+          TabOrder = 0
+          object CheckListBoxPublicPrivateTorrent: TCheckListBox
+            Left = 0
+            Height = 561
+            Top = 0
+            Width = 1165
+            Align = alClient
+            ItemHeight = 0
+            TabOrder = 0
+          end
+        end
+      end
+    end
+    object TabSheetTorrentData: TTabSheet
+      Caption = 'Data/Info'
+      ClientHeight = 581
+      ClientWidth = 1171
+      object StringGridTorrentData: TStringGrid
+        Left = 0
+        Height = 581
+        Top = 0
+        Width = 1171
+        Align = alClient
+        ColCount = 13
+        ColumnClickSorts = True
+        Columns = <        
+          item
+            ReadOnly = True
+            Title.Caption = 'Torrent File'
+            Width = 250
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'Info Filename'
+            Width = 250
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'Torrent Version'
+            Width = 100
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'Padding (beb 47)'
+            Width = 100
+          end        
+          item
+            MaxSize = 250
+            ReadOnly = True
+            Title.Caption = 'Info Hash'
+            Width = 439
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'Created On'
+            Width = 145
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'Created By'
+            Width = 145
+          end        
+          item
+            Title.Caption = 'Comment (can be edited)'
+            Width = 160
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'Private'
+            Width = 50
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'Source'
+            Width = 64
+          end        
+          item
+            Alignment = taRightJustify
+            ReadOnly = True
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Piece Length (KiB)'
+            Width = 100
+          end        
+          item
+            Alignment = taRightJustify
+            ReadOnly = True
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Total size (KiB)'
+            Width = 100
+          end        
+          item
+            ReadOnly = True
+            SizePriority = 0
+            Title.Alignment = taRightJustify
+            Title.Caption = 'IndexOrder (internal used)'
+            Width = 0
+            Visible = False
+          end>
+        FixedCols = 0
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goColSizing, goColMoving, goEditing, goSmoothScroll]
+        RowCount = 1
+        TabOrder = 0
+        TitleFont.Height = -11
+        ColWidths = (
+          250
+          250
+          100
+          100
+          439
+          145
+          145
+          160
+          50
+          64
+          100
+          100
+          0
+        )
+      end
+    end
+    object TabSheetTorrentsContents: TTabSheet
+      Caption = 'Files/Trackers/Info'
+    end
+    object TabSheetPrivateTrackers: TTabSheet
+      Caption = 'Private Trackers'
+      ClientHeight = 581
+      ClientWidth = 1171
+      object GroupBoxItemsForPrivateTrackers: TGroupBox
+        Left = 0
+        Height = 176
+        Hint = 'Private trackers URL may not end with /announce'
+        Top = 8
+        Width = 288
+        Caption = 'Items for private trackers'
+        ClientHeight = 158
+        ClientWidth = 284
+        TabOrder = 0
+        object CheckBoxSkipAnnounceCheck: TCheckBox
+          Left = 0
+          Height = 17
+          Top = 0
+          Width = 284
+          Align = alTop
+          Caption = 'Skip Announce Check in the URL (-SAC)'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+          OnChange = CheckBoxSkipAnnounceCheckChange
+        end
+        object GroupBoxInfoSource: TGroupBox
+          Left = 0
+          Height = 120
+          Top = 38
+          Width = 284
+          Align = alBottom
+          Caption = 'Warning: This will change the torrent info HASH'
+          ClientHeight = 102
+          ClientWidth = 280
+          TabOrder = 1
+          object CheckBoxRemoveAllSourceTag: TCheckBox
+            Left = 8
+            Height = 17
+            Top = 8
+            Width = 130
+            Caption = 'Remove all source tag'
+            TabOrder = 0
+            OnChange = CheckBoxRemoveAllSourceTagChange
+          end
+          object LabeledEditInfoSource: TLabeledEdit
+            Left = 8
+            Height = 21
+            Hint = 'Keep empty if you do not want to add or change anything.'
+            Top = 56
+            Width = 240
+            EditLabel.Height = 13
+            EditLabel.Width = 240
+            EditLabel.Caption = 'Add/Change source tag value: (-SOURCE)'
+            EditLabel.ParentColor = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            TabStop = False
+            OnEditingDone = LabeledEditInfoSourceEditingDone
+          end
+        end
+      end
+    end
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog
+    Title = 'Select a directory with torrent files inside.'
+    Left = 560
+    Top = 24
+  end
+  object OpenDialog: TOpenDialog
+    Filter = 'torrent|*.torrent'
+    Left = 560
+    Top = 88
+  end
+  object MainMenu: TMainMenu
+    Left = 472
+    Top = 152
+    object MenuFile: TMenuItem
+      Caption = '&File'
+      object MenuOpenTorrentFile: TMenuItem
+        Caption = 'Open &one torrent file'
+        Hint = 'Select one torrent file'
+        OnClick = MenuOpenTorrentFileClick
+      end
+      object MenuFileTorrentFolder: TMenuItem
+        Caption = 'Open &multiple torrent files inside one folder'
+        Hint = 'Open multiple torrent files in folder.'
+        OnClick = MenuFileTorrentFolderClick
+      end
+      object MenuFileOpenTrackerList: TMenuItem
+        Caption = 'Open &tracker file list'
+        OnClick = MenuFileOpenTrackerListClick
+      end
+    end
+    object MenuTrackers: TMenuItem
+      Caption = '&Trackers'
+      object MenuTrackersKeepAllTrackers: TMenuItem
+        Tag = 1
+        Caption = '&Keep all the present trackers'
+        OnClick = MenuTrackersKeepOrDeleteAllTrackersClick
+      end
+      object MenuTrackersDeleteAllTrackers: TMenuItem
+        Caption = '&Delete all the present trackers'
+        OnClick = MenuTrackersKeepOrDeleteAllTrackersClick
+      end
+      object MenuTrackersSeperator1: TMenuItem
+        Caption = '-'
+      end
+      object MenuTrackersDeleteUnstableTrackers: TMenuItem
+        Caption = 'Delete UNSTABLE trackers (Data from newTrackon)'
+        OnClick = MenuTrackersDeleteTrackersWithStatusClick
+      end
+      object MenuTrackersDeleteDeadTrackers: TMenuItem
+        Tag = 1
+        Caption = 'Delete DEAD trackers (Data from newTrackon)'
+        OnClick = MenuTrackersDeleteTrackersWithStatusClick
+      end
+      object MenuTrackersDeleteUnknownTrackers: TMenuItem
+        Tag = 2
+        Caption = 'Delete UNKNOWN trackers  (Data from newTrackon)'
+        OnClick = MenuTrackersDeleteTrackersWithStatusClick
+      end
+      object MenuTrackersSeperator2: TMenuItem
+        Caption = '-'
+      end
+      object MenuTrackersAllTorrentArePublic: TMenuItem
+        Tag = 1
+        Caption = 'All torrent are &public'
+        OnClick = MenuTrackersAllTorrentArePublicPrivateClick
+      end
+      object MenuTrackersAllTorrentArePrivate: TMenuItem
+        Caption = 'All torrent are p&rivate'
+        OnClick = MenuTrackersAllTorrentArePublicPrivateClick
+      end
+    end
+    object MenuUpdateTorrent: TMenuItem
+      Caption = '&Update torrent'
+      Hint = 'Update the torrent files'
+      object MenuUpdateTorrentAddAfter: TMenuItem
+        Caption = 'Insert new trackers list &BEFORE, the original trackers list inside the torrent file'
+        object MenuUpdateTorrentAddBeforeRemoveOriginal: TMenuItem
+          Caption = 'And remove possible duplicated trackers from the ORIGINAL trackers list.(-U0)'
+          OnClick = MenuUpdateTorrentAddBeforeRemoveOriginalClick
+        end
+        object MenuUpdateTorrentAddBeforeRemoveNew: TMenuItem
+          Caption = 'And remove possible duplicated trackers from the NEW trackers list.(-U1)'
+          OnClick = MenuUpdateTorrentAddBeforeRemoveNewClick
+        end
+        object MenuUpdateTorrentAddBeforeKeepOriginalInstactAndRemoveNothing: TMenuItem
+          Caption = 'Keep original tracker list unchanged and remove nothing.(-U5)'
+          OnClick = MenuUpdateTorrentAddBeforeKeepOriginalInstactAndRemoveNothingClick
+        end
+      end
+      object MenuUpdateTorrentAddBefore: TMenuItem
+        Caption = 'Append new trackers list &AFTER, the original trackers list inside the torrent file.'
+        object MenuUpdateTorrentAddAfterRemoveOriginal: TMenuItem
+          Caption = 'And remove possible duplicated trackers from the ORIGINAL trackers list.(-U2)'
+          OnClick = MenuUpdateTorrentAddAfterRemoveOriginalClick
+        end
+        object MenuUpdateTorrentAddAfterRemoveNew: TMenuItem
+          Caption = 'And remove possible duplicated trackers from the NEW trackers list.(-U3)'
+          OnClick = MenuUpdateTorrentAddAfterRemoveNewClick
+        end
+        object MenuUpdateTorrentAddAfterKeepOriginalInstactAndRemoveNothing: TMenuItem
+          Caption = 'Keep original tracker list unchanged and remove nothing.(-U6)'
+          OnClick = MenuUpdateTorrentAddAfterKeepOriginalInstactAndRemoveNothingClick
+        end
+      end
+      object MenuUpdateTorrentSort: TMenuItem
+        Caption = '&Sort the trackers list by name.(-U4)'
+        OnClick = MenuUpdateTorrentSortClick
+      end
+      object MenuUpdateRandomize: TMenuItem
+        Caption = '&Randomize the trackers list.(-U7)'
+        OnClick = MenuUpdateRandomizeClick
+      end
+    end
+    object MenuOnlineCheck: TMenuItem
+      Caption = 'Online Check'
+      object MenuItemOnlineCheckDownloadNewTrackon: TMenuItem
+        Caption = 'Check Status Trackers (From newTrackon)'
+        OnClick = MenuItemOnlineCheckDownloadNewTrackonClick
+      end
+      object MenuItemOnlineCheckAppendStableTrackers: TMenuItem
+        Caption = 'Append Stable Trackers (From newTrackon)'
+        OnClick = MenuItemOnlineCheckAppendStableTrackersClick
+      end
+      object MenuItemOnlineCheckSubmitNewTrackon: TMenuItem
+        Caption = 'Upload trackers to newTrackon'
+        OnClick = MenuItemOnlineCheckSubmitNewTrackonClick
+      end
+    end
+    object MenuItem1: TMenuItem
+      Caption = 'ngosang/trackerslist'
+      object MenuItemNgosangAppendBest: TMenuItem
+        Caption = 'Append best'
+        OnClick = MenuItemNgosangAppendBestClick
+      end
+      object MenuItemNgosangAppendAll: TMenuItem
+        Caption = 'Append all'
+        OnClick = MenuItemNgosangAppendAllClick
+      end
+      object MenuItemNgosangAppendAllUdp: TMenuItem
+        Caption = 'Append all udp'
+        OnClick = MenuItemNgosangAppendAllUdpClick
+      end
+      object MenuItemNgosangAppendAllHttp: TMenuItem
+        Caption = 'Append all http'
+        OnClick = MenuItemNgosangAppendAllHttpClick
+      end
+      object MenuItemNgosangAppendAllHttps: TMenuItem
+        Caption = 'Append all https'
+        OnClick = MenuItemNgosangAppendAllHttpsClick
+      end
+      object MenuItemNgosangAppendAllWs: TMenuItem
+        Caption = 'Append all ws'
+        OnClick = MenuItemNgosangAppendAllWsClick
+      end
+      object MenuItemNgosangAppendAllBestIp: TMenuItem
+        Caption = 'Append best ip'
+        OnClick = MenuItemNgosangAppendAllBestIpClick
+      end
+      object MenuItemNgosangAppendAllIp: TMenuItem
+        Caption = 'Append all ip'
+        OnClick = MenuItemNgosangAppendAllIpClick
+      end
+    end
+    object MenuHelp: TMenuItem
+      Caption = '&Help'
+      object MenuHelpVisitWebsite: TMenuItem
+        Caption = '&Visit website tracker editor'
+        OnClick = MenuHelpVisitWebsiteClick
+      end
+      object MenuHelpReportingIssue: TMenuItem
+        Caption = '&Reporting Issue'
+        OnClick = MenuHelpReportingIssueClick
+      end
+      object MenuHelpSeperator1: TMenuItem
+        Caption = '-'
+      end
+      object MenuHelpVisitNewTrackon: TMenuItem
+        Caption = 'Visit website new&Trackon'
+        OnClick = MenuHelpVisitNewTrackonClick
+      end
+      object MenuHelpVisitNgosang: TMenuItem
+        Caption = 'Visit website &ngosang (github)'
+        OnClick = MenuHelpVisitNgosangClick
+      end
+    end
+  end
+end

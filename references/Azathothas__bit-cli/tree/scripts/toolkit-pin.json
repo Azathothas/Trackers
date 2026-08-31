@@ -1,0 +1,17 @@
+{
+  "schema": "toolkit-pin/1",
+  "note": "The commit and the digests of Azathothas/ToolKit's WSL2 tooling, so a script that fetches it pins a revision rather than a branch. TODO/RULES.md and docs/containers.md carry why. Read a new digest from the raw endpoint, never from a working tree: .ps1 is CRLF in a checkout and LF in the index, so a locally computed digest disagrees with what the endpoint serves.",
+  "repository": "Azathothas/ToolKit",
+  "ref": "8efe6e02b1cefd6ccc5d4d940c8c4dd1a09dadba",
+  "measured": "2026-08-30",
+  "files": {
+    "launcher": {
+      "path": "scripts/powershell-windows/wsl-ephemeral-launcher.ps1",
+      "sha256": "52425d59425e0a290cd134f079a35890fc640115f5ee3d93d55d92658967cfe9"
+    },
+    "tool": {
+      "path": "scripts/powershell-windows/wsl-ephemeral.ps1",
+      "sha256": "ab4f6bd6c040bb9d58e20738f42c2b7433dc78820259db5299ab847cc2f07f9a"
+    }
+  }
+}

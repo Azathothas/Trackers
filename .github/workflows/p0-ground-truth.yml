@@ -1,0 +1,140 @@
+# P0 ground truth.
+#
+# This workflow exists to answer questions that CANNOT be answered anywhere
+# else: TODO/RULES.md C-01..C-06 are all about what a GitHub-hosted runner can do,
+# and the authoring environment is not one. Every result it produces carries
+# the runner image and run id, so a number can be traced to the machine that
+# took it.
+#
+# It is deliberately read-only and deliberately cheap. It writes nothing back
+# to the repository, holds no secrets, and probes a pinned fixture of 17
+# distinct endpoints (11 udp, 4 http, 2 https) once each.
+name: P0 ground truth
+
+on:
+  push:
+    branches:
+      - main
+      - 'ephemeral-**'
+    paths:
+      - 'experiments/**'
+      - '.github/workflows/p0-ground-truth.yml'
+  workflow_dispatch:
+
+# Least privilege: this workflow reads the tree and nothing else.
+permissions:
+  contents: read
+
+# A second run of the same experiment against the same trackers is wasted load
+# on somebody else's server. Cancel the older one.
+concurrency:
+  group: p0-ground-truth-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ground-truth:
+    strategy:
+      fail-fast: false
+      matrix:
+        # Two runner images, because a claim about "a GitHub runner" that was
+        # only ever checked on one image is a claim about one image.
+        os: [ubuntu-24.04, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+
+    steps:
+      # Pinned to a commit SHA, not a tag: tags are mutable (C-45).
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Record the runner's own description of itself
+        run: |
+          echo "runner image      : ${ImageOS:-unknown} ${ImageVersion:-unknown}"
+          echo "runner os/arch    : ${RUNNER_OS} ${RUNNER_ARCH}"
+          echo "kernel            : $(uname -a)"
+          echo "python            : $(python3 --version)"
+          echo "date (UTC)        : $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "run id / attempt  : ${GITHUB_RUN_ID} / ${GITHUB_RUN_ATTEMPT}"
+          echo "--- routes ---"
+          ip -brief addr || true
+          ip -6 route show || echo "(no IPv6 routes)"
+
+      # Each experiment is run WITHOUT --expect flags, because the point of P0
+      # is to find out what is true, not to assert what we hoped. The exit code
+      # is captured and reported instead of failing the job: a measured failure
+      # is a result (RULES 2), not a broken build.
+      - name: 01 host network baseline
+        id: e01
+        continue-on-error: true
+        run: |
+          python3 experiments/01-host-network-baseline.py \
+            --out "experiments/results/01.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
+
+      - name: 02 UDP BEP 15 connect (with positive control)
+        id: e02
+        continue-on-error: true
+        run: |
+          python3 experiments/02-udp-bep15-connect.py \
+            --out "experiments/results/02.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
+
+      - name: 03 inbound connectivity
+        id: e03
+        continue-on-error: true
+        run: |
+          python3 experiments/03-inbound-connectivity.py \
+            --out "experiments/results/03.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
+
+      - name: 04 DNS resolver divergence
+        id: e04
+        continue-on-error: true
+        run: |
+          python3 experiments/04-dns-resolver-divergence.py \
+            --out "experiments/results/04.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
+
+      - name: 05 HTTP tracker protocol (scrape only, no announce)
+        id: e05
+        continue-on-error: true
+        run: |
+          python3 experiments/05-http-tracker-protocol.py --expect-controls \
+            --out "experiments/results/05.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
+
+      # Run the UDP experiment a SECOND time. TEMPLATE experiments.md: 'a
+      # control run once is a coincidence you have not noticed yet.' Two runs
+      # separated by the other experiments also catch a transient block.
+      - name: 02 UDP BEP 15 connect -- second run
+        id: e02b
+        continue-on-error: true
+        run: |
+          python3 experiments/02-udp-bep15-connect.py \
+            --out "experiments/results/02.${{ matrix.os }}.run${GITHUB_RUN_ID}.second.json"
+
+      - name: Summarise
+        if: always()
+        run: |
+          {
+            echo "## P0 ground truth on \`${{ matrix.os }}\`"
+            echo
+            echo "| experiment | outcome |"
+            echo "| --- | --- |"
+            echo "| 01 host network baseline | ${{ steps.e01.outcome }} |"
+            echo "| 02 UDP BEP 15 connect | ${{ steps.e02.outcome }} |"
+            echo "| 03 inbound connectivity | ${{ steps.e03.outcome }} |"
+            echo "| 04 DNS resolver divergence | ${{ steps.e04.outcome }} |"
+            echo "| 05 HTTP tracker protocol | ${{ steps.e05.outcome }} |"
+            echo "| 02 UDP BEP 15 connect (2nd) | ${{ steps.e02b.outcome }} |"
+            echo
+            echo "Exit-code vocabulary: 0 measured, 1 measured and an expectation failed,"
+            echo "2 could not run. A step reported as \`failure\` here is a MEASUREMENT,"
+            echo "not a broken build."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: p0-results-${{ matrix.os }}
+          path: experiments/results/
+          if-no-files-found: warn
+          retention-days: 90

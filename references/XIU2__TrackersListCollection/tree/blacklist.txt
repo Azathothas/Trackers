@@ -1,0 +1,24 @@
+# Error / 错误(故障)
+udp://ulfbrueggemann.no-ip.org:6969/announce
+udp://caramelo.ddns.net:8000/announce
+# Suspicious / 可疑(恶意)
+http://213.159.215.198:6970/announce
+http://pow7.com:80/announce
+# Repeat / 重复(副本)
+udp://explodie.org:6969
+http://opentracker.acgnx.se/scrape
+http://tracker.anirena.com:80/b16a15d9a238d1f59178d3614b857290/announce
+http://tracker.bittorrent.am:80/announceName
+# Other / 其他(原因)
+http://tracker.anirena.com:80/announce
+http://t1.leech.ie:80/announce
+http://t2.leech.ie:80/announce
+http://t3.leech.ie:80/announce
+https://t1.leech.ie:443/announce
+https://t2.leech.ie:443/announce
+https://t3.leech.ie:443/announce
+https://tp.m-team.cc:443/announce.php
+http://tracker.m-team.cc:80/announce.php
+https://tracker.m-team.cc:443/announce.php
+http://ipv6.tracker.m-team.cc:80/announce.php
+https://ipv6.tracker.m-team.cc:443/announce.php

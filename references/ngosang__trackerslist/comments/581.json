@@ -1,0 +1,48 @@
+[
+  {
+    "url": "https://api.github.com/repos/ngosang/trackerslist/issues/comments/3137314640",
+    "html_url": "https://github.com/ngosang/trackerslist/pull/581#issuecomment-3137314640",
+    "issue_url": "https://api.github.com/repos/ngosang/trackerslist/issues/581",
+    "id": 3137314640,
+    "node_id": "IC_kwDOA2VHnM66_59Q",
+    "user": {
+      "login": "ngosang",
+      "id": 10577978,
+      "node_id": "MDQ6VXNlcjEwNTc3OTc4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10577978?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ngosang",
+      "html_url": "https://github.com/ngosang",
+      "followers_url": "https://api.github.com/users/ngosang/followers",
+      "following_url": "https://api.github.com/users/ngosang/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ngosang/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ngosang/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ngosang/subscriptions",
+      "organizations_url": "https://api.github.com/users/ngosang/orgs",
+      "repos_url": "https://api.github.com/users/ngosang/repos",
+      "events_url": "https://api.github.com/users/ngosang/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ngosang/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2025-07-30T17:52:16Z",
+    "updated_at": "2025-07-30T17:52:16Z",
+    "body": "Duplicate of #580",
+    "author_association": "OWNER",
+    "reactions": {
+      "url": "https://api.github.com/repos/ngosang/trackerslist/issues/comments/3137314640/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  }
+]

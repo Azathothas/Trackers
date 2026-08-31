@@ -1,0 +1,160 @@
+{
+  "kind": "bench-seed",
+  "schema_version": "1",
+  "generated_at": "2026-08-20T14:48:23.484Z",
+  "parameters": {
+    "payload_size": "256MiB",
+    "payload_bytes": 268435456,
+    "piece_length": "1MiB",
+    "leechers": 3,
+    "rate": "8MiB/s",
+    "duration": "120s",
+    "warmup": "2s",
+    "metrics_interval": "1s",
+    "exit_when_idle": "5s",
+    "include_hash_check": true,
+    "port": 50667,
+    "profile": "release"
+  },
+  "payload_sha256": "fe6138588a846978b4649eacd9b7c502986c37e662e8e9b733bfb2b0f9e9d5fe",
+  "seed_report": "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\bench\\seed-20260820T144744522Z.json",
+  "seed_exit_code": 0,
+  "seeder": {
+    "bytes_sent": {
+      "bytes": 774111232,
+      "human": "738.25 MiB"
+    },
+    "sustained_rate": {
+      "bytes": 21912736,
+      "human": "20.90 MiB/s"
+    },
+    "peak_rate": {
+      "bytes": 25257314,
+      "human": "24.09 MiB/s"
+    },
+    "peak_peers": 3,
+    "disk": {
+      "read_ops": 49152,
+      "read_bytes": {
+        "bytes": 810368715,
+        "human": "772.83 MiB"
+      },
+      "read_time": {
+        "ms": 924,
+        "human": "924ms"
+      },
+      "write_ops": 0,
+      "write_bytes": {
+        "bytes": 0,
+        "human": "0 B"
+      },
+      "write_time": {
+        "ms": 0,
+        "human": "0ms"
+      }
+    },
+    "hashing": {
+      "pieces": 256,
+      "bytes": {
+        "bytes": 268435456,
+        "human": "256.00 MiB"
+      },
+      "total": {
+        "ms": 169,
+        "human": "169ms"
+      },
+      "rate": {
+        "bytes": 1588375479,
+        "human": "1.48 GiB/s"
+      }
+    },
+    "samples": 37,
+    "peers": [
+      {
+        "label": "127.0.0.1:50677",
+        "kind": "peer",
+        "bytes": {
+          "bytes": 257884160,
+          "human": "245.94 MiB"
+        },
+        "rate": {
+          "bytes": 7299916,
+          "human": "6.96 MiB/s"
+        }
+      },
+      {
+        "label": "127.0.0.1:50678",
+        "kind": "peer",
+        "bytes": {
+          "bytes": 258064384,
+          "human": "246.11 MiB"
+        },
+        "rate": {
+          "bytes": 7305018,
+          "human": "6.97 MiB/s"
+        }
+      },
+      {
+        "label": "127.0.0.1:50679",
+        "kind": "peer",
+        "bytes": {
+          "bytes": 258162688,
+          "human": "246.20 MiB"
+        },
+        "rate": {
+          "bytes": 7307801,
+          "human": "6.97 MiB/s"
+        }
+      }
+    ],
+    "peak_rss_bytes": 20054016,
+    "cpu_ms": 4296,
+    "open_handles": 259
+  },
+  "leechers_seen": 3,
+  "leech_results": [
+    {
+      "index": 0,
+      "exit_code": 0,
+      "downloaded": 268435456,
+      "from_peers": 268435456,
+      "elapsed_ms": 31162,
+      "sha256": "fe6138588a846978b4649eacd9b7c502986c37e662e8e9b733bfb2b0f9e9d5fe",
+      "hash_matches": true
+    },
+    {
+      "index": 1,
+      "exit_code": 0,
+      "downloaded": 268435456,
+      "from_peers": 268435456,
+      "elapsed_ms": 31162,
+      "sha256": "fe6138588a846978b4649eacd9b7c502986c37e662e8e9b733bfb2b0f9e9d5fe",
+      "hash_matches": true
+    },
+    {
+      "index": 2,
+      "exit_code": 0,
+      "downloaded": 268435456,
+      "from_peers": 268435456,
+      "elapsed_ms": 31157,
+      "sha256": "fe6138588a846978b4649eacd9b7c502986c37e662e8e9b733bfb2b0f9e9d5fe",
+      "hash_matches": true
+    }
+  ],
+  "bytes_sent": 774111232,
+  "bytes_pulled": 805306368,
+  "read_amplification": 1.047,
+  "verdict": "the seeder sent 738.25 MiB to 3 peer(s) at 20.90 MiB/s, reading 772.83 MiB to do it",
+  "failures": [],
+  "commands": [
+    "bit-cli bench seed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-seed\\movie.torrent --data C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-seed --port 50667 --no-dht --no-lsd --no-tracker --duration 120s --warmup 2s --metrics-interval 1s --exit-when-idle 5s --report C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\bench\\seed-20260820T144744522Z.json --format json --include-hash-check",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-seed\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\bench-seed\\leech-0 --peer 127.0.0.1:50667 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json --max-download-rate 8MiB/s"
+  ],
+  "notes": [
+    "Every counter faces the other way from bench leech: uploaded_bytes per peer rather than downloaded_bytes, and positioned reads rather than writes.",
+    "The leechers are rate capped so the run lasts long enough for the metrics interval to sample it. Without a cap a loopback transfer finishes inside one interval and the series has one point in it.",
+    "read_amplification is bytes off the disk over bytes onto the wire. One means every byte read was sent once; above one means the seeder re-read something.",
+    "The sustained rate covers the whole measured window including any time with no peer connected, so it is bounded below by how long the leechers took to arrive and to leave. peak_rate is the best single interval and is the one to compare between runs.",
+    "bytes_sent is the seeder's own accounting and bytes_pulled is the sum of what the leechers say they took from peers. They are two measurements of the same transfer taken at opposite ends."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "udp_retry_budget",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T05:28:22.784Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "timeouts": [
+      "1s",
+      "3s",
+      "6s"
+    ],
+    "tolerance_s": 0.6,
+    "profile": "release"
+  },
+  "samples": [
+    {
+      "tracker_timeout": "1s",
+      "attempt_s": 1.0,
+      "dead_elapsed_s": 3.06,
+      "dead_budget_s": 3.0,
+      "dead_exit": 6,
+      "half_dead_elapsed_s": 3.07,
+      "half_dead_budget_s": 3.0,
+      "half_dead_exit": 6,
+      "slow_connect_elapsed_s": 5.09,
+      "slow_connect_budget_s": 5.0,
+      "slow_connect_exit": 6
+    },
+    {
+      "tracker_timeout": "3s",
+      "attempt_s": 1.0,
+      "dead_elapsed_s": 3.08,
+      "dead_budget_s": 3.0,
+      "dead_exit": 6,
+      "half_dead_elapsed_s": 3.06,
+      "half_dead_budget_s": 3.0,
+      "half_dead_exit": 6,
+      "slow_connect_elapsed_s": 5.1,
+      "slow_connect_budget_s": 5.0,
+      "slow_connect_exit": 6
+    },
+    {
+      "tracker_timeout": "6s",
+      "attempt_s": 2.0,
+      "dead_elapsed_s": 6.06,
+      "dead_budget_s": 6.0,
+      "dead_exit": 6,
+      "half_dead_elapsed_s": 6.06,
+      "half_dead_budget_s": 6.0,
+      "half_dead_exit": 6,
+      "slow_connect_elapsed_s": 10.1,
+      "slow_connect_budget_s": 10.0,
+      "slow_connect_exit": 6
+    }
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "One attempt is max(--tracker-timeout / 3, 1s) and one exchange is three attempts, so a timeout under three seconds buys nothing.",
+    "A UDP announce is two exchanges and the worst case is five attempts, not six: a connect that is not answered by its third attempt gives up, so the announce that would spend three more is never sent.",
+    "The sockets are built here rather than borrowed from a real tracker: a tracker that happens to answer measures nothing, and one that happens to be down measures the network.",
+    "Each responder binds loopback rather than the wildcard. The client connects its own UDP socket to the target and takes datagrams only from that address, and a wildcard-bound reply was not accepted."
+  ]
+}

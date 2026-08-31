@@ -1,0 +1,47 @@
+{
+  "schema": "fingerprint/2",
+  "captured": "2026-08-30T02:29:47.449Z",
+  "note": "Captured off the wire by loopback-tlsprobe. ja4 and ja4_r come from a --raw capture, headers from a --plain one, akamai and h2_headers from a real handshake the probe's own CA makes verifiable. ja3 is recorded and never asserted, because it preserves wire order and flakes.",
+  "bit_cli": "bit-cli 0.2.0",
+  "fingerprint": {
+    "profile": "browser",
+    "ja4": "t13i1515h2_8daaf6152771_806a8c22fdea",
+    "ja4_r": "t13i1515h2_002f,0035,009c,009d,1301,1302,1303,c013,c014,c02b,c02c,c02f,c030,cca8,cca9_0005,000a,000b,000d,0012,0017,001b,0023,002b,002d,0033,44cd,fe0d,ff01_0904,0905,0906,0403,0804,0401,0503,0805,0501,0806,0601",
+    "ja3": "5d099ce3a4880a3426de0b12620fe582",
+    "headers": [
+      "sec-ch-ua",
+      "sec-ch-ua-mobile",
+      "sec-ch-ua-platform",
+      "upgrade-insecure-requests",
+      "user-agent",
+      "accept",
+      "sec-fetch-site",
+      "sec-fetch-mode",
+      "sec-fetch-user",
+      "sec-fetch-dest",
+      "accept-encoding",
+      "accept-language",
+      "priority"
+    ],
+    "akamai": "1:65536;2:0;4:6291456;6:262144|15663105|1:1:0:255|m,a,s,p",
+    "h2_headers": [
+      ":method",
+      ":authority",
+      ":scheme",
+      ":path",
+      "sec-ch-ua",
+      "sec-ch-ua-mobile",
+      "sec-ch-ua-platform",
+      "upgrade-insecure-requests",
+      "user-agent",
+      "accept",
+      "sec-fetch-site",
+      "sec-fetch-mode",
+      "sec-fetch-user",
+      "sec-fetch-dest",
+      "accept-encoding",
+      "accept-language",
+      "priority"
+    ]
+  }
+}

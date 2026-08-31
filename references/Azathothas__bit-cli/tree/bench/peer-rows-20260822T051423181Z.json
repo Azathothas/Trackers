@@ -1,0 +1,122 @@
+{
+  "kind": "peer_row_cost",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T05:14:23.182Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "step": 200,
+    "steps": 10,
+    "concurrency": 16,
+    "payload_mib": 2
+  },
+  "samples": [
+    {
+      "connections": 0,
+      "peer_rows": 0,
+      "peers_seen": 0,
+      "rss_bytes": 12484608,
+      "handles": 188
+    },
+    {
+      "connections": 200,
+      "peer_rows": 200,
+      "peers_seen": 200,
+      "rss_bytes": 14647296,
+      "handles": 212
+    },
+    {
+      "connections": 400,
+      "peer_rows": 400,
+      "peers_seen": 400,
+      "rss_bytes": 15261696,
+      "handles": 212
+    },
+    {
+      "connections": 600,
+      "peer_rows": 600,
+      "peers_seen": 600,
+      "rss_bytes": 15806464,
+      "handles": 212
+    },
+    {
+      "connections": 800,
+      "peer_rows": 800,
+      "peers_seen": 800,
+      "rss_bytes": 16154624,
+      "handles": 212
+    },
+    {
+      "connections": 1000,
+      "peer_rows": 1000,
+      "peers_seen": 1000,
+      "rss_bytes": 16506880,
+      "handles": 216
+    },
+    {
+      "connections": 1200,
+      "peer_rows": 1200,
+      "peers_seen": 1200,
+      "rss_bytes": 17211392,
+      "handles": 216
+    },
+    {
+      "connections": 1400,
+      "peer_rows": 1400,
+      "peers_seen": 1400,
+      "rss_bytes": 17858560,
+      "handles": 216
+    },
+    {
+      "connections": 1600,
+      "peer_rows": 1600,
+      "peers_seen": 1600,
+      "rss_bytes": 18276352,
+      "handles": 216
+    },
+    {
+      "connections": 1800,
+      "peer_rows": 1800,
+      "peers_seen": 1800,
+      "rss_bytes": 18870272,
+      "handles": 216
+    },
+    {
+      "connections": 2000,
+      "peer_rows": 2000,
+      "peers_seen": 2000,
+      "rss_bytes": 18984960,
+      "handles": 216
+    }
+  ],
+  "settled": {
+    "peer_rows": 2000,
+    "rss_bytes": 19554304,
+    "handles": 216
+  },
+  "ceiling": {
+    "over_exit": 16,
+    "over_stopped": "rss_ceiling",
+    "under_exit": 9,
+    "under_stopped": "deadline"
+  },
+  "fit": {
+    "bytes_per_peer_row": 2890.8,
+    "intercept_bytes": 13660346.0,
+    "r_squared": 0.9438
+  },
+  "against_t040": {
+    "slope_bytes_per_hour": 843055.0,
+    "completions_per_hour": 228.5,
+    "implied_bytes_per_peer_row": 3689.5
+  },
+  "verdict": "measured",
+  "notes": [
+    "loopback-churn --handshake leaves a peer row and nothing else: no payload moves, no tracker announces, and the handshake is for the info hash the seeder holds.",
+    "RSS and the row count are the seeder's own, read out of its progress events. A sampler outside the process measures a different thing and cannot read the row count at all.",
+    "The comparison against T-040 is arithmetic on that entry's recorded numbers, not a second soak. What it answers is whether a peer row is the right size to be the slope.",
+    "The settled sample is a minute of no traffic at the end. RSS that falls back was the reporting rather than the rows."
+  ]
+}

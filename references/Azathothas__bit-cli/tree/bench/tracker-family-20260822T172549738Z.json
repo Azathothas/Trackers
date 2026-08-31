@@ -1,0 +1,39 @@
+{
+  "kind": "tracker_announce_family",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T17:25:49.738Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "timeout_seconds": 25,
+    "tracker_port": 58738,
+    "info_hash": "07092b359b245d176c78d80cd5b6d87ecfd201f4",
+    "profile": "release"
+  },
+  "cases": [
+    {
+      "case": "dual_host",
+      "url": "http://localhost:58738/announce",
+      "expected": "ipv4,ipv6",
+      "families": "ipv4,ipv6",
+      "sources": "ipv4=127.0.0.1 ipv6=::1"
+    },
+    {
+      "case": "literal_host",
+      "url": "http://127.0.0.1:58738/announce",
+      "expected": "ipv4",
+      "families": "ipv4",
+      "sources": "ipv4=127.0.0.1"
+    }
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "The subject is bit-cli seed, which runs a librqbit session. bit-cli trackers uses this repository's own tracker client and announced per family before any of this.",
+    "literal_host is the control: a URL naming an address has no resolution to override, so one announce is correct there and two would be wrong.",
+    "The tracker keys its peer records by (peer id, family). Keyed by peer id alone the second announce overwrites the first and one host ends up reachable on one family.",
+    "The two announces go in sequence rather than concurrently, so which family a BEP 3 tracker keeps is the same every run instead of a race."
+  ]
+}

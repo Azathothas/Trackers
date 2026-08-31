@@ -1,0 +1,126 @@
+{
+  "kind": "announce",
+  "generated_at": "2026-08-24T22:21:23.899Z",
+  "payload_bytes": 8388608,
+  "announce_url": "http://127.0.0.1:60763/announce",
+  "udp_announce_url": "udp://127.0.0.1:56783/announce",
+  "min_interval": 5,
+  "announces_total": 10,
+  "announces_subject": 6,
+  "query_order": [
+    "info_hash",
+    "peer_id",
+    "event",
+    "port",
+    "uploaded",
+    "downloaded",
+    "left",
+    "compact",
+    "no_peer_id",
+    "key"
+  ],
+  "user_agent": "bit-cli 0.2.0",
+  "peer_id": "-CL0200-2s5bwnu09m1r",
+  "cases": [
+    {
+      "case": "started-left",
+      "judged": true,
+      "ok": true,
+      "detail": "first event 'started', left 8388608, payload 8388608"
+    },
+    {
+      "case": "completed",
+      "judged": true,
+      "ok": true,
+      "detail": "one completed event, left 0"
+    },
+    {
+      "case": "stopped",
+      "judged": true,
+      "ok": true,
+      "detail": "events: started,completed,-,-,-,stopped"
+    },
+    {
+      "case": "left-monotonic",
+      "judged": true,
+      "ok": true,
+      "detail": "left: 8388608 -> 0 -> 0 -> 0 -> 0 -> 0"
+    },
+    {
+      "case": "totals-match",
+      "judged": true,
+      "ok": true,
+      "detail": "announced downloaded 8388608, uploaded 0; report downloaded 8388608, uploaded 0; payload 8388608"
+    },
+    {
+      "case": "interval",
+      "judged": true,
+      "ok": true,
+      "detail": "smallest gap 5.01s against a min interval of 5s over 3 ordinary announces"
+    },
+    {
+      "case": "udp",
+      "judged": true,
+      "ok": true,
+      "detail": "6 of 6 judged and all hold over 6 announce(s)"
+    },
+    {
+      "case": "redirect",
+      "judged": true,
+      "ok": true,
+      "detail": "followed, exit 0, same up=0 down=0 left=8388608 across the hop"
+    },
+    {
+      "case": "failure-reason",
+      "judged": true,
+      "ok": true,
+      "detail": "2 of 2 row(s) carry the reason, responded 0, exit 6, 2 announce(s) reached the tracker"
+    }
+  ],
+  "udp_cases": [
+    {
+      "case": "started-left",
+      "judged": true,
+      "ok": true,
+      "detail": "first event 'started', left 2097152, payload 2097152"
+    },
+    {
+      "case": "completed",
+      "judged": true,
+      "ok": true,
+      "detail": "one completed event, left 0"
+    },
+    {
+      "case": "stopped",
+      "judged": true,
+      "ok": true,
+      "detail": "events: started,completed,-,-,-,stopped"
+    },
+    {
+      "case": "left-monotonic",
+      "judged": true,
+      "ok": true,
+      "detail": "left: 2097152 -> 0 -> 0 -> 0 -> 0 -> 0"
+    },
+    {
+      "case": "totals-match",
+      "judged": true,
+      "ok": true,
+      "detail": "announced downloaded 2097152, uploaded 0; report downloaded 2097152, uploaded 0; payload 2097152"
+    },
+    {
+      "case": "interval",
+      "judged": true,
+      "ok": true,
+      "detail": "smallest gap 5.02s against a min interval of 5s over 3 ordinary announces"
+    }
+  ],
+  "failures": [],
+  "notes": [
+    "Loopback only. Nothing here points at a public tracker and nothing here changes a reported number: this measures whether the announce agrees with the run.",
+    "totals-match compares the last announce against the report at exit, so it asserts a bound rather than equality: the announce must cover the payload and must not exceed what the run says it moved.",
+    "The interval case allows one second of slack, because the tracker stamps on arrival and the client times from its own clock.",
+    "The udp row folds the same six assertions over a BEP 15 announce into one verdict. udp_cases carries them one by one.",
+    "redirect and failure-reason use bit-cli trackers rather than a download: one announce is the whole question in both."
+  ]
+}

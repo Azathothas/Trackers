@@ -1,0 +1,194 @@
+{
+  "schema": "browser-fingerprint/1",
+  "generated": "2026-08-30T02:08:35.149Z",
+  "browser": {
+    "path": "chrome-for-testing Stable, in a throwaway debian:bookworm-slim distro",
+    "version": "152.0.7977.64",
+    "major": 152,
+    "channel": "Stable",
+    "branded": false,
+    "source": "https://storage.googleapis.com/chrome-for-testing-public/152.0.7977.64/linux64/chrome-linux64.zip"
+  },
+  "observed": {
+    "ja4": "t13i1517h2_8daaf6152771_4980c97edce0",
+    "ja4_r": "t13i1517h2_002f,0035,009c,009d,1301,1302,1303,c013,c014,c02b,c02c,c02f,c030,cca8,cca9_0005,000a,000b,000d,0012,0017,001b,0023,002b,002d,0033,12e0,44cd,ca34,fe0d,ff01_0904,0905,0906,0403,0804,0401,0503,0805,0501,0806,0601",
+    "ja3": "11baf8690eee6a18c7daf1fa540cad9b",
+    "akamai": "1:65536;2:0;4:6291456;6:262144|15663105|1:1:0:255|m,a,s,p",
+    "headers": [
+      ":method",
+      ":authority",
+      ":scheme",
+      ":path",
+      "sec-ch-ua",
+      "sec-ch-ua-mobile",
+      "sec-ch-ua-platform",
+      "accept-language",
+      "upgrade-insecure-requests",
+      "user-agent",
+      "accept",
+      "sec-fetch-site",
+      "sec-fetch-mode",
+      "sec-fetch-user",
+      "sec-fetch-dest",
+      "accept-encoding",
+      "priority"
+    ],
+    "header_pairs": [
+      [
+        "sec-ch-ua",
+        "\"Not?A_Brand\";v=\"24\", \"Chromium\";v=\"152\""
+      ],
+      [
+        "sec-ch-ua-mobile",
+        "?0"
+      ],
+      [
+        "sec-ch-ua-platform",
+        "\"Linux\""
+      ],
+      [
+        "accept-language",
+        "en-US,en;q=0.9"
+      ],
+      [
+        "upgrade-insecure-requests",
+        "1"
+      ],
+      [
+        "user-agent",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36"
+      ],
+      [
+        "accept",
+        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+      ],
+      [
+        "sec-fetch-site",
+        "none"
+      ],
+      [
+        "sec-fetch-mode",
+        "navigate"
+      ],
+      [
+        "sec-fetch-user",
+        "?1"
+      ],
+      [
+        "sec-fetch-dest",
+        "document"
+      ],
+      [
+        "accept-encoding",
+        "gzip, deflate, br, zstd"
+      ],
+      [
+        "priority",
+        "u=0, i"
+      ]
+    ]
+  },
+  "claim": {
+    "ja4": "t13i1515h2_8daaf6152771_806a8c22fdea",
+    "akamai": "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p",
+    "h2_headers": [
+      ":method",
+      ":authority",
+      ":scheme",
+      ":path",
+      "sec-ch-ua",
+      "sec-ch-ua-mobile",
+      "sec-ch-ua-platform",
+      "upgrade-insecure-requests",
+      "user-agent",
+      "accept",
+      "sec-fetch-site",
+      "sec-fetch-mode",
+      "sec-fetch-user",
+      "sec-fetch-dest",
+      "accept-encoding",
+      "accept-language",
+      "priority"
+    ],
+    "major": 151
+  },
+  "pass": false,
+  "strict": false,
+  "problems": [
+    {
+      "field": "ja4",
+      "claim": "t13i1515h2_8daaf6152771_806a8c22fdea",
+      "browser": "t13i1517h2_8daaf6152771_4980c97edce0",
+      "where": "crates/bit-cli-core/src/fetch.rs, through impit's fingerprint database"
+    },
+    {
+      "field": "akamai",
+      "claim": "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p",
+      "browser": "1:65536;2:0;4:6291456;6:262144|15663105|1:1:0:255|m,a,s,p",
+      "where": "T-262: the PRIORITY field: Chrome opens stream 1 with one and h2 sends none",
+      "known": {
+        "pattern": "^(?<head>.*\\|)(?<priority>[^|]*)\\|(?<tail>.*)$",
+        "entry": "T-262",
+        "why": "the PRIORITY field: Chrome opens stream 1 with one and h2 sends none",
+        "field": "akamai"
+      }
+    },
+    {
+      "field": "header order",
+      "claim": ":method, :authority, :scheme, :path, sec-ch-ua, sec-ch-ua-mobile, sec-ch-ua-platform, upgrade-insecure-requests, user-agent, accept, sec-fetch-site, sec-fetch-mode, sec-fetch-user, sec-fetch-dest, accept-encoding, accept-language, priority",
+      "browser": ":method, :authority, :scheme, :path, sec-ch-ua, sec-ch-ua-mobile, sec-ch-ua-platform, accept-language, upgrade-insecure-requests, user-agent, accept, sec-fetch-site, sec-fetch-mode, sec-fetch-user, sec-fetch-dest, accept-encoding, priority",
+      "where": "crates/bit-cli-core/src/page.rs, BROWSER_HEADERS"
+    },
+    {
+      "field": "browser major",
+      "claim": "151",
+      "browser": "152",
+      "where": "crates/bit-cli-core/src/page.rs, BROWSER_MAJOR"
+    }
+  ],
+  "judged": 3,
+  "recommend": {
+    "from": {
+      "path": "chrome-for-testing Stable, in a throwaway debian:bookworm-slim distro",
+      "version": "152.0.7977.64",
+      "major": 152
+    },
+    "ja4": "t13i1517h2_8daaf6152771_4980c97edce0",
+    "ja4_r": "t13i1517h2_002f,0035,009c,009d,1301,1302,1303,c013,c014,c02b,c02c,c02f,c030,cca8,cca9_0005,000a,000b,000d,0012,0017,001b,0023,002b,002d,0033,12e0,44cd,ca34,fe0d,ff01_0904,0905,0906,0403,0804,0401,0503,0805,0501,0806,0601",
+    "akamai": "1:65536;2:0;4:6291456;6:262144|15663105|1:1:0:255|m,a,s,p",
+    "header_order": [
+      ":method",
+      ":authority",
+      ":scheme",
+      ":path",
+      "sec-ch-ua",
+      "sec-ch-ua-mobile",
+      "sec-ch-ua-platform",
+      "accept-language",
+      "upgrade-insecure-requests",
+      "user-agent",
+      "accept",
+      "sec-fetch-site",
+      "sec-fetch-mode",
+      "sec-fetch-user",
+      "sec-fetch-dest",
+      "accept-encoding",
+      "priority"
+    ],
+    "browser_headers": "pub const BROWSER_HEADERS: &[(&str, &str)] = &[\n    (\"sec-ch-ua\", \"\\\"Not?A_Brand\\\";v=\\\"24\\\", \\\"Chromium\\\";v=\\\"152\\\"\"),\n    (\"sec-ch-ua-mobile\", \"?0\"),\n    (\"sec-ch-ua-platform\", \"\\\"Linux\\\"\"),\n    (\"accept-language\", \"en-US,en;q=0.9\"),\n    (\"upgrade-insecure-requests\", \"1\"),\n    (\"user-agent\", \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36\"),\n    (\"accept\", \"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\"),\n    (\"sec-fetch-site\", \"none\"),\n    (\"sec-fetch-mode\", \"navigate\"),\n    (\"sec-fetch-user\", \"?1\"),\n    (\"sec-fetch-dest\", \"document\"),\n    (\"accept-encoding\", \"gzip, deflate, br, zstd\"),\n    (\"priority\", \"u=0, i\"),\n];",
+    "headless_rewritten": [
+      "user-agent"
+    ],
+    "hello": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\browser-fingerprint\\clienthello.hex",
+    "note": "Every value of the profile is in crates/bit-cli-core/src/page.rs, including the cipher list, the extension order and the HTTP/2 settings, so a JA4 that has moved is that file to edit and not a vendored one to reconcile. A codepoint impit's ExtensionType cannot name is a finding to record rather than a value to drop.",
+    "headers_caveat": "Chrome for Testing is unbranded and this capture is Linux, so sec-ch-ua carries no Google Chrome entry and sec-ch-ua-platform and the User-Agent name the wrong platform. Use -Source apt for the brand list."
+  },
+  "container": {
+    "image": "debian:bookworm-slim",
+    "channel": "Stable",
+    "distro": "eph-bitcli-fp-0ed377",
+    "host_address": "172.23.96.1",
+    "binary_version": "152.0.7977.64",
+    "removed": true
+  }
+}

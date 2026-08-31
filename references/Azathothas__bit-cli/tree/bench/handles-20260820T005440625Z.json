@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "kind": "handle_cap_check",
+  "todo": "T-011",
+  "generated_at": "2026-08-20T00:54:40.626Z",
+  "files": 300,
+  "file_bytes": 16384,
+  "caps": [
+    8,
+    64,
+    128
+  ],
+  "seed_for": "12s",
+  "tolerance": 8,
+  "results": [
+    {
+      "cap": 8,
+      "peak_process_handles": 195,
+      "reported_open_handles": 195,
+      "samples": 73,
+      "complete": true,
+      "have_bytes": 4915200
+    },
+    {
+      "cap": 64,
+      "peak_process_handles": 251,
+      "reported_open_handles": 251,
+      "samples": 73,
+      "complete": true,
+      "have_bytes": 4915200
+    },
+    {
+      "cap": 128,
+      "peak_process_handles": 315,
+      "reported_open_handles": 315,
+      "samples": 74,
+      "complete": true,
+      "have_bytes": 4915200
+    }
+  ],
+  "failures": [],
+  "notes": [
+    "The absolute handle count includes everything the process holds that is not payload: threads, sockets, and libraries. That part is the same whatever the cap is, so the measurement is the difference between two caps, which has to equal the difference between the caps themselves."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-08-23T11:31:56.818Z",
+  "payload_bytes": 1073741824,
+  "concurrency": 8,
+  "request_size": "64KiB",
+  "runs_per_arm": 5,
+  "plain": {
+    "arm": "plain",
+    "runs": 5,
+    "best_bytes_per_s": 70520282,
+    "median_bytes_per_s": 46589223,
+    "spread_bytes_per_s": 42213264,
+    "peak_rss_bytes": 22786048,
+    "tracing_enabled": false
+  },
+  "traced": {
+    "arm": "--trace http",
+    "runs": 5,
+    "best_bytes_per_s": 69019851,
+    "median_bytes_per_s": 39704981,
+    "spread_bytes_per_s": 32141784,
+    "peak_rss_bytes": 28082176,
+    "tracing_enabled": true
+  },
+  "throughput_cost_percent": 2.13,
+  "peak_rss_cost_bytes": 5296128,
+  "stderr_lines_plain": 0,
+  "stderr_lines_traced": 16384
+}

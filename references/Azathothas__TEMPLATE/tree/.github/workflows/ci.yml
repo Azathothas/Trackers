@@ -1,0 +1,318 @@
+# The template's own gates.
+#
+# This repository makes claims about hosts it cannot see, so it runs its checks
+# on three of them. Every step is separate, so the log names WHICH one failed
+# rather than reporting one failure for a dozen checks, and every check is run
+# unpiped so an exit code is the check's own.
+#
+# ⭐ Written to be read by an agent fixing a failure: each step's name says what
+# it proves, and each failure message names the file and the rule.
+#
+# ⛔ Third-party actions are pinned to a COMMIT, not a tag. A tag moves, and a
+# moved tag runs code nobody reviewed with the permissions granted here. To
+# re-resolve one after a bump:
+#
+#   gh api repos/actions/checkout/git/ref/tags/v7 --jq .object.sha
+#
+# ⚠ AND CHECK WHAT RUNTIME THE TAG DECLARES, not merely that it resolves.
+# A pinned action whose Node runtime GitHub has deprecated keeps running, with
+# a warning nobody reads, until the day it does not. v4 targets Node 20 and was
+# being force-run on Node 24 here before this was noticed:
+#
+#   gh api repos/actions/checkout/contents/action.yml --jq .content | base64 -d | grep using:
+#
+# ⭐ The durable fix is not vigilance, it is .github/dependabot.yml. Pinning
+# without an updater is how a pin becomes a fossil.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Least privilege. No job here needs more than reading the tree.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # -- the POSIX half: every check, on the host they are written for ---------
+  checks:
+    name: checks (ubuntu)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # ⚠ THE EXIT CODE IS CAPTURED, NOT ECHOED AFTER THE FACT. This step used
+      # to run the probe and then `echo "exit=$?"`. GitHub runs `run:` under
+      # `bash -e`, so a non-zero probe aborts the step before the echo, and the
+      # echo could therefore only ever print 0. It read like a verification and
+      # asserted nothing.
+      - name: the probe runs and exits 0
+        run: |
+          set +e
+          sh scripts/doctor/doctor.sh --fast >/dev/null
+          rc=$?
+          set -e
+          echo "probe exit=$rc"
+          [ "$rc" = 0 ]
+
+      - name: every shell script parses
+        run: |
+          fail=0
+          for f in $(git ls-files '*.sh'); do
+            if sh -n "$f"; then echo "ok   $f"; else echo "FAIL $f"; fail=1; fi
+          done
+          exit $fail
+
+      - name: shellcheck
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+          fail=0
+          for f in $(git ls-files '*.sh'); do
+            if shellcheck -s sh "$f"; then echo "clean $f"; else fail=1; fi
+          done
+          exit $fail
+
+      - name: documents resolve and match the prose rule
+        run: sh scripts/common/check-docs.sh
+
+      # ⭐ The character allowlist and the marker density, over EVERY tracked
+      # text file rather than markdown alone. When this moved out of check-docs
+      # it found 2290 characters outside the five, in 22 files, all of them in
+      # scripts the markdown-only version had never read.
+      - name: only the five defined characters, and not too many of them
+        run: sh scripts/common/check-markers.sh
+
+      # ⭐ One fact, one home. Its first run over this tree found 42 duplicated
+      # sentences, five of them in the skeleton this repository ships for
+      # exactly that job.
+      - name: no sentence appears in two documents
+        run: sh scripts/common/check-one-home.sh
+
+      - name: no template placeholder survived into a real file
+        run: sh scripts/common/check-placeholders.sh
+
+      - name: no literal control byte in any text file
+        run: sh scripts/common/check-control-bytes.sh
+
+      # ⚠ Exit 2 means "could not run", and this repository has no CHANGELOG.md
+      # of its own, so 2 is the expected answer here and it is not a failure.
+      # A project that starts from this template and adds one gets the real
+      # check for free. ⛔ The exit code is read from the process that produced
+      # it: `|| true` would hide a genuine exit 1 as well.
+      # ⛔ `set +e` AROUND IT, AND THAT IS NOT DECORATION. GitHub runs every
+      # `run:` block under `bash -e`, so `check; rc=$?` never reaches the
+      # assignment: the shell aborts on the non-zero exit first, and the step
+      # fails on the exit 2 this step exists to tolerate. Written without it,
+      # this step failed CI on its first run. The same shape is why the probe
+      # step above captures rather than echoes.
+      - name: the changelog rules, where there is a changelog
+        run: |
+          set +e
+          sh scripts/common/check-changelog.sh
+          rc=$?
+          set -e
+          if [ "$rc" = 0 ] || [ "$rc" = 2 ]; then echo "ok (exit $rc)"; exit 0; fi
+          exit "$rc"
+
+      - name: nothing publishable carries a secret or a fingerprint
+        run: sh scripts/common/check-no-secrets.sh --public
+
+      # ⭐ The gate runner, run in --strict, which is the mode a CI job should
+      # pass and a laptop need not. Here the tools are installed on purpose, so
+      # a SKIP means an install broke rather than that a machine is modest, and
+      # strict turns that into a failure.
+      #
+      # ⚠ --fast skips check-twins ONLY, and the twins job below runs it on its
+      # own. Running it twice would double the slowest part of CI to learn
+      # nothing.
+      #
+      # ⛔ check-changelog exits 2 here, which is a SKIP, which --strict refuses.
+      # So this asserts the exit code it actually expects rather than 0: the
+      # point of the step is that nothing FAILED and nothing was skipped for a
+      # reason other than the changelog this repository does not have.
+      - name: the gate runner agrees with the checks above
+        run: |
+          set +e
+          sh scripts/common/check-gate.sh --fast --json > gate.json
+          rc=$?
+          set -e
+          cat gate.json
+          failed=$(sed 's/.*"failed":\([0-9]*\).*/\1/' gate.json)
+          passed=$(sed 's/.*"passed":\([0-9]*\).*/\1/' gate.json)
+          echo "runner exit=$rc passed=$passed failed=$failed"
+          [ "$failed" = 0 ] || exit 1
+          [ "$passed" -gt 0 ] || exit 1
+
+      # ⭐ THE PAGE JOINER, AGAINST AN ORACLE, OFFLINE. mine-repo's proxy route
+      # joined paginated responses by counting bracket characters over raw text,
+      # so every comment body carrying a markdown link was discarded while the
+      # run printed "ok". A consumer found it, not this pipeline. --selftest is
+      # the reproduction, and it needs no network and no credential.
+      - name: the reference miner joins pages with a real parser
+        run: |
+          sh scripts/common/mine-repo.sh --selftest
+
+      - name: line endings match .gitattributes
+        run: |
+          bad=$(git ls-files --eol | grep -v 'i/lf' | grep -v 'i/-text' || true)
+          if [ -n "$bad" ]; then echo "$bad"; exit 1; fi
+          echo "clean"
+
+      # ⚠ THE TEXTS ARE CANONICAL AND THE FILLER LIVES UPSTREAM NOW. What CI can
+      # still hold from here is that none of them was truncated or emptied by an
+      # edit: SPDX texts do not change, so a shrinking one is a corruption.
+      - name: every licence text is present and non-trivial
+        run: |
+          fail=0
+          n=0
+          for f in LICENSES/*.txt; do
+            n=$((n + 1))
+            bytes=$(wc -c < "$f")
+            if [ "$bytes" -lt 500 ]; then
+              echo "FAIL $f is $bytes bytes"; fail=1
+            else
+              echo "ok   $f  $bytes bytes"
+            fi
+          done
+          [ "$n" -eq 12 ] || { echo "expected 12 licence texts, found $n"; fail=1; }
+          exit $fail
+
+      # ⛔ THIS STEP USED `glob.glob('**/*.yml')` AND NEVER ONCE PARSED A LIVE
+      # WORKFLOW. Python's glob skips a dot-directory unless the pattern names
+      # it, and every workflow here is under .github/. Measured on this tree on
+      # 2026-08-30: glob saw 6 files, all of them the INERT copies under
+      # dotfiles/github/, and missed all 3 under .github/ including the file
+      # running the step. It was green for its whole life over the files that
+      # cannot break the build.
+      #
+      # ⭐ The file list comes from git now. git tracks dot-directories like any
+      # other, and it also refuses to report success over an empty scope.
+      - name: yaml parses
+        run: |
+          git ls-files '*.yml' '*.yaml' > yamls.txt
+          n=$(wc -l < yamls.txt)
+          echo "$n yaml file(s) in scope"
+          [ "$n" -gt 0 ] || { echo "empty scope: refusing to report success"; exit 1; }
+          grep -q '^\.github/workflows/' yamls.txt || {
+            echo "the live workflows are not in scope; this is the defect that shipped"; exit 1; }
+          python3 -c "
+          import sys
+          try:
+              import yaml
+          except ImportError:
+              sys.exit('pyyaml missing')
+          bad = 0
+          for f in open('yamls.txt', encoding='utf-8').read().split():
+              try:
+                  yaml.safe_load(open(f, encoding='utf-8'))
+                  print('ok  ', f)
+              except Exception as e:
+                  print('FAIL', f, e); bad = 1
+          sys.exit(bad)
+          "
+
+  # -- the Windows half: the probe's twin, on the host it exists for ---------
+  windows:
+    name: probe twin (windows)
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: doctor.ps1 parses
+        shell: pwsh
+        run: |
+          $errs = $null; $tokens = $null
+          $null = [System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path .\scripts\doctor\doctor.ps1).Path, [ref]$tokens, [ref]$errs)
+          if ($errs.Count -gt 0) {
+            $errs | ForEach-Object { Write-Output ("line " + $_.Extent.StartLineNumber + ": " + $_.Message) }
+            exit 1
+          }
+          Write-Output "parses clean"
+
+      - name: doctor.ps1 runs and emits valid json
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -File scripts\doctor\doctor.ps1 -Json > ps.json
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          $d = Get-Content ps.json -Raw | ConvertFrom-Json
+          if ($d.schema -ne 'agent-doctor/1') { Write-Output "wrong schema: $($d.schema)"; exit 1 }
+          Write-Output ("schema " + $d.schema + ", " + $d.tools.Count + " tools")
+
+      # ⭐ THE POINT OF THIS JOB. Every check in scripts/common/ has a
+      # PowerShell twin because the sh one cannot be assumed to run on Windows:
+      # a native PowerShell session may have no `sed` at all, and its `sort` is
+      # an alias for Sort-Object, which succeeds and answers differently.
+      # ⛔ Running them on ubuntu with pwsh would prove nothing about that. They
+      # run HERE, on the host they exist for.
+      - name: every check's PowerShell twin runs on Windows
+        shell: pwsh
+        run: |
+          $fail = 0
+          $checks = @(
+            @{ f = 'check-docs.ps1';           a = @() },
+            @{ f = 'check-markers.ps1';        a = @() },
+            @{ f = 'check-one-home.ps1';       a = @() },
+            @{ f = 'check-placeholders.ps1';   a = @() },
+            @{ f = 'check-control-bytes.ps1';  a = @() },
+            @{ f = 'check-no-secrets.ps1';     a = @('-Public') },
+            @{ f = 'mine-repo.ps1';            a = @('-SelfTest') }
+          )
+          foreach ($c in $checks) {
+            & pwsh -NoProfile -File ".\scripts\common\$($c.f)" @($c.a)
+            if ($LASTEXITCODE -ne 0) { Write-Output "FAIL $($c.f) exit $LASTEXITCODE"; $fail = 1 }
+            else { Write-Output "ok   $($c.f)" }
+          }
+          # ⚠ 2 is "could not run" and is the expected answer where this
+          # repository has no CHANGELOG.md of its own. It is not a pass and it
+          # is not a failure.
+          & pwsh -NoProfile -File .\scripts\common\check-changelog.ps1
+          if ($LASTEXITCODE -notin 0, 2) { Write-Output "FAIL check-changelog.ps1"; $fail = 1 }
+          else { Write-Output "ok   check-changelog.ps1 (exit $LASTEXITCODE)" }
+          exit $fail
+
+      # ⭐ THE TWO HALVES OF THE PAGE JOINER MUST GIVE THE SAME ANSWER, and this
+      # is the one job that runs the PowerShell half on Windows. The sh half is
+      # run in the linux job and check-twins compares them on a machine that has
+      # both; this asserts the answer here, on the host the twin exists for.
+      - name: the reference miner's joiner agrees, from PowerShell
+        shell: pwsh
+        run: |
+          $out = & pwsh -NoProfile -File .\scripts\common\mine-repo.ps1 -SelfTest -Json
+          $rc = $LASTEXITCODE
+          Write-Output "exit $rc  $out"
+          if ($rc -ne 0) { exit 1 }
+          if ($out -ne '{"schema":"mine-repo-selftest/1","cases":4,"failed":0}') {
+            Write-Output 'the self-test answer changed; the sh half says otherwise'
+            exit 1
+          }
+          Write-Output 'ok'
+
+      - name: PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser -ErrorAction Stop
+          $r = Invoke-ScriptAnalyzer -Path .\scripts -Recurse -Severity Error, Warning
+          if ($r) { $r | Format-Table -AutoSize | Out-String | Write-Output; exit 1 }
+          Write-Output "clean"
+
+  # -- the twins must agree. This is the job the drift rule exists for -------
+  twins:
+    name: the two probes agree
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: both probes, same machine, compared field by field
+        shell: bash
+        run: sh scripts/common/check-twins.sh

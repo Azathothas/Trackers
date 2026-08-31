@@ -1,0 +1,34 @@
+# 10-probe-source-hosts
+date  : 2026-08-28T13:53:34Z
+host  : Linux 6.18.44-fc-v22 x86_64
+curl  : curl 8.5.0
+check : ranged GET of the first 1024 bytes, 30s timeout, follows redirects
+
+ROLE      HTTP  BYTES   EXIT  URL
+required  206   1024    0     https://distfiles.alpinelinux.org/distfiles/edge/zlib-1.3.2.tar.gz
+required  206   1024    0     https://www.openssl.org/source/openssl-3.6.4.tar.gz
+required  206   1024    0     https://curl.se/download/curl-8.21.0.tar.xz
+required  206   1024    0     https://www.libarchive.org/downloads/libarchive-3.8.9.tar.xz
+required  206   1024    0     https://gnupg.org/ftp/gcrypt/gpgme/gpgme-2.1.2.tar.bz2
+required  206   1024    0     https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+required  206   1024    0     https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz
+required  200   20505   0     https://gitlab.archlinux.org/pacman/pacman.git/info/refs?service=git-upload-pack
+required  200   346     0     https://aur.archlinux.org/pacman-static.git/info/refs?service=git-upload-pack
+mussel    206   1024    0     https://ftpmirror.gnu.org/binutils/binutils-2.46.1.tar.xz
+mussel    206   1024    0     https://sourceware.org/pub/binutils/releases/binutils-2.46.1.tar.xz
+mussel    206   1024    0     https://sourceware.org/pub/gcc/releases/gcc-16.1.0/gcc-16.1.0.tar.xz
+mussel    000   0       35    https://musl.libc.org/releases/musl-1.2.6.tar.gz
+mussel    206   1024    0     https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.19.14.tar.xz
+mussel    403   4550    0     https://libisl.sourceforge.io/isl-0.27.tar.xz
+pkgbuild  206   1024    0     https://github.com/facebook/zstd/releases/download/v1.5.7/zstd-1.5.7.tar.zst
+pkgbuild  404   355     0     https://zlib.net/zlib-1.3.1.tar.gz
+
+  role 'required' = needed by the plan in TASKS.md
+  role 'mussel'   = needed only if you build GCC cross toolchains
+  role 'pkgbuild' = the reference PKGBUILD's own source URLs
+  EXIT            = curl's exit code; 0 with a 2xx is a clean fetch,
+                    a non-zero EXIT beside a 2xx means the transfer
+                    was cut short (expected on a ranged GET some
+                    servers answer without honouring the range)
+
+verdict: every required host answered

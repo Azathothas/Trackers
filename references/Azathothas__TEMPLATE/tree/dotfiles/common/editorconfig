@@ -1,0 +1,36 @@
+# Applies to every editor that reads EditorConfig, which is most of them.
+# It is the working-tree half of what .gitattributes does for the index.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# PowerShell keeps CRLF. See dotfiles/common/gitattributes for why: 5.1
+# mis-parses a here-string terminated by a bare LF.
+[*.{ps1,psm1,psd1}]
+end_of_line = crlf
+indent_size = 4
+
+[*.{bat,cmd}]
+end_of_line = crlf
+
+[*.md]
+# Two trailing spaces are a hard line break in markdown, so trimming them
+# silently changes rendering.
+trim_trailing_whitespace = false
+
+[Makefile]
+# A tab is syntax here, not style. A space-indented recipe does not run.
+indent_style = tab
+
+[*.{py,rs,go,java,cs,c,h,cpp,hpp}]
+indent_size = 4
+
+[*.go]
+indent_style = tab

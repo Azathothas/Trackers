@@ -1,0 +1,286 @@
+{
+  "kind": "metalink",
+  "schema_version": "1",
+  "generated_at": "2026-08-23T07:12:56.391Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "payload_mib": 2,
+    "payload_bytes": 2097152,
+    "payload_sha256": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+    "profile": "release",
+    "timeout_seconds": 120
+  },
+  "cases": [
+    {
+      "case": "v4_ok",
+      "exit_code": 0,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "algorithm": "sha256",
+          "bytes_hashed": 2097152,
+          "expected": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\v4_ok\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "mirrors_unsupported": [
+          "ftp://ftp.example.com/release.bin"
+        ],
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "v3_ok",
+      "exit_code": 0,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "algorithm": "sha256",
+          "bytes_hashed": 2097152,
+          "expected": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\v3_ok\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "3"
+      }
+    },
+    {
+      "case": "url_source",
+      "exit_code": 0,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "algorithm": "sha256",
+          "bytes_hashed": 2097152,
+          "expected": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\url_source\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "mirrors_unsupported": [
+          "ftp://ftp.example.com/release.bin"
+        ],
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "bad_checksum",
+      "exit_code": 7,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "algorithm": "sha256",
+          "bytes_hashed": 2097152,
+          "expected": "0000000000000000000000000000000000000000000000000000000000000000",
+          "matched": false,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\bad_checksum\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "bad_size",
+      "exit_code": 7,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097153,
+          "size_agrees": false,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "algorithm": "sha256",
+          "bytes_hashed": 2097152,
+          "expected": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\bad_size\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "md5_only",
+      "exit_code": 0,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "1f2965acf971b301f115a5413676fafb",
+          "algorithm": "md5",
+          "bytes_hashed": 2097152,
+          "expected": "1f2965acf971b301f115a5413676fafb",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\md5_only\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "sha512_only",
+      "exit_code": 0,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "algorithm": "sha512",
+          "expected": "",
+          "not_checked": "this cannot compute sha512"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "no_torrent",
+      "exit_code": 4,
+      "metalink": null
+    },
+    {
+      "case": "torrent_fallback",
+      "exit_code": 0,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "algorithm": "sha256",
+          "bytes_hashed": 2097152,
+          "expected": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\torrent_fallback\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "torrent_fallbacks": [
+          {
+            "error": "http://127.0.0.1:57932/not-here.torrent: 404 Not Found",
+            "url": "http://127.0.0.1:57932/not-here.torrent"
+          }
+        ],
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "truncated",
+      "exit_code": 2,
+      "metalink": null
+    },
+    {
+      "case": "hash_check_only",
+      "exit_code": 0,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 2097152,
+          "size_agrees": true,
+          "torrent_size": 2097152
+        },
+        "checksum": {
+          "actual": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "algorithm": "sha256",
+          "bytes_hashed": 2097152,
+          "expected": "ad33b3f02c216325e56dda4f736ccf6462ec6fd002c98e1f38dea79e5382dc3f",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink\\out\\v4_ok\\release.bin"
+        },
+        "file": "release.bin",
+        "mirrors_listed": 1,
+        "mirrors_registered": 1,
+        "mirrors_unsupported": [
+          "ftp://ftp.example.com/release.bin"
+        ],
+        "torrent_url": "http://127.0.0.1:57932/release.bin.torrent",
+        "version": "4"
+      }
+    },
+    {
+      "case": "dry_run",
+      "exit_code": 0,
+      "metalink": null
+    }
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "Every case is served from a loopback file server, so the numbers are about bit-cli and not about a mirror.",
+    "bad_checksum is the case that matters: the payload passes the torrent's own piece hashes and fails the metalink's digest, so the metalink is the document that is wrong. The script checks the payload on disk against the source bytes to prove it.",
+    "dry_run runs with the file server stopped, so a dry run that reached for the torrent fails here rather than passing against a server that happened to still be up."
+  ]
+}

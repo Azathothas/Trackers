@@ -1,0 +1,29 @@
+# 85-feature-matrix
+date : 2026-08-28T13:54:26Z
+host : Linux 6.18.44-fc-v22 x86_64
+
+## build-time: the version meson resolved, per architecture
+
+ARCH           libarchive   libcurl    gpgme     libcrypto  libseccomp  landlock
+x86_64         3.8.9        8.21.0     2.1.2     3.6.4      2.6.0       yes
+aarch64        3.8.9        8.21.0     2.1.2     3.6.4      2.6.0       yes
+riscv64        3.8.9        8.21.0     2.1.2     3.6.4      2.6.0       yes
+loongarch64    3.8.9        8.21.0     2.1.2     3.6.4      2.6.0       yes
+powerpc64le    3.8.9        8.21.0     2.1.2     3.6.4      2.6.0       yes
+
+## runtime: the binary itself
+
+ARCH           LINKAGE   BYTES       REPORTS                EMULATOR
+x86_64         static    14708504    libalpm v16.0.1        qemu-x86_64-static
+aarch64        static    14321560    libalpm v16.0.1        qemu-aarch64-static
+riscv64        static    18059496    libalpm v16.0.1        qemu-riscv64-static
+loongarch64    static    13512296    libalpm v16.0.1        qemu-loongarch64-static
+powerpc64le    static    15419992    libalpm v16.0.1        qemu-ppc64le-static
+
+## deliberately off
+
+  i18n                   meson -Di18n=false; see docs/FEATURES.md
+  doc                    meson -Ddoc=disabled; needs asciidoc/a2x
+  nettle                 meson -Dcrypto=openssl; nettle is the alternative, not an addition
+
+verdict: every architecture reports the same feature set

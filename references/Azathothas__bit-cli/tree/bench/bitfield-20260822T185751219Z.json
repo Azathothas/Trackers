@@ -1,0 +1,34 @@
+{
+  "schema_version": "1",
+  "kind": "bitfield",
+  "generated_at": "2026-08-22T18:57:51.216Z",
+  "max_msg_len": 16500,
+  "read_buflen": 32768,
+  "cases": [
+    {
+      "pieces": 131961,
+      "piece_length": 1024,
+      "payload_bytes": 135128064,
+      "torrent_bytes": 2639359,
+      "bitfield_bytes": 16501.0,
+      "seeder_listened": true,
+      "metadata_resolved": true,
+      "no_space_in_buffer": false,
+      "read_buffer_full": false,
+      "pass": true
+    },
+    {
+      "pieces": 262105,
+      "piece_length": 1024,
+      "payload_bytes": 268395520,
+      "torrent_bytes": 5242239,
+      "bitfield_bytes": 32769.0,
+      "seeder_listened": true,
+      "metadata_resolved": true,
+      "no_space_in_buffer": false,
+      "read_buffer_full": false,
+      "pass": true
+    }
+  ],
+  "failed": 0
+}

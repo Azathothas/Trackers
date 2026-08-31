@@ -1,0 +1,138 @@
+{
+  "kind": "check-rate-limit",
+  "schema_version": "1",
+  "generated_at": "2026-08-20T11:28:32.732Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "rate": "4MiB/s",
+    "rate_bytes": 4194304,
+    "payload_size": "128MiB",
+    "payload_bytes": 134217728,
+    "runs": 3,
+    "tolerance": 0.15,
+    "profile": "release"
+  },
+  "runs": [
+    {
+      "run": 1,
+      "capped": true,
+      "exit_code": 0,
+      "elapsed_ms": 31232,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 4297443,
+      "rate_human": "4.10 MiB/s"
+    },
+    {
+      "run": 1,
+      "capped": false,
+      "exit_code": 0,
+      "elapsed_ms": 581,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 231011580,
+      "rate_human": "220.31 MiB/s"
+    },
+    {
+      "run": 2,
+      "capped": false,
+      "exit_code": 0,
+      "elapsed_ms": 558,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 240533563,
+      "rate_human": "229.39 MiB/s"
+    },
+    {
+      "run": 2,
+      "capped": true,
+      "exit_code": 0,
+      "elapsed_ms": 31213,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 4300059,
+      "rate_human": "4.10 MiB/s"
+    },
+    {
+      "run": 3,
+      "capped": true,
+      "exit_code": 0,
+      "elapsed_ms": 31206,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 4301023,
+      "rate_human": "4.10 MiB/s"
+    },
+    {
+      "run": 3,
+      "capped": false,
+      "exit_code": 0,
+      "elapsed_ms": 573,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 234236873,
+      "rate_human": "223.39 MiB/s"
+    }
+  ],
+  "capped_median": 4300059,
+  "capped_human": "4.10 MiB/s",
+  "uncapped_median": 234236873,
+  "uncapped_human": "223.39 MiB/s",
+  "upload_capped_median": 4202183,
+  "upload_capped_human": "4.01 MiB/s",
+  "upload_runs": [
+    {
+      "run": 1,
+      "exit_code": 0,
+      "elapsed_ms": 31032,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 4325139,
+      "rate_human": "4.12 MiB/s"
+    },
+    {
+      "run": 2,
+      "exit_code": 0,
+      "elapsed_ms": 31940,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 4202183,
+      "rate_human": "4.01 MiB/s"
+    },
+    {
+      "run": 3,
+      "exit_code": 0,
+      "elapsed_ms": 31948,
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate": 4201131,
+      "rate_human": "4.01 MiB/s"
+    }
+  ],
+  "over_cap_share": 0.0252,
+  "ratio": 54.473,
+  "verdict": "the cap holds: 4.10 MiB/s against a 4MiB/s cap, and 223.39 MiB/s uncapped",
+  "failures": [],
+  "commands": [
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-capped-1 --peer 127.0.0.1:56210 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json --max-download-rate 4MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-uncapped-1 --peer 127.0.0.1:56210 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-uncapped-2 --peer 127.0.0.1:56210 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-capped-2 --peer 127.0.0.1:56210 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json --max-download-rate 4MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-capped-3 --peer 127.0.0.1:56210 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json --max-download-rate 4MiB/s",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-uncapped-3 --peer 127.0.0.1:56210 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-upcapped-1 --peer 127.0.0.1:63468 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-upcapped-2 --peer 127.0.0.1:63468 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json",
+    "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\movie.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\rate-limit\\out-upcapped-3 --peer 127.0.0.1:63468 --no-dht --no-lsd --no-tracker --no-web-seed --port 0 --json"
+  ],
+  "notes": [
+    "Peers only: --no-web-seed and --no-tracker are set, so the only source is the seeder named with --peer. --web-seed-speed-limit is a different limiter and is measured elsewhere.",
+    "The rate is computed from the wall clock and the bytes the report says landed, not from the report's own mean, so the limiter is not measured by the thing it limits.",
+    "Each run gets a fresh output directory. Reusing one lets the hash check on add find the payload already there and report a rate that measures the disk.",
+    "The pair alternates order between runs, so the volume's own state is not always handed to the same side.",
+    "upload_runs is the other direction of the same LimitsConfig field: the seeder is restarted with --max-upload-rate and the downloader runs uncapped, so what bounds the transfer is the seeder's limiter."
+  ]
+}

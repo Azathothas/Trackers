@@ -1,0 +1,98 @@
+{
+  "kind": "transport",
+  "generated_at": "2026-08-24T03:31:09.259Z",
+  "payload_mib": 32,
+  "profile": "release",
+  "cases": [
+    {
+      "case": "tcp",
+      "seed_transport": "tcp",
+      "leech_transport": "tcp",
+      "encryption": "prefer",
+      "expect_finished": true,
+      "finished": true,
+      "verified": true,
+      "seconds": 0.21,
+      "mib_per_second": 152.38,
+      "exit_code": 0,
+      "judged": true,
+      "ok": true
+    },
+    {
+      "case": "utp",
+      "seed_transport": "utp",
+      "leech_transport": "utp",
+      "encryption": "off",
+      "expect_finished": true,
+      "finished": true,
+      "verified": true,
+      "seconds": 0.42,
+      "mib_per_second": 76.19,
+      "exit_code": 0,
+      "judged": true,
+      "ok": true
+    },
+    {
+      "case": "both",
+      "seed_transport": "both",
+      "leech_transport": "both",
+      "encryption": "prefer",
+      "expect_finished": true,
+      "finished": true,
+      "verified": true,
+      "seconds": 0.21,
+      "mib_per_second": 152.38,
+      "exit_code": 0,
+      "judged": true,
+      "ok": true
+    },
+    {
+      "case": "mixed",
+      "seed_transport": "tcp",
+      "leech_transport": "utp",
+      "encryption": "off",
+      "expect_finished": false,
+      "finished": false,
+      "verified": false,
+      "seconds": 45.06,
+      "mib_per_second": null,
+      "exit_code": 9,
+      "judged": true,
+      "ok": true
+    },
+    {
+      "case": "utp-mse",
+      "seed_transport": "utp",
+      "leech_transport": "utp",
+      "encryption": "require",
+      "expect_finished": false,
+      "finished": false,
+      "verified": false,
+      "seconds": 45.05,
+      "mib_per_second": null,
+      "exit_code": 9,
+      "judged": true,
+      "ok": true
+    },
+    {
+      "case": "tcp-mse",
+      "seed_transport": "tcp",
+      "leech_transport": "tcp",
+      "encryption": "require",
+      "expect_finished": true,
+      "finished": true,
+      "verified": true,
+      "seconds": 0.2,
+      "mib_per_second": 160.0,
+      "exit_code": 0,
+      "judged": true,
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "notes": [
+    "Loopback has no bottleneck link, so nothing here measures what uTP is for: LEDBAT targets a fixed one-way queueing delay and yields to competing traffic, and there is no queue to build on loopback. The rates are a statement about this machine.",
+    "The mixed case is the control. A UtpOnly leecher cannot reach a TcpOnly seeder, so its completing would mean the flag never reached the dialer and the other cases were TCP.",
+    "utp-mse is expected NOT to finish and that is a defect rather than a design: MSE over uTP stalls after the handshake, and utp with encryption off and tcp-mse are the two cases that say it is neither the transport nor the encryption on its own. See TODO/peers.md, T-233."
+  ]
+}

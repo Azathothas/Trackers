@@ -1,0 +1,199 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  # The same pin CI's gating jobs take, and it has to be the same value:
+  # `scripts/check-todo.ps1` fails when the workflows disagree about it. What
+  # it is for and how it moves is written where it is set, in `ci.yml`. A
+  # release is the one build that has to be reproducible, so the compiler that
+  # makes it is named rather than picked up from whatever shipped that week.
+  RUST_GATE: "1.98.0"
+
+jobs:
+  # Nothing is published before the same gate CI applies. A tagged release
+  # that skips fmt, clippy, and the tests is how a broken binary reaches the
+  # releases page.
+  gate:
+    name: Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2.9.2
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+      - run: cargo test --workspace --locked --all-features
+
+  build:
+    name: Build ${{ matrix.name }}
+    needs: gate
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: x86_64-linux
+            runner: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+          - name: aarch64-linux
+            runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-musl
+          - name: x86_64-windows
+            runner: windows-latest
+            target: x86_64-pc-windows-msvc
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends musl-tools b3sum
+
+      # The TLS and SHA-1 backends assemble their own primitives, and NASM is
+      # not on the Windows runner by default.
+      # Ours, not ilammy/setup-nasm: that action is unmaintained, still runs
+      # on node20 so the runner warns on every job, and verifies nothing about
+      # what it downloads. scripts/setup-nasm.ps1 pins the version and checks
+      # the archive against a SHA-256.
+      - name: Install NASM (Windows)
+        if: runner.os == 'Windows'
+        run: pwsh -NoProfile -File scripts/setup-nasm.ps1
+
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+          targets: ${{ matrix.target }}
+
+      # No packaged b3sum on Windows, and the checksums are BLAKE3 on every
+      # other target, so build it rather than switching hash on one platform.
+      - name: Install b3sum (Windows)
+        if: runner.os == 'Windows'
+        uses: taiki-e/install-action@v2.86.3
+        with:
+          tool: b3sum
+
+      - uses: Swatinem/rust-cache@v2.9.2
+
+      - name: Build
+        run: cargo build --release --locked --target ${{ matrix.target }}
+
+      # Every published artifact makes the same promise: it runs on a machine
+      # with nothing installed. This reads the binary and refuses to publish
+      # one that names a loader, needs a shared object, or imports the dynamic
+      # C runtime. It runs on all three targets rather than only Windows.
+      - name: Check the binary is self-contained
+        shell: pwsh
+        run: |
+          $name = if ($env:RUNNER_OS -eq 'Windows') { 'bit-cli.exe' } else { 'bit-cli' }
+          ./scripts/check-static.ps1 -Path "target/${{ matrix.target }}/release/$name"
+
+      # Archive names carry the target triple rather than a friendly name, so
+      # two builds of the same release cannot collide and a downloader can tell
+      # what they got.
+      - name: Assemble the archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          name="bit-cli-${{ matrix.target }}"
+          mkdir -p "$name"
+          cp LICENSE README.md CHANGELOG.md "$name/"
+          if [ -f THIRD_PARTY.md ]; then cp THIRD_PARTY.md "$name/"; fi
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            cp "target/${{ matrix.target }}/release/bit-cli.exe" "$name/"
+          else
+            cp "target/${{ matrix.target }}/release/bit-cli" "$name/"
+          fi
+          echo "ARCHIVE_NAME=$name" >> "$GITHUB_ENV"
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          name="${ARCHIVE_NAME}"
+          # The bare binary keeps its extension so it stays runnable once
+          # downloaded, and the zip carries the licence and the docs.
+          cp "$name/bit-cli.exe" "$name.exe"
+          b3sum "$name.exe" > "$name.exe.b3sum"
+          7z a "$name.zip" "$name" > /dev/null
+          b3sum "$name.zip" > "$name.zip.b3sum"
+
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          name="${ARCHIVE_NAME}"
+          cp "$name/bit-cli" "$name"_bin
+          mv "$name"_bin "$name.bin"
+          b3sum "$name.bin" > "$name.bin.b3sum"
+          tar -cJf "$name.tar.xz" "$name"
+          b3sum "$name.tar.xz" > "$name.tar.xz.b3sum"
+
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: bit-cli-${{ matrix.target }}
+          path: |
+            bit-cli-${{ matrix.target }}.*
+          retention-days: 7
+          if-no-files-found: error
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    # Only a tag publishes. A manual run builds and uploads artifacts for
+    # inspection and stops there, so github.ref being a branch cannot create a
+    # release tagged after the branch.
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+      attestations: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: actions/download-artifact@v8.0.1
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: List what will be published
+        shell: bash
+        run: ls -la artifacts
+
+      - name: Attest build provenance
+        uses: actions/attest@v4.2.2
+        with:
+          subject-path: artifacts/*
+
+      # gh with the built-in GITHUB_TOKEN. No crates.io credential and no
+      # RELEASE_PLZ_TOKEN appears anywhere in this repository, by decision 7.5.
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF#refs/tags/}"
+          gh release create "$tag" \
+            --title "$tag" \
+            --notes-file CHANGELOG.md \
+            --verify-tag \
+            artifacts/*

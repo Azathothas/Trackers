@@ -1,0 +1,30 @@
+# Java, Maven and Gradle. Combine with dotfiles/common/gitignore and
+# dotfiles/os-editor/gitignore.
+
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+target/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+
+.gradle/
+gradle-app.setting
+.gradletasknamecache
+
+# ⛔ The wrapper scripts and the wrapper properties ARE committed. They are what
+# pin the build tool version, and a project without them builds with whatever
+# happens to be installed.
+# gradlew  gradlew.bat  gradle/wrapper/gradle-wrapper.properties
+# mvnw     mvnw.cmd     .mvn/wrapper/maven-wrapper.properties
+
+.classpath
+.project
+.settings/
+*.iml

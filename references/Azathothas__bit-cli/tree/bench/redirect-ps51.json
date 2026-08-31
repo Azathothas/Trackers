@@ -1,0 +1,54 @@
+﻿{
+    "generated_at":  "2026-08-23T09:15:24.060Z",
+    "host":  "5.1.26100.9168",
+    "edition":  "Desktop",
+    "console_output_encoding":  "IBM437",
+    "to_native_encoding":  "us-ascii",
+    "jq":  true,
+    "name_utf8_hex":  "636166c3a92dcebb2de697a5e69cac2e62696e",
+    "forms":  {
+                  "\u003e file":  {
+                                      "wrote":  true,
+                                      "size":  1390,
+                                      "head":  "ff fe 7b 00",
+                                      "whole":  false,
+                                      "note":  "jq: parse error: Invalid numeric literal at line 1, column 3"
+                                  },
+                  "cmd /c \"... \u003e file\"":  {
+                                                     "wrote":  true,
+                                                     "size":  668,
+                                                     "head":  "7b 0a 20 20",
+                                                     "whole":  true,
+                                                     "note":  ""
+                                                 },
+                  "| Out-File -Encoding utf8NoBOM":  {
+                                                         "wrote":  false,
+                                                         "whole":  false,
+                                                         "note":  "this host has no utf8NoBOM: Cannot validate argument on parameter \u0027Encoding\u0027. The argument \"utf8NoBOM\" does not belong to the set \"unknown,string,unicode,bigendianunicode,utf8,utf7,utf32,ascii,default,oem\" specified by the ValidateSet attribute. Supply an argument that is in the set and then try the command again."
+                                                     },
+                  "| Set-Content -Encoding utf8":  {
+                                                       "wrote":  true,
+                                                       "size":  711,
+                                                       "head":  "ef bb bf 7b",
+                                                       "whole":  false,
+                                                       "note":  "jq read it, and the name is not the name"
+                                                   },
+                  "| ConvertFrom-Json":  {
+                                             "wrote":  true,
+                                             "whole":  false,
+                                             "note":  "it parsed, and the name is not the name"
+                                         },
+                  "| ConvertFrom-Json, encodings set":  {
+                                                            "wrote":  true,
+                                                            "whole":  true,
+                                                            "note":  ""
+                                                        },
+                  "| Set-Content -Encoding utf8, encodings set":  {
+                                                                      "wrote":  true,
+                                                                      "size":  697,
+                                                                      "head":  "ef bb bf 7b",
+                                                                      "whole":  true,
+                                                                      "note":  ""
+                                                                  }
+              }
+}

@@ -1,0 +1,106 @@
+{
+  "kind": "shared-files",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T01:42:47.442Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows NT 10.0.26200.0",
+    "cpus": 20
+  },
+  "parameters": {
+    "blob_size_mib": 16,
+    "other_size_mib": 2,
+    "piece_length": "1MiB",
+    "profile": "release",
+    "jobs": 3
+  },
+  "command": "bit-cli download C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\shared-files\\fixture\\torrent_c.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\shared-files\\fixture\\torrent_a.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\shared-files\\fixture\\torrent_b.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\shared-files\\out -j 3 --no-tracker --no-dht --no-lsd --port 0 --report-interval 500ms --stop-after 60s --json",
+  "mirror": "http://127.0.0.1:63583/",
+  "exit_code": 9,
+  "elapsed_ms": 60061,
+  "shared_file": {
+    "bytes": 16777216,
+    "human": "16.00 MiB",
+    "sha256": "42ee6db050db50cec920d25e93477a5a15a03bfc4686d7e4d4d4b9882937f52a"
+  },
+  "http_bytes_total": 20971520,
+  "torrents": [
+    {
+      "torrent": "payload_c",
+      "info_hash": "a0f16220418c110ee3b5dba0a689c2c1b4791ca5",
+      "finished": true,
+      "downloaded_bytes": 20971520,
+      "from_web_seeds": 20971520,
+      "from_peers": 0,
+      "from_resume": 0,
+      "http_bytes": 20971520,
+      "shared_count": 0,
+      "shared_from": null,
+      "shared_from_path": null,
+      "pieces_compared": 0,
+      "bytes_proven": 0,
+      "landed": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\shared-files\\out\\payload_c\\a\\b\\c\\file.blob",
+      "sha256": "42ee6db050db50cec920d25e93477a5a15a03bfc4686d7e4d4d4b9882937f52a",
+      "hash_matches": true
+    },
+    {
+      "torrent": "payload_a",
+      "info_hash": "a0ca097edc90420424bb8c0c58afbdf0dab83bb7",
+      "finished": false,
+      "downloaded_bytes": 3145728,
+      "from_web_seeds": 0,
+      "from_peers": 0,
+      "from_resume": 3145728,
+      "http_bytes": 0,
+      "shared_count": 0,
+      "shared_from": null,
+      "shared_from_path": null,
+      "pieces_compared": 0,
+      "bytes_proven": 0,
+      "landed": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\shared-files\\out\\payload_a\\deep\\nested\\dirs\\file.blob",
+      "sha256": "080acf35a507ac9849cfcba47dc2ad83e01b75663a516279c8b9d243b719643e",
+      "hash_matches": false
+    },
+    {
+      "torrent": "payload_b",
+      "info_hash": "cef174c7d15b34711d51c01fc41ffc2731c33ecd",
+      "finished": false,
+      "downloaded_bytes": 3145728,
+      "from_web_seeds": 0,
+      "from_peers": 0,
+      "from_resume": 3145728,
+      "http_bytes": 0,
+      "shared_count": 0,
+      "shared_from": null,
+      "shared_from_path": null,
+      "pieces_compared": 0,
+      "bytes_proven": 0,
+      "landed": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\shared-files\\out\\payload_b\\media\\file.blob",
+      "sha256": "080acf35a507ac9849cfcba47dc2ad83e01b75663a516279c8b9d243b719643e",
+      "hash_matches": false
+    }
+  ],
+  "ok": false,
+  "failures": [
+    "the run exited 9, not 0",
+    "payload_a did not finish",
+    "payload_a's copy of the shared file does not hash equal",
+    "payload_b did not finish",
+    "payload_b's copy of the shared file does not hash equal",
+    "payload_a reported 0 shared file(s), not 1",
+    "payload_a named  as the donor, not the torrent that fetched it",
+    "payload_a took 0 bytes from sources, not the shared file's 16777216",
+    "payload_a proved only 0 bytes of the shared file",
+    "payload_b reported 0 shared file(s), not 1",
+    "payload_b named  as the donor, not the torrent that fetched it",
+    "payload_b took 0 bytes from sources, not the shared file's 16777216",
+    "payload_b proved only 0 bytes of the shared file",
+    "the shared file landed with 2 distinct hashes across the three output directories"
+  ],
+  "notes": [
+    "No --web-seed-for anywhere. The bindings A and B read from are computed from the metadata: every whole piece inside the shared file has the same SHA-1 in both torrents, which is the same evidence \bit-cli files --against reports as piece-hashes.",
+    "One piece length for all three torrents, which the default fixture deliberately does not use. Two files can be compared by hash only where whole pieces cover the same bytes of each.",
+    "-j 3. At 1 a torrent can only read what an earlier one has already written and the order is the command line's, which is T-140. Above 1 the donor finishes while the takers are running, so the source attaches to a torrent that has already started, which is T-143.",
+    "http_bytes counts only sources that are not shared_file, so it is the traffic that crossed the mirror rather than the bytes that moved."
+  ]
+}

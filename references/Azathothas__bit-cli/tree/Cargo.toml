@@ -1,0 +1,151 @@
+[workspace]
+resolver = "3"
+members = ["crates/bit-cli", "crates/bit-cli-core"]
+# The vendored upstreams are their own workspaces and are reached through
+# [patch.crates-io] below, not as members. Without this, cargo walks up from
+# vendor/librqbit-utp/Cargo.toml, finds this workspace, and refuses to build a
+# package that names no workspace of its own. See docs/vendoring.md.
+exclude = ["vendor"]
+
+[workspace.package]
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT"
+repository = "https://github.com/Azathothas/bit-cli"
+homepage = "https://github.com/Azathothas/bit-cli"
+authors = ["Azathothas <AjamX101@gmail.com>"]
+
+[workspace.dependencies]
+async-trait = "0.1"
+bit-cli-core = { path = "crates/bit-cli-core", version = "0.2.0" }
+
+anyhow = "1.0.103"
+bytes = "1.11.1"
+# The CDP driver behind `--render`, and it is optional on purpose: the
+# operator's ruling of 2026-08-29 is that it is a Cargo feature, off by
+# default, because packages in every artifact for a flag that is inert
+# without an external browser is the wrong trade. `default-features = false`
+# drops `chromiumoxide_fetcher`, which exists to **download** a browser, and
+# the ruling is "never bundled". See `TODO/cli-surface.md`, T-244.
+chromiumoxide = { version = "0.9.1", default-features = false }
+chrono = { version = "0.4.44", default-features = false, features = ["std", "clock"] }
+clap = { version = "4.6.1", features = ["derive", "env", "wrap_help", "string"] }
+clap_complete = "4.6.1"
+clap_complete_nushell = "4.6.1"
+clap_mangen = "0.3.3"
+# The same decoder the vendored `librqbit` names a torrent's files with, so
+# a report and the run it describes cannot disagree. See `TODO/bep-coverage.md`,
+# T-103. Already in the graph through `librqbit-core`.
+encoding_rs = "0.8"
+# The `Handler` a CDP session needs driven, and nothing else.
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
+globset = "0.4.19"
+hdrhistogram = { version = "7.5.5", default-features = false }
+ignore = "0.4.24"
+# The impersonating client. A path dependency rather than a
+# `[patch.crates-io]` entry, because the `impit` on crates.io is an
+# unrelated placeholder somebody registered under the name and patching it
+# would claim a lineage this tree does not have. The tree is under
+# `vendor/impit`, pinned in `vendor/upstream.json`, and what we changed is
+# in `patches/UPSTREAM.md`. See `TODO/cli-surface.md`, T-244.
+impit = { path = "vendor/impit/impit", version = "0.1.0" }
+librqbit = { version = "9.0.1", default-features = false, features = ["rust-tls", "http-api-client"] }
+librqbit-bencode = "9.0.1"
+librqbit-core = { version = "9.0.1", default-features = false }
+librqbit-peer-protocol = { version = "9.0.1", default-features = false }
+md-5 = "0.11.0"
+percent-encoding = "2.3.2"
+quick-xml = { version = "0.41.0", features = ["serialize"] }
+rand = "0.10.2"
+# A throwaway certificate for `loopback-tlsprobe`, which is the fixture that
+# reads this client's own TLS fingerprint off the wire. A **dev** dependency
+# only: `about.toml` sets `ignore-dev-dependencies`, so it reaches no released
+# binary and no notice file. `ring` rather than the default `aws_lc_rs`,
+# because `ring` is already under `rustls` here and a second crypto provider
+# would be a second C build for a test fixture. See `TODO/cli-surface.md`,
+# T-244.
+rcgen = { version = "0.14.0", default-features = false, features = ["crypto", "ring", "pem"] }
+# `http2` so ALPN offers `h2`, and the four decompressions so the
+# `Accept-Encoding` the browser profile implies is one this client can
+# actually decode. A client advertising `br` and then handing brotli to a
+# bencode parser is worse than one that never claimed to be a browser.
+# See `TODO/cli-surface.md`, T-244.
+reqwest = { version = "0.12.28", default-features = false, features = ["rustls-tls", "json", "stream", "http2", "gzip", "brotli", "deflate", "zstd"] }
+rustls = { version = "0.23.41", default-features = false, features = ["std", "tls12", "ring"] }
+rustls-pki-types = "1.14.1"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.150"
+sha1 = "0.11.0"
+sha2 = "0.11.0"
+tempfile = "3.24.0"
+thiserror = "2.0.18"
+tokio = { version = "1.52.3", features = ["rt-multi-thread", "macros", "net", "io-util", "time", "sync", "signal", "fs"] }
+tokio-rustls = { version = "0.26.4", default-features = false, features = ["ring", "tls12"] }
+toml = "1.1.2"
+tracing = "0.1.42"
+tracing-subscriber = { version = "0.3.20", features = ["env-filter", "json", "fmt"] }
+url = "2.5.8"
+walkdir = "2.5.0"
+webpki-roots = "1.0.8"
+
+# Every crate of the three upstreams this repository vendors, redirected at the
+# source rather than at the dependency edge.
+#
+# [patch.crates-io] and not a path dependency, because only four of these are
+# named directly and the rest arrive transitively: a path dependency would
+# redirect the four and leave cargo resolving the other nine from crates.io,
+# so the build would hold two copies of librqbit-core and the types would not
+# be the same types.
+#
+# The trees are under vendor/, pinned in vendor/upstream.json, and reconciled
+# with a new upstream release by scripts/vendor-sync.ps1. What we changed and
+# why is patches/UPSTREAM.md. Why this is vendored at all is docs/vendoring.md.
+[patch.crates-io]
+librqbit = { path = "vendor/rqbit/crates/librqbit" }
+librqbit-bencode = { path = "vendor/rqbit/crates/bencode" }
+librqbit-buffers = { path = "vendor/rqbit/crates/buffers" }
+librqbit-clone-to-owned = { path = "vendor/rqbit/crates/clone_to_owned" }
+librqbit-core = { path = "vendor/rqbit/crates/librqbit_core" }
+librqbit-dht = { path = "vendor/rqbit/crates/dht" }
+librqbit-lsd = { path = "vendor/rqbit/crates/librqbit_lsd" }
+librqbit-peer-protocol = { path = "vendor/rqbit/crates/peer_binary_protocol" }
+librqbit-sha1-wrapper = { path = "vendor/rqbit/crates/sha1w" }
+librqbit-tracker-comms = { path = "vendor/rqbit/crates/tracker_comms" }
+librqbit-upnp = { path = "vendor/rqbit/crates/upnp" }
+librqbit-utp = { path = "vendor/librqbit-utp" }
+librqbit-dualstack-sockets = { path = "vendor/librqbit-dualstack-sockets" }
+
+# The three trees the impersonating client needs, vendored for the same reason
+# and reached the same way. `rustls` because the `ClientHello` is its to
+# decide and no header set reaches it; `h2` because the HTTP/2 pseudo-header
+# order is the half of a fingerprint every survey gets wrong; `impit` is the
+# client that drives both, and it is a path dependency rather than a patch
+# because the `impit` on crates.io is an unrelated placeholder crate that
+# somebody registered under the name. See TODO/cli-surface.md, T-244.
+rustls = { path = "vendor/rustls/rustls" }
+h2 = { path = "vendor/h2" }
+# The 0.13 line only. This repository's own crates ask for 0.12 and cargo goes
+# on resolving that from the registry, because one [patch] entry supplies one
+# version. What it carries is one line: a request's extensions reaching hyper,
+# without which nothing a caller sets on a request reaches `h2`.
+reqwest = { path = "vendor/reqwest" }
+# For one method that upstream took after 0.1.20 shipped and that nothing else
+# can reach: announcing SETTINGS_HEADER_TABLE_SIZE.
+hyper-util = { path = "vendor/hyper-util" }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+# panic is left at the default "unwind" on purpose. With -j the process
+# supervises several torrents and many tasks at once, and a panic in one piece
+# verification or one HTTP source must not take down a run that is otherwise
+# fine. Unwinding lets the engine catch it, fail that unit, report it with
+# context, and carry on. Do not set panic = "abort" to save binary size.
+
+[profile.bench]
+inherits = "release"
+debug = true
+strip = false

@@ -1,0 +1,49 @@
+# Line endings are normalised to LF in the repository, on every platform.
+#
+# The reason this file exists rather than relying on core.autocrlf: a torrent
+# fixture is a binary file that happens to contain ASCII, and any CRLF
+# translation applied to one changes its info hash. So the rule is explicit per
+# type rather than inferred per checkout.
+#
+# Verify with `git ls-files --eol`. Every tracked text file is `i/lf`, which is
+# the half that decides what a commit contains and the half worth checking:
+#
+#   git ls-files --eol | Select-String -NotMatch 'i/lf|i/-text'
+#
+# The working-tree column is not uniform and does not need to be. A `.ps1`
+# should be `w/crlf`, and one written by an editor that did not read this file
+# will be `w/lf` until it is next checked out. A committed `bench/*.json` is
+# `w/crlf` because PowerShell wrote it, and is normalised to LF on the way in.
+
+* text=auto eol=lf
+
+*.rs        text eol=lf
+*.toml      text eol=lf
+*.md        text eol=lf
+*.json      text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.jq        text eol=lf
+*.sh        text eol=lf
+*.lock      text eol=lf
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
+
+# PowerShell is the one exception. Windows PowerShell 5.1 mis-parses a
+# here-string whose terminator arrives with a bare LF, so these keep CRLF in
+# the working tree.
+*.ps1       text eol=crlf
+
+# Anything whose bytes are the content. A torrent is the clearest case: change
+# one byte and the info hash changes.
+*.torrent   binary
+*.bin       binary
+*.iso       binary
+*.png       binary
+*.jpg       binary
+*.gz        binary
+*.zst       binary
+*.exe       binary
+
+# Generated, and noisy in a diff.
+Cargo.lock  linguist-generated=true

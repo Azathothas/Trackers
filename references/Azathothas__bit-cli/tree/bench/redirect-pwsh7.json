@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-08-23T09:15:16.046Z",
+  "host": "7.6.5",
+  "edition": "Core",
+  "console_output_encoding": "ibm437",
+  "to_native_encoding": "utf-8",
+  "jq": true,
+  "name_utf8_hex": "636166c3a92dcebb2de697a5e69cac2e62696e",
+  "forms": {
+    "> file": {
+      "wrote": true,
+      "size": 668,
+      "head": "7b 0a 20 20",
+      "whole": true,
+      "note": ""
+    },
+    "cmd /c \"... > file\"": {
+      "wrote": true,
+      "size": 668,
+      "head": "7b 0a 20 20",
+      "whole": true,
+      "note": ""
+    },
+    "| Out-File -Encoding utf8NoBOM": {
+      "wrote": true,
+      "size": 708,
+      "head": "7b 0d 0a 20",
+      "whole": false,
+      "note": "jq read it, and the name is not the name"
+    },
+    "| Set-Content -Encoding utf8": {
+      "wrote": true,
+      "size": 708,
+      "head": "7b 0d 0a 20",
+      "whole": false,
+      "note": "jq read it, and the name is not the name"
+    },
+    "| ConvertFrom-Json": {
+      "wrote": true,
+      "whole": false,
+      "note": "it parsed, and the name is not the name"
+    },
+    "| ConvertFrom-Json, encodings set": {
+      "wrote": true,
+      "whole": true,
+      "note": ""
+    },
+    "| Set-Content -Encoding utf8, encodings set": {
+      "wrote": true,
+      "size": 694,
+      "head": "7b 0d 0a 20",
+      "whole": true,
+      "note": ""
+    }
+  }
+}

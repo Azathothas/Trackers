@@ -1,0 +1,22 @@
+# 80-build-pacman
+date        : 2026-08-28T12:00:17Z
+host        : Linux 6.18.44-fc-v22 x86_64, 4 cores
+compiler    : zig 0.16.0 cc -target aarch64-linux-musl
+meson       : 1.12.0
+target      : aarch64-linux-musl
+pacman      : 54d94116164b0b2202c6061c4a59c6f3e70820d8 (v7.1.0 + patch level)
+deps prefix : /home/user/work/out/aarch64
+patches     : 0001-libalpm-invalidate-curl-data-in-child.patch
+
+meson setup    ok
+meson compile  ok
+build time     6s
+linkage        static
+size (bytes)   14321560
+emulator       qemu-aarch64-static
+pacman -V      ok
+
+reported       Pacman v7.1.0 - libalpm v16.0.1
+
+
+verdict: pacman built, linked static, and ran

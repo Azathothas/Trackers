@@ -1,0 +1,283 @@
+{
+  "schema_version": "1",
+  "kind": "multi-torrent",
+  "todo": "T-030",
+  "generated_at": "2026-08-20T07:18:33.863Z",
+  "parameters": {
+    "torrents": 4,
+    "payload_size": "128MiB",
+    "piece_length": "1MiB",
+    "connections": 4,
+    "runs": 2,
+    "job_sweep": [
+      1,
+      2,
+      4
+    ],
+    "profile": "release",
+    "web_seed": "http://127.0.0.1:62664/"
+  },
+  "verdict": "-j holds: 4 torrents at -j 4 finish in 2.011x less wall time than one invocation at a time, and 2.184x less than -j 1 in the same process, at 29.45% of the file server's own rate. One torrent at a time with the same total connections reaches 0.459x of it.",
+  "ceiling": {
+    "what": "bit-cli bench webseed against the same file server: no bridge, no hashing, no disk",
+    "rate_bytes": 855119004,
+    "rate_human": "815.51 MiB/s",
+    "concurrency": 32
+  },
+  "ratios": {
+    "serial_over_jn": 2.011,
+    "j1_over_jn": 2.184,
+    "j1_over_serial": 1.086,
+    "jn_share_of_ceiling": 0.294,
+    "control_over_jn": 0.459,
+    "one_torrent_times_n": 4280
+  },
+  "summary": [
+    {
+      "mode": "one",
+      "elapsed_ms": 1070,
+      "elapsed_human": "1.07s",
+      "bytes": 134217728,
+      "bytes_human": "128.00 MiB",
+      "rate_bytes": 125437129,
+      "rate_human": "119.63 MiB/s",
+      "share_of_ceiling": "14.67%",
+      "peak_rss": 42936320,
+      "cpu_ms": 1023,
+      "open_handles": 224
+    },
+    {
+      "mode": "serial",
+      "elapsed_ms": 4288,
+      "elapsed_human": "4.29s",
+      "bytes": 536870912,
+      "bytes_human": "512.00 MiB",
+      "rate_bytes": 125203104,
+      "rate_human": "119.40 MiB/s",
+      "share_of_ceiling": "14.64%",
+      "peak_rss": 42831872,
+      "cpu_ms": 4480,
+      "open_handles": 225
+    },
+    {
+      "mode": "j1",
+      "elapsed_ms": 4656,
+      "elapsed_human": "4.66s",
+      "bytes": 536870912,
+      "bytes_human": "512.00 MiB",
+      "rate_bytes": 115307326,
+      "rate_human": "109.97 MiB/s",
+      "share_of_ceiling": "13.48%",
+      "peak_rss": 49502208,
+      "cpu_ms": 4390,
+      "open_handles": 228
+    },
+    {
+      "mode": "j2",
+      "elapsed_ms": 138864,
+      "elapsed_human": "138.86s",
+      "bytes": 536870912,
+      "bytes_human": "512.00 MiB",
+      "rate_bytes": 3866163,
+      "rate_human": "3.69 MiB/s",
+      "share_of_ceiling": "0.45%",
+      "peak_rss": 70187008,
+      "cpu_ms": 4592,
+      "open_handles": 242
+    },
+    {
+      "mode": "j4",
+      "elapsed_ms": 2132,
+      "elapsed_human": "2.13s",
+      "bytes": 536870912,
+      "bytes_human": "512.00 MiB",
+      "rate_bytes": 251815625,
+      "rate_human": "240.15 MiB/s",
+      "share_of_ceiling": "29.45%",
+      "peak_rss": 104323072,
+      "cpu_ms": 4898,
+      "open_handles": 244
+    },
+    {
+      "mode": "control",
+      "elapsed_ms": 4642,
+      "elapsed_human": "4.64s",
+      "bytes": 536870912,
+      "bytes_human": "512.00 MiB",
+      "rate_bytes": 115655087,
+      "rate_human": "110.30 MiB/s",
+      "share_of_ceiling": "13.53%",
+      "peak_rss": 96223232,
+      "cpu_ms": 7968,
+      "open_handles": 292
+    }
+  ],
+  "runs": [
+    {
+      "mode": "one",
+      "iteration": 1,
+      "processes": 1,
+      "elapsed_ms": 1070,
+      "bytes": 134217728,
+      "rate_bytes": 125437129,
+      "peak_rss": 42647552,
+      "cpu_ms": 1156,
+      "open_handles": 222
+    },
+    {
+      "mode": "serial",
+      "iteration": 1,
+      "processes": 4,
+      "elapsed_ms": 4296,
+      "bytes": 536870912,
+      "rate_bytes": 124969952,
+      "peak_rss": 42971136,
+      "cpu_ms": 4435,
+      "open_handles": 225
+    },
+    {
+      "mode": "j1",
+      "iteration": 1,
+      "processes": 1,
+      "elapsed_ms": 4355,
+      "bytes": 536870912,
+      "rate_bytes": 123276903,
+      "peak_rss": 49770496,
+      "cpu_ms": 3812,
+      "open_handles": 227
+    },
+    {
+      "mode": "j2",
+      "iteration": 1,
+      "processes": 1,
+      "elapsed_ms": 3183,
+      "bytes": 536870912,
+      "rate_bytes": 168668210,
+      "peak_rss": 73527296,
+      "cpu_ms": 4030,
+      "open_handles": 236
+    },
+    {
+      "mode": "j4",
+      "iteration": 1,
+      "processes": 1,
+      "elapsed_ms": 2072,
+      "bytes": 536870912,
+      "rate_bytes": 259107583,
+      "peak_rss": 103915520,
+      "cpu_ms": 4843,
+      "open_handles": 243
+    },
+    {
+      "mode": "control",
+      "iteration": 1,
+      "processes": 1,
+      "elapsed_ms": 4344,
+      "bytes": 536870912,
+      "rate_bytes": 123589068,
+      "peak_rss": 96145408,
+      "cpu_ms": 8187,
+      "open_handles": 293
+    },
+    {
+      "mode": "one",
+      "iteration": 2,
+      "processes": 1,
+      "elapsed_ms": 1070,
+      "bytes": 134217728,
+      "rate_bytes": 125437129,
+      "peak_rss": 43225088,
+      "cpu_ms": 890,
+      "open_handles": 226
+    },
+    {
+      "mode": "serial",
+      "iteration": 2,
+      "processes": 4,
+      "elapsed_ms": 4279,
+      "bytes": 536870912,
+      "rate_bytes": 125466444,
+      "peak_rss": 42692608,
+      "cpu_ms": 4526,
+      "open_handles": 225
+    },
+    {
+      "mode": "j4",
+      "iteration": 2,
+      "processes": 1,
+      "elapsed_ms": 2191,
+      "bytes": 536870912,
+      "rate_bytes": 245034647,
+      "peak_rss": 104730624,
+      "cpu_ms": 4952,
+      "open_handles": 246
+    },
+    {
+      "mode": "j2",
+      "iteration": 2,
+      "processes": 1,
+      "elapsed_ms": 274546,
+      "bytes": 536870912,
+      "rate_bytes": 1955486,
+      "peak_rss": 66846720,
+      "cpu_ms": 5155,
+      "open_handles": 248
+    },
+    {
+      "mode": "j1",
+      "iteration": 2,
+      "processes": 1,
+      "elapsed_ms": 4957,
+      "bytes": 536870912,
+      "rate_bytes": 108305611,
+      "peak_rss": 49233920,
+      "cpu_ms": 4968,
+      "open_handles": 228
+    },
+    {
+      "mode": "control",
+      "iteration": 2,
+      "processes": 1,
+      "elapsed_ms": 4941,
+      "bytes": 536870912,
+      "rate_bytes": 108656327,
+      "peak_rss": 96301056,
+      "cpu_ms": 7749,
+      "open_handles": 290
+    }
+  ],
+  "commands": [
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe create payload0 --name payload0 --piece-length 1MiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent --force --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe create payload1 --name payload1 --piece-length 1MiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent --force --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe create payload2 --name payload2 --piece-length 1MiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent --force --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe create payload3 --name payload3 --piece-length 1MiB --no-creation-date --output C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --force --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe bench webseed C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent --web-seed http://127.0.0.1:62664/ --duration 10s --warmup 2s --concurrency 32 --request-size 1MiB --format json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-one --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-0 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-1 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-2 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-3 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-j1 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-j2 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 2 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-j4 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 4 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-control --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 16 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-one --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-0 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-1 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-2 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-serial-3 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-j4 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 4 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-j2 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 2 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-j1 --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 0 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json",
+    "C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\target\\release\\bit-cli.exe download C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t0.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t1.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t2.torrent C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\t3.torrent --dir C:\\Users\\AjamX\\Downloads\\TEMP\\kist\\.tmp\\multi-torrent\\out-control --web-seed http://127.0.0.1:62664/ --web-seed-only --web-seed-connections 16 --port 0 --no-dht --no-lsd --file-allocation sparse --max-concurrent-downloads 1 --json"
+  ],
+  "failures": [],
+  "notes": [
+    "Every mode moves the same total bytes off the same loopback server, so the wire is not the variable. The server reads out of the page cache well above anything the download path reaches.",
+    "Each torrent has its own payload from its own seed, so no two share a piece and no torrent is served out of another one's window cache.",
+    "serial is N separate invocations, so its wall time includes N process startups and N sessions. j1 is one invocation with one download at a time, so the difference between the two is what the shared session costs rather than what the extra processes cost.",
+    "one_torrent_times_n is the wall time N torrents would take if each cost exactly what one alone costs and nothing overlapped. It is a reference, not a target: a run faster than it overlapped something.",
+    "ceiling is what the same file server serves through bit-cli's own HTTP path with no bridge, no hashing, and no disk. Every mode reads off that one server, so it is an upper bound on all of them, and a mode approaching it says more about the server than about bit-cli.",
+    "control puts the same total connection count as the deepest -j step onto one torrent at a time. -j N runs N torrents at once and each keeps its own connections, so without the control the sweep cannot say whether the flag bought concurrency or bought connections."
+  ]
+}

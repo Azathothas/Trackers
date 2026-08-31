@@ -1,0 +1,26 @@
+# 20-probe-arch-repos
+date : 2026-08-28T13:54:16Z
+host : Linux 6.18.44-fc-v22 x86_64
+curl : curl 8.5.0 (x86_64-pc-linux-gnu) libcurl/8.5.0 OpenSSL/3.0.13 zlib/1.3 brotli/1.1.0 zstd/1.5.5 libidn2/2.3.7 libpsl/0.21.2 (+libidn2/2.3.7) libssh/0.10.6/openssl/zlib nghttp2/1.59.0 librtmp/2.3 OpenLDAP/2.6.10
+
+ARCH         DISTRIBUTION        HTTP  BYTES     PARSES  PKGS
+x86_64       Arch Linux          200   130031    yes     297
+aarch64      Arch Linux ARM      200   255181    yes     311
+riscv64      Arch Linux RISC-V   200   71810     yes     296
+loongarch64  LoongArch Linux     200   90742     yes     293
+powerpc64le  ArchPOWER           200   724493    yes     3736
+
+## repository coordinates, for pacman.conf
+
+ARCH         DISTRIBUTION        REPOS    KEYRING       Server =
+x86_64       Arch Linux          core,extra archlinux-keyring https://geo.mirror.pkgbuild.com/$repo/os/$arch
+aarch64      Arch Linux ARM      core,extra archlinuxarm-keyring http://mirror.archlinuxarm.org/$arch/$repo
+riscv64      Arch Linux RISC-V   core,extra archlinux-keyring https://archriscv.felixc.at/repo/$repo
+loongarch64  LoongArch Linux     core,extra archlinux-keyring https://mirrors.wsyu.edu.cn/loongarch/archlinux/$repo/os/loong64
+powerpc64le  ArchPOWER           base,extra archpower-keyring https://repo.archlinuxpower.org/$repo/powerpc64le
+
+⚠ $arch does NOT substitute correctly for loongarch64 (dir is loong64)
+⚠ ArchPOWER's core-equivalent repo is named 'base'
+⚠ Arch Linux RISC-V has no os/$arch path component
+
+verdict: all five architectures have a live repository

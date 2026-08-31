@@ -1,0 +1,49 @@
+[
+  {
+    "url": "https://api.github.com/repos/DeSireFire/animeTrackerList/issues/comments/1853150328",
+    "html_url": "https://github.com/DeSireFire/animeTrackerList/issues/30#issuecomment-1853150328",
+    "issue_url": "https://api.github.com/repos/DeSireFire/animeTrackerList/issues/30",
+    "id": 1853150328,
+    "node_id": "IC_kwDOCz5w9M5udNR4",
+    "user": {
+      "login": "DeSireFire",
+      "id": 18726905,
+      "node_id": "MDQ6VXNlcjE4NzI2OTA1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18726905?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/DeSireFire",
+      "html_url": "https://github.com/DeSireFire",
+      "followers_url": "https://api.github.com/users/DeSireFire/followers",
+      "following_url": "https://api.github.com/users/DeSireFire/following{/other_user}",
+      "gists_url": "https://api.github.com/users/DeSireFire/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/DeSireFire/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/DeSireFire/subscriptions",
+      "organizations_url": "https://api.github.com/users/DeSireFire/orgs",
+      "repos_url": "https://api.github.com/users/DeSireFire/repos",
+      "events_url": "https://api.github.com/users/DeSireFire/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/DeSireFire/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2023-12-13T02:02:40Z",
+    "updated_at": "2023-12-13T02:02:40Z",
+    "body": "> 我看到好多个不去重的 Tracker https://github.com/DeSireFire/animeTrackerList/blob/231b90ca37a1f6e2daeda965ae893e131370bb2d/AT_all.txt https://tracker.loligirl.cn/announce https://tracker.loligirl.cn:443/announce http://tracker.anirena.com/announce http://tracker.anirena.com:80/announce 之类的，它们的特征都是端口是默认端口 (HTTP:80, HTTPS:443) 也许我们可以完善一下它?\r\n\r\n这种清洗还是好办的，\r\n不过好像有些旧软件，它对https和http有点玄学问题，需要声明端口。\r\n我不太记得在哪里碰到的了。\r\n\r\n找时间一起加。",
+    "author_association": "OWNER",
+    "pin": null,
+    "reactions": {
+      "url": "https://api.github.com/repos/DeSireFire/animeTrackerList/issues/comments/1853150328/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "kind": "fastresume",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T19:23:24.469Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "payload_mib": 512,
+    "min_saving": 0.15,
+    "cache_dir": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\fastresume\\data\\.bit-cli-resume",
+    "info_hash": "3a7ecd1a82589a3f76f46c119a1ac7abad333151",
+    "profile": "release"
+  },
+  "cases": [
+    {
+      "case": "cold",
+      "fastresume": true,
+      "exit_code": 0,
+      "elapsed_s": 2.383,
+      "complete": true,
+      "have": 536870912,
+      "total": 536870912,
+      "cached": true
+    },
+    {
+      "case": "warm",
+      "fastresume": true,
+      "exit_code": 0,
+      "elapsed_s": 2.055,
+      "complete": true,
+      "have": 536870912,
+      "total": 536870912,
+      "cached": true
+    },
+    {
+      "case": "stale",
+      "fastresume": true,
+      "exit_code": 0,
+      "elapsed_s": 2.381,
+      "complete": false,
+      "have": 535822336,
+      "total": 536870912,
+      "cached": true
+    },
+    {
+      "case": "refresh",
+      "fastresume": true,
+      "exit_code": 0,
+      "elapsed_s": 2.05,
+      "complete": false,
+      "have": 535822336,
+      "total": 536870912,
+      "cached": true
+    },
+    {
+      "case": "no_flag",
+      "fastresume": false,
+      "exit_code": 0,
+      "elapsed_s": 2.367,
+      "complete": false,
+      "have": 535822336,
+      "total": 536870912,
+      "cached": true
+    }
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "The cache lives beside the payload, at <data>/.bit-cli-resume/<info hash>.bitv, with a .meta sidecar naming every file's length and modification time.",
+    "stale is the case that matters: a cache used when it should not be serves bytes that do not match the torrent, and the peer on the other end finds out rather than this process.",
+    "The durations are judged as differences and not as ratios: most of each run is a fixed two second settle, so two runs that differ only in whether they hashed the payload differ by exactly the hashing.",
+    "stale is read against the run after it rather than the run before it, because the stale run rewrites the cache it rejected, so the run after it is the warm one for that payload.",
+    "no_flag exists because an opt-in flag that works when it was not passed is not opt-in."
+  ]
+}

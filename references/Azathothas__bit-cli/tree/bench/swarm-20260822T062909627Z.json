@@ -1,0 +1,157 @@
+{
+  "kind": "swarm_check",
+  "schema_version": "1",
+  "generated_at": "2026-08-22T06:29:09.627Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "peers": 100,
+    "leech_peers": [
+      1,
+      4,
+      16
+    ],
+    "payload_mib": 8,
+    "payload_bytes": 8388608,
+    "piece_count": 32.0,
+    "target": "127.0.0.1:51914",
+    "profile": "release"
+  },
+  "serving_curve": [
+    {
+      "peers": 1,
+      "sustained": 155344592,
+      "sustained_human": "148.15 MiB/s",
+      "received": 8388608,
+      "held": 8388608
+    },
+    {
+      "peers": 4,
+      "sustained": 516222030,
+      "sustained_human": "492.31 MiB/s",
+      "received": 33554432,
+      "held": 8388608
+    },
+    {
+      "peers": 16,
+      "sustained": 871543688,
+      "sustained_human": "831.17 MiB/s",
+      "received": 134217728,
+      "held": 8388608
+    }
+  ],
+  "cases": [
+    {
+      "case": "acceptance",
+      "exit_code": 0,
+      "peers_dialled": 100,
+      "peers_connected": 100,
+      "peers_handshaked": 0,
+      "bytes_on_disk": 20964,
+      "failures": [
+        {
+          "class": "handshake_timeout",
+          "count": 99
+        },
+        {
+          "class": "closed_before_handshake",
+          "count": 1
+        }
+      ],
+      "fast_negotiated": 0
+    },
+    {
+      "case": "acceptance_cleanup",
+      "exit_code": 0,
+      "leftover_dirs": 0
+    },
+    {
+      "case": "leech_1",
+      "exit_code": 0,
+      "peers": 1,
+      "sustained": "148.15 MiB/s",
+      "received": 8388608,
+      "verified": 32,
+      "held": 8388608,
+      "fast_negotiated": 0
+    },
+    {
+      "case": "leech_4",
+      "exit_code": 0,
+      "peers": 4,
+      "sustained": "492.31 MiB/s",
+      "received": 33554432,
+      "verified": 128,
+      "held": 8388608,
+      "fast_negotiated": 0
+    },
+    {
+      "case": "leech_16",
+      "exit_code": 0,
+      "peers": 16,
+      "sustained": "831.17 MiB/s",
+      "received": 134217728,
+      "verified": 512,
+      "held": 8388608,
+      "fast_negotiated": 0
+    },
+    {
+      "case": "budget",
+      "exit_code": 0,
+      "budget_bytes": 2097152,
+      "held_bytes": 2097152,
+      "on_disk_bytes": 2097152,
+      "dropped": 48
+    },
+    {
+      "case": "listener_poisoned",
+      "judged": false,
+      "todo": "T-020",
+      "before_handshaked": 1,
+      "before_bytes": 8388608,
+      "load_connected": 100,
+      "load_handshaked": 0,
+      "load_failures": [
+        {
+          "class": "handshake_timeout",
+          "count": 99
+        },
+        {
+          "class": "closed_before_handshake",
+          "count": 1
+        }
+      ],
+      "after_connected": 1,
+      "after_handshaked": 0,
+      "after_bytes": 0,
+      "seeder_still_alive": true,
+      "reproduced": true
+    },
+    {
+      "case": "no_target",
+      "exit_code": 2
+    },
+    {
+      "case": "dead_target",
+      "exit_code": 6,
+      "failures": [
+        {
+          "class": "connect_refused",
+          "count": 4
+        }
+      ]
+    }
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "The target's port comes out of the target's own event stream. A port this script picked could already be in use, and dialling it would measure whatever else was listening; that happened while this was written and looked exactly like a defect in bench swarm.",
+    "In connect mode the target does not have the generated torrents, so zero bytes served is the correct result and any byte would mean an info hash collided with something real.",
+    "In leech mode every peer is an independent leecher, so the payload arrives once per peer, and it is held on disk once between them.",
+    "Every case but no_target and dead_target starts its own seeder. The connect load leaves the target unable to complete a handshake for any info hash, so a case sharing a seeder with the one before it measures the previous case. That is T-020, and listener_poisoned is where it is measured rather than tripped over.",
+    "listener_poisoned carries judged: false. T-020 is open and recorded, and an acceptance script does not fail the build for a defect that already has an entry.",
+    "fast_negotiated is the target's answer to a BEP 6 offer every synthetic peer makes. Recorded rather than judged: librqbit 9.0.0 has no BEP 6, so zero is expected, and the entry that owns the number is TODO/bep-coverage.md T-100."
+  ]
+}

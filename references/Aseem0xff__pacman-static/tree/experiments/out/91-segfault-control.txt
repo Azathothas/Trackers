@@ -1,0 +1,17 @@
+# 91-segfault-control
+date      : 2026-08-28T12:13:10Z
+host      : Linux 6.18.44-fc-v22 x86_64
+package   : base
+patch     : 0001-libalpm-invalidate-curl-data-in-child.patch
+warm cache: 137 files
+
+PATCH      CACHE    RUN 1 (pkgs)     RUN 2 (pkgs)     AGREE
+unpatched  cold     ok 137           ok 137           yes
+unpatched  warm     ok 137           ok 137           yes
+patched    cold     ok 137           ok 137           yes
+patched    warm     ok 137           ok 137           yes
+
+  'ok N'      = exit 0, N packages in the local database
+  'SIGSEGV N' = killed by signal 11 after installing N packages
+
+verdict: every cell reproduced across both runs

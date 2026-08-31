@@ -1,0 +1,26 @@
+# Go. Combine with dotfiles/common/gitignore and dotfiles/os-editor/gitignore.
+
+# Compiled binaries. ⚠ A Go binary is often named after its directory and has
+# no extension, so it looks like a directory in a listing and gets committed.
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+/bin/
+/vendor/
+
+# Coverage
+*.cover
+coverage.txt
+coverage.html
+
+# Workspace files are per-machine.
+go.work
+go.work.sum
+
+# ⛔ go.mod and go.sum ARE committed. go.sum is the integrity record; without
+# it a build can silently resolve to different bytes.

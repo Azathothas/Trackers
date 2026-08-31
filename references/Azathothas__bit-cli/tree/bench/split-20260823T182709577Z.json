@@ -1,0 +1,1613 @@
+{
+  "report_version": 1,
+  "kind": "webseed",
+  "environment": {
+    "build": {
+      "version": "0.2.0",
+      "target": "x86_64-pc-windows-msvc",
+      "profile": "release",
+      "debug_assertions": false
+    },
+    "host": {
+      "os": {
+        "name": "Windows",
+        "version": "10.0.26200"
+      },
+      "cpu": {
+        "model": "12th Gen Intel(R) Core(TM) i7-12700H",
+        "architecture": "x86_64",
+        "logical_cores": 20
+      },
+      "memory_total": {
+        "bytes": 68321587200,
+        "human": "63.63 GiB"
+      },
+      "network": [
+        {
+          "name": "Hyper-V Virtual Ethernet Adapter #2",
+          "link_speed_bps": 1000000000,
+          "link_speed_human": "1.00 Gbit/s",
+          "up": true
+        },
+        {
+          "name": "ZeroTier Virtual Port",
+          "link_speed_bps": 100000000,
+          "link_speed_human": "100.00 Mbit/s",
+          "up": true
+        }
+      ]
+    },
+    "command_line": [
+      "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\target\\release\\bit-cli.exe",
+      "bench",
+      "webseed",
+      ".tmp/split/payload.torrent",
+      "--web-seed",
+      "http://127.0.0.1:54456/",
+      "--no-torrent-web-seed",
+      "--concurrency-sweep",
+      "1,2,4,8,16",
+      "--duration",
+      "20s",
+      "--json",
+      "--report",
+      "bench/split-20260823T182709577Z.json"
+    ],
+    "working_directory": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli",
+    "started_at": {
+      "iso": "2026-08-23T18:27:10.196Z",
+      "epoch_ms": 1787509630196
+    },
+    "finished_at": {
+      "iso": "2026-08-23T18:27:33.256Z",
+      "epoch_ms": 1787509653256
+    },
+    "elapsed": {
+      "ms": 23060,
+      "human": "23s"
+    },
+    "process": {
+      "peak_rss_bytes": 58593280,
+      "rss_bytes": 51408896,
+      "cpu_ms": 33890,
+      "cpu_user_ms": 14140,
+      "cpu_system_ms": 19750,
+      "open_handles": 218
+    },
+    "tracing_enabled": false
+  },
+  "parameters": {
+    "duration": {
+      "ms": 20000,
+      "human": "20s"
+    },
+    "warmup": {
+      "ms": 3000,
+      "human": "3s"
+    },
+    "metrics_interval": {
+      "ms": 1000,
+      "human": "1s"
+    },
+    "concurrency": 8,
+    "concurrency_sweep": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ]
+  },
+  "target": {
+    "source": ".tmp/split/payload.torrent",
+    "info_hash": "22f7d2b1e3e5b995a0986350ab5d9f62b5f540c4",
+    "name": "payload.bin",
+    "total": {
+      "bytes": 67108864,
+      "human": "64.00 MiB"
+    },
+    "piece_length": {
+      "bytes": 1048576,
+      "human": "1.00 MiB"
+    },
+    "piece_count": 64,
+    "endpoints": [
+      "http://127.0.0.1:54456/payload.bin"
+    ]
+  },
+  "series": [
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:11.203Z",
+        "epoch_ms": 1787509631203
+      },
+      "elapsed": {
+        "ms": 1002,
+        "human": "1s"
+      },
+      "warmup": true,
+      "concurrency": 1,
+      "bytes": {
+        "bytes": 796917760,
+        "human": "760.00 MiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 796917760,
+        "human": "760.00 MiB"
+      },
+      "rate": {
+        "bytes": 795327105,
+        "human": "758.48 MiB/s"
+      },
+      "requests": 191,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 190,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 7,
+          "p999_ms": 9,
+          "max_ms": 9,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 190,
+          "p50_ms": 4,
+          "p90_ms": 5,
+          "p99_ms": 27,
+          "p999_ms": 28,
+          "max_ms": 28,
+          "mean_ms": 5
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 21143552,
+        "rss_bytes": 16650240,
+        "cpu_ms": 703,
+        "cpu_user_ms": 328,
+        "cpu_system_ms": 375,
+        "open_handles": 191
+      },
+      "queue_depth": 1
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:12.202Z",
+        "epoch_ms": 1787509632202
+      },
+      "elapsed": {
+        "ms": 2001,
+        "human": "2s"
+      },
+      "warmup": true,
+      "concurrency": 1,
+      "bytes": {
+        "bytes": 796917760,
+        "human": "760.00 MiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 1593835520,
+        "human": "1.48 GiB"
+      },
+      "rate": {
+        "bytes": 798514789,
+        "human": "761.52 MiB/s"
+      },
+      "requests": 191,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 190,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 3,
+          "p999_ms": 11,
+          "max_ms": 11,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 190,
+          "p50_ms": 3,
+          "p90_ms": 5,
+          "p99_ms": 26,
+          "p999_ms": 27,
+          "max_ms": 27,
+          "mean_ms": 5
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 26025984,
+        "rss_bytes": 20471808,
+        "cpu_ms": 1359,
+        "cpu_user_ms": 484,
+        "cpu_system_ms": 875,
+        "open_handles": 191
+      },
+      "queue_depth": 1
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:14.232Z",
+        "epoch_ms": 1787509634232
+      },
+      "elapsed": {
+        "ms": 4030,
+        "human": "4s"
+      },
+      "warmup": false,
+      "concurrency": 1,
+      "bytes": {
+        "bytes": 1887436800,
+        "human": "1.76 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 3481272320,
+        "human": "3.24 GiB"
+      },
+      "rate": {
+        "bytes": 930230064,
+        "human": "887.14 MiB/s"
+      },
+      "requests": 451,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 18,
+          "p90_ms": 18,
+          "p99_ms": 18,
+          "p999_ms": 18,
+          "max_ms": 18,
+          "mean_ms": 18
+        },
+        "first_byte": {
+          "count": 450,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 2,
+          "p999_ms": 10,
+          "max_ms": 10,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 450,
+          "p50_ms": 3,
+          "p90_ms": 4,
+          "p99_ms": 19,
+          "p999_ms": 34,
+          "max_ms": 34,
+          "mean_ms": 4
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 28164096,
+        "rss_bytes": 23330816,
+        "cpu_ms": 2390,
+        "cpu_user_ms": 953,
+        "cpu_system_ms": 1437,
+        "open_handles": 191
+      },
+      "queue_depth": 1
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:15.214Z",
+        "epoch_ms": 1787509635214
+      },
+      "elapsed": {
+        "ms": 5012,
+        "human": "5s"
+      },
+      "warmup": false,
+      "concurrency": 1,
+      "bytes": {
+        "bytes": 1010827264,
+        "human": "964.00 MiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 4492099584,
+        "human": "4.18 GiB"
+      },
+      "rate": {
+        "bytes": 1029355665,
+        "human": "981.67 MiB/s"
+      },
+      "requests": 242,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 241,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 2,
+          "p999_ms": 2,
+          "max_ms": 2,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 241,
+          "p50_ms": 3,
+          "p90_ms": 4,
+          "p99_ms": 14,
+          "p999_ms": 25,
+          "max_ms": 25,
+          "mean_ms": 4
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 28164096,
+        "rss_bytes": 21733376,
+        "cpu_ms": 2890,
+        "cpu_user_ms": 1156,
+        "cpu_system_ms": 1734,
+        "open_handles": 191
+      },
+      "queue_depth": 1
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:16.215Z",
+        "epoch_ms": 1787509636215
+      },
+      "elapsed": {
+        "ms": 6013,
+        "human": "6s"
+      },
+      "warmup": false,
+      "concurrency": 1,
+      "bytes": {
+        "bytes": 1006632960,
+        "human": "960.00 MiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 5498732544,
+        "human": "5.12 GiB"
+      },
+      "rate": {
+        "bytes": 1006632960,
+        "human": "960.00 MiB/s"
+      },
+      "requests": 241,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 240,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 3,
+          "p999_ms": 5,
+          "max_ms": 5,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 240,
+          "p50_ms": 3,
+          "p90_ms": 4,
+          "p99_ms": 17,
+          "p999_ms": 27,
+          "max_ms": 27,
+          "mean_ms": 4
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 28164096,
+        "rss_bytes": 23379968,
+        "cpu_ms": 3390,
+        "cpu_user_ms": 1453,
+        "cpu_system_ms": 1937,
+        "open_handles": 191
+      },
+      "queue_depth": 1
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:18.216Z",
+        "epoch_ms": 1787509638216
+      },
+      "elapsed": {
+        "ms": 8015,
+        "human": "8s"
+      },
+      "warmup": false,
+      "concurrency": 2,
+      "bytes": {
+        "bytes": 2550136832,
+        "human": "2.38 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 8048869376,
+        "human": "7.50 GiB"
+      },
+      "rate": {
+        "bytes": 1274431200,
+        "human": "1.19 GiB/s"
+      },
+      "requests": 609,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 608,
+          "p50_ms": 1,
+          "p90_ms": 2,
+          "p99_ms": 4,
+          "p999_ms": 17,
+          "max_ms": 17,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 608,
+          "p50_ms": 3,
+          "p90_ms": 5,
+          "p99_ms": 21,
+          "p999_ms": 27,
+          "max_ms": 27,
+          "mean_ms": 4
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 33816576,
+        "rss_bytes": 25567232,
+        "cpu_ms": 4780,
+        "cpu_user_ms": 2046,
+        "cpu_system_ms": 2734,
+        "open_handles": 194
+      },
+      "queue_depth": 2
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:19.232Z",
+        "epoch_ms": 1787509639232
+      },
+      "elapsed": {
+        "ms": 9030,
+        "human": "9s"
+      },
+      "warmup": false,
+      "concurrency": 2,
+      "bytes": {
+        "bytes": 1744830464,
+        "human": "1.62 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 9793699840,
+        "human": "9.12 GiB"
+      },
+      "rate": {
+        "bytes": 1719044792,
+        "human": "1.60 GiB/s"
+      },
+      "requests": 417,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 16,
+          "p90_ms": 16,
+          "p99_ms": 16,
+          "p999_ms": 16,
+          "max_ms": 16,
+          "mean_ms": 16
+        },
+        "first_byte": {
+          "count": 416,
+          "p50_ms": 1,
+          "p90_ms": 2,
+          "p99_ms": 4,
+          "p999_ms": 4,
+          "max_ms": 4,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 416,
+          "p50_ms": 4,
+          "p90_ms": 5,
+          "p99_ms": 16,
+          "p999_ms": 28,
+          "max_ms": 28,
+          "mean_ms": 4
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 33816576,
+        "rss_bytes": 27844608,
+        "cpu_ms": 5765,
+        "cpu_user_ms": 2390,
+        "cpu_system_ms": 3375,
+        "open_handles": 194
+      },
+      "queue_depth": 2
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:20.239Z",
+        "epoch_ms": 1787509640239
+      },
+      "elapsed": {
+        "ms": 10037,
+        "human": "10s"
+      },
+      "warmup": false,
+      "concurrency": 2,
+      "bytes": {
+        "bytes": 1832910848,
+        "human": "1.71 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 11626610688,
+        "human": "10.83 GiB"
+      },
+      "rate": {
+        "bytes": 1821978974,
+        "human": "1.70 GiB/s"
+      },
+      "requests": 438,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 22,
+          "p90_ms": 22,
+          "p99_ms": 22,
+          "p999_ms": 22,
+          "max_ms": 22,
+          "mean_ms": 22
+        },
+        "first_byte": {
+          "count": 437,
+          "p50_ms": 1,
+          "p90_ms": 2,
+          "p99_ms": 3,
+          "p999_ms": 5,
+          "max_ms": 5,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 437,
+          "p50_ms": 3,
+          "p90_ms": 5,
+          "p99_ms": 8,
+          "p999_ms": 21,
+          "max_ms": 21,
+          "mean_ms": 4
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 37044224,
+        "rss_bytes": 25440256,
+        "cpu_ms": 6686,
+        "cpu_user_ms": 2640,
+        "cpu_system_ms": 4046,
+        "open_handles": 194
+      },
+      "queue_depth": 1
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:21.216Z",
+        "epoch_ms": 1787509641216
+      },
+      "elapsed": {
+        "ms": 11014,
+        "human": "11s"
+      },
+      "warmup": false,
+      "concurrency": 2,
+      "bytes": {
+        "bytes": 1707081728,
+        "human": "1.59 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 13333692416,
+        "human": "12.42 GiB"
+      },
+      "rate": {
+        "bytes": 1747268912,
+        "human": "1.63 GiB/s"
+      },
+      "requests": 408,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 407,
+          "p50_ms": 1,
+          "p90_ms": 2,
+          "p99_ms": 3,
+          "p999_ms": 4,
+          "max_ms": 4,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 407,
+          "p50_ms": 3,
+          "p90_ms": 5,
+          "p99_ms": 17,
+          "p999_ms": 22,
+          "max_ms": 22,
+          "mean_ms": 4
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 37044224,
+        "rss_bytes": 28499968,
+        "cpu_ms": 7546,
+        "cpu_user_ms": 3062,
+        "cpu_system_ms": 4484,
+        "open_handles": 194
+      },
+      "queue_depth": 2
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:22.219Z",
+        "epoch_ms": 1787509642219
+      },
+      "elapsed": {
+        "ms": 12018,
+        "human": "12s"
+      },
+      "warmup": false,
+      "concurrency": 4,
+      "bytes": {
+        "bytes": 3028287488,
+        "human": "2.82 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 16361979904,
+        "human": "15.24 GiB"
+      },
+      "rate": {
+        "bytes": 3019229798,
+        "human": "2.81 GiB/s"
+      },
+      "requests": 723,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 722,
+          "p50_ms": 2,
+          "p90_ms": 3,
+          "p99_ms": 4,
+          "p999_ms": 6,
+          "max_ms": 6,
+          "mean_ms": 2
+        },
+        "complete": {
+          "count": 722,
+          "p50_ms": 5,
+          "p90_ms": 6,
+          "p99_ms": 10,
+          "p999_ms": 21,
+          "max_ms": 21,
+          "mean_ms": 5
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 44793856,
+        "rss_bytes": 34455552,
+        "cpu_ms": 9531,
+        "cpu_user_ms": 3828,
+        "cpu_system_ms": 5703,
+        "open_handles": 200
+      },
+      "queue_depth": 4
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:23.219Z",
+        "epoch_ms": 1787509643219
+      },
+      "elapsed": {
+        "ms": 13017,
+        "human": "13s"
+      },
+      "warmup": false,
+      "concurrency": 4,
+      "bytes": {
+        "bytes": 3145728000,
+        "human": "2.93 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 19507707904,
+        "human": "18.17 GiB"
+      },
+      "rate": {
+        "bytes": 3148876876,
+        "human": "2.93 GiB/s"
+      },
+      "requests": 751,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 750,
+          "p50_ms": 2,
+          "p90_ms": 3,
+          "p99_ms": 4,
+          "p999_ms": 5,
+          "max_ms": 5,
+          "mean_ms": 2
+        },
+        "complete": {
+          "count": 750,
+          "p50_ms": 4,
+          "p90_ms": 6,
+          "p99_ms": 8,
+          "p999_ms": 23,
+          "max_ms": 23,
+          "mean_ms": 5
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 48398336,
+        "rss_bytes": 33136640,
+        "cpu_ms": 11218,
+        "cpu_user_ms": 4531,
+        "cpu_system_ms": 6687,
+        "open_handles": 200
+      },
+      "queue_depth": 4
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:24.219Z",
+        "epoch_ms": 1787509644219
+      },
+      "elapsed": {
+        "ms": 14018,
+        "human": "14s"
+      },
+      "warmup": false,
+      "concurrency": 4,
+      "bytes": {
+        "bytes": 3049259008,
+        "human": "2.84 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 22556966912,
+        "human": "21.01 GiB"
+      },
+      "rate": {
+        "bytes": 3049259008,
+        "human": "2.84 GiB/s"
+      },
+      "requests": 728,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 727,
+          "p50_ms": 2,
+          "p90_ms": 3,
+          "p99_ms": 4,
+          "p999_ms": 7,
+          "max_ms": 7,
+          "mean_ms": 2
+        },
+        "complete": {
+          "count": 727,
+          "p50_ms": 4,
+          "p90_ms": 6,
+          "p99_ms": 10,
+          "p999_ms": 19,
+          "max_ms": 19,
+          "mean_ms": 5
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 48398336,
+        "rss_bytes": 27545600,
+        "cpu_ms": 13031,
+        "cpu_user_ms": 5328,
+        "cpu_system_ms": 7703,
+        "open_handles": 200
+      },
+      "queue_depth": 4
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:26.228Z",
+        "epoch_ms": 1787509646228
+      },
+      "elapsed": {
+        "ms": 16026,
+        "human": "16s"
+      },
+      "warmup": false,
+      "concurrency": 8,
+      "bytes": {
+        "bytes": 6761218048,
+        "human": "6.30 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 29318184960,
+        "human": "27.30 GiB"
+      },
+      "rate": {
+        "bytes": 3367140462,
+        "human": "3.14 GiB/s"
+      },
+      "requests": 1613,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 1612,
+          "p50_ms": 4,
+          "p90_ms": 6,
+          "p99_ms": 7,
+          "p999_ms": 9,
+          "max_ms": 9,
+          "mean_ms": 4
+        },
+        "complete": {
+          "count": 1612,
+          "p50_ms": 7,
+          "p90_ms": 9,
+          "p99_ms": 12,
+          "p999_ms": 21,
+          "max_ms": 22,
+          "mean_ms": 7
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 54005760,
+        "rss_bytes": 42225664,
+        "cpu_ms": 17155,
+        "cpu_user_ms": 7187,
+        "cpu_system_ms": 9968,
+        "open_handles": 210
+      },
+      "queue_depth": 7
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:27.227Z",
+        "epoch_ms": 1787509647227
+      },
+      "elapsed": {
+        "ms": 17026,
+        "human": "17s"
+      },
+      "warmup": false,
+      "concurrency": 8,
+      "bytes": {
+        "bytes": 3678404608,
+        "human": "3.43 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 32996589568,
+        "human": "30.73 GiB"
+      },
+      "rate": {
+        "bytes": 3682086694,
+        "human": "3.43 GiB/s"
+      },
+      "requests": 878,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 877,
+          "p50_ms": 5,
+          "p90_ms": 7,
+          "p99_ms": 10,
+          "p999_ms": 17,
+          "max_ms": 17,
+          "mean_ms": 5
+        },
+        "complete": {
+          "count": 877,
+          "p50_ms": 8,
+          "p90_ms": 10,
+          "p99_ms": 15,
+          "p999_ms": 26,
+          "max_ms": 26,
+          "mean_ms": 8
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 54530048,
+        "rss_bytes": 40398848,
+        "cpu_ms": 19483,
+        "cpu_user_ms": 7968,
+        "cpu_system_ms": 11515,
+        "open_handles": 210
+      },
+      "queue_depth": 8
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:28.227Z",
+        "epoch_ms": 1787509648227
+      },
+      "elapsed": {
+        "ms": 18025,
+        "human": "18s"
+      },
+      "warmup": false,
+      "concurrency": 8,
+      "bytes": {
+        "bytes": 3766484992,
+        "human": "3.51 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 36763074560,
+        "human": "34.24 GiB"
+      },
+      "rate": {
+        "bytes": 3770255247,
+        "human": "3.51 GiB/s"
+      },
+      "requests": 899,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 898,
+          "p50_ms": 5,
+          "p90_ms": 6,
+          "p99_ms": 10,
+          "p999_ms": 14,
+          "max_ms": 14,
+          "mean_ms": 5
+        },
+        "complete": {
+          "count": 898,
+          "p50_ms": 8,
+          "p90_ms": 10,
+          "p99_ms": 15,
+          "p999_ms": 20,
+          "max_ms": 20,
+          "mean_ms": 8
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 54530048,
+        "rss_bytes": 43745280,
+        "cpu_ms": 21843,
+        "cpu_user_ms": 8953,
+        "cpu_system_ms": 12890,
+        "open_handles": 210
+      },
+      "queue_depth": 8
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:30.237Z",
+        "epoch_ms": 1787509650237
+      },
+      "elapsed": {
+        "ms": 20035,
+        "human": "20s"
+      },
+      "warmup": false,
+      "concurrency": 16,
+      "bytes": {
+        "bytes": 7323254784,
+        "human": "6.82 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 44086329344,
+        "human": "41.06 GiB"
+      },
+      "rate": {
+        "bytes": 3643410340,
+        "human": "3.39 GiB/s"
+      },
+      "requests": 1747,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 1746,
+          "p50_ms": 9,
+          "p90_ms": 15,
+          "p99_ms": 17,
+          "p999_ms": 28,
+          "max_ms": 30,
+          "mean_ms": 10
+        },
+        "complete": {
+          "count": 1746,
+          "p50_ms": 13,
+          "p90_ms": 19,
+          "p99_ms": 21,
+          "p999_ms": 31,
+          "max_ms": 35,
+          "mean_ms": 13
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 54972416,
+        "rss_bytes": 51408896,
+        "cpu_ms": 26749,
+        "cpu_user_ms": 10953,
+        "cpu_system_ms": 15796,
+        "open_handles": 218
+      },
+      "queue_depth": 16
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:31.237Z",
+        "epoch_ms": 1787509651237
+      },
+      "elapsed": {
+        "ms": 21035,
+        "human": "21s"
+      },
+      "warmup": false,
+      "concurrency": 16,
+      "bytes": {
+        "bytes": 3661627392,
+        "human": "3.41 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 47747956736,
+        "human": "44.47 GiB"
+      },
+      "rate": {
+        "bytes": 3661627392,
+        "human": "3.41 GiB/s"
+      },
+      "requests": 874,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 873,
+          "p50_ms": 14,
+          "p90_ms": 16,
+          "p99_ms": 20,
+          "p999_ms": 28,
+          "max_ms": 28,
+          "mean_ms": 14
+        },
+        "complete": {
+          "count": 873,
+          "p50_ms": 17,
+          "p90_ms": 19,
+          "p99_ms": 29,
+          "p999_ms": 32,
+          "max_ms": 32,
+          "mean_ms": 18
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 57688064,
+        "rss_bytes": 46944256,
+        "cpu_ms": 29156,
+        "cpu_user_ms": 12000,
+        "cpu_system_ms": 17156,
+        "open_handles": 218
+      },
+      "queue_depth": 16
+    },
+    {
+      "at": {
+        "iso": "2026-08-23T18:27:32.237Z",
+        "epoch_ms": 1787509652237
+      },
+      "elapsed": {
+        "ms": 22035,
+        "human": "22s"
+      },
+      "warmup": false,
+      "concurrency": 16,
+      "bytes": {
+        "bytes": 3699376128,
+        "human": "3.45 GiB"
+      },
+      "cumulative_bytes": {
+        "bytes": 51447332864,
+        "human": "47.91 GiB"
+      },
+      "rate": {
+        "bytes": 3703079207,
+        "human": "3.45 GiB/s"
+      },
+      "requests": 883,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 1,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 882,
+          "p50_ms": 14,
+          "p90_ms": 16,
+          "p99_ms": 18,
+          "p999_ms": 29,
+          "max_ms": 29,
+          "mean_ms": 14
+        },
+        "complete": {
+          "count": 882,
+          "p50_ms": 17,
+          "p90_ms": 19,
+          "p99_ms": 22,
+          "p999_ms": 33,
+          "max_ms": 33,
+          "mean_ms": 17
+        }
+      },
+      "process": {
+        "peak_rss_bytes": 57688064,
+        "rss_bytes": 47894528,
+        "cpu_ms": 31483,
+        "cpu_user_ms": 13046,
+        "cpu_system_ms": 18437,
+        "open_handles": 218
+      },
+      "queue_depth": 16
+    }
+  ],
+  "concurrency_curve": [
+    {
+      "concurrency": 1,
+      "bytes": {
+        "bytes": 3946840064,
+        "human": "3.68 GiB"
+      },
+      "elapsed": {
+        "ms": 4002,
+        "human": "4s"
+      },
+      "rate": {
+        "bytes": 986216907,
+        "human": "940.53 MiB/s"
+      },
+      "requests": 944,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 3,
+          "p50_ms": 1,
+          "p90_ms": 18,
+          "p99_ms": 18,
+          "p999_ms": 18,
+          "max_ms": 18,
+          "mean_ms": 7
+        },
+        "first_byte": {
+          "count": 941,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 2,
+          "p999_ms": 10,
+          "max_ms": 10,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 941,
+          "p50_ms": 3,
+          "p90_ms": 4,
+          "p99_ms": 18,
+          "p999_ms": 27,
+          "max_ms": 27,
+          "mean_ms": 4
+        }
+      }
+    },
+    {
+      "concurrency": 2,
+      "bytes": {
+        "bytes": 6924795904,
+        "human": "6.45 GiB"
+      },
+      "elapsed": {
+        "ms": 4003,
+        "human": "4s"
+      },
+      "rate": {
+        "bytes": 1729901549,
+        "human": "1.61 GiB/s"
+      },
+      "requests": 1655,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 4,
+          "p50_ms": 1,
+          "p90_ms": 22,
+          "p99_ms": 22,
+          "p999_ms": 22,
+          "max_ms": 22,
+          "mean_ms": 10
+        },
+        "first_byte": {
+          "count": 1651,
+          "p50_ms": 1,
+          "p90_ms": 2,
+          "p99_ms": 4,
+          "p999_ms": 15,
+          "max_ms": 17,
+          "mean_ms": 1
+        },
+        "complete": {
+          "count": 1651,
+          "p50_ms": 4,
+          "p90_ms": 5,
+          "p99_ms": 17,
+          "p999_ms": 25,
+          "max_ms": 28,
+          "mean_ms": 4
+        }
+      }
+    },
+    {
+      "concurrency": 4,
+      "bytes": {
+        "bytes": 12251561984,
+        "human": "11.41 GiB"
+      },
+      "elapsed": {
+        "ms": 4006,
+        "human": "4s"
+      },
+      "rate": {
+        "bytes": 3058303041,
+        "human": "2.85 GiB/s"
+      },
+      "requests": 2924,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 3,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 2921,
+          "p50_ms": 2,
+          "p90_ms": 3,
+          "p99_ms": 4,
+          "p999_ms": 6,
+          "max_ms": 7,
+          "mean_ms": 2
+        },
+        "complete": {
+          "count": 2921,
+          "p50_ms": 5,
+          "p90_ms": 6,
+          "p99_ms": 10,
+          "p999_ms": 20,
+          "max_ms": 23,
+          "mean_ms": 5
+        }
+      }
+    },
+    {
+      "concurrency": 8,
+      "bytes": {
+        "bytes": 14810087424,
+        "human": "13.79 GiB"
+      },
+      "elapsed": {
+        "ms": 4011,
+        "human": "4s"
+      },
+      "rate": {
+        "bytes": 3692367844,
+        "human": "3.44 GiB/s"
+      },
+      "requests": 3534,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 3,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 3531,
+          "p50_ms": 5,
+          "p90_ms": 6,
+          "p99_ms": 9,
+          "p999_ms": 13,
+          "max_ms": 17,
+          "mean_ms": 5
+        },
+        "complete": {
+          "count": 3531,
+          "p50_ms": 8,
+          "p90_ms": 10,
+          "p99_ms": 14,
+          "p999_ms": 20,
+          "max_ms": 26,
+          "mean_ms": 8
+        }
+      }
+    },
+    {
+      "concurrency": 16,
+      "bytes": {
+        "bytes": 14583595008,
+        "human": "13.58 GiB"
+      },
+      "elapsed": {
+        "ms": 4017,
+        "human": "4s"
+      },
+      "rate": {
+        "bytes": 3630469257,
+        "human": "3.38 GiB/s"
+      },
+      "requests": 3480,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 3,
+          "p50_ms": 1,
+          "p90_ms": 1,
+          "p99_ms": 1,
+          "p999_ms": 1,
+          "max_ms": 1,
+          "mean_ms": 1
+        },
+        "first_byte": {
+          "count": 3477,
+          "p50_ms": 14,
+          "p90_ms": 17,
+          "p99_ms": 22,
+          "p999_ms": 30,
+          "max_ms": 34,
+          "mean_ms": 14
+        },
+        "complete": {
+          "count": 3477,
+          "p50_ms": 18,
+          "p90_ms": 20,
+          "p99_ms": 29,
+          "p999_ms": 34,
+          "max_ms": 38,
+          "mean_ms": 18
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "index": 0,
+      "label": "http://127.0.0.1:54456/",
+      "kind": "web_seed",
+      "bytes": {
+        "bytes": 52521074688,
+        "human": "48.91 GiB"
+      },
+      "rate": {
+        "bytes": 2761215219,
+        "human": "2.57 GiB/s"
+      },
+      "requests": 12538,
+      "errors": 0,
+      "latency": {
+        "connect": {
+          "count": 16,
+          "p50_ms": 1,
+          "p90_ms": 18,
+          "p99_ms": 22,
+          "p999_ms": 22,
+          "max_ms": 22,
+          "mean_ms": 4
+        },
+        "first_byte": {
+          "count": 12522,
+          "p50_ms": 4,
+          "p90_ms": 15,
+          "p99_ms": 18,
+          "p999_ms": 28,
+          "max_ms": 34,
+          "mean_ms": 6
+        },
+        "complete": {
+          "count": 12522,
+          "p50_ms": 7,
+          "p90_ms": 18,
+          "p99_ms": 22,
+          "p999_ms": 31,
+          "max_ms": 38,
+          "mean_ms": 9
+        }
+      }
+    }
+  ],
+  "summary": {
+    "bytes": {
+      "bytes": 52521074688,
+      "human": "48.91 GiB"
+    },
+    "duration": {
+      "ms": 19021,
+      "human": "19s"
+    },
+    "sustained_rate": {
+      "bytes": 2761215219,
+      "human": "2.57 GiB/s"
+    },
+    "peak_rate": {
+      "bytes": 3770255247,
+      "human": "3.51 GiB/s"
+    },
+    "requests": 12538,
+    "errors": {
+      "total": 0
+    },
+    "latency": {
+      "connect": {
+        "count": 16,
+        "p50_ms": 1,
+        "p90_ms": 18,
+        "p99_ms": 22,
+        "p999_ms": 22,
+        "max_ms": 22,
+        "mean_ms": 4
+      },
+      "first_byte": {
+        "count": 12522,
+        "p50_ms": 4,
+        "p90_ms": 15,
+        "p99_ms": 18,
+        "p999_ms": 28,
+        "max_ms": 34,
+        "mean_ms": 6
+      },
+      "complete": {
+        "count": 12522,
+        "p50_ms": 7,
+        "p90_ms": 18,
+        "p99_ms": 22,
+        "p999_ms": 31,
+        "max_ms": 38,
+        "mean_ms": 9
+      }
+    },
+    "stalls": {
+      "count": 0,
+      "total": {
+        "ms": 0,
+        "human": "0ms"
+      },
+      "longest": {
+        "ms": 0,
+        "human": "0ms"
+      }
+    },
+    "best_concurrency": 8
+  }
+}

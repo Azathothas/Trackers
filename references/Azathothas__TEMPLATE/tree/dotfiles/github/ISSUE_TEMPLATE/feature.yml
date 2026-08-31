@@ -1,0 +1,25 @@
+name: Feature
+description: Something should exist that does not.
+labels: [feature]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: >-
+        The problem, not the solution. What are you unable to do today, and
+        what does that cost you? A request framed as a solution hides the
+        problem, and the problem often has a better answer.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you have in mind
+      description: If you have a shape in mind, describe it. Blank is fine.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you tried instead
+      description: >-
+        What you are doing today to work around it, and why that is not enough.

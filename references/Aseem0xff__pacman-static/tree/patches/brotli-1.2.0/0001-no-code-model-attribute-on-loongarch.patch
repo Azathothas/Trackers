@@ -1,0 +1,41 @@
+Do not use __attribute__((model)) on LoongArch.
+
+brotli selects the attribute on a COMPILER VERSION test:
+
+    #if BROTLI_GNUC_HAS_ATTRIBUTE(model, 3, 0, 3)
+    #define BROTLI_MODEL(M) __attribute__((model(M)))
+
+clang answers __has_attribute(model) affirmatively -- it implements the
+attribute for the targets that have code models, such as m68k -- and then
+rejects the value on a target that has none:
+
+    c/common/context.c:6:20: error: code model 'small' is not supported
+                                    on this target
+
+so every translation unit that declares a large constant table fails, and
+libbrotlicommon does not build for loongarch64. GCC does not hit this because
+its loongarch backend accepts the attribute.
+
+The attribute is an optimisation hint about where constant data is placed. It
+has no effect on correctness and dropping it on one target costs nothing
+measurable here.
+
+Affects loongarch64 only; the other four targets build unpatched.
+
+--- a/c/common/platform.h
++++ b/c/common/platform.h
+@@ -665,7 +665,13 @@
+ #undef BROTLI_TEST
+ #endif
+ 
+-#if BROTLI_GNUC_HAS_ATTRIBUTE(model, 3, 0, 3)
++/* BROTLI_GNUC_HAS_ATTRIBUTE tests the compiler, not the target. clang
++   accepts the attribute name on every target and then rejects the code-model
++   value on targets that have no code models, so the compiler test alone is
++   not sufficient. LoongArch is such a target under clang. */
++#if defined(__loongarch__) && defined(__clang__)
++#define BROTLI_MODEL(M) /* M: no code models on this target under clang */
++#elif BROTLI_GNUC_HAS_ATTRIBUTE(model, 3, 0, 3)
+ #define BROTLI_MODEL(M) __attribute__((model(M)))
+ #else
+ #define BROTLI_MODEL(M) /* M */

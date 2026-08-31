@@ -1,0 +1,82 @@
+{
+  "kind": "metalink_real",
+  "schema_version": "1",
+  "generated_at": "2026-08-23T07:17:45.617Z",
+  "host": {
+    "machine": "AJAM",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "parameters": {
+    "meta4_url": "https://download.documentfoundation.org/libreoffice/stable/25.8.7/win/x86_64/LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi.meta4",
+    "metalink_url": "https://download.documentfoundation.org/libreoffice/stable/25.8.7/win/x86_64/LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi.metalink",
+    "profile": "release"
+  },
+  "document": {
+    "meta4_bytes": 12499,
+    "metalink_bytes": 13808,
+    "file": "LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi",
+    "published_size": 3801088,
+    "published_sha256": "2cb3264a09b84c7857a5de790402ebbe53beb4ab9b0a5c49dc9d2863775835d8",
+    "http_mirrors": 58,
+    "all_url_elements": 58,
+    "torrents": 0,
+    "has_pieces_block": true,
+    "has_pgp_signature": true
+  },
+  "cases": [
+    {
+      "case": "real_as_served",
+      "exit_code": 4,
+      "note": "error: the metalink lists no torrent for LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi, so there is nothing to download here. It lists 58 HTTP mirror(s); pass one with --web-seed against a .torrent you already have."
+    },
+    {
+      "case": "real_by_url",
+      "exit_code": 4,
+      "note": "error: the metalink lists no torrent for LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi, so there is nothing to download here. It lists 58 HTTP mirror(s); pass one with --web-seed against a .torrent you already have."
+    },
+    {
+      "case": "real_v3_as_served",
+      "exit_code": 4,
+      "note": "error: the metalink lists no torrent for LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi, so there is nothing to download here. It lists 58 HTTP mirror(s); pass one with --web-seed against a .torrent you already have."
+    },
+    {
+      "case": "real_dry_run",
+      "exit_code": 0,
+      "note": "58 sources from the document"
+    },
+    {
+      "case": "real_with_torrent",
+      "exit_code": 0,
+      "served_bytes": 3801088,
+      "metalink": {
+        "agreement": {
+          "file_index": 0,
+          "matched_by": "only_file",
+          "metalink_size": 3801088,
+          "size_agrees": true,
+          "torrent_size": 3801088
+        },
+        "checksum": {
+          "actual": "2cb3264a09b84c7857a5de790402ebbe53beb4ab9b0a5c49dc9d2863775835d8",
+          "algorithm": "sha256",
+          "bytes_hashed": 3801088,
+          "expected": "2cb3264a09b84c7857a5de790402ebbe53beb4ab9b0a5c49dc9d2863775835d8",
+          "matched": true,
+          "path": "C:\\Users\\AjamX\\Downloads\\TEMP\\bit-cli\\.tmp\\metalink-real\\out\\real_with_torrent\\LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi"
+        },
+        "file": "LibreOffice_25.8.7_Win_x86-64_helppack_ast.msi",
+        "mirrors_listed": 58,
+        "mirrors_registered": 58,
+        "torrent_url": "http://127.0.0.1:54434/payload.torrent",
+        "version": "4"
+      }
+    }
+  ],
+  "verdict": "pass",
+  "failures": [],
+  "notes": [
+    "No MirrorBrain instance reachable in August 2026 emits <metaurl mediatype=\"torrent\">, so a real document alone has nothing to download from. real_as_served records that as exit 4 naming the mirror count, which is the behaviour a user of a real document gets.",
+    "real_with_torrent adds one <metaurl> line to the document the mirror generated and changes nothing else. The payload comes from the document's own mirror list over the public internet and is verified against the checksum the publisher published.",
+    "A network failure exits 2, never 0. This check is about a real mirror, so a run that did not reach one proved nothing."
+  ]
+}

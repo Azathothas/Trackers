@@ -1,0 +1,42 @@
+# Operating system and editor noise. Combine with the base and the ecosystem
+# file. None of this is ever anyone else's business.
+
+# macOS
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+.directory
+.Trash-*
+.nfs*
+
+# Editors
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.shared.json
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.vim/
+.nvimlog
+*.sublime-workspace
+.history/
+.fleet/
+\#*\#
+.\#*

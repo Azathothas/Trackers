@@ -1,0 +1,443 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Nothing here writes anything. Every job gets read access and no more.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  # `-D warnings` applies to the vendored crates too, and that is on purpose.
+  #
+  # Cargo passes `--cap-lints allow` to a dependency it resolved from a
+  # registry and does not pass it to a path dependency, so `[patch.crates-io]`
+  # made upstream's warnings ours the day the trees were vendored. Dropping the
+  # flag was tried and reverted: this is a Windows machine and CI is the only
+  # place a warning on another platform is ever seen, so a build that does not
+  # fail on one is a build that cannot catch sloppy work.
+  #
+  # The cost is that an upstream warning has to be patched in the vendored
+  # tree. That is a real cost and it is the right one: a warning in code this
+  # repository ships is this repository's problem whoever wrote it, and
+  # `patches/UPSTREAM.md` is where each one is recorded. See
+  # `docs/vendoring.md`.
+  RUSTFLAGS: -D warnings
+  # The toolchain every gating job installs. A named version rather than
+  # `stable`, because `stable` moves and `-D warnings` above turns anything a
+  # new release starts warning about into a failed job on a commit nobody
+  # touched. Bumping this is a commit with a message, the same as the MSRV.
+  #
+  # `Clippy (tracking ...)` below is what says when to bump it: it runs the
+  # same lint on `stable` and on `beta` and is allowed to fail. Read it before
+  # raising this, because what it reports is what raising it will cost.
+  #
+  # The flag is why every job is pinned rather than only the lint job. It is
+  # set for the whole workflow, so `cargo test` and `cargo build` fail on a new
+  # warning exactly as `cargo clippy` does: there is no such thing here as a
+  # job that only compiles. See TODO/cli-surface.md, T-150.
+  RUST_GATE: "1.98.0"
+
+jobs:
+  fmt:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+          components: rustfmt
+      - run: cargo fmt --all --check
+
+  # The record has to agree with the tree, and locally that is a gate.
+  #
+  # `gates.ps1` runs `check-todo.ps1`, but `git-sync.ps1 -SkipGates` exists and
+  # a push from a machine that never ran either is possible. This is the copy
+  # that cannot be skipped. It needs no toolchain and no build: it reads
+  # Markdown and resolves paths, so it is the cheapest job here.
+  #
+  # It exists because `patches/TASKS.md` said two P0 entries were open for a
+  # whole session after both closed. See TODO/RULES.md section 5.
+  record:
+    name: Record
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: pwsh -NoProfile -File scripts/check-todo.ps1
+
+  # A soak report has to say when its slope is fitted across a step. Both
+  # fixtures are a committed CSV and a generated one, so this needs no
+  # toolchain and no clock, and it runs beside `record` rather than in `test`
+  # for that reason. See TODO/memory.md, T-224 and T-231.
+  soak-fit:
+    name: Soak fit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: pwsh -NoProfile -File scripts/check-soak-fit.ps1
+
+  # Nothing enters this repository that is not a kind it keeps.
+  #
+  # `under/inner.bin` did, on 2026-08-23: a payload a T-226 acceptance run left
+  # in the working tree, taken by `git add -A` and pushed. `gates.ps1` runs this
+  # too, and this is the copy `git-sync.ps1 -SkipGates` cannot skip. It reads
+  # the index and needs no toolchain. See TODO/cli-surface.md, T-230.
+  tree:
+    name: Tree
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: pwsh -NoProfile -File scripts/check-tree.ps1
+
+  # README.md and docs/ against man/bit-cli.json and against each other: every
+  # relative link and anchor, every scripts/ path, and every flag and command
+  # an example names. Plus the mechanical half of the prose rule.
+  #
+  # It needs no toolchain, because man/bit-cli.json is committed and the test
+  # suite is what holds that current. So it runs beside `record` and `tree`
+  # rather than inside `test`, and a documentation-only push gets an answer in
+  # seconds. See TODO/RULES.md section 5, "Output and prose".
+  docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: pwsh -NoProfile -File scripts/check-docs.ps1
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+          components: clippy
+      - uses: Swatinem/rust-cache@v2.9.2
+      - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+  # What the next two toolchains want, six weeks before one of them is the
+  # only one there is. It never blocks: a lint that arrives with a release is
+  # a thing to fix on purpose, not a thing to discover from a red job on an
+  # unrelated push. `beta` is the useful leg, because by the time `stable`
+  # reports a lint the release has already happened.
+  #
+  # Red here is not an emergency and is not ignored either: it gets a TODO/
+  # entry naming the file and the line, and that entry is what has to close
+  # before RUST_GATE moves past the release that produced it.
+  clippy-next:
+    name: Clippy (tracking ${{ matrix.toolchain }})
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain: [stable, beta]
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          components: clippy
+      - uses: Swatinem/rust-cache@v2.9.2
+      # `clippy` compiles every target, so this covers what `cargo test` and
+      # `cargo build` would find on the same toolchain as well as the lints.
+      - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+      # The TLS and SHA-1 backends assemble their own primitives, and NASM is
+      # not on the Windows runner by default.
+      # Ours, not ilammy/setup-nasm: that action is unmaintained, still runs
+      # on node20 so the runner warns on every job, and verifies nothing about
+      # what it downloads. scripts/setup-nasm.ps1 pins the version and checks
+      # the archive against a SHA-256.
+      - name: Install NASM (Windows)
+        if: runner.os == 'Windows'
+        run: pwsh -NoProfile -File scripts/setup-nasm.ps1
+      - uses: Swatinem/rust-cache@v2.9.2
+      - run: cargo test --workspace --locked --all-features
+
+  msrv:
+    name: MSRV
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      # The rust-version in Cargo.toml is the edition 2024 minimum. This job
+      # is what stops it drifting: a dependency that needs something newer
+      # fails here rather than in a user's build.
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: "1.88"
+      - uses: Swatinem/rust-cache@v2.9.2
+      - run: cargo check --workspace --locked --all-features
+
+  build:
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { target: x86_64-unknown-linux-musl, runner: ubuntu-latest }
+          - { target: aarch64-unknown-linux-musl, runner: ubuntu-24.04-arm }
+          - { target: x86_64-pc-windows-msvc, runner: windows-latest }
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Install musl tools
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends musl-tools
+      - name: Install NASM (Windows)
+        if: runner.os == 'Windows'
+        run: pwsh -NoProfile -File scripts/setup-nasm.ps1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2.9.2
+      # The workflow-level RUSTFLAGS replaces the per-target rustflags in
+      # .cargo/config.toml rather than adding to them, so every flag that
+      # matters to the artifact has to be repeated here. That is what once let
+      # CI build a Windows binary against the dynamic CRT: see
+      # TODO/cli-surface.md, T-146. The comments on each flag are in
+      # .cargo/config.toml, and the two lists have to say the same thing.
+      - name: Build (Linux)
+        if: runner.os == 'Linux'
+        run: cargo build --release --locked --target ${{ matrix.target }}
+        env:
+          RUSTFLAGS: >-
+            -D warnings
+            -C target-feature=+crt-static
+            -C prefer-dynamic=no
+            -C link-self-contained=yes
+            -C link-arg=-Wl,--build-id=none
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: cargo build --release --locked --target ${{ matrix.target }}
+        env:
+          RUSTFLAGS: -D warnings -C target-feature=+crt-static -C prefer-dynamic=no
+      # Every release target makes the same promise: the binary runs on a
+      # machine with nothing installed. On Windows that means no Visual C++
+      # redistributable, and the failure is a dialog box rather than an error a
+      # script can read. On Linux it means no loader and no shared objects.
+      # The script picks the check from the file's own magic bytes.
+      - name: Check the binary is self-contained
+        shell: pwsh
+        run: |
+          $name = if ($env:RUNNER_OS -eq 'Windows') { 'bit-cli.exe' } else { 'bit-cli' }
+          ./scripts/check-static.ps1 -Path "target/${{ matrix.target }}/release/$name"
+
+  notices:
+    name: Third party notices
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+      - uses: Swatinem/rust-cache@v2.9.2
+      # `--features cli` because cargo-about 0.9 gates its own binary behind
+      # it, and `cargo install` without it compiles the crate, installs
+      # nothing, and warns rather than failing.
+      - name: Install cargo-about
+        run: cargo install cargo-about --locked --features cli
+      # Two things at once. `cargo about generate` fails outright when a
+      # dependency's licence is not on about.toml's accept list, which is the
+      # gate: a copyleft dependency stops the build rather than appearing
+      # quietly in a generated file. And the crates it covers are compared
+      # against the committed notice file, so a dependency added without
+      # regenerating fails here.
+      #
+      # The comparison is the set of crates rather than the bytes. Which
+      # licence texts `cargo about` groups together and which it repeats
+      # changes between its own versions, and a notice file that has to be
+      # regenerated on every cargo-about release is a notice file nobody
+      # regenerates. What matters legally is that every crate that ships is
+      # covered, and that is what this compares.
+      #
+      # Nothing is built first, deliberately. `librqbit`'s build script runs
+      # `npm install` inside its own crate directory under the `webui`
+      # feature, and 147 licence files under `webui/node_modules` are 147
+      # things for a directory scan to find.
+      - name: Regenerate and compare what is covered
+        run: |
+          cargo about generate --config about.toml --output-file generated.md about.hbs
+          covered() {
+            grep '^Used by ' "$1" | sed 's/^Used by //' | tr ',' '\n' \
+              | tr -d '`' | sed 's/^ *//; s/ *$//' | sort -u
+          }
+          diff <(covered THIRD_PARTY.md) <(covered generated.md)
+          echo "$(covered THIRD_PARTY.md | wc -l) crates covered"
+
+  deny:
+    name: Licences and advisories
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      # bit-cli is MIT. A transitive copyleft dependency is a licence incident,
+      # not a lint, so this job is what stops one arriving unnoticed.
+      - uses: EmbarkStudios/cargo-deny-action@v2.1.1
+        with:
+          command: check licenses advisories bans sources
+
+  interop:
+    name: Create round trip (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Install NASM (Windows)
+        if: runner.os == 'Windows'
+        run: pwsh -NoProfile -File scripts/setup-nasm.ps1
+      # A second, unrelated BitTorrent implementation. A torrent only bit-cli
+      # can read is not a torrent, so this job is what stops the metainfo or
+      # the wire protocol drifting into something nothing else accepts.
+      - name: Install aria2 (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends aria2
+      - name: Install aria2 (Windows)
+        if: runner.os == 'Windows'
+        run: choco install aria2 --no-progress -y
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+      - uses: Swatinem/rust-cache@v2.9.2
+      - run: cargo build --workspace --bins --examples --locked
+      # Everything binds 127.0.0.1: the tracker, the web seed, the seeder, and
+      # aria2c. The job never reaches the network.
+      - name: Round trip against aria2c
+        shell: pwsh
+        run: ./scripts/interop-roundtrip.ps1 -TimeoutSeconds 180
+      - name: Upload the record
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: interop-${{ matrix.os }}
+          path: .tmp/interop/
+          retention-days: 7
+
+  determinism:
+    name: Create determinism
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Install NASM (Windows)
+        if: runner.os == 'Windows'
+        run: pwsh -NoProfile -File scripts/setup-nasm.ps1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+      - uses: Swatinem/rust-cache@v2.9.2
+      # The same payload has to produce a byte-identical .torrent on both
+      # platforms. Path separator and ordering bugs are exactly what this
+      # catches, and they only show up across platforms.
+      - name: Build a fixture torrent
+        shell: bash
+        run: |
+          mkdir -p fixture/sub
+          printf 'one' > fixture/a.bin
+          printf 'two' > fixture/sub/b.bin
+          cargo run --locked --quiet -- create fixture \
+            --no-creation-date --no-created-by --sort-by path:ascending \
+            --piece-length 16KiB -o fixture.torrent
+      - name: Record the hash
+        shell: bash
+        run: sha256sum fixture.torrent | cut -d' ' -f1 > hash.txt && cat hash.txt
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: determinism-${{ matrix.os }}
+          path: hash.txt
+          retention-days: 1
+
+  determinism-compare:
+    name: Compare determinism hashes
+    runs-on: ubuntu-latest
+    needs: determinism
+    steps:
+      - uses: actions/download-artifact@v8.0.1
+        with:
+          path: hashes
+      - name: The two platforms must agree
+        shell: bash
+        run: |
+          linux=$(cat hashes/determinism-ubuntu-latest/hash.txt)
+          windows=$(cat hashes/determinism-windows-latest/hash.txt)
+          echo "linux:   $linux"
+          echo "windows: $windows"
+          test "$linux" = "$windows"
+
+  page:
+    name: Page extraction and fingerprint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+      - uses: Swatinem/rust-cache@v2.9.2
+      - run: cargo build --release --workspace --bins --examples --locked
+      # Six levels of page, each with the correct extraction recorded beside
+      # it. Everything binds 127.0.0.1 and the job never reaches the network.
+      # See TODO/cli-surface.md, T-244.
+      - name: Extraction against the proving ground
+        shell: pwsh
+        run: ./scripts/check-page-extract.ps1
+      # What this client actually puts on the wire, read off it by
+      # loopback-tlsprobe and compared against the golden under fingerprints/.
+      # A rustls or reqwest upgrade that changes the ClientHello or the header
+      # order is invisible from inside the process and fails here.
+      - name: The fingerprint against its golden
+        shell: pwsh
+        run: ./scripts/check-fingerprint.ps1
+
+  render:
+    name: The rendered tier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_GATE }}
+          # `components` is not optional: this action installs the toolchain
+          # and nothing else, so a job that runs clippy has to ask for it. This
+          # one did not and failed on `cargo-clippy is not installed`.
+          components: clippy
+      - uses: Swatinem/rust-cache@v2.9.2
+      # `--render` is off by default, so nothing else in this workflow builds
+      # it. This job exists so it cannot rot: a `chromiumoxide` release that
+      # moves an API, or a Chrome that changes what `Page.navigate` does, is
+      # invisible everywhere else.
+      - run: cargo build --release --workspace --bins --examples --locked --features render
+      - run: cargo clippy --workspace --all-targets --locked --features render -- -D warnings
+      - run: cargo test --workspace --locked --features render
+      # The runner image ships Chrome. With none the rendered tier is skipped
+      # with a printed reason and this exits 0, which is the same path every
+      # other job takes and is why it is safe to run everywhere.
+      - name: Both tiers over the proving ground
+        shell: pwsh
+        run: ./scripts/check-page-extract.ps1

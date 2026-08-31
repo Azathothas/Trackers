@@ -1,0 +1,14 @@
+# Enable version updates for GitHub Actions at cron schedule every 6 months
+# Can be manually triggered via menu: Insights > Dependency graph > "Recent update jobs" -> "Check for updates"
+
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "cron"
+      cronjob: "0 0 1 1/6 *"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 5
