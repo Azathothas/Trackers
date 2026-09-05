@@ -1,0 +1,124 @@
+# Health sweep: the first thing here that measures real trackers.
+#
+# T-024 and T-029. Every other measurement in this project asks what a runner
+# can do; this one asks what the corpus is, and it is the only workflow that
+# contacts the trackers themselves.
+#
+# WHAT BOUNDS IT, since it spends other people's bandwidth:
+#
+#   * BEP 34 is consulted per host before any probe and a denial or an
+#     undetermined lookup skips the tracker. There is no flag that skips it.
+#     RULES 4, and until it existed this run was forbidden outright.
+#   * It never announces. The probe stops at BEP 15 connect and HTTP scrape;
+#     there is no announce code path to reach.
+#   * One connection per host at a time, in both profiles, not configurable.
+#   * The `ci` profile probes a SAMPLE, not the corpus, and `ci` is the default
+#     on every host. Choosing `local` here is a deliberate act.
+#   * A whole-run deadline. Anything not reached is recorded `unknown`, never
+#     `dead`.
+#
+# ⛔ MANUAL ONLY, DELIBERATELY. There is no `schedule:` trigger and adding one
+# is not a detail: a workflow that runs hourly against other people's servers
+# is a load generator, the cadence is D7's and the budget is T-026's, and the
+# workflow architecture is T-084's open decision. Until those land, every run
+# here is a person choosing to make it.
+name: Health sweep
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: "ci probes a sample; local probes the whole corpus"
+        required: false
+        default: "ci"
+        type: choice
+        options: [ci, local]
+      deadline:
+        description: "seconds for the whole run"
+        required: false
+        default: "900"
+        type: string
+
+# Least privilege. It reads the tree, probes, and uploads an artefact. It does
+# not write to the repository: where the records eventually live is T-063's
+# decision and not this workflow's to pre-empt.
+permissions:
+  contents: read
+
+# Two sweeps at once would double what every tracker sees from us.
+concurrency:
+  group: health-sweep
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    steps:
+      # Pinned to a commit SHA, not a tag: tags are mutable (C-45).
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Record the vantage this measurement comes from
+        run: |
+          echo "runner image     : ${ImageOS:-unknown} ${ImageVersion:-unknown}"
+          echo "python           : $(python3 --version)"
+          echo "date (UTC)       : $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "run id / attempt : ${GITHUB_RUN_ID} / ${GITHUB_RUN_ATTEMPT}"
+          echo "profile          : ${{ inputs.profile }}"
+
+      # Dry run first, so the summary states what is about to be contacted
+      # before anything is. A sweep whose scale is only visible afterwards is
+      # one nobody can decline.
+      - name: What this run would probe
+        env:
+          TRACKERS_PROFILE: ${{ inputs.profile }}
+        run: |
+          python3 scripts/probe-corpus.py --offline-corpus --dry-run
+
+      - name: Sweep
+        id: sweep
+        env:
+          TRACKERS_PROFILE: ${{ inputs.profile }}
+        run: |
+          python3 scripts/probe-corpus.py \
+            --offline-corpus \
+            --deadline "${{ inputs.deadline }}" \
+            --generated-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --out "sweep-out"
+
+      # T-024's `Prove` clause, run where the records are real. It reads the
+      # sweep's own output rather than the tree, because the tree has no health
+      # records and will not until T-063 decides where they live.
+      - name: Every record carries its vantage
+        run: |
+          python3 scripts/check-vantage-metadata.py --path sweep-out
+
+      - name: Summarise
+        if: always()
+        run: |
+          {
+            echo "## Health sweep"
+            echo
+            echo "profile: \`${{ inputs.profile }}\`, deadline ${{ inputs.deadline }}s"
+            echo
+            echo '```json'
+            python3 -c "import json;d=json.load(open('sweep-out/health.json'));print(json.dumps({'counts':d['counts'],'limits':d['limits'],'vantage':d['vantage']},indent=2))" || echo "(no output)"
+            echo '```'
+            echo
+            echo "A tracker not reached before the deadline is \`unknown\`, never"
+            echo "\`dead\`. A refusal is the operator's BEP 34 record and is not a"
+            echo "statement about whether the tracker is running."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the records
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: health-sweep-${{ github.run_id }}
+          path: sweep-out/
+          if-no-files-found: warn
+          retention-days: 90
