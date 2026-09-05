@@ -207,6 +207,16 @@ same module rather than copying the rule. ⚠ No refusal is known to have been
 violated -- all 17 pinned subjects permit us today -- and that is luck, not the
 gate working.
 
+⛔ **That fix then broke the other half of the ground-truth matrix, and the
+build stayed green.** Importing `src/trackers/` pulled in the project's own
+Python 3.11 floor (RULES 12), and `ubuntu-22.04` ships 3.10.12, so experiments
+02 and 05 **crashed at import on that image and measured nothing** while their
+`continue-on-error` steps reported success. Found by reading the artefact
+rather than the tick. Fixed with a pinned `setup-python` and -- the part worth
+keeping -- **a step that fails the job when an experiment wrote no result**,
+because `continue-on-error` renders a crash and a measured failure identically
+and those are not the same fact.
+
 ⭐ **Review 4, the operator lens, caught a rule half-satisfied inside the change
 that was meant to satisfy it.** The README section added earlier this session
 told operators that asking works and pointed at `src/trackers/exclusion.py`.

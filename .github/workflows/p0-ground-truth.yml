@@ -49,6 +49,21 @@ jobs:
         with:
           persist-credentials: false
 
+      # ⛔ The experiments import `src/trackers/bep34.py` to consult BEP 34
+      # before contacting a subject, and `trackers/__init__.py` refuses Python
+      # below 3.11 (RULES 12). `ubuntu-22.04` ships 3.10.12, so on 2026-09-05
+      # that import made experiments 02 and 05 **crash on this image** and
+      # produce no measurement at all -- while the job stayed green, because
+      # their steps are `continue-on-error`.
+      #
+      # The image is what is being measured, not the interpreter: installing a
+      # newer Python changes nothing about this runner's network position, and
+      # the alternative was a second copy of the consent check.
+      - name: Python 3.11 or newer, which the shared modules require
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
+
       - name: Record the runner's own description of itself
         run: |
           echo "runner image      : ${ImageOS:-unknown} ${ImageVersion:-unknown}"
@@ -109,6 +124,22 @@ jobs:
         run: |
           python3 experiments/02-udp-bep15-connect.py \
             --out "experiments/results/02.${{ matrix.os }}.run${GITHUB_RUN_ID}.second.json"
+
+      # ⛔ A crash and a measured failure are not the same fact, and
+      # `continue-on-error` renders them identically. This is that distinction
+      # -- the one this whole project exists to hold -- applied to its own CI:
+      # an instrument that wrote no result did not measure anything, whatever
+      # the step's outcome says.
+      - name: Every experiment wrote a result
+        run: |
+          missing=0
+          for n in 01 02 03 04 05; do
+            if ! ls experiments/results/${n}.*.run${GITHUB_RUN_ID}*.json >/dev/null 2>&1; then
+              echo "::error::experiment ${n} wrote no result on ${{ matrix.os }}"
+              missing=1
+            fi
+          done
+          exit "$missing"
 
       - name: Summarise
         if: always()
