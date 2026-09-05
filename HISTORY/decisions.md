@@ -29,8 +29,9 @@ drifting count is a small lie that trains readers to ignore the document.
 | D10 | Standing authorisations for an unattended session | - | **closed** |
 | D11 | Two execution profiles, and which is the default | P2 | **closed** |
 | D12 | What shape the template adoption takes | - | **closed** |
+| D13 | What BEP 34 binds, and what it unblocks | P0 | **closed** |
 
-**Counts:** 12 entries, 8 closed, 4 open, 0 blocked
+**Counts:** 13 entries, 9 closed, 4 open, 0 blocked
 
 **Nothing closes as "won't fix" or "out of scope"** (RULES 7). A blocked
 entry stays open with its blocker named and what would unblock it.
@@ -482,3 +483,60 @@ python3 scripts/check-gate.py --strict
 
 Fourteen checks and one expected skip. `scripts/check-vendor-pin.py` covers
 part 2 on its own, and `scripts/check-markers.py` covers part 3.
+
+---
+
+## D13 -- What BEP 34 binds, and what it unblocks, **closed**
+
+**Source** RULES 4, [T-032](../TODO/measurement.md), 2026-09-05,
+**Category** conduct, **Effort** S
+
+**The requirement as written.** RULES 4 read: *"Two routes: asking --
+implemented and tested -- and a BEP 34 `BITTORRENT` DNS TXT record, which is
+automatable, needs no contact with us at all, and is not implemented yet.
+**Until it is, no corpus-wide probe runs**, because the automatable route is
+the one an operator can use without knowing we exist."*
+
+**The evidence it needed changing.** The clause was not wrong; it was
+satisfied. `src/trackers/bep34.py` implements the record parser and the DNS
+client it needs, and both probers consult it before opening a socket. What
+made the change necessary rather than cosmetic is that the sentence was the
+standing block on [T-012](../TODO/claims.md), [T-027](../TODO/measurement.md),
+[T-028](../TODO/measurement.md) and the corpus half of
+[T-024](../TODO/measurement.md) and [T-029](../TODO/measurement.md) -- and
+`PROGRESS.md`'s work order listed T-012 first without noticing that RULES
+forbade it. A rule that blocks the work order silently is worse than one that
+blocks it loudly.
+
+**The replacement.** The blanket ban on corpus-wide probing is lifted and
+replaced by a narrower, permanent one: **a corpus-wide probe runs only through
+the code path that consults BEP 34 first.** What is forbidden is reaching a
+tracker by a route that skips the check, not the sweep itself.
+
+**Why the gate sits in both probers rather than in `probe`.** `probe_udp` and
+`probe_http` are public entry points that open their own sockets, and the
+oracle tests call them directly. A control on the dispatcher alone would have
+left two ungated doors into the same action.
+
+**Rejected alternatives.**
+
+| rejected | why it lost |
+| --- | --- |
+| Keep the ban until a second exclusion route also exists | Nothing names a second route, so the ban would have no closing condition. RULES 8 forbids an open-ended block; a blocker must say what lifts it. |
+| Honour BEP 34 at publication time instead of at probe time | The operator objects to being *probed*, not to being listed. Filtering afterwards means the packet was already sent. |
+| Treat an unanswerable lookup as permission | It is the recorded production failure of this mechanism (newTrackon issue #316), and it fails silently, which is the worst way for a refusal to fail. |
+| Treat a missing record as a denial | Would empty the corpus, since almost no host publishes one. |
+| A seventh `HealthState` for an excluded tracker | Nothing was learned about the tracker either way, so `unmeasurable` is already true of it. The reason belongs in the `failure` field, which is where a rejection's reason lives (RULES 3.10). |
+| Query all three resolvers and honour any denial among them | Strictly safer for the operator, and it triples the DNS load this project generates across the whole corpus (RULES 15.2) to catch a divergence `experiments/04` measured at 0 of 17. Recorded at the function that decides it, so [T-007](../TODO/claims.md) can reopen it with a number. |
+| A `ProbeConfig` flag to skip the consultation | A documented route to contacting a host that refused us. RULES 4.1's immovable line. |
+
+**Prove.**
+
+```sh
+python3 -m unittest tests.test_bep34
+```
+
+`tests.test_bep34` reports `Ran 33 tests`, `OK`, with no network. The
+load-bearing one points the probe at
+a loopback tracker that records every datagram and asserts it received none.
+

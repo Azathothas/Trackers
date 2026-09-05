@@ -270,10 +270,17 @@ This project probes other people's servers. These are not preferences.
 * **Prefer connect > scrape > announce, always.**
 * **MUST honour any operator's request to be excluded**, and documentation must
   say how to make one. Two routes: asking -- implemented and tested -- and
-  a BEP 34 `BITTORRENT` DNS TXT record, which is automatable, needs no contact
-  with us at all, and **is not implemented yet** ([T-032](measurement.md), P0).
-  **Until it is, no corpus-wide probe runs**, because the automatable route is
-  the one an operator can use without knowing we exist.
+  a BEP 34 `BITTORRENT` DNS TXT record, which is automatable and needs no
+  contact with us at all. Both are **implemented and tested**
+  ([T-032](measurement.md), closed): `src/trackers/bep34.py` is consulted by
+  both probers before either opens a socket, and a denial or an undetermined
+  lookup stops there.
+
+  This rule used to end *"until it is, no corpus-wide probe runs"*, which was
+  the standing block on every entry needing a live tracker. **That block is
+  lifted**, and what replaces it is narrower and still binding: a corpus-wide
+  probe runs only through the code path that consults BEP 34 first. Reaching a
+  tracker by any route that skips it is the thing forbidden, not the sweep.
 
 ### 4.1 The User-Agent question is open, and an earlier version of this file got it wrong
 
@@ -323,11 +330,12 @@ whose BEP 20 prefix is what a tracker's filtering rules are written against.
 **So the rule is now:**
 
 * **The end is non-negotiable: an operator must be able to exclude us, and we
-  must honour it.** BEP 34 is the intended primary mechanism, it is automatable,
-  and it does not depend on our UA -- **and it is not built yet**
-  ([T-032](measurement.md)). That is a live gap in the argument below, not a
-  detail: withdrawing the UA requirement on the grounds that BEP 34 serves the
-  end better only holds once BEP 34 serves it at all.
+  must honour it.** BEP 34 is the primary mechanism, it is automatable, and it
+  does not depend on our UA. It **is built now** ([T-032](measurement.md)),
+  which closes what an earlier revision of this line correctly called a live
+  gap in the argument below: withdrawing the UA requirement on the grounds that
+  BEP 34 serves the end better only holds once BEP 34 serves it at all, and it
+  now does.
 * **The UA string itself is an open empirical question**, not a rule.
   [T-012](claims.md) measures the block rate by UA before anything is settled.
   Until it reports, do not treat either choice as established.

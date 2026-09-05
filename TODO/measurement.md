@@ -549,7 +549,7 @@ Source:      `C-51`; RULES 4; found by review 5
 Category:    measurement
 Priority:    P0
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     `README.md` tells tracker operators, in the present tense:
              *"publish a `BITTORRENT` TXT record on your tracker's hostname
@@ -562,15 +562,27 @@ Problem:     `README.md` tells tracker operators, in the present tense:
              User-Agent requirement partly on the argument that *"BEP 34
              achieves the same end far better"* -- an argument that only holds
              if BEP 34 is honoured.
+
+             ⚠ **Half of that title was already false when this was worked,
+             and the correction is here rather than in a silent edit (RULES 7).**
+             The README no longer makes the promise: the 2026-09-01 session
+             removed it and left the reasoning pointing at RULES 4.1, which is
+             what this entry's own `Decision` asked for. So the defect that
+             remained was **not** a false promise in the README; it was the
+             larger one underneath it -- RULES 4 forbids a corpus-wide probe
+             until the automatable route exists, and it did not exist, so the
+             gap was blocking every entry that needs to touch a real tracker
+             rather than merely embarrassing one document.
 Premise:     **Measured, not suspected.** `grep -rn "BEP 34\|bep_34" src/`
-             returns nothing. `C-51` records the mechanism as `VERIFIED` and
-             says "adopt it"; the adoption never happened, and the sweep write-up
+             returned nothing (exit 1), re-run at the start of the session that
+             closed this. `C-51` records the mechanism as `VERIFIED` and says
+             "adopt it"; the adoption never happened, and the sweep write-up
              lists it under *mechanisms adopted*, which overstates it.
 
-             What limits the damage: **no operator has been probed against this
-             promise.** The probe has never been pointed at the corpus, so the
-             gap is a documentation defect today and a conduct defect the moment
-             a corpus probe runs.
+             What limited the damage: **no operator was ever probed against
+             this promise.** The probe had never been pointed at the corpus, so
+             the gap was a conduct defect waiting on the first corpus probe
+             rather than one already committed.
 Approach:    A `bep34` module beside `bep15`: resolve the tracker hostname's
              `TXT`, parse a `BITTORRENT` record, and return allow / deny per
              protocol. Wire it into the probe **before** the ladder, so a denied
@@ -593,9 +605,95 @@ Decision:    **P0, and it gates any live corpus probing.** Nothing about it is
              Rejected: honouring BEP 34 only at publication time (too late -- the
              operator objects to being *probed*, not to being listed); treating
              a missing record as denial (would empty the corpus).
+
+             Six further calls were made while building it, each with what was
+             rejected, because each is a place a later session would otherwise
+             re-argue from scratch:
+
+             1. **The record is an allow-list, not a deny-list.** BEP 34 says a
+                `BITTORRENT` record means the host runs trackers *only* on the
+                ports it names, so a bare `BITTORRENT` denies everything and a
+                record naming `UDP:1337` denies `UDP:6969` on the same host.
+                Rejected: looking for the word `DENY`, which honours only the
+                readable spelling in the spec's second example and misses the
+                normative one.
+             2. **An unadvertised endpoint is skipped, never redirected.** The
+                spec tells a *client* to retry on an advertised port; this
+                project measures the endpoint a list published, so retrying
+                elsewhere would report the health of an endpoint nobody listed.
+                Same reasoning as `Tracker.scrape_url` refusing to invent one.
+             3. **Two failure values, not one.** `excluded_by_operator` and
+                `exclusion_undetermined` are distinct because a run that
+                skipped a thousand trackers on a broken resolver must not read
+                as a thousand operators refusing us. Rejected: a single
+                "skipped" value, which would hide our own outage inside their
+                choice.
+             4. **A denial is `unmeasurable`, not a seventh health state.**
+                Nothing was learned about the tracker either way; the reason
+                lives in the `failure` field, which is where reasons live
+                (RULES 3.10). Rejected: an `excluded` state, which would add a
+                value to a published vocabulary for a consumer that does not
+                exist yet.
+             5. **First definitive resolver answer wins**, rather than querying
+                all three and honouring any denial among them. The stricter
+                option triples this project's DNS load against the whole corpus
+                (RULES 15.2) to catch a divergence `experiments/04` measured at
+                0 of 17 names. **If T-007 ever measures meaningful divergence,
+                this is the decision it reopens** -- recorded in the code at the
+                function that makes it.
+             6. **Conflicting records are `undetermined`, not first-wins.** DNS
+                does not order an answer set, so believing the first would make
+                the verdict depend on send order (RULES 3.6).
+
+             ⚠ **One gap is left open rather than half-built**, and it is
+             recorded in the code at the branch that creates it: a corpus URL
+             naming a host by **IP literal** has no hostname to query, so it is
+             allowed. An operator who denies `tracker.example` is therefore not
+             protected on an entry that names the same machine by address.
+             Closing it needs a denial to propagate to siblings sharing a
+             *resolved* address, which the probe only learns after resolving,
+             and it belongs with T-031's resolved-address work rather than
+             bolted on here.
 Prove:       `python3 -m unittest tests.test_bep34 -v` (planned) passes against
              the local oracle: a deny record skips the tracker without opening a
              socket, an allow record probes it, a malformed record is `unknown`
              and skips, and a resolver failure is `unknown` and skips. Then
              `grep -rn "bep34" src/trackers/probe.py` shows the check runs
              **before** the ladder, and the README's claim becomes true.
+
+**Done.** `python3 -m unittest tests.test_bep34` -> `Ran 33 tests`, `OK`.
+`python3 -m unittest discover -s tests` -> `Ran 160 tests`, `OK`, still with no
+network. `python3 scripts/check-gate.py --strict` -> 14 passed, 1 expected skip.
+
+`src/trackers/bep34.py` implements the record parser and, because the standard
+library has no TXT resolver and D1 forbids a dependency, the DNS client too:
+UDP with a TCP fallback on truncation, bounded response sizes, compression
+pointers that cannot loop, and the transaction id and echoed question checked
+before any answer is believed.
+
+⭐ **The gate is in `probe_udp` and `probe_http`, not in `probe`.** Both are
+public entry points that open their own sockets, and the oracle tests call them
+directly -- gating only the dispatcher would have left two ungated doors into
+the same action, which is the most recurring hole in
+`docs/conventions/forbidden-patterns.md`. `effective_port` was extracted in the
+same change so the port the gate checks is provably the port the prober opens;
+a gate checking a different port is decorative, and there is a test for exactly
+that.
+
+**The acceptance is about conduct, not about parsing.** `test_a_denial_sends_
+nothing` points the probe at a real loopback tracker that records every datagram
+it receives, and asserts it received none; `test_the_same_tracker_is_probed_when_
+the_record_permits_it` is the positive control, without which a gate that
+refused everything would pass. Mutation-proved as `code.md` requires: forcing
+`_consult_operator` to always allow fails 5 tests including that one.
+
+⚠ **The suite stays offline** because BEP 34 is keyed on a hostname, so an
+address literal is short-circuited before any query. `tests/fake_dns.py` is the
+oracle -- a resolver on loopback that can be told to answer NXDOMAIN, SERVFAIL,
+silence, a truncated datagram, a wrong transaction id, garbage, or a compression
+pointer aimed at itself -- and every one of those is asserted `undetermined`
+rather than consent.
+
+**What this unblocks is the point.** RULES 4's "until it is, no corpus-wide
+probe runs" is now satisfied, which is what T-012, T-027, T-028 and the corpus
+half of T-024/T-029 were all standing behind.

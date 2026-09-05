@@ -55,7 +55,7 @@ pretending to be one.
 | [T-012](claims.md) | P0 | claims | open | Nobody has measured whether our User-Agent gets us blocked |
 | [T-021](measurement.md) | P0 | measurement | done | The probe has no oracle, so a silently broken probe would mark everything dead |
 | [T-027](measurement.md) | P0 | measurement | open | The value gate is unanswered: uniqueness is measured, liveness is not |
-| [T-032](measurement.md) | P0 | measurement | open | The exclusion route the README promises operators is not implemented |
+| [T-032](measurement.md) | P0 | measurement | **done** | The exclusion route the README promises operators is not implemented |
 | [T-140](foundation.md) | P0 | foundation | **done** | Runner network and protocol behaviour was never measured on a runner |
 | [T-003](claims.md) | P1 | claims | open | Release and tag behaviour is unverified, and it blocks the publication topology |
 | [T-004](claims.md) | P1 | claims | open | Vantage bias is unresolved and the dataset cannot distinguish dead from dead-from-AS8075 |
@@ -119,18 +119,18 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 66 entries, 53 open, 0 blocked, 13 done
+**Counts:** 66 entries, 52 open, 0 blocked, 14 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
 
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
-| P0 | 5 | 0 | 2 | 7 |
+| P0 | 4 | 0 | 3 | 7 |
 | P1 | 15 | 0 | 6 | 21 |
 | P2 | 27 | 0 | 4 | 31 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **53** | **0** | **13** | **66** |
+| **All** | **52** | **0** | **14** | **66** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

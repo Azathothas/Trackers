@@ -53,7 +53,7 @@ does not.
 | HTTP tracker discrimination | 4 of 6 subjects proved tracker, 4 scrape-capable, 2 no response, `announce_sent: false` |
 | DNS resolver divergence | **0 divergent of 17** on both images, and **1 divergent on the run 40 minutes earlier**. Thin, and carried as T-007 |
 | Corpus, accepted dataset, transport mix | [`corpus-baseline.md`](../HISTORY/corpus-baseline.md) |
-| Test suite | **127** tests, no network |
+| Test suite | **160** tests, no network |
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
 | Local gate | `python3 scripts/check-gate.py --strict`: 14 checks pass, 1 expected skip |
 | Private-tracker credentials in the generated plaintext | **6 distinct**, on 7 URLs (`C-70`, `T-107`) |

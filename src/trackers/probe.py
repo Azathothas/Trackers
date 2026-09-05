@@ -16,6 +16,20 @@ which one broke)
                      +- protocol-valid response
                           +- tracker-semantic response
 
+THE OPERATOR IS ASKED FIRST (T-032)
+
+Before either prober opens a socket it consults `bep34.py`, which reads the
+tracker hostname's DNS TXT record. Only `ALLOW` reaches a socket; a denial and
+an undetermined lookup both stop there, recorded with their reason. RULES 4
+makes this absolute and states the consequence of its absence -- until it
+exists, no corpus-wide probe may run -- which is why it gates the ladder rather
+than filtering results afterwards.
+
+⛔ **The check is in `probe_udp` and `probe_http`, not only in `probe`.** Both
+are public entry points that open sockets, and a control enforced on one path
+into an action while its sibling reaches the same action ungated is the most
+recurring hole there is (`forbidden-patterns.md`).
+
 TWO THINGS THIS MODULE WILL NOT DO
 
 **It cannot announce.** `bep15.py` has no function that builds an announce, and
@@ -52,12 +66,13 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
 from typing import Any
 
 from . import bep15
 from .bencode import TRACKER_KINDS, classify_body
+from .bep34 import Decision, Resolver, protocol_for_transport
 from .model import (Network, Rung, Tracker, Transport, YGGDRASIL_NET,
                     HealthState)
 from .vantage import UNKNOWN, Vantage, detect as detect_vantage
@@ -65,7 +80,7 @@ from .vantage import UNKNOWN, Vantage, detect as detect_vantage
 __all__ = [
     "Failure", "ProbeConfig", "ProbeResult", "MIN_SAMPLES_FOR_DEATH",
     "health_state", "classify_network_resolved", "probe", "probe_udp",
-    "probe_http", "DEFAULT_USER_AGENT",
+    "probe_http", "DEFAULT_USER_AGENT", "effective_port",
 ]
 
 #: How many observations before `dead` is sayable. Three is a judgement, not a
@@ -128,13 +143,29 @@ class Failure(str, Enum):
     PROBE_ERROR = "probe_error"
     #: This vantage cannot speak this transport or reach this network at all.
     UNSUPPORTED = "unsupported"
+    #: T-032: the operator published a BEP 34 record that does not advertise
+    #: this endpoint. Nothing was sent. It says nothing whatever about whether
+    #: a tracker is running, and it is the one failure here that is somebody
+    #: else's decision rather than an outcome.
+    EXCLUDED_BY_OPERATOR = "excluded_by_operator"
+    #: T-032: the BEP 34 lookup did not answer, so consent was never
+    #: established. Distinct from `EXCLUDED_BY_OPERATOR` because a run that
+    #: skipped a thousand trackers on a broken resolver must not read as a
+    #: thousand operators refusing us.
+    EXCLUSION_UNDETERMINED = "exclusion_undetermined"
 
 
-#: Failures that are statements about our own position and must never be read
-#: as evidence that a tracker is gone.
+#: Failures that are statements about us -- our position, or our own conduct --
+#: and must never be read as evidence that a tracker is gone.
+#:
+#: `EXCLUDED_BY_OPERATOR` belongs here for the second reason: we chose not to
+#: contact the host. Nothing was measured, so nothing about the tracker was
+#: learned, and a record derived from it that said `dead` would be publishing
+#: our own politeness as somebody else's outage.
 ABOUT_US: frozenset[Failure] = frozenset({
     Failure.NO_USABLE_ADDRESS, Failure.BLOCKED_BY_POLICY,
     Failure.DEADLINE_EXCEEDED, Failure.PROBE_ERROR, Failure.UNSUPPORTED,
+    Failure.EXCLUDED_BY_OPERATOR, Failure.EXCLUSION_UNDETERMINED,
 })
 
 
@@ -203,6 +234,10 @@ class ProbeResult:
     observed_at: str = UNKNOWN
     vantage: dict[str, Any] = field(default_factory=dict)
     classification: dict[str, Any] = field(default_factory=dict)
+    #: T-032: what the operator's DNS said, and which resolver said it. Present
+    #: on every result, including the ones that were allowed, because "we asked
+    #: and were permitted" is the evidence that the gate ran at all.
+    bep34: dict[str, Any] = field(default_factory=dict)
 
     def as_record(self, health: HealthState) -> dict[str, Any]:
         """The health-record shape `scripts/check-vantage-metadata.py` reads."""
@@ -226,6 +261,7 @@ class ProbeResult:
             "sent_user_agent": self.sent_user_agent if self.sent_user_agent else UNKNOWN,
             "observed_at": self.observed_at,
             "vantage": dict(self.vantage),
+            "bep34": dict(self.bep34),
         }
 
 
@@ -286,6 +322,10 @@ def health_state(*, rung: Rung, transport: Transport, network: Network,
     1. **Cannot be measured here at all** -> `unmeasurable`. Structural, and it
        does not need a failed probe to "prove" it. Asking and failing would be
        measuring our own reachability and reporting it as the tracker's health.
+       **An operator's BEP 34 refusal lands here too** (T-032): "we may not
+       measure it" and "we cannot measure it" differ in their reason, which the
+       `failure` field carries, and not in what is known about the tracker,
+       which is nothing in both cases.
     2. **Resolved, but to no address family we can use** -> `unmeasurable`. We
        did not fail to reach it; we never asked (`C-04`).
     3. **The probe itself broke** -> `error`. Never `dead`: a broken probe that
@@ -300,13 +340,18 @@ def health_state(*, rung: Rung, transport: Transport, network: Network,
     9. **None did, and there are not** -> `unknown`. Too few samples is not
        death.
     """
-    if not measurable or failure is Failure.UNSUPPORTED:
+    if (not measurable or failure is Failure.UNSUPPORTED
+            or failure is Failure.EXCLUDED_BY_OPERATOR):
         return HealthState.UNMEASURABLE
     if rung is Rung.NO_USABLE_ADDRESS or failure is Failure.NO_USABLE_ADDRESS:
         return HealthState.UNMEASURABLE
     if failure is Failure.PROBE_ERROR:
         return HealthState.ERROR
-    if sample_count <= 0 or failure is Failure.DEADLINE_EXCEEDED:
+    if (sample_count <= 0 or failure is Failure.DEADLINE_EXCEEDED
+            or failure is Failure.EXCLUSION_UNDETERMINED):
+        # An undetermined exclusion is stated explicitly rather than left to
+        # `sample_count == 0`, so it stays `unknown` even where a caller
+        # carries observations forward from an earlier run.
         return HealthState.UNKNOWN
     if failure in (Failure.RATE_LIMITED, Failure.BLOCKED_BY_POLICY,
                    Failure.TRUNCATED_RESPONSE, Failure.RESET):
@@ -415,14 +460,73 @@ def _resolve(host: str, port: int, sock_type: int, vantage: Vantage) -> Resoluti
                       families=families, usable=usable)
 
 
+# --- T-032: the operator's refusal, before any socket -------------------------
+#
+# The port a URL is contacted on is decided here and nowhere else. Both probers
+# and the BEP 34 gate read it from this function, because a gate that checks
+# port 80 while the prober contacts 6969 is decorative -- it would report an
+# endpoint permitted that was never the endpoint we opened.
+
+def effective_port(tracker: Tracker) -> int:
+    """The port this probe will actually contact.
+
+    `udp` has no default-port convention (`normalize.keep_explicit_port`), so a
+    `udp://` URL without one keeps the 80 the probe has always used rather than
+    acquiring a new default in a change about something else.
+    """
+    if tracker.port is not None:
+        return tracker.port
+    return 443 if tracker.transport in (Transport.HTTPS, Transport.WSS) else 80
+
+
+def _consult_operator(tracker: Tracker, resolver: Resolver | None,
+                      base: dict) -> tuple[dict[str, Any], ProbeResult | None]:
+    """Ask DNS whether this endpoint may be contacted at all.
+
+    Returns `(record, refusal)`. A non-`None` refusal is returned to the caller
+    **unchanged and immediately**: no socket, no resolution, nothing sent.
+
+    There is deliberately no argument that skips this. `resolver` selects who is
+    asked -- which is how the loopback oracle exercises it -- and every value of
+    it still ends in a decision.
+    """
+    resolver = resolver or Resolver()
+    port = effective_port(tracker)
+    verdict = resolver.consult(tracker.host,
+                               protocol_for_transport(tracker.transport.value),
+                               port)
+    record = verdict.as_record()
+    if verdict.decision is Decision.ALLOW:
+        return record, None
+
+    failure = (Failure.EXCLUDED_BY_OPERATOR
+               if verdict.decision is Decision.DENY
+               else Failure.EXCLUSION_UNDETERMINED)
+    return record, ProbeResult(
+        network=tracker.network, rung=Rung.NONE, ok=False, failure=failure,
+        detail=f"BEP 34 {verdict.decision.value}: {verdict.detail}",
+        bep34=record, **base)
+
+
 # --- UDP ----------------------------------------------------------------------
 def probe_udp(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
-              observed_at: str = UNKNOWN) -> ProbeResult:
-    """One BEP 15 exchange. Connect always; scrape only if `cfg.udp_scrape`."""
-    port = tracker.port or 80
+              observed_at: str = UNKNOWN,
+              resolver: Resolver | None = None) -> ProbeResult:
+    """One BEP 15 connect exchange, if BEP 34 permits it.
+
+    ⚠ Connect only. `bep15.py` can build a scrape and refuses a non-20-byte
+    hash, but nothing here sends one; wiring that is T-022. An earlier version
+    of this line advertised a `cfg.udp_scrape` switch that has never existed.
+    """
     base = dict(url=tracker.url, transport=tracker.transport,
                 observed_at=observed_at, vantage=vantage.as_dict(),
                 sent_user_agent=None)  # BEP 15 is binary; there is no UA field
+
+    consulted, refusal = _consult_operator(tracker, resolver, base)
+    if refusal is not None:
+        return refusal
+    base["bep34"] = consulted
+    port = effective_port(tracker)
 
     try:
         res = _resolve(tracker.host, port, socket.SOCK_DGRAM, vantage)
@@ -498,23 +602,32 @@ def probe_udp(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
 
 # --- HTTP ---------------------------------------------------------------------
 def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
-               observed_at: str = UNKNOWN) -> ProbeResult:
-    """One HTTP(S) scrape. BEP 48: a scrape has no effect on swarm participation.
+               observed_at: str = UNKNOWN,
+               resolver: Resolver | None = None) -> ProbeResult:
+    """One HTTP(S) scrape, if BEP 34 permits it. BEP 48: a scrape has no effect
+    on swarm participation.
 
     Where the announce URL has no `announce` in its path, BEP 48's convention
     does not apply and no scrape URL is invented -- guessing one would fabricate
     an endpoint and then report its absence as the tracker's defect.
     """
+    base = dict(url=tracker.url, transport=tracker.transport,
+                observed_at=observed_at, vantage=vantage.as_dict(),
+                sent_user_agent=cfg.user_agent, used_synthetic_infohash=True)
+
+    consulted, refusal = _consult_operator(tracker, resolver, base)
+    if refusal is not None:
+        # `used_synthetic_infohash` travels in `base`, and nothing was sent, so
+        # the refusal's own record must not claim a scrape happened.
+        return replace(refusal, used_synthetic_infohash=False)
+    base["bep34"] = consulted
+
     target = tracker.scrape_url or tracker.url
     info_hash = bep15.synthetic_infohash()
     qs = urllib.parse.urlencode({"info_hash": info_hash},
                                 quote_via=urllib.parse.quote)
     full = target + ("&" if urllib.parse.urlsplit(target).query else "?") + qs
-
-    port = tracker.port or (443 if tracker.transport is Transport.HTTPS else 80)
-    base = dict(url=tracker.url, transport=tracker.transport,
-                observed_at=observed_at, vantage=vantage.as_dict(),
-                sent_user_agent=cfg.user_agent, used_synthetic_infohash=True)
+    port = effective_port(tracker)
 
     try:
         res = _resolve(tracker.host, port, socket.SOCK_STREAM, vantage)
@@ -660,18 +773,28 @@ def _classify_http(body: bytes, status: int, rtt: float, base: dict,
 # --- entry point --------------------------------------------------------------
 def probe(tracker: Tracker, cfg: ProbeConfig | None = None,
           vantage: Vantage | None = None,
-          observed_at: str = UNKNOWN) -> ProbeResult:
+          observed_at: str = UNKNOWN,
+          resolver: Resolver | None = None) -> ProbeResult:
     """Probe one tracker. Never raises; every failure becomes a recorded result.
 
     A tracker this vantage cannot measure is **not probed at all**. Asking and
     failing would produce a timeout that looks exactly like a dead tracker, and
     the record would then say something false about the world rather than
     something true about us.
+
+    ⭐ **Pass one `Resolver` for a whole run.** It caches the BEP 34 answer per
+    host, so a corpus with many URLs on one host asks once instead of once per
+    URL (RULES 15.2). Left `None`, each call builds its own and the caching is
+    lost, which is correct but noisy.
     """
     cfg = cfg or ProbeConfig()
     vantage = vantage or detect_vantage()
 
     if not tracker.is_measurable_here:
+        # Ahead of the BEP 34 gate on purpose: these are never contacted under
+        # any answer, and `.i2p` and `.onion` names do not resolve in the
+        # ordinary DNS, so a lookup here would be a query that cannot succeed
+        # asked about a host we were never going to reach.
         return ProbeResult(
             url=tracker.url, transport=tracker.transport,
             network=tracker.network, rung=Rung.NONE, ok=False,
@@ -680,9 +803,9 @@ def probe(tracker: Tracker, cfg: ProbeConfig | None = None,
             observed_at=observed_at, vantage=vantage.as_dict())
 
     if tracker.transport is Transport.UDP:
-        return probe_udp(tracker, cfg, vantage, observed_at)
+        return probe_udp(tracker, cfg, vantage, observed_at, resolver)
     if tracker.transport in (Transport.HTTP, Transport.HTTPS):
-        return probe_http(tracker, cfg, vantage, observed_at)
+        return probe_http(tracker, cfg, vantage, observed_at, resolver)
 
     return ProbeResult(
         url=tracker.url, transport=tracker.transport, network=tracker.network,

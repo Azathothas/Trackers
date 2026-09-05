@@ -220,10 +220,10 @@ instrument.
 | `references/` | the reference corpus: ten upstream repositories at captured commits, tracked in-tree with their issue trackers and comment threads |
 | `experiments/` | numbered instruments. **Every measured number this project publishes came from one of these** |
 | `experiments/results/` | their output, committed, because workflow artefacts expire after 90 days and git does not |
-| `src/trackers/` | the pipeline (model, normalize, dedup, exclusion, registry, acquire, pipeline) and the measurement core (`bencode`, `bep15`, `vantage`, `probe`, `profile`) |
+| `src/trackers/` | the pipeline (model, normalize, dedup, exclusion, registry, acquire, pipeline) and the measurement core (`bencode`, `bep15`, `bep34`, `vantage`, `probe`, `profile`) |
 | `scripts/` | the generator and the checks. [`../scripts/README.md`](../scripts/README.md) |
 | `scripts/vendor/toolkit/` | two helpers fetched from `Azathothas/ToolKit` at a pinned commit. Not this project's code |
-| `tests/` | 127 tests, no network, including `fake_tracker.py`, the oracle of trackers this project controls |
+| `tests/` | 160 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
 | `docs/` | this file and the documentation set. [`README.md`](README.md) is the map |
 | `.github/workflows/` | `gate.yml` (cheap, offline, every push) and `p0-ground-truth.yml` (probes real trackers, only when experiments change) |
 

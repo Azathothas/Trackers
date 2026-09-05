@@ -156,6 +156,23 @@ refuses one over every tracked text file.
   `nul`, which git then tracks, which breaks `git stash`, and which cannot be
   removed by `rm` or by Python. They are in
   [`../../.gitignore`](../../.gitignore) before any of it happens.
+- ⚠ **An ephemeral port free for one protocol is not free for the other.**
+  Windows keeps *separate* port exclusion ranges per protocol inside the
+  dynamic range, and a fixture that binds UDP to port 0 and then binds TCP to
+  whatever came back fails intermittently with `WinError 10013`. Measured
+  2026-09-05 on this repository's Windows 11 host: **25 excluded TCP ranges and
+  23 excluded UDP ranges**, different sets, inside 49152-65535.
+
+  ```bash
+  netsh int ipv4 show excludedportrange protocol=tcp
+  ```
+
+  ⭐ **Retrying `bind(0)` does not escape it.** Ephemeral ports are handed out
+  roughly sequentially and the excluded blocks are about 100 ports wide, so
+  consecutive retries walk through a block rather than away from it: twenty in a
+  row failed. Decorrelate the retry by picking a random port in the range.
+  `tests/fake_dns.py` carries the working version.
+
 - ⚠ **`/tmp` is not one directory.** Git Bash resolves it inside the msys root
   and a native Windows Python resolves it somewhere else or not at all, so a
   file written by one and read by the other is not found. RULES 15.5 forbids it

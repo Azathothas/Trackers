@@ -49,6 +49,43 @@ question**, not a settled policy, and the reasoning is in
 exclusion an operator has already given is honoured, and nothing here tries to
 work around one.
 
+### Stopping this project from contacting your tracker
+
+⭐ **Publish a BEP 34 TXT record on your tracker's hostname.** It needs no
+contact with us, works for every other client that honours it, and is checked
+before anything here opens a socket to you:
+
+```
+tracker.example.  IN  TXT  "BITTORRENT DENY ALL"
+```
+
+That record means *the host runs no trackers*, and this project then sends
+nothing at all -- no probe, no DNS beyond the TXT lookup itself. To keep some
+endpoints and refuse the rest, name the ones you do run; **everything you do
+not name is refused**, which is what the specification means by the record
+being exhaustive:
+
+```
+tracker.example.  IN  TXT  "BITTORRENT UDP:1337 TCP:80"
+```
+
+Three properties worth stating plainly, because an opt-out that fails quietly
+is worse than none:
+
+- **A lookup we cannot complete is not consent.** If DNS does not answer, or
+  answers something ambiguous, the tracker is skipped rather than probed.
+- **We ask public resolvers, not our own**, because the recorded way this
+  mechanism fails in production is an internal resolver that does not follow
+  CNAMEs, honouring nothing and reporting nothing.
+- ⚠ **It is keyed on a hostname.** If a list publishes your tracker by IP
+  address rather than by name, there is no name for us to look up and the
+  record cannot protect that entry. That gap is recorded in
+  [`TODO/measurement.md`](TODO/measurement.md) rather than papered over.
+
+Asking also works and is honoured; `src/trackers/exclusion.py` is where a
+request lands. The DNS route is preferred only because it does not require you
+to find us first.
+
 ## Running it
 
 Python 3.11 or newer, standard library only. Nothing to install, and everything
