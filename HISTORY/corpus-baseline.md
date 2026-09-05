@@ -78,7 +78,8 @@ python3 scripts/generate.py --offline
 | duplicates removed | **272** |
 | rejected lines | **3** -- a stray `"` leaked by an HTML scraper and two `|` in query strings; none is a URI (RFC 3986) and all three used to reach the published plaintext |
 | removed by an *enforced* exclusion | **8** |
-| **accepted trackers published** | **1334** |
+| refused for carrying a private-tracker credential | **7** -- six distinct credentials, one tracker listed twice (`C-70`, T-107) |
+| **accepted trackers published** | **1327** |
 
 **The three rejections are the point, not a rounding.** Until 2026-08-31 the
 character check did not exist and all three reached the published plaintext --
@@ -87,6 +88,14 @@ which is the format the README tells consumers to `curl | client`, and `"` and
 running the emitted file through RFC 3986's character set rather than by
 reading it. The count moved 1337 -> 1334 and the rejections are returned with
 their reasons, so the disappearance is explainable (RULES 3.10).
+
+**1334 -> 1327 on 2026-09-05**, when T-107 began refusing the seven URLs that
+carry somebody's passkey. That is the largest deliberate subtraction this
+project has made from its own output, and it is the one most worth making:
+those seven rows were never usable by a consumer, and publishing them handed a
+stranger's credential to everybody who read the list. Each is named, with its
+reason and with the credential removed, in the run report's *Refused entries*
+section.
 
 Upstream exclusion classes in `ngosang/blacklist.txt` (346 entries):
 `honour` **9**, `safety` **6**, `opinion` **331**. Enforced: **15** (operator

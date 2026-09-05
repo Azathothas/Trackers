@@ -30,8 +30,9 @@ drifting count is a small lie that trains readers to ignore the document.
 | D11 | Two execution profiles, and which is the default | P2 | **closed** |
 | D12 | What shape the template adoption takes | - | **closed** |
 | D13 | What BEP 34 binds, and what it unblocks | P0 | **closed** |
+| D14 | What replaced the private-credential ceiling | P1 | **closed** |
 
-**Counts:** 13 entries, 9 closed, 4 open, 0 blocked
+**Counts:** 14 entries, 10 closed, 4 open, 0 blocked
 
 **Nothing closes as "won't fix" or "out of scope"** (RULES 7). A blocked
 entry stays open with its blocker named and what would unblock it.
@@ -539,4 +540,63 @@ python3 -m unittest tests.test_bep34
 `tests.test_bep34` reports `Ran 33 tests`, `OK`, with no network. The
 load-bearing one points the probe at
 a loopback tracker that records every datagram and asserts it received none.
+
+---
+
+## D14 -- What replaced the private-credential ceiling, **closed**
+
+**Source** [T-107](../TODO/sources.md), `C-70`, 2026-09-05,
+**Category** security, **Effort** S
+
+**The requirement as written.** `scripts/check-no-secrets.py` allowed six
+private-tracker credentials in the tree and failed on a seventh, and both
+T-107's `Prove` clause and the check's own comment said the ceiling comes off
+when the entry closes. `scripts/README.md` states the general rule: a check
+measuring an open defect records the count rather than failing, and the ceiling
+is removed when the defect is fixed.
+
+**The evidence it needed changing.** Taking it literally breaks the check. The
+ceiling counts credentials in *tracked files*, and all six live in
+`tests/fixtures/` and `experiments/fixtures/` -- verbatim captures that T-107
+itself forbids editing, because a rewritten capture is not a capture and
+rewriting one would also destroy the evidence that the refusal works. Removing
+the ceiling with the scope unchanged would fail the gate over files that are
+supposed to contain them, permanently, with no fix available.
+
+The allowance and the defect were never the same thing. The defect was
+**publication**; the copies in the tree are third-party evidence and are
+permanent.
+
+**The replacement.** No ceiling, and a path rule in its place: **zero**
+credentials anywhere outside a verbatim capture, and inside one a count that is
+reported and never fails. The publication defect is caught structurally
+instead -- `src/trackers/pipeline.py` refuses a credential-bearing URL and
+`scripts/generate.py` refuses to publish one, so a regression is a failed
+publication rather than a leaked passkey.
+
+⭐ **This is strictly stronger than what it replaces.** The ceiling would have
+passed a seventh credential written into `src/`; the path rule fails on the
+first one, and the count it kept is now enforced at the point of publication
+rather than counted after the fact.
+
+**Rejected alternatives.**
+
+| rejected | why it lost |
+| --- | --- |
+| Keep the ceiling at six | An exemption nobody can ever remove, over files that will always contain what upstream published. That is the definition of a check that stopped checking. |
+| Edit the credentials out of the fixtures | A rewritten capture is not a capture, the offline gate's reproducibility rests on them being verbatim, and it would delete the only evidence that the refusal works. |
+| Raise the ceiling whenever a re-capture brings a new one | Makes the number meaningless and the gate advisory. |
+| Exempt the test file that needs credential-shaped strings | A file-level exemption hides anything else written into that file. The narrowing is applied to the matched token instead. |
+| Keep the pattern in both the check and the pipeline | Two patterns for one rule are two places for it to be wrong, and they will be wrong differently. `src/trackers/exclusion.py` owns it and the check imports it. |
+
+**Prove.**
+
+```sh
+python3 -m unittest tests.test_credentials
+```
+
+`tests.test_credentials` reports `Ran 13 tests`, `OK`. Mutation-proved
+besides: a credential-bearing line written
+anywhere outside a capture fails `check-no-secrets.py` with exit 1, and a
+synthetic test vector cannot hide a real credential on the same line.
 

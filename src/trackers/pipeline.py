@@ -24,9 +24,28 @@ from dataclasses import dataclass, field
 
 from .acquire import FetchResult, Outcome
 from .dedup import DedupDecision, deduplicate
-from .exclusion import Exclusion, parse_blacklist
+from .exclusion import (Exclusion, carries_private_credential,
+                        mask_credential, parse_blacklist)
 from .model import HealthState, Tracker
 from .registry import PUBLISHABLE_ROLES, Role, Source
+
+
+@dataclass(frozen=True, slots=True)
+class Excluded:
+    """One entry that was offered and refused, and why.
+
+    RULES 3.10: a rejection is a returned value, never a log line, because a
+    tracker that disappears from the output owes the consumer who noticed a
+    reason. Before this carried `reason`, the record said only *that* something
+    was removed.
+
+    ⚠ `url` is **safe to print**: a private-credential refusal stores the
+    masked form, so the audit names the host without repeating the token.
+    """
+
+    url: str
+    reason: str
+    sources: tuple[str, ...] = ()
 
 
 @dataclass
@@ -43,13 +62,33 @@ class Aggregate:
     sources_rejected: list[str] = field(default_factory=list)
     sources_empty: list[str] = field(default_factory=list)
 
-    #: URL -> sources that offered it, for entries removed by an enforced
-    #: exclusion. Kept so a disappearance is always explainable (T-066).
-    excluded: dict[str, list[str]] = field(default_factory=dict)
+    #: URL -> the refusal, for entries removed by an enforced exclusion. Kept
+    #: so a disappearance is always explainable (T-066). ⚠ Keyed by the **raw**
+    #: URL so the count is right; every value's `url` is the safe-to-print
+    #: form, and rendering iterates values rather than keys.
+    excluded: dict[str, Excluded] = field(default_factory=dict)
 
     @property
     def any_source_failed(self) -> bool:
         return bool(self.sources_failed or self.sources_rejected)
+
+
+def _refuse(agg: "Aggregate", key: str, display: str, reason: str,
+            source_id: str) -> None:
+    """Record one refusal, merging the sources that offered the same URL.
+
+    ⚠ **Keyed by the raw URL, displayed as `display`.** Keying by the masked
+    form instead loses count: two different people's passkeys on one host mask
+    to the same string, so the refusal total silently under-reported by one --
+    seven URLs refused, six rows written. The raw URL never leaves this dict as
+    a key; every rendered line reads `Excluded.url`, which is the masked form.
+
+    Sources accumulate in sorted order rather than arrival order, because the
+    report is part of the deterministic output (RULES 3.6).
+    """
+    prior = agg.excluded.get(key)
+    sources = tuple(sorted(set(prior.sources if prior else ()) | {source_id}))
+    agg.excluded[key] = Excluded(url=display, reason=reason, sources=sources)
 
 
 def aggregate(results: list[FetchResult],
@@ -100,7 +139,24 @@ def aggregate(results: list[FetchResult],
         for t in res.trackers or ():
             if exclude and t.url in exclude:
                 # Operator request or safety. Recorded, not silently dropped.
-                agg.excluded.setdefault(t.url, []).append(res.source_id)
+                _refuse(agg, t.url, t.url,
+                        "upstream exclusion: operator request or safety",
+                        res.source_id)
+                continue
+            if carries_private_credential(t.url):
+                # T-107. Refused here rather than in the parser, so the
+                # decision is auditable (RULES 3.10) instead of a row silently
+                # vanishing; and refused rather than redacted, because a URL
+                # with its token stripped is a different endpoint and
+                # publishing it as the tracker invents one.
+                #
+                # RULES 6: no private-tracker data. It costs a consumer nothing
+                # -- a passkey URL authenticates one person and is unusable by
+                # anybody else -- and it is the clearest instance of this
+                # project doing something a concatenation cannot.
+                _refuse(agg, t.url, mask_credential(t.url),
+                        "carries a private-tracker credential (T-107)",
+                        res.source_id)
                 continue
             all_trackers.append(t)
             provenance.setdefault(t.url, set()).add(res.source_id)
@@ -236,5 +292,30 @@ def render_report(agg: Aggregate, *, generated_at: str, code_version: str) -> st
         "It is never reported dead -- that would measure the probe, not the",
         "tracker (RULES 3.1 requirement 1).",
         "",
+        "## Refused entries",
+        "",
+        f"- refused: {len(agg.excluded)}",
+        "",
+        "Every entry offered by a source and not published, with the reason.",
+        "A tracker that vanishes owes the consumer who noticed an explanation",
+        "(RULES 3.10), so this is a returned value and not a log line.",
+        "",
+        "⚠ A URL refused for carrying a private-tracker credential is listed",
+        "with the credential removed. The token is what got it refused;",
+        "printing it here would republish in the report what the dataset",
+        "declined to republish (T-107).",
+        "",
+        "So two of these lines can read identically: two people's credentials",
+        "on one endpoint differ only in the part that is not shown. They are",
+        "counted separately above, which is the number that matters.",
+        "",
     ]
+    # Ordered by what is printed, not by the key. Sorting on the raw URL would
+    # make the order of these lines a function of somebody's passkey; ordering
+    # on the rendered text keeps the output total, explicit (RULES 3.6) and
+    # derived only from what a reader can see.
+    for e in sorted(agg.excluded.values(),
+                    key=lambda x: (x.url, x.reason, x.sources)):
+        lines.append(f"- `{e.url}` -- {e.reason} [{', '.join(e.sources)}]")
+    lines.append("")
     return "\n".join(lines)

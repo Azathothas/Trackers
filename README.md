@@ -106,6 +106,14 @@ python3 scripts/generate.py --offline --out out
 Builds the dataset from the pinned fixtures into `out/`, deterministically:
 two runs over identical inputs are byte-identical, and CI asserts it.
 
+It writes `report.md` beside the list, and its *Refused entries* section names
+every URL a source offered that was not published, with the reason. Two kinds
+are refused: an upstream exclusion this project honours (an operator's request,
+or safety), and ⭐ **a URL carrying somebody's private-tracker passkey**, which
+is listed with the credential removed. Seven of those are in the current
+corpus. A row that vanishes without an explanation is the thing that section
+exists to prevent.
+
 ⚠ On a Windows host `python3` may resolve to a stub that exits without running.
 Use `python`, and see
 [`docs/conventions/shell.md`](docs/conventions/shell.md) section 6.

@@ -36,7 +36,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
 
 from trackers import NORMALIZATION_VERSION, __version__          # noqa: E402
 from trackers.acquire import Outcome, fetch, read_cached          # noqa: E402
-from trackers.exclusion import summarise                          # noqa: E402
+from trackers.exclusion import (carries_private_credential,       # noqa: E402
+                                summarise)
 from trackers.pipeline import (aggregate, collect_exclusions,      # noqa: E402
                                enforced_exclusions, flagged_exclusions,
                                render_plaintext, render_report)
@@ -75,6 +76,21 @@ def verify(agg, plaintext: str, blacklist: set[str]) -> list[str]:
     if leaked:
         problems.append(f"{len(leaked)} blacklisted URL(s) reached the output, "
                         f"e.g. {leaked[0]}")
+
+    # T-107. The pipeline refuses these already; this is the guard that makes
+    # a regression in that refusal a **failed publication** rather than a
+    # published credential. RULES 3.5 makes the failure safe: nothing is moved
+    # into place, so the previous output stands.
+    #
+    # ⚠ The count is named and the URL is not. A verification message that
+    # printed the offending line would leak the credential into a build log,
+    # which is the same mistake one file further along.
+    creds = [ln for ln in lines if carries_private_credential(ln)]
+    if creds:
+        problems.append(
+            f"{len(creds)} URL(s) carrying a private-tracker credential "
+            f"reached the output; refusing to publish (T-107). The URLs are "
+            f"deliberately not printed here.")
 
     # If EVERY source failed we have no evidence at all. Publishing then would
     # replace good data with the consequences of an outage (T-083:
@@ -158,7 +174,7 @@ def main() -> int:
     print(f"upstream exclusions: {counts} "
           f"-> enforced {len(enforced)} (operator request + safety), "
           f"kept-and-flagged {len(flagged)} (someone else's measurement)")
-    print(f"entries removed by an enforced exclusion: {len(agg.excluded)}")
+    print(f"entries refused and recorded with a reason: {len(agg.excluded)}")
 
     if problems:
         print("\nVERIFICATION FAILED -- nothing was published:")

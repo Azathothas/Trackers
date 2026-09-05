@@ -58,6 +58,63 @@ class ExclusionClass(str, Enum):
     SAFETY = "safety"
     #: Somebody else's measurement or editorial policy. Kept, and flagged.
     OPINION = "opinion"
+    #: The URL carries somebody's private-tracker credential. Excluded, and
+    #: this one is **ours** rather than an upstream's (T-107, `C-70`).
+    PRIVATE = "private"
+
+
+# --- T-107: a private tracker's credential must not be republished ------------
+#
+# A private tracker authenticates by a passkey carried in the announce URL:
+# `?passkey=<hex>`, or a long token as a path component beside `announce` or
+# `scrape`. Upstream lists publish them because a contributor pasted their own
+# URL, and a project whose premise is doing better than concatenating those
+# lists must not pass them on.
+#
+# ⭐ **This is the one definition of that shape in the tree.**
+# `scripts/check-no-secrets.py` imports it rather than carrying a second copy:
+# two patterns for one rule are two places for it to be wrong, and they will be
+# wrong differently (`docs/conventions/forbidden-patterns.md`).
+PRIVATE_CREDENTIAL = re.compile(
+    r"[?&]pass(key|_key|kee)=[A-Za-z0-9]{16,}"
+    r"|/[A-Za-z0-9]{20,}/(announce|scrape)\b"
+    r"|/(announce|scrape)/[A-Za-z0-9]{20,}\b",
+    re.IGNORECASE)
+
+#: What replaces the token when a refusal is written down. The audit says which
+#: host was refused and why; it does not repeat the secret that got it refused.
+REDACTED = "<redacted>"
+
+
+def carries_private_credential(url: str) -> bool:
+    """Whether this URL authenticates somebody. RULES 6: no private-tracker data."""
+    return PRIVATE_CREDENTIAL.search(url) is not None
+
+
+def mask_credential(url: str) -> str:
+    """The URL with the credential removed, **for the audit record only**.
+
+    ⛔ **Never published as a tracker.** T-107 forbids redact-and-republish
+    because a URL with its token stripped is an endpoint that answers
+    differently, and offering it as the tracker is the invented-endpoint
+    mistake `C-66` already cost this project once.
+
+    This is the other half of that rule rather than an exception to it. RULES
+    3.10 says a tracker that disappears owes the consumer who noticed a reason,
+    and the reason has to name *something*. Naming the raw URL would write a
+    live credential into the run report -- refusing to publish it in one file
+    and printing it in the next one -- so the host is named and the token is
+    not.
+    """
+    def strip(m: re.Match[str]) -> str:
+        text = m.group(0)
+        if "=" in text:
+            return text.split("=", 1)[0] + "=" + REDACTED
+        # A path-component token, before or after `announce`/`scrape`.
+        return "/".join(
+            part if part.lower() in ("announce", "scrape") or not part else REDACTED
+            for part in text.split("/"))
+    return PRIVATE_CREDENTIAL.sub(strip, url)
 
 
 #: Matched case-insensitively against the reason text, in order. First match

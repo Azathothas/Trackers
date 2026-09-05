@@ -662,8 +662,8 @@ Prove:       `python3 -m unittest tests.test_bep34 -v` (planned) passes against
              **before** the ladder, and the README's claim becomes true.
 
 **Done.** `python3 -m unittest tests.test_bep34` -> `Ran 33 tests`, `OK`.
-`python3 -m unittest discover -s tests` -> `Ran 160 tests`, `OK`, still with no
-network. `python3 scripts/check-gate.py --strict` -> 14 passed, 1 expected skip.
+`python3 -m unittest discover -s tests` -> `Ran 160 tests` at acceptance, `OK`,
+still with no network. `python3 scripts/check-gate.py --strict` -> 14 passed, 1 expected skip.
 
 `src/trackers/bep34.py` implements the record parser and, because the standard
 library has no TXT resolver and D1 forbids a dependency, the DNS client too:

@@ -48,7 +48,10 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "src"))
 import _scope  # noqa: E402
+from trackers.exclusion import PRIVATE_CREDENTIAL  # noqa: E402
 
 # A file whose whole purpose is to hold a credential. The strongest signal
 # there is: not a value that looks like a secret, but a file that is one.
@@ -78,40 +81,67 @@ PUBLIC_SHAPES = (
      r"([A-Za-z]:[\\/]Users[\\/]|/home/|/Users/)[A-Za-z0-9._-]+"),
 )
 
-# The one credential shape this project can actually leak, and does.
+# The one credential shape this project can actually leak.
 #
-# A private tracker authenticates by a passkey carried in the announce URL:
-# `?passkey=<hex>`, or a long token as a path component beside `announce` or
-# `scrape`. Upstream lists publish them because a contributor pasted their own
-# URL, and a project whose entire premise is doing better than concatenating
-# those lists must not pass them on.
-#
-# It is a separate rule from the generic hex one because it needs a different
-# verdict: this is somebody's live credential, and the tracker it belongs to
-# can see every use of it.
-TRACKER_CREDENTIAL = re.compile(
-    r"[?&]pass(key|_key|kee)=[A-Za-z0-9]{16,}"
-    r"|/[A-Za-z0-9]{20,}/(announce|scrape)\b"
-    r"|/(announce|scrape)/[A-Za-z0-9]{20,}\b",
-    re.IGNORECASE)
+# ⭐ **The pattern is imported, not restated.** `src/trackers/exclusion.py`
+# owns it because the pipeline has to act on it, and two patterns for one rule
+# are two places for it to be wrong (`docs/conventions/forbidden-patterns.md`).
+TRACKER_CREDENTIAL = PRIVATE_CREDENTIAL
 
-# An open defect this check MEASURES rather than fails on, per the check
-# contract in `scripts/README.md`: record the count and judge it only past a
-# stated ceiling.
+# ⚠ **There is no longer a ceiling here, and that is the point of T-107.**
 #
-# Six distinct credentials are in the corpus, on seven URLs (one tracker is
-# listed both with and without its port), and `scripts/generate.py --offline`
-# publishes all seven into `trackers_all.txt` (measured 2026-08-31, C-70).
-# The fixtures themselves are verbatim captures of upstream files and are not
-# edited: they are what makes the offline gate reproducible, and a fixture
-# somebody rewrote is not a capture. The defect is that nothing between the
-# fixture and the published dataset refuses them.
+# It used to allow six, because six of somebody's passkeys were reaching
+# `trackers_all.txt` and a check that failed on them would have failed on a
+# defect nothing could yet fix. The pipeline now refuses a credential-bearing
+# URL outright and `scripts/generate.py` will not publish one, so the ceiling
+# is gone rather than raised: an exemption nobody removes is a check that
+# stopped checking.
 #
-# T-107 is the entry that closes it. THIS CEILING COMES OFF WHEN IT DOES: an
-# exemption nobody removes is a check that stopped checking. Until then a
-# SEVENTH distinct credential fails the gate, which is the property that
-# matters: the corpus is re-fetched from upstreams that keep publishing these.
-TRACKER_CREDENTIAL_CEILING = 6
+# What replaced it is a **path rule with no exemption**: zero credentials
+# anywhere this project writes, and a count -- never a failure -- inside the
+# directories holding verbatim captures of somebody else's files.
+#
+# ⛔ Those captures are not edited. They are what makes the offline gate
+# reproducible, a fixture somebody rewrote is not a capture, and rewriting one
+# would destroy the evidence that the refusal works. So a credential inside one
+# is expected, is counted, and is not a leak: nothing downstream of it is
+# published.
+# ⭐ **A narrowing on the matched token, never on the line.** An allowlist
+# applied to a whole line lets the allowed thing hide a banned thing beside it
+# (`docs/conventions/forbidden-patterns.md`); this one looks only at the token
+# that matched.
+#
+# A token containing the ascending hex sequence is a documentation or test
+# vector rather than somebody's credential: real passkeys are random, and the
+# chance that one contains `0123456789abcdef` is about 16 to the minus 16.
+# `tests/test_credentials.py` needs credential-shaped strings to test the
+# detector with, and a check that cannot be tested is one nobody trusts.
+SYNTHETIC_TOKEN = re.compile(r"0123456789abcdef", re.IGNORECASE)
+
+CAPTURE_DIRS = (
+    os.path.join("tests", "fixtures"),
+    os.path.join("experiments", "fixtures"),
+    "references",
+)
+
+
+def is_capture(rel: str) -> bool:
+    """Whether a path is a verbatim capture of a third party's file."""
+    norm = rel.replace("/", os.sep)
+    return any(norm == d or norm.startswith(d + os.sep) for d in CAPTURE_DIRS)
+
+
+def credential_tokens(line: str) -> list[str]:
+    """Every real credential token on one line.
+
+    ⛔ `finditer`, never `search`. Reading only the first match makes the
+    narrowing above into the whole-line allowlist it was written to avoid: a
+    synthetic token at the start of a line would decide the verdict for a real
+    credential further along it, and the real one would never be looked at.
+    It also undercounts a line carrying two.
+    """
+    return [m.group(0) for m in TRACKER_CREDENTIAL.finditer(line)
+            if not SYNTHETIC_TOKEN.search(m.group(0))]
 
 # Narrowings, not exemptions. Each names a shape that is SAFE PRACTICE and
 # would otherwise make the rule fire on correct hardening, which is how a rule
@@ -179,19 +209,20 @@ def main(argv: list[str]) -> int:
     # the test corpus; that is one person's passkey, not three, and a ceiling
     # that counted lines would move whenever a fixture was re-captured.
     creds_in_urls = {}
+    leaked = {}
     for rel in text_files:
         for n, line in enumerate(_scope.read(rel).splitlines(), start=1):
-            m = TRACKER_CREDENTIAL.search(line)
-            if m:
-                creds_in_urls.setdefault(m.group(0), []).append("%s:%d" % (rel, n))
-    if len(creds_in_urls) > TRACKER_CREDENTIAL_CEILING:
+            where = creds_in_urls if is_capture(rel) else leaked
+            for token in credential_tokens(line):
+                where.setdefault(token, []).append("%s:%d" % (rel, n))
+    if leaked:
+        # Outside a capture there is no benign reading: this project wrote it.
         categories += 1
         report.append(
-            "== a private-tracker credential in a URL: %d distinct, "
-            "ceiling %d (T-107) ==" % (len(creds_in_urls),
-                                       TRACKER_CREDENTIAL_CEILING))
-        for token in sorted(creds_in_urls):
-            report.append("%s  in %s" % (token, ", ".join(creds_in_urls[token])))
+            "== a private-tracker credential outside a verbatim capture: "
+            "%d distinct (T-107) ==" % len(leaked))
+        for token in sorted(leaked):
+            report.append("%s  in %s" % (token, ", ".join(leaked[token])))
 
     shapes = list(SHAPES) + (list(PUBLIC_SHAPES) if public else [])
     for name, pattern in shapes:
@@ -200,7 +231,7 @@ def main(argv: list[str]) -> int:
         for rel in text_files:
             lines = _scope.read(rel).splitlines()
             for i, line in enumerate(lines):
-                if TRACKER_CREDENTIAL.search(line):
+                if credential_tokens(line):
                     continue      # already reported, and one finding one home
                 window = lines[max(0, i - NARROWING_LOOKBACK):i + 1]
                 if rx.search(line) and not narrowed(window):
@@ -212,10 +243,10 @@ def main(argv: list[str]) -> int:
 
     ok = ("no secret shapes found in %d files (tracked plus "
           "untracked-not-ignored)%s\n"
-          "  private-tracker credentials in URLs: %d distinct, "
-          "ceiling %d (T-107)"
+          "  private-tracker credentials: 0 outside a verbatim capture; "
+          "%d distinct inside one, refused by the pipeline (T-107)"
           % (len(files), " (public rules included)" if public else "",
-             len(creds_in_urls), TRACKER_CREDENTIAL_CEILING))
+             len(creds_in_urls)))
     return _scope.emit(
         json_mode, "check-no-secrets/1", categories, report, ok,
         tail=("If any of it is a real credential, IN THIS ORDER:\n"

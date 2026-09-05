@@ -77,7 +77,7 @@ pretending to be one.
 | [T-142](foundation.md) | P1 | foundation | **done** | The protocol model was mis-factored and would have marked I2P trackers dead |
 | [T-143](foundation.md) | P1 | foundation | **done** | There was no pipeline, and determinism had never been demonstrated |
 | [T-146](foundation.md) | P1 | foundation | **done** | The README did not exist, so the honesty statements had nowhere to live |
-| [T-107](sources.md) | P1 | sources | open | The pipeline republishes private-tracker credentials |
+| [T-107](sources.md) | P1 | sources | **done** | The pipeline republishes private-tracker credentials |
 | [T-005](claims.md) | P2 | claims | open | WebTorrent trackers are unmeasurable by default and nobody has tried |
 | [T-006](claims.md) | P2 | claims | open | Actions billing for public repositories is unverified |
 | [T-007](claims.md) | P2 | claims | open | Resolver agreement was measured at n=17 on one day |
@@ -119,7 +119,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 66 entries, 52 open, 0 blocked, 14 done
+**Counts:** 66 entries, 51 open, 0 blocked, 15 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -127,10 +127,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 4 | 0 | 3 | 7 |
-| P1 | 15 | 0 | 6 | 21 |
+| P1 | 14 | 0 | 7 | 21 |
 | P2 | 27 | 0 | 4 | 31 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **52** | **0** | **14** | **66** |
+| **All** | **51** | **0** | **15** | **66** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

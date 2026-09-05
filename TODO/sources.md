@@ -201,7 +201,7 @@ Source:      `C-70`, found by the secret sweep adopted on 2026-08-31
 Category:    sources
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     Seven announce URLs in the accepted dataset carry a passkey: six
              distinct credentials, entering from `DeSireFire/animeTrackerList`
@@ -236,3 +236,68 @@ Decision:    Refuse rather than redact, and refuse in `exclusion.py` rather
              endpoint); drop silently in the parser (unauditable, RULES 3.10);
              leave it to the consumer (this project exists to do better than
              concatenation, and this is the clearest instance of it).
+
+             ⚠ **The `Prove` clause above said the ceiling "comes off", and
+             taking that literally would have broken the check.** The ceiling
+             counted credentials in *tracked files*, and six of them live in
+             `tests/fixtures/` and `experiments/fixtures/` -- verbatim captures
+             this entry itself forbids editing. Removing the ceiling with the
+             scope unchanged would have failed the gate over files that are
+             supposed to contain them. RULES 9 permits changing a requirement
+             and forbids changing one silently, so:
+
+             **as written**: allow six credentials in the tree, and remove that
+             allowance when the pipeline stops publishing them.
+             **why it is wrong**: the allowance and the defect were never the
+             same thing. The defect was publication; the tree's copies are
+             third-party evidence and are permanent.
+             **the replacement**: no ceiling anywhere, and a path rule instead
+             -- **zero** credentials outside a verbatim capture, and inside one
+             a count that is reported and never fails. The publication defect is
+             now caught structurally instead: the pipeline refuses the URL and
+             `scripts/generate.py` refuses to publish one.
+
+             That is strictly stronger than the ceiling it replaces. The ceiling
+             would have passed a seventh credential written into `src/`; the
+             path rule fails on the first.
+
+**Done.** `python3 -m unittest tests.test_credentials` -> `Ran 13 tests`, `OK`.
+`python3 scripts/generate.py --offline --out DIR` publishes **1327** trackers,
+seven fewer than before, and
+
+```bash
+grep -cE '(passkey=|/announce/[0-9a-f]{20,}|/[0-9a-f]{20,}/announce)' DIR/trackers_all.txt
+```
+
+prints `0` and exits 1. The run report's new *Refused entries* section names all
+fifteen refusals with reasons: seven for a credential, eight for an upstream
+operator request or safety.
+
+**The pattern has one home.** `src/trackers/exclusion.py` owns
+`PRIVATE_CREDENTIAL` and `scripts/check-no-secrets.py` imports it, because two
+patterns for one rule are two places for it to be wrong. A test asserts the
+import is still there and that the retired ceiling has not come back.
+
+⭐ **Two defects were found by building it, and neither was in the plan.**
+
+1. **The refusal count was wrong before it was ever read.** Keying the record
+   on the *masked* URL collapsed two people's passkeys on one endpoint into one
+   row: seven URLs refused, six recorded. It is keyed on the raw URL and
+   rendered masked, and `test_the_refusals_are_counted_per_url_not_per_masked_
+   string` is the regression.
+2. **The narrowing that lets the tests exist reintroduced the whole-line
+   allowlist.** `check-no-secrets.py` matched with `search`, so the *first*
+   token on a line decided the verdict for the whole line -- a synthetic test
+   vector would have hidden a real credential written beside it, which is the
+   row in `forbidden-patterns.md` this project already had a name for. It reads
+   every match now, and the test plants exactly that pair.
+
+**Mutation-proved.** A credential-bearing line written into `docs/` fails the
+check (exit 1); removing it passes (exit 0). The narrowing is proved on the
+matched token rather than the line, both directions.
+
+**Nothing was redacted and republished**, and the report is held to the same
+rule as the dataset: a refused URL is listed with the token removed, because
+refusing to publish a credential in one file and printing it in the next one is
+not a fix. `mask_credential` is the only thing that writes one down, and its
+output is asserted to no longer match the detector.
