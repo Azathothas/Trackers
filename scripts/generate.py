@@ -102,6 +102,40 @@ def verify(agg, plaintext: str, blacklist: set[str]) -> list[str]:
     return problems
 
 
+def load_corpus(offline: bool, fixtures: str):
+    """Fetch every enabled source and aggregate it. The one assembly path.
+
+    Returned rather than printed so both `generate.py` and
+    `probe-corpus.py` build the corpus the same way. A second copy of this
+    would acquire different defects, and the one nobody looks at would be the
+    one publishing.
+    """
+    sources = {s.id: s for s in enabled_sources()}
+    if not sources:
+        raise _NoSources("no enabled sources")
+
+    results = []
+    bodies: dict[str, str] = {}
+    for s in sorted(sources.values(), key=lambda x: x.id):
+        if offline:
+            path = os.path.join(fixtures, f"{s.id}.txt")
+            if s.role is Role.BLACKLIST and os.path.exists(path):
+                with open(path, encoding="utf-8", errors="replace") as fh:
+                    bodies[s.id] = fh.read()
+            results.append(read_cached(s, fixtures))
+        else:
+            results.append(fetch(s))
+
+    exclusions = collect_exclusions(bodies)
+    enforced = enforced_exclusions(exclusions)
+    agg = aggregate(results, sources, exclude=enforced)
+    return agg, exclusions, enforced
+
+
+class _NoSources(RuntimeError):
+    """The registry is empty. Exit 2: could not run."""
+
+
 def display_path(path: str, start: str) -> str:
     """A path to print: relative to `start` where one exists, absolute where
     one does not.
@@ -137,27 +171,12 @@ def main() -> int:
                     help="stage and verify, but do not publish")
     args = ap.parse_args()
 
-    sources = {s.id: s for s in enabled_sources()}
-    if not sources:
-        print("no enabled sources", file=sys.stderr)
+    try:
+        agg, exclusions, enforced = load_corpus(args.offline, args.fixtures)
+    except _NoSources as exc:
+        print(exc, file=sys.stderr)
         return 2
-
-    results = []
-    bodies: dict[str, str] = {}
-    for s in sorted(sources.values(), key=lambda x: x.id):
-        if args.offline:
-            path = os.path.join(args.fixtures, f"{s.id}.txt")
-            if s.role is Role.BLACKLIST and os.path.exists(path):
-                with open(path, encoding="utf-8", errors="replace") as fh:
-                    bodies[s.id] = fh.read()
-            results.append(read_cached(s, args.fixtures))
-        else:
-            results.append(fetch(s))
-
-    exclusions = collect_exclusions(bodies)
-    enforced = enforced_exclusions(exclusions)
     flagged = flagged_exclusions(exclusions)
-    agg = aggregate(results, sources, exclude=enforced)
 
     plaintext = render_plaintext(agg.trackers)
     report = render_report(agg, generated_at=args.generated_at,

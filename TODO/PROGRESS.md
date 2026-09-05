@@ -57,11 +57,11 @@ below is the previous session's and is quoted as such.
 | HTTP tracker discrimination | 4 of 6 subjects proved tracker, 4 scrape-capable, 2 no response, `announce_sent: false` |
 | DNS resolver divergence | **0 divergent of 17** on both images, and **1 divergent on the run 40 minutes earlier**. Thin, and carried as T-007 |
 | Corpus, accepted dataset, transport mix | [`corpus-baseline.md`](../HISTORY/corpus-baseline.md) |
-| Test suite | **173** tests, no network |
+| Test suite | **193** tests, no network |
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
 | Local gate | `python3 scripts/check-gate.py --strict`: 14 checks pass, 1 expected skip |
 | Private-tracker credentials in the generated plaintext | **0**, refused by the pipeline (`C-70`, T-107 closed) |
-| CI | `gate.yml` was green on `ubuntu-24.04` and `windows-2025` at the previous session's head. ⛔ **Not yet confirmed on this session's commits** |
+| CI | `gate.yml` **green on `ubuntu-24.04` and `windows-2025`** at `62007e4`, run `33936896849`, confirmed by looking |
 
 ## Counts
 
@@ -102,6 +102,22 @@ longer reach the output; the accepted count moved **1334 to 1327**. They are
 refused rather than redacted, and the run report's new *Refused entries*
 section names all fifteen refusals with reasons and with credentials removed.
 
+**[T-029](measurement.md) is closed.** `src/trackers/sweep.py` bounds a run
+three ways -- concurrency across hosts, exactly one connection per host in both
+profiles, and a whole-run deadline -- and `scripts/probe-corpus.py` drives it.
+⚠ **`asyncio` was rejected**: it would mean an async rewrite of both probers and
+therefore two implementations of the probe. A thread pool runs the production
+probe path unmodified.
+
+**[T-024](measurement.md) is advanced, not closed, and the reason is a vantage
+rather than a missing piece.** The emitter exists and
+`tests.test_concurrency.RecordsSatisfyTheVantageGate` runs the real gate over
+records this project produced against trackers it controls. ⛔ **What is left is
+a probe of the real corpus, and this session refused to run one**: RULES 13.1
+authorises probing live trackers from CI, and this host is an
+`unclassified-host` on a residential connection. The three routes considered,
+and why two were refused, are on the entry.
+
 **Four defects were found by building those two, none of them in either plan:**
 
 1. **The refusal count was wrong before anyone read it.** Keying the record on
@@ -141,23 +157,29 @@ so, unchanged:
   field exist; the send path in `probe_udp` does not. ⚠ Its docstring used to
   advertise a `cfg.udp_scrape` switch that never existed; that line is
   corrected.
-- **[T-024](measurement.md)**: the record shape exists and is tested; nothing
-  writes one to disk, so `scripts/check-vantage-metadata.py` still exits 2,
-  which remains correct.
+- **[T-024](measurement.md)**: the emitter, the instrument and the gate's
+  `--path` all exist and are tested end to end against the loopback oracle. No
+  record of a **real** tracker exists, because no sanctioned vantage has run
+  the sweep, so `scripts/check-vantage-metadata.py` still exits 2 and that
+  remains correct.
 
 ## Start here next session
 
-1. **[T-024](measurement.md)** and **[T-029](measurement.md)** - emit health
-   records, with the concurrency bound. Take them together: the corpus probed
-   serially at a 5 s timeout is over an hour, so the bound is what makes the
-   run possible at all. **`check-vantage-metadata.py` flips 2 to 0 the moment
-   this lands**, which is the cheapest visible proof that P2 has started, and
-   [`../docs/methodology/gate.md`](../docs/methodology/gate.md) says its
+1. **[T-024](measurement.md)** - run `scripts/probe-corpus.py` **on a
+   runner** and commit the records. Everything else for it is built; what is
+   missing is a sanctioned vantage, which is why it is first and why it is
+   cheap. **`check-vantage-metadata.py` flips 2 to 0 the moment records exist**,
+   and [`../docs/methodology/gate.md`](../docs/methodology/gate.md) says its
    `expect_skip` flag comes off in the same change.
 
-   ⚠ **The BEP 34 consultation costs a DNS round trip per host**, so pass one
-   `Resolver` for the whole run: it caches per host and the corpus has many
-   URLs per host. Budget for it when sizing the concurrency bound.
+   ⚠ **Read the entry's three routes before reaching for a shortcut.** Emitting
+   `unknown` records offline would flip the gate today and prove nothing, which
+   is why `probe-corpus.py` has no offline mode.
+
+   ⚠ **The BEP 34 consultation costs a DNS round trip per host.** The sweep
+   already shares one `Resolver` across the run, which caches per host; a
+   caller that builds one per probe would multiply the DNS load by the number
+   of URLs per host.
 
 2. **[T-027](measurement.md)** - the value gate. Answerable as soon as (1)
    lands, and **a negative answer is a successful outcome.** T-107 has already

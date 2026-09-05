@@ -59,8 +59,21 @@ UNMEASURABLE_TRANSPORTS = {"ws", "wss"}
 FORBIDDEN_STATE_FOR_UNMEASURABLE = {"dead", "live", "degraded"}
 
 
-def iter_records():
-    for pattern in CANDIDATE_GLOBS:
+def globs_for(root: str | None) -> list[str]:
+    """Where to look. `root` overrides the tree's own output directories.
+
+    A sweep writes into a scratch directory rather than the tree -- running a
+    check must not dirty the working copy, which RULES 10.3 step 6 needs and
+    which the offline census once broke -- so the gate points this at the
+    directory the sweep just wrote.
+    """
+    if root is None:
+        return list(CANDIDATE_GLOBS)
+    return [os.path.join(root, "**", "*.json")]
+
+
+def iter_records(patterns=None):
+    for pattern in (CANDIDATE_GLOBS if patterns is None else patterns):
         files = sorted(glob.glob(pattern, recursive=True))
         found = False
         for path in files:
@@ -79,13 +92,26 @@ def iter_records():
             return
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    root = None
+    if "--path" in argv:
+        i = argv.index("--path")
+        if i + 1 >= len(argv):
+            print("--path needs a directory", file=sys.stderr)
+            return 2
+        root = argv[i + 1]
+        if not os.path.isdir(root):
+            print(f"--path {root!r} is not a directory", file=sys.stderr)
+            return 2
+
+    patterns = globs_for(root)
     problems: list[str] = []
     seen = 0
 
-    for path, rec in iter_records():
+    for path, rec in iter_records(patterns):
         seen += 1
-        rel = os.path.relpath(path, REPO)
+        rel = _display(path, root)
         url = rec.get("url", "<no url>")
 
         vantage = rec.get("vantage")
@@ -126,8 +152,8 @@ def main() -> int:
         print("  nothing and would survive into the phase where it matters.")
         print()
         print("  Searched:")
-        for p in CANDIDATE_GLOBS:
-            print(f"    {os.path.relpath(p, REPO)}")
+        for p in patterns:
+            print(f"    {_display(p, root)}")
         return 2
 
     print(f"checked {seen} health records")
@@ -139,6 +165,16 @@ def main() -> int:
     print("\nOK  every record carries vantage metadata and a measurement rung; "
           "nothing unmeasurable is reported live, dead or degraded.")
     return 0
+
+
+def _display(path: str, root: str | None) -> str:
+    """A path to print. `relpath` raises across drives on Windows."""
+    for start in ([root] if root else []) + [REPO]:
+        try:
+            return os.path.relpath(path, start)
+        except ValueError:
+            continue
+    return os.path.abspath(path)
 
 
 if __name__ == "__main__":

@@ -239,6 +239,44 @@ Approach:    Emit the conditions block into every health record. The vantage for
 Prove:       `python3 scripts/check-vantage-metadata.py` exits **0** rather
              than 2, over real records.
 
+             **Two of the three parts now exist, and the third is a run rather
+             than a piece of work.** `src/trackers/sweep.py` emits a record per
+             tracker with its vantage, `scripts/probe-corpus.py` writes
+             `health.json`, and `scripts/check-vantage-metadata.py` takes a
+             `--path` so records can live in scratch instead of dirtying the
+             tree. `tests.test_concurrency.RecordsSatisfyTheVantageGate` runs
+             **the real gate over records this project produced**, against
+             trackers it controls on loopback, and it exits 0.
+
+             ⛔ **What remains is a probe of the real corpus from a sanctioned
+             vantage, and it was deliberately not run here.** RULES 13.1
+             authorises probing live trackers **from CI**; the session that
+             built this ran on a contributor's Windows host, whose
+             `environment_class` is `unclassified-host` and whose address is a
+             residential connection rather than the vantage every other figure
+             in this project was taken from. Probing a thousand strangers'
+             servers from it would have produced records that are not
+             comparable with anything and would have spent somebody's home
+             address doing it.
+
+             ⚠ **Three routes to closing it were considered** (RULES 10.1a):
+
+             1. **A workflow step on a runner.** The right one. It needs a
+                schedule and a politeness budget, which is T-084's decision and
+                T-026's number, and it is where this entry actually closes.
+             2. **Emit `unknown` records for the whole corpus offline**, which
+                would flip the gate today without probing anything. **Refused**:
+                the file would satisfy the checker while nothing had been
+                measured, which is the forbidden pattern about a step that
+                exits 0 having done nothing. `scripts/probe-corpus.py` has no
+                offline mode for that reason, and its docstring says so.
+             3. **Probe a handful of trackers from this host** to produce a few
+                real records. **Refused**: a measurement from an unclassified
+                vantage that is then compared with runner figures is the
+                vantage-conflation this project exists to avoid, and RULES 15.4
+                requires the profile to travel with the result rather than the
+                result to be taken anywhere convenient.
+
 ---
 
 ### T-025 The health state machine and failure classification are undefined
@@ -406,7 +444,7 @@ Source:      RULES 5.2; RULES 5.2
 Category:    measurement
 Priority:    P1
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     The whole corpus probed serially at a 5 s timeout is over an hour in
              the worst case, and probed in parallel without a bound is an
@@ -453,6 +491,47 @@ Prove:       `python3 -m unittest tests.test_concurrency -v` (planned) passes
              for unprobed trackers; no two concurrent probes target one host;
              and the computed per-tracker UDP budget equals
              `5 x max(timeout / 3, floor)`.
+
+**Done.** `python3 -m unittest tests.test_concurrency` -> `Ran 20 tests`, `OK`,
+no network. `src/trackers/sweep.py` is the runner and `scripts/probe-corpus.py`
+is the instrument that drives it.
+
+All three `Prove` cases hold, and the two that could fail silently were
+**mutation-proved** rather than merely passed:
+
+* replacing the per-host lock with a fresh lock per call fails
+  `PerHostSerialisation`;
+* removing **both** deadline checks fails `Deadline`.
+
+⭐ **Removing only the outer deadline check failed nothing, and that is a
+finding rather than a gap.** The check before the host lock is a *drain*, not a
+correctness guard: it stops a queue of threads waiting on one slow host from
+each taking its turn only to discover the deadline has passed. The check
+*inside* the lock is the one that decides correctness, and the mutation proved
+which is which.
+
+⚠ **`asyncio` was rejected**, which the `Approach` above proposed. It would
+require an async rewrite of `probe_udp` and `probe_http`, so the project would
+carry **two implementations of the probe** and a fix to one would never reach
+the other -- the copy-pasted-logic row in
+[`../docs/conventions/forbidden-patterns.md`](../docs/conventions/forbidden-patterns.md).
+The workload is latency-bound IO where a bounded thread pool and a bounded
+event loop are the same shape, so a `ThreadPoolExecutor` runs the **production
+probe path unmodified**. Rejected with it: an unbounded pool (the burst this
+entry exists to prevent), and a per-host queue rather than a lock (same
+guarantee, more machinery).
+
+**Selection is a stride, not a head, and that was a defect avoided rather than
+found.** `Tracker.sort_key` leads with the transport, so `ci`'s 200-tracker
+sample taken from the front of a sorted corpus would have been entirely `http`
+and a wholly broken UDP path would never have appeared in a CI run. The stride
+keeps every transport, and `test_a_sample_keeps_every_transport` fails if it
+stops doing so.
+
+⭐ **The sweep fills in the vantage rather than trusting the probe to.** RULES
+3.4 is the sweep's promise because the sweep is what emits the record, and a
+record missing its vantage fails silently: the consumer reads `dead` and cannot
+tell it means `dead from one datacenter, over IPv4`.
 
 ---
 

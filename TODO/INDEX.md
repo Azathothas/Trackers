@@ -63,7 +63,7 @@ pretending to be one.
 | [T-024](measurement.md) | P1 | measurement | open | No health record carries vantage metadata, because no health record exists |
 | [T-025](measurement.md) | P1 | measurement | done | The health state machine and failure classification are undefined |
 | [T-026](measurement.md) | P1 | measurement | open | The politeness budget is neither computed nor published nor asserted |
-| [T-029](measurement.md) | P1 | measurement | open | Probing has no concurrency control, timeout budget or cancellation behaviour |
+| [T-029](measurement.md) | P1 | measurement | **done** | Probing has no concurrency control, timeout budget or cancellation behaviour |
 | [T-031](measurement.md) | P1 | measurement | open | Liveness for networks this vantage cannot reach -- the leverage entry |
 | [T-040](scoring.md) | P1 | scoring | open | There is no state or history, so nothing can be scored |
 | [T-043](scoring.md) | P1 | scoring | open | The six scoring invariants are not enforced by anything |
@@ -119,7 +119,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 66 entries, 51 open, 0 blocked, 15 done
+**Counts:** 66 entries, 50 open, 0 blocked, 16 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -127,10 +127,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 4 | 0 | 3 | 7 |
-| P1 | 14 | 0 | 7 | 21 |
+| P1 | 13 | 0 | 8 | 21 |
 | P2 | 27 | 0 | 4 | 31 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **51** | **0** | **15** | **66** |
+| **All** | **50** | **0** | **16** | **66** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway
