@@ -117,6 +117,24 @@ a required `info_hash` to learn nothing. The `Prove` clause could not be
 satisfied honestly, which is D15. What replaces it is a test that parses `src/`
 with `ast` and fails if anything ever calls `build_scrape_request`.
 
+**[T-003](claims.md) is closed and it refuted something.** `experiments/24`
+created throwaway releases here, measured, and deleted them; the repository had
+0 releases and 0 tags before and after, asserted by the script. `C-14` is
+verified on both halves -- a tag named `latest` earns nothing and a newer
+*prerelease* does not take the channel. **`C-17` is refuted**: a moved tag
+leaves the release's `target_commitish` on the old commit while `tarball_url`
+follows the tag, so two consumers reading one release disagree silently.
+**Delete-and-recreate is the route for [T-064](publication.md).**
+
+⭐ **`C-15` is the one that nearly went in wrong.** The first run fetched once,
+three seconds after replacing an asset, saw the old bytes with an unchanged
+`ETag`, and would have recorded "assets cannot be replaced". The control RULES
+2 requires -- the asset's API metadata, which separates a failed replacement
+from a cached one -- showed the replacement had landed and a cache was serving
+stale bytes. The window is **variable**: three runs minutes apart gave 0 s once
+and between 10 s and 40 s once. `Cache-Control` was absent every time, so
+nothing warns a consumer. Publication must not assume read-after-write.
+
 **[T-024](measurement.md) is advanced, not closed, and the reason is a vantage
 rather than a missing piece.** The emitter exists and
 `tests.test_concurrency.RecordsSatisfyTheVantageGate` runs the real gate over
@@ -211,9 +229,10 @@ so, unchanged:
    P0, independent of all of the above, and good work for a session that does
    not want to hold the measurement context.
 
-6. **[T-003](claims.md)** - release and tag behaviour. S effort, answers three
-   claims, unblocks [T-064](publication.md). Throwaway releases here are
-   sanctioned (RULES 13.1): tag them `test-*` and delete them afterwards.
+6. **[T-064](publication.md)** - release channel semantics. **Unblocked by
+   T-003 and its shape is now decided by measurement rather than by guess:**
+   delete-and-recreate rather than move-the-tag (`C-17` is refuted), and no
+   read-after-write assumption (`C-15`).
 
 **Deliberately deferred, and not a blocker:** [T-044](scoring.md), the scoring
 model. It waits on history existing (T-040), because choosing a model now would

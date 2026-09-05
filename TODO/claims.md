@@ -89,7 +89,7 @@ Source:      `C-14`, `C-15`, `C-17`
 Category:    claims
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     Three unknowns: whether `/releases/latest` resolves to the newest
              non-prerelease rather than to a tag literally named `latest`;
@@ -110,6 +110,49 @@ Approach:    Experiment 24. Create a release tagged `latest` and a second,
              cache headers. Move a tag and observe the release's target.
 Prove:       `python3 experiments/24-release-channel-behaviour.py` exits 0 and
              `HISTORY/claims.md` rows `C-14`, `C-15`, `C-17` cite it.
+
+**Done.** `python3 experiments/24-release-channel-behaviour.py --expect-design`
+exits 0. Three runs are committed under `experiments/results/`, all from
+`unclassified-host` on 2026-09-05.
+
+| claim | answer |
+| --- | --- |
+| `C-14` | **VERIFIED, both halves.** A tag literally named `latest` earns nothing, and a newer *prerelease* does not take the channel from a stable release |
+| `C-15` | **VERIFIED, with a condition** |
+| `C-17` | **REFUTED** |
+
+⭐ **The C-15 condition is the finding, and the first run got it wrong.** That
+run fetched once, three seconds after replacing the asset, saw the old bytes
+and an unchanged `ETag`, and would have recorded "assets cannot be replaced".
+RULES 2 requires a control that isolates a cause before one is named, so the
+instrument was given one: the asset's **API metadata** before and after, which
+separates "the replacement never happened" from "it happened and something is
+serving a cached copy". The id and the size both changed, so the replacement
+landed and the URL was serving stale bytes.
+
+⚠ **And the window is variable, which is why the second run was not enough
+either.** Across three runs minutes apart from one host: one served the new
+content immediately, one still served the old content at 10 s and had switched
+by 40 s. `Cache-Control` was absent on every fetch, so **nothing warns a
+consumer that what they have read is stale.**
+
+⛔ **So `--expect-design` deliberately does not assert on it.** It asserts the
+contract -- the channel resolves correctly, the URL is stable, the replacement
+lands server-side -- and records the propagation window as a measurement.
+Asserting a third party's CDN timing would make this check fail for a reason
+nobody cares about, which is how a check stops being read.
+
+**`C-17` is refuted and that decides something.** Moving the tag left the
+release's `target_commitish` on the old commit while `tarball_url`, which is by
+tag name, followed the tag. Two consumers reading the same release get
+different commits and neither is wrong, silently. **Delete-and-recreate is the
+route for [T-064](publication.md)**, not move-the-tag.
+
+**The throwaways are gone.** The repository had 0 releases and 0 tags before
+and after each run, asserted by the script rather than by eye, and a run that
+dies mid-way deletes what it made on the way out. ⚠ One tag was deliberately
+named `latest` rather than `test-*`: C-14 is the question "does a tag named
+`latest` win?" and cannot be asked otherwise.
 
 ---
 

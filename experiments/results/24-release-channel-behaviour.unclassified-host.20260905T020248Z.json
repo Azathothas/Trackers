@@ -1,0 +1,81 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "e6c1f5063e2dd44d81b2b400d6b495a429b377a5-dirty",
+    "repository": "Azathothas/Trackers",
+    "sample_counts": {
+      "assets_uploaded": 2,
+      "releases_created": 4
+    },
+    "utc": "2026-09-05T02:02:47Z"
+  },
+  "question": "Does a GitHub release channel behave the way the publication design assumes? (C-14, C-15, C-17)",
+  "results": {
+    "c14_two_releases": {
+      "created_order": [
+        "latest",
+        "test-t003-newer"
+      ],
+      "releases_latest_resolves_to": "test-t003-newer",
+      "resolves_to_newest_non_prerelease": true,
+      "resolves_to_tag_named_latest": false
+    },
+    "c14_with_prerelease": {
+      "newest_release_is": "test-t003-prerelease",
+      "prerelease_ignored": true,
+      "releases_latest_resolves_to": "test-t003-newer"
+    },
+    "c15_asset_replacement": {
+      "content_updated": false,
+      "etag_changed": false,
+      "first": {
+        "body": "version one\n",
+        "cache_control": "-",
+        "content_type": "application/octet-stream",
+        "etag": "\"0x8DF0AF1B45994AA\"",
+        "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1351203258/6e128c14-0bd3-49fa-b57b-1919051a7684?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-05T02%3A55%3A31Z&rscd=attachment%3B+filename%3Dt003-probe.txt&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-05T01%3A55%3A11Z&ske=2026-09-05T02%3A55%3A31Z&sks=b&skv=2018-11-09&sig=c%2BduxpKEqO9Tw9j7Ey7JkRM6N8Lg3T4yH5nwEx79Igc%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4ODU3NDAzNywibmJmIjoxNzg4NTczNzM3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.T35URq4tio4uF2f6q6yYJ4eNe0cMmszmbHjB2JfFjEE&response-content-disposition=attachment%3B%20filename%3Dt003-probe.txt&response-content-type=application%2Foctet-stream",
+        "status": 200
+      },
+      "second": {
+        "body": "version one\n",
+        "cache_control": "-",
+        "content_type": "application/octet-stream",
+        "etag": "\"0x8DF0AF1B45994AA\"",
+        "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1351203258/6e128c14-0bd3-49fa-b57b-1919051a7684?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-05T02%3A55%3A31Z&rscd=attachment%3B+filename%3Dt003-probe.txt&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-05T01%3A55%3A11Z&ske=2026-09-05T02%3A55%3A31Z&sks=b&skv=2018-11-09&sig=c%2BduxpKEqO9Tw9j7Ey7JkRM6N8Lg3T4yH5nwEx79Igc%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4ODU3NDAzNywibmJmIjoxNzg4NTczNzM3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.T35URq4tio4uF2f6q6yYJ4eNe0cMmszmbHjB2JfFjEE&response-content-disposition=attachment%3B%20filename%3Dt003-probe.txt&response-content-type=application%2Foctet-stream",
+        "status": 200
+      },
+      "url": "https://github.com/Azathothas/Trackers/releases/download/test-t003-newer/t003-probe.txt",
+      "url_is_stable": true
+    },
+    "c17_tag_move": {
+      "release_target_commitish_after": "ff79b9ac8a343d4210a9ce3742ac2f636e902053",
+      "release_target_commitish_before": "ff79b9ac8a343d4210a9ce3742ac2f636e902053",
+      "release_target_followed_the_tag": false,
+      "tag_actually_moved": true,
+      "tag_sha_after": "e6c1f5063e2dd44d81b2b400d6b495a429b377a5",
+      "tag_sha_before": "ff79b9ac8a343d4210a9ce3742ac2f636e902053",
+      "tarball_url": "https://api.github.com/repos/Azathothas/Trackers/tarball/test-t003-move"
+    },
+    "cleanup": {
+      "actions": [
+        "deleted release and tag latest",
+        "deleted release and tag test-t003-newer",
+        "deleted release and tag test-t003-prerelease",
+        "deleted release and tag test-t003-move"
+      ],
+      "releases_after": 0,
+      "returned_to_starting_state": true,
+      "tags_after": 0
+    },
+    "tier0": {
+      "can_push": true,
+      "releases_before": 0,
+      "repo": "Azathothas/Trackers",
+      "tags_before": 0
+    }
+  }
+}

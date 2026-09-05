@@ -164,7 +164,13 @@ def credential_tokens(line: str) -> list[str]:
 NARROWINGS = (
     re.compile(r"uses:\s*[A-Za-z0-9._-]+/[A-Za-z0-9._-]+@[0-9a-f]{40}"),
     re.compile(r"[Pp]inned(Ref|Sha256|Commit|Digest)|PINNED_(REF|SHA256)"),
-    re.compile(r'"[a-z_]*(sha256|sha|ref|commit)(_read)?"\s*:'),
+    # A JSON key whose name says the value is a git object id. Matched on
+    # whole underscore-separated SEGMENTS rather than as a substring, which
+    # is both wider and tighter than the version it replaces: it now covers
+    # `tag_sha_before` and `release_target_commitish_after`, which a
+    # suffix-anchored pattern missed, and it still refuses `refresh_token`,
+    # which a substring match on `ref` would have narrowed away.
+    re.compile(r'"(?:[a-z0-9]+_)*(?:sha|sha1|sha256|commit|commitish|ref|rev|oid|digest)(?:_[a-z0-9]+)*"\s*:'),
     re.compile(r"\b(commit|COMMIT|sha|SHA|sha256|revision|rev-parse)\b"),
     re.compile(r"^[0-9a-f]+$", re.MULTILINE),
     re.compile(r"/home/(linuxbrew|runner|user|vagrant|ubuntu|node)/"),
