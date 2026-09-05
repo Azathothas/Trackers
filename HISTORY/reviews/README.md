@@ -40,3 +40,4 @@ and the operator asked for six.
 | [`2026-09-01-04-cold-start.md`](2026-09-01-04-cold-start.md) | a session handed only the rewritten router. Where does following it mechanically stop working |
 | [`2026-09-01-05-tracker-operator.md`](2026-09-01-05-tracker-operator.md) | ⭐ somebody whose tracker this project probes, and whose users' passkeys it publishes |
 | [`2026-09-01-06-measured-never-verified.md`](2026-09-01-06-measured-never-verified.md) | ⭐ which numbers have exactly one observation. The DNS finding disagrees with itself between two runs |
+| [`2026-09-05-01-adversarial-sweep.md`](2026-09-05-01-adversarial-sweep.md) | ⭐ attack the code this session added, by running it rather than re-reading it. One raising probe destroyed every other measurement, and twenty tests could not see it because they shared the code's belief |

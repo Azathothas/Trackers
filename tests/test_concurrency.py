@@ -331,6 +331,35 @@ class RecordsSatisfyTheVantageGate(unittest.TestCase):
                 self.assertIn("ip_families", record["vantage"])
                 self.assertTrue(record["measurement_rung"])
 
+    def test_one_broken_probe_does_not_lose_the_other_measurements(self):
+        """RULES 3.8, applied to trackers: one failing tracker must not fail
+        the others.
+
+        `probe` documents that it never raises, and a promise is not a
+        mechanism. An exception escaping a worker used to propagate out of
+        `pool.map` and take the **whole sweep** with it, so one defect on one
+        tracker discarded every other tracker's measurement. Found by attacking
+        the function, not by a test that already believed the docstring.
+        """
+        def exploding(tracker, *_args, **_kw) -> ProbeResult:
+            if tracker.host == "h3.example":
+                raise RuntimeError("a prober defect")
+            return ok_result(tracker)
+
+        trackers = corpus(6, hosts=6)
+        result = sweep(trackers, budget=budget_for("local"),
+                       vantage=loopback_vantage(), probe_fn=exploding)
+
+        self.assertEqual(len(result.records), len(trackers),
+                         "one raising probe lost the other records")
+        broken = [r for r in result.records
+                  if r["failure"] == Failure.PROBE_ERROR.value]
+        self.assertEqual(len(broken), 1)
+        # `error`, never `dead`: a broken probe is not somebody else's outage.
+        self.assertEqual(broken[0]["health_state"], HealthState.ERROR.value)
+        self.assertNotIn(HealthState.DEAD.value,
+                         {r["health_state"] for r in result.records})
+
     def test_one_observation_can_never_reach_dead(self):
         """`MIN_SAMPLES_FOR_DEATH` is 3, and accumulating samples across runs
         is T-040's job. A single sweep must not be able to kill anything."""

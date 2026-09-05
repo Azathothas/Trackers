@@ -58,7 +58,7 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Iterable, Sequence
 
 from .bep34 import Resolver
-from .model import HealthState, Tracker
+from .model import HealthState, Rung, Tracker
 from .probe import (Failure, ProbeConfig, ProbeResult, health_state, probe)
 from .profile import Budget, budget_for
 from .vantage import UNKNOWN, Vantage, detect as detect_vantage
@@ -185,7 +185,6 @@ def _deadline_record(tracker: Tracker, vantage: Vantage,
     `ABOUT_US` and `health_state` maps it to `unknown`, so this can never
     become `dead`.
     """
-    from .model import Rung
     return ProbeResult(
         url=tracker.url, transport=tracker.transport, network=tracker.network,
         rung=Rung.NONE, ok=False, failure=Failure.DEADLINE_EXCEEDED,
@@ -249,15 +248,33 @@ def sweep(trackers: Sequence[Tracker], *,
         # Checked before the host lock is taken, so a queue of threads waiting
         # on one slow host drains immediately once the deadline passes instead
         # of each waiting its turn to discover the same thing.
-        if deadline is not None and monotonic() >= deadline:
-            result = _deadline_record(tracker, vantage, observed_at)
-        else:
-            with locks.for_host(tracker.host):
-                if deadline is not None and monotonic() >= deadline:
-                    result = _deadline_record(tracker, vantage, observed_at)
-                else:
-                    result = probe_fn(tracker, cfg, vantage, observed_at,
-                                      resolver)
+        try:
+            if deadline is not None and monotonic() >= deadline:
+                result = _deadline_record(tracker, vantage, observed_at)
+            else:
+                with locks.for_host(tracker.host):
+                    if deadline is not None and monotonic() >= deadline:
+                        result = _deadline_record(tracker, vantage, observed_at)
+                    else:
+                        result = probe_fn(tracker, cfg, vantage, observed_at,
+                                          resolver)
+        except Exception as e:  # noqa: BLE001
+            # ⛔ RULES 3.8, applied to trackers: one failing tracker does not
+            # fail the others. `probe` documents that it never raises, and a
+            # promise is not a mechanism -- an exception escaping here used to
+            # take the **whole sweep** down through `pool.map`, losing every
+            # other tracker's measurement to one defect. Found by attacking
+            # this function rather than by a test that already believed it.
+            #
+            # `PROBE_ERROR` is never `dead`: `health_state` maps it to `error`,
+            # which is the state that exists so a broken probe cannot be
+            # published as somebody else's outage.
+            result = ProbeResult(
+                url=tracker.url, transport=tracker.transport,
+                network=tracker.network, rung=Rung.NONE, ok=False,
+                failure=Failure.PROBE_ERROR,
+                detail=f"the probe raised: {type(e).__name__}: {e}",
+                observed_at=observed_at, vantage=vantage.as_dict())
         with guard:
             results[tracker.url] = result
 

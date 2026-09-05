@@ -57,7 +57,7 @@ below is the previous session's and is quoted as such.
 | HTTP tracker discrimination | 4 of 6 subjects proved tracker, 4 scrape-capable, 2 no response, `announce_sent: false` |
 | DNS resolver divergence | **0 divergent of 17** on both images, and **1 divergent on the run 40 minutes earlier**. Thin, and carried as T-007 |
 | Corpus, accepted dataset, transport mix | [`corpus-baseline.md`](../HISTORY/corpus-baseline.md) |
-| Test suite | **195** tests, no network |
+| Test suite | **196** tests, no network |
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
 | Local gate | `python3 scripts/check-gate.py --strict`: 14 checks pass, 1 expected skip |
 | Private-tracker credentials in the generated plaintext | **0**, refused by the pipeline (`C-70`, T-107 closed) |
@@ -190,6 +190,25 @@ Both carry their rejected alternatives.
 allow fails 5 tests including the one that asserts a real loopback tracker
 received no datagram; a credential written outside a verbatim capture fails
 `check-no-secrets.py` with exit 1.
+
+⭐ **One review ran, and it found a high-severity defect nothing else could
+have.** [`../HISTORY/reviews/2026-09-05-01-adversarial-sweep.md`](../HISTORY/reviews/2026-09-05-01-adversarial-sweep.md)
+attacked this session's own code by running it rather than re-reading it, and
+`sweep()` **lost every other tracker's measurement when one probe raised** --
+RULES 3.8 with "source" swapped for "tracker". Twenty tests could not see it
+because every one passed a `probe_fn` that returns: they were written from the
+same belief as the code. Fixed, with the regression test that fails against the
+old version.
+
+⚠ **The same review made an unbacked claim of its own and it is left visible.**
+Its first draft decomposed the 12 `unmeasurable` records as "2 structural and
+10 operator refusals" from memory; re-derived from the records it is **8
+operator refusals, 2 unsupported and 2 `no_usable_address`**.
+
+⛔ **This session did not meet RULES 10.2's bar for ending** and did not run
+the other two reviews RULES 10.3 step 4 requires. It is a stopping point, not
+an ending: the tree is clean, every commit is pushed, and CI is green on the
+head.
 
 ## In progress
 

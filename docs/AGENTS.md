@@ -223,7 +223,7 @@ instrument.
 | `src/trackers/` | the pipeline (model, normalize, dedup, exclusion, registry, acquire, pipeline) and the measurement core (`bencode`, `bep15`, `bep34`, `vantage`, `probe`, `sweep`, `profile`) |
 | `scripts/` | the generator and the checks. [`../scripts/README.md`](../scripts/README.md) |
 | `scripts/vendor/toolkit/` | two helpers fetched from `Azathothas/ToolKit` at a pinned commit. Not this project's code |
-| `tests/` | 195 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
+| `tests/` | 196 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
 | `docs/` | this file and the documentation set. [`README.md`](README.md) is the map |
 | `.github/workflows/` | `gate.yml` (cheap, offline, every push) and `p0-ground-truth.yml` (probes real trackers, only when experiments change) |
 
