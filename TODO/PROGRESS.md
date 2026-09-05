@@ -57,11 +57,11 @@ below is the previous session's and is quoted as such.
 | HTTP tracker discrimination | 4 of 6 subjects proved tracker, 4 scrape-capable, 2 no response, `announce_sent: false` |
 | DNS resolver divergence | **0 divergent of 17** on both images, and **1 divergent on the run 40 minutes earlier**. Thin, and carried as T-007 |
 | Corpus, accepted dataset, transport mix | [`corpus-baseline.md`](../HISTORY/corpus-baseline.md) |
-| Test suite | **193** tests, no network |
+| Test suite | **195** tests, no network |
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
 | Local gate | `python3 scripts/check-gate.py --strict`: 14 checks pass, 1 expected skip |
 | Private-tracker credentials in the generated plaintext | **0**, refused by the pipeline (`C-70`, T-107 closed) |
-| CI | `gate.yml` **green on `ubuntu-24.04` and `windows-2025`** at `62007e4`, run `33936896849`, confirmed by looking |
+| CI | `gate.yml` **green on `ubuntu-24.04` and `windows-2025`** at `ff79b9a`, run `33937458370`, confirmed by looking |
 
 ## Counts
 
@@ -109,6 +109,14 @@ profiles, and a whole-run deadline -- and `scripts/probe-corpus.py` drives it.
 therefore two implementations of the probe. A thread pool runs the production
 probe path unmodified.
 
+**[T-022](measurement.md) is closed, and not by building what it asked for.**
+Its own `Decision` said to scrape on UDP only where connect is shown
+insufficient, and `_PROVING_RUNG[UDP] is PROTOCOL_VALID`: **a connect already
+proves a tracker**, so a scrape would spend an operator's second round trip and
+a required `info_hash` to learn nothing. The `Prove` clause could not be
+satisfied honestly, which is D15. What replaces it is a test that parses `src/`
+with `ast` and fails if anything ever calls `build_scrape_request`.
+
 **[T-024](measurement.md) is advanced, not closed, and the reason is a vantage
 rather than a missing piece.** The emitter exists and
 `tests.test_concurrency.RecordsSatisfyTheVantageGate` runs the real gate over
@@ -153,10 +161,6 @@ received no datagram; a credential written outside a verbatim capture fails
 **Nothing half-finished.** The two entries that were advanced-but-open remain
 so, unchanged:
 
-- **[T-022](measurement.md)**: the codec, the 20-byte refusal and the record
-  field exist; the send path in `probe_udp` does not. ⚠ Its docstring used to
-  advertise a `cfg.udp_scrape` switch that never existed; that line is
-  corrected.
 - **[T-024](measurement.md)**: the emitter, the instrument and the gate's
   `--path` all exist and are tested end to end against the loopback oracle. No
   record of a **real** tracker exists, because no sanctioned vantage has run
@@ -203,14 +207,11 @@ so, unchanged:
    exist, and the first thing that produces something no upstream publishes:
    **disagreement between independent observers.**
 
-5. **[T-022](measurement.md)** - wire the UDP scrape path. Small, and the
-   codec, the refusals and the record field are already there.
-
-6. **[T-001](claims.md)** - run a real torrent client against the plaintext.
+5. **[T-001](claims.md)** - run a real torrent client against the plaintext.
    P0, independent of all of the above, and good work for a session that does
    not want to hold the measurement context.
 
-7. **[T-003](claims.md)** - release and tag behaviour. S effort, answers three
+6. **[T-003](claims.md)** - release and tag behaviour. S effort, answers three
    claims, unblocks [T-064](publication.md). Throwaway releases here are
    sanctioned (RULES 13.1): tag them `test-*` and delete them afterwards.
 

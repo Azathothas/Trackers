@@ -81,7 +81,7 @@ pretending to be one.
 | [T-005](claims.md) | P2 | claims | open | WebTorrent trackers are unmeasurable by default and nobody has tried |
 | [T-006](claims.md) | P2 | claims | open | Actions billing for public repositories is unverified |
 | [T-007](claims.md) | P2 | claims | open | Resolver agreement was measured at n=17 on one day |
-| [T-022](measurement.md) | P2 | measurement | open | UDP scrape needs a synthetic infohash and the ladder does not model that |
+| [T-022](measurement.md) | P2 | measurement | **done** | UDP scrape needs a synthetic infohash and the ladder does not model that |
 | [T-023](measurement.md) | P2 | measurement | done | Yggdrasil trackers addressed by hostname are silently misclassified as clearnet |
 | [T-028](measurement.md) | P2 | measurement | open | newTrackon is available as an oracle and is not being used as one |
 | [T-030](measurement.md) | P2 | measurement | open | Experiments 3-18 from the original programme were never run |
@@ -119,7 +119,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 66 entries, 50 open, 0 blocked, 16 done
+**Counts:** 66 entries, 49 open, 0 blocked, 17 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -128,9 +128,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 4 | 0 | 3 | 7 |
 | P1 | 13 | 0 | 8 | 21 |
-| P2 | 27 | 0 | 4 | 31 |
+| P2 | 26 | 0 | 5 | 31 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **50** | **0** | **16** | **66** |
+| **All** | **49** | **0** | **17** | **66** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

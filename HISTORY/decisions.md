@@ -31,8 +31,9 @@ drifting count is a small lie that trains readers to ignore the document.
 | D12 | What shape the template adoption takes | - | **closed** |
 | D13 | What BEP 34 binds, and what it unblocks | P0 | **closed** |
 | D14 | What replaced the private-credential ceiling | P1 | **closed** |
+| D15 | Whether the UDP probe scrapes, or stops at connect | P2 | **closed** |
 
-**Counts:** 14 entries, 10 closed, 4 open, 0 blocked
+**Counts:** 15 entries, 11 closed, 4 open, 0 blocked
 
 **Nothing closes as "won't fix" or "out of scope"** (RULES 7). A blocked
 entry stays open with its blocker named and what would unblock it.
@@ -599,4 +600,61 @@ python3 -m unittest tests.test_credentials
 besides: a credential-bearing line written
 anywhere outside a capture fails `check-no-secrets.py` with exit 1, and a
 synthetic test vector cannot hide a real credential on the same line.
+
+---
+
+## D15 -- Whether the UDP probe scrapes, or stops at connect, **closed**
+
+**Source** [T-022](../TODO/measurement.md), `C-50`, 2026-09-05,
+**Category** conduct, **Effort** S
+
+**The requirement as written.** T-022's `Prove` clause asked for a test
+"asserting the datagram `probe_udp` actually transmits carries a
+`synthetic_infohash()` value", which can only pass if the UDP probe sends a
+BEP 15 scrape.
+
+**The evidence it needed changing.** The same entry's `Decision` says to scrape
+on UDP "only where connect is shown insufficient for a decision the project
+actually needs", and connect is not insufficient. `probe.py`'s own table settles
+it: `_PROVING_RUNG[Transport.UDP]` is `Rung.PROTOCOL_VALID`, because nothing but
+a BEP 15 tracker answers the magic constant with our transaction id echoed
+back. **A UDP connect already proves a tracker.**
+
+A scrape would add a second round trip and a required `info_hash` field, and
+with a synthetic hash it returns zeros for content that does not exist -- so it
+yields no liveness, no latency and no swarm information that connect has not
+already given. RULES 4's ordering, "prefer connect > scrape > announce,
+always", then decides it, and RULES 9.1 forbids implementing it regardless in
+order to satisfy a checkbox.
+
+**The replacement.** The UDP path sends a connect and nothing else, and the
+decision is **enforced rather than remembered**:
+`tests.test_probe.ProbeConfiguration.test_no_code_path_in_src_can_send_a_udp_scrape`
+parses every module under `src/trackers/` with `ast` and fails if anything
+calls `build_scrape_request`. The existing datagram test continues to assert
+that exactly one 16-byte connect leaves per probe.
+
+**What would reopen it.** A decision this project needs that connect provably
+cannot serve -- a tracker that answers connect and refuses scrape being
+something a consumer must be able to see, for instance. That is a claim with a
+measurement behind it, not a preference, and it belongs in a new entry rather
+than in a quiet edit to this one.
+
+**Rejected alternatives.**
+
+| rejected | why it lost |
+| --- | --- |
+| Wire the scrape as the `Prove` clause literally asked | Spends an operator's bandwidth to learn nothing, and RULES 4 orders connect ahead of scrape without qualification. Satisfying the clause would have been the checkbox RULES 9.1 names. |
+| Wire it behind a config flag, defaulting off | The entry already records that such a flag was written and removed: a flag that can be set and ignored is worse than its absence, and this one would be a switch for being less polite. |
+| Delete `build_scrape_request` entirely | It refuses a malformed hash, which is worth keeping, and deleting it would hide the connect-versus-scrape asymmetry `C-50` exists to record. Unreachable and tested-unreachable is better than absent. |
+| Leave the entry open | Its question is answered. An answered question kept open is a list nobody trusts, and RULES 8's bar is a *blocker*, which this does not have. |
+
+**Prove.**
+
+```sh
+python3 -m unittest tests.test_probe.ProbeConfiguration
+```
+
+`Ran 6 tests`, `OK`. Mutation-proved: adding a `build_scrape_request` call to
+`probe_udp` fails the guard.
 

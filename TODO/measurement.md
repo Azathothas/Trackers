@@ -113,7 +113,7 @@ Source:      `C-50`, found while reading BEP 15
 Category:    measurement
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     On HTTP, scrape takes `info_hash` as an optional query parameter.
              On UDP it does not: BEP 15's scrape request carries `info_hash` at
@@ -149,6 +149,47 @@ Prove:       `python3 -m unittest tests.test_probe.ProbeConfiguration -v`
              was used. Assert against the **bytes sent**, not a config flag: a
              flag can be set and ignored, and the datagram is what the tracker
              sees.
+
+**Done.** Not by wiring the scrape. `python3 -m unittest
+tests.test_probe.ProbeConfiguration` -> `Ran 6 tests`, `OK`.
+
+⭐ **The entry's own `Decision` set the bar and the bar is not met.** It says
+scrape on UDP "only where connect is shown insufficient for a decision the
+project actually needs". Re-derived against the code rather than assumed:
+
+```python
+_PROVING_RUNG[Transport.UDP] is Rung.PROTOCOL_VALID
+```
+
+A BEP 15 connect **already reaches the rung that proves a tracker** on UDP,
+because nothing but a tracker answers the magic constant with our transaction
+id echoed back. A scrape with a synthetic infohash returns zeros for content
+that does not exist, so it adds no liveness, no latency and no swarm
+information -- it costs an operator a second round trip and a required
+`info_hash` to tell us what we already know. RULES 4's "prefer connect >
+scrape > announce, always" then decides it, and RULES 9.1 forbids implementing
+it anyway to satisfy a checkbox.
+
+⛔ **So the `Prove` clause above could not be satisfied honestly**, because the
+datagram it asks about is one this project should not send. RULES 9's three
+parts are on **D15**, and what replaces it is a test that keeps the decision
+from being reversed by accident: `test_no_code_path_in_src_can_send_a_udp_
+scrape` parses every module under `src/trackers/` with `ast` and fails if
+anything calls `build_scrape_request`. **Mutation-proved**: adding one such
+call to `probe_udp` fails it.
+
+**What the entry was actually about is already modelled.** The Problem is that
+"the ladder treats UDP and HTTP scrape as equivalent" -- and it does not:
+`model.SCRAPE_REQUIRES_INFOHASH` names UDP as the transport whose scrape needs
+one, and `_PROVING_RUNG` gives UDP a lower proving rung precisely because its
+cheap rung is already conclusive.
+
+**The capability is kept and left unreachable.** `build_scrape_request` still
+refuses an empty hash list and any hash that is not exactly 20 bytes, and
+`synthetic_infohash()` is still the only way to obtain one --
+`test_a_synthetic_infohash_is_the_only_one_obtainable` asserts it is random per
+call. Deleting the builder would hide the asymmetry `C-50` records; wiring it
+would spend somebody else's bandwidth for nothing.
 
 ---
 

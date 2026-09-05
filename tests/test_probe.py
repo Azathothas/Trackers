@@ -385,6 +385,51 @@ class ProbeConfiguration(unittest.TestCase):
                          f"two arms send the same User-Agent: {sent}")
         self.assertIn("trackers", DEFAULT_USER_AGENT)
 
+    def test_no_code_path_in_src_can_send_a_udp_scrape(self):
+        """T-022's decision, made enforceable rather than remembered.
+
+        `bep15.build_scrape_request` exists, refuses a hash that is not exactly
+        20 bytes, and is called by **nothing**. That is deliberate: a UDP
+        connect already reaches the rung that proves a tracker
+        (`_PROVING_RUNG[UDP] is PROTOCOL_VALID`), so a scrape would cost an
+        operator a second round trip and a required info_hash while telling us
+        nothing new. RULES 4 says prefer connect over scrape, always.
+
+        ⭐ The capability is kept because refusing a malformed hash is worth
+        keeping, and because deleting it would hide the asymmetry `C-50`
+        records. This test is what stops it being wired up without the argument
+        in D15 being reopened.
+        """
+        import ast
+        src = os.path.join(os.path.dirname(os.path.dirname(
+            os.path.abspath(__file__))), "src", "trackers")
+        callers = []
+        for name in sorted(os.listdir(src)):
+            if not name.endswith(".py"):
+                continue
+            with open(os.path.join(src, name), encoding="utf-8") as fh:
+                tree = ast.parse(fh.read(), filename=name)
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Call):
+                    continue
+                fn = node.func
+                called = (fn.attr if isinstance(fn, ast.Attribute)
+                          else fn.id if isinstance(fn, ast.Name) else "")
+                if called == "build_scrape_request":
+                    callers.append(f"{name}:{node.lineno}")
+        self.assertEqual(callers, [],
+                         "a UDP scrape is now reachable from src/. That "
+                         "reverses D15 and needs the argument reopened, not a "
+                         "test updated.")
+
+    def test_a_synthetic_infohash_is_the_only_one_obtainable(self):
+        """RULES 4: never announce with an infohash for real content. The
+        enforcement is that no path in the tree can produce one."""
+        from trackers.bep15 import INFOHASH_SIZE, synthetic_infohash
+        first, second = synthetic_infohash(), synthetic_infohash()
+        self.assertEqual(len(first), INFOHASH_SIZE)
+        self.assertNotEqual(first, second, "not random per call")
+
     def test_the_udp_path_sends_connect_and_nothing_else(self):
         """`C-50`: a UDP scrape carries a required info_hash and is strictly
         more intrusive than a connect, which already yields liveness and RTT.
