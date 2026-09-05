@@ -149,7 +149,7 @@ manual observation.**
 
 ### Honesty
 
-- [ ] Every health record carries vantage metadata and the rung reached -- [T-024](../TODO/measurement.md)
+- [x] Every health record carries vantage metadata and the rung reached -- [T-024](../TODO/measurement.md). Asserted over **real** records rather than a shape: workflow run `33938543488` swept 200 trackers from a runner and `scripts/check-vantage-metadata.py --path` passed over all 200. ⚠ The offline gate still reports an expected skip, correctly: a clean checkout has no records where the checker looks, and where they live is the data-branch entry's decision rather than this one's
 - [x] The README -- not only a methodology page -- states what the measurements do and do not generalise to
 - [x] UDP limitations, if any, are represented as they were measured, not as they were assumed
 - [x] No published number lacks its conditions
@@ -165,7 +165,7 @@ manual observation.**
 - [ ] Test: history housekeeping preserves the dataset and never touches `main` -- [T-081](../TODO/operations.md)
 - [x] Data-branch history reset is safe **because history lives in files** -- RULES 3.7, and no code infers history from git
 - [x] Consumer pin-target guidance is documented
-- [ ] `latest` / `daily` / `weekly` semantics defined, implemented, and verified against real platform behaviour -- [T-064](../TODO/publication.md). **No longer blocked**: RULES 13.1 authorises throwaway releases here, so it waits on [T-003](../TODO/claims.md) being run, not on a human
+- [ ] `latest` / `daily` / `weekly` semantics defined, implemented, and verified against real platform behaviour -- [T-064](../TODO/publication.md). **The platform half is now measured** ([T-003](../TODO/claims.md), closed): `/releases/latest` ignores both a tag named `latest` and a newer prerelease, an asset can be replaced at a stable URL but **not** read back immediately, and moving a tag does **not** move the release, so delete-and-recreate is the route. What is left is defining and implementing the channels
 - [x] Raw GitHub paths work and their caching behaviour is documented
 - [x] Least-privilege permissions, timeouts, and pinned action versions on every workflow
 - [ ] Security review complete; no upstream content is ever executed or interpolated into a shell command -- structurally held (no shell layer); review is [T-086](../TODO/operations.md)

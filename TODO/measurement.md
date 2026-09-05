@@ -244,7 +244,7 @@ Source:      RULES 3.4; decision D2 requirement 1
 Category:    measurement
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     RULES 3.4 requires every health record to carry environment class,
              region where determinable, IP-family availability and probe
@@ -279,6 +279,55 @@ Approach:    Emit the conditions block into every health record. The vantage for
              serially is over an hour.
 Prove:       `python3 scripts/check-vantage-metadata.py` exits **0** rather
              than 2, over real records.
+
+**Done.** Workflow run **`33938543488`**, `ubuntu-24.04`, 2026-09-05. The
+`Every record carries its vantage` step is
+`python3 scripts/check-vantage-metadata.py --path sweep-out` and it printed:
+
+```
+checked 200 health records
+
+OK  every record carries vantage metadata and a measurement rung; nothing
+    unmeasurable is reported live, dead or degraded.
+```
+
+⭐ **This is the first time this project has measured a real tracker.** The
+sample is 200 of 1327 (`ci` probes a sample, RULES 15.2), from
+`github-actions-hosted`, IPv4 only, with a 900 s deadline that was not reached.
+The records are committed at
+`experiments/results/health-sweep.github-actions-hosted.run33938543488.json`,
+because a workflow artefact expires after 90 days and git does not.
+
+| | |
+| --- | --- |
+| `live` | 25 |
+| `degraded` | 1 |
+| `unknown` | 162 |
+| `unmeasurable` | 12 |
+
+⛔ **`dead` is 0 and cannot be otherwise from one sweep.**
+`MIN_SAMPLES_FOR_DEATH` is 3, so a single observation of a tracker that did not
+answer is `unknown` -- "too few samples", not "gone". Accumulating observations
+across runs is [T-040](scoring.md), and until it exists **no number here is a
+liveness rate.** 25 of 200 is one datacenter, on IPv4, on one day.
+
+**The refusals are the finding, and they are recorded as `C-72`.** Eight
+endpoints across seven hosts were refused by a published BEP 34 record and
+three more were skipped because public resolvers would not answer. One host
+spells its denial as a bare `BITTORRENT`, which is the normative form and the
+one a naive implementation misses.
+
+⚠ **The offline gate keeps its expected skip, and that stays correct.**
+`scripts/check-vantage-metadata.py` finds no records in a clean checkout
+because none are committed where it looks, and where health records eventually
+live is [T-063](publication.md)'s decision rather than this entry's to
+pre-empt. The flag comes off when the data branch does.
+
+**What ran it:** `.github/workflows/health-sweep.yml`, `workflow_dispatch`
+only. ⛔ It has no `schedule:` trigger deliberately -- a workflow that runs
+hourly against other people's servers is a load generator, and the cadence is
+D7's, the budget [T-026](measurement.md)'s and the architecture
+[T-084](operations.md)'s.
 
              **Two of the three parts now exist, and the third is a run rather
              than a piece of work.** `src/trackers/sweep.py` emits a record per

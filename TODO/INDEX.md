@@ -60,7 +60,7 @@ pretending to be one.
 | [T-003](claims.md) | P1 | claims | **done** | Release and tag behaviour is unverified, and it blocks the publication topology |
 | [T-004](claims.md) | P1 | claims | open | Vantage bias is unresolved and the dataset cannot distinguish dead from dead-from-AS8075 |
 | [T-020](measurement.md) | P1 | measurement | done | The health checker does not exist |
-| [T-024](measurement.md) | P1 | measurement | open | No health record carries vantage metadata, because no health record exists |
+| [T-024](measurement.md) | P1 | measurement | **done** | No health record carries vantage metadata, because no health record exists |
 | [T-025](measurement.md) | P1 | measurement | done | The health state machine and failure classification are undefined |
 | [T-026](measurement.md) | P1 | measurement | open | The politeness budget is neither computed nor published nor asserted |
 | [T-029](measurement.md) | P1 | measurement | **done** | Probing has no concurrency control, timeout budget or cancellation behaviour |
@@ -119,7 +119,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 66 entries, 48 open, 0 blocked, 18 done
+**Counts:** 66 entries, 47 open, 0 blocked, 19 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -127,10 +127,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 4 | 0 | 3 | 7 |
-| P1 | 12 | 0 | 9 | 21 |
+| P1 | 11 | 0 | 10 | 21 |
 | P2 | 26 | 0 | 5 | 31 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **48** | **0** | **18** | **66** |
+| **All** | **47** | **0** | **19** | **66** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

@@ -61,7 +61,8 @@ below is the previous session's and is quoted as such.
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
 | Local gate | `python3 scripts/check-gate.py --strict`: 14 checks pass, 1 expected skip |
 | Private-tracker credentials in the generated plaintext | **0**, refused by the pipeline (`C-70`, T-107 closed) |
-| CI | `gate.yml` **green on `ubuntu-24.04` and `windows-2025`** at `ff79b9a`, run `33937458370`, confirmed by looking |
+| CI | `gate.yml` **green on `ubuntu-24.04` and `windows-2025`** at `7cfd16a`, run `33937717833`, confirmed by looking |
+| First corpus sweep | run **`33938543488`**, `ubuntu-24.04`, 200 of 1327 sampled. `live` 25, `degraded` 1, `unknown` 162, `unmeasurable` 12, `dead` **0** and unreachable from one observation |
 
 ## Counts
 
@@ -135,14 +136,30 @@ stale bytes. The window is **variable**: three runs minutes apart gave 0 s once
 and between 10 s and 40 s once. `Cache-Control` was absent every time, so
 nothing warns a consumer. Publication must not assume read-after-write.
 
-**[T-024](measurement.md) is advanced, not closed, and the reason is a vantage
-rather than a missing piece.** The emitter exists and
-`tests.test_concurrency.RecordsSatisfyTheVantageGate` runs the real gate over
-records this project produced against trackers it controls. ⛔ **What is left is
-a probe of the real corpus, and this session refused to run one**: RULES 13.1
-authorises probing live trackers from CI, and this host is an
-`unclassified-host` on a residential connection. The three routes considered,
-and why two were refused, are on the entry.
+⭐ **[T-024](measurement.md) is closed, and closing it measured a real tracker
+for the first time in this project's life.** `.github/workflows/health-sweep.yml`
+swept 200 of 1327 from `ubuntu-24.04` in run `33938543488`, and
+`check-vantage-metadata.py --path` passed over all 200 records. The records are
+committed under `experiments/results/`, because an artefact expires after 90
+days and git does not.
+
+⛔ **Nothing is `dead` and nothing can be from one sweep.** `live` 25,
+`degraded` 1, `unknown` 162, `unmeasurable` 12. `MIN_SAMPLES_FOR_DEATH` is 3,
+so a single observation of a silent tracker is "too few samples" and not
+"gone". **25 of 200 is not a liveness rate**: it is one datacenter, IPv4 only,
+on one day.
+
+⭐ **The refusals are the finding, recorded as `C-72`.** Eight endpoints across
+seven hosts were refused by a **published BEP 34 record** and three more were
+skipped because public resolvers would not answer. One host spells its denial
+as a bare `BITTORRENT`, which is the normative form: an implementation looking
+for the word `DENY` would have probed it, and one reading the record as a
+deny-list rather than an exhaustive allow-list would have probed the four port
+mismatches. **Every one of them would have been contacted before this session.**
+
+⚠ **This host did not probe anything.** RULES 13.1 authorises probing from CI,
+and this is an `unclassified-host` on a residential connection, so the sweep
+was run where the vantage is comparable with every other figure here.
 
 **Four defects were found by building those two, none of them in either plan:**
 
@@ -187,28 +204,12 @@ so, unchanged:
 
 ## Start here next session
 
-1. **[T-024](measurement.md)** - run `scripts/probe-corpus.py` **on a
-   runner** and commit the records. Everything else for it is built; what is
-   missing is a sanctioned vantage, which is why it is first and why it is
-   cheap. **`check-vantage-metadata.py` flips 2 to 0 the moment records exist**,
-   and [`../docs/methodology/gate.md`](../docs/methodology/gate.md) says its
-   `expect_skip` flag comes off in the same change.
-
-   ⚠ **Read the entry's three routes before reaching for a shortcut.** Emitting
-   `unknown` records offline would flip the gate today and prove nothing, which
-   is why `probe-corpus.py` has no offline mode.
-
-   ⚠ **The BEP 34 consultation costs a DNS round trip per host.** The sweep
-   already shares one `Resolver` across the run, which caches per host; a
-   caller that builds one per probe would multiply the DNS load by the number
-   of URLs per host.
-
-2. **[T-027](measurement.md)** - the value gate. Answerable as soon as (1)
+1. **[T-027](measurement.md)** - the value gate. Answerable as soon as (1)
    lands, and **a negative answer is a successful outcome.** T-107 has already
    moved one half of it: refusing seven credential-bearing URLs is measurable
    value over concatenation that no upstream in the corpus provides.
 
-3. **[T-012](claims.md)** - measure whether our identity gets us blocked. **Now
+2. **[T-012](claims.md)** - measure whether our identity gets us blocked. **Now
    permitted, and it was not before.** Two axes, not one (`C-63`): the
    `User-Agent` header *and* the BEP 20 `peer_id` prefix. `ProbeConfig` already
    takes both a `user_agent` and `extra_headers` so the arms run through one
@@ -221,15 +222,15 @@ so, unchanged:
    the schedule before the statistics do; this is a workflow that runs over
    days, not a command a session fires once.
 
-4. **[T-028](measurement.md)** - the newTrackon cross-check. Cheap once records
+3. **[T-028](measurement.md)** - the newTrackon cross-check. Cheap once records
    exist, and the first thing that produces something no upstream publishes:
    **disagreement between independent observers.**
 
-5. **[T-001](claims.md)** - run a real torrent client against the plaintext.
+4. **[T-001](claims.md)** - run a real torrent client against the plaintext.
    P0, independent of all of the above, and good work for a session that does
    not want to hold the measurement context.
 
-6. **[T-064](publication.md)** - release channel semantics. **Unblocked by
+5. **[T-064](publication.md)** - release channel semantics. **Unblocked by
    T-003 and its shape is now decided by measurement rather than by guess:**
    delete-and-recreate rather than move-the-tag (`C-17` is refuted), and no
    read-after-write assumption (`C-15`).
