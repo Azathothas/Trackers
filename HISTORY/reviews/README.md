@@ -44,3 +44,4 @@ and the operator asked for six.
 | [`2026-09-05-02-door-sweep.md`](2026-09-05-02-door-sweep.md) | ⛔ what other door reaches this code. Two instruments contact trackers with no consent check, and the workflow that runs them fired twice on the day the gate was built |
 | [`2026-09-05-03-claim-audit.md`](2026-09-05-03-claim-audit.md) | which sentence is not backed by an artefact. Every stated test count was re-run rather than re-read, and one had drifted four commits after it was written |
 | [`2026-09-05-04-tracker-operator.md`](2026-09-05-04-tracker-operator.md) | ⭐ read from the far end of the socket, after the first 200 strangers' servers were contacted. The README told them to ask and there was nobody to ask |
+| [`2026-09-05-05-cold-start.md`](2026-09-05-05-cold-start.md) | a session handed only the router. The routing table reads as a start-of-session step, so the page describing this session's worst defect in advance was never opened |

@@ -69,41 +69,29 @@ being exhaustive:
 tracker.example.  IN  TXT  "BITTORRENT UDP:1337 TCP:80"
 ```
 
-Three properties worth stating plainly, because an opt-out that fails quietly
-is worse than none:
+Three things that decide whether it protects you:
 
 - **A lookup we cannot complete is not consent.** If DNS does not answer, or
-  answers something ambiguous, the tracker is skipped rather than probed.
-- **We ask public resolvers, not our own**, because the recorded way this
-  mechanism fails in production is an internal resolver that does not follow
-  CNAMEs, honouring nothing and reporting nothing.
-- ⚠ **It is keyed on a hostname.** If a list publishes your tracker by IP
-  address rather than by name, there is no name for us to look up and the
-  record cannot protect that entry. That gap is recorded in
-  [`TODO/measurement.md`](TODO/measurement.md) rather than papered over.
+  answers ambiguously, the tracker is skipped rather than probed.
+- **We ask public resolvers, not our own**, so an internal resolver that does
+  not follow CNAMEs cannot make your record invisible to us.
+- ⚠ **It is keyed on a hostname.** Where a list publishes your tracker by IP
+  address there is no name to look up, and the record cannot protect that
+  entry. [`TODO/measurement.md`](TODO/measurement.md) carries the gap.
 
 ### If you would rather tell us directly
 
-⛔ **An earlier version of this section said "asking also works and is
-honoured, `src/trackers/exclusion.py` is where a request lands." That was
-wrong** and it is corrected here rather than quietly edited: `exclusion.py`
-reads *other projects'* blacklists. Nothing about it receives a message from
-you, and until this correction there was no contact route in this repository at
-all.
+**Open an issue** at
+[`github.com/Azathothas/Trackers/issues`](https://github.com/Azathothas/Trackers/issues)
+naming the hostname. It is honoured whatever it says about whether the tracker
+works: that is not ours to second-guess.
 
-There are two, and only the first is direct:
+An upstream list that blacklists you for a reason reading as an operator
+request also reaches us, indirectly: this project enforces those and declines
+to adopt another project's *measurement opinions* about you.
 
-1. **Open an issue** at
-   [`github.com/Azathothas/Trackers/issues`](https://github.com/Azathothas/Trackers/issues)
-   naming the hostname. It is honoured whatever it says about whether the
-   tracker works: that is not ours to second-guess.
-2. **Indirectly**, if an upstream list blacklists you with a reason that reads
-   as an operator request. This project classifies those and enforces the ones
-   that are requests or safety, while declining to adopt another project's
-   *measurement opinions* about you.
-
-⚠ **Both need a human here to act. The DNS route does not**, which is the whole
-reason it is preferred and listed first.
+⚠ **Both need a human here to act. The DNS route does not**, which is why it is
+preferred and listed first.
 
 ## Running it
 

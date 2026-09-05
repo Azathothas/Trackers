@@ -67,7 +67,7 @@ status, so a check that failed reads green.
 | script | what defect it catches |
 | --- | --- |
 | [`check-no-third-party-imports.py`](check-no-third-party-imports.py) | decision D1 quietly becoming false. It parses with `ast` rather than grepping, because a grep for `import` matches prose about importing things |
-| [`check-vantage-metadata.py`](check-vantage-metadata.py) | a health record that does not say where it was measured from. Takes `--path` so it can read a sweep written into scratch. ⚠ **Exits 2 while no record exists, and that is correct**: returning 0 would report "every record carries its vantage" while checking nothing. The gate carries it as an expected skip until a sanctioned vantage has probed the corpus ([T-024](../TODO/measurement.md)) |
+| [`check-vantage-metadata.py`](check-vantage-metadata.py) | a health record that does not say where it was measured from. `--path` points it at a sweep written into scratch. ⚠ **Exits 2 where no record exists, and that is correct**: returning 0 would report "every record carries its vantage" while checking nothing |
 | [`check-vendor-pin.py`](check-vendor-pin.py) | a vendored file that quietly stopped matching its pin, in either direction |
 
 ### The documents
@@ -104,7 +104,7 @@ dirties the working tree makes RULES 10.3 step 6 unsatisfiable.
 | script | |
 | --- | --- |
 | [`generate.py`](generate.py) | builds the dataset. `--offline` runs the whole pipeline against the pinned fixtures, which is what makes the gate reproducible on any host |
-| ⛔ [`probe-corpus.py`](probe-corpus.py) | **the one script that opens sockets to other people's servers.** BEP 34 is consulted per host before any probe and there is no flag that skips it; the run is bounded by a concurrency limit, one connection per host, a per-attempt timeout and a whole-run deadline. `ci` probes a sample, not the corpus. It has **no offline mode**: a run that opened no socket could still emit a record per tracker saying `unknown`, and that file would satisfy `check-vantage-metadata.py` while nothing had been measured |
+| ⛔ [`probe-corpus.py`](probe-corpus.py) | **the one script that contacts trackers.** BEP 34 is consulted per host first and no flag skips it; concurrency, per-host serialisation, timeout and deadline all bound it, and `ci` probes a sample. No offline mode, deliberately: its docstring says why |
 | [`fetch-reference-comments.py`](fetch-reference-comments.py) | ⚠ **touches the network.** Corpus building, never a pipeline step, never in CI |
 | [`vendor/toolkit/`](vendor/toolkit/) | the probe and the commit-and-push helper, pinned. Not this project's code |
 | [`_scope.py`](_scope.py) | shared file scoping. Where the `references/` exemption is defined, and why |

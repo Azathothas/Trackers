@@ -139,6 +139,10 @@ full.** Not grepped, not skimmed, not recalled from a previous session.
 
 ⚠ **When two rows apply, read both.** The union, never the shorter one.
 
+⛔ **Come back to this table when the work changes shape**, not only at the
+start of a session. Reviewing is a different task from working an entry, and
+takes a different row.
+
 | the task | read, together |
 | --- | --- |
 | **Working an open entry** | its entry in [`../TODO/INDEX.md`](../TODO/INDEX.md), [`methodology/gate.md`](methodology/gate.md), [`conventions/code.md`](conventions/code.md), [`conventions/forbidden-patterns.md`](conventions/forbidden-patterns.md) |

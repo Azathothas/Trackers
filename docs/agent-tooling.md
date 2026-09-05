@@ -90,7 +90,7 @@ nobody reviewed.
 
 | job | reach for | why not the obvious thing |
 | --- | --- | --- |
-| talk to a code host's API | [`gh`](https://cli.github.com/) | ⛔ **never against somebody else's repository**, under any framing. Against *this* one, RULES 13.1 sanctions writes: releases, tags, the data branch, issues and workflow runs. This row used to say "reads only", which was stricter than the rule it points at and would have blocked [T-003](../TODO/claims.md). [`security/remote-ops.md`](security/remote-ops.md) |
+| talk to a code host's API | [`gh`](https://cli.github.com/) | ⛔ **never against somebody else's repository**, under any framing; against this one, RULES 13.1 says what may be written. [`security/remote-ops.md`](security/remote-ops.md) |
 | fetch a URL where the direct route is blocked | RULES 16's read-only proxies | they carry none of your credentials, which a rule about a route that can write does not give you |
 | read or reshape JSON | [`jq`](https://jqlang.github.io/jq/) | ⛔ never a regular expression over JSON. A bracket inside a string value is how one page joiner lost an entire comment corpus |
 | time a command honestly | [`hyperfine`](https://github.com/sharkdp/hyperfine) | a single timed run is not a measurement |
