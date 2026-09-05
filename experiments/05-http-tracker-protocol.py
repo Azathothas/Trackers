@@ -71,6 +71,7 @@ import urllib.request
 from urllib.parse import urlsplit, urlunsplit
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _consent as consent  # noqa: E402
 import _conditions as C  # noqa: E402
 
 PROJECT_URL = "https://github.com/Azathothas/Trackers"
@@ -367,7 +368,20 @@ def main() -> int:
         print(f"could not read targets: {e}", file=sys.stderr)
         return C.EXIT_COULD_NOT_RUN
 
-    subjects = [probe_tracker(u, synthetic, args.announce) for u in targets]
+    # ⛔ BEP 34 FIRST, for every subject. This instrument reaches the same
+    # action `src/trackers/probe.py` does -- contacting somebody's tracker --
+    # so it consults the same record. Before 2026-09-05 it did not, and
+    # `p0-ground-truth.yml` ran it against these endpoints on every push
+    # touching `experiments/`.
+    subjects = []
+    refused = []
+    for u in targets:
+        permitted, why = consent.permits(u)
+        if not permitted:
+            # A subject we may not measure is not a subject that failed.
+            refused.append({"url": u, "bep34": why})
+            continue
+        subjects.append(probe_tracker(u, synthetic, args.announce))
 
     spellings: dict[str, int] = {}
     kinds: dict[str, int] = {}
@@ -384,8 +398,11 @@ def main() -> int:
         "control_verdict": {"positive_recognised": positive_ok,
                             "negative_correctly_rejected": negative_ok},
         "subjects": subjects,
+        "refused_by_bep34": refused,
         "summary": {
             "http_targets": len(targets),
+            "probed": len(subjects),
+            "refused_by_bep34": len(refused),
             "proved_tracker": sum(1 for s in subjects if s["verdict"]["is_tracker"]),
             "announce_sent": args.announce,
             "response_kind_histogram": kinds,

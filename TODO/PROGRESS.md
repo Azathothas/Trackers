@@ -191,23 +191,51 @@ allow fails 5 tests including the one that asserts a real loopback tracker
 received no datagram; a credential written outside a verbatim capture fails
 `check-no-secrets.py` with exit 1.
 
-⭐ **One review ran, and it found a high-severity defect nothing else could
-have.** [`../HISTORY/reviews/2026-09-05-01-adversarial-sweep.md`](../HISTORY/reviews/2026-09-05-01-adversarial-sweep.md)
-attacked this session's own code by running it rather than re-reading it, and
-`sweep()` **lost every other tracker's measurement when one probe raised** --
-RULES 3.8 with "source" swapped for "tracker". Twenty tests could not see it
-because every one passed a `probe_fn` that returns: they were written from the
-same belief as the code. Fixed, with the regression test that fails against the
-old version.
+## What the reviews found
 
-⚠ **The same review made an unbacked claim of its own and it is left visible.**
-Its first draft decomposed the 12 `unmeasurable` records as "2 structural and
-10 operator refusals" from memory; re-derived from the records it is **8
-operator refusals, 2 unsupported and 2 `no_usable_address`**.
+**Four passes, four different lenses, and every one found something.**
+[`../HISTORY/reviews/`](../HISTORY/reviews/) has them; the two that matter most
+are the ones a single deeper pass could not have produced.
 
-⛔ **This session did not meet RULES 10.2's bar for ending** and did not run
-the other two reviews RULES 10.3 step 4 requires. It is a stopping point, not
-an ending: the tree is clean, every commit is pushed, and CI is green on the
+⭐ **Review 2, the door sweep, is the important one.** It asked what *else*
+reaches a guarded action, and found that `experiments/02` and `05` contact real
+trackers **consulting nothing** -- and that `p0-ground-truth.yml`, which
+triggers on `experiments/**`, fired **twice on the day the gate was built**.
+So this session built the exclusion gate and then contacted trackers through a
+door that bypassed it. Fixed by `experiments/_consent.py`, which imports the
+same module rather than copying the rule. ⚠ No refusal is known to have been
+violated -- all 17 pinned subjects permit us today -- and that is luck, not the
+gate working.
+
+⭐ **Review 4, the operator lens, caught a rule half-satisfied inside the change
+that was meant to satisfy it.** The README section added earlier this session
+told operators that asking works and pointed at `src/trackers/exclusion.py`.
+Nothing there receives a request -- it parses *other projects'* blacklists --
+and the tree had **no contact route at all**. RULES 4 requires documentation to
+say how to make a request. Corrected to name the issue tracker, with the
+correction left visible.
+
+**Review 1** attacked this session's own code by running it: `sweep()` lost
+every other tracker's measurement when one probe raised, which is RULES 3.8
+with "source" swapped for "tracker". Twenty tests could not see it because
+every one passed a `probe_fn` that returns.
+
+**Review 3** re-ran every stated test count instead of re-reading it, and found
+T-029's acceptance had drifted from 20 to 21 **four commits after it was
+written**. It also records that its own audit script produced a false positive,
+and that the three committed runs of experiment 24 do not share a schema
+because the instrument was amended between them.
+
+⚠ **Two reviews made claims of their own that did not survive checking**, and
+both are left visible rather than edited away: review 1 decomposed the 12
+`unmeasurable` records from memory (it is 8 operator refusals, 2 unsupported, 2
+`no_usable_address`), and review 3's script mis-attributed a whole-suite count
+to one module.
+
+⛔ **This session still has not met RULES 10.2's bar for ending** -- roughly
+1.75 `L`-equivalents against five. RULES 10.3 step 4's three reviews are done
+and exceeded; the rest of 10.3 is not an ending's acceptance until 10.2 is
+satisfied. The tree is clean, every commit is pushed, and CI is green on the
 head.
 
 ## In progress

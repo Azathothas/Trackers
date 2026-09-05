@@ -55,6 +55,17 @@ every result carries a `Rung`, asserted rather than asserted-of.
 The codecs were lifted into `src/trackers/bep15.py` and
 `src/trackers/bencode.py` so the experiments and the production
 path are the same code and cannot drift.
+
+⛔ **That last sentence is false and is corrected here rather than
+edited away (RULES 7).** Found by the door sweep of 2026-09-05:
+`experiments/02-udp-bep15-connect.py:89` defines its own
+`build_connect_request` and `:94` its own
+`parse_connect_response`, alongside `src/trackers/bep15.py:91` and
+`:96`, and **no experiment imports from `src/` at all**. The
+codecs were **copied**, not lifted, so the two can drift and a fix
+to one never reaches the other -- which is the exact defect this
+paragraph claimed to have prevented. [T-033](measurement.md) is
+the entry that does the work; the rest of this acceptance stands.
 Landed with it: T-023 and T-025. **Not** T-022 or T-024 -- see
 those entries for what is actually left.
 
@@ -582,8 +593,10 @@ Prove:       `python3 -m unittest tests.test_concurrency -v` (planned) passes
              and the computed per-tracker UDP budget equals
              `5 x max(timeout / 3, floor)`.
 
-**Done.** `python3 -m unittest tests.test_concurrency` -> `Ran 20 tests`, `OK`,
-no network. `src/trackers/sweep.py` is the runner and `scripts/probe-corpus.py`
+**Done.** `python3 -m unittest tests.test_concurrency` -> `Ran 21 tests`, `OK`,
+no network. ⚠ It was 20 at acceptance; the twenty-first is the regression
+for the defect review 1 found in this same module, and the number was stale
+in this paragraph until review 3's claim audit re-ran it. `src/trackers/sweep.py` is the runner and `scripts/probe-corpus.py`
 is the instrument that drives it.
 
 All three `Prove` cases hold, and the two that could fail silently were
@@ -656,6 +669,49 @@ Prove:       Each closes with its own numbered committed script; this entry
              reason.
 
 ---
+
+### T-033 The experiments and the probe carry two copies of one codec
+
+Source:      review 2 of 2026-09-05, the door sweep; corrects [T-020](measurement.md)
+Category:    measurement
+Priority:    P2
+Effort:      M
+Status:      open
+
+Problem:     `experiments/02-udp-bep15-connect.py` and
+             `experiments/05-http-tracker-protocol.py` each carry their own
+             BEP 15 and bencode implementations, and `src/trackers/bep15.py`
+             and `src/trackers/bencode.py` carry another. **Two
+             implementations of one wire format is the copy-pasted-logic row
+             in [`../docs/conventions/forbidden-patterns.md`](../docs/conventions/forbidden-patterns.md)**:
+             each acquires its own defects and a fix to one never reaches the
+             other.
+
+             It also makes an instrument and the production path answer
+             differently about the same bytes, which is worse here than in
+             ordinary code: the experiments are what this project offers as
+             evidence that the probe is correct.
+Premise:     **Measured, not suspected.** `grep -n "def build_connect_request"`
+             finds it at `experiments/02-udp-bep15-connect.py:89` and at
+             `src/trackers/bep15.py:91`; `grep -n "sys.path"` over
+             `experiments/` shows every script adds only its own directory.
+             T-020's acceptance claims the opposite and the claim is corrected
+             under its title.
+Approach:    Put `src/` on the experiments' path -- `experiments/_consent.py`
+             already does exactly that and is the precedent -- and delete the
+             copies. ⚠ **Do not rewrite the committed results.** They were
+             taken by the copied code, and a result whose instrument changed
+             underneath it means something different on a re-run; the
+             conditions block records the commit, which is what makes that
+             checkable.
+Decision:    Not done in the same pass that found it. Swapping a codec
+             underneath instruments whose output is this project's evidence is
+             a change that deserves its own gate run and its own reading, not a
+             tail-end edit to a review commit.
+Prove:       `grep -rn "def build_connect_request\|def parse_connect_response\|def bdecode" experiments/`
+             returns nothing, every experiment imports from `src/trackers/`,
+             and `python3 experiments/02-udp-bep15-connect.py --expect-control`
+             still exits 0 against the loopback control.
 
 ### T-031 Liveness for networks this vantage cannot reach -- the leverage entry
 

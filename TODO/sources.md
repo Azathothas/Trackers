@@ -195,6 +195,16 @@ Approach:    A tracked `hardcoded.txt` read as a source with its own role, never
 Prove:       A test that editing the file changes the output in the maintainer's
              order, and that the pipeline never rewrites the file itself.
 
+⚠ **This file is the second door onto the credential rule**, found by the door
+sweep of 2026-09-05. [T-107](sources.md) refuses a credential-bearing URL in
+`pipeline.aggregate`, and `render_plaintext` -- the single write path for the
+published format -- does not check: it is public and takes any list of
+trackers. The manual path calls it directly, so **the moment `hardcoded.txt`
+has content, a passkey URL in it reaches the output ungated.** Nothing reaches
+that door today, which is why it was recorded rather than fixed; whatever
+creates the file closes it, either by routing the manual list through the same
+refusal or by making `render_plaintext` refuse loudly.
+
 ### T-107 The pipeline republishes private-tracker credentials
 
 Source:      `C-70`, found by the secret sweep adopted on 2026-08-31

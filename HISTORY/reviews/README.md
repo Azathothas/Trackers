@@ -41,3 +41,6 @@ and the operator asked for six.
 | [`2026-09-01-05-tracker-operator.md`](2026-09-01-05-tracker-operator.md) | ⭐ somebody whose tracker this project probes, and whose users' passkeys it publishes |
 | [`2026-09-01-06-measured-never-verified.md`](2026-09-01-06-measured-never-verified.md) | ⭐ which numbers have exactly one observation. The DNS finding disagrees with itself between two runs |
 | [`2026-09-05-01-adversarial-sweep.md`](2026-09-05-01-adversarial-sweep.md) | ⭐ attack the code this session added, by running it rather than re-reading it. One raising probe destroyed every other measurement, and twenty tests could not see it because they shared the code's belief |
+| [`2026-09-05-02-door-sweep.md`](2026-09-05-02-door-sweep.md) | ⛔ what other door reaches this code. Two instruments contact trackers with no consent check, and the workflow that runs them fired twice on the day the gate was built |
+| [`2026-09-05-03-claim-audit.md`](2026-09-05-03-claim-audit.md) | which sentence is not backed by an artefact. Every stated test count was re-run rather than re-read, and one had drifted four commits after it was written |
+| [`2026-09-05-04-tracker-operator.md`](2026-09-05-04-tracker-operator.md) | ⭐ read from the far end of the socket, after the first 200 strangers' servers were contacted. The README told them to ask and there was nobody to ask |

@@ -78,6 +78,7 @@ import threading
 from urllib.parse import urlsplit
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _consent as consent  # noqa: E402
 import _conditions as C  # noqa: E402
 
 PROTOCOL_ID = 0x41727101980
@@ -286,11 +287,24 @@ def main() -> int:
     control_ok = all(r["ok"] for r in control_runs)
 
     # --- subjects ------------------------------------------------------------
+    # ⛔ BEP 34 FIRST, for every subject. RULES 4 is absolute and does not care
+    # which module opens the socket: this instrument reaches the same action
+    # `src/trackers/probe.py` does, so it consults the same record. Before
+    # 2026-09-05 it did not, and `p0-ground-truth.yml` ran it against these
+    # endpoints on every push touching `experiments/`.
     subject_results = []
+    refused = []
     for t in udp_targets:
         parts = urlsplit(t["url"])
         host = parts.hostname or ""
         port = parts.port or t["port"]
+        permitted, why = consent.permits(t["url"], default_port=port)
+        if not permitted:
+            # Not a failed measurement. A subject we may not measure is a
+            # different fact and is recorded in a different field.
+            refused.append({"url": t["url"], "host": host, "port": port,
+                            "bep34": why})
+            continue
         r = bep15_connect(host, port, args.timeout, args.retries)
         r.update({"url": t["url"], "host": host, "port": port,
                   "oracle_at_capture": t["oracle_at_capture"]})
@@ -308,8 +322,11 @@ def main() -> int:
             "note": "loopback BEP 15 responder started by this process; two runs",
         },
         "subjects": subject_results,
+        "refused_by_bep34": refused,
         "summary": {
             "udp_targets": len(udp_targets),
+            "probed": len(subject_results),
+            "refused_by_bep34": len(refused),
             "connect_ok": len(live),
             "spoke_bep15_at_all": len(speaking),
             "oracle_said_live_at_capture": sum(

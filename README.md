@@ -82,9 +82,28 @@ is worse than none:
   record cannot protect that entry. That gap is recorded in
   [`TODO/measurement.md`](TODO/measurement.md) rather than papered over.
 
-Asking also works and is honoured; `src/trackers/exclusion.py` is where a
-request lands. The DNS route is preferred only because it does not require you
-to find us first.
+### If you would rather tell us directly
+
+⛔ **An earlier version of this section said "asking also works and is
+honoured, `src/trackers/exclusion.py` is where a request lands." That was
+wrong** and it is corrected here rather than quietly edited: `exclusion.py`
+reads *other projects'* blacklists. Nothing about it receives a message from
+you, and until this correction there was no contact route in this repository at
+all.
+
+There are two, and only the first is direct:
+
+1. **Open an issue** at
+   [`github.com/Azathothas/Trackers/issues`](https://github.com/Azathothas/Trackers/issues)
+   naming the hostname. It is honoured whatever it says about whether the
+   tracker works: that is not ours to second-guess.
+2. **Indirectly**, if an upstream list blacklists you with a reason that reads
+   as an operator request. This project classifies those and enforces the ones
+   that are requests or safety, while declining to adopt another project's
+   *measurement opinions* about you.
+
+⚠ **Both need a human here to act. The DNS route does not**, which is the whole
+reason it is preferred and listed first.
 
 ## Running it
 
