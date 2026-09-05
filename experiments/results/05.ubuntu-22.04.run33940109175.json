@@ -1,0 +1,271 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "33940109175",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu22",
+      "runner_image_version": "20260831.284.1",
+      "runner_os": "Linux",
+      "sha": "f4ffaab2aa7559e61d429b57562b2c27d6b43500"
+    },
+    "hostname": "runnervm9xg2d",
+    "info_hash": "20 random bytes generated per run; corresponds to no content",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "public_ipv4": "20.3.167.82",
+    "public_ipv4_org": "AS8075 Microsoft Corporation",
+    "python": "3.11.16",
+    "repo_commit": "f4ffaab2aa7559e61d429b57562b2c27d6b43500-dirty",
+    "sample_counts": {
+      "control_runs_each": 2,
+      "http_targets": 6,
+      "requests_per_target": 1
+    },
+    "specs": "BEP 3 and BEP 48, fetched 2026-08-29",
+    "user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe; contact via repository issues)",
+    "utc": "2026-09-05T02:48:47Z"
+  },
+  "question": "Is a bencoded response the reliable discriminator between an HTTP tracker and an ordinary web server?",
+  "results": {
+    "control_verdict": {
+      "negative_correctly_rejected": true,
+      "positive_recognised": true
+    },
+    "controls": {
+      "bencode_failure_response": [
+        {
+          "bytes": 52,
+          "classification": {
+            "detail": "torrent not registered with me",
+            "failure_key_spelling": "failure reason",
+            "kind": "tracker_failure_response",
+            "trailing_bytes": 0
+          },
+          "content_type": "text/plain",
+          "ok": true,
+          "rtt_ms": 1.272,
+          "rung": "tracker_semantic",
+          "status": 200,
+          "truncated": false,
+          "url": "http://127.0.0.1:33735/announce?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+        },
+        {
+          "bytes": 52,
+          "classification": {
+            "detail": "torrent not registered with me",
+            "failure_key_spelling": "failure reason",
+            "kind": "tracker_failure_response",
+            "trailing_bytes": 0
+          },
+          "content_type": "text/plain",
+          "ok": true,
+          "rtt_ms": 1.0,
+          "rung": "tracker_semantic",
+          "status": 200,
+          "truncated": false,
+          "url": "http://127.0.0.1:33735/announce?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+        }
+      ],
+      "html_web_server": [
+        {
+          "bytes": 59,
+          "classification": {
+            "detail": "bdecode failed: unexpected byte b'<' at offset 0",
+            "head": "<!doctype html><html><body><h1>It works!</h1></body></html>",
+            "kind": "html"
+          },
+          "content_type": "text/html",
+          "ok": false,
+          "rtt_ms": 0.971,
+          "rung": "transport_response",
+          "status": 200,
+          "truncated": false,
+          "url": "http://127.0.0.1:38965/announce?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+        },
+        {
+          "bytes": 59,
+          "classification": {
+            "detail": "bdecode failed: unexpected byte b'<' at offset 0",
+            "head": "<!doctype html><html><body><h1>It works!</h1></body></html>",
+            "kind": "html"
+          },
+          "content_type": "text/html",
+          "ok": false,
+          "rtt_ms": 1.018,
+          "rung": "transport_response",
+          "status": 200,
+          "truncated": false,
+          "url": "http://127.0.0.1:38965/announce?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+        }
+      ]
+    },
+    "refused_by_bep34": [],
+    "subjects": [
+      {
+        "announce_url": "http://bt1.archive.org:6969/announce",
+        "rungs": {
+          "scrape": {
+            "bytes": 11,
+            "classification": {
+              "detail": "files entries=0",
+              "kind": "tracker_scrape_response",
+              "trailing_bytes": 0
+            },
+            "content_type": "text/plain",
+            "ok": true,
+            "rtt_ms": 75.82,
+            "rung": "tracker_semantic",
+            "status": 200,
+            "truncated": false,
+            "url": "http://bt1.archive.org:6969/scrape?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+          }
+        },
+        "verdict": {
+          "highest_rung": "tracker_semantic",
+          "is_tracker": true,
+          "proved_by": "scrape"
+        }
+      },
+      {
+        "announce_url": "http://tracker.renfei.net:8080/announce",
+        "rungs": {
+          "scrape": {
+            "bytes": 11,
+            "classification": {
+              "detail": "files entries=0",
+              "kind": "tracker_scrape_response",
+              "trailing_bytes": 0
+            },
+            "content_type": "text/plain",
+            "ok": true,
+            "rtt_ms": 246.86,
+            "rung": "tracker_semantic",
+            "status": 200,
+            "truncated": false,
+            "url": "http://tracker.renfei.net:8080/scrape?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+          }
+        },
+        "verdict": {
+          "highest_rung": "tracker_semantic",
+          "is_tracker": true,
+          "proved_by": "scrape"
+        }
+      },
+      {
+        "announce_url": "http://bt.okmp3.ru:2710/announce",
+        "rungs": {
+          "scrape": {
+            "bytes": 0,
+            "classification": {
+              "detail": "gaierror: [Errno -2] Name or service not known",
+              "kind": "no_response"
+            },
+            "content_type": "-",
+            "ok": false,
+            "rtt_ms": null,
+            "rung": "dns_failure",
+            "status": null,
+            "truncated": false,
+            "url": "http://bt.okmp3.ru:2710/scrape?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+          }
+        },
+        "verdict": {
+          "highest_rung": "dns_failure",
+          "is_tracker": false,
+          "proved_by": "-"
+        }
+      },
+      {
+        "announce_url": "http://tracker.ipv6tracker.ru:80/announce",
+        "rungs": {
+          "scrape": {
+            "bytes": 0,
+            "classification": {
+              "detail": "OSError: [Errno 101] Network is unreachable",
+              "kind": "no_response"
+            },
+            "content_type": "-",
+            "ok": false,
+            "rtt_ms": null,
+            "rung": "transport_failure",
+            "status": null,
+            "truncated": false,
+            "url": "http://tracker.ipv6tracker.ru:80/scrape?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+          }
+        },
+        "verdict": {
+          "highest_rung": "transport_failure",
+          "is_tracker": false,
+          "proved_by": "-"
+        }
+      },
+      {
+        "announce_url": "https://tracker.leechshield.link:443/announce",
+        "rungs": {
+          "scrape": {
+            "bytes": 81,
+            "classification": {
+              "detail": "files entries=1",
+              "kind": "tracker_scrape_response",
+              "trailing_bytes": 0
+            },
+            "content_type": "application/octet-stream",
+            "ok": true,
+            "rtt_ms": 184.241,
+            "rung": "tracker_semantic",
+            "status": 200,
+            "truncated": false,
+            "url": "https://tracker.leechshield.link:443/scrape?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+          }
+        },
+        "verdict": {
+          "highest_rung": "tracker_semantic",
+          "is_tracker": true,
+          "proved_by": "scrape"
+        }
+      },
+      {
+        "announce_url": "https://1337.abcvg.info:443/announce",
+        "rungs": {
+          "scrape": {
+            "bytes": 120,
+            "classification": {
+              "detail": "files entries=1",
+              "kind": "tracker_scrape_response",
+              "trailing_bytes": 0
+            },
+            "content_type": "text/html; charset=UTF-8",
+            "ok": true,
+            "rtt_ms": 369.168,
+            "rung": "tracker_semantic",
+            "status": 200,
+            "truncated": false,
+            "url": "https://1337.abcvg.info:443/scrape?info_hash=%D4%5C%3E%A3%AE%7C%F7%A4%14x%96%27%FB%B0%CB%C9%E1%FAB%18"
+          }
+        },
+        "verdict": {
+          "highest_rung": "tracker_semantic",
+          "is_tracker": true,
+          "proved_by": "scrape"
+        }
+      }
+    ],
+    "summary": {
+      "announce_sent": false,
+      "failure_key_spelling_histogram": {},
+      "http_targets": 6,
+      "probed": 6,
+      "proved_tracker": 4,
+      "refused_by_bep34": 0,
+      "response_kind_histogram": {
+        "no_response": 2,
+        "tracker_scrape_response": 4
+      },
+      "scrape_supported": 4
+    }
+  }
+}

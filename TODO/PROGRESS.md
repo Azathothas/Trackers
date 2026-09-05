@@ -215,7 +215,10 @@ Python 3.11 floor (RULES 12), and `ubuntu-22.04` ships 3.10.12, so experiments
 rather than the tick. Fixed with a pinned `setup-python` and -- the part worth
 keeping -- **a step that fails the job when an experiment wrote no result**,
 because `continue-on-error` renders a crash and a measured failure identically
-and those are not the same fact.
+and those are not the same fact. **Verified repaired**: run `33940109175`
+measures on both images again, 6 result files each, `connect_ok` 10 of 11 and
+`proved_tracker` 4 of 6 on both, `refused_by_bep34` 0. Both runs' results are
+committed.
 
 ⭐ **Review 4, the operator lens, caught a rule half-satisfied inside the change
 that was meant to satisfy it.** The README section added earlier this session

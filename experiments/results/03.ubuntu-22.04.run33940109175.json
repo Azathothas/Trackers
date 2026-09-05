@@ -1,0 +1,57 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "33940109175",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu22",
+      "runner_image_version": "20260831.284.1",
+      "runner_os": "Linux",
+      "sha": "f4ffaab2aa7559e61d429b57562b2c27d6b43500"
+    },
+    "hostname": "runnervm9xg2d",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "python": "3.11.16",
+    "repo_commit": "f4ffaab2aa7559e61d429b57562b2c27d6b43500-dirty",
+    "sample_counts": {
+      "dial_attempts": 2,
+      "listen_ports": 1
+    },
+    "utc": "2026-09-05T02:48:43Z"
+  },
+  "question": "Can anything on the public internet open a connection to this host?",
+  "results": {
+    "accepted_connections": 1,
+    "bind": {
+      "detail": "listening on 0.0.0.0:43163",
+      "ok": true,
+      "port": 43163
+    },
+    "loopback_control": {
+      "detail": "banner matched",
+      "ok": true,
+      "rtt_ms": 0.218
+    },
+    "public_hairpin": {
+      "conclusive": false,
+      "detail": "TimeoutError: timed out",
+      "ok": false,
+      "rtt_ms": null
+    },
+    "public_ip": "20.3.167.82",
+    "public_ip_org": "AS8075 Microsoft Corporation",
+    "verdict": {
+      "can_bind_and_listen": true,
+      "inbound_from_arbitrary_third_party": "-",
+      "loopback_reachable": true,
+      "not_established": [
+        "Whether an arbitrary internet host can reach this listener. That needs a prober outside this machine; this script does not have one and does not pretend to. A failed hairpin is consistent with both a blocked inbound path and a NAT that simply does not hairpin."
+      ],
+      "reachable_at_public_address": false
+    }
+  }
+}

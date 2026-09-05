@@ -1,0 +1,172 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "33940109175",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu24",
+      "runner_image_version": "20260831.293.1",
+      "runner_os": "Linux",
+      "sha": "f4ffaab2aa7559e61d429b57562b2c27d6b43500"
+    },
+    "hostname": "runnervmejwal",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "public_ipv4": "52.176.32.161",
+    "public_ipv4_org": "AS8075 Microsoft Corporation",
+    "python": "3.11.16",
+    "repo_commit": "f4ffaab2aa7559e61d429b57562b2c27d6b43500",
+    "sample_counts": {
+      "dns_comparison": 2,
+      "ipv6_targets": 2,
+      "runs_per_target": 1,
+      "tcp_targets": 6,
+      "tier1_controls": 4
+    },
+    "utc": "2026-09-05T02:48:31Z"
+  },
+  "question": "Which network egress does this host actually have -- which TCP ports, which UDP ports, and does IPv6 leave the machine?",
+  "results": {
+    "dns_comparison": [
+      {
+        "detail": "44B",
+        "host": "1.1.1.1",
+        "kind": "dns",
+        "ok": true,
+        "port": 53,
+        "rtt_ms": 14.553
+      },
+      {
+        "detail": "124B",
+        "host": "8.8.8.8",
+        "kind": "dns",
+        "ok": true,
+        "port": 53,
+        "rtt_ms": 24.385
+      }
+    ],
+    "ipv6": {
+      "stack_present": true,
+      "targets": [
+        {
+          "detail": "OSError: [Errno 101] Network is unreachable",
+          "host": "ipv6.google.com",
+          "ok": false,
+          "port": 443,
+          "rtt_ms": null
+        },
+        {
+          "detail": "OSError: [Errno 101] Network is unreachable",
+          "host": "ipv6.icanhazip.com",
+          "ok": false,
+          "port": 443,
+          "rtt_ms": null
+        }
+      ]
+    },
+    "tier0_loopback_control": {
+      "detail": "echo matched",
+      "ok": true,
+      "rtt_ms": 0.108
+    },
+    "tier1_egress_controls": [
+      {
+        "detail": "32B, txid matched",
+        "host": "stun.l.google.com",
+        "kind": "stun",
+        "ok": true,
+        "port": 19302,
+        "rtt_ms": 20.332
+      },
+      {
+        "detail": "32B, txid matched",
+        "host": "stun.cloudflare.com",
+        "kind": "stun",
+        "ok": true,
+        "port": 3478,
+        "rtt_ms": 125.439
+      },
+      {
+        "detail": "48B, mode=4",
+        "host": "pool.ntp.org",
+        "kind": "ntp",
+        "ok": true,
+        "port": 123,
+        "rtt_ms": 90.101
+      },
+      {
+        "detail": "48B, mode=4",
+        "host": "time.cloudflare.com",
+        "kind": "ntp",
+        "ok": true,
+        "port": 123,
+        "rtt_ms": 42.748
+      }
+    ],
+    "tier2_tcp": [
+      {
+        "detail": "connected 140.82.114.4",
+        "host": "github.com",
+        "ok": true,
+        "port": 443,
+        "rtt_ms": 25.169
+      },
+      {
+        "detail": "connected 140.82.114.4",
+        "host": "github.com",
+        "ok": true,
+        "port": 80,
+        "rtt_ms": 32.677
+      },
+      {
+        "detail": "connected 207.241.226.111",
+        "host": "bt1.archive.org",
+        "ok": true,
+        "port": 6969,
+        "rtt_ms": 42.057
+      },
+      {
+        "detail": "connected 172.67.162.102",
+        "host": "tracker.renfei.net",
+        "ok": true,
+        "port": 8080,
+        "rtt_ms": 14.651
+      },
+      {
+        "detail": "resolve: gaierror: [Errno -2] Name or service not known",
+        "host": "bt.okmp3.ru",
+        "ok": false,
+        "port": 2710,
+        "rtt_ms": null
+      },
+      {
+        "detail": "connected 172.67.165.72",
+        "host": "tracker.bt4g.com",
+        "ok": true,
+        "port": 2095,
+        "rtt_ms": 19.134
+      }
+    ],
+    "verdict": {
+      "ipv6_egress": false,
+      "ipv6_stack_present": true,
+      "probe_code_works": true,
+      "tcp_ports_blocked": [],
+      "tcp_ports_open": [
+        80,
+        443,
+        2095,
+        6969,
+        8080
+      ],
+      "tcp_targets_unresolvable": [
+        "bt.okmp3.ru"
+      ],
+      "udp_arbitrary_port_egress": true,
+      "udp_port_53_egress": true
+    }
+  }
+}
