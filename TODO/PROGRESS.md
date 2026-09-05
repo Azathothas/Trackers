@@ -61,7 +61,7 @@ below is the previous session's and is quoted as such.
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
 | Local gate | `python3 scripts/check-gate.py --strict`: 14 checks pass, 1 expected skip |
 | Private-tracker credentials in the generated plaintext | **0**, refused by the pipeline (`C-70`, T-107 closed) |
-| CI | `gate.yml` **green on `ubuntu-24.04` and `windows-2025`** at `7cfd16a`, run `33937717833`, confirmed by looking |
+| CI | `gate.yml` **green on `ubuntu-24.04` and `windows-2025`** at `d84a8cf`, run `33940195064`; `p0-ground-truth.yml` green on both images at `f4ffaab`, run `33940109175`, confirmed by looking |
 | First corpus sweep | run **`33938543488`**, `ubuntu-24.04`, 200 of 1327 sampled. `live` 25, `degraded` 1, `unknown` 162, `unmeasurable` 12, `dead` **0** and unreachable from one observation |
 
 ## Counts
