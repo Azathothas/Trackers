@@ -136,6 +136,29 @@ class TheConfiguredScheduleIsRead(unittest.TestCase):
             "these read a workflow input with no fallback, so a scheduled run "
             f"reads them as empty: {bare}")
 
+    def test_the_preview_and_the_sweep_are_stamped_with_one_instant(self):
+        """⛔ The dry run exists to say what is about to be contacted.
+
+        With the rotation it stopped doing that: the preview defaulted its
+        clock to the epoch and reported slice 0 while the sweep, given the real
+        date, contacted slice 3 -- a preview of a different 190 trackers, which
+        is not a preview. Measured in run `34252497106`. Both steps read one
+        instant fixed once for the job, and two `date` calls could drift across
+        a three-hour boundary even when they agree today.
+        """
+        import re
+        text = self._workflow()
+        stamps = re.findall(r'--generated-at "([^"]+)"', text)
+        self.assertGreaterEqual(len(stamps), 2,
+                                "the preview no longer stamps its clock, so it "
+                                "cannot be reporting the slice the sweep takes")
+        self.assertEqual(len(set(stamps)), 1,
+                         f"the preview and the sweep read different clocks: "
+                         f"{sorted(set(stamps))}")
+        self.assertNotIn("date -u", stamps[0],
+                         "the instant is computed per step, so two steps can "
+                         "land either side of a rotation boundary")
+
     def test_no_cron_schedules_a_sweep_faster_than_the_default_interval(self):
         """⛔ The one that has to fail when somebody adds an hourly cron.
 

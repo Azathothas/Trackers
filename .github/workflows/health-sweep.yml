@@ -89,6 +89,15 @@ jobs:
         with:
           persist-credentials: false
 
+      # ⛔ ONE instant for the whole job, and both steps below read it.
+      # The dry run existed to state what is about to be contacted, and with
+      # the rotation it stopped doing that: it defaulted the clock to the epoch
+      # and previewed slice 0 while the sweep, given the real date, contacted
+      # slice 3. A preview of a different 190 trackers is not a preview.
+      # Measured in run 34252497106, which is why this step exists.
+      - name: Fix the instant this run is stamped with
+        run: echo "SWEEP_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+
       - name: Record the vantage this measurement comes from
         run: |
           echo "runner image     : ${ImageOS:-unknown} ${ImageVersion:-unknown}"
@@ -110,6 +119,7 @@ jobs:
           TRACKERS_PROFILE: ${{ inputs.profile || 'ci' }}
         run: |
           python3 scripts/probe-corpus.py --offline-corpus --dry-run \
+            --generated-at "${SWEEP_AT}" \
             ${{ inputs.only_source && format('--only-source {0}', inputs.only_source) || '' }}
 
       - name: Sweep
@@ -120,7 +130,7 @@ jobs:
           python3 scripts/probe-corpus.py \
             --offline-corpus \
             --deadline "${{ inputs.deadline || '900' }}" \
-            --generated-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --generated-at "${SWEEP_AT}" \
             ${{ inputs.only_source && format('--only-source {0}', inputs.only_source) || '' }} \
             --out "sweep-out"
 
