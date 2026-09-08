@@ -1020,9 +1020,48 @@ its correctness.
 
 ⚠ **So the `Prove` clause above is NOT met**, and this entry stays open rather
 than being closed on a partial. The remaining routes are (a) NAT64/DNS64, (b) a
-relay with IPv6 egress, (d) public i2p and yggdrasil gateways, and (e) the
-dual-stack shortcut -- and **(e) is still the one to measure first**, because it
-costs one DNS lookup per host and may dissolve part of the problem for free.
+relay with IPv6 egress, and (d) public i2p and yggdrasil gateways.
+
+**Route (e) is measured, and it did dissolve part of the problem.**
+`experiments/29-address-family-census.py`, 2026-09-08, resolved all 965
+distinct corpus hostnames (206 were address literals and needed no lookup) and
+contacted **no tracker** -- it resolves names and stops.
+
+| | hosts | tracker URLs |
+| --- | --- | --- |
+| IPv4-capable | 706 | 960 |
+| **IPv6-only** | **15** | **16** |
+| did not resolve | 244 | 351 |
+
+⭐ **The first thing it did was fill a dash.**
+[`../HISTORY/gates.md`](../HISTORY/gates.md) carried `-` for the IPv6-only
+count since the measurement gate was written, so every statement about the
+IPv6 limitation was about an unmeasured population. It is **16 of 1327**, about
+1.2%.
+
+⭐ **And three of the fifteen are not lost at all.** Each has an IPv4 host
+under the same registrable domain **already in this corpus and already
+probed**:
+
+* `anna.bt.bontal.net` -> `bt.bontal.net`, `yuki.bt.bontal.net`
+* `ipv6.govt.hu` -> `tracker.govt.hu`
+* `ipv6.tracker.harry.lu` -> `ipv4.tracker.harry.lu`
+
+That is exactly what this entry's route (e) predicted -- "many IPv6-only
+entries are only IPv6 *in one list*" -- and it means the operator behind those
+three is reachable from this vantage today. ⚠ **It does not make the IPv6-only
+URL measurable**; it makes it *redundant*, which is a different and weaker
+statement and is what the records must say.
+
+⛔ **A much larger number came out of the same run and it is not IPv6.** **351
+URLs on 244 hosts do not resolve at all** -- fifteen times the IPv6 population
+this entry was written about. That is `unknown`, never `dead`, and it is a
+bigger unexplored question than the one being worked. It is
+[T-036](measurement.md).
+
+⚠ **What route (e) did NOT do**: produce a liveness signal. Twelve IPv6-only
+hosts have no sibling and remain exactly as unmeasurable as before, so the
+`Prove` clause is still open on routes (a), (b) and (d).
 
 ---
 
@@ -1272,3 +1311,52 @@ whole "what we add" figure is **183 trackers of 1228**, and every ratio above
 inherits its interval. A census of that arm is 1045 further probes, which is a
 different order of politeness cost and belongs with the scheduled-sweep
 decision ([T-084](operations.md)) rather than being fired ad hoc.
+
+---
+
+### T-036 351 tracker URLs do not resolve, and nobody has asked why
+
+Source:      `experiments/29-address-family-census.py`, 2026-09-08;
+             [T-031](measurement.md)'s route (e) run
+Category:    measurement
+Priority:    P2
+Effort:      M
+Status:      open
+
+Problem:     **351 URLs on 244 hosts did not resolve at all**, which is 26% of
+             the corpus and **fifteen times** the IPv6-only population this
+             project has spent far more words on. Every one of them is
+             `unknown`, correctly, and `unknown` is not a place to leave a
+             quarter of the dataset.
+Premise:     **Measured, not suspected.** `experiments/29` resolved every one
+             of the 965 distinct hostnames with `AF_UNSPEC` and recorded the
+             `gaierror` class per host. ⚠ Two runs minutes apart disagreed by
+             one host, so the figure moves with DNS and any analysis has to
+             survive that.
+Approach:    The question is not "are they dead" -- it is **which kind of
+             not-resolving each one is**, because the kinds have different
+             consequences and are currently one bucket:
+
+             1. **NXDOMAIN**: the name is gone. Strong evidence, still not
+                proof from one resolver on one day.
+             2. **SERVFAIL or timeout**: somebody's nameserver is broken or
+                slow. That is a fact about the DNS path, not the tracker.
+             3. **A name that resolves elsewhere.** `experiments/04` measured
+                resolver divergence at 0 of 17 and carries [T-007](claims.md)
+                for how thin that is; 244 hosts is a far better sample for the
+                same question, and it comes free with this one.
+             4. **A tracker whose sibling resolves**, as route (e) found for
+                three IPv6-only hosts. Same join, different bucket.
+Decision:    Classify before concluding. ⛔ **The one thing that must not
+             happen is these 351 quietly becoming `dead`** because a quarter
+             of the corpus looks untidy: `MIN_SAMPLES_FOR_DEATH` is 3 and
+             RULES 3.1 governs, and a resolver failure is a fact about the path
+             to the tracker at least as much as about the tracker.
+             Rejected: dropping non-resolving entries from the published
+             dataset, which would destroy the historical record that makes the
+             dataset valuable (RULES 11) and would delete the evidence needed
+             to tell the four cases apart.
+Prove:       An instrument reports the four classes above with counts, over at
+             least two resolvers so that "does not resolve for us" and "does
+             not resolve" are separated, and `HISTORY/corpus-baseline.md`
+             carries the breakdown. ⛔ No entry moves to `dead` on its output.

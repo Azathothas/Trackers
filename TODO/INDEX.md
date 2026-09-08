@@ -88,6 +88,7 @@ pretending to be one.
 | [T-030](measurement.md) | P2 | measurement | open | Experiments 3-18 from the original programme were never run |
 | [T-033](measurement.md) | P2 | measurement | **done** | The experiments and the probe carry two copies of one codec |
 | [T-035](claims.md) | P2 | claims | open | Four of the five clients that matter are absent, not passing |
+| [T-036](measurement.md) | P2 | measurement | open | 351 tracker URLs do not resolve, and nobody has asked why |
 | [T-041](scoring.md) | P2 | scoring | open | History must distinguish seven shapes over time, not seven values |
 | [T-042](scoring.md) | P2 | scoring | open | The state size over five years has never been computed |
 | [T-044](scoring.md) | P2 | scoring | open | No scoring model has been chosen |
@@ -122,7 +123,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 69 entries, 45 open, 0 blocked, 24 done
+**Counts:** 70 entries, 46 open, 0 blocked, 24 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -131,9 +132,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 2 | 0 | 5 | 7 |
 | P1 | 11 | 0 | 11 | 22 |
-| P2 | 26 | 0 | 7 | 33 |
+| P2 | 27 | 0 | 7 | 34 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **45** | **0** | **24** | **69** |
+| **All** | **46** | **0** | **24** | **70** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

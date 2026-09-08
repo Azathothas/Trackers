@@ -62,13 +62,30 @@ with a stated limitation, not dropped:
 
 | not measurable here | count | required state |
 | --- | --- | --- |
-| IPv6-only trackers (no IPv6 egress, `C-04`) | - | `unmeasurable` |
+| IPv6-only trackers (no IPv6 egress, `C-04`) | **16** on 15 hosts, of 1327 -- `experiments/29`, 2026-09-08 | `unmeasurable` |
 | `i2p` network | 13 | `unmeasurable` |
 | `yggdrasil` network | >=1, under-counted ([T-023](../TODO/measurement.md)) | `unmeasurable` |
 | `wss` (`C-36` unverified, [T-005](../TODO/claims.md)) | 10 | `unmeasurable` |
 
 Every one **MUST** be published as `unmeasurable` and **MUST NOT** be scored or
 reported `dead`.
+
+⭐ **The IPv6 row carried a dash until 2026-09-08 and now carries a number.**
+`experiments/29-address-family-census.py` resolved all 965 distinct corpus
+hostnames -- 206 of them address literals needing no lookup -- and found **16
+tracker URLs on 15 hosts** that offer IPv6 and no IPv4, against **960 URLs on
+706 hosts** that offer IPv4. So the IPv6 limitation is **real and it is about
+1.2% of the corpus**, and every statement this project makes about it can now
+say how small instead of gesturing at an unmeasured population. Result at
+`experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json`.
+
+⚠ **A larger number came out of the same census and it is not this row's.**
+**351 URLs on 244 hosts did not resolve at all** -- fifteen times the IPv6
+problem. That is `unknown`, never `dead` (RULES 3.1), and it is a bigger
+unexplored question than the one this table was worrying about.
+
+⚠ **One resolver on one day.** Two runs minutes apart disagreed by one host,
+so the figure moves with DNS and is dated for that reason.
 
 **The residual honesty problem the gate cannot fix.** Every measurement comes
 from AS8075 datacenter address space (`C-54`). "Live from GitHub Actions" is not
