@@ -22,14 +22,16 @@ each: [INDEX.md](INDEX.md).
 
 ## State
 
-- **Last session:** started `2026-09-05T01:00:00Z`, ended on operator
-  instruction (RULES 10.2, first way). A **measurement pass**: the exclusion
-  route RULES 4 requires was built, the corpus was probed for the first time,
-  and six entries closed.
+- **Last session:** started `2026-09-08T08:15:00Z`, ended on operator
+  instruction (RULES 10.2, first way). A **measurement and justification
+  pass**: the value gate was answered, the corpus was measured three more
+  times, and per-tracker history exists.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
 - ⛔ **Still nothing published as data.** No dataset exists at any public URL.
-  The corpus has now been measured once, from a runner, and those records live
-  under `experiments/results/` as evidence rather than as a published dataset.
+  Every measurement lives under `experiments/results/` as evidence.
+- ⛔ **Nothing is `dead`, and nothing can be.** `MIN_SAMPLES_FOR_DEATH` is 3
+  and no tracker has three observations. The most any record says is
+  `unknown`.
 
 ## Measured baseline
 
@@ -37,31 +39,33 @@ each: [INDEX.md](INDEX.md).
 [`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md)** and nowhere
 else, with the command behind each. Do not restate one here; cite it.
 
-Network figures are from workflow run **`33940109175`**, 2026-09-05, on
-`ubuntu-24.04` and `ubuntu-22.04`. Committed under `experiments/results/`,
-because a workflow artefact expires after 90 days and git does not.
+⚠ **The DNS figures on that page are now PER VANTAGE**, because
+`experiments/30` measured a runner's own resolver failing where a public one
+answers. That is `C-06`'s finding, not a discrepancy, and a single table would
+be the failure that page exists to prevent.
 
 | | |
 | --- | --- |
-| UDP arbitrary-port egress | **true**, both images, tier-0 loopback plus four tier-1 controls |
-| BEP 15 connect | **10 of 11**, both images. ⚠ 10 is the ceiling: one target has no IPv4 address |
-| IPv6 egress | **false**, both images, stack present |
-| TCP ports | open 80, 443, 2095, 6969, 8080. **None blocked** (`C-71`) |
-| HTTP tracker discrimination | **4 of 6** proved tracker, both images, `announce_sent: false` |
-| DNS resolver divergence | **0 of 17** divergent, and **1 divergent** on an earlier run. Thin, and carried as [T-007](claims.md) |
-| Corpus, accepted dataset, transport mix | [`corpus-baseline.md`](../HISTORY/corpus-baseline.md) |
-| First corpus sweep | run **`33938543488`**, 200 of 1327 sampled: `live` 25, `degraded` 1, `unknown` 162, `unmeasurable` 12, **`dead` 0** |
-| Operators refusing us by BEP 34 | **8 endpoints across 7 hosts**, in that 200 (`C-72`) |
+| Value gate | **ANSWERED**: justified as a labelled dataset, **not** as a list ([`gates.md`](../HISTORY/gates.md)) |
+| Live yield vs the baseline | **2.06x** worst case, 2.70x point, 3.68x best |
+| Live density | ours **12.8%** of 1327, baseline **63.6%** of 99 |
+| First corpus sweep | run **`33938543488`**, 200 of 1327 by stride |
+| Baseline census | run **`34207344996`**, all **99**, **63 live** counted not estimated |
+| DNS census | run **`34210496112`**, both images. IPv6-only **16 URLs on 15 hosts** |
+| Resolver divergence | **3 of 239** on `ubuntu-24.04`, **2** on `22.04`. `openbittorrent.com` fails on both (`C-06`) |
+| Oracle disagreement | **17 of 93** = 18.3%, methodology caveat attached (`C-03`, `C-69`) |
+| Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
+| Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
+| State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
 | Test suite | **234** tests, no network |
-| Reference corpus | **10** repositories, **216** comment threads, **501** comments |
+| Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
-| Private-tracker credentials in the published plaintext | **0**, refused by the pipeline (`C-70`, [T-107](sources.md)) |
-| CI | `gate.yml` green on `ubuntu-24.04` and `windows-2025`; `p0-ground-truth.yml` green on both Linux images. Confirmed by looking |
+| Cold start | confirmed on a fresh clone: gate green, `references/` and `experiments/results/` identical |
+| CI | `gate.yml` green on the pushed head, confirmed by looking |
 
-⛔ **`live` 25 of 200 is not a liveness rate.** It is one datacenter, IPv4
-only, on one day, from a single observation of each tracker.
-`MIN_SAMPLES_FOR_DEATH` is 3, so nothing can be `dead` until history exists
-([T-040](scoring.md)).
+⛔ **`live` is a floor, not a rate.** One datacenter, IPv4 only, one
+observation per tracker. A tracker that timed out is `unknown`, and some of
+those are up.
 
 ## Counts
 
@@ -71,48 +75,52 @@ blocked.**
 
 ## What the last session did
 
-**Six entries closed.** [T-032](measurement.md) BEP 34 exclusion,
-[T-107](sources.md) credential refusal, [T-029](measurement.md) the bounded
-sweep, [T-022](measurement.md) closed by deciding *not* to scrape,
-[T-003](claims.md) release behaviour, [T-024](measurement.md) the first corpus
-measurement. Three decisions recorded: **D13** what BEP 34 binds, **D14** what
-replaced the credential ceiling, **D15** whether the UDP probe scrapes.
+**Ten entries closed**, including **two `L`** and both `P0`s in the work
+order: [T-027](measurement.md) the value gate, [T-001](claims.md) the client
+check, [T-040](scoring.md) state and history (**L**), [T-004](claims.md)
+vantage bias (**L**), [T-028](measurement.md) the oracle cross-check,
+[T-033](measurement.md) the duplicated codecs, [T-036](measurement.md)
+resolution classes, [T-034](measurement.md) the baseline census,
+[T-042](scoring.md) the state projection, [T-007](claims.md) resolver
+agreement. **D3 closed.**
 
-⭐ **The work order it was handed could not be executed in order.** RULES 4
-forbade a corpus-wide probe until BEP 34 was honoured, and the entry that would
-honour it was not in the order at all. RULES is normative over this file, so
-T-032 went first and unblocked four entries at once.
+⭐ **The value gate is answered and the answer is two-sided.** Bar 1 clears:
+filtering to what measured live yields 2.06x-3.68x as many working trackers as
+the whole baseline. Bar 2 **fails**: our list is 13.4x longer and five times
+less live-dense. ⛔ **So publishing the plaintext without the health data would
+make this project the thing it exists to improve on**, and the README says so
+with the unflattering half first.
 
-**Two claims were refuted by measurement.** `C-17`: moving a git tag does
-**not** move the release's `target_commitish`, while `tarball_url` follows the
-tag, so two consumers reading one release disagree silently -- delete-and-recreate
-is the route for [T-064](publication.md). `C-15`: an asset *is* replaceable at
-a stable URL, but the URL can serve the previous bytes afterwards **carrying the
-old `ETag`**, for a variable window measured at 0 s and at 10-to-40 s minutes
-apart. Publication must not assume read-after-write.
+⛔ **The first decision rule drafted for that gate was wrong in our favour**
+and is kept visible in `DECISION_RULE` rather than edited away: it charged us
+our sampling error and forgave the baseline's.
 
-**Five reviews ran, and every one found something.** They are under
-[`../HISTORY/reviews/`](../HISTORY/reviews/) and the findings that changed the
-tree are these:
+**Five findings that changed the tree.**
 
-1. `sweep()` lost every other tracker's measurement when one probe raised.
-   Twenty tests missed it because each passed a prober that returns.
-2. ⛔ **The exclusion gate was built and then bypassed the same day.**
-   `experiments/02` and `05` contact trackers and consulted nothing, and
-   `p0-ground-truth.yml` fired twice after the gate landed. No refusal is known
-   to have been violated -- all 17 pinned subjects permit us -- and that is luck.
-3. **The fix for that broke the other runner image and the build stayed green**:
-   importing `src/` pulled in the Python 3.11 floor, `ubuntu-22.04` ships 3.10,
-   and `continue-on-error` hid it. A step now fails the job when an experiment
-   wrote no result.
-4. The README told operators to ask and there was no contact route in the
-   repository at all -- RULES 4 half-satisfied inside the change meant to
-   satisfy it.
-5. The routing table read as a start-of-session step, so the page describing
-   finding 2 in advance was never opened.
+1. ⛔ **A file named after a package switches off the dependency gate.**
+   Measured at exit 0 printing *"D1 holds"*. Fixed by refusing a local name
+   that also resolves outside the repository.
+2. ⛔ **This project wrote a stranger's private-tracker credential into four
+   of its own files** while refusing to publish it in the dataset. Found by
+   widening `PRIVATE_CREDENTIAL` to see `authkey=`; all four redacted.
+3. ⛔ **This vantage cannot resolve `openbittorrent.com`.** Both runner
+   images; public resolvers can. A full sweep would publish one of the
+   best-known public trackers as gone -- [T-037](measurement.md).
+4. ⛔ **The committed sweep record's own `counts.corpus` said 200 against a
+   corpus of 1327.** The sample was right and its denominator was not.
+5. ⛔ **One endpoint in five that this session contacted bought nobody
+   anything** -- 56 because a wildcard path filter fired a tracker probe for an
+   offline instrument, 11 because a dispatch cancelled an in-flight run after
+   it had already reached the trackers.
 
-⚠ **Three claims made *by the reviews* did not survive checking** and are left
-visible in them rather than edited away.
+**Three reviews ran and every one found something**, under
+[`../HISTORY/reviews/`](../HISTORY/reviews/): the door sweep (findings 1 and
+2), the claim audit (`corpus-baseline.md` had acquired a contradictory number,
+from this session), and the tracker-operator pass (finding 5).
+
+⚠ **One commit was pushed with the gate red** and CI confirmed it. The cause is
+recorded in the fixing commit rather than tidied away: the gate was run before
+the edit that broke it, and the reading was not repeated.
 
 ## In progress
 
@@ -121,36 +129,26 @@ acceptance recorded, or open with what remains written into it.
 
 ## Start here next session
 
-1. **[T-027](measurement.md)** - the value gate, and it is now answerable.
-   Liveness exists for a 200-tracker sample and the credential refusal is a
-   second axis of value no upstream in the corpus provides. ⛔ **A negative
-   answer is a successful outcome.**
-2. **[T-012](claims.md)** - whether our identity gets us blocked. Two axes
-   (`C-63`): the `User-Agent` **and** the BEP 20 `peer_id` prefix. ⚠ Twelve
+1. **[T-037](measurement.md)** - a `dns_failure` records our resolver's
+   opinion, and a better resolver is already in the tree. ⭐ **Do this before
+   any full-corpus sweep**, because five URLs would be published wrong.
+2. **[T-041](scoring.md)** - the seven shapes over time. The store that can
+   express them now exists ([T-040](scoring.md)) and nothing computes them.
+3. **[T-031](measurement.md)** - still the leverage entry. Route (c) returned
+   nothing for any `unmeasurable` tracker and route (e) dissolved 3 of 15;
+   routes (a) NAT64, (b) a relay and (d) public gateways are untried.
+4. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
    cells over the HTTP corpus is roughly twelve thousand requests at somebody
-   else's expense, so RULES 4's ceiling decides the schedule before the
-   statistics do. It is a workflow over days, not a command.
-3. **[T-028](measurement.md)** - the newTrackon cross-check. Cheap now that
-   records exist, and the first output no upstream publishes: **disagreement
-   between independent observers.**
-4. **[T-033](measurement.md)** - unify the codecs the experiments and the probe
-   each carry a copy of. New, from review 2, and it corrects
-   [T-020](measurement.md)'s acceptance.
-5. **[T-001](claims.md)** - run a real torrent client against the plaintext.
-   P0, independent of the above.
+   else's expense: a workflow over days, not a command.
+5. **[T-026](measurement.md)** - the politeness budget, and it must now say
+   whether **DNS is inside it**. This session issued roughly four thousand
+   lookups naming other people's trackers and nothing counted them.
 6. **[T-064](publication.md)** - release channels. Its platform half is
-   measured: no tag move, no read-after-write.
+   measured.
 
-**Deliberately deferred:** [T-044](scoring.md), the scoring model. It waits on
-history existing ([T-040](scoring.md)); choosing now would fit a model to zero
-samples.
-
-**[T-031](measurement.md) is the highest-value entry and is deliberately not
-numbered**, because it is not sequential: one indirect-liveness mechanism
-serves IPv6-only, i2p, yggdrasil, `wss` and blocked-vantage cases at once. ⭐ It
-has a third cheap route now: a BEP 34 denial cannot protect a corpus URL written
-as an IP literal, and propagating one across a shared *resolved* address is the
-same machinery.
+**Deliberately deferred:** [T-044](scoring.md), the scoring model. **D4** stays
+open on purpose: history exists now, but no tracker has more than four
+observations, and choosing a model against that is fitting it to noise.
 
 **When this order is exhausted**, take the next entry from [INDEX.md](INDEX.md)
 by priority. ⛔ Do not stop because the list above ran out.
@@ -161,8 +159,7 @@ All settled before 2026-08-29 unless dated. **Closed; do not re-raise.**
 
 1. **May a session create throwaway releases here?** Yes, in this repository.
    D10 and RULES 13.1. Tag them `test-*` and delete them once the answer is
-   recorded. Exercised by [T-003](claims.md); the repository was left with 0
-   releases and 0 tags.
+   recorded.
 2. **What defines membership of `foss.txt`?** Derived, plus a labelled seed.
    D9, settled in [T-046](scoring.md).
 3. **Is the roughly three-hour probe cadence acceptable?** Yes: publish hourly,
@@ -173,17 +170,30 @@ All settled before 2026-08-29 unless dated. **Closed; do not re-raise.**
 
 ## Open questions for the operator
 
-**None blocking.** Three things to know rather than re-derive:
+**None blocking.** Four things to know rather than re-derive:
 
-1. ⚠ **BEP 34 lookups send tracker hostnames to a public resolver.** A
-   deliberate trade recorded in `src/trackers/bep34.py`: the alternative is the
-   host's own resolver, which is the recorded way this mechanism fails silently
-   in production. Overturning it is a decision to take **before** the first
-   scheduled sweep, not after.
-2. ⚠ **The health sweep has no `schedule:` trigger.** Adding one is not a
-   detail: the cadence is D7's, the budget [T-026](measurement.md)'s and the
-   architecture [T-084](operations.md)'s.
-3. The first publication of this repository **force-pushed over a placeholder
-   commit**. It is the only history rewrite this project has performed and
-   [`../docs/conventions/git.md`](../docs/conventions/git.md) section 2 records
-   it as an exception rather than a precedent.
+1. ⛔ **RULES 10.3 step 7 and
+   [`../docs/conventions/git.md`](../docs/conventions/git.md) section 2
+   contradict each other, and this session could not satisfy both.** Step 7
+   requires **one squashed commit** for a session's work; step 8 requires
+   confirming CI green **"at every push and not only at the end"**, which
+   presupposes several; and `git.md` forbids rewriting anything published,
+   with two exceptions that do not apply here. This session pushed
+   incrementally and did **not** squash, because the no-force-push rule is the
+   more specific one and its exceptions are the operator's alone to grant.
+   **One of the two needs changing** (RULES 9), and it is not a session's call.
+2. ⛔ **A stranger's private-tracker credential is in this repository's git
+   history and cannot be rotated from here** -- it is a third party's.
+   [`../docs/security/secrets.md`](../docs/security/secrets.md)'s incident
+   order puts rotation first and that step is not available to us. The working
+   tree is clean of it outside the capture directories, and a history rewrite
+   is the operator's call and the operator's action.
+3. ⚠ **BEP 34 lookups send tracker hostnames to a public resolver.** A
+   deliberate trade recorded in `src/trackers/bep34.py`. ⭐ **The evidence for
+   it got stronger this session**: the host's own resolver was measured failing
+   on names public resolvers answer, which is exactly the silent failure the
+   trade was made to avoid.
+4. ⚠ **The health sweep still has no `schedule:` trigger**, so every tracker
+   contact is one somebody chose to make. Adding one is D7's cadence,
+   [T-026](measurement.md)'s budget and [T-084](operations.md)'s architecture,
+   and ⛔ [T-037](measurement.md) should land first.
