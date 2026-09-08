@@ -54,7 +54,7 @@ because a workflow artefact expires after 90 days and git does not.
 | Operators refusing us by BEP 34 | **8 endpoints across 7 hosts**, in that 200 (`C-72`) |
 | Test suite | **197** tests, no network |
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
-| Local gate | `python3 scripts/check-gate.py --strict`: 14 pass, 1 expected skip |
+| Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Private-tracker credentials in the published plaintext | **0**, refused by the pipeline (`C-70`, [T-107](sources.md)) |
 | CI | `gate.yml` green on `ubuntu-24.04` and `windows-2025`; `p0-ground-truth.yml` green on both Linux images. Confirmed by looking |
 

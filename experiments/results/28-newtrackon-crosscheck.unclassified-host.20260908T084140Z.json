@@ -1,0 +1,220 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "cf6b67c7fa6df9b46f3c83a91022e5ad0b805eb4-dirty",
+    "sample_counts": {
+      "corpus": 1327,
+      "health_record_files": 1,
+      "oracle_all": 261,
+      "oracle_live": 79,
+      "oracle_stable": 53
+    },
+    "utc": "2026-09-08T08:41:40Z"
+  },
+  "question": "Where do this project and newTrackon disagree, and what does the oracle say about what this vantage cannot measure?",
+  "results": {
+    "analyses": [
+      {
+        "indirect_liveness_t031": {
+          "note": "second-hand: observed by newTrackon, not by this project. Recorded with its source and the snapshot date, and never merged with a direct probe.",
+          "records": {
+            "unknown": [
+              {
+                "network": "clearnet",
+                "observer": "newtrackon",
+                "observer_says": "live",
+                "our_failure": "refused",
+                "our_state": "unknown",
+                "provenance": "second-hand: observed by newTrackon, not by this project. Recorded with its source and the snapshot date, and never merged with a direct probe.",
+                "transport": "http",
+                "url": "http://wegkxfcivgx.ydns.eu:80/announce"
+              },
+              {
+                "network": "clearnet",
+                "observer": "newtrackon",
+                "observer_says": "live",
+                "our_failure": "timeout",
+                "our_state": "unknown",
+                "provenance": "second-hand: observed by newTrackon, not by this project. Recorded with its source and the snapshot date, and never merged with a direct probe.",
+                "transport": "https",
+                "url": "https://tr.zukizuki.org:443/announce"
+              },
+              {
+                "network": "clearnet",
+                "observer": "newtrackon",
+                "observer_says": "live",
+                "our_failure": "blocked_by_policy",
+                "our_state": "unknown",
+                "provenance": "second-hand: observed by newTrackon, not by this project. Recorded with its source and the snapshot date, and never merged with a direct probe.",
+                "transport": "https",
+                "url": "https://tracker.gcrenwp.top:443/announce"
+              },
+              {
+                "network": "clearnet",
+                "observer": "newtrackon",
+                "observer_says": "live",
+                "our_failure": "timeout",
+                "our_state": "unknown",
+                "provenance": "second-hand: observed by newTrackon, not by this project. Recorded with its source and the snapshot date, and never merged with a direct probe.",
+                "transport": "udp",
+                "url": "udp://tracker.nyaa.vc:6969/announce"
+              }
+            ],
+            "unmeasurable": []
+          },
+          "unknown_with_a_second_hand_signal": 4,
+          "unmeasurable_with_a_second_hand_signal": 0
+        },
+        "records": 200,
+        "vantage": {
+          "environment_class": "github-actions-hosted",
+          "execution_profile": "ci",
+          "generated_at": "2026-09-05T02:15:16Z",
+          "run_id": "33938543488"
+        },
+        "vs_live": {
+          "agree_live": 11,
+          "agree_not_live": 26,
+          "agreement_rate": 0.9024390243902439,
+          "assessed_by_both": 41,
+          "disagreements": [
+            {
+              "our_failure": "refused",
+              "our_rung": "dns",
+              "they": "live",
+              "url": "http://wegkxfcivgx.ydns.eu:80/announce",
+              "we": "unknown"
+            },
+            {
+              "our_failure": "timeout",
+              "our_rung": "dns",
+              "they": "live",
+              "url": "https://tr.zukizuki.org:443/announce",
+              "we": "unknown"
+            },
+            {
+              "our_failure": "blocked_by_policy",
+              "our_rung": "transport_response",
+              "they": "live",
+              "url": "https://tracker.gcrenwp.top:443/announce",
+              "we": "unknown"
+            },
+            {
+              "our_failure": "timeout",
+              "our_rung": "connected",
+              "they": "live",
+              "url": "udp://tracker.nyaa.vc:6969/announce",
+              "we": "unknown"
+            }
+          ],
+          "methodology": "newTrackon ANNOUNCES to derive uptime; this project stops at connect and scrape and has no announce code path. A disagreement is a methodology difference before it is a finding (C-69). newTrackon also reports one preferred protocol per tracker (issue #324), so its protocol routes are not per-endpoint and are not read here.",
+          "they_live_we_not": 4,
+          "we_live_they_not": 0
+        },
+        "vs_stable": {
+          "agree_live": 4,
+          "agree_not_live": 28,
+          "agreement_rate": 0.7804878048780488,
+          "assessed_by_both": 41,
+          "disagreements": [
+            {
+              "our_rung": "tracker_semantic",
+              "they": "not listed",
+              "url": "http://tracker.bt4g.com:2095/announce",
+              "we": "live"
+            },
+            {
+              "our_failure": "refused",
+              "our_rung": "dns",
+              "they": "live",
+              "url": "http://wegkxfcivgx.ydns.eu:80/announce",
+              "we": "unknown"
+            },
+            {
+              "our_rung": "tracker_semantic",
+              "they": "not listed",
+              "url": "https://tracker.bug38.com:443/announce",
+              "we": "live"
+            },
+            {
+              "our_failure": "blocked_by_policy",
+              "our_rung": "transport_response",
+              "they": "live",
+              "url": "https://tracker.gcrenwp.top:443/announce",
+              "we": "unknown"
+            },
+            {
+              "our_rung": "tracker_semantic",
+              "they": "not listed",
+              "url": "https://tracker.qingwapt.org:443/announce",
+              "we": "live"
+            },
+            {
+              "our_rung": "protocol_valid",
+              "they": "not listed",
+              "url": "udp://t.overflow.biz:6969/announce",
+              "we": "live"
+            },
+            {
+              "our_rung": "protocol_valid",
+              "they": "not listed",
+              "url": "udp://tr3.ysagin.top:2715/announce",
+              "we": "live"
+            },
+            {
+              "our_rung": "protocol_valid",
+              "they": "not listed",
+              "url": "udp://tracker.govt.hu:6969/announce",
+              "we": "live"
+            },
+            {
+              "our_rung": "protocol_valid",
+              "they": "not listed",
+              "url": "udp://tracker.opentrackr.org:1337/announce",
+              "we": "live"
+            }
+          ],
+          "methodology": "newTrackon ANNOUNCES to derive uptime; this project stops at connect and scrape and has no announce code path. A disagreement is a methodology difference before it is a finding (C-69). newTrackon also reports one preferred protocol per tracker (issue #324), so its protocol routes are not per-endpoint and are not read here.",
+          "not_an_agreement_rate": "our `live` is current responsiveness; their `stable` is >=95% historical uptime with a 10-day age floor. Read this row as how many of the trackers we reached also clear a historical bar, never as error.",
+          "they_live_we_not": 2,
+          "we_live_they_not": 7
+        }
+      }
+    ],
+    "methodology": "newTrackon ANNOUNCES to derive uptime; this project stops at connect and scrape and has no announce code path. A disagreement is a methodology difference before it is a finding (C-69). newTrackon also reports one preferred protocol per tracker (issue #324), so its protocol routes are not per-endpoint and are not read here.",
+    "oracle_shape": {
+      "in_our_corpus": {
+        "all": 260,
+        "live": 78,
+        "stable": 52
+      },
+      "live_subset_of_all": true,
+      "reading": "`live` is current responsiveness and `stable` is >=95% uptime over a window with a 10-day age floor. They are not a ladder: a tracker can be stable and down right now, so `stable - live` is expected to be non-empty and its size is a fact about the oracle, not a defect.",
+      "sizes": {
+        "all": 261,
+        "live": 79,
+        "stable": 53
+      },
+      "stable_not_live": [
+        "https://tracker.pmman.tech:443/announce"
+      ],
+      "stable_subset_of_all": true,
+      "stable_subset_of_live": false
+    },
+    "our_corpus": 1327,
+    "routes": {
+      "all": "https://newtrackon.com/api/all",
+      "live": "https://newtrackon.com/api/live",
+      "stable": "https://newtrackon.com/api/stable"
+    },
+    "snapshot_detail": {
+      "all": "committed snapshot",
+      "live": "committed snapshot",
+      "stable": "committed snapshot"
+    }
+  }
+}

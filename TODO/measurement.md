@@ -584,7 +584,7 @@ Source:      `C-26` refuted; decision D2
 Category:    measurement
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     The single most valuable thing this dataset could publish is
              **disagreement between independent observers**, and the oracle that
@@ -609,6 +609,63 @@ Prove:       `python3 experiments/28-newtrackon-crosscheck.py` (planned) exits
              difference -- **newTrackon announces and we scrape**, so its
              "uptime" and our "live" answer different questions (`C-69`) -- and
              whose every rate carries a sample count.
+
+**Done.** `python3 experiments/28-newtrackon-crosscheck.py --expect-crosscheck`
+-> exit 0, result committed at
+`experiments/results/28-newtrackon-crosscheck.unclassified-host.20260908T084140Z.json`,
+and in the gate as `offline-oracle-crosscheck`. The methodology sentence is a
+module constant that travels into every emitted block rather than a line in a
+header somebody can drop.
+
+**The cross-check, over the 41 trackers both sides assessed** (run
+`33938543488` against the committed `/api/*` snapshots):
+
+| | vs their `live` |
+| --- | --- |
+| agree live | 11 |
+| agree not-live | 26 |
+| **we live, they not** | **0** |
+| they live, we not | 4 |
+| agreement | **90.2%** |
+
+⭐ **The zero is the interesting cell.** In this sample there is no tracker
+this project called `live` that the independent observer did not, which is
+evidence that the probe is conservative in the direction it should be: it
+under-claims rather than over-claims. ⚠ It is 41 trackers on one day and it is
+not a proof of anything; it is the first number this project has that bears on
+its own false-positive rate at all.
+
+⛔ **The `vs stable` row is reported and explicitly labelled NOT an agreement
+rate.** Our `live` is one observation of current responsiveness; their
+`stable` is >=95% uptime over a window with a 10-day age floor. A tracker up
+today and down last week is a true `live` and a true not-`stable`, and scoring
+that as disagreement would compare two questions and call the difference an
+error.
+
+**Two facts about the oracle, measured rather than assumed.**
+
+1. ⛔ **`stable` is not a subset of `live`** -- 1 tracker in the snapshots is
+   stable and not live. The three sets are not a ladder, and code that assumed
+   they were would silently drop it. The instrument asserts `live subset of
+   all` under `--expect-crosscheck` and reports the rest.
+2. `/api/all` covers **260 of our 1327**, so the oracle can speak to about a
+   fifth of the corpus and the denominator excludes the rest. A tracker
+   newTrackon has never heard of is an **absence, not a zero** (RULES 2), and
+   counting it as "they say down" would manufacture the agreement rate.
+
+**What it gives [T-031](measurement.md), which is why it was worth more than
+its own entry.** Route (c), oracle correlation, now returns real records: **4
+trackers this project recorded `unknown` are listed live by an observer
+elsewhere**, one of them `blocked_by_policy` -- the blocked-vantage case that
+entry names. Each is emitted with its source, the snapshot, and a provenance
+string saying it is second-hand and never merged with a probe result.
+
+⚠ **And a limit on that route, which is a negative result and is kept.**
+**0** of our `unmeasurable` trackers got a second-hand signal: newTrackon's
+list does not cover the i2p, yggdrasil or `wss` entries in this sample. So
+route (c) serves the blocked-vantage and timeout cases and does **not**, on
+this evidence, serve the four categories T-031 was written for. Those still
+need routes (a), (b), (d) or (e).
 
 ---
 
@@ -838,6 +895,25 @@ Prove:       At least one of the four categories moves from `unmeasurable` to a
              recorded liveness signal with its provenance, an instrument that
              re-runs it, and a test that the signal is never reported as a
              direct probe result.
+
+**Route (c) is built and measured, and it did not do what this entry hoped.**
+[T-028](measurement.md) closed 2026-09-08:
+`experiments/28-newtrackon-crosscheck.py` emits second-hand liveness with its
+source, its snapshot and a provenance string, for **4** trackers -- and all
+four are `unknown`, **none** is `unmeasurable`. newTrackon's list does not
+cover the i2p, yggdrasil or `wss` entries in the sample, so the observer that
+was supposed to see further cannot see into the networks that need it.
+
+⭐ **What it did unlock is the fifth case this entry names in passing:** one of
+the four is `blocked_by_policy`, which is the blocked-vantage case, and one is
+`refused`. So the mechanism works and its **coverage** is the constraint, not
+its correctness.
+
+⚠ **So the `Prove` clause above is NOT met**, and this entry stays open rather
+than being closed on a partial. The remaining routes are (a) NAT64/DNS64, (b) a
+relay with IPv6 egress, (d) public i2p and yggdrasil gateways, and (e) the
+dual-stack shortcut -- and **(e) is still the one to measure first**, because it
+costs one DNS lookup per host and may dissolve part of the problem for free.
 
 ---
 

@@ -90,6 +90,13 @@ CHECKS = (
     ("offline-value-gate",
      [PY, "experiments/27-value-gate.py", "--expect-answered",
       "--out", "{OUT}/value-gate.json"], True, False),
+    # The oracle cross-check (T-028). Offline by default, from the committed
+    # newTrackon snapshots, so the gate spends no request on anybody: it guards
+    # the shape the comparison depends on -- `live` being a subset of `all` --
+    # rather than the freshness of the snapshot, which no gate can assert.
+    ("offline-oracle-crosscheck",
+     [PY, "experiments/28-newtrackon-crosscheck.py", "--expect-crosscheck",
+      "--out", "{OUT}/crosscheck.json"], True, False),
 )
 
 PASS, FAIL, SKIP = "✅", "❌", "-"

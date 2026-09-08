@@ -16,8 +16,26 @@ on:
     branches:
       - main
       - 'ephemeral-**'
+    # ⛔ THE INSTRUMENTS THIS WORKFLOW RUNS, NAMED ONE BY ONE -- never
+    # `experiments/**`. It contacted 17 operators on 2026-09-08 because an
+    # offline instrument was added to the directory, and an offline instrument
+    # cannot change anything this run measures. RULES 15.2 makes request noise
+    # a correctness rule, not a tidiness one, and the cheapest request is the
+    # one a path filter never fires.
+    #
+    # ⚠ ADDING AN INSTRUMENT HERE MEANS ADDING ITS PATH HERE. A new probing
+    # experiment whose path is missing runs only on dispatch, which is a
+    # visible failure; the reverse -- a wildcard that fires on everything -- is
+    # invisible and is paid for by somebody else.
     paths:
-      - 'experiments/**'
+      - 'experiments/01-host-network-baseline.py'
+      - 'experiments/02-udp-bep15-connect.py'
+      - 'experiments/03-inbound-connectivity.py'
+      - 'experiments/04-dns-resolver-divergence.py'
+      - 'experiments/05-http-tracker-protocol.py'
+      - 'experiments/_conditions.py'
+      - 'experiments/_consent.py'
+      - 'experiments/fixtures/probe-targets.tsv'
       - '.github/workflows/p0-ground-truth.yml'
   workflow_dispatch:
 

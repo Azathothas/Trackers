@@ -25,6 +25,25 @@ import sys
 import time
 from datetime import datetime, timezone
 
+# Output is UTF-8 on every host, never the platform default -- the same fix
+# `scripts/_scope.py` carries for the checks, applied here because the
+# experiments had no equivalent and every one of them imports this module.
+#
+# ⛔ **Measured, not anticipated.** `28-newtrackon-crosscheck.py` printing a ⛔
+# in its methodology header raised `UnicodeEncodeError` on a Windows console
+# (cp1252) and exited 1 -- an instrument that ran correctly and then died
+# writing its own report. `docs/conventions/shell.md` section 6 records the
+# class; the checks were protected against it and the experiments were not,
+# which is the one-gated-door shape with the door on the other wall.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8")
+    except (AttributeError, OSError):
+        # A stream that cannot be reconfigured (a pipe replaced by a test, an
+        # unusual host) is left alone rather than replaced: losing a marker is
+        # a cosmetic failure and losing the stream is not.
+        pass
+
 # Exit codes, named so a caller never writes a bare integer.
 EXIT_MEASURED = 0
 EXIT_MEASURED_AND_FAILED = 1
