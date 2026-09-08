@@ -192,7 +192,7 @@ Source:      the brief's section 31 (CI schedule and workflow architecture)
 Category:    operations
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     Nothing is scheduled. The two workflows that exist are push- and
              dispatch-triggered.
@@ -218,8 +218,8 @@ Decision:    **MUST NOT assume a scheduled run occurs on the minute, occurs at
 Prove:       A test that a duplicated run over the same inputs produces the same
              state, and that a skipped interval does not corrupt it.
 
-**The `Prove` clause is met and the entry stays open**, because it asks for two
-things and only one of them is a test.
+**The `Prove` clause was met before the rest was**, because the entry asks for
+two things and only one of them is a test.
 `python3 -m unittest tests.test_run_safety -v` -> **11 tests, OK**. The
 workflow architecture and the schedule itself are what remain.
 
@@ -302,6 +302,37 @@ unpredictable walk and loses the property that a delayed run self-corrects.
 **Disabling re-runs** is not something a workflow can express. So it is
 recorded rather than fixed, and it is the smallest of the three costs: a
 re-run is a human action, not an unattended one.
+
+**Done.** The schedule exists and the architecture is decided, 2026-09-09.
+
+**Five workflows, and each separation buys something nameable** -- the entry's
+rule is separation for safety or maintainability, never aesthetics:
+
+| workflow | trigger | why it is its own workflow |
+| --- | --- | --- |
+| `gate.yml` | every push | offline by construction. A validation workflow that reached the network would be red whenever somebody else's host is down |
+| `p0-ground-truth.yml` | experiments change, dispatch | contacts trackers for measurement rather than for health. Running it on every push would spend other people's requests on a documentation edit |
+| `health-sweep.yml` | **`0 */3 * * *`** | the only scheduled tracker contact. D7's interval exactly, one rotating slice per run |
+| `publish.yml` | after a sweep | the only holder of `contents: write`. ⛔ Separate from the sweep because a measurement failure must not stop publication of what is already known |
+| `issues.yml` | after a publish | holds `issues: write` and **not** `contents`. One workflow with both is one job whose bug reaches the data and the tracker together |
+
+⭐ **Two candidates from the entry's list are deliberately absent** and each
+names what it waits on rather than being dropped: daily and weekly promotion
+waits on [T-064](publication.md)'s channels being used at all, and data-branch
+housekeeping is [T-081](operations.md).
+
+**The platform facts are honoured rather than assumed**, and one is now
+observed rather than documented: the first scheduled run fired **163 minutes
+late** (`C-11`, [T-009](../TODO/claims.md)). The rotation takes its slice from
+the clock at run time, so a displaced run walks to the bucket it actually ran
+in -- slices are skipped, never repeated, which is the right direction for that
+to fail in.
+
+⛔ **A duplicated run cannot corrupt state**, which was one keystroke from a
+corrupted dataset before `tests/test_run_safety.py` existed, and the
+adversarial pass of 2026-09-08 found a second way in: two rotations at one
+injected instant collided in the idempotence guard and 190 observations would
+have been dropped. The slice is part of the sweep identity now.
 
 ---
 

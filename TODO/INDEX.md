@@ -104,7 +104,7 @@ pretending to be one.
 | [T-081](operations.md) | P2 | operations | open | History housekeeping is unimplemented and its threshold is unjustified |
 | [T-082](operations.md) | P2 | operations | open | Self-healing is unimplemented, and its limit matters more than its coverage |
 | [T-083](operations.md) | P2 | operations | open | The five-year operational review is unanswered |
-| [T-084](operations.md) | P2 | operations | open | No schedule exists and the workflow architecture is undecided |
+| [T-084](operations.md) | P2 | operations | **done** | No schedule exists and the workflow architecture is undecided |
 | [T-100](sources.md) | P2 | sources | open | The source registry is missing fields the design requires |
 | [T-101](sources.md) | P2 | sources | open | Source quality is asserted per source and measured for none |
 | [T-102](sources.md) | P2 | sources | open | Change-detection thresholds are provisional and say so |
@@ -126,7 +126,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 26 open, 0 blocked, 47 done
+**Counts:** 73 entries, 25 open, 0 blocked, 48 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -135,9 +135,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 1 | 0 | 6 | 7 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 19 | 0 | 17 | 36 |
+| P2 | 18 | 0 | 18 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **26** | **0** | **47** | **73** |
+| **All** | **25** | **0** | **48** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

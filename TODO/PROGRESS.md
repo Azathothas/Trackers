@@ -212,10 +212,10 @@ acceptance recorded, or open with what remains written into it.
    now exists and nothing tells anybody when one fails: the report names
    sustained failures and nobody reads a report. [T-047](scoring.md) and
    [T-002](claims.md)'s watchdog both want this.
-3. **[T-084](operations.md)** - the rest of the workflow architecture. ⭐ The
-   sweep **is scheduled** now, every three hours, rotating through seven
-   slices. What remains is what else runs and how the pieces fit, not the
-   cadence.
+3. **[T-081](operations.md)** - history housekeeping. ⭐ `state.jsonl` is on
+   the `data` branch and grows with every sweep; the entry says its threshold
+   is unjustified, and there is a projection to justify it against now
+   ([T-042](scoring.md)).
 4. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
    [T-031](measurement.md) did not move. ⭐ **The consent question is
    answered**: contact is permitted, the asking route covers those operators.
