@@ -1,11 +1,11 @@
 {
   "code_version": "0.1.0+norm1",
-  "count": 1334,
-  "dataset_digest": "sha256:3ba19b098f2d794a7dae4fa163973704f993111d83a2af6d733d18899e35866e",
+  "count": 1326,
+  "dataset_digest": "sha256:fb807aea0fd660e817f7ca81e7616b3b8dede1b425671ae63687b50160cccc1c",
   "files": {
     "anime.txt": {
-      "bytes": 40231,
-      "digest": "sha256:a3e4b023233ce75cb0168ab43d23ffc566ba50a1c43219bf0a857bef70474afa"
+      "bytes": 39971,
+      "digest": "sha256:65373014709000855c8ca087b68506c4f79d51b914d33d272c29b90570ad1d23"
     },
     "common.txt": {
       "bytes": 3969,
@@ -20,27 +20,27 @@
       "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "report.md": {
-      "bytes": 6730,
-      "digest": "sha256:a1541d244442e16a8695eeefe2812a087e0bba033bfe4e889bf74a2882ddf878"
+      "bytes": 7661,
+      "digest": "sha256:006243769aa34049718a6a99b0b48c7d97f275d6399ac13a42ffdc61f0dac33a"
     },
     "stable.txt": {
       "bytes": 0,
       "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "trackers_all.csv": {
-      "bytes": 192655,
-      "digest": "sha256:a5001ecd668fdd981f1204a0d8cddc0b28e32516935211e2885903c829f9874e"
+      "bytes": 191778,
+      "digest": "sha256:f66f4d594bc55889523d4d0ca93f61f8b1f4f2f7ca708ce03e6fdc1041a69107"
     },
     "trackers_all.json": {
-      "bytes": 786615,
-      "digest": "sha256:a099505d80122ade093354211f34972d90ed2b43c15a0c194e6f990ef0bf81c3"
+      "bytes": 782151,
+      "digest": "sha256:64eeb2a5a4a15ecaedf7f42a82623d97092eadc931b1d474363ae890a2fca73e"
     },
     "trackers_all.txt": {
-      "bytes": 50500,
-      "digest": "sha256:22b05af7a55000e67acf2f4991bf547358b7b08f3bd1432ad187a2f0a6235cff"
+      "bytes": 50202,
+      "digest": "sha256:4f69cac5071c0752e420801a4ce88f835fe532d6428d34d3755ea3cc3b016263"
     }
   },
-  "generated_at": "2026-09-08T23:27:00Z",
+  "generated_at": "2026-09-08T23:49:32Z",
   "newest_observation": "2026-09-08T23:11:21Z",
   "normalization_version": 1,
   "publish_interval_seconds": 10800,

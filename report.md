@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-08T23:27:00Z
+generated_at: 2026-09-08T23:49:32Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -8,6 +8,7 @@ code_version: 0.1.0+norm1
 - sources fetched: 8
 
 - ok:       8 ['desirefire_all', 'newtrackon_all', 'ngosang_all', 'ngosang_blacklist', 'ngosang_i2p', 'ngosang_ws', 'ngosang_yggdrasil', 'xiu2_all']
+- unchanged: 0 [] (304; the held snapshot is current)
 - failed:   0 []
 - rejected: 0 []
 - empty:    0 []
@@ -18,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1334
+- accepted trackers: 1326
 - rejected lines:    3
-- duplicates removed: 602 (240 removed)
+- duplicates removed: 597 (239 removed)
 
 ### Transport
 
-- http: 712
-- https: 250
-- udp: 362
+- http: 709
+- https: 246
+- udp: 361
 - wss: 10
 
 ### Network
 
-- clearnet: 1321
+- clearnet: 1313
 - i2p: 13
 
 ### Measurability
 
-- measurable from this vantage: 1311
+- measurable from this vantage: 1303
 - unmeasurable:                 23
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -46,7 +47,7 @@ tracker (RULES 3.1 requirement 1).
 
 ## Refused entries
 
-- refused: 7
+- refused: 15
 
 Every entry offered by a source and not published, with the reason.
 A tracker that vanishes owes the consumer who noticed an explanation
@@ -61,18 +62,26 @@ So two of these lines can read identically: two people's credentials
 on one endpoint differ only in the part that is not shown. They are
 counted separately above, which is the number that matters.
 
+- `http://btracker.top:11451/announce` -- upstream exclusion: operator request or safety [desirefire_all]
+- `http://p2p.0g.cx:6969/announce` -- upstream exclusion: operator request or safety [desirefire_all]
 - `http://tracker.anirena.com/<redacted>/announce` -- carries a private-tracker credential (T-107) [desirefire_all]
 - `http://tracker.anirena.com:80/<redacted>/announce` -- carries a private-tracker credential (T-107) [desirefire_all]
+- `http://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [desirefire_all]
 - `http://www.ansktracker.net/announce.php?passkey=<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
 - `http://www.arabp2p.net:2052/<redacted>/announce` -- carries a private-tracker credential (T-107) [desirefire_all]
 - `https://k3tracker.cc/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
+- `https://t.btcland.xyz:443/announce` -- upstream exclusion: operator request or safety [desirefire_all]
+- `https://tr.fuckbitcoin.xyz:443/announce` -- upstream exclusion: operator request or safety [desirefire_all]
+- `https://tr.highstar.shop:443/announce` -- upstream exclusion: operator request or safety [desirefire_all]
+- `https://tracker.jiesen.life:8443/announce` -- upstream exclusion: operator request or safety [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
+- `udp://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [newtrackon_all, xiu2_all]
 
 ## Health
 
 - health observations: 672 across 424 tracker(s)
-- never observed:      910
+- never observed:      902
 - health states:       {'degraded': 1, 'live': 101, 'unknown': 303, 'unmeasurable': 19}
 - measurement rungs:   {'connected': 51, 'dns': 132, 'no_usable_address': 1, 'none': 104, 'protocol_valid': 57, 'tracker_semantic': 46, 'transport_response': 33}
 - observation depth:   median 1, deepest 4
@@ -129,10 +138,10 @@ Each file's membership rule, and why it holds what it holds.
 ⛔ An empty file is not a defect: it says below whether the rule
 matched nothing or the evidence it needs does not exist yet.
 
-### anime.txt -- 1081
+### anime.txt -- 1074
 
 - rule: provenance from a source the registry classifies `anime`
-- why:  1081 contributed by desirefire_all
+- why:  1074 contributed by desirefire_all
 
 ### common.txt -- 101
 

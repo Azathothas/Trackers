@@ -1,7 +1,7 @@
 {
   "code_version": "0.1.0+norm1",
-  "count": 1334,
-  "digest": "sha256:3ba19b098f2d794a7dae4fa163973704f993111d83a2af6d733d18899e35866e",
+  "count": 1326,
+  "digest": "sha256:fb807aea0fd660e817f7ca81e7616b3b8dede1b425671ae63687b50160cccc1c",
   "fields": [
     "url",
     "transport",
@@ -22,7 +22,7 @@
     "observed_from",
     "unmeasurable_reason"
   ],
-  "generated_at": "2026-09-08T23:27:00Z",
+  "generated_at": "2026-09-08T23:49:32Z",
   "newest_observation": "2026-09-08T23:11:21Z",
   "normalization_version": 1,
   "publish_interval_seconds": 10800,
@@ -5768,28 +5768,6 @@
       "failure": null,
       "first_seen": null,
       "health_state": "unknown",
-      "host": "btracker.top",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 11451,
-      "sources": [
-        "desirefire_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "http",
-      "unmeasurable_reason": null,
-      "url": "http://btracker.top:11451/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
       "host": "bttracker.debian.org",
       "last_failure": null,
       "last_seen": null,
@@ -8400,28 +8378,6 @@
       "failure": null,
       "first_seen": null,
       "health_state": "unknown",
-      "host": "p2p.0g.cx",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 6969,
-      "sources": [
-        "desirefire_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "http",
-      "unmeasurable_reason": null,
-      "url": "http://p2p.0g.cx:6969/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
       "host": "p4p.arenabg.com",
       "last_failure": null,
       "last_seen": null,
@@ -10734,28 +10690,6 @@
       "transport": "http",
       "unmeasurable_reason": null,
       "url": "http://tracker.bittorrent.nibblepoker.lu:49227/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
-      "host": "tracker.breizh.pm",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 6969,
-      "sources": [
-        "desirefire_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "http",
-      "unmeasurable_reason": null,
-      "url": "http://tracker.breizh.pm:6969/announce"
     },
     {
       "checks": 0,
@@ -17125,28 +17059,6 @@
       "failure": null,
       "first_seen": null,
       "health_state": "unknown",
-      "host": "t.btcland.xyz",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 443,
-      "sources": [
-        "desirefire_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "https",
-      "unmeasurable_reason": null,
-      "url": "https://t.btcland.xyz:443/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
       "host": "t.quic.ws",
       "last_failure": null,
       "last_seen": null,
@@ -17810,28 +17722,6 @@
       "failure": null,
       "first_seen": null,
       "health_state": "unknown",
-      "host": "tr.fuckbitcoin.xyz",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 443,
-      "sources": [
-        "desirefire_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "https",
-      "unmeasurable_reason": null,
-      "url": "https://tr.fuckbitcoin.xyz:443/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
       "host": "tr.highstar.shop",
       "last_failure": null,
       "last_seen": null,
@@ -17848,28 +17738,6 @@
       "transport": "https",
       "unmeasurable_reason": null,
       "url": "https://tr.highstar.shop/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
-      "host": "tr.highstar.shop",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 443,
-      "sources": [
-        "desirefire_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "https",
-      "unmeasurable_reason": null,
-      "url": "https://tr.highstar.shop:443/announce"
     },
     {
       "checks": 1,
@@ -19154,28 +19022,6 @@
       "transport": "https",
       "unmeasurable_reason": null,
       "url": "https://tracker.jdx3.org:443/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
-      "host": "tracker.jiesen.life",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 8443,
-      "sources": [
-        "desirefire_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "https",
-      "unmeasurable_reason": null,
-      "url": "https://tracker.jiesen.life:8443/announce"
     },
     {
       "checks": 0,
@@ -26669,29 +26515,6 @@
       "transport": "udp",
       "unmeasurable_reason": null,
       "url": "udp://tracker.bluefrog.pw:2710/announce"
-    },
-    {
-      "checks": 0,
-      "failure": null,
-      "first_seen": null,
-      "health_state": "unknown",
-      "host": "tracker.breizh.pm",
-      "last_failure": null,
-      "last_seen": null,
-      "last_success": null,
-      "measurement_rung": null,
-      "network": "clearnet",
-      "observed_from": null,
-      "port": 6969,
-      "sources": [
-        "newtrackon_all",
-        "xiu2_all"
-      ],
-      "success_rate": null,
-      "successes": 0,
-      "transport": "udp",
-      "unmeasurable_reason": null,
-      "url": "udp://tracker.breizh.pm:6969/announce"
     },
     {
       "checks": 0,
