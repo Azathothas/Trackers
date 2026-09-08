@@ -62,7 +62,12 @@ amount of statistics removes its consequences.
 - ⛔ **The runners have no IPv6 egress**, measured on both images. Every
   IPv6-only tracker is therefore reported `unmeasurable` and **never** `dead`.
   Reporting it dead would be a statement about the probe, not about the
-  tracker.
+  tracker. ⭐ **It is measurable from somewhere else, and six of the sixteen
+  are alive**: `TRACKERS_PROFILE=local python3
+  experiments/33-ipv6-only-liveness.py` probes them from a machine that has
+  IPv6, and a second arm reaches the HTTP ones through a relay that has one.
+  Anything the relay saw is recorded as **second-hand**, never as our own
+  measurement.
 - **I2P, Yggdrasil, Tor and WebTorrent trackers are not measured at all.** They
   need routers or protocols this environment does not have. `unmeasurable`
   again.

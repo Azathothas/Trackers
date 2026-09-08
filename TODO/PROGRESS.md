@@ -62,7 +62,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **313** tests, no network |
+| Test suite | **316** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
@@ -81,10 +81,26 @@ blocked.**
 
 ## What this session has done so far
 
-**Four entries closed -- [T-037](measurement.md), [T-041](scoring.md),
-[T-031](measurement.md), the leverage entry, and [T-026](measurement.md) -- and
-two opened because of them: [T-038](measurement.md) and
-[T-039](measurement.md).**
+**Six entries closed -- [T-037](measurement.md), [T-041](scoring.md),
+[T-031](measurement.md), the leverage entry, [T-026](measurement.md),
+[T-038](measurement.md) and [T-084](operations.md)'s `Prove` clause -- and
+[T-039](measurement.md) opened because of them.**
+
+⭐ **T-012's instrument exists and its design had to change to be runnable
+at all.** Four arms against one tracker in one run is four times RULES 4's
+ceiling, so each tracker gets one arm per run and the pairing is recovered
+across four rotations. Rotation 0 ran: the arms are within 0.044 of each other
+and that settles nothing, because 174 of the 200 subjects answered nobody. ⛔
+The crossed `peer_id` axis cannot be run at all -- a scrape has no such field
+and this project never sends one.
+
+⛔ **A probe could be answered by this machine and record it as a tracker.**
+`urlopen` resolves the hostname again and picks for itself, so a name offering
+a null address beside a routable one can be connected to at the null one --
+which on Linux is the local host. [T-038](measurement.md) reads the socket's
+actual peer and refuses an answer that came from here. ⭐ That is better than
+the route the entry proposed: instead of controlling which address is picked,
+the probe checks which one it reached.
 
 ⛔ **One keystroke was a corrupted dataset, and it is fixed.** Folding a sweep
 into the history twice recorded two observations from one measurement; three
@@ -237,11 +253,10 @@ acceptance recorded, or open with what remains written into it.
    ⭐ **Both of its inputs are now settled**: D7's cadence, and a computed
    budget that says a full sweep costs 7.7% of the DNS ceiling. It is the last
    thing between the sweep and running on its own.
-4. **[T-038](measurement.md)** - the HTTP prober does not choose its address,
-   so `resolved_ip` is an inference on that path.
-5. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
-   [T-031](measurement.md) did not move. The mechanism to record a gateway's
-   answer exists now; no gateway has been tried.
+4. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
+   [T-031](measurement.md) did not move. ⚠ Route (d) is measured and the
+   public gateway is out of service, so what is left is a router in a
+   container and the operator's answer to the open question below.
 
 **Deliberately deferred:** [T-044](scoring.md), the scoring model. **D4** stays
 open on purpose: history exists now, but no tracker has more than four
@@ -288,7 +303,21 @@ by priority. ⛔ Do not stop because the list above ran out.
 
 ## Open questions for the operator
 
-**None.** All eight are answered above.
+**One, raised 2026-09-08 by [T-039](measurement.md).**
+
+1. ⛔ **May this project contact a tracker whose operator it has no automatable
+   way to ask?** A `.i2p` name has no ordinary DNS record, so the BEP 34
+   consent route cannot be consulted for the 13 `.i2p` URLs in the corpus, and
+   `src/trackers/probe.py` refuses them before the gate for that reason. RULES
+   4 requires that an operator can exclude us and names two routes; the other
+   one -- asking, via `src/trackers/exclusion.py` -- does still work for them.
+   So the question is whether the asking route alone is enough to permit
+   contact, or whether the absence of the automatable one is itself the answer.
+   ⚠ **Nothing waits on this**: a public i2p gateway was measured on
+   2026-09-08 and is out of service, so no route to those trackers exists
+   today either way.
+
+**The previous eight are answered below; do not re-raise them.**
 
 ⚠ **Two standing facts to know rather than re-derive**, neither of which is a
 question:

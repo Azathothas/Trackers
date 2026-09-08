@@ -1440,6 +1440,38 @@ Prove:       Either a recorded second-hand liveness signal for at least one
              which is what RULES 10.1a asks before anything is called
              not-doable.
 
+**Route (d) is measured and it is down.** 2026-09-08, from the authoring host:
+
+| gateway | what happened |
+| --- | --- |
+| `<name>.i2p.to` | **resolves** -- the wildcard is still published -- and every request returns **HTTP 503** with the body *"I2P.to Service broken"* |
+| `<name>.i2p.us` | does not resolve |
+
+Tested against `i2p-projekt.i2p` and `stats.i2p`, which are **not trackers**:
+the capability question is answerable without contacting anybody's tracker, and
+asking a gateway to reach one before knowing the gateway works would have spent
+somebody else's request to learn nothing.
+
+⛔ **And a working gateway would not settle it, which is the more useful
+finding.** BEP 34 is a DNS TXT record, and a `.i2p` name has no ordinary DNS
+record of any kind, so the consent route this project's probe requires **cannot
+be consulted for these hosts at all**. `src/trackers/probe.py` refuses them
+before the gate for exactly that reason. RULES 4 requires that an operator can
+exclude us and names two routes, and the other one -- asking -- does still
+work, so this is not settled either way. ⚠ **It is an open question for the
+operator rather than a call to make while building a gateway client**: may this
+project contact a tracker whose operator it has no automatable way to ask?
+
+**Route (c) is already measured and does not cover them.**
+`experiments/28-newtrackon-crosscheck.py` emits second-hand liveness and
+newTrackon's list contains none of the 13 `.i2p` URLs, so the observer that
+was supposed to see further cannot see here either ([T-028](measurement.md)).
+
+**What is left is a router in a container**, which makes the measurement
+first-hand, costs a runtime this project does not otherwise need, and runs into
+the same consent question above. [`../docs/containers.md`](../docs/containers.md)
+is the page for it.
+
 ---
 
 ### T-038 The HTTP prober does not choose which address it connects to
@@ -1449,7 +1481,7 @@ Source:      [T-037](measurement.md), found while testing the null-address
 Category:    measurement
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `probe_http` hands a URL to `urllib.request.urlopen`, which
              **resolves the hostname again** and picks an address for itself.
@@ -1494,6 +1526,41 @@ Prove:       A test that stages a mixed answer and asserts the record names
              and on Windows. Route 3 is the cheapest thing that could satisfy
              it; route 1 additionally needs `experiments/05` re-run before and
              after to show the corpus-wide effect on HTTPS.
+
+**Done.** The guard's own class is
+`python3 -m unittest tests.test_probe.ANullAddressIsNeverDialled -v` -> **11 tests, OK**.
+The gate runs the whole suite on `ubuntu-24.04` and on `windows-2025`, which is
+where the "on Linux and on Windows" half of the clause is met.
+
+**Route 3, and it turned out to be better than route 1 rather than cheaper.**
+`peer_of` reads the socket the response came in on, so `resolved_ip` is the
+address the connection actually reached and `resolved_ip_observed` says
+whether it was measured or chosen. ⚠ It reads a private attribute --
+`HTTPResponse.fp.raw._sock` -- and says so; a platform that does not expose it
+returns `None` and the record falls back to the address the probe chose, with
+the flag `False`.
+
+⚠ **Before the body, not after.** Reading the peer after `resp.read` returns
+nothing, because `urllib` releases the connection once the response is
+consumed, and every record would then have said the address was merely chosen.
+Found by the test, not by reading the code.
+
+⭐ **The measurement closes the hole route 1 was meant to close, and closes it
+better.** Route 1 would control which address `urlopen` picks, at the cost of
+changing how every HTTPS tracker is contacted. Instead the probe now checks
+**what it reached**: a response whose peer is an address no remote host can
+have did not come from the tracker, it came from this machine, and it is
+refused rather than recorded. So the mixed answer -- a null address beside a
+routable one, which the pre-connect guard cannot refuse -- can no longer
+produce a live tracker that is our own process.
+
+The test stages exactly that: `getaddrinfo` answers routable to the probe and
+loopback to `urlopen`, the oracle is listening on loopback, and the assertion
+is that the result is not `ok`. It fails when the guard is removed.
+
+⚠ **What is still true is the entry's title.** The prober does not choose its
+address; it now knows which one it got. Choosing is route 1 and it is not
+built, because nothing measured needs it any more.
 
 ---
 

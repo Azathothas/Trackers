@@ -631,6 +631,78 @@ class ANullAddressIsNeverDialled(unittest.TestCase):
         self.assertIs(r.failure, Failure.DNS_FAILURE)
         self.assertEqual(r.dns["class"], "resolves_to_an_unusable_address")
 
+    def test_the_recorded_address_is_the_one_the_socket_reached(self):
+        """T-038. `urlopen` resolves again and chooses for itself, so the
+        address this probe selected is an inference until the socket is read.
+
+        ⭐ The mixed answer is what makes the assertion mean something: DNS
+        offers a null address first and the record must name neither it nor a
+        guess, but the address the connection actually landed on.
+        """
+        from unittest import mock
+        from fake_tracker import Behaviour, FakeHttpTracker
+        with FakeHttpTracker(Behaviour.CORRECT) as fake, FakeDnsServer() as dns:
+            mixed = [
+                (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("0.0.0.0", fake.port)),
+                (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("127.0.0.1", fake.port)),
+            ]
+            with mock.patch("socket.getaddrinfo", return_value=mixed):
+                r = probe(parse(f"http://localhost:{fake.port}/announce"),
+                          ProbeConfig(timeout=2.0, retries=0), self.v,
+                          resolver=resolver_for(dns))
+        self.assertTrue(r.ok, f"{r.failure}: {r.detail}")
+        self.assertTrue(r.resolved_ip_observed,
+                        "the socket was readable here, so the record must say "
+                        "the address was observed rather than chosen")
+        self.assertEqual(r.resolved_ip, "127.0.0.1")
+        self.assertTrue(r.as_record(HealthState.LIVE)["resolved_ip_observed"])
+
+    def test_an_answer_that_came_from_this_machine_is_refused(self):
+        """⛔ The mixed case the pre-connect guard cannot reach.
+
+        DNS offers a routable address, the probe accepts it, and `urlopen`
+        resolves again and connects to loopback instead. On Linux that reaches
+        whatever is listening here, and the oracle **is** listening -- so
+        without the post-connect check this returns a live tracker that is our
+        own process. The two resolutions differ on purpose: that is what
+        `urlopen` choosing for itself looks like.
+        """
+        from unittest import mock
+        from fake_tracker import Behaviour, FakeHttpTracker
+        with FakeHttpTracker(Behaviour.CORRECT) as fake, FakeDnsServer() as dns:
+            routable = [(socket.AF_INET, socket.SOCK_STREAM, 6, "",
+                         ("203.0.113.7", fake.port))]
+            loopback = [(socket.AF_INET, socket.SOCK_STREAM, 6, "",
+                         ("127.0.0.1", fake.port))]
+            calls = {"n": 0}
+
+            def answers(*args, **kwargs):
+                calls["n"] += 1
+                return routable if calls["n"] == 1 else loopback
+
+            with mock.patch("socket.getaddrinfo", side_effect=answers):
+                r = probe(parse(f"http://tracker.example:{fake.port}/announce"),
+                          ProbeConfig(timeout=2.0, retries=0), self.v,
+                          resolver=resolver_for(dns))
+        self.assertGreater(calls["n"], 1, "urlopen did not resolve again, so "
+                                          "this test staged nothing")
+        self.assertFalse(r.ok, "an answer from this machine was recorded as "
+                               "the tracker's")
+        self.assertIs(r.failure, Failure.DNS_FAILURE)
+        self.assertEqual(r.resolved_ip, "127.0.0.1")
+        self.assertTrue(r.resolved_ip_observed)
+
+    def test_a_udp_result_never_claims_the_address_was_observed(self):
+        """The UDP prober chooses its address and connects to it, so there is
+        nothing to observe and the flag must not drift to `True` for it."""
+        from fake_tracker import Behaviour, FakeUdpTracker
+        with FakeUdpTracker(Behaviour.CORRECT) as fake, FakeDnsServer() as dns:
+            r = probe(parse(f"udp://127.0.0.1:{fake.port}/announce"),
+                      ProbeConfig(timeout=1.5, retries=0), self.v,
+                      resolver=resolver_for(dns))
+        self.assertTrue(r.ok, f"{r.failure}: {r.detail}")
+        self.assertFalse(r.resolved_ip_observed)
+
     def test_the_two_ways_of_asking_for_loopback_still_work(self):
         """The oracles use both, and a rule that carved out a test path would
         be a rule the production code does not have."""

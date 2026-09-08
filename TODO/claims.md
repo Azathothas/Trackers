@@ -616,11 +616,64 @@ Decision:    Do not pre-commit to an outcome. **If arms differ materially, the
              which needs no UA) stays working and documented, and the one line
              that does not move is RULES 4.1's: never use any identity to evade
              an exclusion already given.
-Prove:       `python3 experiments/26-user-agent-block-rate.py --expect-arms` (planned)
-             exits
-             0, `HISTORY/claims.md` carries `C-56` with the per-arm rates and
-             sample counts, and RULES 4.1 is rewritten to state the measured
-             answer instead of an open question.
+Prove:       `python3 experiments/26-user-agent-block-rate.py --expect-arms`
+             exits 0, `HISTORY/claims.md` carries `C-56` with the per-arm rates
+             and sample counts, and RULES 4.1 is rewritten to state the
+             measured answer instead of an open question.
+
+**The instrument exists and has run once. The entry stays open**, because one
+rotation over a subject set that mostly answers nobody does not settle a
+question every HTTP health number depends on.
+
+**What the pilot establishes.** `python3
+experiments/26-user-agent-block-rate.py --limit 200 --rotation 0` -> exit 0,
+result at
+`experiments/results/26-user-agent-block-rate.unclassified-host.20260908T152335Z.json`.
+The control passes: four arms reach the wire as four distinct requests, which
+is what makes "the arms agree" mean something other than "the arms were never
+different".
+
+| arm | answered | contacted | rate |
+| --- | --- | --- | --- |
+| absent | 1 | 50 | 0.020 |
+| descriptive | 1 | 45 | 0.022 |
+| client_like | 3 | 47 | 0.064 |
+| minimal | 3 | 55 | 0.055 |
+
+⛔ **It settles nothing, and the reason is the subject set rather than the
+spread.** **174 of the 200 answered nobody at all** and 14 answered as
+something that is not a tracker, so four arms were compared on **8 informative
+rows**. A tracker that is not there cannot express a preference about our
+identity. ⭐ **The rerun draws its subjects from trackers that answered a
+recent sweep**, which raises the power and *lowers* the load: fewer requests,
+every one of them capable of carrying the signal.
+
+⛔ **The design as written could not be run at all, and that is a finding
+about RULES 4 rather than about the experiment.** Four arms against one tracker
+in one run is four times the ceiling D7 settled on -- an experiment breaking
+this project's own politeness rule in order to measure whether the project is
+polite. ⭐ **Rotation is the resolution**: one arm per tracker per run, assigned
+deterministically from the URL, so over four runs every tracker has seen every
+arm exactly once and no run asks anybody twice. The pairing moves from within a
+run to across runs, which costs the design its within-run control and is the
+only version of it that is allowed to exist.
+
+⛔ **The second axis does not exist on this project's request path.** `C-63`
+says a tracker's client filtering keys on the BEP 20 `peer_id` prefix at least
+as much as on the header, and **this project never sends a `peer_id`**: a
+BEP 48 scrape carries `info_hash` and nothing else, and there is no announce
+code path to carry one (RULES 4). So the crossed design cannot be executed as
+written, and the consequence runs the other way -- if trackers filter on the
+prefix, our scrapes carry none at all, and nothing short of announcing would
+change that.
+
+⚠ **One `refused_by_policy` in 197 contacts**, on the `absent` arm. That is the
+outcome class this entry exists to count, n=1, and nothing follows from it yet.
+
+⚠ **Provenance.** The pilot ran from a working tree based on `0fecf12` and its
+conditions block says so. `src/trackers/probe.py` changed after it started
+([T-038](../TODO/measurement.md)); the change refuses an answer whose socket
+landed on this machine, which no row here did.
 
 ---
 

@@ -250,6 +250,11 @@ class ProbeResult:
     resolved_ip: str = UNKNOWN
     families: tuple[str, ...] = ()
     http_status: int | None = None
+    #: T-038: whether `resolved_ip` is the address the socket actually reached
+    #: or the one this probe would have chosen. False on every UDP result and
+    #: on any HTTP result whose socket was not observable, and the difference
+    #: is a measurement against an inference.
+    resolved_ip_observed: bool = False
     #: Set when the URL-derived network and the resolved network disagree.
     #: The disagreement is the finding, so it is recorded, not silently
     #: resolved in favour of one side.
@@ -284,6 +289,7 @@ class ProbeResult:
             "detail": self.detail,
             "rtt_ms": self.rtt_ms,
             "resolved_ip": self.resolved_ip,
+            "resolved_ip_observed": self.resolved_ip_observed,
             "ip_families_seen": list(self.families),
             "http_status": self.http_status,
             "ipv6_only": bool(self.families) and "ipv4" not in self.families,
@@ -853,6 +859,28 @@ def probe_udp(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                        resolved_ip=addr[0], families=families, **base)
 
 
+def peer_of(response: Any) -> str | None:
+    """The address the socket actually connected to, or `None`.
+
+    ⛔ **`urllib` resolves the hostname again inside `urlopen` and chooses for
+    itself**, so the address this probe selected is not necessarily the one the
+    request went to (T-038). Everything else in the record would be an
+    inference dressed as a measurement.
+
+    ⚠ **It reads a private attribute and says so.** `HTTPResponse.fp` is a
+    `BufferedReader` over a `SocketIO` whose `_sock` is the socket, on CPython;
+    there is no public accessor. A platform that does not expose it returns
+    `None` and the caller falls back to the address it chose, which is the
+    honest degradation rather than a guess.
+    """
+    try:
+        sock = response.fp.raw._sock
+        peer = sock.getpeername()
+    except Exception:  # noqa: BLE001 - any failure means "not observable here"
+        return None
+    return str(peer[0]) if peer else None
+
+
 # --- HTTP ---------------------------------------------------------------------
 def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                observed_at: str = UNKNOWN,
@@ -930,6 +958,10 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                     f"{list(vantage.ip_families)}"),
             resolved_ip=res.first, families=families, **base)
 
+    # Whether a *name* was asked, which decides what a loopback answer means
+    # (T-037). Computed once here so the post-connect guard reads the same
+    # rule as the pre-connect one rather than a second copy of it.
+    named = not _asks_for_loopback(tracker.host)
     # From here a scrape carrying a synthetic info_hash is on its way out, so
     # every result built below records that it was sent.
     base["used_synthetic_infohash"] = True
@@ -938,11 +970,17 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     try:
         ctx = ssl.create_default_context()
         with urllib.request.urlopen(req, timeout=cfg.timeout, context=ctx) as resp:
+            # ⚠ Before the body, not after. Once the response is fully read
+            # `urllib` releases the connection and `fp` no longer carries a
+            # socket, so a peer read afterwards silently returns nothing and
+            # every record would say the address was merely chosen.
+            observed = peer_of(resp)
             body = resp.read(MAX_BYTES + 1)
             status = resp.status
         rtt = (time.monotonic() - t0) * 1000.0
         return _classify_http(body, status, rtt, base, network, from_net,
-                              contacted, families)
+                              observed or contacted, families,
+                              observed=observed is not None, named=named)
     except urllib.error.HTTPError as e:
         # A tracker may answer 4xx and still be a tracker; read the body before
         # deciding. A 403 with a bencoded failure inside is a live tracker.
@@ -952,7 +990,7 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
             body = b""
         rtt = (time.monotonic() - t0) * 1000.0
         return _classify_http(body, e.code, rtt, base, network, from_net,
-                              contacted, families)
+                              contacted, families, named=named)
     except urllib.error.URLError as e:
         reason = e.reason
         dns: dict[str, Any] = {}
@@ -1003,7 +1041,8 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
 
 def _classify_http(body: bytes, status: int, rtt: float, base: dict,
                    network: Network, from_net: Network | None,
-                   resolved_ip: str, families: tuple[str, ...]) -> ProbeResult:
+                   resolved_ip: str, families: tuple[str, ...],
+                   observed: bool = False, named: bool = False) -> ProbeResult:
     """Decide what came back. The discriminator, and the refusal cases.
 
     Order matters: the **body is read first**, because a tracker that answers
@@ -1012,13 +1051,35 @@ def _classify_http(body: bytes, status: int, rtt: float, base: dict,
     """
     cls = classify_body(body[:MAX_BYTES])
     kind = cls["kind"]
+    seen = {"resolved_ip_observed": observed}
+
+    # ⛔ **An answer from this machine is not the tracker's answer.** `urlopen`
+    # resolves the hostname again and picks for itself, so a name offering a
+    # null address beside a real one can be connected to at the null one --
+    # which on Linux is the local host. The pre-connect guard only refuses a
+    # name whose addresses are *all* undialable; this is the mixed case, and
+    # the observed peer is what makes it decidable at all (T-038).
+    if observed and named and _undialable(resolved_ip, from_a_name=True):
+        return ProbeResult(
+            network=network, network_reclassified_from=from_net,
+            rung=Rung.NONE, ok=False, failure=Failure.DNS_FAILURE,
+            detail=(f"the connection reached {resolved_ip}, which is this "
+                    f"machine and not the tracker"),
+            dns={"class": "resolves_to_an_unusable_address",
+                 "system": {"resolved": True, "addresses": [resolved_ip],
+                            "detail": "the socket reached an address no "
+                                      "remote host can have"},
+                 "public": {"asked": False}},
+            resolved_ip=resolved_ip, families=families, http_status=status,
+            classification=cls, **seen, **base)
 
     if kind in TRACKER_KINDS:
         return ProbeResult(network=network, network_reclassified_from=from_net,
                            rung=Rung.TRACKER_SEMANTIC, ok=True,
                            detail=cls.get("detail", ""), rtt_ms=round(rtt, 3),
                            resolved_ip=resolved_ip, families=families,
-                           http_status=status, classification=cls, **base)
+                           http_status=status, classification=cls, **seen,
+                           **base)
 
     if status in (401, 403):
         # A refusal aimed at us. Under T-012 this may be our User-Agent, so it
@@ -1029,7 +1090,7 @@ def _classify_http(body: bytes, status: int, rtt: float, base: dict,
                            detail=f"HTTP {status}; body kind={kind}",
                            rtt_ms=round(rtt, 3), resolved_ip=resolved_ip,
                            families=families, http_status=status,
-                           classification=cls, **base)
+                           classification=cls, **seen, **base)
     if status == 429:
         return ProbeResult(network=network, network_reclassified_from=from_net,
                            rung=Rung.TRANSPORT_RESPONSE, ok=False,
@@ -1037,7 +1098,7 @@ def _classify_http(body: bytes, status: int, rtt: float, base: dict,
                            detail=f"HTTP {status}; body kind={kind}",
                            rtt_ms=round(rtt, 3), resolved_ip=resolved_ip,
                            families=families, http_status=status,
-                           classification=cls, **base)
+                           classification=cls, **seen, **base)
 
     rung = (Rung.PROTOCOL_VALID
             if kind in ("bencode_dict_unrecognised", "bencode_not_dict")
@@ -1053,7 +1114,7 @@ def _classify_http(body: bytes, status: int, rtt: float, base: dict,
                        detail=f"HTTP {status}; {cls.get('detail', '')}",
                        rtt_ms=round(rtt, 3), resolved_ip=resolved_ip,
                        families=families, http_status=status,
-                       classification=cls, **base)
+                       classification=cls, **seen, **base)
 
 
 # --- entry point --------------------------------------------------------------

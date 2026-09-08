@@ -43,12 +43,13 @@ reach is `unmeasurable`, never `dead`. The standard is not "it works": it is
 **"it remains correct when things go wrong, and it never claims to know what it
 cannot know."**
 
-**Current state: P0 and P1 are done. P2's measurement core has been pointed at
-the corpus three times** -- a 200-tracker stride sample, a 99-tracker census of
-the baseline, and a corpus-wide DNS census -- and both of P2's gate conditions
-are met. Per-tracker history exists (D3). **No dataset exists at any public URL**,
-and nothing claims a tracker is `dead`: `MIN_SAMPLES_FOR_DEATH` is 3 and no
-tracker has three observations.
+**Current state: P0 and P1 are done, and both of P2's gate conditions are
+met.** The measurement core has been pointed at the corpus five times -- a
+200-tracker stride sample, a 99-tracker census of the baseline, two corpus-wide
+DNS censuses, and the IPv6-only population probed from a vantage that has IPv6.
+Per-tracker history exists (D3) and what its series mean is decided (T-041).
+**No dataset exists at any public URL**, and nothing claims a tracker is
+`dead`: `MIN_SAMPLES_FOR_DEATH` is 3 and no tracker has three observations.
 
 ---
 
@@ -234,7 +235,7 @@ instrument.
 | `src/trackers/` | the pipeline (`model`, `normalize`, `dedup`, `exclusion`, `registry`, `acquire`, `pipeline`), the measurement core (`bencode`, `bep15`, `bep34`, `vantage`, `probe`, `sweep`, `profile`, `politeness`), per-tracker history (`state`, `shapes`), and evidence somebody else observed (`secondhand`) |
 | `scripts/` | the generator and the checks. [`../scripts/README.md`](../scripts/README.md) |
 | `scripts/vendor/toolkit/` | two helpers fetched from `Azathothas/ToolKit` at a pinned commit. Not this project's code |
-| `tests/` | 313 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
+| `tests/` | 316 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
 | `docs/` | this file and the documentation set. [`README.md`](README.md) is the map |
 | `.github/workflows/` | `gate.yml` (cheap, offline, every push) and `p0-ground-truth.yml` (probes real trackers, only when experiments change) |
 

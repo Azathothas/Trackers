@@ -42,6 +42,7 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `32-vantage-variation.py` | How much of what this project calls unreachable is a fact about the address it asked from? | C-03, C-69, [T-004](../TODO/claims.md) |
 | `31-state-size-projection.py` | How large does the history file get over five years, and what must K and D be? | D3, [T-042](../TODO/scoring.md) |
 | `30-resolution-failure-classes.py` | Which kind of not-resolving is each unresolvable corpus host, and does a second resolver disagree? | C-06, [T-007](../TODO/claims.md), [T-036](../TODO/measurement.md) |
+| `26-user-agent-block-rate.py` | Does the identity this project sends change what an HTTP tracker answers? | C-56, C-63, C-64, [T-012](../TODO/claims.md) |
 | `33-ipv6-only-liveness.py` | Are the IPv6-only trackers alive, from a vantage that has IPv6 -- directly, and through a relay that has one? | C-73, C-74, [T-031](../TODO/measurement.md) |
 | `29-address-family-census.py` | How many corpus trackers are IPv6-only, and do any have an IPv4 sibling this vantage can already reach? | [T-031](../TODO/measurement.md) route (e), [T-036](../TODO/measurement.md) |
 | `27-value-gate.py` | Does this dataset add measurable value over redistributing `ngosang/trackerslist`? | the value gate, [T-027](../TODO/measurement.md) |
