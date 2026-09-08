@@ -58,11 +58,20 @@ def sweep_identity(doc: dict) -> str:
     The injected clock plus what the run was pointed at. ⚠ Not the file path:
     the same sweep copied to a second name is the same measurement, and a
     guard keyed on the path would fold it twice.
+
+    ⛔ **The slice is part of it**, and leaving it out was a collision the
+    adversarial pass of 2026-09-08 found: two rotations of the same corpus at
+    the same injected instant produce the same clock, the same mode and the
+    same record count, so the second was refused as already folded and **190
+    real observations were dropped**. A guard against double-counting that
+    discards distinct data is the failure RULES 3.9 names, wearing the costume
+    of a fix.
     """
     selection = doc.get("selection") or {}
     parts = [str(doc.get("generated_at", "-")),
              str(selection.get("mode", "-")),
              str(selection.get("source") or selection.get("host") or "-"),
+             f"slice{selection.get('slice', '-')}",
              str(len(doc.get("trackers") or []))]
     return "|".join(parts)
 

@@ -223,6 +223,18 @@ below the ceiling rather than at it. `tests/test_rotation.py` asserts the
 coverage, that consecutive runs share no tracker, and that no slice exceeds the
 sample size.
 
+⛔ **And the first fix for that was worse than it looked**, which the
+adversarial pass caught by running it. Slicing by **position** degenerates the
+moment the corpus changes size, and the upstreams regenerate daily: at 1327
+trackers over 7 slices, adding **one** shifts every index by one, so the next
+run's slice is *exactly* the previous run's set -- a 100% overlap, the rotation
+silently ceasing to rotate, and the original defect back with a rotation bolted
+on top. `slice_of` decides membership from the tracker's own hash now, so a
+corpus that gains or loses entries moves nobody else. ⚠ Growing past a multiple
+of the sample size does change the slice count and reshuffles; the overlap is
+then a minority of a slice and a tracker in it is probed twice three hours
+apart, at the ceiling rather than over it.
+
 ⛔ **And a second defect that a dispatch could never have shown.** A
 `schedule:` event carries **no inputs**, so `--deadline "${{ inputs.deadline }}"`
 would have been `--deadline ""` -- an argparse error, and every scheduled run

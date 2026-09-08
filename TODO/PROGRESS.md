@@ -60,7 +60,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **345** tests, no network |
+| Test suite | **349** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |
@@ -140,7 +140,7 @@ with the numbers that decided it; `src/trackers/channels.py` is built on what
 `experiments/24` measured, and its tests read that result and fail if a design
 choice rests on something the run refuted.
 
-**Four reviews ran and every one found something**, under
+**Six reviews ran and every one found something**, under
 [`../HISTORY/reviews/`](../HISTORY/reviews/):
 
 1. **Door sweep** -- the module written this session to be the one home for
@@ -155,6 +155,17 @@ choice rests on something the run refuted.
 4. **Tracker operator** -- 348 tracker-facing contacts, itemised. **68 of them
    bought nobody anything**, because a one-line helper in
    `experiments/_conditions.py` fired the probing workflow twice.
+5. **Adversarial sweep** -- attack the newly scheduled sweep by running it.
+   ⛔ Adding **one** tracker to the corpus made the next run re-probe the
+   **identical** slice, so the rotation stopped rotating the day an upstream
+   regenerated. Two more landed: two slices at one instant collided in the
+   idempotence guard and 190 observations would have been dropped, and a clock
+   the workflow could not parse pinned every run to slice 0 silently.
+6. **Measured but never verified** -- ⛔ `C-73` was marked `VERIFIED` on a
+   transcript, and the verification it named could not have separated a proxy
+   with no IPv6 from a tracker that did not answer. It has a committed control
+   now. The i2p gateway finding is labelled an observation rather than a
+   measurement, with its command written down.
 
 ⭐ **The sweep is scheduled**, at D7's three hours, after the operator settled
 the three questions this session raised. ⛔ Scheduling it exposed two defects

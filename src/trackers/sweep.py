@@ -52,6 +52,7 @@ runs here, unmodified, and the deviation is recorded on the entry.
 from __future__ import annotations
 
 import concurrent.futures
+import hashlib
 import threading
 import time
 from dataclasses import dataclass, field
@@ -67,7 +68,7 @@ from .vantage import UNKNOWN, Vantage, detect as detect_vantage
 __all__ = [
     "UDP_ATTEMPT_FLOOR", "UDP_WORST_CASE_ATTEMPTS", "SweepConfig",
     "SweepResult", "udp_attempt_timeout", "udp_budget", "select", "sweep",
-    "slices_for",
+    "slices_for", "slice_of",
 ]
 
 #: One attempt is never shorter than this, whatever the timeout. Below it the
@@ -144,6 +145,29 @@ def slices_for(corpus_size: int, sample_size: int) -> int:
     return -(-corpus_size // sample_size)  # ceiling division
 
 
+def slice_of(url: str, slices: int) -> int:
+    """Which slice a tracker belongs to, decided by the tracker alone.
+
+    ⛔ **Not by its position, and the difference is the whole rotation.** An
+    index-based slice looks correct and degenerates the moment the corpus
+    changes size: at 1327 trackers over 7 slices, adding **one** shifts every
+    index by one, so the next run's slice is *exactly* the previous run's set.
+    The upstreams regenerate daily. Measured on 2026-09-08 by the adversarial
+    pass -- one added tracker gave a 100% overlap between consecutive runs,
+    which is the rotation silently ceasing to rotate.
+
+    Hashing the URL makes membership a property of the tracker: a corpus that
+    gains or loses entries moves nobody else between slices.
+
+    ⚠ **The price is that slices are not exactly equal.** They are 190 or so
+    of 1327 with the spread a hash gives, and `sample_size` is a sampling
+    figure rather than a hard ceiling -- what actually bounds a run is the
+    concurrency limit, the per-host rule and the deadline.
+    """
+    digest = hashlib.sha256(url.encode("utf-8")).digest()
+    return int.from_bytes(digest[:8], "big") % max(1, slices)
+
+
 def select(trackers: Sequence[Tracker], budget: Budget,
            rotation: int = 0) -> list[Tracker]:
     """Which trackers this profile probes, deterministically.
@@ -155,13 +179,14 @@ def select(trackers: Sequence[Tracker], budget: Budget,
     network and host family represented.
 
     ⛔ **AND IT ROTATES, WHICH THE SCHEDULE MADE NECESSARY.** A fixed stride
-    probes the **same** 200 trackers on every run: schedule that every three
-    hours and those 200 are contacted eight times a day forever while the other
-    1127 are never contacted again, so nothing about them can ever leave
+    probes the **same** 190 trackers on every run: schedule that every three
+    hours and those 190 are contacted eight times a day forever while the other
+    1137 are never contacted again, so nothing about them can ever leave
     `unknown` -- `MIN_SAMPLES_FOR_DEATH` needs three observations and they
     would never get a second. `rotation` selects one of
     `slices_for(corpus, sample)` disjoint slices whose union is the whole
-    corpus, so consecutive runs walk it.
+    corpus, so consecutive runs walk it, and `slice_of` decides membership from
+    the tracker rather than from its position.
 
     ⭐ The rotation also **lowers** per-tracker load rather than raising it. At
     1327 trackers and a sample of 200 a pass takes 7 runs, so each tracker is
@@ -178,7 +203,7 @@ def select(trackers: Sequence[Tracker], budget: Budget,
         return ordered
     slices = slices_for(len(ordered), budget.sample_size)
     keep = rotation % slices
-    return [t for i, t in enumerate(ordered) if i % slices == keep]
+    return [t for t in ordered if slice_of(t.url, slices) == keep]
 
 
 class _HostLocks:

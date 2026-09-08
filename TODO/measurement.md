@@ -1483,6 +1483,20 @@ the capability question is answerable without contacting anybody's tracker, and
 asking a gateway to reach one before knowing the gateway works would have spent
 somebody else's request to learn nothing.
 
+⚠ **That observation has no committed instrument, and it is recorded as an
+observation rather than as a measurement** (RULES 2, and the
+measured-never-verified pass of 2026-09-08 is what said so). It is one reading
+on one day from one host. The command, so the next session re-runs rather than
+re-derives it:
+
+```bash
+python3 -c "import urllib.request as u; print(u.urlopen(u.Request('http://i2p-projekt.i2p.to/', headers={'User-Agent':'curl/8.5.0'}), timeout=20).status)"
+```
+
+⭐ **Build the instrument when a gateway answers**, not before: an experiment
+whose subject is permanently 503 measures nothing, and a numbered script is a
+citation somebody has to keep meaning something.
+
 ⛔ **And a working gateway would not settle it, which is the more useful
 finding.** BEP 34 is a DNS TXT record, and a `.i2p` name has no ordinary DNS
 record of any kind, so the consent route this project's probe requires **cannot

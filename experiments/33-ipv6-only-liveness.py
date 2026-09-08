@@ -164,6 +164,36 @@ def tier0(vantage) -> dict:
 
 
 # --- tier 1: is there IPv6 egress from here, right now? ----------------------
+def tier1_proxy() -> dict:
+    """Does the relay have IPv6 egress of its own? `C-73`'s control.
+
+    ⛔ **The claim was `VERIFIED` on a transcript.** RULES 1.3: never mark a row
+    verified without a committed command that re-runs it. The proxied arm below
+    exercises the proxy against *trackers*, which cannot separate "the proxy has
+    no IPv6" from "the tracker did not answer" -- so the control belongs here,
+    against an IPv6-only third party that is **not** a tracker, with a
+    dual-stack subject beside it to separate "the proxy has IPv6" from "the
+    proxy works at all".
+    """
+    out: dict[str, object] = {"route": PROXY}
+    for label, url in (("ipv6_only", "https://ipv6.google.com/"),
+                       ("dual_stack", "https://example.com/")):
+        request = urllib.request.Request(
+            PROXY + url, headers={"Accept": "*/*", "User-Agent": "curl/8.5.0"})
+        try:
+            with urllib.request.urlopen(request, timeout=20) as response:
+                out[label] = response.status
+        except urllib.error.HTTPError as exc:
+            out[label] = exc.code
+        except Exception as exc:  # noqa: BLE001
+            out[label] = f"{type(exc).__name__}: {exc}"
+    out["ok"] = out.get("ipv6_only") == 200 and out.get("dual_stack") == 200
+    out["detail"] = (
+        f"IPv6-only subject through the proxy: {out.get('ipv6_only')}; "
+        f"dual-stack control: {out.get('dual_stack')}")
+    return out
+
+
 def tier1() -> dict:
     """A TLS handshake to an IPv6-only third party that is not a tracker.
 
@@ -289,6 +319,8 @@ def main() -> int:
 
     control0 = tier0(vantage)
     control1 = tier1()
+    control_proxy = ({"ok": None, "detail": "--no-proxy, so C-73 was not checked"}
+                     if args.no_proxy else tier1_proxy())
     # The routing table's opinion is replaced by the measurement, whichever way
     # it went. `detect` takes it as an argument for exactly this.
     vantage = detect_vantage(ipv6_egress=bool(control1["ok"]))
@@ -344,7 +376,8 @@ def main() -> int:
     proxy_alive = [o for o in observations if o["signal"] == "alive"]
     results = {
         "controls": {"tier0_loopback_ipv6_bep15": control0,
-                     "tier1_ipv6_egress": control1},
+                     "tier1_ipv6_egress": control1,
+                     "tier1_proxy_ipv6_egress_c73": control_proxy},
         "vantage": vantage.as_dict(),
         "subjects": len(subjects),
         "direct_alive": len(direct_alive),
@@ -369,6 +402,10 @@ def main() -> int:
           f"{'PASS' if control0['ok'] else 'FAIL'}  {control0.get('detail', '')}")
     print(f"  tier 1  IPv6 egress to a third party  "
           f"{'PASS' if control1['ok'] else 'FAIL'}  {control1.get('detail', '')}")
+    verdict = ('SKIP' if control_proxy['ok'] is None
+               else 'PASS' if control_proxy['ok'] else 'FAIL')
+    print(f"  tier 1  the relay's own IPv6 egress (C-73)  "
+          f"{verdict}  {control_proxy.get('detail', '')}")
     if not control0["ok"] or not control1["ok"]:
         print("  ⛔ A control failed, so no subject row below may be quoted.")
 

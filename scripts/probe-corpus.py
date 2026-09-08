@@ -64,17 +64,25 @@ def rotation_for(generated_at: str) -> int:
 
     One step per D7 interval since the epoch, so a run three hours after
     another takes the next slice and a re-run of the same instant repeats
-    exactly. ⚠ A timestamp this cannot read returns 0 rather than raising:
-    the rotation is a scheduling convenience and a malformed clock is already
-    refused by everything that matters.
+    exactly.
+
+    ⛔ **A timestamp this cannot read raises**, and an earlier version returned
+    0. The adversarial pass of 2026-09-08 read that consequence out loud: a typo
+    in the workflow's clock would pin **every scheduled run to slice 0**, so the
+    same 190 trackers would be probed eight times a day forever and the other
+    1137 never -- silently, and indistinguishably from working. A run that
+    cannot tell when it is has not been told, and the caller exits 2.
     """
     try:
         text = generated_at.strip()
         if text.endswith("Z"):
             text = text[:-1] + "+00:00"
         moment = datetime.datetime.fromisoformat(text)
-    except ValueError:
-        return 0
+    except ValueError as exc:
+        raise ValueError(
+            f"--generated-at {generated_at!r} is not an ISO 8601 instant, so "
+            f"this run cannot tell which slice of the corpus it should probe"
+        ) from exc
     if moment.tzinfo is None:
         moment = moment.replace(tzinfo=datetime.timezone.utc)
     epoch = int(moment.timestamp())
@@ -181,8 +189,12 @@ def main() -> int:
     # sweep re-probes one slice forever and every other tracker stays at one
     # observation, which is one short of anything `MIN_SAMPLES_FOR_DEATH` can
     # ever say (T-084).
-    rotation = args.rotation if args.rotation is not None else rotation_for(
-        args.generated_at)
+    try:
+        rotation = args.rotation if args.rotation is not None else rotation_for(
+            args.generated_at)
+    except ValueError as exc:
+        print(exc, file=sys.stderr)
+        return 2
     config = SweepConfig(timeout=args.timeout, deadline_seconds=args.deadline)
     # ⛔ PREVIEW ONLY. `sweep()` selects; this script must not, or the corpus it
     # hands over IS the sample and `counts.corpus` reports the sample size as

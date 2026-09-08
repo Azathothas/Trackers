@@ -227,6 +227,25 @@ class TheStateFileRemembersWhatItFolded(unittest.TestCase):
                          "a sweep already folded was folded again once its "
                          "observations had rolled off the ring")
 
+    def test_two_slices_at_one_instant_are_two_sweeps(self):
+        """⛔ The collision the adversarial pass of 2026-09-08 found.
+
+        Two rotations of the same corpus at the same injected instant carry the
+        same clock, the same mode and the same record count. Without the slice
+        in the identity the second is refused as already folded, and **190 real
+        observations are dropped** -- a guard against double-counting that
+        discards distinct data.
+        """
+        import runpy
+        identity = runpy.run_path(
+            UPDATE_STATE, run_name="loaded_for_a_test")["sweep_identity"]
+        base = {"generated_at": "2026-09-08T12:00:00Z",
+                "trackers": [health(f"udp://a{i}.example:1/announce",
+                                    "2026-09-08T12:00:00Z") for i in range(190)]}
+        first = dict(base, selection={"mode": "whole corpus", "slice": 0})
+        second = dict(base, selection={"mode": "whole corpus", "slice": 1})
+        self.assertNotEqual(identity(first), identity(second))
+
     def test_the_identity_is_the_sweep_and_not_its_filename(self):
         """The same measurement under a second name is the same measurement."""
         # ⚠ `update-state.py` has a hyphen and cannot be imported as a module,
