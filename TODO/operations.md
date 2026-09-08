@@ -266,7 +266,7 @@ Source:      T-084; the RULES 3.8 invariant
 Category:    operations
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     `gate.yml` and `p0-ground-truth.yml` both hold `concurrency`
              groups. **No publication workflow exists yet**, and publication is
@@ -280,6 +280,29 @@ Approach:    Explicit `concurrency` groups so publication operations cannot
              XIU2 queues instead, which is the safer of the two.
 Prove:       A test or a workflow assertion that two publication runs cannot
              overlap.
+
+**Done.** `python3 -m unittest tests.test_concurrency.NoTwoPublishersAtOnce -v`
+-> **4 tests, OK**. `.github/workflows/publish.yml` exists now, which is what
+this entry was waiting for, and it carries `concurrency: publish-data` with
+`cancel-in-progress: false`.
+
+⛔ **The `false` is the entry.** Cancelling a publication mid-write leaves half
+a dataset on a branch people fetch, so a second publish queues rather than
+killing the first. The prior art cancels in progress on its update workflow;
+XIU2 queues, and queuing is the safer of the two.
+
+**Four assertions, read out of the workflow files** rather than stated in
+prose: every workflow has a group, anything granting `contents: write` sets
+`cancel-in-progress: false`, the publisher is the **only** workflow that
+writes, and it grants nothing beyond `contents` and the `actions: read` it uses
+to download the sweep's records. Mutation-proved in both directions: flipping
+the publisher to cancel fails, and granting a second workflow write fails.
+
+⚠ **A push race is still possible and fails in the right direction.** If the
+`data` branch moves between this run's fetch and its push, the push is rejected
+and the job fails having published nothing -- the previous dataset stands, and
+the next sweep three hours later republishes. A retry loop would trade a loud
+failure for a quiet one, and RULES 3.5 prefers the loud one.
 
 ---
 

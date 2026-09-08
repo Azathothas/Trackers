@@ -65,7 +65,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **381** tests, no network |
+| Test suite | **385** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |
@@ -197,25 +197,21 @@ acceptance recorded, or open with what remains written into it.
 
 ## Start here next session
 
-1. **[T-085](operations.md)** - overlapping runs in publication. ⭐ The
-   publisher exists now and has a `concurrency` group; what is unasserted is
-   what happens when a sweep and a publish overlap, and state now lives on the
-   `data` branch where two writers could reach it.
-2. **[T-012](claims.md)** - whether our identity gets us blocked. The
+1. **[T-012](claims.md)** - whether our identity gets us blocked. The
    instrument exists and two runs have gone out. ⭐ **Run rotations 1 to 3
    against the live subject set**, at least three hours apart, and the pairing
    is complete. ⚠ Each arm needs 20 contacted subjects before the instrument
    will compare them and the live set is 32, so what the verdict actually waits
    on is a wider one: a fresh sweep's live trackers.
-3. **[T-062](publication.md)** - the dataset is public and carries no version
+2. **[T-062](publication.md)** - the dataset is public and carries no version
    a consumer can pin, so nobody can say what they received. ⭐ The channel
    semantics exist ([T-064](publication.md)) and nothing uses them; this is
    the entry that would.
-4. **[T-084](operations.md)** - the rest of the workflow architecture. ⭐ The
+3. **[T-084](operations.md)** - the rest of the workflow architecture. ⭐ The
    sweep **is scheduled** now, every three hours, rotating through seven
    slices. What remains is what else runs and how the pieces fit, not the
    cadence.
-5. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
+4. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
    [T-031](measurement.md) did not move. ⭐ **The consent question is
    answered**: contact is permitted, the asking route covers those operators.
    ⚠ Route (d) is measured and the public gateway is out of service, so what

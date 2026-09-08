@@ -270,7 +270,7 @@ manual observation.**
 ### Operations
 
 - [x] Test: a failed generation leaves prior public data intact -- demonstrated by an actual failed run, not asserted
-- [ ] Test: overlapping runs cannot race; concurrency controls are in place -- partly; [T-085](../TODO/operations.md)
+- [x] Test: overlapping runs cannot race; concurrency controls are in place -- [T-085](../TODO/operations.md), done. Read out of the workflow files: every workflow has a group, the one that writes sets `cancel-in-progress: false` because cancelling a publication mid-write is the failure rather than the fix, and it is the only writer -- partly; [T-085](../TODO/operations.md)
 - [ ] Test: automated issues deduplicate, carry evidence, and close when resolved -- [T-080](../TODO/operations.md)
 - [ ] Test: history housekeeping preserves the dataset and never touches `main` -- [T-081](../TODO/operations.md)
 - [x] Data-branch history reset is safe **because history lives in files** -- RULES 3.7, and no code infers history from git

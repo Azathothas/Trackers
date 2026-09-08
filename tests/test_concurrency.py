@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -500,6 +501,75 @@ class TheSweepScriptReportsTheCorpusItSampledFrom(unittest.TestCase):
             finally:
                 sys.argv = old_argv
             self.assertEqual(os.listdir(out), [], "it wrote a file anyway")
+
+
+class NoTwoPublishersAtOnce(unittest.TestCase):
+    """T-085. A race in a gate wastes a minute; a race in publication corrupts
+    something somebody is fetching.
+
+    ⛔ **`cancel-in-progress: false` wherever a workflow writes**, and that half
+    is the entry: cancelling a publication mid-write is the failure, not the
+    fix. The prior art cancels in progress on its update workflow; XIU2 queues
+    instead, and queuing is the safer of the two.
+
+    Read out of the workflow files, because a `concurrency` block is only true
+    of a run that actually has one.
+    """
+
+    WORKFLOWS = os.path.join(REPO, ".github", "workflows")
+    #: A `permissions:` block granting write to the repository's contents.
+    WRITES = re.compile(r"^permissions:(?:\n[ \t]+\S.*)*?\n[ \t]+contents:[ \t]*write",
+                        re.M)
+
+    def _files(self):
+        names = sorted(n for n in os.listdir(self.WORKFLOWS)
+                       if n.endswith((".yml", ".yaml")))
+        # ⛔ Never a clean verdict over a scope that was never opened.
+        self.assertTrue(names, "no workflow files found, so this checked nothing")
+        return names
+
+    def _text(self, name):
+        with open(os.path.join(self.WORKFLOWS, name), encoding="utf-8") as fh:
+            return fh.read()
+
+    def test_every_workflow_has_a_concurrency_group(self):
+        """Each one here either writes data or spends somebody else's
+        requests, and a run with no group can overlap itself."""
+        missing = [n for n in self._files()
+                   if not re.search(r"^concurrency:", self._text(n), re.M)]
+        self.assertEqual(missing, [], f"no concurrency group: {missing}")
+
+    def test_a_workflow_that_writes_never_cancels_itself(self):
+        """⛔ The rule this entry exists for. A cancelled publish leaves half a
+        dataset on a branch people fetch; a queued one costs a few minutes."""
+        offenders = []
+        for name in self._files():
+            text = self._text(name)
+            if not self.WRITES.search(text):
+                continue
+            block = re.search(r"^concurrency:(?:\n[ \t]+.*)+", text, re.M)
+            self.assertIsNotNone(block, f"{name} writes and has no group")
+            if "cancel-in-progress: false" not in block.group(0):
+                offenders.append(name)
+        self.assertEqual(
+            offenders, [],
+            f"these write and cancel a run in progress, so a publish can be "
+            f"killed mid-write: {offenders}")
+
+    def test_the_publisher_is_the_only_workflow_that_writes(self):
+        """Least privilege, asserted rather than remembered. A second writer is
+        a second thing that can corrupt the branch and would need its own
+        argument."""
+        writers = [n for n in self._files() if self.WRITES.search(self._text(n))]
+        self.assertEqual(writers, ["publish.yml"], f"writers: {writers}")
+
+    def test_the_writer_grants_nothing_it_does_not_use(self):
+        """`actions: read` is for downloading the sweep's records. Anything
+        beyond that is scope nobody argued for."""
+        text = self._text("publish.yml")
+        block = re.search(r"^permissions:(?:\n[ \t]+.*)+", text, re.M).group(0)
+        granted = sorted(re.findall(r"^\s+(\w[\w-]*):", block, re.M))
+        self.assertEqual(granted, ["actions", "contents"], block)
 
 
 if __name__ == "__main__":
