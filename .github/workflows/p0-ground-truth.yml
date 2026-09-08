@@ -44,6 +44,16 @@ on:
         required: false
         default: false
         type: boolean
+      # ⛔ Pair this with dns_census to re-measure the runner's resolver
+      # without contacting a single tracker. Without it, a census dispatch
+      # also runs 01-05, which probe 17 real endpoints for an answer the
+      # census does not need -- the load a wildcard path filter already
+      # charged 17 operators for once on 2026-09-08.
+      skip_tracker_probes:
+        description: "skip 01-05, which contact real trackers. Only useful with dns_census"
+        required: false
+        default: false
+        type: boolean
 
 # Least privilege: this workflow reads the tree and nothing else.
 permissions:
@@ -106,6 +116,7 @@ jobs:
       # is a result (RULES 2), not a broken build.
       - name: 01 host network baseline
         id: e01
+        if: ${{ !inputs.skip_tracker_probes }}
         continue-on-error: true
         run: |
           python3 experiments/01-host-network-baseline.py \
@@ -113,6 +124,7 @@ jobs:
 
       - name: 02 UDP BEP 15 connect (with positive control)
         id: e02
+        if: ${{ !inputs.skip_tracker_probes }}
         continue-on-error: true
         run: |
           python3 experiments/02-udp-bep15-connect.py \
@@ -120,6 +132,7 @@ jobs:
 
       - name: 03 inbound connectivity
         id: e03
+        if: ${{ !inputs.skip_tracker_probes }}
         continue-on-error: true
         run: |
           python3 experiments/03-inbound-connectivity.py \
@@ -127,6 +140,7 @@ jobs:
 
       - name: 04 DNS resolver divergence
         id: e04
+        if: ${{ !inputs.skip_tracker_probes }}
         continue-on-error: true
         run: |
           python3 experiments/04-dns-resolver-divergence.py \
@@ -138,11 +152,13 @@ jobs:
       # 15.2 makes request noise a correctness rule rather than a tidiness
       # one. A push that edits a probe does not need the corpus re-resolved.
       #
-      # ⭐ What they answer needs THIS vantage specifically. `experiments/30`
-      # measured 11 of 244 hosts resolving for a public resolver and not for
-      # the authoring host -- and every committed health record was taken here,
-      # on a runner whose resolver has been compared with nothing. T-007 and
-      # `src/trackers/bep34.py`'s decision 5 both wait on this number.
+      # ⭐ What they answer needs THIS vantage specifically, and every
+      # committed health record was taken here. The last census on this
+      # runner found 3 hosts of 239 answering for a public resolver and not
+      # for the runner's own, and it recorded which address families came
+      # back without recording the addresses -- so nobody can say whether
+      # those three point anywhere. T-037 made that distinction and the
+      # instrument records both now.
       - name: 29 address family census (dispatch only)
         id: e29
         if: inputs.dns_census
@@ -161,6 +177,7 @@ jobs:
 
       - name: 05 HTTP tracker protocol (scrape only, no announce)
         id: e05
+        if: ${{ !inputs.skip_tracker_probes }}
         continue-on-error: true
         run: |
           python3 experiments/05-http-tracker-protocol.py --expect-controls \
@@ -171,6 +188,7 @@ jobs:
       # separated by the other experiments also catch a transient block.
       - name: 02 UDP BEP 15 connect -- second run
         id: e02b
+        if: ${{ !inputs.skip_tracker_probes }}
         continue-on-error: true
         run: |
           python3 experiments/02-udp-bep15-connect.py \
@@ -189,9 +207,20 @@ jobs:
           # would let a dispatched census crash unnoticed -- which is the
           # step-that-exits-0-having-done-nothing pattern this check exists to
           # prevent, reintroduced by the check itself.
-          expected="01 02 03 04 05"
+          expected=""
+          if [ "${{ inputs.skip_tracker_probes }}" != "true" ]; then
+            expected="01 02 03 04 05"
+          fi
           if [ "${{ inputs.dns_census }}" = "true" ]; then
             expected="$expected 29 30"
+          fi
+          # ⛔ A run that was asked for nothing measured nothing, and a green
+          # tick over an empty expected set is the step-that-exits-0-having-
+          # done-nothing pattern with the loop simply never entered.
+          if [ -z "$expected" ]; then
+            echo "::error::skip_tracker_probes without dns_census asks this"
+            echo "::error::workflow to run no instrument at all"
+            exit 1
           fi
           missing=0
           for n in $expected; do
@@ -216,6 +245,8 @@ jobs:
             echo "| 04 DNS resolver divergence | ${{ steps.e04.outcome }} |"
             echo "| 05 HTTP tracker protocol | ${{ steps.e05.outcome }} |"
             echo "| 02 UDP BEP 15 connect (2nd) | ${{ steps.e02b.outcome }} |"
+            echo "| 29 address family census | ${{ steps.e29.outcome }} |"
+            echo "| 30 resolution failure classes | ${{ steps.e30.outcome }} |"
             echo
             echo "Exit-code vocabulary: 0 measured, 1 measured and an expectation failed,"
             echo "2 could not run. A step reported as \`failure\` here is a MEASUREMENT,"
