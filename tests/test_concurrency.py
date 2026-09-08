@@ -436,7 +436,17 @@ class TheSweepScriptReportsTheCorpusItSampledFrom(unittest.TestCase):
             "the fixture corpus must be larger than the ci sample or this "
             "test cannot distinguish the corpus from the sample")
         self.assertEqual(doc["counts"]["corpus"], corpus_size)
-        self.assertEqual(doc["counts"]["selected"], budget_for("ci").sample_size)
+        # ⚠ **A slice, not exactly `sample_size`.** The selector rotates now,
+        # so it returns one of `slices_for` disjoint slices whose union is the
+        # corpus -- 1327 over 7 slices is 190 and 189, never 200. The
+        # assertion that matters is unchanged and is the one below it: the
+        # report says how large the CORPUS was, not how large the sample was.
+        self.assertLessEqual(doc["counts"]["selected"],
+                             budget_for("ci").sample_size)
+        self.assertGreater(doc["counts"]["selected"],
+                           budget_for("ci").sample_size * 0.8,
+                           "the slice is far smaller than the sample size, so "
+                           "the rotation is dividing the corpus wrongly")
         self.assertGreater(doc["counts"]["corpus"], doc["counts"]["selected"],
                            "counts.corpus is reporting the sample size")
 

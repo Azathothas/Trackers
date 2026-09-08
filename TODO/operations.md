@@ -207,6 +207,28 @@ owns.
 daily aggregates are keyed by day, so a dropped run is an absent day, and an
 out-of-order run does not move `last_seen` backwards.
 
+**The sweep is scheduled**, operator ruling 2026-09-08: `0 */3 * * *`, which is
+D7's interval exactly. What remains open here is the rest of the architecture
+-- what else runs, and where the records go ([T-063](publication.md)).
+
+⛔ **Scheduling it exposed a defect that only a schedule could have.** `ci`
+probes a sample and `select` took a fixed stride from index 0, so every
+scheduled run would have probed **the same 190 trackers** eight times a day
+while the other 1137 were never contacted again -- and
+`MIN_SAMPLES_FOR_DEATH` needs three observations, so nothing about them could
+ever have left `unknown`. The selector rotates now: seven disjoint slices whose
+union is the corpus, chosen by a rotation derived from the injected clock.
+⭐ **A pass takes 21 hours, so each tracker is probed once per 21 hours** --
+below the ceiling rather than at it. `tests/test_rotation.py` asserts the
+coverage, that consecutive runs share no tracker, and that no slice exceeds the
+sample size.
+
+⛔ **And a second defect that a dispatch could never have shown.** A
+`schedule:` event carries **no inputs**, so `--deadline "${{ inputs.deadline }}"`
+would have been `--deadline ""` -- an argparse error, and every scheduled run
+would have exited 2 having probed nothing while the workflow looked configured.
+Every input now has a fallback and a test refuses one that does not.
+
 ---
 
 ### T-085 Overlapping runs are prevented in the gates but not in publication

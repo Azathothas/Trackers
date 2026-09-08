@@ -1438,10 +1438,33 @@ Approach:    Route (d) first, because it is the cheaper of the two and it is
                 page for. It makes the measurement first-hand and it costs a
                 dependency and a runtime this project does not otherwise need,
                 so it is the route to evaluate last and to record either way.
-Decision:    Not settled. ⛔ Whatever the route, the same line holds: a signal
-             obtained through somebody else is recorded as theirs, and
-             `unmeasurable` stays the honest label until this vantage can
-             reach the tracker itself.
+Decision:    **Settled by the operator, 2026-09-08: contact is permitted.**
+             The question put was whether this project may contact a tracker
+             whose operator it has no automatable way to ask, given that BEP 34
+             cannot be consulted for a `.i2p` name. The answer is that the
+             **asking route is enough** -- `src/trackers/exclusion.py` and the
+             README's documented request route cover these operators the way
+             they cover everyone else, and RULES 4 requires *a* route rather
+             than that specific one.
+
+             ⛔ **What that does not license.** The consent gate in
+             `src/trackers/probe.py` is not weakened for clearnet: a host whose
+             name *does* resolve is still refused on a denial or an
+             undetermined lookup. What changes is that a `.i2p` host, for which
+             the lookup is not merely failing but inapplicable, is no longer
+             blocked by its absence.
+
+             ⛔ And the same line still holds for whatever route is built: a
+             signal obtained through somebody else is recorded as theirs, via
+             `src/trackers/secondhand.py`, and `unmeasurable` stays the honest
+             label until this vantage reaches the tracker itself.
+
+             Rejected: treating the inapplicable BEP 34 lookup as an
+             `UNDETERMINED` verdict and skipping forever, which would have made
+             13 URLs permanently unresearchable on a technicality about which
+             naming system a network uses. Rejected: contacting them before an
+             i2p-specific exclusion route is documented -- the asking route
+             already is.
 Prove:       Either a recorded second-hand liveness signal for at least one
              `.i2p` or yggdrasil tracker, with its observer and method; or
              three routes attempted and recorded as failed with what each cost,

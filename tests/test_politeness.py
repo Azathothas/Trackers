@@ -114,6 +114,28 @@ class TheConfiguredScheduleIsRead(unittest.TestCase):
         self.assertIn("name: Health sweep", text)
         self.assertIn("probe-corpus.py", text)
 
+    def test_every_input_the_sweep_reads_has_a_fallback(self):
+        """⛔ A `schedule:` event carries no inputs, and only a scheduled run
+        can expose it.
+
+        Found on 2026-09-08, one commit before the schedule went in:
+        `--deadline "${{ inputs.deadline }}"` becomes `--deadline ""`, which is
+        an argparse error, so **every scheduled run would have exited 2 having
+        probed nothing** while the workflow looked configured. A dispatch could
+        never show it, because a dispatch always supplies its defaults.
+        """
+        text = self._workflow()
+        bare = [line.strip() for line in text.splitlines()
+                if "inputs." in line
+                and not line.lstrip().startswith("#")
+                and "||" not in line
+                and "&&" not in line
+                and not line.lstrip().startswith("inputs")]
+        self.assertEqual(
+            bare, [],
+            "these read a workflow input with no fallback, so a scheduled run "
+            f"reads them as empty: {bare}")
+
     def test_no_cron_schedules_a_sweep_faster_than_the_default_interval(self):
         """⛔ The one that has to fail when somebody adds an hourly cron.
 

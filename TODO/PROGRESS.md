@@ -60,7 +60,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **335** tests, no network |
+| Test suite | **344** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |
@@ -68,6 +68,7 @@ be the failure that page exists to prevent.
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
 | Cold start | confirmed on a fresh clone: gate green, `references/` and `experiments/results/` identical |
 | CI | `gate.yml` green on the pushed head, confirmed by looking |
+| Health sweep | **scheduled** `0 */3 * * *`, `ci` profile, one of **7** rotating slices per run ([T-084](operations.md)) |
 
 ⛔ **`live` is a floor, not a rate.** One datacenter, IPv4 only, one
 observation per tracker. A tracker that timed out is `unknown`, and some of
@@ -155,6 +156,14 @@ choice rests on something the run refuted.
    bought nobody anything**, because a one-line helper in
    `experiments/_conditions.py` fired the probing workflow twice.
 
+⭐ **The sweep is scheduled**, at D7's three hours, after the operator settled
+the three questions this session raised. ⛔ Scheduling it exposed two defects
+only a schedule could have: a fixed sample would have probed the same 190
+trackers eight times a day and the other 1137 never, and a `schedule:` event
+carries **no inputs**, so `--deadline ""` would have made every scheduled run
+exit 2 having probed nothing. The selector rotates through seven slices now,
+and every input has a fallback that a test enforces.
+
 ⚠ **`skip_tracker_probes` is the structural half of that last one.**
 Re-measuring the runner's resolver used to drag 17 endpoints per image along
 with it; the census that produced this session's canonical figures contacted
@@ -176,14 +185,15 @@ acceptance recorded, or open with what remains written into it.
 2. **[T-063](publication.md)** - the data branch, which is what publishes.
    ⭐ The channel semantics exist now ([T-064](publication.md)) and nothing
    uses them; this is the entry that would.
-3. **[T-084](operations.md)** - the schedule and the workflow architecture.
-   ⭐ **Both of its inputs are now settled**: D7's cadence, and a computed
-   budget that says a full sweep costs 6.1% of the DNS ceiling. It is the last
-   thing between the sweep and running on its own.
+3. **[T-084](operations.md)** - the rest of the workflow architecture. ⭐ The
+   sweep **is scheduled** now, every three hours, rotating through seven
+   slices. What remains is what else runs and how the pieces fit, not the
+   cadence.
 4. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
-   [T-031](measurement.md) did not move. ⚠ Route (d) is measured and the
-   public gateway is out of service, so what is left is a router in a
-   container and the operator's answer to the open question below.
+   [T-031](measurement.md) did not move. ⭐ **The consent question is
+   answered**: contact is permitted, the asking route covers those operators.
+   ⚠ Route (d) is measured and the public gateway is out of service, so what
+   is left is a router in a container.
 
 **Deliberately deferred:** [T-044](scoring.md), the scoring model. **D4** stays
 open on purpose: history exists now, but no tracker has more than four
@@ -230,24 +240,30 @@ by priority. ⛔ Do not stop because the list above ran out.
    2026-09-08. Until then the working tree stays clean of it outside the
    capture fixtures, where a verbatim capture is expected and where rewriting
    one would destroy the evidence that the refusal works.
+9. **May this project contact a tracker whose operator it has no automatable
+   way to ask?** **Yes -- the asking route is enough.** 2026-09-08. A `.i2p`
+   name has no ordinary DNS record, so BEP 34 cannot be consulted for the 13
+   `.i2p` URLs; the documented request route in `src/trackers/exclusion.py`
+   covers those operators as it covers everyone else, and RULES 4 requires *a*
+   route rather than that one. ⛔ It does not weaken the consent gate for a
+   host whose name does resolve. [T-039](measurement.md) carries it.
+10. **Schedule the health sweep?** **Yes, at D7's cadence.** 2026-09-08, after
+   both conditions the earlier answer named were met.
+   `.github/workflows/health-sweep.yml` runs `0 */3 * * *`. ⭐ The selector
+   **rotates**, because a fixed sample scheduled every three hours would probe
+   the same 190 trackers eight times a day and the other 1137 never; a pass
+   over the corpus takes seven runs, so each tracker is probed once per 21
+   hours. `tests/test_rotation.py` asserts the coverage.
+11. **Should a commit credit the tool that helped write it?** **No.** 2026-09-08.
+   The harness asks for a co-author trailer;
+   [`../docs/conventions/git.md`](../docs/conventions/git.md) forbids crediting
+   any tool and says that overrides a harness default. The operator confirmed
+   the project rule wins, so the page stands unchanged and no commit carries
+   attribution.
 
 ## Open questions for the operator
 
-**One, raised 2026-09-08 by [T-039](measurement.md).**
-
-1. ⛔ **May this project contact a tracker whose operator it has no automatable
-   way to ask?** A `.i2p` name has no ordinary DNS record, so the BEP 34
-   consent route cannot be consulted for the 13 `.i2p` URLs in the corpus, and
-   `src/trackers/probe.py` refuses them before the gate for that reason. RULES
-   4 requires that an operator can exclude us and names two routes; the other
-   one -- asking, via `src/trackers/exclusion.py` -- does still work for them.
-   So the question is whether the asking route alone is enough to permit
-   contact, or whether the absence of the automatable one is itself the answer.
-   ⚠ **Nothing waits on this**: a public i2p gateway was measured on
-   2026-09-08 and is out of service, so no route to those trackers exists
-   today either way.
-
-**The previous eight are answered below; do not re-raise them.**
+**None.** Eleven have been asked and eleven are answered above.
 
 ⚠ **Two standing facts to know rather than re-derive**, neither of which is a
 question:

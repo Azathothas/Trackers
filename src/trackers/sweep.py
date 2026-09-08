@@ -67,6 +67,7 @@ from .vantage import UNKNOWN, Vantage, detect as detect_vantage
 __all__ = [
     "UDP_ATTEMPT_FLOOR", "UDP_WORST_CASE_ATTEMPTS", "SweepConfig",
     "SweepResult", "udp_attempt_timeout", "udp_budget", "select", "sweep",
+    "slices_for",
 ]
 
 #: One attempt is never shorter than this, whatever the timeout. Below it the
@@ -136,7 +137,15 @@ class SweepResult:
         return dict(sorted(c.items()))
 
 
-def select(trackers: Sequence[Tracker], budget: Budget) -> list[Tracker]:
+def slices_for(corpus_size: int, sample_size: int) -> int:
+    """How many runs a rotation takes to cover the corpus once."""
+    if sample_size <= 0 or corpus_size <= sample_size:
+        return 1
+    return -(-corpus_size // sample_size)  # ceiling division
+
+
+def select(trackers: Sequence[Tracker], budget: Budget,
+           rotation: int = 0) -> list[Tracker]:
     """Which trackers this profile probes, deterministically.
 
     ⚠ **Stride, not head.** `ci` probes a sample, and taking the first N of a
@@ -145,16 +154,31 @@ def select(trackers: Sequence[Tracker], budget: Budget) -> list[Tracker]:
     show up. A stride walks the whole corpus and keeps every transport,
     network and host family represented.
 
+    ⛔ **AND IT ROTATES, WHICH THE SCHEDULE MADE NECESSARY.** A fixed stride
+    probes the **same** 200 trackers on every run: schedule that every three
+    hours and those 200 are contacted eight times a day forever while the other
+    1127 are never contacted again, so nothing about them can ever leave
+    `unknown` -- `MIN_SAMPLES_FOR_DEATH` needs three observations and they
+    would never get a second. `rotation` selects one of
+    `slices_for(corpus, sample)` disjoint slices whose union is the whole
+    corpus, so consecutive runs walk it.
+
+    ⭐ The rotation also **lowers** per-tracker load rather than raising it. At
+    1327 trackers and a sample of 200 a pass takes 7 runs, so each tracker is
+    probed once per 21 hours: well inside D7's three-hour ceiling rather than
+    at it.
+
     Deterministic by construction (RULES 3.6): no randomness, no set ordering,
-    and the same corpus always yields the same sample.
+    and the same corpus and rotation always yield the same sample.
     """
     ordered = sorted(trackers, key=Tracker.sort_key)
     if budget.full_corpus_sweep or budget.sample_size is None:
         return ordered
     if budget.sample_size >= len(ordered):
         return ordered
-    stride = len(ordered) / float(budget.sample_size)
-    return [ordered[int(i * stride)] for i in range(budget.sample_size)]
+    slices = slices_for(len(ordered), budget.sample_size)
+    keep = rotation % slices
+    return [t for i, t in enumerate(ordered) if i % slices == keep]
 
 
 class _HostLocks:
@@ -216,6 +240,7 @@ def sweep(trackers: Sequence[Tracker], *,
           vantage: Vantage | None = None,
           resolver: Resolver | None = None,
           observed_at: str = UNKNOWN,
+          rotation: int = 0,
           monotonic: Callable[[], float] = time.monotonic,
           probe_fn: Callable[..., ProbeResult] = probe) -> SweepResult:
     """Probe a corpus and return one health record per selected tracker.
@@ -235,7 +260,7 @@ def sweep(trackers: Sequence[Tracker], *,
     resolver = resolver or Resolver()
     cfg = config.probe_config()
 
-    chosen = select(trackers, budget)
+    chosen = select(trackers, budget, rotation)
     out = SweepResult(corpus=len(trackers), selected=len(chosen))
 
     started = monotonic()

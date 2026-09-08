@@ -38,6 +38,7 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
+import datetime
 import json
 import os
 import sys
@@ -49,12 +50,37 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
 from generate import _NoSources, display_path, load_corpus  # noqa: E402
 from trackers import __version__  # noqa: E402
 from trackers.bep34 import Resolver  # noqa: E402
+from trackers.politeness import DEFAULT_INTERVAL_SECONDS  # noqa: E402
 from trackers.profile import budget_for  # noqa: E402
 from trackers.sweep import (SweepConfig, render_sweep, select,  # noqa: E402
-                            sweep, udp_budget)
+                            slices_for, sweep, udp_budget)
 from trackers.vantage import detect as detect_vantage  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def rotation_for(generated_at: str) -> int:
+    """Which slice an injected instant selects.
+
+    One step per D7 interval since the epoch, so a run three hours after
+    another takes the next slice and a re-run of the same instant repeats
+    exactly. ⚠ A timestamp this cannot read returns 0 rather than raising:
+    the rotation is a scheduling convenience and a malformed clock is already
+    refused by everything that matters.
+    """
+    try:
+        text = generated_at.strip()
+        if text.endswith("Z"):
+            text = text[:-1] + "+00:00"
+        moment = datetime.datetime.fromisoformat(text)
+    except ValueError:
+        return 0
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=datetime.timezone.utc)
+    epoch = int(moment.timestamp())
+    return epoch // DEFAULT_INTERVAL_SECONDS
+
+
 DEFAULT_FIXTURES = os.path.join(REPO, "tests", "fixtures", "sources")
 DEFAULT_OUT = os.path.join(REPO, "out", "health")
 
@@ -78,6 +104,10 @@ def main() -> int:
                     help="INJECTED clock (RULES 3.6)")
     ap.add_argument("--dry-run", action="store_true",
                     help="print what would be probed and write nothing")
+    ap.add_argument("--rotation", type=int, default=None,
+                    help="which slice of the corpus to probe. Derived from "
+                         "--generated-at when absent, so consecutive scheduled "
+                         "runs walk the corpus instead of re-probing one slice")
     ap.add_argument("--only-source", default=None, metavar="SOURCE_ID",
                     help="narrow the corpus to trackers this source "
                          "contributed, by provenance. Aims the request budget "
@@ -145,15 +175,26 @@ def main() -> int:
 
     budget = budget_for()
     vantage = detect_vantage()
+    # ⛔ Which slice of the corpus this run takes, derived from the INJECTED
+    # clock so two runs three hours apart walk to the next slice and a re-run
+    # of the same instant repeats exactly (RULES 3.6). Without it a scheduled
+    # sweep re-probes one slice forever and every other tracker stays at one
+    # observation, which is one short of anything `MIN_SAMPLES_FOR_DEATH` can
+    # ever say (T-084).
+    rotation = args.rotation if args.rotation is not None else rotation_for(
+        args.generated_at)
     config = SweepConfig(timeout=args.timeout, deadline_seconds=args.deadline)
     # ⛔ PREVIEW ONLY. `sweep()` selects; this script must not, or the corpus it
     # hands over IS the sample and `counts.corpus` reports the sample size as
     # the corpus. Run 33938543488 published `corpus: 200` against a corpus of
     # 1327 for exactly that reason: the sample was correct and its denominator
     # was not. One selector, one place (docs/conventions/code.md).
-    chosen = select(corpus, budget)
+    chosen = select(corpus, budget, rotation)
 
     print(f"profile:      {budget.profile}")
+    slices = slices_for(len(corpus), budget.sample_size or len(corpus))
+    print(f"rotation:     slice {rotation % slices} of {slices} "
+          f"(rotation {rotation})")
     print(f"vantage:      {vantage.environment_class}, "
           f"families {list(vantage.ip_families)}")
     print(f"corpus:       {len(corpus)}"
@@ -181,7 +222,8 @@ def main() -> int:
         return 2
 
     result = sweep(corpus, config=config, budget=budget, vantage=vantage,
-                   resolver=Resolver(), observed_at=args.generated_at)
+                   resolver=Resolver(), observed_at=args.generated_at,
+                   rotation=rotation)
 
     doc = render_sweep(result, generated_at=args.generated_at,
                        vantage=vantage, budget=budget, config=config)
@@ -189,6 +231,9 @@ def main() -> int:
     # What this run was pointed at, so a narrowed sweep can never be read as
     # a sample of the whole corpus (RULES 3.4: the conditions travel with
     # the records).
+    selection["rotation"] = rotation
+    selection["slice"] = rotation % slices
+    selection["slices"] = slices
     doc["selection"] = selection
 
     os.makedirs(args.out, exist_ok=True)
