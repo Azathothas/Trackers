@@ -463,6 +463,27 @@ def classify_network_resolved(url_network: Network,
 
 
 # --- resolution ---------------------------------------------------------------
+def _is_unspecified(address: str) -> bool:
+    """`0.0.0.0` or `::`, which is an answer and never a destination.
+
+    ⛔ **On Linux a connect to the unspecified address reaches the local
+    host**, so probing a name that resolves to one would open a socket to the
+    runner itself and record whatever answered as the tracker. Windows refuses
+    it outright with `WinError 10049`, measured 2026-09-08, which is the same
+    endpoint producing two different failures on two vantages -- neither of
+    them a fact about the tracker.
+
+    ⚠ **The corpus contains these.** 11 hosts and 14 URLs answer `0.0.0.0`,
+    `::` or both, and on a runner they resolve for `getaddrinfo` and reach the
+    prober (`experiments/30`, run `34235047982` and the authoring-host run of
+    the same day).
+    """
+    try:
+        return ipaddress.ip_address(address).is_unspecified
+    except ValueError:
+        return False
+
+
 @dataclass(frozen=True, slots=True)
 class Resolution:
     """What DNS said, kept whole so nothing has to ask twice.
@@ -476,10 +497,30 @@ class Resolution:
     addresses: tuple[str, ...]
     families: tuple[str, ...]
     usable: tuple[tuple, ...]
+    #: Addresses dropped because they are unspecified. Kept rather than
+    #: discarded: a name answering `0.0.0.0` is evidence about that name, and
+    #: the record has to be able to say so.
+    unspecified: tuple[str, ...] = ()
 
     @property
     def first(self) -> str:
         return self.addresses[0] if self.addresses else UNKNOWN
+
+    @property
+    def first_usable(self) -> str:
+        """The address a probe would open, or the first one DNS returned.
+
+        ⚠ **On the HTTP path this is what we would have contacted, not
+        provably what was contacted.** `urllib` resolves the hostname again
+        inside `urlopen` and chooses for itself, so the record cannot claim
+        more than this. The UDP path does choose, and there the two agree.
+        """
+        return self.usable[0][4][0] if self.usable else self.first
+
+    @property
+    def only_unspecified(self) -> bool:
+        """Every address the resolver returned is a null one."""
+        return bool(self.unspecified) and len(self.unspecified) == len(self.addresses)
 
 
 def _resolve(host: str, port: int, sock_type: int, vantage: Vantage) -> Resolution:
@@ -498,12 +539,15 @@ def _resolve(host: str, port: int, sock_type: int, vantage: Vantage) -> Resoluti
     infos = socket.getaddrinfo(host, port, socket.AF_UNSPEC, sock_type)
     families = tuple(sorted({
         "ipv6" if i[0] == socket.AF_INET6 else "ipv4" for i in infos}))
+    unspecified = tuple(i[4][0] for i in infos if _is_unspecified(i[4][0]))
     usable = tuple(
         i for i in infos
-        if ("ipv6" if i[0] == socket.AF_INET6 else "ipv4") in vantage.ip_families)
+        if ("ipv6" if i[0] == socket.AF_INET6 else "ipv4") in vantage.ip_families
+        and not _is_unspecified(i[4][0]))
     return Resolution(infos=tuple(infos),
                       addresses=tuple(i[4][0] for i in infos),
-                      families=families, usable=usable)
+                      families=families, usable=usable,
+                      unspecified=unspecified)
 
 
 # --- T-037: a second opinion, only where the first failed ---------------------
@@ -528,6 +572,19 @@ _RESOLUTION_FAILURE: dict[str, Failure] = {
     "resolves_to_an_unusable_address": Failure.DNS_FAILURE,
     "lookup_failed_undetermined": Failure.DNS_UNDETERMINED,
 }
+
+
+def null_address_record(res: "Resolution") -> dict[str, Any]:
+    """The `dns` evidence for a name our own resolver answered with nothing
+    routable. No second opinion is asked: this resolver did answer, and a
+    public one measured the same null addresses for the same hosts.
+    """
+    return {
+        "class": "resolves_to_an_unusable_address",
+        "system": {"resolved": True, "addresses": list(res.addresses),
+                   "detail": "every address returned is unspecified"},
+        "public": {"asked": False},
+    }
 
 
 def second_opinion(host: str, resolver: Resolver,
@@ -648,6 +705,14 @@ def probe_udp(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                                                   list(res.addresses))
     families = res.families
 
+    if res.only_unspecified:
+        return ProbeResult(
+            network=network, network_reclassified_from=from_net,
+            rung=Rung.NONE, ok=False, failure=Failure.DNS_FAILURE,
+            detail=(f"resolves only to {list(res.unspecified)}, which is an "
+                    f"answer and not a destination"),
+            dns=null_address_record(res), resolved_ip=res.first,
+            families=families, **base)
     if not res.usable:
         return ProbeResult(
             network=network, network_reclassified_from=from_net,
@@ -755,6 +820,9 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                                                   list(res.addresses))
     families = res.families
     addresses = list(res.addresses)
+    # ⛔ Never `addresses[0]`. That is whatever DNS listed first, which
+    # may be a null address this probe refuses to open (T-037).
+    contacted = res.first_usable
 
     if not addresses:
         failure, detail, dns = second_opinion(
@@ -762,6 +830,14 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
         return ProbeResult(network=network, network_reclassified_from=from_net,
                            rung=Rung.NONE, ok=False, failure=failure,
                            detail=detail, dns=dns, **base)
+    if res.only_unspecified:
+        return ProbeResult(
+            network=network, network_reclassified_from=from_net,
+            rung=Rung.NONE, ok=False, failure=Failure.DNS_FAILURE,
+            detail=(f"resolves only to {list(res.unspecified)}, which is an "
+                    f"answer and not a destination"),
+            dns=null_address_record(res), resolved_ip=res.first,
+            families=families, **base)
     if not res.usable:
         return ProbeResult(
             network=network, network_reclassified_from=from_net,
@@ -783,7 +859,7 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
             status = resp.status
         rtt = (time.monotonic() - t0) * 1000.0
         return _classify_http(body, status, rtt, base, network, from_net,
-                              addresses[0], families)
+                              contacted, families)
     except urllib.error.HTTPError as e:
         # A tracker may answer 4xx and still be a tracker; read the body before
         # deciding. A 403 with a bencoded failure inside is a live tracker.
@@ -793,7 +869,7 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
             body = b""
         rtt = (time.monotonic() - t0) * 1000.0
         return _classify_http(body, e.code, rtt, base, network, from_net,
-                              addresses[0], families)
+                              contacted, families)
     except urllib.error.URLError as e:
         reason = e.reason
         dns: dict[str, Any] = {}
@@ -818,13 +894,13 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
             failure, rung = Failure.REFUSED, Rung.DNS
         return ProbeResult(network=network, network_reclassified_from=from_net,
                            rung=rung, ok=False, failure=failure, detail=detail,
-                           dns=dns, resolved_ip=addresses[0],
+                           dns=dns, resolved_ip=contacted,
                            families=families, **base)
     except (socket.timeout, TimeoutError):
         return ProbeResult(network=network, network_reclassified_from=from_net,
                            rung=Rung.DNS, ok=False, failure=Failure.TIMEOUT,
                            detail=f"timeout after {cfg.timeout}s",
-                           resolved_ip=addresses[0], families=families, **base)
+                           resolved_ip=contacted, families=families, **base)
     except (ConnectionResetError, BrokenPipeError,
             http.client.IncompleteRead, http.client.HTTPException) as e:
         # `CLOSE_MIDWAY`: headers promised more than arrived. That is a
@@ -834,12 +910,12 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                            rung=Rung.TRANSPORT_RESPONSE, ok=False,
                            failure=Failure.RESET,
                            detail=f"{type(e).__name__}: {e}",
-                           resolved_ip=addresses[0], families=families, **base)
+                           resolved_ip=contacted, families=families, **base)
     except Exception as e:  # the probe itself broke
         return ProbeResult(network=network, network_reclassified_from=from_net,
                            rung=Rung.NONE, ok=False, failure=Failure.PROBE_ERROR,
                            detail=f"{type(e).__name__}: {e}",
-                           resolved_ip=addresses[0], families=families, **base)
+                           resolved_ip=contacted, families=families, **base)
 
 
 def _classify_http(body: bytes, status: int, rtt: float, base: dict,

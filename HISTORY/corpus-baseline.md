@@ -184,9 +184,9 @@ lookup, and **759 name-addressed**. Those two are vantage-independent.
 
 | | GitHub runner (canonical) | authoring host |
 | --- | --- | --- |
-| IPv4-capable | **711** hosts, **968** URLs | 706 hosts, 960 URLs |
+| IPv4-capable | **710** hosts, **966** URLs | 706 hosts, 960 URLs |
 | **IPv6-only** | **15** hosts, **16** URLs | 15 hosts, 16 URLs |
-| did not resolve | **239** hosts, **343** URLs | 244 hosts, 351 URLs |
+| did not resolve | **240** hosts, **345** URLs | 244 hosts, 351 URLs |
 
 ⭐ **The IPv6-only figure is identical on both**, which is what makes it safe
 for [`gates.md`](gates.md) to quote as a corpus property: it is a fact about
@@ -204,39 +204,44 @@ first could not answer for, so that "does not resolve" and "does not resolve
 
 | class | runner `ubuntu-24.04` | runner `ubuntu-22.04` | authoring host |
 | --- | --- | --- | --- |
-| resolves for both | 520 / 745 | 520 / 745 | 516 / 739 |
-| **resolves only for the public resolver** | **3 / 7** | **2 / 5** | **0 / 0** |
+| resolves for both | 519 / 743 | 519 / 743 | 516 / 739 |
+| **resolves only for the public resolver** | **3 / 7** | **1 / 3** | **0 / 0** |
 | resolves only for this host | 0 / 0 | 0 / 0 | 0 / 0 |
-| gone, NXDOMAIN confirmed | **183 / 259** | 183 / 259 | 179 / 256 |
+| gone, NXDOMAIN confirmed | **184 / 261** | 185 / 263 | 179 / 256 |
 | no address records | 43 / 61 | 43 / 61 | 43 / 61 |
-| resolves to an unusable address | - | - | **11 / 14** |
+| resolves to an unusable address | **0 / 0** | **0 / 0** | **11 / 14** |
 | lookup failed, undetermined | 10 / 16 | 11 / 18 | 10 / 18 |
 
-*hosts / URLs. Runner figures from workflow run `34210496112`; authoring-host
-figures from `experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json` and `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T134349Z.json`.*
+*hosts / URLs. Runner figures from workflow run `34235047982`, the first
+census with the null-address class; authoring-host figures from
+`experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json` and `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T134349Z.json`.*
 
 ⛔ **None of these is `dead`.** The vocabulary is deliberately about the lookup
 rather than about the tracker, and `MIN_SAMPLES_FOR_DEATH` is 3.
 
-⛔ **The unusable-address row is where the authoring host's rescues went.**
-Eleven hosts and fourteen URLs answer `0.0.0.0`, `::` or both: an answer, and
-not an address (RFC 1122 section 3.2.1.3). An earlier revision of this table
-counted them under the second row, which read as a resolver disagreement and
-was a name pointing nowhere. [T-037](../TODO/measurement.md) split them.
+⭐ **The rescues on the runner are real and their addresses are routable.**
+`openbittorrent.com` and `tracker.openbittorrent.com` both answer
+`52.223.13.41`, and `w.wwwww.wtf` answers four Cloudflare addresses. That is
+the case [T-037](../TODO/measurement.md) was built for, and it is why
+`resolver_divergence` exists as a value that can never become `dead`.
 
-⚠ **The runner columns predate the split and a dash is what they get.**
-Workflow run `34210496112` recorded families and not addresses, so nobody can
-say from the committed result whether its 3 and 2 are routable. The instrument
-records addresses now; the next runner run answers it. Reclassifying them from
-this host would be inventing a measurement.
+⛔ **The unusable-address row is a vantage difference in `getaddrinfo`, not in
+DNS.** Eleven hosts answer `0.0.0.0`, `::` or both. This host's resolver
+refuses that answer with `WSANO_DATA`, so the second lookup sees it; a runner's
+`getaddrinfo` returns the null address, so those hosts land in the first row
+and **reach the prober**. RFC 1122 section 3.2.1.3 makes the address invalid as
+a destination and Linux routes a connect to it at the local host, so the probe
+now refuses to open one.
 
-⚠ **The second row is the one that matters** and the two runner images
-disagree on it. `openbittorrent.com` and `tracker.openbittorrent.com` fail on
-**both** images and resolved for public resolvers that day;
-`tracker.parrotlinux.org` fails on `24.04` only. From the authoring host on the
-same date, all six public queries for the first two **time out**, so the BEP 34
-consent lookup fails before resolution is reached and those trackers are
-skipped rather than misclassified. `C-06` carries it.
+⚠ **The two runner images disagree, and they disagreed differently last time.**
+On 2026-09-08 run `34210496112` reported 3 and 2 rescued, with
+`tracker.parrotlinux.org` on `24.04` only; the census two hours later reports 3
+and 1, with `w.wwwww.wtf` in place of `tracker.parrotlinux.org`. **A resolver
+census is a measurement of a moment.** `C-06` carries what that means.
+
+⚠ **From the authoring host, all six public queries for the OpenBitTorrent
+names time out**, so the BEP 34 consent lookup fails before resolution is
+reached and those trackers are skipped rather than misclassified.
 
 ## What these numbers are not
 

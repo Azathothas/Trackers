@@ -1,0 +1,84 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "34235047982",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu22",
+      "runner_image_version": "20260831.284.1",
+      "runner_os": "Linux",
+      "sha": "84fa10ec3c05e7ed79c7933f57344c4f1fe55366"
+    },
+    "hostname": "runnervm9xg2d",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "python": "3.11.16",
+    "repo_commit": "84fa10ec3c05e7ed79c7933f57344c4f1fe55366-dirty",
+    "sample_counts": {
+      "corpus_trackers": 1327,
+      "hosts_considered": 759,
+      "second_opinions_asked": 240
+    },
+    "utc": "2026-09-08T13:57:59Z"
+  },
+  "question": "Which kind of not-resolving is each unresolvable corpus host?",
+  "results": {
+    "classes_by_host": {
+      "gone_nxdomain_confirmed": 185,
+      "lookup_failed_undetermined": 11,
+      "no_address_records": 43,
+      "resolves_for_both": 519,
+      "resolves_only_for_the_public_resolver": 1,
+      "resolves_only_for_this_host": 0,
+      "resolves_to_an_unusable_address": 0
+    },
+    "classes_by_url": {
+      "gone_nxdomain_confirmed": 263,
+      "lookup_failed_undetermined": 18,
+      "no_address_records": 61,
+      "resolves_for_both": 743,
+      "resolves_only_for_the_public_resolver": 3,
+      "resolves_only_for_this_host": 0,
+      "resolves_to_an_unusable_address": 0
+    },
+    "hosts_asked_a_second_resolver": 240,
+    "hosts_considered": 759,
+    "no_health_state_was_written": true,
+    "null_addressed_hosts": [],
+    "rescued_by_the_public_resolver": [
+      {
+        "addresses": {
+          "ipv4": [
+            "52.223.13.41"
+          ]
+        },
+        "families": [
+          "ipv4"
+        ],
+        "host": "tracker.openbittorrent.com",
+        "system_said": "gaierror -3: Temporary failure in name resolution",
+        "urls": [
+          "http://tracker.openbittorrent.com/announce",
+          "http://tracker.openbittorrent.com:80/announce",
+          "udp://tracker.openbittorrent.com:80/announce"
+        ],
+        "usable_addresses": [
+          "52.223.13.41"
+        ]
+      }
+    ],
+    "resolvers": {
+      "public": "trackers.bep34.Resolver -> 1.1.1.1, 8.8.8.8, 9.9.9.9",
+      "system": "socket.getaddrinfo on this host"
+    },
+    "system_errors": {
+      "gaierror -2": 188,
+      "gaierror -3": 14,
+      "gaierror -5": 38,
+      "ok": 519
+    }
+  }
+}

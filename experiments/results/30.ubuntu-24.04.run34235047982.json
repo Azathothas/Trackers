@@ -1,0 +1,131 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "34235047982",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu24",
+      "runner_image_version": "20260831.293.1",
+      "runner_os": "Linux",
+      "sha": "84fa10ec3c05e7ed79c7933f57344c4f1fe55366"
+    },
+    "hostname": "runnervmejwal",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.11.16",
+    "repo_commit": "84fa10ec3c05e7ed79c7933f57344c4f1fe55366-dirty",
+    "sample_counts": {
+      "corpus_trackers": 1327,
+      "hosts_considered": 759,
+      "second_opinions_asked": 240
+    },
+    "utc": "2026-09-08T13:57:51Z"
+  },
+  "question": "Which kind of not-resolving is each unresolvable corpus host?",
+  "results": {
+    "classes_by_host": {
+      "gone_nxdomain_confirmed": 184,
+      "lookup_failed_undetermined": 10,
+      "no_address_records": 43,
+      "resolves_for_both": 519,
+      "resolves_only_for_the_public_resolver": 3,
+      "resolves_only_for_this_host": 0,
+      "resolves_to_an_unusable_address": 0
+    },
+    "classes_by_url": {
+      "gone_nxdomain_confirmed": 261,
+      "lookup_failed_undetermined": 16,
+      "no_address_records": 61,
+      "resolves_for_both": 743,
+      "resolves_only_for_the_public_resolver": 7,
+      "resolves_only_for_this_host": 0,
+      "resolves_to_an_unusable_address": 0
+    },
+    "hosts_asked_a_second_resolver": 240,
+    "hosts_considered": 759,
+    "no_health_state_was_written": true,
+    "null_addressed_hosts": [],
+    "rescued_by_the_public_resolver": [
+      {
+        "addresses": {
+          "ipv4": [
+            "52.223.13.41"
+          ]
+        },
+        "families": [
+          "ipv4"
+        ],
+        "host": "openbittorrent.com",
+        "system_said": "gaierror -3: Temporary failure in name resolution",
+        "urls": [
+          "http://openbittorrent.com/announce",
+          "http://openbittorrent.com:80/announce"
+        ],
+        "usable_addresses": [
+          "52.223.13.41"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "52.223.13.41"
+          ]
+        },
+        "families": [
+          "ipv4"
+        ],
+        "host": "tracker.openbittorrent.com",
+        "system_said": "gaierror -3: Temporary failure in name resolution",
+        "urls": [
+          "http://tracker.openbittorrent.com/announce",
+          "http://tracker.openbittorrent.com:80/announce",
+          "udp://tracker.openbittorrent.com:80/announce"
+        ],
+        "usable_addresses": [
+          "52.223.13.41"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "172.67.172.191",
+            "104.21.30.104"
+          ],
+          "ipv6": [
+            "2606:4700:3036::6815:1e68",
+            "2606:4700:3036::ac43:acbf"
+          ]
+        },
+        "families": [
+          "ipv4",
+          "ipv6"
+        ],
+        "host": "w.wwwww.wtf",
+        "system_said": "gaierror -2: Name or service not known",
+        "urls": [
+          "https://w.wwwww.wtf/announce",
+          "https://w.wwwww.wtf:443/announce"
+        ],
+        "usable_addresses": [
+          "172.67.172.191",
+          "104.21.30.104",
+          "2606:4700:3036::6815:1e68",
+          "2606:4700:3036::ac43:acbf"
+        ]
+      }
+    ],
+    "resolvers": {
+      "public": "trackers.bep34.Resolver -> 1.1.1.1, 8.8.8.8, 9.9.9.9",
+      "system": "socket.getaddrinfo on this host"
+    },
+    "system_errors": {
+      "gaierror -2": 188,
+      "gaierror -3": 14,
+      "gaierror -5": 38,
+      "ok": 519
+    }
+  }
+}

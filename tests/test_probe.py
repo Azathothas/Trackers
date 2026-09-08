@@ -441,6 +441,110 @@ class OurResolversOpinionIsNotTheNamesProperty(unittest.TestCase):
                 self.assertEqual(kind, kind.lower())
 
 
+class ANullAddressIsNeverDialled(unittest.TestCase):
+    """⛔ A name answering `0.0.0.0` must not send the probe to our own host.
+
+    The hazard is platform-specific and the canonical vantage has it: on Linux
+    a connect to the unspecified address reaches the local host, so a tracker
+    whose DNS answers `0.0.0.0` would be probed against the runner itself and
+    whatever replied would be recorded as that tracker. Windows refuses the
+    same connect outright (`WinError 10049`, measured 2026-09-08), which is two
+    different wrong answers for one endpoint.
+
+    ⭐ **The oracle is the control.** It answers correctly on `127.0.0.1`, so
+    the first test proves a live tracker on that port is reachable and
+    recordable, and the second proves the null address does not reach it.
+    Without the control, a probe that was broken in some other way would pass
+    the second test by failing at everything.
+
+    ⚠ **The corpus contains 14 such URLs**, and on a runner they resolve for
+    `getaddrinfo` and reach the prober (`experiments/30`, run `34235047982`).
+    """
+
+    def setUp(self):
+        v = detect()
+        if "ipv4" not in v.ip_families:
+            self.skipTest("no ipv4 route from this vantage")
+        self.v = v
+
+    def test_the_control_a_real_tracker_on_loopback_is_recorded_live(self):
+        from fake_tracker import Behaviour, FakeHttpTracker
+        with FakeHttpTracker(Behaviour.CORRECT) as fake, \
+                FakeDnsServer() as dns:
+            r = probe(parse(f"http://127.0.0.1:{fake.port}/announce"),
+                      ProbeConfig(timeout=2.0, retries=0), self.v,
+                      resolver=resolver_for(dns))
+        self.assertTrue(r.ok, f"the control did not answer: {r.failure} {r.detail}")
+        self.assertIs(r.rung, Rung.TRACKER_SEMANTIC)
+
+    def test_the_same_tracker_is_not_reached_through_the_null_address(self):
+        """Same port, same process, same second. Only the address differs."""
+        from fake_tracker import Behaviour, FakeHttpTracker
+        with FakeHttpTracker(Behaviour.CORRECT) as fake, \
+                FakeDnsServer() as dns:
+            r = probe(parse(f"http://0.0.0.0:{fake.port}/announce"),
+                      ProbeConfig(timeout=2.0, retries=0), self.v,
+                      resolver=resolver_for(dns))
+            reached = list(fake.requests)
+        self.assertFalse(r.ok)
+        self.assertEqual(reached, [],
+                         "the probe reached a listener on this machine "
+                         "through a null address")
+        self.assertIs(r.failure, Failure.DNS_FAILURE)
+        self.assertEqual(r.dns["class"], "resolves_to_an_unusable_address")
+        self.assertIsNot(r.rung, Rung.TRACKER_SEMANTIC)
+
+    def test_the_udp_prober_refuses_it_too(self):
+        """One rule, every door. The UDP path resolves separately."""
+        from fake_tracker import Behaviour, FakeUdpTracker
+        with FakeUdpTracker(Behaviour.CORRECT) as fake, FakeDnsServer() as dns:
+            r = probe(parse(f"udp://0.0.0.0:{fake.port}/announce"),
+                      ProbeConfig(timeout=1.5, retries=0), self.v,
+                      resolver=resolver_for(dns))
+            reached = list(fake.requests)
+        self.assertEqual(reached, [])
+        self.assertIs(r.failure, Failure.DNS_FAILURE)
+
+    def test_a_null_address_alongside_a_routable_one_is_skipped_not_dialled(self):
+        """The filter drops addresses, not names.
+
+        ⚠ **A mixed answer cannot be staged with a real resolver**, so this is
+        the one place the suite replaces `getaddrinfo` rather than pointing it
+        somewhere. Everything below it is production code: the same
+        `Resolution`, the same selection, the same socket.
+
+        ⭐ **The assertion is `resolved_ip`, and that is not incidental.** On
+        Linux the null address reaches loopback, where the oracle would answer
+        and the result would read `live` either way. What the record says it
+        contacted is the only observable that separates the two.
+        """
+        from unittest import mock
+        from fake_tracker import Behaviour, FakeHttpTracker
+        with FakeHttpTracker(Behaviour.CORRECT) as fake, FakeDnsServer() as dns:
+            mixed = [
+                (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("0.0.0.0", fake.port)),
+                (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("127.0.0.1", fake.port)),
+            ]
+            with mock.patch("socket.getaddrinfo", return_value=mixed):
+                r = probe(parse(f"http://mixed.example:{fake.port}/announce"),
+                          ProbeConfig(timeout=2.0, retries=0), self.v,
+                          resolver=resolver_for(dns))
+        self.assertTrue(r.ok, f"{r.failure}: {r.detail}")
+        self.assertEqual(r.resolved_ip, "127.0.0.1",
+                         "the probe recorded a null address as the endpoint "
+                         "it contacted")
+
+    def test_it_is_a_dns_failure_and_not_unmeasurable(self):
+        """`unmeasurable` says we cannot reach it from here. A name that
+        points nowhere is not about our position at all."""
+        self.assertNotIn(Failure.DNS_FAILURE, ABOUT_US)
+        self.assertIs(
+            health_state(rung=Rung.NONE, transport=Transport.HTTP,
+                         network=Network.CLEARNET, sample_count=1,
+                         success_count=0, failure=Failure.DNS_FAILURE),
+            HealthState.UNKNOWN)
+
+
 class EveryRecordCarriesItsEvidence(unittest.TestCase):
     """T-024, and T-020's `Prove` clause: every result carries a `Rung`."""
 

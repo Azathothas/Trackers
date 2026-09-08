@@ -1281,6 +1281,61 @@ the sibling case is not here because `experiments/29` already reports it.
 
 ---
 
+### T-038 The HTTP prober does not choose which address it connects to
+
+Source:      [T-037](measurement.md), found while testing the null-address
+             guard, 2026-09-08
+Category:    measurement
+Priority:    P2
+Effort:      M
+Status:      open
+
+Problem:     `probe_http` hands a URL to `urllib.request.urlopen`, which
+             **resolves the hostname again** and picks an address for itself.
+             So the probe's own resolution decides whether to proceed and
+             nothing more: the address it selected is not the address the
+             socket used, and `resolved_ip` on every HTTP record is an
+             inference. `probe_udp` does choose, and there the field is exact.
+Premise:     **Demonstrated rather than argued.** `tests/test_probe.py`
+             `ANullAddressIsNeverDialled` had to patch `socket.getaddrinfo`
+             to stage a mixed answer, and its first version asserted
+             `resolved_ip` and failed -- the probe had reported `0.0.0.0` as
+             the endpoint contacted while urllib had connected elsewhere. The
+             field now reports the first usable address, which is honest about
+             what was chosen and still silent about what was dialled.
+Approach:    Three routes, none free:
+
+             1. **Connect by address, carry the name.** Build the request
+                against the resolved IP with an explicit `Host` header, and
+                for TLS pass `server_hostname` so SNI and certificate
+                validation still use the name. This is what makes the field
+                exact, and it changes how every HTTPS tracker is contacted --
+                a vhost or an SNI difference would move results corpus-wide,
+                so it needs a measured before-and-after rather than a patch.
+             2. **Report a dash.** Honest and cheap, and it throws away the
+                yggdrasil reclassification evidence that
+                `classify_network_resolved` needs (T-023).
+             3. **Record both**: the address we chose and, where the platform
+                exposes it, the peer the socket actually got. `HTTPResponse`
+                carries the socket on CPython, and reading `getpeername()`
+                would be the measurement rather than an inference. Least
+                invasive, and it is CPython-specific.
+Decision:    Not settled here. ⛔ The half that matters for correctness is
+             already fixed: a name that resolves **only** to null addresses is
+             refused before any request, which is the case the corpus contains
+             (11 hosts, 14 URLs, `experiments/30`). What remains is a **mixed**
+             answer, where a null address sits beside a routable one and
+             urllib may pick either. No corpus host is in that state today,
+             and if one appears the record would say `ok` against an address
+             the record does not name.
+Prove:       A test that stages a mixed answer and asserts the record names
+             the address the socket actually connected to, passing on Linux
+             and on Windows. Route 3 is the cheapest thing that could satisfy
+             it; route 1 additionally needs `experiments/05` re-run before and
+             after to show the corpus-wide effect on HTTPS.
+
+---
+
 ### T-037 A `dns_failure` records our resolver's opinion, and a better one is already in the tree
 
 Source:      `C-06` re-measured; `experiments/30`, run `34210496112`
@@ -1366,6 +1421,26 @@ is `dns_failure`: both resolvers agree there is nothing to connect to.
 Two runs, `20260908T134349Z` committed. Without the distinction this entry
 would have shipped 14 URLs labelled "our resolver's fault" that no resolver
 can reach.
+
+⛔ **On the runner the premise holds, and the null answers are worse than the
+premise.** Run `34235047982` re-ran the census on both images with the split in
+place: `ubuntu-24.04` rescues **3 hosts and 7 URLs** and every address is
+routable -- `openbittorrent.com` and `tracker.openbittorrent.com` at
+`52.223.13.41`, `w.wwwww.wtf` at four Cloudflare addresses -- and `22.04`
+rescues 1 host and 3 URLs. **Zero hosts are null-addressed there**, because a
+runner's `getaddrinfo` *returns* `0.0.0.0` where this host refuses it, so on
+the canonical vantage those 11 hosts resolve normally and **reach the prober**.
+
+⛔ **A connect to the unspecified address reaches the local host on Linux.** So
+14 corpus URLs would have had the probe open a socket to the runner itself, and
+whatever answered would have been recorded as that tracker. Windows refuses the
+same connect with `WinError 10049`, measured here, which is one endpoint
+producing two different wrong answers. `_resolve` drops unspecified addresses
+and a name that has nothing else is `dns_failure` before any socket.
+`tests/test_probe.py` `ANullAddressIsNeverDialled` proves it with the oracle as
+a positive control on the same port in the same second, and both halves of the
+guard were mutation-proven. ⚠ What remains is a **mixed** answer on the HTTP
+path, where `urllib` re-resolves and chooses for itself -- [T-038](measurement.md).
 
 ⛔ **`openbittorrent.com` never reaches this code from here.** All six public
 queries for it time out, so the **BEP 34 consent lookup fails first** and the

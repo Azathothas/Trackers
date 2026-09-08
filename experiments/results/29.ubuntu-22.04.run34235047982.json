@@ -1,0 +1,195 @@
+{
+  "conditions": {
+    "environment_class": "github-actions-hosted",
+    "github": {
+      "ref": "refs/heads/main",
+      "repository": "Azathothas/Trackers",
+      "run_attempt": "1",
+      "run_id": "34235047982",
+      "runner_arch": "X64",
+      "runner_image": "ubuntu22",
+      "runner_image_version": "20260831.284.1",
+      "runner_os": "Linux",
+      "sha": "84fa10ec3c05e7ed79c7933f57344c4f1fe55366"
+    },
+    "hostname": "runnervm9xg2d",
+    "ipv6_stack_present": true,
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "python": "3.11.16",
+    "repo_commit": "84fa10ec3c05e7ed79c7933f57344c4f1fe55366",
+    "sample_counts": {
+      "corpus_trackers": 1327,
+      "distinct_hosts": 965,
+      "lookups_performed": 759
+    },
+    "utc": "2026-09-08T13:56:50Z"
+  },
+  "question": "How many trackers in this corpus are IPv6-only, and how many of those have an IPv4 sibling?",
+  "results": {
+    "address_literals": 206,
+    "corpus_trackers": 1327,
+    "distinct_hosts": 965,
+    "hosts": {
+      "did_not_resolve": 240,
+      "ipv4_capable": 710,
+      "ipv6_only": 15
+    },
+    "ipv6_only_hosts": [
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "2a03:7220:8083:cd00::1",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "2a03:7220:8083:cd00::1",
+        "urls": [
+          "udp://[2a03:7220:8083:cd00::1]:451/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "2a04:ac00:1:3dd8::1:2710",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "2a04:ac00:1:3dd8::1:2710",
+        "urls": [
+          "udp://[2a04:ac00:1:3dd8::1:2710]:2710/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": true,
+        "host": "anna.bt.bontal.net",
+        "ipv4_hosts_in_this_corpus_sharing_it": [
+          "bt.bontal.net",
+          "yuki.bt.bontal.net"
+        ],
+        "registrable": "bontal.net",
+        "urls": [
+          "udp://anna.bt.bontal.net:6969/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "burmese.app",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "burmese.app",
+        "urls": [
+          "udp://burmese.app:6969/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "echostar.ddnsfree.com",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "ddnsfree.com",
+        "urls": [
+          "http://echostar.ddnsfree.com:8080/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": true,
+        "host": "ipv6.govt.hu",
+        "ipv4_hosts_in_this_corpus_sharing_it": [
+          "tracker.govt.hu"
+        ],
+        "registrable": "govt.hu",
+        "urls": [
+          "udp://ipv6.govt.hu:6969/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": true,
+        "host": "ipv6.tracker.harry.lu",
+        "ipv4_hosts_in_this_corpus_sharing_it": [
+          "ipv4.tracker.harry.lu"
+        ],
+        "registrable": "harry.lu",
+        "urls": [
+          "udp://ipv6.tracker.harry.lu/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "retracker.hotplug.ru",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "hotplug.ru",
+        "urls": [
+          "udp://retracker.hotplug.ru:2710/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "tracker.beeimg.com",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "beeimg.com",
+        "urls": [
+          "http://tracker.beeimg.com:6969/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "tracker.dnlab.net",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "dnlab.net",
+        "urls": [
+          "https://tracker.dnlab.net/announce",
+          "wss://tracker.dnlab.net:443/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "tracker.ipv6tracker.ru",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "ipv6tracker.ru",
+        "urls": [
+          "http://tracker.ipv6tracker.ru:80/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "tracker.tricitytorrents.com",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "tricitytorrents.com",
+        "urls": [
+          "http://tracker.tricitytorrents.com:2710/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "v6.vito-tracker.space",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "vito-tracker.space",
+        "urls": [
+          "udp://v6.vito-tracker.space:6969/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "wg.mortis.me",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "mortis.me",
+        "urls": [
+          "http://wg.mortis.me:6969/announce"
+        ]
+      },
+      {
+        "an_ipv4_sibling_is_already_probed": false,
+        "host": "yggtracker.i2p.rocks",
+        "ipv4_hosts_in_this_corpus_sharing_it": [],
+        "registrable": "i2p.rocks",
+        "urls": [
+          "http://yggtracker.i2p.rocks:80/announce"
+        ]
+      }
+    ],
+    "ipv6_only_with_a_possible_ipv4_sibling": 3,
+    "names_resolved": 759,
+    "resolution_errors": {
+      "gaierror": 240,
+      "ok": 519
+    },
+    "resolver_note": "this host's own resolver, not a public one. A record set can differ by geography and by day; this is one resolver on one day.",
+    "trackers": {
+      "did_not_resolve": 345,
+      "ipv4_capable": 966,
+      "ipv6_only": 16
+    }
+  }
+}

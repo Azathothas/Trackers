@@ -100,6 +100,12 @@ python3 experiments/28-newtrackon-crosscheck.py --expect-crosscheck
 `probe-corpus.py` already committed and compare them against a baseline list
 and against an observer's committed snapshots, so the value gate and the
 cross-check are re-derived on every push at the cost of no request to anybody.
+
+⛔ **Anything named `health-sweep.*.json` in `results/` is evidence in the
+value gate.** `27`, `28` and `32` glob the directory and merge every match, so
+a narrowed or demonstration sweep committed under that name joins the number
+that decides whether this project should exist. Keep one-host runs out of the
+tree: `scripts/probe-corpus.py --only-host` regenerates them in a second.
 A number that decides whether this project should exist is not one to
 transcribe once. `28 --fetch` refreshes the snapshots, one request per route,
 and still touches no tracker.
