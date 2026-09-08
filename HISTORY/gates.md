@@ -250,7 +250,7 @@ manual observation.**
 - [x] Test: an unmeasurable protocol is never reported `dead`
 - [x] Test: health states are assigned by measurement rung, and DNS resolution alone never yields `live` -- [T-025](../TODO/measurement.md), done
 - [x] Test: the probe is validated against the local fake tracker for **every** failure mode, including a bencoded failure response -- [T-021](../TODO/measurement.md), done
-- [ ] Test: each of the six scoring invariants -- [T-043](../TODO/scoring.md)
+- [x] Test: each of the six scoring invariants -- [T-043](../TODO/scoring.md), done. Executable properties over any candidate rather than over a model, because none is chosen (T-044). ⭐ The obvious candidate is **refuted**: a plain success rate fails I2, since 1 of 1 and 500 of 500 both score 1.0. A Wilson lower bound passes all six
 - [x] Test: running the pipeline twice over identical inputs produces byte-identical output apart from declared metadata
 - [x] Test: bootstrap from **no** prior state succeeds; corrupt state fails safely without reinitialising -- [T-040](../TODO/scoring.md), closed. `tests.test_state.BootstrapAndCorruption`: an absent file is the first run, a wrong header or a zero-byte file **raises and leaves the file untouched**, and one damaged line is quarantined while the rest survive. ⛔ Mutation-proved: `except CorruptState: return {}, []` fails 2 tests
 - [x] Test: `hardcoded.txt` keeps manual order and self-deduplicates. The renderer is tested; there is no input file for it yet, which is separate work and does not affect this property

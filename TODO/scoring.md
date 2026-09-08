@@ -223,7 +223,7 @@ Source:      the brief's section 15.2 (the six scoring invariants)
 Category:    scoring
 Priority:    P1
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     The invariants are the part that actually matters and they exist
              only as prose.
@@ -242,6 +242,40 @@ Decision:    I5 and I6 are already partly held elsewhere -- `Tracker.sort_key` i
              must cover the scoring path specifically, not re-test those.
 Prove:       `python3 -m unittest tests.test_scoring_invariants -v`, six tests
              minimum, each generating adversarial inputs rather than one example.
+
+**Done.** `python3 -m unittest tests.test_scoring_invariants -v` -> **12 tests,
+OK**. `src/trackers/scoring.py` holds the six as executable properties over any
+candidate of the shape `scorer(checks, successes, measurable) -> float | None`,
+and the tests run three candidates through them.
+
+⛔ **There is still no scoring model, and this entry does not choose one.** It
+holds the part that survives a change of model, which is the entry's own
+premise for writing the invariants first.
+
+⭐ **The obvious candidate is refuted, which is the finding.** The plain
+success rate -- what `state.py`'s EWMA converges to and what anybody reaches
+for first -- **fails I2**:
+
+| observations | plain rate | Wilson lower bound |
+| --- | --- | --- |
+| 1 of 1 | **1.0000** | 0.2065 |
+| 10 of 10 | **1.0000** | 0.7225 |
+| 100 of 100 | **1.0000** | 0.9630 |
+| 500 of 500 | **1.0000** | 0.9924 |
+
+A tracker seen once and answering once ranks level with one seen five hundred
+times. Publishing that would be ranking a single lucky observation as
+equivalent to months of evidence, which is what I2 exists to forbid.
+
+**A Wilson lower bound passes all six**, and that is recorded as an observation
+rather than as a choice -- [T-044](scoring.md) owns the decision and now
+inherits a shortlist with a reason attached. ⚠ The candidates live in the test
+file rather than in `src/`, because a scorer in the library is a model this
+project ships.
+
+⛔ **The harness is mutation-proofed by a deliberately broken candidate** that
+scores unmeasurable trackers, so a check that never fires cannot be mistaken
+for a check that passes.
 
 ---
 
@@ -272,6 +306,15 @@ Decision:    **D4, open, and deliberately deferred until there is history to fit
              measures the path from one datacenter.
 Prove:       The model is documented, versioned, and passes every T-043 test;
              `HISTORY/decisions.md` D4 records the rejected alternatives.
+
+⭐ **The shortlist is narrower than it was, measured on 2026-09-09 by
+[T-043](scoring.md).** The plain success rate **fails invariant I2**: 1 of 1
+and 500 of 500 both score 1.0, so one lucky observation ranks level with months
+of evidence. A **Wilson lower bound** passes all six and has no free parameter
+beyond the confidence level. That is not a decision -- this entry still owns it,
+and D4 stays open until there is enough history to fit anything against -- but
+whatever is chosen now has to clear `tests/test_scoring_invariants.py` first.
+
 
 ---
 
