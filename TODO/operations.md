@@ -241,6 +241,23 @@ would have been `--deadline ""` -- an argparse error, and every scheduled run
 would have exited 2 having probed nothing while the workflow looked configured.
 Every input now has a fallback and a test refuses one that does not.
 
+**Both fixes are confirmed by a real scheduled event**, which is the only thing
+that could confirm either: run `34276432980`, `trigger: schedule`, probed 173
+of 189 selected, and the preview and the sweep both reported slice 4 -- one on
+from the dispatch's slice 3.
+
+⛔ **One hazard is known and not prevented: a re-run inside the same three-hour
+bucket takes the same slice**, so ~190 trackers are contacted twice inside
+D7's interval. It is reachable from GitHub's own re-run button. Three routes
+were considered. **Refusing a duplicate needs state shared across runs**, which
+does not exist until [T-063](publication.md) decides where records live.
+**Deriving the rotation from the run id** instead of the clock would make a
+re-run take a *different* slice, which trades a double contact for an
+unpredictable walk and loses the property that a delayed run self-corrects.
+**Disabling re-runs** is not something a workflow can express. So it is
+recorded rather than fixed, and it is the smallest of the three costs: a
+re-run is a human action, not an unattended one.
+
 ---
 
 ### T-085 Overlapping runs are prevented in the gates but not in publication

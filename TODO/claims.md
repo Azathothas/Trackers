@@ -489,6 +489,33 @@ Decision:    Treat delayed, dropped and duplicated runs as **load-bearing
 Prove:       A committed record of >=100 scheduled runs with the delay
              distribution and the drop count.
 
+**The schedule exists now** (2026-09-08, operator ruling), so the observations
+this entry waits on have started arriving. ⭐ **The first one is a large
+delay.** `.github/workflows/health-sweep.yml` runs `0 */3 * * *`; the first
+scheduled firing was run `34276432980`, created `2026-09-08T20:43:04Z`. The
+nearest preceding cron slot is `18:00Z`, so the delay is **163 minutes** --
+more than half the interval itself.
+
+⚠ **One observation, and a confounded one.** The schedule had been pushed
+roughly three hours earlier, so an unknown share of those 163 minutes is
+registration lag rather than queue delay, and GitHub publishes neither. It is
+recorded because C-11's documented behaviour had **never been observed here**,
+not because one reading is a rate. The distribution still needs the 100 runs
+this entry asks for, which at eight a day is under a fortnight.
+
+⭐ **The delay is self-correcting for the rotation and not for coverage.** The
+slice comes from the clock at run time rather than from the slot, so a run
+displaced into the next three-hour bucket takes that bucket's slice: slices are
+**skipped, never repeated**, and the trackers in a skipped slice wait another
+pass. That is a coverage cost and not a politeness one, which is the right
+direction for it to fail in.
+
+⛔ **A re-run inside the same bucket takes the same slice**, so the same ~190
+trackers are contacted twice inside D7's interval. Reachable from GitHub's own
+re-run button and not currently prevented: refusing it needs state shared
+across runs, which does not exist until [T-063](publication.md) decides where
+records live. Recorded on [T-084](operations.md) with the routes considered.
+
 ---
 
 ### T-010 The reason for pinning actions to SHAs is asserted, not verified

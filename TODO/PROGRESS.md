@@ -168,7 +168,12 @@ choice rests on something the run refuted.
    measurement, with its command written down.
 
 ⭐ **The sweep is scheduled**, at D7's three hours, after the operator settled
-the three questions this session raised. ⛔ Scheduling it exposed two defects
+the three questions this session raised, and **the first scheduled run has
+fired**: `34276432980`, `trigger: schedule`, 173 probed of 189 selected, slice
+4 one on from the dispatch's slice 3. That run is the only thing that could
+confirm the two workflow fixes below, because a dispatch always supplies its
+own inputs. ⭐ It also delivered [T-009](claims.md)'s **first observation**: the
+`18:00Z` slot fired **163 minutes late**. ⛔ Scheduling it exposed two defects
 only a schedule could have: a fixed sample would have probed the same 190
 trackers eight times a day and the other 1137 never, and a `schedule:` event
 carries **no inputs**, so `--deadline ""` would have made every scheduled run
