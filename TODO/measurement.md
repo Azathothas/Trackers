@@ -298,9 +298,8 @@ Approach:    Emit the conditions block into every health record. The vantage for
 Prove:       `python3 scripts/check-vantage-metadata.py` exits **0** rather
              than 2, over real records.
 
-**Done.** Workflow run **`33938543488`**, `ubuntu-24.04`, 2026-09-05. The
-`Every record carries its vantage` step is
-`python3 scripts/check-vantage-metadata.py --path sweep-out` and it printed:
+**Done.** Workflow run **`33938543488`**, `ubuntu-24.04`, 2026-09-05.
+`python3 scripts/check-vantage-metadata.py --path sweep-out` printed:
 
 ```
 checked 200 health records
@@ -309,103 +308,49 @@ OK  every record carries vantage metadata and a measurement rung; nothing
     unmeasurable is reported live, dead or degraded.
 ```
 
-⭐ **This is the first time this project has measured a real tracker.** The
-sample is 200 of 1327 (`ci` probes a sample, RULES 15.2), from
-`github-actions-hosted`, IPv4 only, with a 900 s deadline that was not reached.
-The records are committed at
+**The first time this project measured a real tracker.** 200 of 1327 (`ci`
+probes a sample, RULES 15.2), from `github-actions-hosted`, IPv4 only, 900 s
+deadline not reached. Records committed at
 `experiments/results/health-sweep.github-actions-hosted.run33938543488.json`,
-because a workflow artefact expires after 90 days and git does not.
+because a workflow artefact expires after 90 days and git does not. States:
+`live` 25, `degraded` 1, `unknown` 162, `unmeasurable` 12.
 
-| | |
-| --- | --- |
-| `live` | 25 |
-| `degraded` | 1 |
-| `unknown` | 162 |
-| `unmeasurable` | 12 |
-
-⛔ **`dead` is 0 and cannot be otherwise from one sweep.**
+**`dead` is 0 and cannot be otherwise from one sweep.**
 `MIN_SAMPLES_FOR_DEATH` is 3, so a single observation of a tracker that did not
-answer is `unknown` -- "too few samples", not "gone". Accumulating observations
-across runs is [T-040](scoring.md), and until it exists **no number here is a
-liveness rate.** 25 of 200 is one datacenter, on IPv4, on one day.
+answer is `unknown` -- too few samples, not gone. Accumulating across runs is
+[T-040](scoring.md), now closed. **No number here is a liveness rate:** 25 of
+200 is one datacenter, IPv4, one day.
 
-**The refusals are the finding, and they are recorded as `C-72`.** Eight
-endpoints across seven hosts were refused by a published BEP 34 record and
-three more were skipped because public resolvers would not answer. One host
-spells its denial as a bare `BITTORRENT`, which is the normative form and the
-one a naive implementation misses.
+**The refusals are the finding, recorded as `C-72`.** Eight endpoints across
+seven hosts refused by a published BEP 34 record, three more skipped because
+public resolvers would not answer. One host spells its denial as a bare
+`BITTORRENT`, the normative form a naive implementation misses.
 
-⚠ **The offline gate keeps its expected skip, and that stays correct.**
+**The offline gate keeps its expected skip, correctly.**
 `scripts/check-vantage-metadata.py` finds no records in a clean checkout
-because none are committed where it looks, and where health records eventually
-live is [T-063](publication.md)'s decision rather than this entry's to
-pre-empt. The flag comes off when the data branch does.
+because none are committed where it looks; where health records live is
+[T-063](publication.md)'s decision. The flag comes off when the data branch
+does.
 
-**What ran it:** `.github/workflows/health-sweep.yml`, `workflow_dispatch`
-only. ⛔ It has no `schedule:` trigger deliberately -- a workflow that runs
-hourly against other people's servers is a load generator, and the cadence is
-D7's, the budget [T-026](measurement.md)'s and the architecture
-[T-084](operations.md)'s.
-
-             **Two of the three parts now exist, and the third is a run rather
-             than a piece of work.** `src/trackers/sweep.py` emits a record per
-             tracker with its vantage, `scripts/probe-corpus.py` writes
-             `health.json`, and `scripts/check-vantage-metadata.py` takes a
-             `--path` so records can live in scratch instead of dirtying the
-             tree. `tests.test_concurrency.RecordsSatisfyTheVantageGate` runs
-             **the real gate over records this project produced**, against
-             trackers it controls on loopback, and it exits 0.
-
-             ⛔ **What remains is a probe of the real corpus from a sanctioned
-             vantage, and it was deliberately not run here.** RULES 13.1
-             authorises probing live trackers **from CI**; the session that
-             built this ran on a contributor's Windows host, whose
-             `environment_class` is `unclassified-host` and whose address is a
-             residential connection rather than the vantage every other figure
-             in this project was taken from. Probing a thousand strangers'
-             servers from it would have produced records that are not
-             comparable with anything and would have spent somebody's home
-             address doing it.
-
-             ⚠ **Three routes to closing it were considered** (RULES 10.1a):
-
-             1. **A workflow step on a runner.** The right one. It needs a
-                schedule and a politeness budget, which is T-084's decision and
-                T-026's number, and it is where this entry actually closes.
-             2. **Emit `unknown` records for the whole corpus offline**, which
-                would flip the gate today without probing anything. **Refused**:
-                the file would satisfy the checker while nothing had been
-                measured, which is the forbidden pattern about a step that
-                exits 0 having done nothing. `scripts/probe-corpus.py` has no
-                offline mode for that reason, and its docstring says so.
-             3. **Probe a handful of trackers from this host** to produce a few
-                real records. **Refused**: a measurement from an unclassified
-                vantage that is then compared with runner figures is the
-                vantage-conflation this project exists to avoid, and RULES 15.4
-                requires the profile to travel with the result rather than the
-                result to be taken anywhere convenient.
-
-⛔ **One number in the record this entry produced is wrong, and the correction
-is here rather than in a silent edit (RULES 7).** Run `33938543488`'s committed
-`health.json` reports `counts.corpus: 200` against a corpus of **1327**.
+**One number in the record this entry produced is wrong, and the correction is
+here rather than in a silent edit (RULES 7).** The committed `health.json`
+reports `counts.corpus: 200` against a corpus of **1327**:
 `scripts/probe-corpus.py` selected the sample and passed the *sample* to
-`sweep()`, which records `corpus=len(trackers)` -- so `counts.corpus` and
-`counts.selected`, the pair whose entire purpose is to say "200 of 1327", were
-the same number. Found by [T-027](measurement.md) while establishing the
-denominator for the value gate.
+`sweep()`, which records `corpus=len(trackers)`, so the pair of fields whose
+purpose is to say "200 of 1327" were the same number. Found by
+[T-027](measurement.md).
 
-⚠ **The sample itself was never affected**, which is why nothing caught it:
+**The sample itself was never affected**, which is why nothing caught it:
 `select()` returns a list whole when the sample size is not smaller than it, so
-applying it twice changed nothing, and every health state in the record stands.
-Only the denominator was wrong, and that is the worse half -- a wrong state gets
-argued with, a wrong denominator gets divided by.
+applying it twice changed nothing and every health state stands. Only the
+denominator was wrong, which is the worse half -- a wrong state gets argued
+with, a wrong denominator gets divided by.
 
-⛔ **The record is not rewritten.** It says what the instrument said, which is
+**The record is not rewritten.** It says what the instrument said, which is
 what makes it evidence. `scripts/probe-corpus.py` now hands `sweep()` the
 corpus, `tests.test_concurrency.TheSweepScriptReportsTheCorpusItSampledFrom` is
-the regression test and was mutation-proved by putting the defect back, and
-`experiments/27-value-gate.py` derives the corpus size itself rather than
-reading that field.
+the regression test and was mutation-proved, and
+`experiments/27-value-gate.py` derives the corpus size itself.
 
 ---
 
@@ -536,7 +481,7 @@ Decision:    If the delta is negligible, **say so in the README, prominently**,
              or recommend not shipping it. Reaching that conclusion honestly is
              a successful outcome. **Do not manufacture a difference to justify
              existence.**
-Prove:       `python3 experiments/27-value-gate.py --expect-answered` (planned)
+Prove:       `python3 experiments/27-value-gate.py --expect-answered`
              exits 0, having computed the three deltas against
              `ngosang/trackerslist` from committed health records; then
              `HISTORY/gates.md` carries the answer with its conditions and
@@ -544,55 +489,47 @@ Prove:       `python3 experiments/27-value-gate.py --expect-answered` (planned)
              the verdict is that this project is not justified.
 
 **Done.** `python3 experiments/27-value-gate.py --expect-answered` -> exit 0,
-result committed at
-`experiments/results/27-value-gate.unclassified-host.20260908T090220Z.json`.
-It is in the gate as `offline-value-gate`, so the answer is re-derived from the
-committed records on every push rather than transcribed once.
+result at `experiments/results/27-value-gate.unclassified-host.20260908T090220Z.json`. It is in the gate as
+`offline-value-gate`, so the answer is re-derived from the committed records on
+every push rather than transcribed once.
 
 **Verdict: justified as a labelled dataset, NOT justified as a list.** The
-delta in count clears its bar (live yield 1.92x worst case, 3.05x point,
-6.50x best); the delta in density **fails** it (12.0% of ours answered against
-the baseline's 52.9%, for a list 13.4x longer). The full table, the control and
-both bars are in [`../HISTORY/gates.md`](../HISTORY/gates.md); the README
-carries the two-sided verdict with the unflattering half first, as the gate's
-`Decision` requires.
+count bar clears and the density bar fails.
+[`../HISTORY/gates.md`](../HISTORY/gates.md) owns every figure and both bars;
+the README carries the two-sided verdict with the unflattering half first, as
+this entry's `Decision` requires. The numbers are not restated here -- an
+earlier revision of this paragraph did restate them, and they were superseded
+by [T-034](measurement.md)'s census within the day (RULES 17.2).
 
-⛔ **The first decision rule this entry used was wrong in our favour and is
-kept visible rather than edited away** (RULES 7): it compared our interval's
-lower bound against the baseline's *point* estimate, charging us our sampling
-error and forgiving theirs. The rule in `DECISION_RULE` now compares our worst
-case against their best, and the constant carries why.
+**The first decision rule this entry used was wrong in our favour and is kept
+visible rather than edited away** (RULES 7): it compared our interval's lower
+bound against the baseline's *point* estimate, charging us our sampling error
+and forgiving theirs. `DECISION_RULE` now compares our worst case against their
+best, and the constant carries why.
 
-**Two findings came out of building it, both fixed here.**
+**Two defects came out of building it, both fixed.**
 
-1. ⛔ **The committed sweep record's own `counts.corpus` said 200 against a
-   corpus of 1327.** `scripts/probe-corpus.py` selected the sample and handed
-   the *sample* to `sweep()`, which records `corpus=len(trackers)`, so the pair
-   of fields whose whole purpose is "200 of 1327" were the same number. The
-   sample was never wrong -- `select` is idempotent at that boundary -- so it was
-   invisible in every health state, and only the denominator was affected,
-   which is the worse half: a wrong state gets argued with and a wrong
-   denominator gets divided by. Fixed, mutation-proved, and regression-tested
-   by `tests.test_concurrency.TheSweepScriptReportsTheCorpusItSampledFrom`.
-   ⚠ **The record is not rewritten**; the correction is under
-   [T-024](measurement.md)'s title and experiment 27 derives the denominator
-   itself rather than reading that field.
-2. ⛔ **`PRIVATE_CREDENTIAL` could not see `authkey=`**, so trying to redact a
-   prior-art line returned it unchanged. Widening it -- measured first at **zero
-   change to every published count**, because those URLs are already refused by
-   the character check -- immediately found the same stranger's credential
-   written into **four places outside the capture directories**: a review under
-   `HISTORY/`, `tests/test_p1.py`, a comment in `src/trackers/exclusion.py`,
-   and an experiment result. All four are redacted and
+1. **The committed sweep record's `counts.corpus` said 200 against a corpus of
+   1327.** `scripts/probe-corpus.py` selected the sample and handed the
+   *sample* to `sweep()`, which records `corpus=len(trackers)`. The sample was
+   never wrong -- `select` is idempotent at that boundary -- so it was invisible
+   in every health state; only the denominator was affected, which is the worse
+   half. Regression-tested by
+   `tests.test_concurrency.TheSweepScriptReportsTheCorpusItSampledFrom` and
+   mutation-proved. The record is **not** rewritten; the correction is under
+   [T-024](measurement.md)'s title, and experiment 27 derives the denominator
+   itself.
+2. **`PRIVATE_CREDENTIAL` could not see `authkey=`.** Widening it -- measured
+   first at **zero change to every published count**, because those URLs are
+   already refused by the character check -- found the same stranger's
+   credential in **four places outside the capture directories**: a review, a
+   test, a source comment and an experiment result. All redacted;
    [`../docs/security/secrets.md`](../docs/security/secrets.md) carries the
-   class. ⛔ **The credential is a third party's and this project cannot rotate
-   it**; the operator is told in [PROGRESS.md](PROGRESS.md).
+   class.
 
-**What it does not settle.** The ngosang arm is **17 trackers** and the whole
-sweep is 200 of 1327 with one observation each. A stratified census of the
-baseline's 99 would remove the sampling error from the arm that *is* the
-comparison, and is the cheapest available strengthening -- 82 more trackers, one
-run. It is [T-034](measurement.md).
+**What it did not settle at the time:** the baseline arm was 17 trackers.
+[T-034](measurement.md) made it a census of 99 the same day, and the verdict
+survived.
 
 ---
 
@@ -622,84 +559,46 @@ Decision:    **The caveat travels with every comparison or the comparison is
              a finding second. Also: it reports **one preferred protocol per
              tracker** (issue #324), so `/api/udp` is not "supports UDP" and must
              not be compared to a per-endpoint measurement.
-Prove:       `python3 experiments/28-newtrackon-crosscheck.py` (planned) exits
+Prove:       `python3 experiments/28-newtrackon-crosscheck.py` exits
              0 and emits a report whose header states the methodology
              difference -- **newTrackon announces and we scrape**, so its
              "uptime" and our "live" answer different questions (`C-69`) -- and
              whose every rate carries a sample count.
 
 **Done.** `python3 experiments/28-newtrackon-crosscheck.py --expect-crosscheck`
--> exit 0, result committed at
-`experiments/results/28-newtrackon-crosscheck.unclassified-host.20260908T090220Z.json`,
-and in the gate as `offline-oracle-crosscheck`. The methodology sentence is a
-module constant that travels into every emitted block rather than a line in a
-header somebody can drop.
+-> exit 0, result at `experiments/results/28-newtrackon-crosscheck.unclassified-host.20260908T090220Z.json`, in the gate as
+`offline-oracle-crosscheck`. The methodology sentence is a module constant
+carried into every emitted block rather than a header line somebody can drop.
 
-**The cross-check, over the 41 trackers both sides assessed** (run
-`33938543488` against the committed `/api/*` snapshots):
+**The cross-check, run `33938543488` against the committed snapshots:** agree
+live 11, agree not-live 26, we-live-they-not **0**, they-live-we-not 4 --
+**90.2% of 41**.
 
-| | vs their `live` |
-| --- | --- |
-| agree live | 11 |
-| agree not-live | 26 |
-| **we live, they not** | **0** |
-| they live, we not | 4 |
-| agreement | **90.2%** |
+**The zero did not survive a bigger sample (RULES 7).** The baseline census of
+[T-034](measurement.md) added 52 more trackers assessed by both, where the cell
+is **3**; across both runs it is **3 of 93**. The hedge above is what held --
+41 trackers on one day was not proof of anything. The surviving claim carries a
+confound: the committed newTrackon snapshot is 2026-08-31 and the census is
+2026-09-08, so a tracker that came up in between reads as our false positive
+rather than their staleness.
 
-⭐ **The zero is the interesting cell.** In this sample there is no tracker
-this project called `live` that the independent observer did not, which is
-evidence that the probe is conservative in the direction it should be: it
-under-claims rather than over-claims. ⚠ It is 41 trackers on one day and it is
-not a proof of anything; it is the first number this project has that bears on
-its own false-positive rate at all.
+**The `vs stable` row is reported and labelled NOT an agreement rate.** Our
+`live` is current responsiveness; their `stable` is >=95% uptime over a window
+with a 10-day age floor.
 
-⛔ **The zero did not survive a bigger sample, and the correction is here
-rather than in a silent edit (RULES 7).** The baseline census of
-[T-034](measurement.md), run `34207344996`, added 99 records and 52 more
-trackers assessed by both sides, and in those the cell is **3**, not 0. Across
-both runs it is **3 of 93**.
+**Two facts about the oracle, measured rather than assumed.** `stable` is
+**not** a subset of `live`, so the three sets are not a ladder and code
+treating them as one would drop a tracker. And `/api/all` covers **260 of our
+1327**, so the denominator excludes what newTrackon has never heard of: an
+absence is not a zero (RULES 2).
 
-⚠ **The hedge in the paragraph above is what held**: it said 41 trackers on one
-day is not a proof of anything, and it was not. The claim that does survive is
-the weaker one -- this project calls something live that the observer does not
-in roughly **3%** of the trackers both looked at -- and even that carries a
-confound worth naming: the committed newTrackon snapshot is from **2026-08-31**
-and the census is from **2026-09-08**, so a tracker that came up in between
-reads as our false positive when it is their staleness. `--fetch` closes that
-gap and was not run, because a refreshed snapshot cannot be compared with the
-committed one that every earlier number here used.
-
-⛔ **The `vs stable` row is reported and explicitly labelled NOT an agreement
-rate.** Our `live` is one observation of current responsiveness; their
-`stable` is >=95% uptime over a window with a 10-day age floor. A tracker up
-today and down last week is a true `live` and a true not-`stable`, and scoring
-that as disagreement would compare two questions and call the difference an
-error.
-
-**Two facts about the oracle, measured rather than assumed.**
-
-1. ⛔ **`stable` is not a subset of `live`** -- 1 tracker in the snapshots is
-   stable and not live. The three sets are not a ladder, and code that assumed
-   they were would silently drop it. The instrument asserts `live subset of
-   all` under `--expect-crosscheck` and reports the rest.
-2. `/api/all` covers **260 of our 1327**, so the oracle can speak to about a
-   fifth of the corpus and the denominator excludes the rest. A tracker
-   newTrackon has never heard of is an **absence, not a zero** (RULES 2), and
-   counting it as "they say down" would manufacture the agreement rate.
-
-**What it gives [T-031](measurement.md), which is why it was worth more than
-its own entry.** Route (c), oracle correlation, now returns real records: **4
-trackers this project recorded `unknown` are listed live by an observer
-elsewhere**, one of them `blocked_by_policy` -- the blocked-vantage case that
-entry names. Each is emitted with its source, the snapshot, and a provenance
-string saying it is second-hand and never merged with a probe result.
-
-⚠ **And a limit on that route, which is a negative result and is kept.**
-**0** of our `unmeasurable` trackers got a second-hand signal: newTrackon's
-list does not cover the i2p, yggdrasil or `wss` entries in this sample. So
-route (c) serves the blocked-vantage and timeout cases and does **not**, on
-this evidence, serve the four categories T-031 was written for. Those still
-need routes (a), (b), (d) or (e).
+**What it gives [T-031](measurement.md):** route (c) returns **4** trackers
+recorded `unknown` that an observer elsewhere lists live, one
+`blocked_by_policy`, each with its source and a provenance string marking it
+second-hand. **And a negative result that is kept: 0** of our `unmeasurable`
+trackers got a signal -- newTrackon does not cover the i2p, yggdrasil or `wss`
+entries, which are the four categories T-031 was written for. Coverage is the
+constraint, not correctness.
 
 ---
 
@@ -878,90 +777,53 @@ Prove:       `grep -rn "def build_connect_request\|def parse_connect_response\|d
              still exits 0 against the loopback control.
 
 **Done.** `grep -rn "def build_connect_request|def parse_connect_response|def
-bdecode" experiments/` -> exit 1, no matches. `python3 scripts/check-gate.py`
--> 16 passed, 0 failed, 1 expected skip.
+bdecode" experiments/` -> exit 1, no matches. `scripts/check-gate.py` -> 16
+passed, 1 expected skip. `experiments/02` imports the BEP 15 codec from
+`src/trackers/bep15.py`; `experiments/05` imports `bdecode`, `classify_body`,
+`BencodeError` and `FAILURE_KEYS` from `src/trackers/bencode.py`. The copies
+are deleted.
 
-`experiments/02` imports `build_connect_request`, `parse_connect_response` and
-the three BEP 15 constants from `src/trackers/bep15.py`; `experiments/05`
-imports `bdecode`, `classify_body`, `BencodeError` and `FAILURE_KEYS` from
-`src/trackers/bencode.py`. The copies are deleted.
+**Equivalence was measured before the copies were deleted**, as this entry's
+`Decision` required. 5025 inputs, 5000 of them random byte strings: the BEP 15
+pair differed on **0**; `bdecode` on **0** accept/reject decisions and **0**
+parsed values; `classify_body` on **0** `kind` values. The differences were in
+error text only. `experiments/19 --offline` then reproduced the committed
+2026-08-31 run's counts identically, so no published number moved. The
+committed results are not re-run and not rewritten; their conditions block
+records the commit they were taken at.
 
-⭐ **The swap was licensed by a measurement, not by reading the two side by
-side**, because this entry's own `Decision` says a codec change under an
-instrument whose output is this project's evidence deserves its own reading.
-Over **5025 inputs**, including 5000 random byte strings: the BEP 15 pair
-differed on **0**; `bdecode` differed on **0** accept/reject decisions and
-**0** parsed values; `classify_body` differed on **0** `kind` values. The only
-differences were in error TEXT, where `src`'s messages are the more specific --
-`"string length 5 runs past end of input (2 bytes available)"` against
-`"string length out of range"`.
+**A third copy existed and this entry did not name it.**
+`experiments/19-scheme-census.py` duplicated `src/trackers/model.py`'s
+`classify_network` line for line, under a comment claiming to be the single
+home of `YGGDRASIL_NET` while `model.py` held the same constant. It now imports
+the production one. That classifier decides `.i2p` against clearnet, which is
+failure mode 1 in [`../docs/AGENTS.md`](../docs/AGENTS.md) section 5.
+`parse_entries` beside it is **not** the same defect and stays: a census
+accepts what the pipeline rejects, by design.
 
-⚠ **Confirmed by re-running the instrument**: `experiments/19 --offline`
-produces `distinct_urls`, `transports`, `networks` and `transport_x_network`
-**identical** to the committed run of 2026-08-31, so the swap moved no number
-this project has published. The committed results are **not** re-run and not
-rewritten -- they were taken by the copies, and their conditions block records
-the commit, which is what makes that checkable.
+**Two corrections to the `Prove` clause (RULES 9).**
 
-**A third copy was found, and it was worse than the two this entry names.**
-`experiments/19-scheme-census.py` carried a line-for-line duplicate of
-`src/trackers/model.py`'s `classify_network`, under a comment claiming to be
-"the single place the constant lives" while `model.py:117` held the same
-`YGGDRASIL_NET`. ⛔ **That classifier is the first of the five failure modes in
-[`../docs/AGENTS.md`](../docs/AGENTS.md) section 5**: `.i2p` is a hostname
-suffix, not a scheme, and a drifted copy sends an i2p tracker to the clearnet
-prober and records it dead. It now imports the production one.
+1. It asked that *every* experiment import from `src/trackers/`. The bar that
+   matters is **no experiment carries a second implementation of something
+   `src/` owns**; `01`, `03`, `04` and `20`-`24` have nothing to share.
+2. `02 --expect-control` could not be run here: it probes eleven real trackers
+   on the way to reporting the control, and this host is a residential
+   `unclassified-host` -- the route [T-024](measurement.md) refused. Three
+   routes were considered and two taken. The control is proved offline by
+   `tests.test_probe_oracle.TheExperimentsControlStillAnswersOnTheProductionCodec`,
+   which runs the experiment's own responder and asserts both functions resolve
+   to `trackers.bep15`; mutation-proved by restoring a shadowing copy. The real
+   run happened on a runner: push `29c11ef`, both images green, control passed
+   with 2 datagrams received on each of its two runs.
 
-⚠ **`parse_entries` in the same file is NOT the same defect and stays.** It
-deliberately accepts what `normalize.parse` rejects, because a census answers
-"what occurs in the wild" and the pipeline answers "what do we publish". Two
-functions answering two questions is not a copy;
-[`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md) records the
-cross-check that they agree where they should.
+**Experiment 05 proved 3 of 6 against the baseline's 4, and the codec is not
+why.** `tracker.leechshield.link` failed at `rung=dns`, `kind=no_response`: no
+body reached the decoder, so the decoder cannot have changed its verdict. The
+recorded rung is what makes that a minute of work to rule out.
 
-**The `Prove` clause was wrong in one clause and is corrected rather than
-quietly satisfied (RULES 9).** It asked that *every* experiment import from
-`src/trackers/`, which is not the right bar: `01`, `03`, `04`, `20`, `21`, `22`
-and `24` have nothing in `src/` to share, and importing for its own sake would
-add a dependency to buy nothing. The bar that matters is **no experiment
-carries a second implementation of something `src/` owns**, and that is what
-was checked.
+**T-020's acceptance is true as of this entry.**
 
-⛔ **The clause's last third could not be run as written, and the reason is
-conduct, not convenience.** `02 --expect-control` probes eleven real trackers
-on its way to reporting the control, and this host is a residential
-`unclassified-host` -- the exact route [T-024](measurement.md) refused. Three
-routes were considered: run it here (**refused**, it spends strangers'
-bandwidth from a vantage whose records are not comparable with anything);
-run it on a runner (**taken** -- editing `02` triggers `p0-ground-truth.yml`,
-which is where it belongs); and prove the control offline (**taken, and it is
-the better half**). `tests.test_probe_oracle.TheExperimentsControlStillAnswersOn
-TheProductionCodec` starts the experiment's own `LoopbackBEP15Tracker`, runs
-its own `bep15_connect` against it twice, asserts the oracle received both
-datagrams, asserts both functions resolve to `trackers.bep15`, and asserts a
-wrong transaction id is still refused. ⭐ **That turns a one-off run into a
-standing check**: the drift this entry exists to prevent now fails the suite
-rather than waiting for somebody to re-read two files. Mutation-proved by
-putting a shadowing copy back, which fails it.
-
-**T-020's acceptance is now true.** The sentence corrected under its title --
-"the experiments and the production path are the same code and cannot drift" --
-was false when written and is true as of this entry.
-
-**Confirmed on a runner**, which is the half the offline test cannot do. Push
-`29c11ef` triggered `p0-ground-truth.yml`; both images green, and experiment 02
-reported *"Control passed and real trackers answered -> BEP 15 probing WORKS"*
-with **2 datagrams received by the loopback control** on each of its two runs.
-
-⚠ **One subject moved and it is not the codec.** Experiment 05 proved **3 of 6**
-against the 2026-09-05 baseline's 4 of 6, and the single difference is
-`tracker.leechshield.link`. It failed at **`rung=dns`, `kind=no_response`** --
-it never opened a connection, so no body ever reached the decoder, so the
-decoder cannot be what changed its verdict. ⭐ **That is the ladder earning its
-keep**: without a recorded rung, "proved 4" becoming "proved 3" on the day a
-codec was swapped is indistinguishable from a regression, and with one it takes
-a minute to rule out. The other two were already failing at `dns_failure` and
-`transport_failure` in the baseline and still are.
+---
 
 ### T-031 Liveness for networks this vantage cannot reach -- the leverage entry
 
@@ -1279,20 +1141,17 @@ Prove:       A sweep whose selection is the baseline's 99 URLs, committed under
              the verdict, `HISTORY/gates.md` and the README change with it** --
              including if it moves to "not justified".
 
-**Done.** Workflow run **`34207344996`**, `ubuntu-24.04`, 2026-09-08, dispatched
-with `only_source=ngosang_all`. Its record is committed at
+**Done.** Workflow run **`34207344996`**, `ubuntu-24.04`, dispatched with
+`only_source=ngosang_all`; its record is committed as
 `experiments/results/health-sweep.github-actions-hosted.run34207344996.json`
-and carries the selection block that says it is a census rather than a sample.
+and carries the selection block marking it a census rather than a sample.
 `python3 experiments/27-value-gate.py --expect-answered` -> exit 0, result at
 `experiments/results/27-value-gate.unclassified-host.20260908T090220Z.json`.
 
-**The baseline arm is now counted, not estimated: 63 live of 99.** The
-17-tracker sample it replaced had said 52.9% with a 95% interval of
-31.0%-73.8%; the census says **63.6%**, which falls inside it. So the sample
-was not biased -- it was thin, exactly as this entry claimed -- and the
-interval on that arm is gone rather than narrowed.
-
-**It moved both bars, and it moved the unflattering one further.**
+**The baseline arm is counted, not estimated: 63 live of 99.** The 17-tracker
+sample said 52.9% with a 95% interval of 31.0-73.8; the census says **63.6%**,
+inside it. So the sample was thin rather than biased, and the interval on that
+arm is gone rather than narrowed.
 
 | | sample | census |
 | --- | --- | --- |
@@ -1301,27 +1160,21 @@ interval on that arm is gone rather than narrowed.
 | baseline live density | 52.9% | **63.6%** |
 | our live density | 12.0% | **12.8%** |
 
-⭐ **The verdict does not change and the argument gets harder.** Bar 1 still
-clears and bar 2 still fails -- by more, because a properly measured baseline
-turns out to be *better* than the sample suggested, so the density gap this
-project must answer for is wider. `HISTORY/gates.md` and the README carry both
-directions; neither was chosen.
+**The verdict does not change and the argument gets harder**: a properly
+measured baseline is better than the sample suggested, so the density gap is
+wider. `HISTORY/gates.md` and the README carry both directions.
 
-⚠ **What it cost, and it is a real cost.** The two arms now come from runs
-three days apart, which is the time confound the same-run design existed to
-avoid. It is not waved away: `best_evidence()` declares the seam in every field
-it produces, the consistency check above is what licenses it,
-`--expect-answered` **fails** if a future census ever falls outside the
-sample's interval, and every run is still reported on its own so a reader can
-decline the combination. Rejected: re-probing the whole 200-tracker sample in
-the same run as the census, which spends 200 requests to remove a confound the
-consistency check can test for 0.
+**The cost is a time confound**: the two arms now come from runs three days
+apart, which the same-run design existed to avoid. `best_evidence()` declares
+the seam in every field it produces, a consistency check licenses it, and
+`--expect-answered` **fails** if a future census falls outside the sample's
+interval. Rejected: re-probing the whole 200-tracker sample in the same run,
+which spends 200 requests to remove a confound the check tests for nothing.
 
-**What is still thin, and it is now the only thin thing.** The arm carrying the
-whole "what we add" figure is **183 trackers of 1228**, and every ratio above
-inherits its interval. A census of that arm is 1045 further probes, which is a
-different order of politeness cost and belongs with the scheduled-sweep
-decision ([T-084](operations.md)) rather than being fired ad hoc.
+**Still thin, and now the only thin thing:** the arm carrying the "what we add"
+figure is **183 of 1228**. A census of it is 1045 further probes, which belongs
+with [T-084](operations.md)'s scheduled-sweep decision rather than an ad-hoc
+dispatch.
 
 ---
 
@@ -1375,20 +1228,18 @@ Prove:       An instrument reports the four classes above with counts, over at
 **Done.** `python3 experiments/30-resolution-failure-classes.py
 --expect-no-mass-divergence` -> exit 0, result at
 `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T092405Z.json`, breakdown in
-[`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md). ⛔ **No
-health state was written by any of it**, and the class vocabulary is
-deliberately about the lookup rather than about the tracker: there is no
-`dead` among the six values.
+[`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md). No health
+state was written by any of it, and there is no `dead` among the six class
+names: the vocabulary is about the lookup, not the tracker.
 
-**Two resolvers, and they are not the same kind of thing** -- this host's
-`getaddrinfo`, which is what produced the 351 in the first place, and
-`src/trackers/bep34.py`'s own client against 1.1.1.1 / 8.8.8.8 / 9.9.9.9. Only
-the hosts the first could not answer for were asked twice; re-asking about the
-515 that already resolve would triple this project's DNS load to confirm
-something known (RULES 15.2).
+**Two resolvers, and not the same kind of thing** -- this host's `getaddrinfo`,
+which produced the 351, and `src/trackers/bep34.py`'s own client against
+1.1.1.1 / 8.8.8.8 / 9.9.9.9. Only hosts the first could not answer for were
+asked twice; re-asking about the 515 that already resolve would triple this
+project's DNS load to confirm something known (RULES 15.2).
 
-**On the authoring host** -- ⚠ **and the vantage is part of the number**, which
-the claim audit of the same day caught this table stating without:
+**On the authoring host** -- the vantage is part of the number, which the claim
+audit of the same day caught this table stating without:
 
 | class | hosts | URLs |
 | --- | --- | --- |
@@ -1399,38 +1250,24 @@ the claim audit of the same day caught this table stating without:
 | no address records | 43 | 61 |
 | lookup failed, undetermined | 11 | 20 |
 
-⭐ **The runner disagrees, and that is [T-007](../TODO/claims.md)'s finding
-rather than a discrepancy.** Run `34210496112` reports **3 of 239** rescued on
-`ubuntu-24.04` and **2** on `ubuntu-22.04` against this host's 11 of 244.
+**The runner disagrees, and that is [T-007](../TODO/claims.md)'s finding rather
+than a discrepancy**: 3 of 239 rescued on `ubuntu-24.04`, 2 on `22.04`.
 [`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md) carries both
-columns side by side and names the runner as canonical, because that is the
-vantage every health record came from.
+columns and names the runner canonical, because that is the vantage every
+health record came from.
 
-⭐ **The biggest class is real evidence about the trackers**: 179 hosts are
-NXDOMAIN by public resolvers, so 256 URLs name something that does not exist.
-That is the strongest signal in this dataset and it is **still not `dead`** --
-two resolvers on one day, and `MIN_SAMPLES_FOR_DEATH` is 3.
+**The biggest class is evidence about the trackers**: 179 hosts NXDOMAIN by
+public resolvers, so 256 URLs name something that does not exist. Still **not
+`dead`** -- two resolvers on one day, and `MIN_SAMPLES_FOR_DEATH` is 3.
 
-⛔ **And 14 URLs resolve perfectly well.** Eleven hosts -- including
-`tracker.parrotsec.org` and `t.jaekr.sh` -- answer for a public resolver and
-not for this one. **A sweep from this host would have recorded every one of
-them `dns_failure`**, which is the exact shape of "our resolver has an opinion"
-being published as "the tracker is gone". That is what this entry existed to
-separate, and the answer is that it was worth separating.
+**And 14 URLs resolve perfectly well.** Eleven hosts, including
+`tracker.parrotsec.org`, answer for a public resolver and not for this one. A
+sweep from here would have recorded every one `dns_failure`.
 
-**The instrument's classes are not literally the four this entry listed**, and
-the deviation is deliberate (RULES 9): `resolves_only_for_the_public_resolver`
-replaces "a name that resolves elsewhere", `lookup_failed_undetermined`
-replaces "SERVFAIL or timeout", and the sibling case is **not** here because
-`experiments/29` already reports it -- putting it in two instruments would be
-two homes for one fact.
-
-⚠ **This host is not the runner.** The divergence measured here is between a
-residential Windows resolver and public ones; the committed health records were
-taken on a GitHub runner, whose resolver was not compared. **So this does not
-say the corpus's `dns_failure` records are wrong** -- it says the class of
-error is real and unmeasured on the vantage that matters. Running experiment 30
-on a runner is what would close that, and it is on [T-007](../TODO/claims.md).
+**The classes are not literally the four this entry listed** (RULES 9):
+`resolves_only_for_the_public_resolver` replaces "a name that resolves
+elsewhere", `lookup_failed_undetermined` replaces "SERVFAIL or timeout", and
+the sibling case is not here because `experiments/29` already reports it.
 
 ---
 

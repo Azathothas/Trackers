@@ -53,6 +53,7 @@ Exit codes:
 
 from __future__ import annotations
 
+import glob
 import os
 import re
 import shlex
@@ -171,6 +172,47 @@ def linked_targets(files):
     return seen
 
 
+#: Three pages that list what the tree contains, and the directory each lists.
+#: ⛔ **A page that enumerates a directory drifts the moment somebody adds a
+#: file**, and it drifts silently: nothing is broken, nothing is wrong, the
+#: page is simply short by one. Found on 2026-09-08 by a reading, when
+#: `docs/AGENTS.md`'s tree row omitted `src/trackers/state.py` -- so it is a
+#: check now rather than a habit, per `docs/methodology/reviews.md`: anything a
+#: check can assert should not be asserted by a reading.
+INVENTORIES = (
+    ("docs/AGENTS.md", "src/trackers", "*.py", ("__init__",)),
+    ("scripts/README.md", "scripts", "*.py", ("_scope",)),
+    ("experiments/README.md", "experiments", "[0-9][0-9]-*.py", ()),
+)
+
+
+def inventory_drift():
+    """Every file in a listed directory is named on the page that lists it."""
+    out = []
+    for page, directory, pattern, skip in INVENTORIES:
+        try:
+            text = _scope.read(page)
+        except Exception:            # noqa: BLE001 - a missing page is check-citations'
+            continue
+        base = os.path.join(_scope.REPO, directory)
+        if not os.path.isdir(base):
+            continue
+        names = sorted(
+            os.path.basename(p) for p in glob.glob(os.path.join(base, pattern)))
+        for name in names:
+            stem = name[:-3] if name.endswith(".py") else name
+            if stem in skip:
+                continue
+            # Named either as the filename or as the bare module name: a tree
+            # table writes `state` where a script index writes `update-state.py`.
+            if name not in text and not re.search(r"`%s`" % re.escape(stem), text):
+                out.append(
+                    "%s does not name %s/%s. A page that lists a directory and "
+                    "is short by one is drift nobody sees."
+                    % (page, directory, name))
+    return out
+
+
 def main(argv):
     json_mode = "--json" in argv
     files = [f for f in _scope.repo_files() if f.endswith(".md")]
@@ -207,10 +249,12 @@ def main(argv):
                 "%s is linked from nowhere. An unlinked page is not read, so "
                 "it is not corrected." % rel)
 
+    report.extend(inventory_drift())
+
     return _scope.emit(
         json_mode, "check-docs/1", len(report), report,
         "docs ok: %d documents, %d shell blocks, vocabulary clean, "
-        "every page linked" % (len(files), nblocks),
+        "every page linked, inventories current" % (len(files), nblocks),
         files=len(files), shell_blocks=nblocks)
 
 

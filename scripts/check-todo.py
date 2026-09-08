@@ -149,6 +149,20 @@ def main() -> int:
         for bad in ("won't fix", "wontfix", "out of scope"):
             if bad in e["block"].lower():
                 problems.append(f"{tid}: contains {bad!r}; RULES 8 forbids it")
+        # `(planned)` marks a command whose target is not built yet
+        # (`TODO/docs.md`). Once it IS built the marker is a lie in the one
+        # direction nobody re-reads: a closed entry saying its own instrument
+        # does not exist. Found on 2026-09-08 on T-027 and T-028, both closed
+        # by the very experiments their `Prove` clause called unbuilt.
+        for line in e["block"].splitlines():
+            if "(planned)" not in line:
+                continue
+            for path in re.findall(r"((?:experiments|scripts|tests|src)/"
+                                   r"[\w./-]+\.py)", line):
+                if os.path.exists(os.path.join(REPO, path)):
+                    problems.append(
+                        f"{tid}: marks {path} '(planned)' and it exists. "
+                        f"Remove the marker.")
         # An entry that cites itself as its own source says nothing. Eighteen
         # did on 2026-08-31, all produced by a substitution pass that rewrote
         # the brief's section number into the id of the entry that replaced it

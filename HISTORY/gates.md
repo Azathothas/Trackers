@@ -183,12 +183,13 @@ probe to demonstrate.
 
 ### What the answer does not establish
 
-* **Not a liveness rate.** One datacenter, IPv4 only, one day, one observation.
-  `live` is a **floor** on both arms: a tracker that timed out is `unknown` and
-  some of those are up. The comparison survives this because both arms were
-  probed **in the same run by the same code**; the absolute rates do not.
-* **Not that the baseline is worse maintained.** The opposite is measured. Its
-  entries answered us at 52.9% against our unique additions' 8.7%.
+* **Not a liveness rate.** One datacenter, IPv4 only, one observation per
+  tracker. `live` is a **floor** on both arms: a tracker that timed out is
+  `unknown` and some of those are up.
+* **Not that the baseline is worse maintained.** The opposite is measured: its
+  entries answered us at **63.6%** against our unique additions' **8.7%**.
+  ⚠ The 52.9% an earlier revision quoted here was the 17-tracker sample's, and
+  the census replaced it.
 * **Not a settled verdict.** The baseline arm is now a census, but the arm
   that carries the whole "what we add" figure is still **183 trackers of
   1228**, and its interval is what the ratios above inherit.

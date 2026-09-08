@@ -47,15 +47,15 @@ Prove:       `python3 experiments/23-client-list-compatibility.py --expect-all`
              exits 0, and `HISTORY/claims.md` rows `C-40` and `C-41` cite it.
 
 **Done.** `python3 experiments/23-client-list-compatibility.py --expect-all`
--> exit 0, result at `experiments/results/23-client-list-compatibility.unclassified-host.20260908T091033Z.json`. `C-40` and `C-41` cite it.
+-> exit 0, result at `experiments/results/23-client-list-compatibility.unclassified-host.20260908T091033Z.json`. `C-40` and
+`C-41` cite it.
 
-**A torrent client has now been pointed at this project's output**, which is
-the sentence this entry existed to make true. aria2 1.37.0, on this host, fed
-all four variants through the client's own announce-list reader. ⛔ **Offline
-by construction**: `aria2c -S` parses and prints and exits, so no socket, no
-DHT, no peer and no tracker -- RULES 6 forbids this project becoming a client
-even to test itself, and the subject torrent names one 1-byte file with
-RFC 2606 reserved hostnames that belong to nobody.
+**A torrent client has now been pointed at this project's output** -- aria2
+1.37.0, all four variants through the client's own announce-list reader.
+⛔ Offline by construction: `aria2c -S` parses, prints and exits, so no socket,
+no DHT, no peer and no tracker. RULES 6 forbids this project becoming a client
+even to test itself; the subject torrent names one 1-byte file with RFC 2606
+reserved hostnames.
 
 | variant | offered | accepted | what happened |
 | --- | --- | --- | --- |
@@ -64,36 +64,30 @@ RFC 2606 reserved hostnames that belong to nobody.
 ` | 3 | 3 | unchanged |
 | blank-line separated | 5 | 5 | ⚠ the blank line became an **empty announce entry** |
 | `#` comments | 6 | 6 | ⚠ the comment became **an announce URL** |
-| CRLF | 3 | 3 | trailing `
-` trimmed |
+| CRLF | 3 | 3 | trailing `` trimmed |
 
-⛔ **`C-41` is refuted as worded, and the truth is worse than the claim.** It
-said comments "break some clients". They do not break aria2 -- aria2 **accepts
-one as a tracker**. A list carrying a comment does not fail loudly in the
-consumer's client; it installs a broken tracker there silently, which is the
-failure mode this project cares about most.
+⛔ **`C-41` is refuted as worded and the truth is worse.** Comments do not
+"break" aria2 -- aria2 **accepts one as a tracker**. A list carrying a comment
+does not fail loudly in the consumer's client; it installs a broken tracker
+there silently.
 
-⭐ **Two clients, and they disagree.** The captured
-`bittorrent-tracker-editor` parser
+⭐ **Two clients, and they disagree.** The captured `bittorrent-tracker-editor`
+parser
 (`../references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/torrent_miscellaneous.pas:393`)
-accepts only the five transport prefixes, so it **drops** the same comment aria2
-keeps. Neither is a specification. ⭐ **That disagreement is the entire
-argument for the conservative intersection** `render_plaintext` already emits:
-the `Decision` above called it "a refusal to guess", and it is now a measured
-choice rather than a cautious one.
+accepts only the five transport prefixes, so it **drops** the comment aria2
+keeps. Neither is a specification, and that disagreement is the argument for
+the conservative intersection `render_plaintext` already emits: a refusal to
+guess is now a measured choice.
 
-**Not in the gate, deliberately.** It depends on a client being installed, and
-a gate check that silently skips on most hosts is an exemption nobody removes
-(`../docs/conventions/forbidden-patterns.md`). It runs like `01`-`05` do:
-deliberately, with its result committed. Mutation-proved -- making
-`render_plaintext` emit a blank line between entries fails `--expect-all` with
-the empty entry named.
+**Not in the gate, deliberately.** It needs a client installed, and a check
+that silently skips on most hosts is an exemption nobody removes
+(`../docs/conventions/forbidden-patterns.md`). It runs like `01`-`05` do, with
+its result committed. Mutation-proved: making `render_plaintext` emit a blank
+line between entries fails `--expect-all` with the empty entry named.
 
-⚠ **Four clients are absent, not passing.** qBittorrent, Transmission, Deluge
-and BiglyBT are not installed here and were not run, and installing them is a
-system change on somebody else's machine that outlives the session
-(`../docs/agent-tooling.md`). [T-035](claims.md) carries what would close that
-gap.
+⚠ **qBittorrent, Transmission, Deluge and BiglyBT are absent, not passing.**
+[T-035](claims.md) carries three routes to covering them, none of which is
+installing software on the operator's machine.
 
 ---
 
@@ -246,66 +240,48 @@ Prove:       A cross-check report over the full corpus that states the
              (they announce, we scrape), with a sample count.
 
 **Done.** `python3 experiments/32-vantage-variation.py --expect-reported` ->
-exit 0, result at `experiments/results/32-vantage-variation.unclassified-host.20260908T095528Z.json`. It reads only committed
-results and touches no network.
+exit 0, result at `experiments/results/32-vantage-variation.unclassified-host.20260908T095528Z.json`. It reads committed
+results only and touches no network.
 
-**Route (a), the report this clause asks for.** Over every tracker **both
-sides assessed** -- our health records against newTrackon's published live set:
+**Route (a), the report the clause asks for.** Over every tracker both sides
+assessed:
 
 | | |
 | --- | --- |
 | assessed by both | **93** |
-| agree live | 47 |
-| agree not-live | 29 |
-| we live, they not | 3 |
-| they live, we not | 14 |
+| agree live / agree not-live | 47 / 29 |
+| we live, they not / they live, we not | 3 / 14 |
 | **disagreement rate** | **17 of 93 = 18.3%** |
 
-⛔ **The methodology sentence is a module constant that travels into every
-block the instrument emits**, rather than a line in a header somebody can
-drop: newTrackon **announces** to derive uptime, this project stops at connect
-and scrape and has no announce code path, so a disagreement is a methodology
-difference before it is a vantage finding and **this instrument cannot
-separate the two** (`C-69`).
+⛔ The methodology sentence is a module constant carried into every emitted
+block: newTrackon **announces**, this project stops at connect and scrape, so a
+disagreement is a methodology difference before it is a vantage finding and
+**this instrument cannot separate the two** (`C-69`).
 
-⚠ **"The full corpus" is 93, and the reason is worth stating.** It cannot be
-larger: we can cross-check only trackers we have measured (299) that
-newTrackon has also assessed (260 of our 1327 appear in its list at all). The
-clause's phrase describes the ambition; 93 is what the evidence supports, and
-inflating it would be the denominator mistake this session already fixed once.
+⚠ **93 is the largest possible denominator**, not a shortfall: only trackers
+we have measured (299) that newTrackon also assessed (260 of 1327) can be
+cross-checked.
 
-**Route (d), and it is a null result with a warning attached.** This project
-had already measured from **five distinct public addresses** without arranging
-to -- `172.208.127.32`, `20.109.38.118`, `20.3.167.82`, `52.176.32.161`,
-`52.225.97.21`, all AS8075. Over 140 observations of the 17 pinned subjects,
-**34 subject-days were seen from two or more addresses** and **0** answers
-differed by address.
+**Route (d): 5 distinct AS8075 addresses, 140 observations, 34 subject-days
+seen from two or more addresses, and 0 answers differing by address.** The one
+candidate -- `udp://exodus.desync.com:6969/announce` -- was an address that
+returned **both** answers itself, so it disagreed with itself. The control that
+separates those is the result; without it this would have named the vantage as
+a culprit with no control isolating it (RULES 2).
 
-⭐ **The single candidate was an artefact, and the control that caught it is
-the result.** `udp://exodus.desync.com:6969/announce` on 2026-08-31 looked
-like an address disagreement until the check that one address had returned
-**both** answers itself -- so it disagreed with itself, not with another
-address. Naming the vantage as the culprit without that control would have
-been exactly the "a correlation is not a cause" failure RULES 2 forbids.
+⛔ **A null result is not reassurance, and the instrument says so in its own
+output.** Five addresses in one provider agreeing is what a **range-level**
+block looks like from inside the range. This bounds address-specific bias near
+zero and says nothing about the range-specific bias D2 accepted.
 
-⛔ **A null result here is NOT reassurance, and the instrument says so in its
-own output.** Five addresses in one provider agreeing tells you those five are
-treated alike -- which is precisely what a **range-level** block looks like
-from inside the range. This bounds address-specific bias at roughly zero and
-says nothing at all about range-specific bias, which is the bias D2 accepted.
+**Untried, and neither blocked:** route (b), the read proxies as a second
+network position -- ⚠ a measurement through a proxy measures the proxy, which
+is why `experiments/22` carries `authoring-sandbox-proxied`; and route (c), a
+contributed vantage, which is somebody else's to offer.
 
-**Routes (b) and (c) are untried, and neither is blocked.** The read proxies
-(RULES 16) are a second network position for HTTP-shaped probes and would cost
-nothing but care -- ⚠ a measurement taken through a proxy measures the proxy,
-which is why `experiments/22` carries the `authoring-sandbox-proxied`
-environment class. A contributed vantage is somebody else's to offer. Neither
-is needed for the clause above and both would strengthen it.
-
-⛔ **Closing this entry does not close the limitation, and nothing here
-pretends otherwise.** The mitigation is still labelling, labelling still does
-not make the number better, and where the limitation lives permanently is
-`README.md`'s vantage section, RULES 3.4, and the vantage block on every health
-record -- not in an entry that could never be closed.
+⛔ **Closing this entry does not close the limitation.** The mitigation is
+still labelling. Where the limitation lives permanently is `README.md`'s
+vantage section, RULES 3.4, and the vantage block on every health record.
 
 ---
 
@@ -418,15 +394,14 @@ resolver has not been compared with anything. So what is established is that
 the failure class is real and that the corpus is a big enough sample to see it
 -- not that the runner diverges.
 
-**Done.** The runner answered. `p0-ground-truth.yml` gained a
-`dns_census` dispatch input; run **`34210496112`** ran `experiments/30` on
-both images. Results committed as
-`experiments/results/30.ubuntu-24.04.run34210496112.json` and its `22.04`
-twin.
+**Done.** `p0-ground-truth.yml` gained a `dns_census` dispatch input; run
+**`34210496112`** ran `experiments/30` on both images, over the whole corpus
+rather than 17 names. Results committed as
+`experiments/results/30.ubuntu-24.04.run34210496112.json` and its `22.04` twin.
 
-⛔ **Divergence on the vantage that matters is NOT zero.** Of the 239 hosts
-the runner's own resolver could not answer for, public resolvers answer for
-**3 on `ubuntu-24.04`** and **2 on `ubuntu-22.04`**:
+⛔ **Divergence on the vantage that matters is not zero.** Of the 239 hosts the
+runner's own resolver could not answer for, public resolvers answer for **3**
+on `ubuntu-24.04` and **2** on `ubuntu-22.04`:
 
 | host | the runner said | public resolvers say | corpus URLs |
 | --- | --- | --- | --- |
@@ -434,31 +409,26 @@ the runner's own resolver could not answer for, public resolvers answer for
 | `tracker.openbittorrent.com` | `Temporary failure in name resolution` | `ipv4` | 3 |
 | `tracker.parrotlinux.org` (24.04 only) | `Name or service not known` | `ipv4`,`ipv6` | 2 |
 
-⭐ **So `C-06`'s consequence is overturned while its result stands.** The n=17
-run found no divergence and there was none to find at that size; the row used
-to say `dns_failure` "may be read as a property of the name", and it may not.
-OpenBitTorrent is one of the best-known public trackers there is and this
-vantage cannot resolve it.
+**`C-06`'s result stands and its consequence is overturned.** The n=17 run
+found no divergence and there was none to find at that size; the row said
+`dns_failure` "may be read as a property of the name", and it may not.
 
 ⚠ **No published record is wrong today** -- neither sweep sampled those hosts --
-which is the difference between finding this now and finding it after a
-full-corpus sweep.
+which is the difference between finding this before a full-corpus sweep and
+after one.
 
-⛔ **It does NOT reopen `src/trackers/bep34.py`'s decision 5, and the earlier
-paragraph above said it would.** That is corrected here rather than edited
-(RULES 7). Decision 5 is about querying **one public resolver versus all
-three**; what was measured is the **host's** resolver against public ones. BEP
-34 already uses public resolvers and is untouched by this. The module that is
-affected is `src/trackers/probe.py`, whose `_resolve` calls `getaddrinfo`, and
-[T-037](../TODO/measurement.md) is the entry that wires the better resolver in
-behind it.
+⛔ **It does not reopen `src/trackers/bep34.py`'s decision 5, and an earlier
+paragraph of this entry said it would.** Corrected here rather than edited
+(RULES 7): decision 5 is about querying one public resolver versus three, and
+what was measured is the **host's** resolver against public ones. BEP 34
+already uses public resolvers. The module affected is `src/trackers/probe.py`,
+whose `_resolve` calls `getaddrinfo` -- [T-037](../TODO/measurement.md).
 
-**The `Prove` clause was satisfied by a different instrument, recorded rather
-than quietly substituted (RULES 9).** It named `experiments/04 --targets <full
-corpus>`. `experiments/30` answers the same question over the same corpus and
-additionally separates NXDOMAIN from a failure to determine, which `04` does
-not; running `04` as well would have been a second instrument for one question.
-The rate is recorded in `HISTORY/claims.md` `C-06` as the clause required.
+**Satisfied by a different instrument, recorded rather than substituted
+(RULES 9).** The clause named `experiments/04 --targets <full corpus>`;
+`experiments/30` answers the same question over the same corpus and also
+separates NXDOMAIN from a failure to determine, which `04` does not. The rate
+is in `HISTORY/claims.md` `C-06` as the clause required.
 
 ---
 
