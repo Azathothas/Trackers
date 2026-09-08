@@ -252,7 +252,8 @@ def main() -> int:
                               histories=histories,
                               observed_from=args.observed_from)
     report = render_report(agg, generated_at=args.generated_at,
-                           code_version=code_version, categories=categories)
+                           code_version=code_version, categories=categories,
+                           histories=histories)
 
     problems = verify(agg, plaintext, enforced,
                       labelled_json=labelled_json, labelled_csv=labelled_csv)

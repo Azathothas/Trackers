@@ -238,8 +238,107 @@ def render_plaintext(trackers: list[Tracker], *, preserve_order: bool = False) -
     return "".join(f"{u}\n" for u in lines)
 
 
+#: Every question a run report must answer (T-066). ⛔ The tuple is the
+#: contract: `tests/test_report.py` asserts each label appears, so a section
+#: cannot silently disappear from the report and take the answer with it.
+REPORT_FIELDS: tuple[str, ...] = (
+    "sources fetched", "ok:", "failed:", "rejected:", "empty:",
+    "accepted trackers", "rejected lines", "duplicates removed",
+    "health observations", "health states", "measurement rungs",
+    "observation depth", "sustained failures", "stale sources",
+    "what this report cannot answer yet",
+)
+
+
+def _health_section(agg: "Aggregate", histories) -> list[str]:
+    """What the measurements say, over the trackers this run accepted.
+
+    ⛔ **Derived from the histories, never from a count somebody kept.** A
+    report that carried its own tally would be a second place for the numbers
+    to be wrong.
+    """
+    from collections import Counter
+
+    urls = {t.url for t in agg.trackers}
+    mine = {u: h for u, h in histories.items() if u in urls}
+    states: Counter = Counter()
+    rungs: Counter = Counter()
+    checks = 0
+    sustained = []
+    for url, history in sorted(mine.items()):
+        checks += history.lifetime_checks
+        if history.ring:
+            states[history.ring[-1].state] += 1
+            rungs[history.ring[-1].rung or "-"] += 1
+        else:
+            states["unknown"] += 1
+        # ⚠ "Sustained" means every observation failed AND there are enough of
+        # them to mean something. One failure is a moment (RULES 11).
+        if (history.lifetime_checks >= 3 and history.lifetime_successes == 0):
+            sustained.append(url)
+    never = len(urls) - len(mine)
+    depths = sorted(h.lifetime_checks for h in mine.values())
+    deepest = depths[-1] if depths else 0
+    median = depths[len(depths) // 2] if depths else 0
+
+    lines = [
+        "## Health",
+        "",
+        f"- health observations: {checks} across {len(mine)} tracker(s)",
+        f"- never observed:      {never}",
+        f"- health states:       {dict(sorted(states.items()))}",
+        f"- measurement rungs:   {dict(sorted(rungs.items()))}",
+        f"- observation depth:   median {median}, deepest {deepest}",
+        f"- sustained failures:  {len(sustained)} "
+        f"(3+ observations, none successful)",
+        "",
+        "⛔ A tracker that did not answer is `unknown`, never `dead`: saying",
+        "dead needs 3 observations of one tracker and the state machine is",
+        "the only place that decision is made.",
+        "",
+    ]
+    for url in sustained[:20]:
+        lines.append(f"- sustained: `{url}`")
+    if sustained:
+        lines.append("")
+    return lines
+
+
+def _unanswerable_section() -> list[str]:
+    """⛔ What this report cannot answer, and why -- rather than a plausible
+    number in its place.
+
+    RULES 9.1: a requirement that cannot be met is retained, its limitation is
+    stated, and the result is labelled honestly. Three of the questions T-066
+    asks are unanswerable today for reasons that are properties of the data
+    rather than of the effort spent here.
+    """
+    return [
+        "## What this report cannot answer yet",
+        "",
+        "- **stale sources**: whether an upstream has stopped being updated.",
+        "  Answering it needs each fetch's `Last-Modified` or `ETag` retained",
+        "  across runs, and provenance snapshots are not kept yet (T-103). ⚠ A",
+        "  source that contributed nothing **this** run is reported above as",
+        "  failed or empty, which is a different question and is answered.",
+        "- **latency distribution**: the history keeps each observation's",
+        "  outcome and rung, not its round-trip time. A distribution here",
+        "  would be a number this project does not retain.",
+        "- **ranking changes**: nothing is ranked. No scoring model is chosen",
+        "  (T-044), deliberately, because the history is too short to fit one",
+        "  against without fitting it to noise.",
+        "- **reliability distribution**: the same reason. The invariants a",
+        "  model must satisfy exist and are tested (T-043); the model does not.",
+        "- **whether publication succeeded**: this report is written *before*",
+        "  publication, by the step whose output is being published. It cannot",
+        "  report on an event that has not happened. The workflow's own summary",
+        "  answers it.",
+        "",
+    ]
+
+
 def render_report(agg: Aggregate, *, generated_at: str, code_version: str,
-                  categories=None) -> str:
+                  categories=None, histories=None) -> str:
     """A human-readable run report. T-066.
 
     `generated_at` is injected, never read from the clock here, so that the
@@ -264,6 +363,8 @@ def render_report(agg: Aggregate, *, generated_at: str, code_version: str,
         "",
         "## Sources",
         "",
+        f"- sources fetched: {len(agg.sources_ok) + len(agg.sources_failed) + len(agg.sources_rejected) + len(agg.sources_empty)}",
+        "",
         f"- ok:       {len(agg.sources_ok)} {sorted(agg.sources_ok)}",
         f"- failed:   {len(agg.sources_failed)} {sorted(agg.sources_failed)}",
         f"- rejected: {len(agg.sources_rejected)} {sorted(agg.sources_rejected)}",
@@ -277,7 +378,7 @@ def render_report(agg: Aggregate, *, generated_at: str, code_version: str,
         "",
         f"- accepted trackers: {len(agg.trackers)}",
         f"- rejected lines:    {len(agg.rejected)}",
-        f"- dedup decisions:   {len(agg.decisions)} "
+        f"- duplicates removed: {len(agg.decisions)} "
         f"({sum(1 for d in agg.decisions if d.acted)} removed)",
         "",
         "### Transport",
@@ -324,6 +425,10 @@ def render_report(agg: Aggregate, *, generated_at: str, code_version: str,
                     key=lambda x: (x.url, x.reason, x.sources)):
         lines.append(f"- `{e.url}` -- {e.reason} [{', '.join(e.sources)}]")
     lines.append("")
+
+    if histories is not None:
+        lines += _health_section(agg, histories)
+    lines += _unanswerable_section()
 
     if categories:
         lines += [

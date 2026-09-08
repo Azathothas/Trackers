@@ -321,7 +321,7 @@ Source:      the brief's section 24 (observability and reports)
 Category:    publication
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `render_report` covers sources, counts, transport, network and
              measurability. The required set is much larger and currently
@@ -345,3 +345,37 @@ Decision:    **Reports must make ranking changes understandable** -- a consumer
              without becoming enormous.
 Prove:       A test that the report contains every required field for a fixture
              dataset, so a field silently disappearing fails.
+
+**Done.** `python3 -m unittest tests.test_report -v` -> **10 tests, OK**.
+`REPORT_FIELDS` is the contract and the test asserts every label appears, so a
+section cannot disappear and take the answer with it -- which is the `Prove`
+clause.
+
+**The health half is answerable now** and is derived from the histories rather
+than from a tally the report keeps: observations and how many trackers carry
+them, never-observed, the state distribution, the **measurement-rung
+distribution**, observation depth as a median and a deepest, and sustained
+failures. ⚠ Sustained means three or more observations with none successful --
+one failure is a moment (RULES 11), and a test asserts a single failure does
+not qualify.
+
+⛔ **Four of the questions this entry asks are unanswerable, and the report
+says so in its own words** rather than printing a plausible number (RULES 9.1,
+1.5):
+
+* **latency** and its distribution -- the history keeps each observation's
+  outcome and rung, not its round-trip time, which is the same reason the
+  schema omits the column;
+* **ranking changes** and the **reliability distribution** -- nothing is
+  ranked, because no model is chosen ([T-044](scoring.md)) and the invariants a
+  model must satisfy exist without it ([T-043](scoring.md));
+* **stale sources** -- answering it needs each fetch's `Last-Modified` retained
+  across runs, and provenance snapshots are not kept ([T-103](sources.md)). ⚠ A
+  source that contributed nothing *this* run is a different question and is
+  answered;
+* **whether publication succeeded** -- this report is written **before**
+  publication, by the step whose output is being published. It cannot report an
+  event that has not happened, and the workflow's summary answers it.
+
+**A test asserts no latency number appears anywhere**, because that is the
+field it would be easiest to invent a plausible value for.
