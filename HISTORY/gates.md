@@ -264,7 +264,7 @@ manual observation.**
 - [x] UDP limitations, if any, are represented as they were measured, not as they were assumed
 - [x] No published number lacks its conditions
 - [x] The announce policy is implemented and documented, including how an operator requests exclusion. Documented in the README and RULES 4; **enforced by the absence of any announce code path** -- `src/trackers/bep15.py` has no function that builds one, so it is a property of the code rather than a policy somebody has to remember
-- [ ] The politeness budget is computed, published, and asserted by a test against the configured schedule -- [T-026](../TODO/measurement.md)
+- [x] The politeness budget is computed, published, and asserted by a test against the configured schedule -- [T-026](../TODO/measurement.md). `src/trackers/politeness.py` computes it from the records a run produced, `render_sweep` publishes it, and the test reads `.github/workflows/health-sweep.yml` rather than a constant. A full-corpus sweep costs **7720 DNS lookups at worst against a ceiling of 100,000**, and 10,616 probes a day at D7's cadence. ⚠ The per-day figures are a projection: the sweep has no schedule trigger, and the workflow architecture that would add one is a separate open entry
 - [x] Every capability in the documentation is classified
 
 ### Operations

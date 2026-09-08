@@ -60,6 +60,7 @@ from typing import Any, Callable, Iterable, Sequence
 from .bep34 import Resolver
 from .model import HealthState, Rung, Tracker
 from .probe import (Failure, ProbeConfig, ProbeResult, health_state, probe)
+from .politeness import DEFAULT_INTERVAL_SECONDS, run_cost
 from .profile import Budget, budget_for
 from .vantage import UNKNOWN, Vantage, detect as detect_vantage
 
@@ -330,6 +331,12 @@ def render_sweep(result: SweepResult, *, generated_at: str,
                                                  config.attempt_floor),
             "deadline_seconds": config.deadline_seconds,
         },
+        # T-026: what this run cost the people it measured, computed from the
+        # records it produced rather than from a corpus figure typed beside
+        # them. `polite` is a verdict a consumer can check.
+        "politeness": run_cost(
+            result.records,
+            seconds_between_runs=DEFAULT_INTERVAL_SECONDS).as_record(),
         "counts": {
             "corpus": result.corpus,
             "selected": result.selected,

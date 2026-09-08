@@ -296,6 +296,12 @@ class ProbeResult:
             "vantage": dict(self.vantage),
             "bep34": dict(self.bep34),
             "dns": dict(self.dns),
+            # ⛔ D7 makes the tracker's own stated interval the authority on how
+            # often we may come back, and `classify_body` has read both keys
+            # since `C-65`. They were dropped here, so nothing downstream could
+            # honour a request the probe had already been told (T-026).
+            "interval": self.classification.get("interval"),
+            "min_interval": self.classification.get("min_interval"),
         }
 
 

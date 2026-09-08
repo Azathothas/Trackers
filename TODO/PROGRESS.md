@@ -62,7 +62,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **284** tests, no network |
+| Test suite | **302** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
@@ -81,9 +81,19 @@ blocked.**
 
 ## What this session has done so far
 
-**Three entries closed -- [T-037](measurement.md), [T-041](scoring.md) and
-[T-031](measurement.md), the leverage entry -- and two opened because of
-them: [T-038](measurement.md) and [T-039](measurement.md).**
+**Four entries closed -- [T-037](measurement.md), [T-041](scoring.md),
+[T-031](measurement.md), the leverage entry, and [T-026](measurement.md) -- and
+two opened because of them: [T-038](measurement.md) and
+[T-039](measurement.md).**
+
+⛔ **The number D7's whole rule rests on was measured and thrown away.** A
+tracker's stated `interval` and `min interval` have been read by
+`classify_body` since `C-65` and dropped by `ProbeResult.as_record`, so nothing
+could have honoured a request the probe had already been told.
+[T-026](measurement.md) carries them onto the record, computes what a run
+costs, and publishes it: a full-corpus sweep is **7720 DNS lookups at worst
+against a ceiling of 100,000**. The test that asserts it reads the workflow
+rather than a constant.
 
 ⭐ **Six IPv6-only trackers are alive**, in a category that was `unmeasurable`
 in every record this project had ever taken.
@@ -212,12 +222,12 @@ acceptance recorded, or open with what remains written into it.
 1. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
    cells over the HTTP corpus is roughly twelve thousand requests at somebody
    else's expense: a workflow over days, not a command.
-2. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
-   settled: D7's cadence, and DNS inside the budget at **100,000 lookups per
-   run**. ⚠ The second resolver adds to it: two queries per failing host and
-   up to six where nobody answers, which is 480 to 1440 per run today.
-3. **[T-064](publication.md)** - release channels. Its platform half is
+2. **[T-064](publication.md)** - release channels. Its platform half is
    measured.
+3. **[T-084](operations.md)** - the schedule and the workflow architecture.
+   ⭐ **Both of its inputs are now settled**: D7's cadence, and a computed
+   budget that says a full sweep costs 7.7% of the DNS ceiling. It is the last
+   thing between the sweep and running on its own.
 4. **[T-038](measurement.md)** - the HTTP prober does not choose its address,
    so `resolved_ip` is an inference on that path.
 5. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories

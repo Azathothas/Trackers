@@ -62,7 +62,7 @@ pretending to be one.
 | [T-020](measurement.md) | P1 | measurement | done | The health checker does not exist |
 | [T-024](measurement.md) | P1 | measurement | **done** | No health record carries vantage metadata, because no health record exists |
 | [T-025](measurement.md) | P1 | measurement | done | The health state machine and failure classification are undefined |
-| [T-026](measurement.md) | P1 | measurement | open | The politeness budget is neither computed nor published nor asserted |
+| [T-026](measurement.md) | P1 | measurement | **done** | The politeness budget is neither computed nor published nor asserted |
 | [T-029](measurement.md) | P1 | measurement | **done** | Probing has no concurrency control, timeout budget or cancellation behaviour |
 | [T-031](measurement.md) | P1 | measurement | **done** | Liveness for networks this vantage cannot reach -- the leverage entry |
 | [T-034](measurement.md) | P1 | measurement | **done** | The value gate rests on a 17-tracker arm, and a census would cost 82 probes |
@@ -126,7 +126,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 41 open, 0 blocked, 32 done
+**Counts:** 73 entries, 40 open, 0 blocked, 33 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -134,10 +134,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 2 | 0 | 5 | 7 |
-| P1 | 8 | 0 | 15 | 23 |
+| P1 | 7 | 0 | 16 | 23 |
 | P2 | 25 | 0 | 11 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **41** | **0** | **32** | **73** |
+| **All** | **40** | **0** | **33** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

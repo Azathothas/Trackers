@@ -416,7 +416,7 @@ Source:      RULES 4; decision D7
 Category:    measurement
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     RULES 4 states a ceiling. Nothing computes
              `trackers x probes-per-tracker x runs-per-day`, nothing publishes
@@ -465,6 +465,46 @@ Decision:    **D7 -- CLOSED by operator ruling 2026-08-29. Publish hourly; probe
              tracker is the only authority on the load it wants).
 Prove:       A test that fails when the configured schedule would exceed one
              probe per tracker per its stated interval.
+
+**Done.** `python3 -m unittest tests.test_politeness -v` -> **18 tests, OK**.
+`src/trackers/politeness.py` computes the cost, `render_sweep` publishes it in
+every run report, and the `Prove` clause's test **reads
+`.github/workflows/health-sweep.yml` itself** rather than a constant -- a check
+that asserted its own default would pass while the workflow scheduled a sweep
+every five minutes.
+
+⛔ **The number the whole rule rests on was measured and then thrown away.**
+`classify_body` has returned `interval` and `min_interval` since `C-65` landed,
+and `ProbeResult.as_record` dropped both, so no scheduler could have honoured a
+tracker's stated interval even in principle. They are on the record now. ⚠ The
+two committed sweeps predate that, so `probed_more_often_than_asked` is empty
+for them because nothing was stored, which is a different fact from every
+tracker being content -- the report says so in its own note.
+
+**Computed, from the runs that exist:**
+
+| run | trackers | hosts | probes/day at D7 | DNS worst case | ceiling |
+| --- | --- | --- | --- | --- | --- |
+| `33938543488` | 200 | 196 | 1600 | 1568 | 100,000 |
+| `34207344996` | 99 | 83 | 792 | 664 | 100,000 |
+| a full corpus | 1327 | 965 | 10,616 | 7720 | 100,000 |
+
+DNS is counted **per host** rather than per URL, because the resolver answer is
+cached per host per run; counting the port in reported load nobody generates,
+which a test caught. The worst case per host is **8** -- one BEP 34 TXT lookup,
+one `getaddrinfo`, and up to six for T-037's second opinion when the first
+fails -- so a full-corpus sweep sits at **7.7% of the operator's ceiling**.
+
+⭐ **`max(min_interval, interval)`, which the entry required and which is the
+opposite of the tempting reading.** A tracker sending both is asking for both,
+and only the longer number honours both. Five mutations were planted against
+these rules and every one failed a test, including the one that reads
+`interval` alone.
+
+⚠ **This does not schedule the sweep**, and the reason is not caution. The
+cadence is D7's and the ceiling is now computed, so what remains is the
+workflow architecture, which is [T-084](operations.md)'s open decision. That
+entry can now be worked against a number instead of a guess.
 
 ---
 
