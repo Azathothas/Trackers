@@ -48,8 +48,8 @@ from trackers.exclusion import (carries_private_credential,       # noqa: E402
 from trackers.pipeline import (aggregate, collect_exclusions,      # noqa: E402
                                enforced_exclusions, flagged_exclusions,
                                render_plaintext, render_report)
-from trackers.labelled import (metadata_for, render_csv,        # noqa: E402
-                               render_json)
+from trackers.labelled import (metadata_for, newest_observation,  # noqa: E402
+                               render_csv, render_json)
 from trackers.registry import SOURCES, Role, enabled_sources      # noqa: E402
 from trackers.state import read_state                            # noqa: E402
 
@@ -322,10 +322,11 @@ def main() -> int:
             payloads[name] = fh.read()
     with open(os.path.join(staging, "metadata.json"), "w",
               encoding="utf-8", newline="\n") as fh:
-        fh.write(metadata_for(payloads, generated_at=args.generated_at,
-                              code_version=code_version,
-                              count=len(agg.trackers),
-                              digest=json.loads(labelled_json)["digest"]))
+        fh.write(metadata_for(
+            payloads, generated_at=args.generated_at,
+            code_version=code_version, count=len(agg.trackers),
+            digest=json.loads(labelled_json)["digest"],
+            newest_observation_at=newest_observation(histories)))
 
     previous = args.out + ".previous"
     if os.path.exists(args.out):

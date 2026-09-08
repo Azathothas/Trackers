@@ -144,5 +144,53 @@ class TheConsumerHasWhatTheyNeed(unittest.TestCase):
             intervals=self.doc["stale_after_intervals"]).stale)
 
 
+class PublicationFreshnessIsNotMeasurementFreshness(unittest.TestCase):
+    """⛔ The gap found on 2026-09-09 while building the issue automation.
+
+    The publisher runs after every sweep **completion**, including a sweep that
+    failed, so `generated_at` keeps moving while no new observation arrives. A
+    consumer checking only that sees a fresh file full of ageing labels.
+    """
+
+    def test_the_document_says_when_it_last_learned_something(self):
+        from trackers.labelled import newest_observation
+        from trackers.state import TrackerHistory
+        url = "udp://a.example:6969/announce"
+        history = TrackerHistory.new(url, "2026-09-01T00:00:00Z").observe(
+            state="live", ok=True, observed_at="2026-09-02T00:00:00Z",
+            rung="tracker_semantic")
+        doc = json.loads(render_json(
+            [parse(url)], provenance={}, histories={url: history},
+            generated_at="2026-09-09T12:00:00Z", code_version="0.1.0"))
+        self.assertEqual(doc["newest_observation"], "2026-09-02T00:00:00Z")
+        self.assertNotEqual(doc["newest_observation"], doc["generated_at"],
+                            "the two fields answer different questions")
+        self.assertEqual(newest_observation({url: history}),
+                         "2026-09-02T00:00:00Z")
+
+    def test_with_no_observations_it_is_null_rather_than_the_clock(self):
+        """⛔ Never the generation time as a stand-in. That would report a
+        measurement that never happened."""
+        doc = json.loads(render_json(
+            [parse("udp://a.example:6969/announce")], provenance={},
+            generated_at="2026-09-09T12:00:00Z", code_version="0.1.0"))
+        self.assertIsNone(doc["newest_observation"])
+
+    def test_a_consumer_can_tell_a_fresh_file_from_fresh_labels(self):
+        """⭐ The property: a file written minutes ago whose newest observation
+        is days old is detectable, and detectable as the labels being stale
+        rather than the file."""
+        from trackers.state import TrackerHistory
+        url = "udp://a.example:6969/announce"
+        history = TrackerHistory.new(url, "2026-09-01T00:00:00Z").observe(
+            state="live", ok=True, observed_at=ago(86400 * 4),
+            rung="tracker_semantic")
+        doc = json.loads(render_json(
+            [parse(url)], provenance={}, histories={url: history},
+            generated_at=ago(60), code_version="0.1.0"))
+        self.assertFalse(assess(doc["generated_at"], now=NOW).stale)
+        self.assertTrue(assess(doc["newest_observation"], now=NOW).stale)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -59,7 +59,7 @@ from .model import HealthState, Tracker
 from .state import TrackerHistory
 
 __all__ = ["FIELDS", "CSV_FIELDS", "row_for", "render_json", "render_csv",
-           "digest_of", "metadata_for"]
+           "digest_of", "metadata_for", "newest_observation"]
 
 #: Every field emitted in JSON, in the order the schema defines them. The tuple
 #: is the contract: `tests/test_labelled.py` diffs it against `docs/schema.md`
@@ -109,7 +109,8 @@ def digest_of(rows) -> str:
 
 
 def metadata_for(paths_and_bytes, *, generated_at: str, code_version: str,
-                 count: int, digest: str) -> str:
+                 count: int, digest: str,
+                 newest_observation_at: str | None = None) -> str:
     """The release's own description, as `metadata.json`.
 
     ⛔ **This exists because CSV cannot carry document metadata** and T-062
@@ -136,6 +137,7 @@ def metadata_for(paths_and_bytes, *, generated_at: str, code_version: str,
         "dataset_digest": digest,
         "publish_interval_seconds": PUBLISH_INTERVAL_SECONDS,
         "stale_after_intervals": STALE_AFTER_INTERVALS,
+        "newest_observation": newest_observation_at,
         "files": files,
         "schema": "schema.md, published beside this file",
     }, indent=2, sort_keys=True) + "\n"
@@ -209,6 +211,23 @@ def _rows(trackers: list[Tracker], provenance: Mapping[str, list[str]],
             for t in sorted(trackers, key=Tracker.sort_key)]
 
 
+def newest_observation(histories: Mapping[str, TrackerHistory] | None) -> str | None:
+    """When the most recent observation in the history was taken, or `None`.
+
+    ⛔ **Publication freshness is not measurement freshness, and conflating them
+    hides the failure that matters.** The publisher runs after every sweep
+    *completion* -- including a sweep that failed -- so `generated_at` keeps
+    moving while no new observation arrives. A consumer checking only that
+    would see a fresh file full of ageing labels.
+
+    Found on 2026-09-09 while building the issue automation on top of the
+    staleness contract: the automation asks the state file when it last learned
+    something, and the published data could not answer the same question.
+    """
+    stamps = [h.last_seen for h in (histories or {}).values() if h.last_seen]
+    return max(stamps) if stamps else None
+
+
 def render_json(trackers: list[Tracker], *, provenance: Mapping[str, list[str]],
                 histories: Mapping[str, TrackerHistory] | None = None,
                 generated_at: str, code_version: str,
@@ -241,6 +260,8 @@ def render_json(trackers: list[Tracker], *, provenance: Mapping[str, list[str]],
         # number says so.
         "publish_interval_seconds": PUBLISH_INTERVAL_SECONDS,
         "stale_after_intervals": STALE_AFTER_INTERVALS,
+        # ⛔ Not the same question as `generated_at`. See `newest_observation`.
+        "newest_observation": newest_observation(histories),
         "count": len(trackers),
         "fields": list(FIELDS),
         # ⚠ Stated in the data rather than only in the documentation, because

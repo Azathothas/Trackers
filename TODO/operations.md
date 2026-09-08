@@ -11,7 +11,7 @@ Source:      the brief's section 20 (issue automation)
 Category:    operations
 Priority:    P2
 Effort:      L
-Status:      open
+Status:      done
 
 Problem:     Nothing surfaces an exception to a human, so every failure mode
              this project designs against would currently fail silently -- which
@@ -46,6 +46,51 @@ Decision:    Issues must deduplicate, carry evidence, be labelled, concise,
 Prove:       Tests that a repeated condition produces one issue and not many,
              that the issue closes when the condition clears, and that no issue
              body exceeds a stated size.
+
+**Done.** `python3 -m unittest tests.test_issues -v` -> **23 tests, OK**. All
+three `Prove` properties are unit-tested rather than integration-hoped, because
+the decision is a **pure function**: `src/trackers/issues.py` takes the
+conditions a run observed plus the issues already open and returns what to
+open, update and close. `scripts/raise-issues.py` is the thin layer that acts,
+and it is ⛔ **dry run by default** -- `--apply` is required to write anything.
+
+**Driven against the real repository and the published state**: 430 histories,
+newest observation `2026-09-08T21:33:23Z`, **0 conditions, nothing written**.
+⭐ That is the property that matters most: an automation which cries wolf gets
+muted, so being silent when nothing is wrong is the behaviour to verify first.
+
+⛔ **Deduplication is on a marker in the body, never the title.** A person may
+edit a title, and an automation matching on it files a second issue because
+somebody clarified the first one. A body with **no** marker is somebody's own
+issue and is never touched -- closing a person's issue because the title looked
+familiar would do more damage than the condition being reported.
+
+⚠ **Lowest issue number wins among duplicates**, which is the oldest and
+therefore the one people are subscribed to. The first version took whichever
+the API returned first while its comment claimed otherwise, and the test is
+what found it.
+
+**Three conditions are wired**, and the rest wait on the thing they would
+report on rather than on effort:
+
+| condition | state |
+| --- | --- |
+| source failed / rejected / empty | **wired**, with the evidence T-080 lists and RULES 3.2 in the issue text so a maintainer does not think data was lost |
+| watched tracker failing every check | **wired** ([T-047](../TODO/scoring.md)), carrying the **vantage**, so `dead` and `dead from one datacenter` are distinguishable. ⛔ Only the maintainer's hardcoded entries: filing for every tracker that stops answering would be a thousand issues |
+| dataset stale | **wired** ([T-002](../TODO/claims.md)), naming the 60-day rule so the first thing checked is whether the schedule is still enabled |
+| release failure | waits on releases being used at all ([T-064](../TODO/publication.md) built the semantics; nothing uses them) |
+| housekeeping failure | waits on [T-081](operations.md) |
+| persistent CI failure | waits on a run-history read this project does not do |
+| dependency or security issue | there is no dependency to fail (D1: standard library only) |
+
+⛔ **A condition for a feature that does not exist would be dead config**, which
+is the forbidden pattern about a setting no code reads. Each row above names
+what it waits on rather than being quietly dropped (RULES 9.1).
+
+**The body is capped at 8000 bytes and says when it truncated**, because a
+maintainer reading half the evidence with no sign there was more is worse than
+a shorter summary. ⚠ `C-44`: an artefact expires after 90 days, so evidence is
+summarised **into** the body and a run reference is a supplement.
 
 ---
 

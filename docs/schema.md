@@ -92,6 +92,7 @@ Outside `trackers`, the JSON document carries:
 | `schema_version` | The field set's version. Bumped when a field is added, removed or changes meaning, so a consumer detects a shape change without diffing rows. |
 | `normalization_version` | The version of the rules that produced the URLs. ⛔ Pinned by a golden table in [`../tests/test_versions.py`](../tests/test_versions.py): changing what normalization does without moving this number fails a gate, because an unpinned version is a number somebody remembers to update. |
 | `scoring_version` | ⛔ `null`, and that is the honest value: no scoring model is chosen ([T-044](../TODO/scoring.md)), so there is no methodology to version. A `1` here would tell you one exists and is stable. |
+| `newest_observation` | When the most recent health observation in this dataset was taken, or `null`. ⛔ **Not the same question as `generated_at`**: the publisher runs after every sweep, including one that failed, so a file can be minutes old and its labels much older. Check both. |
 | `publish_interval_seconds` | How often this dataset expects to be regenerated. ⭐ Present so you can decide it has gone stale **without us**: see below. |
 | `stale_after_intervals` | How many missed publications before treating the data as stale. Three, not one, because a scheduled run can be late and one was observed 163 minutes late. |
 | `digest` | `sha256:` over the rows, canonically serialised. ⭐ Two documents with one digest carry the same data whatever their `generated_at` says, which is how you tell a re-publication from a change. |
@@ -146,6 +147,13 @@ stale = age > doc["publish_interval_seconds"] * doc["stale_after_intervals"]
 A CSV or plaintext consumer reads the same two fields from `metadata.json`.
 ⚠ **A watchdog of ours could not tell you this**, because it would run on the
 schedule that stopped.
+
+⛔ **Check `newest_observation` as well as `generated_at`.** They answer
+different questions and the difference is where the interesting failure hides:
+the publisher runs after every sweep *completion*, so if measurement stops
+while publication continues, the file stays fresh and the labels quietly age.
+`generated_at` tells you when the file was written; `newest_observation` tells
+you when anything was last learned.
 
 ## Cross-format consistency
 

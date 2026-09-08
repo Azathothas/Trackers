@@ -271,7 +271,7 @@ manual observation.**
 
 - [x] Test: a failed generation leaves prior public data intact -- demonstrated by an actual failed run, not asserted
 - [x] Test: overlapping runs cannot race; concurrency controls are in place -- [T-085](../TODO/operations.md), done. Read out of the workflow files: every workflow has a group, the one that writes sets `cancel-in-progress: false` because cancelling a publication mid-write is the failure rather than the fix, and it is the only writer -- partly; [T-085](../TODO/operations.md)
-- [ ] Test: automated issues deduplicate, carry evidence, and close when resolved -- [T-080](../TODO/operations.md)
+- [x] Test: automated issues deduplicate, carry evidence, and close when resolved -- [T-080](../TODO/operations.md), done. The decision is a pure function, so all three properties are unit-tested: one issue per condition over a hundred runs, closing when it clears, and a body capped at 8000 bytes that says when it truncated. ⭐ Driven against the real repository and the published state: **0 conditions, nothing written**, which is the behaviour to verify first
 - [ ] Test: history housekeeping preserves the dataset and never touches `main` -- [T-081](../TODO/operations.md)
 - [x] Data-branch history reset is safe **because history lives in files** -- RULES 3.7, and no code infers history from git
 - [x] Consumer pin-target guidance is documented
