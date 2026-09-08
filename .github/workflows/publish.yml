@@ -167,6 +167,18 @@ jobs:
               exit 1
             fi
           done
+          # ⛔ EXISTENCE, not size, and the difference is deliberate. Three of
+          # the five categories are **legitimately empty**: `stable.txt` until
+          # a tracker has five observations, `foss.txt` until a FOSS source or
+          # the operator's seed exists, `hardcoded.txt` until there is an input
+          # file. Checking `-s` here would refuse to publish because the
+          # dataset is honest about what it does not know yet.
+          for f in common.txt anime.txt stable.txt foss.txt hardcoded.txt; do
+            if [ ! -f "build/data/$f" ]; then
+              echo "::error::build/data/$f was not generated; not publishing"
+              exit 1
+            fi
+          done
           python3 - <<'PY'
           import json
           with open("build/data/trackers_all.json", encoding="utf-8") as fh:
@@ -181,7 +193,9 @@ jobs:
         run: |
           cp build/data/trackers_all.txt build/data/trackers_all.json \
              build/data/trackers_all.csv build/data/report.md \
-             build/data/metadata.json published/
+             build/data/metadata.json build/data/common.txt \
+             build/data/anime.txt build/data/stable.txt \
+             build/data/foss.txt build/data/hardcoded.txt published/
           cp sweep-in/state.jsonl published/state.jsonl 2>/dev/null || true
           cp docs/schema.md published/schema.md
           cd published

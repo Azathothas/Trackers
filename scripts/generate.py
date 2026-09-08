@@ -42,6 +42,7 @@ import _scope  # noqa: E402 - reconfigures stdout on import
 
 from trackers import NORMALIZATION_VERSION, __version__          # noqa: E402
 from trackers.acquire import Outcome, fetch, read_cached          # noqa: E402
+from trackers.categories import select_all                        # noqa: E402
 from trackers.exclusion import (carries_private_credential,       # noqa: E402
                                 summarise)
 from trackers.pipeline import (aggregate, collect_exclusions,      # noqa: E402
@@ -233,6 +234,14 @@ def main() -> int:
         # how a history gets corrupted.
         histories, _ = read_state(args.state)
 
+    # T-046. Five categories, each with a rule a consumer can audit, and an
+    # empty one says whether the rule matched nothing or the evidence it needs
+    # does not exist yet.
+    categories = select_all(
+        agg.trackers, provenance=agg.provenance,
+        source_categories={s.id: s.category for s in SOURCES},
+        histories=histories)
+
     plaintext = render_plaintext(agg.trackers)
     labelled_json = render_json(agg.trackers, provenance=agg.provenance,
                                 histories=histories,
@@ -258,6 +267,11 @@ def main() -> int:
           f"-> enforced {len(enforced)} (operator request + safety), "
           f"kept-and-flagged {len(flagged)} (someone else's measurement)")
     print(f"entries refused and recorded with a reason: {len(agg.excluded)}")
+    for name, selection in sorted(categories.items()):
+        state = "" if selection.evidence_available else "  [evidence absent]"
+        print(f"category {name:10s} {selection.count:5d}{state}")
+        print(f"    rule: {selection.rule}")
+        print(f"    why : {selection.reason}")
 
     if problems:
         print("\nVERIFICATION FAILED -- nothing was published:")
@@ -292,9 +306,17 @@ def main() -> int:
     # digest per file live in their own artefact and a consumer of any format
     # can answer what they received. Written last, so its digests cover the
     # files as they were actually staged rather than as they were in memory.
+    # ⛔ `hardcoded` keeps the maintainer's order; everything else is sorted.
+    # Rendering it sorted would silently rewrite somebody's file.
+    for name, selection in sorted(categories.items()):
+        with open(os.path.join(staging, f"{name}.txt"), "w",
+                  encoding="utf-8", newline="\n") as fh:
+            fh.write(render_plaintext(list(selection.trackers),
+                                      preserve_order=(name == "hardcoded")))
+
     payloads = {}
     for name in ("trackers_all.txt", "trackers_all.json", "trackers_all.csv",
-                 "report.md"):
+                 "report.md", *(f"{c}.txt" for c in sorted(categories))):
         with open(os.path.join(staging, name), "rb") as fh:
             payloads[name] = fh.read()
     with open(os.path.join(staging, "metadata.json"), "w",

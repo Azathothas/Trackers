@@ -68,7 +68,7 @@ pretending to be one.
 | [T-034](measurement.md) | P1 | measurement | **done** | The value gate rests on a 17-tracker arm, and a census would cost 82 probes |
 | [T-040](scoring.md) | P1 | scoring | **done** | There is no state or history, so nothing can be scored |
 | [T-043](scoring.md) | P1 | scoring | **done** | The six scoring invariants are not enforced by anything |
-| [T-046](scoring.md) | P1 | scoring | open | The five required categories do not exist |
+| [T-046](scoring.md) | P1 | scoring | **done** | The five required categories do not exist |
 | [T-060](publication.md) | P1 | publication | **done** | JSON and CSV outputs do not exist |
 | [T-061](publication.md) | P1 | publication | **done** | Cross-format consistency is unverified |
 | [T-063](publication.md) | P1 | publication | **done** | There is no data branch and nothing is published anywhere |
@@ -126,7 +126,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 30 open, 0 blocked, 43 done
+**Counts:** 73 entries, 29 open, 0 blocked, 44 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -134,10 +134,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 1 | 0 | 6 | 7 |
-| P1 | 1 | 0 | 22 | 23 |
+| P1 | 0 | 0 | 23 | 23 |
 | P2 | 22 | 0 | 14 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **30** | **0** | **43** | **73** |
+| **All** | **29** | **0** | **44** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

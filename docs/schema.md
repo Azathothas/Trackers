@@ -8,6 +8,20 @@ in both directions.
 The files are `trackers_all.json` and `trackers_all.csv`, and they carry the
 same rows. `trackers_all.txt` is the same tracker set with the labels stripped.
 
+**Five category files** sit beside them, each with a rule you can audit:
+
+| file | membership |
+| --- | --- |
+| `common.txt` | the other categories merged, plus every tracker whose most recent observation was `live`. ⭐ **Start here.** |
+| `anime.txt` | provenance from a source the registry classifies `anime`. |
+| `stable.txt` | measured only: at least 5 observations at a success rate of 0.95 or better. ⛔ **Empty until the history is deep enough**, and empty is the honest answer -- a reputation-seeded file pretending to be measured is not. |
+| `foss.txt` | derived from FOSS-ecosystem provenance, plus a seed labelled as curated. Neither half has content yet. |
+| `hardcoded.txt` | the maintainer's manual list, in their order, never sorted or ranked. |
+
+⚠ **An empty category file is not a defect.** `report.md` says for each one
+whether the rule matched nothing or the evidence it needs does not exist yet,
+because those are different states.
+
 ⛔ **The labels are the product.** Taken unfiltered this list is longer and
 less likely to answer than the baseline it aggregates; filtering it by what
 measured live is what makes it worth using

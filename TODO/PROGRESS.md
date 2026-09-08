@@ -27,6 +27,7 @@ each: [INDEX.md](INDEX.md).
   stopped publishing this machine's resolver as a property of a name, stopped
   being willing to dial an address that points at itself, and reached a
   category of tracker that every previous record called unmeasurable.
+- ⭐ **Every P0 and P1 is closed except [T-012](claims.md)**, which waits on the sweep's rotation covering more of the corpus rather than on work.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
 - ⭐ **The dataset is published and it accumulates.** `data` branch, six files
   at `raw.githubusercontent.com/Azathothas/Trackers/data/`. The chain sweep ->
@@ -65,7 +66,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **427** tests, no network |
+| Test suite | **443** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |

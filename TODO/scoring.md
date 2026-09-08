@@ -347,7 +347,7 @@ Source:      the brief's section 16 (the five required categories)
 Category:    scoring
 Priority:    P1
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     Only one output file exists. Five are required and each has its own
              rule.
@@ -398,6 +398,44 @@ Decision:    **The bootstrap problem is real and must be visible.** On day one
 Prove:       Per-category tests: `stable.txt` is empty or every member has a
              sample count above the stated threshold; `hardcoded.txt` preserves
              order and self-deduplicates; category invariants hold.
+
+**Done.** `python3 -m unittest tests.test_categories -v` -> **16 tests, OK**.
+`src/trackers/categories.py` holds the five rules and `scripts/generate.py`
+writes the five files. Against the committed fixtures:
+
+| file | members | why |
+| --- | --- | --- |
+| `anime.txt` | **1074** | provenance from `desirefire_all`, which the registry classifies `anime` |
+| `common.txt` | **79** | the other categories merged, plus every tracker that measured live |
+| `stable.txt` | **0** | no tracker has 5 observations; the deepest history is 2 |
+| `foss.txt` | **0** | no source is classified `foss` and the curated seed is empty |
+| `hardcoded.txt` | **0** | no input file yet ([T-106](sources.md)) |
+
+⭐ **Two are derivable today and three are honestly empty**, and which is which
+is a property of the evidence rather than of the effort spent. The registry
+already carried `category` on every source, so `anime` is provenance-derived
+and auditable rather than a judgement about content.
+
+⛔ **An empty category says which kind of empty it is.** `evidence_available`
+separates "the rule matched nothing" from "the evidence the rule needs does not
+exist yet", the same distinction acquisition draws between `EMPTY` and `FAILED`.
+A file that is empty for an unstated reason looks like a defect and gets fixed
+by somebody filling it in, which is the methodology lie this entry is about.
+
+**The bootstrap problem is visible rather than solved**, as the `Decision`
+requires: `stable.txt` is empty on day one and the report says the deepest
+history is 2 observations against a threshold of 5.
+
+⚠ **The threshold is a judgement recorded as one**, not a measurement: 5
+observations at a 0.95 success rate. It is deliberately **above**
+`MIN_SAMPLES_FOR_DEATH`, which is 3, because the evidence needed to recommend a
+tracker should exceed the evidence needed to stop claiming it is alive. A test
+asserts that ordering so the two cannot drift together.
+
+⛔ **The publisher checks these five for existence rather than size.** A
+non-empty check would refuse to publish precisely because the dataset is honest
+about what it does not know, and the comment beside it says so -- otherwise a
+later session tidies it to `-s` and the publish starts failing.
 
 ---
 
