@@ -72,7 +72,7 @@ committed under `experiments/results/`.
 | C-03 | Trackers commonly rate-limit or block datacenter address ranges, so runner measurements under-report liveness | `UNVERIFIED` -- one weak sample, not enough to conclude | `experiments/02`, cross-read against newTrackon as oracle | Vantage labelling in RULES 3.4 stays regardless; it costs nothing and is correct either way. |
 | C-04 | Runners may have no IPv6 egress | **`VERIFIED`** -- no IPv6 egress, on both images | `experiments/01-host-network-baseline.py` | Consequence applied: IPv6-only trackers are `unmeasurable`, never `dead`. |
 | C-05 | From the authoring sandbox, `github.com` and `api.github.com` returned HTTP 403 while `raw.githubusercontent.com` returned 200 | `SANDBOX-1`, **and environment-specific** | `curl -o /dev/null -w '%{http_code}'` | Confirmed environment-specific: in *this* session `api.github.com` returned **200**. The row is retained because it explains why the authoring round's GitHub claims were README-depth. |
-| C-06 | Runner DNS resolvers may filter or behave differently from a consumer resolver | **`VERIFIED`** -- no divergence observed at n=17 | `experiments/04-dns-resolver-divergence.py` | No filtering found, so `dns_failure` may be read as a property of the name -- **at this sample size only**. |
+| C-06 | Runner DNS resolvers may filter or behave differently from a consumer resolver | **`VERIFIED`, and divergence IS observed at n=239** | `experiments/04`, `experiments/30` | ⛔ `dns_failure` may **not** be read as a property of the name. On both runner images the runner's own resolver failed on `openbittorrent.com` and `tracker.openbittorrent.com` -- 5 corpus URLs -- which public resolvers answer for. |
 
 **Verification records**
 
@@ -113,6 +113,38 @@ committed under `experiments/results/`.
   `OSError: [Errno 101] Network is unreachable`. Independently corroborated:
   `experiments/05` hit the same error against `tracker.ipv6tracker.ru`, and
   `experiments/02` classified `retracker.hotplug.ru` as `no_ipv4_address`.
+* **C-06, `experiments/30-resolution-failure-classes.py`, 2026-09-08, run
+  `34210496112`.** The n=17 reading below is superseded in its consequence,
+  not in its result: it found no divergence and there was none to find at that
+  size.
+
+  Over the **full corpus** on both runner images -- 759 name-addressed hosts,
+  239 of which the runner's own resolver could not answer for -- a second,
+  independent resolver answers for **3 of 239 on `ubuntu-24.04`** and **2 of
+  239 on `ubuntu-22.04`**. The names are the finding:
+
+  | host | runner's resolver said | public resolvers say | corpus URLs |
+  | --- | --- | --- | --- |
+  | `openbittorrent.com` | `gaierror -3: Temporary failure in name resolution` | `ipv4` | 2 |
+  | `tracker.openbittorrent.com` | `gaierror -3: Temporary failure in name resolution` | `ipv4` | 3 |
+  | `tracker.parrotlinux.org` (24.04 only) | `gaierror -2: Name or service not known` | `ipv4`, `ipv6` | 2 |
+
+  ⛔ **OpenBitTorrent is one of the best-known public trackers there is**, and
+  a probe from either runner image would record all five of its URLs
+  `dns_failure`. That is precisely "our resolver has an opinion" published as
+  "the tracker is gone", which is the failure this project exists to avoid.
+
+  ⭐ **It has not reached a committed record.** Neither the 200-tracker stride
+  sweep nor the 99-tracker baseline census happened to include those hosts, so
+  no published health state is wrong today. A **full-corpus** sweep would have
+  five, and that is the point of finding it now.
+
+  ⚠ **This does NOT reopen `src/trackers/bep34.py`'s decision 5**, and the
+  distinction matters. That decision is about querying one public resolver
+  versus all three; this measured the **host's** resolver against public ones.
+  BEP 34 already uses public resolvers and is not affected. What is affected is
+  `src/trackers/probe.py`'s `_resolve`, which uses `socket.getaddrinfo` --
+  [T-037](../TODO/measurement.md) is the entry.
 * **C-06, `experiments/04`, 2026-09-01, run `33383406869`.** Conditions: 17
   hostnames x (local resolver + 3 pinned public resolvers). Result on **both**
   images: **agree 14, both_failed 3, divergent 0**, and no case of "local
@@ -388,7 +420,8 @@ Corpus cloned and pinned; commits recorded in
   `render_plaintext` already emits -- which was a refusal to guess and is now a
   measured choice.
 
-  ⚠ **CRLF survived aria2** -- surrounding whitespace including a trailing ``
+  ⚠ **CRLF survived aria2** -- surrounding whitespace including a trailing `
+`
   is trimmed. That is one client's tolerance, it is exactly the kind that is
   not portable, and it is not a licence to emit CRLF.
 

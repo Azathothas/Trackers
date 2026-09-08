@@ -23,6 +23,7 @@ Exit codes:
 from __future__ import annotations
 
 import ast
+import importlib.util
 import os
 import sys
 
@@ -71,6 +72,27 @@ def _local_names(repo: str) -> set[str]:
     return names
 
 
+def _installed_elsewhere(name: str) -> bool:
+    """Whether `name` resolves to something outside this repository.
+
+    Asked with every path inside the repository removed from `sys.path`, so
+    the local file cannot answer for itself. ⚠ Best-effort by construction: an
+    import system that raises here is reported as "not installed", because
+    failing the gate on an unanswerable question would make it unusable on a
+    host with an unusual importer.
+    """
+    saved = list(sys.path)
+    try:
+        sys.path = [p for p in sys.path
+                    if p and not os.path.abspath(p).startswith(REPO)]
+        try:
+            return importlib.util.find_spec(name) is not None
+        except (ImportError, ValueError, AttributeError):
+            return False
+    finally:
+        sys.path = saved
+
+
 def top_level_imports(path: str) -> set[str]:
     with open(path, encoding="utf-8") as fh:
         try:
@@ -96,6 +118,35 @@ def main() -> int:
         return 2
     stdlib = set(sys.stdlib_module_names)
     local = LOCAL | _local_names(REPO)
+
+    # ⛔ A LOCAL NAME THAT IS ALSO AN INSTALLED PACKAGE IS NOT A PASS.
+    #
+    # Found by the door sweep of 2026-09-08. `local` is built from filenames,
+    # so a file under `scripts/` named after a package makes importing that
+    # package pass **anywhere in the tree** -- measured, not supposed: planting
+    # that pair returned exit 0 and "standard library only. D1 holds."
+    #
+    # ⚠ The hole predates the `scripts` root that found it; `src` and `.` have
+    # had it since the roots existed. It is fixed here rather than noted,
+    # because a checker that can be silenced by adding a file is the
+    # "allowlist applied to the whole line" row of
+    # `docs/conventions/forbidden-patterns.md` wearing a different shape.
+    #
+    # ⭐ The test is which one would actually be imported, and that depends on
+    # `sys.path` order at runtime -- so a collision is refused rather than
+    # resolved. Being ambiguous is the defect.
+    collisions = sorted(n for n in local
+                        if n not in stdlib and _installed_elsewhere(n))
+    if collisions:
+        print("FAIL  a project-local module name collides with an installed "
+              "package:")
+        for n in collisions:
+            print(f"  - {n!r} exists both in this repository and on sys.path "
+                  "outside it")
+        print("\nWhich one an import resolves to depends on sys.path order at "
+              "runtime, so this check cannot tell a local import from a "
+              "dependency. Rename the local file.")
+        return 1
 
     offenders: list[tuple[str, str]] = []
     checked = 0

@@ -1410,3 +1410,65 @@ taken on a GitHub runner, whose resolver was not compared. **So this does not
 say the corpus's `dns_failure` records are wrong** -- it says the class of
 error is real and unmeasured on the vantage that matters. Running experiment 30
 on a runner is what would close that, and it is on [T-007](../TODO/claims.md).
+
+---
+
+### T-037 A `dns_failure` records our resolver's opinion, and a better one is already in the tree
+
+Source:      `C-06` re-measured; `experiments/30`, run `34210496112`
+Category:    measurement
+Priority:    P1
+Effort:      M
+Status:      open
+
+Problem:     `src/trackers/probe.py`'s `_resolve` calls
+             `socket.getaddrinfo`, so `Failure.DNS_FAILURE` means **"the
+             runner's resolver did not answer"** and is published as though it
+             meant "this name does not exist". Those are different facts and
+             this project's whole premise is not conflating them.
+Premise:     **Measured on the vantage that matters, on both images.**
+             `experiments/30`, run `34210496112`: of 239 hosts the runner's own
+             resolver could not answer for, public resolvers answer for **3**
+             on `ubuntu-24.04` and **2** on `ubuntu-22.04` -- including
+             `openbittorrent.com` and `tracker.openbittorrent.com`, **5 corpus
+             URLs**, with `Temporary failure in name resolution`.
+
+             ⭐ **The better resolver is already here.**
+             `src/trackers/bep34.py` carries this project's own DNS client
+             against three public resolvers, and it grew `addresses()` for
+             exactly this question. Nothing needs building; something needs
+             wiring.
+
+             ⚠ **No committed record is wrong today.** Neither sweep sampled
+             those hosts. A full-corpus sweep would carry five, which is why
+             this is worth doing before one runs rather than after.
+Approach:    ⛔ **Not "replace `getaddrinfo`".** It is the resolver a consumer
+             on that machine would use, so what it says is a real fact about
+             that vantage and must not be discarded.
+
+             Record both, and distinguish the states:
+             1. `getaddrinfo` answers -> unchanged, and no second query is
+                made. The overwhelming majority (520 of 759) take this path and
+                the DNS load does not move.
+             2. `getaddrinfo` fails and the public resolver answers ->
+                a **new failure value**, distinct from `DNS_FAILURE`, meaning
+                "our resolver could not, another can". It belongs in `ABOUT_US`
+                so it can never produce `dead` (RULES 3.1), and the record
+                carries both answers.
+             3. both fail, NXDOMAIN -> the strongest not-resolving signal this
+                project can produce, and still not `dead`.
+             4. both fail, no definitive answer -> `undetermined`.
+Decision:    A second lookup only where the first failed, never for every
+             tracker. 239 of 759 hosts in the current corpus, one extra query
+             each at worst, and RULES 15.2 bounds what CI may spend.
+             Rejected: querying the public resolver first (it would triple this
+             project's visible DNS footprint against public resolvers for a
+             gain that only applies to a quarter of hosts); and silently
+             preferring whichever resolver answers, which would delete the
+             fact that they disagreed -- the disagreement is the finding.
+Prove:       `python3 -m unittest tests.test_probe -v` covers a host that
+             `getaddrinfo` refuses and the injected public resolver answers,
+             asserting the new failure value, that it is in `ABOUT_US`, and
+             that `health_state` cannot return `dead` for it. Then a sweep
+             record shows the value in use, and `HISTORY/claims.md` `C-06`
+             cites it.

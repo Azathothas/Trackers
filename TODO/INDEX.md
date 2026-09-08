@@ -81,13 +81,14 @@ pretending to be one.
 | [T-107](sources.md) | P1 | sources | **done** | The pipeline republishes private-tracker credentials |
 | [T-005](claims.md) | P2 | claims | open | WebTorrent trackers are unmeasurable by default and nobody has tried |
 | [T-006](claims.md) | P2 | claims | open | Actions billing for public repositories is unverified |
-| [T-007](claims.md) | P2 | claims | open | Resolver agreement was measured at n=17 on one day |
+| [T-007](claims.md) | P2 | claims | **done** | Resolver agreement was measured at n=17 on one day |
 | [T-022](measurement.md) | P2 | measurement | **done** | UDP scrape needs a synthetic infohash and the ladder does not model that |
 | [T-023](measurement.md) | P2 | measurement | done | Yggdrasil trackers addressed by hostname are silently misclassified as clearnet |
 | [T-028](measurement.md) | P2 | measurement | **done** | newTrackon is available as an oracle and is not being used as one |
 | [T-030](measurement.md) | P2 | measurement | open | Experiments 3-18 from the original programme were never run |
 | [T-033](measurement.md) | P2 | measurement | **done** | The experiments and the probe carry two copies of one codec |
 | [T-035](claims.md) | P2 | claims | open | Four of the five clients that matter are absent, not passing |
+| [T-037](measurement.md) | P1 | measurement | open | A `dns_failure` records our resolver's opinion, and a better one is already in the tree |
 | [T-036](measurement.md) | P2 | measurement | **done** | 351 tracker URLs do not resolve, and nobody has asked why |
 | [T-041](scoring.md) | P2 | scoring | open | History must distinguish seven shapes over time, not seven values |
 | [T-042](scoring.md) | P2 | scoring | open | The state size over five years has never been computed |
@@ -123,7 +124,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 70 entries, 45 open, 0 blocked, 25 done
+**Counts:** 71 entries, 45 open, 0 blocked, 26 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -131,10 +132,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 2 | 0 | 5 | 7 |
-| P1 | 11 | 0 | 11 | 22 |
-| P2 | 26 | 0 | 8 | 34 |
+| P1 | 12 | 0 | 11 | 23 |
+| P2 | 25 | 0 | 9 | 34 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **45** | **0** | **25** | **70** |
+| **All** | **45** | **0** | **26** | **71** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

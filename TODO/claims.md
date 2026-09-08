@@ -316,7 +316,7 @@ Source:      `C-06`
 Category:    claims
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     `C-06` is marked `VERIFIED` on the strength of 17 hostnames x 4
              resolvers, one day, zero divergence. That is a real measurement and
@@ -356,11 +356,47 @@ resolver has not been compared with anything. So what is established is that
 the failure class is real and that the corpus is a big enough sample to see it
 -- not that the runner diverges.
 
-**What remains, and it is now small:** run `experiments/30` on a runner and
-compare. That is one workflow step against a corpus already assembled, and it
-answers both this entry and `src/trackers/bep34.py`'s decision 5, which says
-in the code that a measured divergence is what reopens the choice to take the
-**first** definitive resolver answer rather than querying all three.
+**Done, and the runner answered.** `p0-ground-truth.yml` gained a
+`dns_census` dispatch input; run **`34210496112`** ran `experiments/30` on
+both images. Results committed as
+`experiments/results/30.ubuntu-24.04.run34210496112.json` and its `22.04`
+twin.
+
+⛔ **Divergence on the vantage that matters is NOT zero.** Of the 239 hosts
+the runner's own resolver could not answer for, public resolvers answer for
+**3 on `ubuntu-24.04`** and **2 on `ubuntu-22.04`**:
+
+| host | the runner said | public resolvers say | corpus URLs |
+| --- | --- | --- | --- |
+| `openbittorrent.com` | `Temporary failure in name resolution` | `ipv4` | 2 |
+| `tracker.openbittorrent.com` | `Temporary failure in name resolution` | `ipv4` | 3 |
+| `tracker.parrotlinux.org` (24.04 only) | `Name or service not known` | `ipv4`,`ipv6` | 2 |
+
+⭐ **So `C-06`'s consequence is overturned while its result stands.** The n=17
+run found no divergence and there was none to find at that size; the row used
+to say `dns_failure` "may be read as a property of the name", and it may not.
+OpenBitTorrent is one of the best-known public trackers there is and this
+vantage cannot resolve it.
+
+⚠ **No published record is wrong today** -- neither sweep sampled those hosts --
+which is the difference between finding this now and finding it after a
+full-corpus sweep.
+
+⛔ **It does NOT reopen `src/trackers/bep34.py`'s decision 5, and the earlier
+paragraph above said it would.** That is corrected here rather than edited
+(RULES 7). Decision 5 is about querying **one public resolver versus all
+three**; what was measured is the **host's** resolver against public ones. BEP
+34 already uses public resolvers and is untouched by this. The module that is
+affected is `src/trackers/probe.py`, whose `_resolve` calls `getaddrinfo`, and
+[T-037](../TODO/measurement.md) is the entry that wires the better resolver in
+behind it.
+
+**The `Prove` clause was satisfied by a different instrument, recorded rather
+than quietly substituted (RULES 9).** It named `experiments/04 --targets <full
+corpus>`. `experiments/30` answers the same question over the same corpus and
+additionally separates NXDOMAIN from a failure to determine, which `04` does
+not; running `04` as well would have been a second instrument for one question.
+The rate is recorded in `HISTORY/claims.md` `C-06` as the clause required.
 
 ---
 
