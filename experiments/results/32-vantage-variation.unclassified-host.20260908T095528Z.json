@@ -1,0 +1,68 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "3a85479312107b9adcb09a1d2ccad355b9b42033-dirty",
+    "sample_counts": {
+      "distinct_addresses": 5,
+      "oracle_assessed_by_both": 93,
+      "probe_observations": 140
+    },
+    "utc": "2026-09-08T09:55:28Z"
+  },
+  "question": "How much of what this project calls unreachable is a fact about the address we asked from?",
+  "results": {
+    "methodology": "newTrackon derives uptime by ANNOUNCING; this project stops at BEP 15 connect and HTTP scrape and has no announce code path at all (RULES 4). So a disagreement is a methodology difference before it is a vantage finding, and this instrument cannot separate the two (C-69).",
+    "route_a_oracle_correlation": {
+      "agree_live": 47,
+      "agree_not_live": 29,
+      "assessed_by_both": 93,
+      "disagreement_rate": 0.1827956989247312,
+      "methodology": "newTrackon derives uptime by ANNOUNCING; this project stops at BEP 15 connect and HTTP scrape and has no announce code path at all (RULES 4). So a disagreement is a methodology difference before it is a vantage finding, and this instrument cannot separate the two (C-69).",
+      "they_live_we_not": 14,
+      "we_live_they_not": 3
+    },
+    "route_d_within_as8075": {
+      "autonomous_systems": [
+        "AS8075 Microsoft Corporation"
+      ],
+      "confounded_by_single_address_instability": [
+        {
+          "by_address": {
+            "172.208.127.32": [
+              true
+            ],
+            "20.109.38.118": [
+              false,
+              true
+            ]
+          },
+          "date": "2026-08-31",
+          "url": "udp://exodus.desync.com:6969/announce",
+          "why": "at least one address returned both answers itself, so the difference is instability at that address rather than a difference between addresses"
+        }
+      ],
+      "distinct_public_addresses_measured_from": [
+        "172.208.127.32",
+        "20.109.38.118",
+        "20.3.167.82",
+        "52.176.32.161",
+        "52.225.97.21"
+      ],
+      "observations": 140,
+      "reading": "a disagreement here is one address in AS8075 being answered where another was not, on the same day. Zero of them does NOT mean the range is unblocked -- it means these addresses are treated alike, which is exactly what a range-level block looks like.",
+      "same_day_address_disagreements": [],
+      "subject_days_with_two_or_more_addresses": 34
+    },
+    "stability_over_time": {
+      "reading": "the address is held constant, so this is the tracker or the path changing, not the vantage",
+      "subjects_whose_answer_changed_at_one_address": [
+        "udp://exodus.desync.com:6969/announce"
+      ]
+    },
+    "what_this_cannot_measure": "residential reachability. Nothing here has a residential address, and no arithmetic over datacenter addresses produces one."
+  }
+}

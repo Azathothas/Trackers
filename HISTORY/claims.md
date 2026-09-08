@@ -428,6 +428,24 @@ Corpus cloned and pinned; commits recorded in
   **What it does not establish:** qBittorrent, Transmission, Deluge and BiglyBT
   were not run and are not installed here. Their rows are **absent, not
   passing**. Result committed at `experiments/results/23-client-list-compatibility.unclassified-host.20260908T091033Z.json`.
+* **C-03, `experiments/32-vantage-variation.py`, 2026-09-08.** The
+  vantage-bias question, answered as far as evidence in this tree can answer
+  it. **Route (a):** over the **93** trackers this project and newTrackon have
+  both assessed, the disagreement rate is **17 of 93 = 18.3%** -- 3 where we
+  say live and they do not, 14 the reverse. ⛔ The methodology difference is
+  inseparable from the vantage difference here: they announce, we scrape
+  (`C-69`).
+
+  **Route (d):** this project has measured from **five distinct AS8075
+  addresses**. Across 34 subject-days seen from two or more of them, **0**
+  answers differed by address; the one candidate was an address that returned
+  both answers itself, which is instability rather than a vantage effect, and
+  the control that separates the two is the finding.
+
+  ⛔ **A null result is not reassurance.** Five addresses in one provider
+  agreeing is what a **range-level** block looks like from inside the range.
+  What this bounds is address-specific bias; the bias D2 accepted is
+  range-specific and remains unmeasured from here.
 * **C-42, committed `LICENSE`, 2026-08-29.** The text grants "Permission to
   use, copy, modify, and/or distribute this software for any purpose with or
   without fee is hereby granted" and -- decisively -- **omits** the

@@ -211,7 +211,7 @@ Source:      `C-03`; decision D2 states this as its known cost
 Category:    claims
 Priority:    P1
 Effort:      L
-Status:      open
+Status:      done
 
 Problem:     Every measurement comes from one cloud provider's address space.
              Trackers commonly rate-limit or block datacenter ranges, so a
@@ -244,6 +244,68 @@ Decision:    D2 stands -- no self-hosted runner. The mitigation is labelling, an
 Prove:       A cross-check report over the full corpus that states the
              disagreement rate with newTrackon *and* the methodology difference
              (they announce, we scrape), with a sample count.
+
+**Done.** `python3 experiments/32-vantage-variation.py --expect-reported` ->
+exit 0, result at `experiments/results/32-vantage-variation.unclassified-host.20260908T095528Z.json`. It reads only committed
+results and touches no network.
+
+**Route (a), the report this clause asks for.** Over every tracker **both
+sides assessed** -- our health records against newTrackon's published live set:
+
+| | |
+| --- | --- |
+| assessed by both | **93** |
+| agree live | 47 |
+| agree not-live | 29 |
+| we live, they not | 3 |
+| they live, we not | 14 |
+| **disagreement rate** | **17 of 93 = 18.3%** |
+
+⛔ **The methodology sentence is a module constant that travels into every
+block the instrument emits**, rather than a line in a header somebody can
+drop: newTrackon **announces** to derive uptime, this project stops at connect
+and scrape and has no announce code path, so a disagreement is a methodology
+difference before it is a vantage finding and **this instrument cannot
+separate the two** (`C-69`).
+
+⚠ **"The full corpus" is 93, and the reason is worth stating.** It cannot be
+larger: we can cross-check only trackers we have measured (299) that
+newTrackon has also assessed (260 of our 1327 appear in its list at all). The
+clause's phrase describes the ambition; 93 is what the evidence supports, and
+inflating it would be the denominator mistake this session already fixed once.
+
+**Route (d), and it is a null result with a warning attached.** This project
+had already measured from **five distinct public addresses** without arranging
+to -- `172.208.127.32`, `20.109.38.118`, `20.3.167.82`, `52.176.32.161`,
+`52.225.97.21`, all AS8075. Over 140 observations of the 17 pinned subjects,
+**34 subject-days were seen from two or more addresses** and **0** answers
+differed by address.
+
+⭐ **The single candidate was an artefact, and the control that caught it is
+the result.** `udp://exodus.desync.com:6969/announce` on 2026-08-31 looked
+like an address disagreement until the check that one address had returned
+**both** answers itself -- so it disagreed with itself, not with another
+address. Naming the vantage as the culprit without that control would have
+been exactly the "a correlation is not a cause" failure RULES 2 forbids.
+
+⛔ **A null result here is NOT reassurance, and the instrument says so in its
+own output.** Five addresses in one provider agreeing tells you those five are
+treated alike -- which is precisely what a **range-level** block looks like
+from inside the range. This bounds address-specific bias at roughly zero and
+says nothing at all about range-specific bias, which is the bias D2 accepted.
+
+**Routes (b) and (c) are untried, and neither is blocked.** The read proxies
+(RULES 16) are a second network position for HTTP-shaped probes and would cost
+nothing but care -- ⚠ a measurement taken through a proxy measures the proxy,
+which is why `experiments/22` carries the `authoring-sandbox-proxied`
+environment class. A contributed vantage is somebody else's to offer. Neither
+is needed for the clause above and both would strengthen it.
+
+⛔ **Closing this entry does not close the limitation, and nothing here
+pretends otherwise.** The mitigation is still labelling, labelling still does
+not make the number better, and where the limitation lives permanently is
+`README.md`'s vantage section, RULES 3.4, and the vantage block on every health
+record -- not in an entry that could never be closed.
 
 ---
 

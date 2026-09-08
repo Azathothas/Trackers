@@ -58,7 +58,7 @@ pretending to be one.
 | [T-032](measurement.md) | P0 | measurement | **done** | The exclusion route the README promises operators is not implemented |
 | [T-140](foundation.md) | P0 | foundation | **done** | Runner network and protocol behaviour was never measured on a runner |
 | [T-003](claims.md) | P1 | claims | **done** | Release and tag behaviour is unverified, and it blocks the publication topology |
-| [T-004](claims.md) | P1 | claims | open | Vantage bias is unresolved and the dataset cannot distinguish dead from dead-from-AS8075 |
+| [T-004](claims.md) | P1 | claims | **done** | Vantage bias is unresolved and the dataset cannot distinguish dead from dead-from-AS8075 |
 | [T-020](measurement.md) | P1 | measurement | done | The health checker does not exist |
 | [T-024](measurement.md) | P1 | measurement | **done** | No health record carries vantage metadata, because no health record exists |
 | [T-025](measurement.md) | P1 | measurement | done | The health state machine and failure classification are undefined |
@@ -124,7 +124,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 71 entries, 43 open, 0 blocked, 28 done
+**Counts:** 71 entries, 42 open, 0 blocked, 29 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -132,10 +132,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 2 | 0 | 5 | 7 |
-| P1 | 11 | 0 | 12 | 23 |
+| P1 | 10 | 0 | 13 | 23 |
 | P2 | 24 | 0 | 10 | 34 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **43** | **0** | **28** | **71** |
+| **All** | **42** | **0** | **29** | **71** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway
