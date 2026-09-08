@@ -146,12 +146,26 @@ jobs:
             echo "no health records at all; every tracker will read unknown"
           fi
 
+      # T-104 and RULES 5.4. ⛔ **Conditional requests are mandatory in `ci`**,
+      # and this publisher fetches every upstream after each sweep -- eight
+      # times a day. Without validators that is 64 full downloads a day nobody
+      # needs. ⚠ A cache miss is a full fetch and never an error: an entry
+      # expires, a first run has none, and `read_snapshots` degrades either way.
+      - name: Restore the source snapshots
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: snapshots
+          key: source-snapshots-${{ github.run_id }}
+          restore-keys: |
+            source-snapshots-
+
       - name: Generate, verify, and stage
         run: |
           python3 scripts/generate.py \
             ${{ inputs.offline && '--offline' || '' }} \
             --generated-at "${PUBLISH_AT}" \
             --state sweep-in/state.jsonl \
+            --snapshots snapshots \
             --observed-from github-actions-hosted \
             --out build/data
 

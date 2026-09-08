@@ -58,6 +58,11 @@ class Aggregate:
     rejected: list[tuple[str, str, str]] = field(default_factory=list)
 
     sources_ok: list[str] = field(default_factory=list)
+    #: T-104. Sources that answered 304: the snapshot we hold is current, and
+    #: they contributed their trackers from it. ⛔ Counted separately from `ok`
+    #: because "we downloaded it" and "the upstream told us not to bother" are
+    #: different facts, and only one of them cost the upstream a transfer.
+    sources_unchanged: list[str] = field(default_factory=list)
     sources_failed: list[str] = field(default_factory=list)
     sources_rejected: list[str] = field(default_factory=list)
     sources_empty: list[str] = field(default_factory=list)
@@ -127,6 +132,8 @@ def aggregate(results: list[FetchResult],
             agg.sources_failed.append(res.source_id)
             continue
 
+        if res.outcome is Outcome.UNCHANGED:
+            agg.sources_unchanged.append(res.source_id)
         agg.sources_ok.append(res.source_id)
         for raw, reason in res.rejected:
             agg.rejected.append((res.source_id, raw, reason))
@@ -366,6 +373,7 @@ def render_report(agg: Aggregate, *, generated_at: str, code_version: str,
         f"- sources fetched: {len(agg.sources_ok) + len(agg.sources_failed) + len(agg.sources_rejected) + len(agg.sources_empty)}",
         "",
         f"- ok:       {len(agg.sources_ok)} {sorted(agg.sources_ok)}",
+        f"- unchanged: {len(agg.sources_unchanged)} {sorted(agg.sources_unchanged)} (304; the held snapshot is current)",
         f"- failed:   {len(agg.sources_failed)} {sorted(agg.sources_failed)}",
         f"- rejected: {len(agg.sources_rejected)} {sorted(agg.sources_rejected)}",
         f"- empty:    {len(agg.sources_empty)} {sorted(agg.sources_empty)}",

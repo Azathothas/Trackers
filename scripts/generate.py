@@ -142,33 +142,102 @@ def verify(agg, plaintext: str, blacklist: set[str], *,
     return problems
 
 
-def load_corpus(offline: bool, fixtures: str):
+def read_snapshots(directory: str | None) -> tuple[dict, dict]:
+    """The bodies and validators a previous run kept. T-104.
+
+    ⚠ **A cache, and treated as one.** It may be absent, stale or partial --
+    an `actions/cache` entry expires, a first run has none -- and every one of
+    those degrades to an unconditional fetch rather than to an error.
+    """
+    if not directory or not os.path.isdir(directory):
+        return {}, {}
+    validators = {}
+    path = os.path.join(directory, "validators.json")
+    if os.path.exists(path):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                validators = json.load(fh)
+        except (ValueError, OSError):
+            # ⛔ A corrupt cache is not a reason to fail a publication. Drop it
+            # and fetch: the worst case is one full download.
+            validators = {}
+    bodies = {}
+    for name in sorted(os.listdir(directory)):
+        if name.endswith(".txt"):
+            with open(os.path.join(directory, name), encoding="utf-8",
+                      errors="replace") as fh:
+                bodies[name[:-4]] = fh.read()
+    return bodies, validators
+
+
+def write_snapshots(directory: str, results, bodies: dict) -> None:
+    """Keep what this run fetched, so the next one can ask instead of download."""
+    os.makedirs(directory, exist_ok=True)
+    validators = {}
+    for res in results:
+        if res.etag or res.last_modified:
+            validators[res.source_id] = {"etag": res.etag,
+                                         "last_modified": res.last_modified}
+        body = bodies.get(res.source_id)
+        if body is not None:
+            with open(os.path.join(directory, f"{res.source_id}.txt"), "w",
+                      encoding="utf-8", newline="\n") as fh:
+                fh.write(body)
+    with open(os.path.join(directory, "validators.json"), "w",
+              encoding="utf-8", newline="\n") as fh:
+        json.dump(validators, fh, indent=2, sort_keys=True)
+        fh.write("\n")
+
+
+def load_corpus(offline: bool, fixtures: str, snapshots: str | None = None,
+                *, with_raw: bool = False):
     """Fetch every enabled source and aggregate it. The one assembly path.
 
     Returned rather than printed so both `generate.py` and
     `probe-corpus.py` build the corpus the same way. A second copy of this
     would acquire different defects, and the one nobody looks at would be the
     one publishing.
+
+    `snapshots` enables conditional requests (T-104, RULES 5.4): the validators
+    from the last run are sent, and a **304** means the snapshot held there is
+    current rather than that the source failed.
     """
     sources = {s.id: s for s in enabled_sources()}
     if not sources:
         raise _NoSources("no enabled sources")
 
+    held, validators = read_snapshots(snapshots)
     results = []
     bodies: dict[str, str] = {}
+    #: Every source's body as fetched, for the snapshot cache. Distinct from
+    #: `bodies`, which holds only what the blacklist parser needs.
+    raw_bodies: dict[str, str] = {}
     for s in sorted(sources.values(), key=lambda x: x.id):
         if offline:
-            path = os.path.join(fixtures, f"{s.id}.txt")
-            if s.role is Role.BLACKLIST and os.path.exists(path):
-                with open(path, encoding="utf-8", errors="replace") as fh:
-                    bodies[s.id] = fh.read()
-            results.append(read_cached(s, fixtures))
+            result = read_cached(s, fixtures)
         else:
-            results.append(fetch(s))
+            known = validators.get(s.id) or {}
+            result = fetch(s, etag=known.get("etag"),
+                           last_modified=known.get("last_modified"),
+                           cached_body=held.get(s.id))
+        results.append(result)
+        # ⛔ ONE path for both, and that is the fix. `bodies` was populated on
+        # the offline branch alone, so the ONLINE run -- which is what the
+        # publisher does -- collected no exclusions at all and enforced none.
+        # RULES 4 makes honouring an operator's exclusion request absolute, and
+        # it was being honoured only in the mode nobody publishes from.
+        if result.body is not None:
+            raw_bodies[s.id] = result.body
+            if s.role is Role.BLACKLIST:
+                bodies[s.id] = result.body
 
     exclusions = collect_exclusions(bodies)
     enforced = enforced_exclusions(exclusions)
     agg = aggregate(results, sources, exclude=enforced)
+    if with_raw:
+        # ⚠ The raw bodies are returned only where a caller asked, because they
+        # are the one thing here big enough to be worth not carrying about.
+        return agg, exclusions, enforced, results, raw_bodies
     return agg, exclusions, enforced
 
 
@@ -213,13 +282,19 @@ def main() -> int:
                     help="a state file whose histories label the output. "
                          "Without it every tracker is `unknown`, which is what "
                          "a run with no measurement honestly says.")
+    ap.add_argument("--snapshots", default=None, metavar="DIR",
+                    help="where to keep each source's body and validators, so "
+                         "the next run can send If-None-Match and take a 304 "
+                         "(T-104, RULES 5.4). A cache: absent or stale is a "
+                         "full fetch, never an error.")
     ap.add_argument("--observed-from", default=None, metavar="CLASS",
                     help="the environment class the observations in --state "
                          "came from, recorded on every labelled row")
     args = ap.parse_args()
 
     try:
-        agg, exclusions, enforced = load_corpus(args.offline, args.fixtures)
+        agg, exclusions, enforced = load_corpus(args.offline, args.fixtures,
+                                                args.snapshots)
     except _NoSources as exc:
         print(exc, file=sys.stderr)
         return 2

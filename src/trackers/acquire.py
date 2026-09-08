@@ -69,6 +69,15 @@ class Outcome(str, Enum):
     FAILED = "failed"
     REJECTED = "rejected"       # fetched fine, failed validation (T-102)
     NOT_ATTEMPTED = "not_attempted"
+    #: T-104. The server answered **304 Not Modified**: nothing has changed
+    #: since the validator we sent, so the snapshot we already hold is current.
+    #:
+    #: ⛔ **A third outcome, not a variant of the other two.** It is not `OK`,
+    #: because no body arrived; it is not `FAILED`, because nothing went wrong;
+    #: and it is emphatically not `EMPTY`, which would delete the source. That
+    #: conflation is the one RULES 3.2 is about, and this is the same shape one
+    #: status code further along.
+    UNCHANGED = "unchanged"
 
 
 @dataclass
@@ -92,10 +101,29 @@ class FetchResult:
     detail: str = ""
     looked_like_html: bool = False
 
+    #: T-104. The validators to send next time, when the server offered them.
+    etag: str | None = None
+    last_modified: str | None = None
+    #: The body as fetched. ⛔ **Load-bearing, not a convenience.** A blacklist's
+    #: reasons live in its raw text and are stripped by the ordinary parser, so
+    #: a caller that cannot see the body cannot enforce an operator's exclusion
+    #: request -- which is exactly what happened: `load_corpus` populated the
+    #: bodies only on its offline path, so **the online path enforced none**
+    #: and the publisher runs online. RULES 4 makes honouring a request
+    #: absolute, so the body travels with the result rather than being
+    #: re-read by whoever remembers to.
+    body: str | None = None
+
     @property
     def usable(self) -> bool:
-        """Whether this result may contribute trackers to the dataset."""
-        return self.outcome is Outcome.OK and self.trackers is not None
+        """Whether this result may contribute trackers to the dataset.
+
+        ⭐ `UNCHANGED` is usable. A 304 means the snapshot we hold **is** the
+        current content, so refusing to use it would throw away a source
+        because nothing about it had changed.
+        """
+        return (self.outcome in (Outcome.OK, Outcome.UNCHANGED)
+                and self.trackers is not None)
 
     @property
     def count(self) -> int | None:
@@ -185,12 +213,32 @@ def parse_body(source: Source, body: str) -> FetchResult:
 
 
 def fetch(source: Source, timeout: float = DEFAULT_TIMEOUT,
-          opener=None) -> FetchResult:
+          opener=None, *, etag: str | None = None,
+          last_modified: str | None = None,
+          cached_body: str | None = None) -> FetchResult:
     """Fetch one source over the network. Every failure is a `FAILED` outcome.
 
     `opener` is injectable so tests never touch the network.
+
+    T-104 and RULES 5.4: when a validator from a previous fetch is passed, this
+    sends it and a **304** comes back as `Outcome.UNCHANGED` carrying the
+    snapshot in `cached_body`.
+
+    ⛔ **No cache defeat and no random query parameter.** RULES 5.4 calls that
+    rude, ineffective and a fast route to 403; the whole point of a validator is
+    that the cheapest correct answer is one the upstream barely notices.
+
+    ⚠ **A 304 with no `cached_body` is a `FAILED`, not an `UNCHANGED`.** The
+    server is right that nothing changed and we have nothing to show for it,
+    which is a fact about our own cache rather than about the source -- and
+    reporting it as unchanged would publish an empty source as current.
     """
-    req = urllib.request.Request(source.url, headers={"User-Agent": USER_AGENT})
+    headers = {"User-Agent": USER_AGENT}
+    if etag:
+        headers["If-None-Match"] = etag
+    if last_modified:
+        headers["If-Modified-Since"] = last_modified
+    req = urllib.request.Request(source.url, headers=headers)
     open_fn = opener or urllib.request.urlopen
     try:
         with open_fn(req, timeout=timeout) as r:
@@ -204,8 +252,34 @@ def fetch(source: Source, timeout: float = DEFAULT_TIMEOUT,
                 )
             body = raw.decode("utf-8", "replace")
             status = getattr(r, "status", None)
-            ctype = r.headers.get("Content-Type") if hasattr(r, "headers") else None
+            headers_in = getattr(r, "headers", {}) or {}
+            ctype = headers_in.get("Content-Type") if hasattr(headers_in, "get") else None
+            validators = {
+                "etag": headers_in.get("ETag") if hasattr(headers_in, "get") else None,
+                "last_modified": (headers_in.get("Last-Modified")
+                                  if hasattr(headers_in, "get") else None),
+            }
     except urllib.error.HTTPError as e:
+        if e.code == 304:
+            # T-104. `urllib` raises on 304 rather than returning it, which is
+            # why this lives in the exception path and not beside the 200.
+            if cached_body is None:
+                return FetchResult(
+                    source_id=source.id, url=source.url,
+                    outcome=Outcome.FAILED, fetched_at=_now(), trackers=None,
+                    http_status=304,
+                    detail="304 Not Modified but no snapshot is held, so there "
+                           "is nothing to publish; this is our cache's fault "
+                           "rather than the source's")
+            result = parse_body(source, cached_body)
+            result.body = cached_body
+            result.http_status = 304
+            result.etag = etag
+            result.last_modified = last_modified
+            if result.outcome is Outcome.OK:
+                result.outcome = Outcome.UNCHANGED
+                result.detail = "304 Not Modified; the held snapshot is current"
+            return result
         return FetchResult(source_id=source.id, url=source.url,
                            outcome=Outcome.FAILED, fetched_at=_now(),
                            trackers=None, http_status=e.code,
@@ -219,8 +293,13 @@ def fetch(source: Source, timeout: float = DEFAULT_TIMEOUT,
                            detail=f"{type(e).__name__}: {e}")
 
     result = parse_body(source, body)
+    result.body = body
     result.http_status = status
     result.content_type = ctype
+    # Kept so the next run can ask "has this changed" instead of downloading it
+    # again (RULES 15.2: a 304 is the cheapest correct answer available).
+    result.etag = validators.get("etag")
+    result.last_modified = validators.get("last_modified")
     return result
 
 
@@ -238,4 +317,6 @@ def read_cached(source: Source, cache_dir: str) -> FetchResult:
                            trackers=None, detail=f"not cached: {path}")
     with open(path, encoding="utf-8", errors="replace") as fh:
         body = fh.read()
-    return parse_body(source, body)
+    result = parse_body(source, body)
+    result.body = body
+    return result

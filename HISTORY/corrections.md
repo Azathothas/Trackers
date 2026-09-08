@@ -33,6 +33,22 @@ from `AvalynSouvlaki/T-244-RESEARCH`, whose revision table makes the point that
 "I mis-stated a hash format" and "I recommended against the right tool" are not
 the same finding and should not look the same in a list.
 
+### Round 4, 2026-09-09
+
+The publication pass. Every row was found by **running the thing in the mode it
+actually runs in**, rather than in the mode the tests run in.
+
+| # | what the documents or the code said | what measurement said | severity |
+| --- | --- | --- | --- |
+| 1 | The pipeline enforces the upstream blacklist's operator-request and safety exclusions | ⛔ **It enforced them offline only.** `load_corpus` populated the raw source bodies on its `--offline` branch and not on the online one, and a blacklist's reasons live in the raw text the ordinary parser strips -- so an online run collected **zero** exclusions and enforced none. The publisher runs online. **Eight URLs an operator had asked to be excluded were in the published dataset.** Both paths carry the body on the result now, and a test asserts the two agree | **Critical** -- RULES 4 makes honouring an operator's exclusion request absolute, and this published against one for as long as the dataset existed |
+| 2 | The published dataset reports each tracker's health | ⛔ **It reported the last observation's state**, where the sample count is 1 by construction, so no accumulation could ever reach `dead` and `MIN_SAMPLES_FOR_DEATH` was decorative. 28 trackers had three observations and no successes and every one read `unknown`. It asks the state machine with the lifetime counts now: **24 dead** | **High** -- the distinction the whole dataset exists to publish was the one it could not express |
+| 3 | The scheduled sweep rotates through the corpus | ⛔ **Adding one tracker made the next run re-probe the identical slice.** Slices were assigned by position, so a single insertion shifted every index and the rotation stopped rotating the day an upstream regenerated -- which is daily. Membership is the tracker's own hash now | **High** -- found by the adversarial pass; it would have silently reverted the schedule to probing 190 trackers forever |
+| 4 | The publisher folds the health the sweep measured | ⛔ **It folded only the committed records**, so every scheduled sweep would have reached nobody and the labels would have been frozen at the day they were committed while a workflow ran every three hours | **High** |
+| 5 | A `schedule:` event is like a dispatch with defaults | ⛔ **It carries no inputs at all**, so `--deadline "${{ inputs.deadline }}"` was `--deadline ""`, an argparse error. **Every scheduled run would have exited 2 having probed nothing** while the workflow looked configured. A dispatch could never have shown it | **High** |
+| 6 | `C-73` is `VERIFIED` | ⚠ **It rested on three fetches run inside a conversation**, and the verification it named -- the proxied arm -- fetches trackers, so it cannot separate a proxy with no IPv6 from a tracker that did not answer. RULES 1.3 requires a committed command; it has a tier-1 control now | Medium -- found by the measured-never-verified pass |
+| 7 | `experiments/30` measured 11 corpus hosts rescued by a public resolver | ⛔ **Zero are rescued.** All eleven answer `0.0.0.0` or `::`, which is a reply and not a reachable address, so both resolvers were agreeing. The instrument recorded families and not addresses, which is what let a null answer read as a rescue | Medium -- it would have shipped 14 URLs labelled as our resolver's fault that no resolver can reach |
+| 8 | `scripts/update-state.py --help` prints its help | ⚠ **It died with `UnicodeEncodeError` on Windows**, along with `probe-corpus.py`: argparse prints the module docstring and those docstrings carry this project's own markers. CI is UTF-8 and could never have caught it | Medium -- it lands only on a contributor following a documented command |
+
 ### Round 3, 2026-09-01
 
 The adoption pass. Every row was found by a check that did not exist before it,
