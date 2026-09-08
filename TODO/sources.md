@@ -124,7 +124,7 @@ Source:      RULES 5.4
 Category:    sources
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     Every fetch is unconditional. ETag and Last-Modified are ignored,
              so every run re-downloads every source in full.
@@ -142,6 +142,36 @@ Decision:    RULES 5.4 owns the caching rule and this entry implements it: no
              one of them -- the same class of conflation RULES 3.2 is about.
 Prove:       A test that a 304 preserves the previously accepted data and is
              recorded distinctly from both success and failure.
+
+**Done.** `python3 -m unittest tests.test_conditional_requests -v` -> **15
+tests, OK**. `fetch` sends `If-None-Match` and `If-Modified-Since` when a
+previous run's validators are held, and the publisher keeps them in a workflow
+cache. ⛔ No cache defeat and no random query parameter, which RULES 5.4 calls
+rude, ineffective and a fast route to 403.
+
+⛔ **`UNCHANGED` is a third outcome and that is the entry.** Not `OK`, because
+no body arrived; not `FAILED`, because nothing went wrong; and emphatically not
+`EMPTY`, which would delete the source. A 304 carries the held snapshot forward
+and its trackers reach the dataset, which the `Prove` clause asserts directly.
+
+⚠ **A 304 with no snapshot is a `FAILED`, and it says whose fault it is.** The
+server is right that nothing changed and we have nothing to show for it, which
+is a fact about our cache rather than about the source; reporting it as
+unchanged would publish an empty source as current.
+
+⚠ **The snapshot cache is treated as a cache.** Absent, expired, partial or
+corrupt all degrade to a full fetch rather than to an error, because the worst
+case of a miss is one download and the worst case of an error is no dataset.
+
+⛔ **THIS FOUND A LIVE RULES 4 VIOLATION, WHICH IS WORTH MORE THAN THE ENTRY.**
+`load_corpus` populated the raw source bodies on its `--offline` branch only,
+and a blacklist's reasons live in the raw text the ordinary parser strips -- so
+an online run collected **zero** exclusions and enforced none. The publisher
+runs online. **Eight URLs an operator had asked to be excluded were in the
+published dataset.** Both paths carry the body on the result now, a test
+asserts the two agree, and the published dataset went from 1334 trackers to
+1326 with **0** excluded URLs remaining. [`../HISTORY/corrections.md`](../HISTORY/corrections.md)
+round 4 row 1 records it.
 
 ---
 

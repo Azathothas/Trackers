@@ -29,6 +29,11 @@ each: [INDEX.md](INDEX.md).
   category of tracker that every previous record called unmeasurable.
 - ⭐ **Every P0 and P1 is closed except [T-012](claims.md)**, which waits on the sweep's rotation covering more of the corpus rather than on work.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
+- ⛔ **A live RULES 4 violation was found and fixed on 2026-09-09.** The
+  online path collected no upstream exclusions -- the raw bodies were populated
+  on the `--offline` branch only -- so **eight URLs an operator had asked to be
+  excluded were in the published dataset**. Both paths carry the body on the
+  result now; the dataset went 1334 -> 1326 with 0 remaining.
 - ⭐ **The dataset is published and it accumulates.** `data` branch, six files
   at `raw.githubusercontent.com/Azathothas/Trackers/data/`. The chain sweep ->
   artefact -> fold -> generate -> publish is driven end to end: run

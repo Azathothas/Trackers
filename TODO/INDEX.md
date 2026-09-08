@@ -109,7 +109,7 @@ pretending to be one.
 | [T-101](sources.md) | P2 | sources | open | Source quality is asserted per source and measured for none |
 | [T-102](sources.md) | P2 | sources | open | Change-detection thresholds are provisional and say so |
 | [T-103](sources.md) | P2 | sources | open | Provenance snapshots are not retained |
-| [T-104](sources.md) | P2 | sources | open | Conditional requests are not implemented |
+| [T-104](sources.md) | P2 | sources | **done** | Conditional requests are not implemented |
 | [T-120](docs.md) | P2 | docs | open | The documentation set is a fraction of what is required |
 | [T-121](docs.md) | P2 | docs | **done** | Nothing checks that documentation citations still resolve |
 | [T-122](docs.md) | P2 | docs | open | The consumer contract is documented but nothing enforces it |
@@ -126,7 +126,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 24 open, 0 blocked, 49 done
+**Counts:** 73 entries, 23 open, 0 blocked, 50 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -135,9 +135,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 1 | 0 | 6 | 7 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 17 | 0 | 19 | 36 |
+| P2 | 16 | 0 | 20 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **24** | **0** | **49** | **73** |
+| **All** | **23** | **0** | **50** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway
