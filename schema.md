@@ -38,8 +38,14 @@ consumers of this data sit. A tracker recorded `unknown` may answer you
 perfectly well, and `unmeasurable` is a statement about our position rather
 than about the tracker.
 
-⛔ **Nothing is `dead` yet and nothing can be.** Saying it needs three
-observations of one tracker, and the history is younger than that.
+⛔ **`dead` means three observations of one tracker, none of which succeeded**
+-- and that is all it means. It is a statement from this vantage, on this
+project's own threshold, and a tracker recorded `dead` may answer you.
+
+⚠ **The state is the accumulated judgement, not the last observation.** A
+sweep's own records say what one probe saw; this dataset says what the whole
+history supports. Those differ on purpose, and the second is the one worth
+publishing.
 
 ---
 
@@ -154,6 +160,14 @@ the publisher runs after every sweep *completion*, so if measurement stops
 while publication continues, the file stays fresh and the labels quietly age.
 `generated_at` tells you when the file was written; `newest_observation` tells
 you when anything was last learned.
+
+## Pin the branch, never a commit
+
+⛔ **A commit SHA on the `data` branch is not a durable reference and breaks by
+design.** The branch's history is reset when it grows past a measured ceiling
+([T-081](../TODO/operations.md)), which discards commits and keeps every byte of
+data -- history lives in tracked files here, so nothing is lost but the commit
+graph. ⭐ **Pin the branch**, as every URL on this page does, or a tag.
 
 ## Cross-format consistency
 
