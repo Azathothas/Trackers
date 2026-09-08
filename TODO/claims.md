@@ -64,7 +64,8 @@ RFC 2606 reserved hostnames that belong to nobody.
 ` | 3 | 3 | unchanged |
 | blank-line separated | 5 | 5 | ⚠ the blank line became an **empty announce entry** |
 | `#` comments | 6 | 6 | ⚠ the comment became **an announce URL** |
-| CRLF | 3 | 3 | trailing `` trimmed |
+| CRLF | 3 | 3 | trailing `
+` trimmed |
 
 ⛔ **`C-41` is refuted as worded, and the truth is worse than the claim.** It
 said comments "break some clients". They do not break aria2 -- aria2 **accepts
@@ -333,6 +334,33 @@ Approach:    Run `experiments/04` over the full corpus rather than the pinned
              its sample count. Add a CNAME-following case specifically.
 Prove:       `python3 experiments/04-dns-resolver-divergence.py --targets <full corpus>`
              with the divergence rate recorded in `HISTORY/claims.md` `C-06`.
+
+**Measured on 2026-09-08, at 244 hosts rather than 17, and divergence is NOT
+zero.** `experiments/30-resolution-failure-classes.py` asked this host's
+resolver and three public ones about every corpus host the first could not
+answer for. **11 of 244 hosts -- 14 tracker URLs -- resolve for the public
+resolvers and not for this one**, including `tracker.parrotsec.org`. Result at
+`experiments/results/30-resolution-failure-classes.unclassified-host.20260908T092405Z.json`;
+[`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md) carries the
+table.
+
+⭐ **So the risk this entry names is real rather than theoretical.** `C-06`'s
+`VERIFIED` rested on 17 names with zero divergence; at 244 names the rate is
+**4.5% of failing hosts**, and every one of those would have been recorded
+`dns_failure` by a sweep from this vantage.
+
+⚠ **It does not yet reopen `C-06`, and the reason is the vantage.** The
+divergence measured is between a **residential Windows** resolver and public
+ones. Every committed health record was taken on a **GitHub runner**, whose
+resolver has not been compared with anything. So what is established is that
+the failure class is real and that the corpus is a big enough sample to see it
+-- not that the runner diverges.
+
+**What remains, and it is now small:** run `experiments/30` on a runner and
+compare. That is one workflow step against a corpus already assembled, and it
+answers both this entry and `src/trackers/bep34.py`'s decision 5, which says
+in the code that a measured divergence is what reopens the choice to take the
+**first** definitive resolver answer rather than querying all three.
 
 ---
 

@@ -25,8 +25,10 @@ Run:  python3 -m unittest tests.test_bep34 -v
 
 from __future__ import annotations
 
+import ipaddress
 import os
 import socket
+import struct
 import sys
 import unittest
 
@@ -401,6 +403,104 @@ class EffectivePort(unittest.TestCase):
         self.assertEqual(effective_port(parse("http://a.example/announce")), 80)
         self.assertEqual(effective_port(parse("https://a.example/announce")), 443)
         self.assertEqual(effective_port(parse("udp://a.example/announce")), 80)
+
+
+class AddressRecords(unittest.TestCase):
+    """T-036: the same DNS client, asked for A and AAAA instead of TXT.
+
+    ⛔ **The risk this covers is not "can it read an address".** It is that
+    generalising the parser weakened the check that an answer matches the
+    question that was asked -- which is a forgery check on the module that
+    decides whether this project may contact somebody. So the tests that matter
+    here are the refusals.
+
+    These drive the wire codec directly rather than through `FakeDnsServer`,
+    which serves TXT only. Extending the oracle to synthesise A and AAAA would
+    be a second encoder for a format this test can write in four lines, and the
+    subject is the DECODER.
+    """
+
+    from trackers import bep34 as _b  # noqa: E402 - the private wire codec
+
+    def _answer(self, name: str, qtype: int, rdata: bytes,
+                rtype: int | None = None) -> tuple[bytes, bytes, int]:
+        """A minimal one-answer response to a question for `name`/`qtype`."""
+        b = self._b
+        qid = 0x4242
+        qname = b._encode_name(name)
+        question = qname + struct.pack(">HH", qtype, b._CLASS_IN)
+        header = struct.pack(">HHHHHH", qid, 0x8180, 1, 1, 0, 0)
+        answer = (b"\xc0\x0c"
+                  + struct.pack(">HHIH", rtype if rtype is not None else qtype,
+                                b._CLASS_IN, 300, len(rdata))
+                  + rdata)
+        return header + question + answer, qname, qid
+
+    def test_an_a_record_is_read_as_an_ipv4_address(self):
+        b = self._b
+        buf, qname, qid = self._answer("a.example", b._TYPE_A,
+                                       bytes([203, 0, 113, 7]))
+        rcode, truncated, values = b._parse_response(buf, qid, qname, b._TYPE_A)
+        self.assertEqual((rcode, truncated, values), (0, False, ["203.0.113.7"]))
+
+    def test_an_aaaa_record_is_read_as_an_ipv6_address(self):
+        # Built from the address rather than written as a 32-character hex
+        # literal: `check-no-secrets.py --public` refuses a long hex string
+        # anywhere this project writes, and it is right to -- a documentation
+        # address and a leaked identifier look identical to a grep. 2001:db8::/32
+        # is RFC 3849's documentation prefix.
+        b = self._b
+        rdata = ipaddress.ip_address("2001:db8::1").packed
+        buf, qname, qid = self._answer("a.example", b._TYPE_AAAA, rdata)
+        _, _, values = b._parse_response(buf, qid, qname, b._TYPE_AAAA)
+        self.assertEqual(values, ["2001:db8::1"])
+
+    def test_an_answer_of_the_wrong_type_is_refused(self):
+        """THE test. The parser must not accept an A answer to a TXT question
+        or the reverse -- that check is what stops a resolver's unrelated
+        record being read as the operator's refusal."""
+        b = self._b
+        buf, qname, qid = self._answer("a.example", b._TYPE_TXT,
+                                       bytes([203, 0, 113, 7]))
+        with self.assertRaises(Exception) as caught:
+            b._parse_response(buf, qid, qname, b._TYPE_A)
+        self.assertIn("echo", str(caught.exception))
+
+    def test_a_short_address_rdata_is_refused_not_padded(self):
+        """A 3-byte A record is malformed. Padding it to 4 would invent an
+        address this project would then go and connect to."""
+        b = self._b
+        buf, qname, qid = self._answer("a.example", b._TYPE_A, bytes([203, 0, 113]))
+        with self.assertRaises(Exception) as caught:
+            b._parse_response(buf, qid, qname, b._TYPE_A)
+        self.assertIn("expected exactly 4", str(caught.exception))
+
+    def test_a_record_of_another_type_in_the_answer_is_skipped(self):
+        """A CNAME the resolver chased is not this question's answer, and
+        skipping it is not a guess."""
+        b = self._b
+        buf, qname, qid = self._answer("a.example", b._TYPE_A,
+                                       bytes([203, 0, 113, 7]),
+                                       rtype=5)  # CNAME
+        _, _, values = b._parse_response(buf, qid, qname, b._TYPE_A)
+        self.assertEqual(values, [])
+
+    def test_the_query_carries_the_type_it_was_asked_for(self):
+        b = self._b
+        qname = b._encode_name("a.example")
+        for qtype in (b._TYPE_A, b._TYPE_AAAA, b._TYPE_TXT):
+            with self.subTest(qtype=qtype):
+                q = b._build_query(0x1234, qname, qtype)
+                self.assertEqual(struct.unpack(">H", q[-4:-2])[0], qtype)
+
+    def test_txt_is_still_the_default_so_bep34_is_unchanged(self):
+        """The consent path never passes a type. If the default ever moves,
+        BEP 34 starts asking for the wrong record and every operator's refusal
+        becomes invisible at once."""
+        b = self._b
+        qname = b._encode_name("a.example")
+        self.assertEqual(
+            struct.unpack(">H", b._build_query(1, qname)[-4:-2])[0], b._TYPE_TXT)
 
 
 if __name__ == "__main__":

@@ -52,7 +52,7 @@ because a workflow artefact expires after 90 days and git does not.
 | Corpus, accepted dataset, transport mix | [`corpus-baseline.md`](../HISTORY/corpus-baseline.md) |
 | First corpus sweep | run **`33938543488`**, 200 of 1327 sampled: `live` 25, `degraded` 1, `unknown` 162, `unmeasurable` 12, **`dead` 0** |
 | Operators refusing us by BEP 34 | **8 endpoints across 7 hosts**, in that 200 (`C-72`) |
-| Test suite | **202** tests, no network |
+| Test suite | **209** tests, no network |
 | Reference corpus | **10** repositories, **216** comment threads, **501** comments |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Private-tracker credentials in the published plaintext | **0**, refused by the pipeline (`C-70`, [T-107](sources.md)) |

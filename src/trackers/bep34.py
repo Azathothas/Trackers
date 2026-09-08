@@ -107,8 +107,23 @@ MARKER = "BITTORRENT"
 #: belonging to the same operator do not guard against it.
 PUBLIC_RESOLVERS: tuple[str, ...] = ("1.1.1.1", "8.8.8.8", "9.9.9.9")
 
+_TYPE_A = 1
 _TYPE_TXT = 16
+_TYPE_AAAA = 28
 _CLASS_IN = 1
+
+#: ⭐ **One DNS client, several record types.** This module owns the only wire
+#: implementation in the tree -- the name codec, the transaction-id check, the
+#: truncation retry -- and BEP 34 needs TXT while [T-036](../../TODO/measurement.md)
+#: needs A and AAAA over a resolver this project chooses rather than the host's.
+#: A second client for two more record types would be the copy-pasted-logic
+#: defect T-033 spent a session removing, and it would put the forgery checks
+#: in two places, one of which nobody reads.
+#:
+#: ⛔ **TXT stays the default at every call site.** Nothing about BEP 34's
+#: behaviour changes: the type is a parameter that the consent path never
+#: passes.
+_ADDRESS_TYPES = {_TYPE_A: 4, _TYPE_AAAA: 16}
 
 #: DNS response codes we distinguish. `NOERROR` and `NXDOMAIN` are both
 #: *answers*: the first may carry a record, the second establishes that the
@@ -329,8 +344,8 @@ def _read_name(buf: bytes, offset: int) -> tuple[bytes, int]:
     return b".".join(labels).lower(), (after if after is not None else here)
 
 
-def _build_query(qid: int, qname: bytes) -> bytes:
-    """A single recursion-desired TXT question. No EDNS0.
+def _build_query(qid: int, qname: bytes, qtype: int = _TYPE_TXT) -> bytes:
+    """A single recursion-desired question. No EDNS0.
 
     Leaving EDNS0 out keeps the response under 512 bytes or sets the truncation
     bit, and truncation is handled by retrying over TCP. The alternative --
@@ -339,10 +354,11 @@ def _build_query(qid: int, qname: bytes) -> bytes:
     """
     flags = 0x0100  # RD
     header = struct.pack(">HHHHHH", qid, flags, 1, 0, 0, 0)
-    return header + qname + struct.pack(">HH", _TYPE_TXT, _CLASS_IN)
+    return header + qname + struct.pack(">HH", qtype, _CLASS_IN)
 
 
-def _parse_response(buf: bytes, qid: int, qname: bytes) -> tuple[int, bool, list[str]]:
+def _parse_response(buf: bytes, qid: int, qname: bytes,
+                    qtype: int = _TYPE_TXT) -> tuple[int, bool, list[str]]:
     """Return `(rcode, truncated, txt_strings)`.
 
     Nothing in the answer section is believed until the header's transaction id
@@ -366,10 +382,10 @@ def _parse_response(buf: bytes, qid: int, qname: bytes) -> tuple[int, bool, list
     echoed, offset = _read_name(buf, offset)
     if offset + 4 > len(buf):
         raise _Malformed("question runs past end of message")
-    qtype, qclass = struct.unpack(">HH", buf[offset:offset + 4])
+    echoed_type, qclass = struct.unpack(">HH", buf[offset:offset + 4])
     offset += 4
     expected, _ = _read_name(qname, 0)
-    if echoed != expected or qtype != _TYPE_TXT or qclass != _CLASS_IN:
+    if echoed != expected or echoed_type != qtype or qclass != _CLASS_IN:
         raise _Malformed("response does not echo the question that was asked")
 
     texts: list[str] = []
@@ -384,12 +400,32 @@ def _parse_response(buf: bytes, qid: int, qname: bytes) -> tuple[int, bool, list
         end = offset + rdlength
         if end > len(buf):
             raise _Malformed("rdata runs past end of message")
-        if rtype == _TYPE_TXT and rclass == _CLASS_IN:
-            texts.append(_read_txt_rdata(buf, offset, end))
+        if rtype == qtype and rclass == _CLASS_IN:
+            if qtype in _ADDRESS_TYPES:
+                texts.append(_read_address_rdata(buf, offset, end, qtype))
+            else:
+                texts.append(_read_txt_rdata(buf, offset, end))
         # Any other type -- a CNAME the resolver chased, a signature -- is
         # simply not this question's answer. Skipping it is not a guess.
         offset = end
     return rcode, truncated, texts
+
+
+def _read_address_rdata(buf: bytes, start: int, end: int, qtype: int) -> str:
+    """An A or AAAA record's rdata, as a text address.
+
+    ⛔ **The declared length is checked against the type, never trusted.** An
+    A record is exactly 4 bytes and an AAAA exactly 16; anything else is a
+    malformed answer, and padding or truncating it to fit would be the
+    "guessing on a length mismatch" row in
+    `docs/conventions/forbidden-patterns.md` applied to an address this project
+    would then go and connect to.
+    """
+    want = _ADDRESS_TYPES[qtype]
+    if end - start != want:
+        raise _Malformed(
+            f"address rdata is {end - start} bytes, expected exactly {want}")
+    return str(ipaddress.ip_address(buf[start:end]))
 
 
 def _read_txt_rdata(buf: bytes, start: int, end: int) -> str:
@@ -469,9 +505,10 @@ class Resolver:
         self._cache: dict[str, _HostAnswer] = {}
 
     # -- the lookup ------------------------------------------------------------
-    def _query_one(self, resolver: str, qname: bytes, qid: int) -> tuple[int, list[str]]:
+    def _query_one(self, resolver: str, qname: bytes, qid: int,
+                   qtype: int = _TYPE_TXT) -> tuple[int, list[str]]:
         """One resolver, UDP then TCP if the answer was truncated."""
-        query = _build_query(qid, qname)
+        query = _build_query(qid, qname, qtype)
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.settimeout(self.config.timeout)
         try:
@@ -483,19 +520,20 @@ class Resolver:
             data = s.recv(MAX_UDP_RESPONSE)
         finally:
             s.close()
-        rcode, truncated, texts = _parse_response(data, qid, qname)
+        rcode, truncated, texts = _parse_response(data, qid, qname, qtype)
         if not truncated:
             return rcode, texts
-        return self._query_tcp(resolver, qname, qid)
+        return self._query_tcp(resolver, qname, qid, qtype)
 
-    def _query_tcp(self, resolver: str, qname: bytes, qid: int) -> tuple[int, list[str]]:
+    def _query_tcp(self, resolver: str, qname: bytes, qid: int,
+                   qtype: int = _TYPE_TXT) -> tuple[int, list[str]]:
         """RFC 1035 section 4.2.2: the same message behind a 2-byte length.
 
         Reached only when a response set the truncation bit. Without it, a TXT
         record too long for a datagram would arrive cut in half and be parsed
         into an allow-list the operator never wrote.
         """
-        query = _build_query(qid, qname)
+        query = _build_query(qid, qname, qtype)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(self.config.timeout)
         try:
@@ -508,10 +546,64 @@ class Resolver:
             data = _recv_exactly(s, length)
         finally:
             s.close()
-        rcode, still_truncated, texts = _parse_response(data, qid, qname)
+        rcode, still_truncated, texts = _parse_response(data, qid, qname, qtype)
         if still_truncated:
             raise _Malformed("TCP response is still truncated")
         return rcode, texts
+
+    def addresses(self, host: str) -> dict[str, object]:
+        """A and AAAA for a host, from the resolvers this project chose.
+
+        ⛔ **Not a consent check and never a substitute for one.** It answers
+        "which address families does this name have", which is
+        [T-036](../../TODO/measurement.md)'s question, and it is deliberately
+        separate from `consult`: nothing here may be read as permission to
+        contact anything.
+
+        ⭐ **The point is that it is NOT the host's resolver.**
+        `socket.getaddrinfo` answers with whatever the machine is configured to
+        ask, so "does not resolve" from it conflates the name being gone with
+        our own resolver being broken -- which is exactly the conflation T-036
+        exists to break, and the same failure newTrackon hit on its production
+        instance (issue #316).
+
+        Returns the families found, the addresses, and the per-resolver
+        failures. ⛔ **An empty result with failures recorded is not the same
+        as an empty result without them**, and both are returned rather than
+        collapsed into `None` (RULES 3.2).
+        """
+        try:
+            qname = _encode_name(host)
+        except _Malformed as e:
+            return {"host": host, "families": [], "addresses": {},
+                    "failures": [f"hostname not queryable: {e}"],
+                    "nxdomain": False}
+
+        out: dict[str, list[str]] = {}
+        failures: list[str] = []
+        nxdomain = False
+        for label, qtype in (("ipv4", _TYPE_A), ("ipv6", _TYPE_AAAA)):
+            for resolver in self.config.resolvers:
+                qid = struct.unpack(">H", os.urandom(2))[0]
+                try:
+                    rcode, values = self._query_one(resolver, qname, qid, qtype)
+                except (OSError, _Malformed, struct.error) as e:
+                    failures.append(f"{label} {resolver}: {type(e).__name__}: {e}")
+                    continue
+                if rcode == _RCODE_NXDOMAIN:
+                    nxdomain = True
+                    break
+                if rcode != _RCODE_NOERROR:
+                    failures.append(f"{label} {resolver}: rcode {rcode}")
+                    continue
+                if values:
+                    out[label] = values
+                # NOERROR with no answer is a definitive "this name has no
+                # record of this type", which is the whole point for an
+                # IPv4-only or IPv6-only host. Stop asking.
+                break
+        return {"host": host, "families": sorted(out), "addresses": out,
+                "failures": failures, "nxdomain": nxdomain}
 
     def lookup(self, host: str) -> _HostAnswer:
         """Establish what record, if any, governs a host. Asks no port question.

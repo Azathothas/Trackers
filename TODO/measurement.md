@@ -1321,7 +1321,7 @@ Source:      `experiments/29-address-family-census.py`, 2026-09-08;
 Category:    measurement
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     **351 URLs on 244 hosts did not resolve at all**, which is 26% of
              the corpus and **fifteen times** the IPv6-only population this
@@ -1360,3 +1360,53 @@ Prove:       An instrument reports the four classes above with counts, over at
              least two resolvers so that "does not resolve for us" and "does
              not resolve" are separated, and `HISTORY/corpus-baseline.md`
              carries the breakdown. ⛔ No entry moves to `dead` on its output.
+
+**Done.** `python3 experiments/30-resolution-failure-classes.py
+--expect-no-mass-divergence` -> exit 0, result at
+`experiments/results/30-resolution-failure-classes.unclassified-host.20260908T092405Z.json`, breakdown in
+[`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md). ⛔ **No
+health state was written by any of it**, and the class vocabulary is
+deliberately about the lookup rather than about the tracker: there is no
+`dead` among the six values.
+
+**Two resolvers, and they are not the same kind of thing** -- this host's
+`getaddrinfo`, which is what produced the 351 in the first place, and
+`src/trackers/bep34.py`'s own client against 1.1.1.1 / 8.8.8.8 / 9.9.9.9. Only
+the hosts the first could not answer for were asked twice; re-asking about the
+515 that already resolve would triple this project's DNS load to confirm
+something known (RULES 15.2).
+
+| class | hosts | URLs |
+| --- | --- | --- |
+| resolves for both | 515 | 737 |
+| **resolves only for the public resolver** | **11** | **14** |
+| resolves only for this host | 0 | 0 |
+| gone, NXDOMAIN confirmed | **179** | **256** |
+| no address records | 43 | 61 |
+| lookup failed, undetermined | 11 | 20 |
+
+⭐ **The biggest class is real evidence about the trackers**: 179 hosts are
+NXDOMAIN by public resolvers, so 256 URLs name something that does not exist.
+That is the strongest signal in this dataset and it is **still not `dead`** --
+two resolvers on one day, and `MIN_SAMPLES_FOR_DEATH` is 3.
+
+⛔ **And 14 URLs resolve perfectly well.** Eleven hosts -- including
+`tracker.parrotsec.org` and `t.jaekr.sh` -- answer for a public resolver and
+not for this one. **A sweep from this host would have recorded every one of
+them `dns_failure`**, which is the exact shape of "our resolver has an opinion"
+being published as "the tracker is gone". That is what this entry existed to
+separate, and the answer is that it was worth separating.
+
+**The instrument's classes are not literally the four this entry listed**, and
+the deviation is deliberate (RULES 9): `resolves_only_for_the_public_resolver`
+replaces "a name that resolves elsewhere", `lookup_failed_undetermined`
+replaces "SERVFAIL or timeout", and the sibling case is **not** here because
+`experiments/29` already reports it -- putting it in two instruments would be
+two homes for one fact.
+
+⚠ **This host is not the runner.** The divergence measured here is between a
+residential Windows resolver and public ones; the committed health records were
+taken on a GitHub runner, whose resolver was not compared. **So this does not
+say the corpus's `dns_failure` records are wrong** -- it says the class of
+error is real and unmeasured on the vantage that matters. Running experiment 30
+on a runner is what would close that, and it is on [T-007](../TODO/claims.md).

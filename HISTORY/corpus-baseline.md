@@ -156,10 +156,55 @@ Blacklist transports: `http` 208, `https` 28, `udp` 107, `ws` 1, `wss` 2.
 
 ---
 
+## Address families and resolution, measured 2026-09-08
+
+⛔ **These are DNS figures, not health.** Nothing that produced them contacted
+a tracker, and none of them is a health state. They are here because the
+corpus's *shape* includes whether its names resolve, and because
+[`gates.md`](gates.md) carried a dash where the first row's number belongs.
+
+```bash
+python3 experiments/29-address-family-census.py
+python3 experiments/30-resolution-failure-classes.py
+```
+
+**965 distinct hostnames**, of which **206 are address literals** and need no
+lookup. `experiments/29`, this host's resolver:
+
+| | hosts | tracker URLs |
+| --- | --- | --- |
+| IPv4-capable | 706 | 960 |
+| **IPv6-only** | **15** | **16** |
+| did not resolve | 244 | 351 |
+
+**Three of the fifteen IPv6-only hosts have an IPv4 host in this corpus under
+the same registrable domain**, already probed: `anna.bt.bontal.net`,
+`ipv6.govt.hu` and `ipv6.tracker.harry.lu`. Result at
+`experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json`.
+
+`experiments/30` then asked a **second, independent resolver** about every
+name-addressed host, so that "does not resolve" and "does not resolve *for
+us*" are separate facts. 759 name-addressed hosts, 244 of which needed the
+second opinion:
+
+| class | hosts | URLs |
+| --- | --- | --- |
+| resolves for both | 515 | 737 |
+| **resolves only for the public resolver** | **11** | **14** |
+| resolves only for this host | 0 | 0 |
+| gone, NXDOMAIN confirmed | 179 | 256 |
+| no address records | 43 | 61 |
+| lookup failed, undetermined | 11 | 20 |
+
+⛔ **None of these is `dead`,** and the vocabulary is deliberately about the
+lookup rather than about the tracker. Result at `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T092405Z.json`.
+
 ## What these numbers are not
 
 * **Not liveness.** Nothing here probed anything. `995 unique of 1091` is a
-  string comparison; whether those 995 are alive is T-027 and is unanswered.
+  string comparison, and the resolution figures above are DNS. Whether the
+  corpus is alive is [`gates.md`](gates.md)'s value gate, answered 2026-09-08
+  from committed health records rather than from anything on this page.
 * **Not stable.** `ngosang` and `XIU2` regenerate daily. These are the counts
   in the committed fixture snapshots, which is what makes them reproducible;
   a fresh fetch will differ, and that is the point of pinning the fixtures.
