@@ -60,6 +60,7 @@ be the failure that page exists to prevent.
 | Test suite | **234** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
+| Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
 | Cold start | confirmed on a fresh clone: gate green, `references/` and `experiments/results/` identical |
 | CI | `gate.yml` green on the pushed head, confirmed by looking |
 
@@ -113,14 +114,31 @@ our sampling error and forgave the baseline's.
    offline instrument, 11 because a dispatch cancelled an in-flight run after
    it had already reached the trackers.
 
-**Three reviews ran and every one found something**, under
+**Five reviews ran and every one found something**, under
 [`../HISTORY/reviews/`](../HISTORY/reviews/): the door sweep (findings 1 and
 2), the claim audit (`corpus-baseline.md` had acquired a contradictory number,
-from this session), and the tracker-operator pass (finding 5).
+from this session), the tracker-operator pass (finding 5), the guard mutation,
+and the cold start.
 
-⚠ **One commit was pushed with the gate red** and CI confirmed it. The cause is
-recorded in the fixing commit rather than tidied away: the gate was run before
-the edit that broke it, and the reading was not repeated.
+⛔ **`experiments/27 --expect-answered` did not fail, it raised.** Driven
+against the condition it exists for, it exited 1 with a `KeyError` traceback.
+A crash and a measured expectation failure share an exit code, so every check
+of the exit code agreed and nobody read the output. Fixed; both directions
+verified.
+
+⛔ **The work order sent a cold session at a command that does not exist.**
+T-012's `Prove` clause names an experiment that was never built and was not
+marked `(planned)`. `check-citations.py` could not see it: it skipped any
+backticked token containing a space, and **every `Prove:` clause is a
+command**. The check now splits a command and checks each path in it.
+
+⚠ **Two commits went out with the gate red**, both the same way: the gate was
+run, one more edit landed, and the reading was not repeated. Neither was
+carelessness about the rule -- both messages quote a real gate run.
+`scripts/install-hooks.py` is the structural answer, **opt-in and never
+automatic**. ⭐ Its first version broke on the hazard `shell.md` section 6
+documents: `command -v python3` finds the Windows stub, which then does not
+run.
 
 ## In progress
 
