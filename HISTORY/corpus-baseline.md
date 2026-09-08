@@ -204,25 +204,39 @@ first could not answer for, so that "does not resolve" and "does not resolve
 
 | class | runner `ubuntu-24.04` | runner `ubuntu-22.04` | authoring host |
 | --- | --- | --- | --- |
-| resolves for both | 520 / 745 | 520 / 745 | 515 / 737 |
-| **resolves only for the public resolver** | **3 / 7** | **2 / 5** | **11 / 14** |
+| resolves for both | 520 / 745 | 520 / 745 | 516 / 739 |
+| **resolves only for the public resolver** | **3 / 7** | **2 / 5** | **0 / 0** |
 | resolves only for this host | 0 / 0 | 0 / 0 | 0 / 0 |
 | gone, NXDOMAIN confirmed | **183 / 259** | 183 / 259 | 179 / 256 |
 | no address records | 43 / 61 | 43 / 61 | 43 / 61 |
-| lookup failed, undetermined | 10 / 16 | 11 / 18 | 11 / 20 |
+| resolves to an unusable address | - | - | **11 / 14** |
+| lookup failed, undetermined | 10 / 16 | 11 / 18 | 10 / 18 |
 
 *hosts / URLs. Runner figures from workflow run `34210496112`; authoring-host
-figures from `experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json` and `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T092405Z.json`.*
+figures from `experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json` and `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T134349Z.json`.*
 
 ⛔ **None of these is `dead`.** The vocabulary is deliberately about the lookup
 rather than about the tracker, and `MIN_SAMPLES_FOR_DEATH` is 3.
 
-⚠ **The row that matters is the second one**, and the two runner images
-disagree with each other on it. `openbittorrent.com` and
-`tracker.openbittorrent.com` fail on **both** images and resolve for public
-resolvers; `tracker.parrotlinux.org` fails on `24.04` only. `C-06` carries it
-and [T-037](../TODO/measurement.md) is the entry that stops a probe publishing
-it as the tracker being gone.
+⛔ **The unusable-address row is where the authoring host's rescues went.**
+Eleven hosts and fourteen URLs answer `0.0.0.0`, `::` or both: an answer, and
+not an address (RFC 1122 section 3.2.1.3). An earlier revision of this table
+counted them under the second row, which read as a resolver disagreement and
+was a name pointing nowhere. [T-037](../TODO/measurement.md) split them.
+
+⚠ **The runner columns predate the split and a dash is what they get.**
+Workflow run `34210496112` recorded families and not addresses, so nobody can
+say from the committed result whether its 3 and 2 are routable. The instrument
+records addresses now; the next runner run answers it. Reclassifying them from
+this host would be inventing a measurement.
+
+⚠ **The second row is the one that matters** and the two runner images
+disagree on it. `openbittorrent.com` and `tracker.openbittorrent.com` fail on
+**both** images and resolved for public resolvers that day;
+`tracker.parrotlinux.org` fails on `24.04` only. From the authoring host on the
+same date, all six public queries for the first two **time out**, so the BEP 34
+consent lookup fails before resolution is reached and those trackers are
+skipped rather than misclassified. `C-06` carries it.
 
 ## What these numbers are not
 

@@ -13,6 +13,8 @@ WHY IT EXISTS
 
         NXDOMAIN            the name does not exist. Evidence about the tracker.
         NOERROR, no answer  the name exists and has no address of that type.
+        0.0.0.0 or ::       an answer, and not an address. Evidence about the
+                            tracker: nothing can connect to it.
         SERVFAIL / refused  somebody's nameserver is broken. About the PATH.
         no answer at all    our query did not get through. About US.
 
@@ -74,21 +76,21 @@ sys.path.insert(0, os.path.join(REPO, "scripts"))
 
 import _conditions as C  # noqa: E402
 from generate import load_corpus  # noqa: E402
-from trackers.bep34 import Resolver  # noqa: E402
+from trackers.bep34 import (RESOLUTION_CLASSES, Resolver,  # noqa: E402
+                            classify_resolution, usable_addresses)
 
 FIXTURES = os.path.join(REPO, "tests", "fixtures", "sources")
 WORKERS = 6
 
 #: What a host is classified as. ⛔ None of these is `dead`, and the vocabulary
 #: is deliberately about the LOOKUP rather than about the tracker.
-CLASSES = (
-    "resolves_for_both",
-    "resolves_only_for_the_public_resolver",
-    "resolves_only_for_this_host",
-    "gone_nxdomain_confirmed",
-    "no_address_records",
-    "lookup_failed_undetermined",
-)
+#:
+#: ⭐ **The classifier moved into `src/trackers/bep34.py`** when T-037 wired the
+#: same question into the probe. This experiment defined the six classes and
+#: still reports them; what changed is that a sweep and this instrument now
+#: reach them through one function, so a health record and a committed result
+#: cannot disagree about what a name's resolution was.
+CLASSES = RESOLUTION_CLASSES
 
 
 def system_resolve(host: str) -> dict:
@@ -102,23 +104,6 @@ def system_resolve(host: str) -> dict:
         return {"families": [], "error": f"{type(exc).__name__}: {exc}"}
     return {"families": sorted({"ipv6" if i[0] == socket.AF_INET6 else "ipv4"
                                 for i in infos}), "error": None}
-
-
-def classify(system: dict, public: dict) -> str:
-    sys_ok = bool(system["families"])
-    pub_ok = bool(public["families"])
-    if sys_ok and pub_ok:
-        return "resolves_for_both"
-    if pub_ok:
-        return "resolves_only_for_the_public_resolver"
-    if sys_ok:
-        return "resolves_only_for_this_host"
-    if public["nxdomain"]:
-        return "gone_nxdomain_confirmed"
-    if not public["failures"]:
-        # The public resolver answered NOERROR and offered no address.
-        return "no_address_records"
-    return "lookup_failed_undetermined"
 
 
 def main() -> int:
@@ -174,7 +159,8 @@ def main() -> int:
         public = shared.addresses(host)
         public["asked"] = True
         return {"host": host, "system": system, "public": public,
-                "class": classify(system, public)}
+                "class": classify_resolution(
+                    system_resolved=bool(system["families"]), public=public)}
 
     rows: list[dict] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
@@ -197,10 +183,21 @@ def main() -> int:
         "hosts_asked_a_second_resolver": len(asked),
         "classes_by_host": {k: counts.get(k, 0) for k in CLASSES},
         "classes_by_url": {k: urls.get(k, 0) for k in CLASSES},
+        # ⛔ The ADDRESSES, not only the families. The first version of this
+        # row recorded families alone, and a later reading found every host it
+        # had called rescued answering `0.0.0.0`: a family with no usable
+        # address in it. The committed runs cannot answer that question about
+        # themselves, which is the cost of summarising away the evidence.
         "rescued_by_the_public_resolver": [
             {"host": r["host"], "families": r["public"]["families"],
+             "addresses": r["public"]["addresses"],
+             "usable_addresses": usable_addresses(r["public"]),
              "urls": sorted(by_host[r["host"]]),
              "system_said": r["system"]["error"]} for r in rescued],
+        "null_addressed_hosts": [
+            {"host": r["host"], "addresses": r["public"]["addresses"],
+             "urls": sorted(by_host[r["host"]])}
+            for r in rows if r["class"] == "resolves_to_an_unusable_address"],
         "system_errors": Counter(
             (r["system"]["error"] or "ok").split(":")[0] for r in rows),
         "resolvers": {
@@ -225,11 +222,23 @@ def main() -> int:
 
     print(f"\n⭐ RESCUED BY THE PUBLIC RESOLVER: {len(rescued)}")
     for r in rescued[:15]:
-        print(f"    {r['host']:42s} {','.join(r['public']['families'])}")
+        print(f"    {r['host']:42s} "
+              f"{','.join(usable_addresses(r['public'])) or '-'}")
     if rescued:
-        print("    ⛔ These resolve perfectly well. This host's resolver could")
-        print("       not answer for them, and every one would have been")
-        print("       recorded `dns_failure` by a sweep from here.")
+        print("    ⛔ These have an address a probe could open. This host's")
+        print("       resolver could not answer for them, and every one would")
+        print("       have been recorded `dns_failure` by a sweep from here.")
+
+    null_addressed = [r for r in rows
+                      if r["class"] == "resolves_to_an_unusable_address"]
+    print(f"\nANSWERED WITH A NULL ADDRESS: {len(null_addressed)}")
+    for r in null_addressed[:15]:
+        flat = [a for v in r["public"]["addresses"].values() for a in v]
+        print(f"    {r['host']:42s} {','.join(flat)}")
+    if null_addressed:
+        print("    ⚠ Not a rescue. The public resolvers answered and the")
+        print("      answer is unroutable, so both sides agree there is")
+        print("      nothing to connect to. RFC 1122 section 3.2.1.3.")
 
     print("\nWHAT THIS DOES NOT ESTABLISH")
     print("  - That any of these trackers is dead. Nothing here wrote a health")

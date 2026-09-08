@@ -36,7 +36,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))), "src"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from fake_dns import DnsBehaviour, FakeDnsServer  # noqa: E402
+from fake_dns import DnsBehaviour, FakeDnsServer, resolver_for  # noqa: E402
 from fake_tracker import Behaviour, FakeHttpTracker, FakeUdpTracker  # noqa: E402
 from trackers.bep34 import (MARKER, Bep34Config, Decision,  # noqa: E402
                             MAX_WORDS, Resolver, parse_record,
@@ -66,11 +66,6 @@ def loopback_vantage() -> Vantage:
         ip_families_method="forced ipv4 for loopback tests",
         ipv6_stack_present=v.ipv6_stack_present,
         ipv6_route_present=v.ipv6_route_present)
-
-
-def resolver_for(dns: FakeDnsServer, timeout: float = 1.5) -> Resolver:
-    return Resolver(Bep34Config(resolvers=("127.0.0.1",), port=dns.port,
-                                timeout=timeout))
 
 
 def localhost_resolves() -> bool:
@@ -415,9 +410,15 @@ class AddressRecords(unittest.TestCase):
     here are the refusals.
 
     These drive the wire codec directly rather than through `FakeDnsServer`,
-    which serves TXT only. Extending the oracle to synthesise A and AAAA would
-    be a second encoder for a format this test can write in four lines, and the
-    subject is the DECODER.
+    because the subject is the DECODER and a hand-written response is the only
+    way to send it a malformed one: an oracle that encodes correctly cannot
+    produce a 3-byte A record.
+
+    ⚠ The oracle does serve A and AAAA now (T-037), which an earlier version of
+    this docstring said was not worth building. What changed is the question:
+    `probe.py` asks a resolver for addresses on every resolution failure, and
+    that path needs a responder rather than a buffer. It is the same encoder
+    parameterised by type, not a second one.
     """
 
     from trackers import bep34 as _b  # noqa: E402 - the private wire codec

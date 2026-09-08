@@ -85,6 +85,12 @@ def main() -> int:
                          "(T-034). It narrows WHAT is probed and changes "
                          "nothing about HOW: BEP 34, the per-host rule, the "
                          "concurrency bound and the deadline all still apply.")
+    ap.add_argument("--only-host", default=None, metavar="HOSTNAME",
+                    help="narrow the corpus to one hostname. The same "
+                         "narrowing as --only-source and the smallest one "
+                         "available: it is how a single host's behaviour is "
+                         "demonstrated without spending the request budget on "
+                         "everybody else (T-037).")
     args = ap.parse_args()
 
     try:
@@ -122,6 +128,20 @@ def main() -> int:
             print(f"--only-source {args.only_source!r} matched no tracker",
                   file=sys.stderr)
             return 2
+
+    if args.only_host:
+        wanted = args.only_host.lower()
+        narrowed = [t for t in corpus if t.host.lower() == wanted]
+        if not narrowed:
+            # Same rule as --only-source: a run that matched nothing and
+            # exited 0 would publish an empty sweep as a measured one.
+            print(f"--only-host {args.only_host!r} matched no tracker in this "
+                  f"corpus of {len(corpus)}", file=sys.stderr)
+            return 2
+        selection = dict(selection, mode="one host", host=wanted,
+                         selected_by_host=len(narrowed),
+                         corpus_before_selection=len(agg.trackers))
+        corpus = narrowed
 
     budget = budget_for()
     vantage = detect_vantage()

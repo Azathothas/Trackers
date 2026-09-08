@@ -72,7 +72,7 @@ committed under `experiments/results/`.
 | C-03 | Trackers commonly rate-limit or block datacenter address ranges, so runner measurements under-report liveness | `UNVERIFIED` -- one weak sample, not enough to conclude | `experiments/02`, cross-read against newTrackon as oracle | Vantage labelling in RULES 3.4 stays regardless; it costs nothing and is correct either way. |
 | C-04 | Runners may have no IPv6 egress | **`VERIFIED`** -- no IPv6 egress, on both images | `experiments/01-host-network-baseline.py` | Consequence applied: IPv6-only trackers are `unmeasurable`, never `dead`. |
 | C-05 | From the authoring sandbox, `github.com` and `api.github.com` returned HTTP 403 while `raw.githubusercontent.com` returned 200 | `SANDBOX-1`, **and environment-specific** | `curl -o /dev/null -w '%{http_code}'` | Confirmed environment-specific: in *this* session `api.github.com` returned **200**. The row is retained because it explains why the authoring round's GitHub claims were README-depth. |
-| C-06 | Runner DNS resolvers may filter or behave differently from a consumer resolver | **`VERIFIED`, and divergence IS observed at n=239** | `experiments/04`, `experiments/30` | ⛔ `dns_failure` may **not** be read as a property of the name. On both runner images the runner's own resolver failed on `openbittorrent.com` and `tracker.openbittorrent.com` -- 5 corpus URLs -- which public resolvers answer for. |
+| C-06 | Runner DNS resolvers may filter or behave differently from a consumer resolver | **`VERIFIED`, and divergence IS observed at n=239** | `experiments/04`, `experiments/30` | ⛔ `dns_failure` may **not** be read as a property of the name. On both runner images the runner's own resolver failed on `openbittorrent.com` and `tracker.openbittorrent.com` -- 5 corpus URLs -- which public resolvers answer for. **Consequence applied 2026-09-08**: `src/trackers/probe.py` asks a second resolver on every resolution failure and records `resolver_divergence`, which is in `ABOUT_US` ([T-037](../TODO/measurement.md)). ⚠ The size of the divergence is smaller than first counted, and the authoring host's share of it is **zero** -- see the 2026-09-08 record below. |
 
 **Verification records**
 
@@ -145,6 +145,30 @@ committed under `experiments/results/`.
   BEP 34 already uses public resolvers and is not affected. What is affected is
   `src/trackers/probe.py`'s `_resolve`, which uses `socket.getaddrinfo` --
   [T-037](../TODO/measurement.md) is the entry.
+* **C-06, `experiments/30`, 2026-09-08, authoring host, two runs.** Conditions:
+  759 name-addressed corpus hosts, 243 of them asked a second resolver, against
+  1.1.1.1 / 8.8.8.8 / 9.9.9.9. Result:
+  `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T134349Z.json`.
+
+  ⛔ **Zero hosts are rescued here, where an earlier reading of the same
+  instrument said eleven.** Each of the eleven answers `0.0.0.0`, `::` or both.
+  An address of that shape is a valid DNS answer and an invalid destination
+  (RFC 1122 section 3.2.1.3), so both resolvers are in fact agreeing, and the
+  earlier count was a summary that recorded which families came back without
+  recording what was in them.
+
+  ⭐ **The consequence for this row is unchanged and the consequence for the
+  code is larger.** A second resolver is still asked, and what it buys on this
+  vantage is that 10 hosts nobody could resolve stay `dns_undetermined` instead
+  of accumulating toward `dead`.
+
+  ⚠ **The runner's 3 and 2 stay as recorded**, because run `34210496112` wrote
+  families and not addresses. They are not reclassified from here.
+
+  ⚠ **From the authoring host on the same date, all six public queries for
+  `openbittorrent.com` and `tracker.openbittorrent.com` time out.** A vantage
+  that cannot reach public DNS for a name never reaches the resolution step at
+  all: BEP 34 consent is undetermined first and the tracker is skipped.
 * **C-06, `experiments/04`, 2026-09-01, run `33383406869`.** Conditions: 17
   hostnames x (local resolver + 3 pinned public resolvers). Result on **both**
   images: **agree 14, both_failed 3, divergent 0**, and no case of "local

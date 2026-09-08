@@ -93,7 +93,8 @@ from enum import Enum
 
 __all__ = [
     "Decision", "Bep34Record", "Bep34Result", "Bep34Config", "Resolver",
-    "PUBLIC_RESOLVERS", "MARKER", "parse_record", "protocol_for_transport",
+    "PUBLIC_RESOLVERS", "MARKER", "RESOLUTION_CLASSES", "classify_resolution",
+    "usable_addresses", "parse_record", "protocol_for_transport",
 ]
 
 #: The first word. Case-sensitive, because the specification says the contents
@@ -163,6 +164,90 @@ class Decision(str, Enum):
     #: The lookup did not answer, or answered something we will not guess at.
     #: Skips the tracker. **Never** read as permission.
     UNDETERMINED = "undetermined"
+
+
+#: What a name's resolution is, when this host's resolver and the resolvers
+#: this project chose are both asked. ⛔ **None of these is `dead`**, and the
+#: vocabulary is about the LOOKUP rather than about the tracker.
+#:
+#: ⭐ **One home for the vocabulary** (T-037). `experiments/30` defined these
+#: six strings and `src/trackers/probe.py` needs the same distinctions on every
+#: sweep, so the classification lives here and both call it. Two copies would
+#: be a value in two places with no check that they agree, and the copy a
+#: reader trusts would be the wrong one.
+RESOLUTION_CLASSES: tuple[str, ...] = (
+    "resolves_for_both",
+    "resolves_only_for_the_public_resolver",
+    "resolves_only_for_this_host",
+    "gone_nxdomain_confirmed",
+    "no_address_records",
+    "resolves_to_an_unusable_address",
+    "lookup_failed_undetermined",
+)
+
+
+def usable_addresses(public: dict[str, object]) -> list[str]:
+    """The addresses in an `addresses()` result that can be connected to.
+
+    ⛔ **An unspecified address is an answer, not an address.** `0.0.0.0` and
+    `::` are never valid destinations (RFC 1122 section 3.2.1.3), so a name
+    that resolves only to one has no usable address and counting it as
+    resolution would report a rescue that cannot be probed.
+
+    Measured on 2026-09-08 from one Windows 11 host, against 1.1.1.1 / 8.8.8.8
+    / 9.9.9.9: **8 of the 8 corpus hosts** `experiments/30` had classified
+    `resolves_only_for_the_public_resolver` answer with `0.0.0.0`, `::`, or
+    both, `tracker.parrotsec.org` among them.
+
+    Only the unspecified addresses are excluded here. A public resolver
+    answering `127.0.0.1` or a private range for a public tracker is the same
+    shape of non-answer and is deliberately **not** folded in: it has not been
+    measured in this corpus, and guessing at a blackhole convention would
+    discard addresses that might route somewhere.
+    """
+    out: list[str] = []
+    for values in (public.get("addresses") or {}).values():
+        for value in values:
+            try:
+                ip = ipaddress.ip_address(value)
+            except ValueError:
+                continue
+            if not ip.is_unspecified:
+                out.append(value)
+    return out
+
+
+def classify_resolution(*, system_resolved: bool,
+                        public: dict[str, object]) -> str:
+    """Which kind of not-resolving a name is, given both resolvers' answers.
+
+    `public` is an `addresses()` result. `system_resolved` is whether
+    `socket.getaddrinfo` returned anything for the same name, which is the
+    answer a consumer on this machine would get.
+
+    ⛔ **The two disagreeing is the finding, not a tie to break.** A name the
+    public resolvers answer for and this host does not is our resolver, which
+    is the production failure newTrackon hit on issue #316, and reporting it as
+    a property of the name is the conflation `C-06` records.
+    """
+    public_resolved = bool(usable_addresses(public))
+    if system_resolved and public_resolved:
+        return "resolves_for_both"
+    if public_resolved:
+        return "resolves_only_for_the_public_resolver"
+    if system_resolved:
+        return "resolves_only_for_this_host"
+    if public.get("families"):
+        # Records exist and every address in them is unspecified. Both sides
+        # agree there is nothing to connect to, so this is about the name.
+        return "resolves_to_an_unusable_address"
+    if public.get("nxdomain"):
+        return "gone_nxdomain_confirmed"
+    if not public.get("failures"):
+        # NOERROR carrying no address is a definitive answer: the name exists
+        # and has no address record of either type.
+        return "no_address_records"
+    return "lookup_failed_undetermined"
 
 
 def protocol_for_transport(transport: str) -> str:
@@ -503,6 +588,9 @@ class Resolver:
     def __init__(self, config: Bep34Config | None = None) -> None:
         self.config = config or Bep34Config()
         self._cache: dict[str, _HostAnswer] = {}
+        #: The same per-run, per-host discipline for `addresses()`. A corpus
+        #: with several URLs on one host asks about that host once (T-037).
+        self._addresses: dict[str, dict[str, object]] = {}
 
     # -- the lookup ------------------------------------------------------------
     def _query_one(self, resolver: str, qname: bytes, qid: int,
@@ -571,7 +659,19 @@ class Resolver:
         failures. ⛔ **An empty result with failures recorded is not the same
         as an empty result without them**, and both are returned rather than
         collapsed into `None` (RULES 3.2).
+
+        Cached per host for the life of the instance, on the same terms as
+        `lookup`: within one run a name's addresses are treated as fixed, and
+        nothing is remembered across runs.
         """
+        cached = self._addresses.get(host)
+        if cached is not None:
+            return cached
+        answer = self._addresses_uncached(host)
+        self._addresses[host] = answer
+        return answer
+
+    def _addresses_uncached(self, host: str) -> dict[str, object]:
         try:
             qname = _encode_name(host)
         except _Malformed as e:

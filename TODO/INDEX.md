@@ -88,7 +88,7 @@ pretending to be one.
 | [T-030](measurement.md) | P2 | measurement | open | Experiments 3-18 from the original programme were never run |
 | [T-033](measurement.md) | P2 | measurement | **done** | The experiments and the probe carry two copies of one codec |
 | [T-035](claims.md) | P2 | claims | open | Four of the five clients that matter are absent, not passing |
-| [T-037](measurement.md) | P1 | measurement | open | A `dns_failure` records our resolver's opinion, and a better one is already in the tree |
+| [T-037](measurement.md) | P1 | measurement | **done** | A `dns_failure` records our resolver's opinion, and a better one is already in the tree |
 | [T-036](measurement.md) | P2 | measurement | **done** | 351 tracker URLs do not resolve, and nobody has asked why |
 | [T-041](scoring.md) | P2 | scoring | open | History must distinguish seven shapes over time, not seven values |
 | [T-042](scoring.md) | P2 | scoring | **done** | The state size over five years has never been computed |
@@ -124,7 +124,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 71 entries, 42 open, 0 blocked, 29 done
+**Counts:** 71 entries, 41 open, 0 blocked, 30 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -132,10 +132,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 2 | 0 | 5 | 7 |
-| P1 | 10 | 0 | 13 | 23 |
+| P1 | 9 | 0 | 14 | 23 |
 | P2 | 24 | 0 | 10 | 34 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **42** | **0** | **29** | **71** |
+| **All** | **41** | **0** | **30** | **71** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

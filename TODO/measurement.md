@@ -1264,6 +1264,16 @@ public resolvers, so 256 URLs name something that does not exist. Still **not
 `tracker.parrotsec.org`, answer for a public resolver and not for this one. A
 sweep from here would have recorded every one `dns_failure`.
 
+⛔ **Corrected 2026-09-08 by [T-037](measurement.md): none of those 14 resolves
+to anything reachable.** All eleven hosts answer `0.0.0.0`, `::` or both, which
+is an answer and not an address. The paragraph above stands as what this
+instrument reported before it distinguished them, and the count it gave is why
+the classifier now has a seventh class,
+`resolves_to_an_unusable_address`. Re-measured at **0 of 243 rescued**:
+`experiments/results/30-resolution-failure-classes.unclassified-host.20260908T134349Z.json`.
+The instrument recorded families and not addresses, which is what let a null
+answer read as a rescue; it records both now.
+
 **The classes are not literally the four this entry listed** (RULES 9):
 `resolves_only_for_the_public_resolver` replaces "a name that resolves
 elsewhere", `lookup_failed_undetermined` replaces "SERVFAIL or timeout", and
@@ -1277,7 +1287,7 @@ Source:      `C-06` re-measured; `experiments/30`, run `34210496112`
 Category:    measurement
 Priority:    P1
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `src/trackers/probe.py`'s `_resolve` calls
              `socket.getaddrinfo`, so `Failure.DNS_FAILURE` means **"the
@@ -1330,3 +1340,81 @@ Prove:       `python3 -m unittest tests.test_probe -v` covers a host that
              that `health_state` cannot return `dead` for it. Then a sweep
              record shows the value in use, and `HISTORY/claims.md` `C-06`
              cites it.
+
+**Done.** `python3 -m unittest
+tests.test_probe.OurResolversOpinionIsNotTheNamesProperty -v` -> **12 tests,
+OK**. `second_opinion` in `src/trackers/probe.py` asks
+`src/trackers/bep34.py`'s resolvers whenever `getaddrinfo` fails, and the four
+states are `resolver_divergence` (new, in `ABOUT_US`), `dns_failure` for a
+definitive not-resolving, `dns_undetermined` (new, in `ABOUT_US`) for no
+answer, and unchanged behaviour where the first lookup succeeded. Both
+answers are kept on the record under `dns`, because preferring one would
+delete the disagreement.
+
+⭐ **Both probers, not one.** `probe_udp` and `probe_http` are separate public
+entry points and a control on one leaves the other reaching the same published
+field. Four call sites take the second opinion, including the `gaierror`
+`urlopen` raises after the probe's own lookup already succeeded.
+
+⛔ **The premise was measured again and it does not hold on this vantage.** Of
+243 hosts this host's resolver could not answer for, **0 are rescued by a
+public resolver** -- not 11. Every one of the 11 that `experiments/30` had
+counted answers `0.0.0.0`, `::`, or both, `tracker.parrotsec.org` among them.
+An unspecified address is an answer and not an address (RFC 1122 section
+3.2.1.3), so a seventh class exists, `resolves_to_an_unusable_address`, and it
+is `dns_failure`: both resolvers agree there is nothing to connect to.
+Two runs, `20260908T134349Z` committed. Without the distinction this entry
+would have shipped 14 URLs labelled "our resolver's fault" that no resolver
+can reach.
+
+⛔ **`openbittorrent.com` never reaches this code from here.** All six public
+queries for it time out, so the **BEP 34 consent lookup fails first** and the
+tracker is skipped as `exclusion_undetermined`. Driven:
+`python3 scripts/probe-corpus.py --offline-corpus --only-host
+openbittorrent.com`. On the runner, where public resolvers answered on
+2026-09-08, consent succeeds and the resolution failure is the one this entry
+reclassifies -- so the premise holds there and the fix is still what stops 5
+URLs being published as gone.
+
+**What it buys here, counted:** the 10 hosts and **18 URLs** in
+`lookup_failed_undetermined` can no longer accumulate toward `dead`, because
+`dns_undetermined` is in `ABOUT_US`. Before this they were `dns_failure`,
+which is not.
+
+**A sweep record shows both values in use**, from
+`python3 scripts/probe-corpus.py --offline-corpus --only-host bt1.xxxxbt.cc`:
+
+```json
+{"url": "http://bt1.xxxxbt.cc:6969/announce", "health_state": "unknown",
+ "failure": "dns_failure", "measurement_rung": "none",
+ "used_synthetic_infohash": false,
+ "detail": "gaierror: [Errno 11004] getaddrinfo failed; public resolvers: resolves_to_an_unusable_address"}
+```
+
+⚠ **That record is deliberately not committed.** `experiments/27`, `28` and
+`32` glob every `health-sweep.*.json` under `experiments/results/` and merge
+their records, so a one-host demonstration dropped there would enter the value
+gate as evidence. The instrument is the deliverable and `--only-host` re-runs
+it in a second.
+
+⛔ **Two findings came from reading a real record rather than from the suite.**
+`used_synthetic_infohash` was `true` on every HTTP result including ones that
+opened no socket -- a scrape claimed on a record where nothing was sent, which
+is the hardcoded-status forbidden pattern and had already reached a committed
+sweep. It is now set at the point the request goes out. And the null-address
+class above was visible only because the record carries the addresses.
+
+**The Decision's cost is corrected (RULES 9).** It said "one extra query each
+at worst". It is **two** per failing host, one per address family, because
+knowing a host is IPv6-only is the point of asking; and up to **six** where no
+resolver answers. Measured: 243 hosts asked on this vantage, so 486 queries at
+best and 1458 at worst, against the 100,000 per run the operator set. Wall
+time is the real cost: six queries at a 3 s timeout is 18 s for one host that
+nobody answers for.
+
+**The classifier has one home.** `experiments/30` defined the vocabulary and
+now imports it from `src/trackers/bep34.py`, so a committed result and a
+health record cannot disagree about what a name's resolution was. The
+experiment also records the addresses now, not only the families -- the
+committed runner runs cannot be reclassified because they did not, and that is
+what a summary that drops the evidence costs.

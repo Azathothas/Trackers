@@ -30,6 +30,17 @@ are public entry points that open sockets, and a control enforced on one path
 into an action while its sibling reaches the same action ungated is the most
 recurring hole there is (`forbidden-patterns.md`).
 
+A RESOLUTION FAILURE IS OUR RESOLVER'S OPINION UNTIL A SECOND ONE AGREES (T-037)
+
+`_resolve` uses `socket.getaddrinfo`, which is the resolver a consumer on this
+machine would get, so what it says is kept. Where it fails, `second_opinion`
+asks this project's own resolvers through `bep34.py` before anything is
+recorded, and the failure vocabulary splits the answers: a name only the public
+resolvers can find is `RESOLVER_DIVERGENCE` and is in `ABOUT_US`, while
+NXDOMAIN confirmed by both is the strongest not-resolving signal available
+here. Measured cause: on both runner images this vantage cannot resolve
+`openbittorrent.com`, which public resolvers answer for (`C-06`).
+
 TWO THINGS THIS MODULE WILL NOT DO
 
 **It cannot announce.** `bep15.py` has no function that builds an announce, and
@@ -66,13 +77,14 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
 from . import bep15
 from .bencode import TRACKER_KINDS, classify_body
-from .bep34 import Decision, Resolver, protocol_for_transport
+from .bep34 import (Decision, Resolver, classify_resolution,
+                    protocol_for_transport)
 from .model import (Network, Rung, Tracker, Transport, YGGDRASIL_NET,
                     HealthState)
 from .vantage import UNKNOWN, Vantage, detect as detect_vantage
@@ -80,7 +92,7 @@ from .vantage import UNKNOWN, Vantage, detect as detect_vantage
 __all__ = [
     "Failure", "ProbeConfig", "ProbeResult", "MIN_SAMPLES_FOR_DEATH",
     "health_state", "classify_network_resolved", "probe", "probe_udp",
-    "probe_http", "DEFAULT_USER_AGENT", "effective_port",
+    "probe_http", "DEFAULT_USER_AGENT", "effective_port", "second_opinion",
 ]
 
 #: How many observations before `dead` is sayable. Three is a judgement, not a
@@ -116,7 +128,22 @@ class Failure(str, Enum):
     """
 
     NONE = "none"
+    #: Neither this host's resolver nor the resolvers this project chose found
+    #: an address, and the public answer was definitive: NXDOMAIN, or NOERROR
+    #: carrying no address record. The strongest not-resolving signal available
+    #: here, and still not `dead` on its own -- `MIN_SAMPLES_FOR_DEATH` decides
+    #: that. `dns` on the result carries which of the two it was.
     DNS_FAILURE = "dns_failure"
+    #: T-037: this host's resolver could not answer and a public one could.
+    #: A fact about our vantage, measured at 3 hosts of 239 on `ubuntu-24.04`
+    #: (`C-06`, `experiments/30`), so it is in `ABOUT_US` and can never produce
+    #: `dead`. Publishing it as `dns_failure` would report one of the
+    #: best-known public trackers as gone.
+    RESOLVER_DIVERGENCE = "resolver_divergence"
+    #: T-037: neither resolver answered and no answer was definitive -- a
+    #: timeout, a SERVFAIL, a refusal. Nothing was established about the name,
+    #: which is a different fact from establishing that it does not resolve.
+    DNS_UNDETERMINED = "dns_undetermined"
     NO_USABLE_ADDRESS = "no_usable_address"
     TIMEOUT = "timeout"
     REFUSED = "refused"
@@ -166,6 +193,7 @@ ABOUT_US: frozenset[Failure] = frozenset({
     Failure.NO_USABLE_ADDRESS, Failure.BLOCKED_BY_POLICY,
     Failure.DEADLINE_EXCEEDED, Failure.PROBE_ERROR, Failure.UNSUPPORTED,
     Failure.EXCLUDED_BY_OPERATOR, Failure.EXCLUSION_UNDETERMINED,
+    Failure.RESOLVER_DIVERGENCE, Failure.DNS_UNDETERMINED,
 })
 
 
@@ -238,6 +266,11 @@ class ProbeResult:
     #: on every result, including the ones that were allowed, because "we asked
     #: and were permitted" is the evidence that the gate ran at all.
     bep34: dict[str, Any] = field(default_factory=dict)
+    #: T-037: both resolvers' answers, and the class they classify to. Present
+    #: only where this host's resolver failed, which is the only case that asks
+    #: a second question. ⛔ Both answers are kept rather than the winning one:
+    #: the disagreement is the finding.
+    dns: dict[str, Any] = field(default_factory=dict)
 
     def as_record(self, health: HealthState) -> dict[str, Any]:
         """The health-record shape `scripts/check-vantage-metadata.py` reads."""
@@ -262,6 +295,7 @@ class ProbeResult:
             "observed_at": self.observed_at,
             "vantage": dict(self.vantage),
             "bep34": dict(self.bep34),
+            "dns": dict(self.dns),
         }
 
 
@@ -331,7 +365,10 @@ def health_state(*, rung: Rung, transport: Transport, network: Network,
     3. **The probe itself broke** -> `error`. Never `dead`: a broken probe that
        marks everything dead is the failure T-021's oracle exists to catch.
     4. **Never observed** (sample_count 0, or the deadline arrived first) ->
-       `unknown`. Running out of time is a fact about us (T-029).
+       `unknown`. Running out of time is a fact about us (T-029). **A name our
+       resolver could not answer for lands here too** (T-037): whether another
+       resolver answered or nobody did, no socket was opened and nothing about
+       the tracker was learned.
     5. **Refused or rate-limited** -> never `dead`. A 429 means very much
        alive; a 403 may be about our User-Agent rather than about them (T-012).
     6. **Every observation proved a tracker** -> `live`.
@@ -348,10 +385,15 @@ def health_state(*, rung: Rung, transport: Transport, network: Network,
     if failure is Failure.PROBE_ERROR:
         return HealthState.ERROR
     if (sample_count <= 0 or failure is Failure.DEADLINE_EXCEEDED
-            or failure is Failure.EXCLUSION_UNDETERMINED):
-        # An undetermined exclusion is stated explicitly rather than left to
-        # `sample_count == 0`, so it stays `unknown` even where a caller
-        # carries observations forward from an earlier run.
+            or failure is Failure.EXCLUSION_UNDETERMINED
+            or failure is Failure.RESOLVER_DIVERGENCE
+            or failure is Failure.DNS_UNDETERMINED):
+        # Each is stated explicitly rather than left to `sample_count == 0`, so
+        # it stays `unknown` even where a caller carries observations forward
+        # from an earlier run. The two DNS values are here for the reason
+        # T-037 exists: our resolver's opinion is not the name's property, and
+        # letting either accumulate toward `dead` would publish one of the
+        # best-known public trackers as gone.
         return HealthState.UNKNOWN
     if failure in (Failure.RATE_LIMITED, Failure.BLOCKED_BY_POLICY,
                    Failure.TRUNCATED_RESPONSE, Failure.RESET):
@@ -448,6 +490,10 @@ def _resolve(host: str, port: int, sock_type: int, vantage: Vantage) -> Resoluti
     resolved perfectly well. That misclassification is the same class of lie as
     marking such a tracker dead, and it is a bug this project has already found
     and fixed once, in `experiments/02`.
+
+    ⚠ **This is the host's resolver and it has an opinion of its own.** Every
+    caller of this function sends a failure through `second_opinion` rather
+    than recording it (T-037).
     """
     infos = socket.getaddrinfo(host, port, socket.AF_UNSPEC, sock_type)
     families = tuple(sorted({
@@ -458,6 +504,66 @@ def _resolve(host: str, port: int, sock_type: int, vantage: Vantage) -> Resoluti
     return Resolution(infos=tuple(infos),
                       addresses=tuple(i[4][0] for i in infos),
                       families=families, usable=usable)
+
+
+# --- T-037: a second opinion, only where the first failed ---------------------
+#
+# What each resolution class means for a health record. The classes are
+# `bep34.RESOLUTION_CLASSES` and they are about the lookup; these are the
+# consequences, and the split is the one `ABOUT_US` draws:
+#
+#   the public resolvers answered        -> our vantage. Never `dead`.
+#   they answered definitively that      -> about the name, and the strongest
+#   there is no address                     signal available here.
+#   they did not answer at all           -> nothing was established.
+#
+# `resolves_for_both` and `resolves_only_for_this_host` are absent on purpose:
+# both mean `getaddrinfo` answered, and no second query is made in that case.
+_RESOLUTION_FAILURE: dict[str, Failure] = {
+    "resolves_only_for_the_public_resolver": Failure.RESOLVER_DIVERGENCE,
+    "gone_nxdomain_confirmed": Failure.DNS_FAILURE,
+    "no_address_records": Failure.DNS_FAILURE,
+    # Both sides agree there is nothing to connect to: this host reported no
+    # data and the public resolvers answered `0.0.0.0`. That is about the name.
+    "resolves_to_an_unusable_address": Failure.DNS_FAILURE,
+    "lookup_failed_undetermined": Failure.DNS_UNDETERMINED,
+}
+
+
+def second_opinion(host: str, resolver: Resolver,
+                   detail: str) -> tuple[Failure, str, dict[str, Any]]:
+    """Ask this project's own resolvers about a name `getaddrinfo` refused.
+
+    Returns `(failure, detail, record)`.
+
+    ⛔ **Not a replacement for `getaddrinfo`.** It is the resolver a consumer
+    on this machine would use, so its answer is a real fact about this vantage
+    and is kept. This asks a second question **only where the first failed**,
+    which is 239 of 759 corpus hosts at worst and leaves the other 520
+    untouched (T-037, RULES 15.2).
+
+    The alternative -- preferring whichever resolver answers -- would delete the
+    fact that they disagreed, and the disagreement is the finding: on both
+    runner images `openbittorrent.com` fails here and answers there (`C-06`).
+    """
+    try:
+        public = resolver.addresses(host)
+    except Exception as e:  # a broken second lookup is our defect, not a fact
+        return (Failure.PROBE_ERROR,
+                f"{detail}; second opinion raised {type(e).__name__}: {e}", {})
+
+    # `system_resolved` is False at every call site: this is reached only from
+    # a resolution that failed. The parameter exists because `experiments/30`
+    # classifies hosts where it is True.
+    kind = classify_resolution(system_resolved=False, public=public)
+    record = {
+        "class": kind,
+        "system": {"resolved": False, "detail": detail},
+        "public": public,
+        "resolvers": list(resolver.config.resolvers),
+    }
+    return (_RESOLUTION_FAILURE.get(kind, Failure.DNS_UNDETERMINED),
+            f"{detail}; public resolvers: {kind}", record)
 
 
 # --- T-032: the operator's refusal, before any socket -------------------------
@@ -479,7 +585,7 @@ def effective_port(tracker: Tracker) -> int:
     return 443 if tracker.transport in (Transport.HTTPS, Transport.WSS) else 80
 
 
-def _consult_operator(tracker: Tracker, resolver: Resolver | None,
+def _consult_operator(tracker: Tracker, resolver: Resolver,
                       base: dict) -> tuple[dict[str, Any], ProbeResult | None]:
     """Ask DNS whether this endpoint may be contacted at all.
 
@@ -488,9 +594,10 @@ def _consult_operator(tracker: Tracker, resolver: Resolver | None,
 
     There is deliberately no argument that skips this. `resolver` selects who is
     asked -- which is how the loopback oracle exercises it -- and every value of
-    it still ends in a decision.
+    it still ends in a decision. It is required rather than defaulted, so that
+    the resolver consulted here is the one a resolution failure asks for a
+    second opinion (T-037), and both are cached together.
     """
-    resolver = resolver or Resolver()
     port = effective_port(tracker)
     verdict = resolver.consult(tracker.host,
                                protocol_for_transport(tracker.transport.value),
@@ -518,6 +625,7 @@ def probe_udp(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     hash, but nothing here sends one; wiring that is T-022. An earlier version
     of this line advertised a `cfg.udp_scrape` switch that has never existed.
     """
+    resolver = resolver or Resolver()
     base = dict(url=tracker.url, transport=tracker.transport,
                 observed_at=observed_at, vantage=vantage.as_dict(),
                 sent_user_agent=None)  # BEP 15 is binary; there is no UA field
@@ -531,9 +639,10 @@ def probe_udp(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     try:
         res = _resolve(tracker.host, port, socket.SOCK_DGRAM, vantage)
     except OSError as e:
+        failure, detail, dns = second_opinion(
+            tracker.host, resolver, f"{type(e).__name__}: {e}")
         return ProbeResult(network=tracker.network, rung=Rung.NONE, ok=False,
-                           failure=Failure.DNS_FAILURE,
-                           detail=f"{type(e).__name__}: {e}", **base)
+                           failure=failure, detail=detail, dns=dns, **base)
 
     network, from_net = classify_network_resolved(tracker.network,
                                                   list(res.addresses))
@@ -611,15 +720,20 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     does not apply and no scrape URL is invented -- guessing one would fabricate
     an endpoint and then report its absence as the tracker's defect.
     """
+    resolver = resolver or Resolver()
+    # ⛔ False until a request is actually issued. It travels in `base` into
+    # every result this function builds, and the ones built before the socket
+    # -- an operator's refusal, a resolution failure, no usable address -- sent
+    # no info_hash at all. A record claiming one is the "hardcoded status"
+    # forbidden pattern, and it reached a committed sweep record before T-037
+    # read one closely.
     base = dict(url=tracker.url, transport=tracker.transport,
                 observed_at=observed_at, vantage=vantage.as_dict(),
-                sent_user_agent=cfg.user_agent, used_synthetic_infohash=True)
+                sent_user_agent=cfg.user_agent, used_synthetic_infohash=False)
 
     consulted, refusal = _consult_operator(tracker, resolver, base)
     if refusal is not None:
-        # `used_synthetic_infohash` travels in `base`, and nothing was sent, so
-        # the refusal's own record must not claim a scrape happened.
-        return replace(refusal, used_synthetic_infohash=False)
+        return refusal
     base["bep34"] = consulted
 
     target = tracker.scrape_url or tracker.url
@@ -632,9 +746,10 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     try:
         res = _resolve(tracker.host, port, socket.SOCK_STREAM, vantage)
     except OSError as e:
+        failure, detail, dns = second_opinion(
+            tracker.host, resolver, f"{type(e).__name__}: {e}")
         return ProbeResult(network=tracker.network, rung=Rung.NONE, ok=False,
-                           failure=Failure.DNS_FAILURE,
-                           detail=f"{type(e).__name__}: {e}", **base)
+                           failure=failure, detail=detail, dns=dns, **base)
 
     network, from_net = classify_network_resolved(tracker.network,
                                                   list(res.addresses))
@@ -642,10 +757,11 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     addresses = list(res.addresses)
 
     if not addresses:
+        failure, detail, dns = second_opinion(
+            tracker.host, resolver, f"no address for {tracker.host}")
         return ProbeResult(network=network, network_reclassified_from=from_net,
-                           rung=Rung.NONE, ok=False,
-                           failure=Failure.DNS_FAILURE,
-                           detail=f"no address for {tracker.host}", **base)
+                           rung=Rung.NONE, ok=False, failure=failure,
+                           detail=detail, dns=dns, **base)
     if not res.usable:
         return ProbeResult(
             network=network, network_reclassified_from=from_net,
@@ -655,6 +771,9 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                     f"{list(vantage.ip_families)}"),
             resolved_ip=res.first, families=families, **base)
 
+    # From here a scrape carrying a synthetic info_hash is on its way out, so
+    # every result built below records that it was sent.
+    base["used_synthetic_infohash"] = True
     req = urllib.request.Request(full, headers=cfg.headers())
     t0 = time.monotonic()
     try:
@@ -677,10 +796,18 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
                               addresses[0], families)
     except urllib.error.URLError as e:
         reason = e.reason
+        dns: dict[str, Any] = {}
+        detail = f"{type(reason).__name__}: {reason}"
         if isinstance(reason, ssl.SSLError):
             failure, rung = Failure.TLS_FAILURE, Rung.CONNECTED
         elif isinstance(reason, socket.gaierror):
-            failure, rung = Failure.DNS_FAILURE, Rung.NONE
+            # `urlopen` resolves again, and this one failed where the probe's
+            # own lookup had just succeeded. That is our resolver contradicting
+            # itself inside one probe, so it takes the same second opinion as
+            # any other resolution failure rather than being published as a
+            # property of the name (T-037).
+            rung = Rung.NONE
+            failure, detail, dns = second_opinion(tracker.host, resolver, detail)
         elif isinstance(reason, socket.timeout) or "timed out" in str(reason):
             failure, rung = Failure.TIMEOUT, Rung.DNS
         elif isinstance(reason, ConnectionResetError):
@@ -690,9 +817,9 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
         else:
             failure, rung = Failure.REFUSED, Rung.DNS
         return ProbeResult(network=network, network_reclassified_from=from_net,
-                           rung=rung, ok=False, failure=failure,
-                           detail=f"{type(reason).__name__}: {reason}",
-                           resolved_ip=addresses[0], families=families, **base)
+                           rung=rung, ok=False, failure=failure, detail=detail,
+                           dns=dns, resolved_ip=addresses[0],
+                           families=families, **base)
     except (socket.timeout, TimeoutError):
         return ProbeResult(network=network, network_reclassified_from=from_net,
                            rung=Rung.DNS, ok=False, failure=Failure.TIMEOUT,

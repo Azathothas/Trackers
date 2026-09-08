@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import itertools
 import os
+import socket
 import sys
 import unittest
 
@@ -28,6 +29,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))), "src"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from fake_dns import (DnsBehaviour, FakeDnsServer,  # noqa: E402
+                      resolver_for)
+from trackers.bep34 import RESOLUTION_CLASSES  # noqa: E402
 from trackers.model import (HealthState, Network, Rung,  # noqa: E402
                             Transport, classify_network)
 from trackers.normalize import parse  # noqa: E402
@@ -242,6 +246,199 @@ class YggdrasilByResolvedAddress(unittest.TestCase):
                          success_count=0, failure=Failure.TIMEOUT,
                          measurable=False),
             HealthState.UNMEASURABLE)
+
+
+class OurResolversOpinionIsNotTheNamesProperty(unittest.TestCase):
+    """T-037. `getaddrinfo` failing is a fact about this vantage until a
+    resolver we chose agrees with it.
+
+    Measured cause (`C-06`, `experiments/30`, run `34210496112`): of the 239
+    hosts a runner's own resolver could not answer for, public resolvers answer
+    for 3 on `ubuntu-24.04` -- `openbittorrent.com` among them, 5 corpus URLs.
+    Publishing those as `dns_failure` would report one of the best-known public
+    trackers as gone.
+
+    ⭐ **The probe is driven end to end**, not `second_opinion` alone: the name
+    is one this host genuinely cannot resolve, the fallback speaks the real DNS
+    wire protocol to a loopback resolver, and the assertions are on the record
+    the sweep would commit.
+    """
+
+    #: RFC 2606 reserves `.invalid`, so no resolver may answer for it. A host
+    #: whose resolver hijacks NXDOMAIN would, and that is what `setUp` checks.
+    UNRESOLVABLE = "tracker.t037.invalid"
+
+    def setUp(self):
+        try:
+            socket.getaddrinfo(self.UNRESOLVABLE, 80, socket.AF_UNSPEC,
+                               socket.SOCK_STREAM)
+        except OSError:
+            return
+        self.skipTest(f"this host resolves {self.UNRESOLVABLE}, so the "
+                      "divergence cannot be staged here")
+
+    def _probe(self, dns: FakeDnsServer, transport: str = "udp") -> object:
+        url = (f"{transport}://{self.UNRESOLVABLE}:6969/announce")
+        return probe(parse(url), ProbeConfig(timeout=1.5, retries=0), detect(),
+                     resolver=resolver_for(dns))
+
+    def test_a_name_only_the_public_resolver_finds_is_never_dead(self):
+        """The `Prove` clause. A new value, in `ABOUT_US`, and no sample count
+        reaches `dead`."""
+        with FakeDnsServer(addresses={self.UNRESOLVABLE: ["203.0.113.7"]}) as dns:
+            r = self._probe(dns)
+        self.assertIs(r.failure, Failure.RESOLVER_DIVERGENCE)
+        self.assertIn(Failure.RESOLVER_DIVERGENCE, ABOUT_US)
+        for n in (1, 3, MIN_SAMPLES_FOR_DEATH, 99):
+            with self.subTest(samples=n):
+                self.assertIs(
+                    health_state(rung=r.rung, transport=r.transport,
+                                 network=r.network, sample_count=n,
+                                 success_count=0, failure=r.failure),
+                    HealthState.UNKNOWN)
+
+    def test_the_record_carries_both_answers_and_not_the_winner(self):
+        """Preferring whichever resolver answered would delete the finding."""
+        with FakeDnsServer(addresses={self.UNRESOLVABLE: ["203.0.113.7"]}) as dns:
+            rec = self._probe(dns).as_record(HealthState.UNKNOWN)
+        dns_evidence = rec["dns"]
+        self.assertEqual(dns_evidence["class"],
+                         "resolves_only_for_the_public_resolver")
+        self.assertFalse(dns_evidence["system"]["resolved"])
+        self.assertTrue(dns_evidence["system"]["detail"],
+                        "what our own resolver said is evidence and is kept")
+        self.assertEqual(dns_evidence["public"]["addresses"],
+                         {"ipv4": ["203.0.113.7"]})
+        self.assertEqual(dns_evidence["resolvers"], ["127.0.0.1"])
+
+    def test_nxdomain_confirmed_by_both_stays_dns_failure(self):
+        """The strongest not-resolving signal available here. It is about the
+        name, so it is not in `ABOUT_US` -- and three samples still decide
+        `dead`, not one.
+
+        ⚠ NXDOMAIN on the address question only. A resolver that answered it
+        to the BEP 34 question as well would stop the probe at the consent
+        gate, and this path would never run.
+        """
+        with FakeDnsServer(address_behaviour=DnsBehaviour.NXDOMAIN) as dns:
+            r = self._probe(dns)
+        self.assertIs(r.failure, Failure.DNS_FAILURE)
+        self.assertNotIn(Failure.DNS_FAILURE, ABOUT_US)
+        self.assertEqual(r.dns["class"], "gone_nxdomain_confirmed")
+        self.assertIs(
+            health_state(rung=r.rung, transport=r.transport, network=r.network,
+                         sample_count=1, success_count=0, failure=r.failure),
+            HealthState.UNKNOWN)
+
+    def test_a_resolver_that_does_not_answer_establishes_nothing(self):
+        """SERVFAIL from every resolver we asked. Neither the name nor the
+        tracker was established, and that is its own value."""
+        with FakeDnsServer(address_behaviour=DnsBehaviour.SERVFAIL) as dns:
+            r = self._probe(dns)
+        self.assertIs(r.failure, Failure.DNS_UNDETERMINED)
+        self.assertIn(Failure.DNS_UNDETERMINED, ABOUT_US)
+        self.assertEqual(r.dns["class"], "lookup_failed_undetermined")
+        self.assertTrue(r.dns["public"]["failures"],
+                        "an empty result with failures recorded is not the "
+                        "same as an empty one without them")
+
+    def test_noerror_with_no_address_is_about_the_name(self):
+        """The name exists and has no address record of either type."""
+        with FakeDnsServer() as dns:
+            r = self._probe(dns)
+        self.assertIs(r.failure, Failure.DNS_FAILURE)
+        self.assertEqual(r.dns["class"], "no_address_records")
+
+    def test_an_unspecified_address_is_not_a_rescue(self):
+        """⛔ The finding that made this class exist.
+
+        Measured 2026-09-08 from one Windows 11 host: every corpus host
+        `experiments/30` had called `resolves_only_for_the_public_resolver`
+        answers `0.0.0.0`, `::` or both. Reading that as our resolver's fault
+        would publish eight hosts as `resolver_divergence` when both sides
+        agree there is nothing to connect to.
+        """
+        for served in (["0.0.0.0"], ["::"], ["0.0.0.0", "::"]):
+            with self.subTest(served=served):
+                with FakeDnsServer(addresses={self.UNRESOLVABLE: served}) as dns:
+                    r = self._probe(dns)
+                self.assertEqual(r.dns["class"], "resolves_to_an_unusable_address")
+                self.assertIs(r.failure, Failure.DNS_FAILURE)
+                self.assertIsNot(r.failure, Failure.RESOLVER_DIVERGENCE)
+
+    def test_one_routable_address_among_null_ones_is_still_a_rescue(self):
+        """The filter is per address, not per name. A host with a real A record
+        and a null AAAA is reachable and must not be written off."""
+        with FakeDnsServer(
+                addresses={self.UNRESOLVABLE: ["203.0.113.7", "::"]}) as dns:
+            r = self._probe(dns)
+        self.assertIs(r.failure, Failure.RESOLVER_DIVERGENCE)
+        self.assertEqual(r.dns["class"],
+                         "resolves_only_for_the_public_resolver")
+
+    def test_nothing_claims_a_scrape_it_never_sent(self):
+        """A resolution failure opens no socket, so the record must not say an
+        info_hash went out. It said so until T-037 read a committed one."""
+        with FakeDnsServer(addresses={self.UNRESOLVABLE: ["203.0.113.7"]}) as dns:
+            r = self._probe(dns, transport="http")
+        self.assertFalse(r.used_synthetic_infohash)
+        self.assertFalse(r.as_record(HealthState.UNKNOWN)
+                         ["used_synthetic_infohash"])
+
+    def test_no_second_question_is_asked_when_our_resolver_answers(self):
+        """The Decision's load claim, asserted rather than argued.
+
+        520 of 759 corpus hosts resolve here, and the DNS footprint for those
+        must not move. Counted at the oracle, which is the only place that can
+        see a query that was not sent.
+        """
+        with FakeDnsServer({"localhost": []}) as dns:
+            v = detect()
+            if "ipv4" not in v.ip_families:
+                self.skipTest("no ipv4 route from this vantage")
+            probe(parse("udp://localhost:1/announce"),
+                  ProbeConfig(timeout=0.5, retries=0), v,
+                  resolver=resolver_for(dns))
+            asked = list(dns.questions)
+        self.assertEqual([t for _, t in asked], [16],
+                         f"an address question was asked for a name that "
+                         f"resolved: {asked}")
+
+    def test_one_address_question_per_host_per_run(self):
+        """RULES 15.2, on the second lookup as much as the first.
+
+        ⚠ **Two queries per failing host, not one**, because the families are
+        asked for separately and knowing a host is IPv6-only is the point of
+        asking. The entry's Decision said one; this is the measurement. What
+        the cache buys is that a second URL on the same host costs nothing.
+        """
+        with FakeDnsServer(addresses={self.UNRESOLVABLE: ["203.0.113.7"]}) as dns:
+            resolver = resolver_for(dns)
+            for port in (6969, 1337):
+                probe(parse(f"udp://{self.UNRESOLVABLE}:{port}/announce"),
+                      ProbeConfig(timeout=1.5, retries=0), detect(),
+                      resolver=resolver)
+            addressed = [q for q in dns.questions if q[1] in (1, 28)]
+        self.assertEqual(addressed,
+                         [(self.UNRESOLVABLE, 1), (self.UNRESOLVABLE, 28)],
+                         dns.questions)
+
+    def test_the_http_path_takes_the_same_second_opinion(self):
+        """One rule, every door. A control on the UDP path alone leaves the
+        HTTP prober reaching the same published field ungated."""
+        with FakeDnsServer(addresses={self.UNRESOLVABLE: ["203.0.113.7"]}) as dns:
+            r = self._probe(dns, transport="http")
+        self.assertIs(r.failure, Failure.RESOLVER_DIVERGENCE)
+        self.assertEqual(r.dns["class"], "resolves_only_for_the_public_resolver")
+
+    def test_the_classes_are_the_experiments_own_vocabulary(self):
+        """One home for the vocabulary. `experiments/30` published these
+        strings and its committed results are read against them."""
+        self.assertIn("resolves_only_for_the_public_resolver",
+                      RESOLUTION_CLASSES)
+        for kind in RESOLUTION_CLASSES:
+            with self.subTest(kind=kind):
+                self.assertEqual(kind, kind.lower())
 
 
 class EveryRecordCarriesItsEvidence(unittest.TestCase):

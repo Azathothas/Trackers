@@ -388,6 +388,16 @@ table.
 **4.5% of failing hosts**, and every one of those would have been recorded
 `dns_failure` by a sweep from this vantage.
 
+⛔ **Corrected 2026-09-08 while closing [T-037](measurement.md): on this
+vantage the rate is 0%, not 4.5%.** The eleven hosts behind that figure answer
+`0.0.0.0` or `::`, which is a reply rather than a reachable address, so the two
+resolvers were never in disagreement about them. The paragraph above is kept
+because the figure it quotes was published, and because the correction rests on
+the same instrument re-run twice:
+`experiments/results/30-resolution-failure-classes.unclassified-host.20260908T134349Z.json`.
+⚠ It does not touch the runner figures, which were taken before the instrument
+recorded addresses.
+
 ⚠ **It does not yet reopen `C-06`, and the reason is the vantage.** The
 divergence measured is between a **residential Windows** resolver and public
 ones. Every committed health record was taken on a **GitHub runner**, whose

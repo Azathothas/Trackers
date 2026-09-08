@@ -38,16 +38,25 @@ No test in this file touches the network: everything binds loopback, and
 
 from __future__ import annotations
 
+import ipaddress
 import random
 import socket
 import struct
 import threading
 from enum import Enum
 
-__all__ = ["DnsBehaviour", "FakeDnsServer", "encode_txt_response"]
+__all__ = ["DnsBehaviour", "FakeDnsServer", "encode_response", "resolver_for"]
 
+_TYPE_A = 1
 _TYPE_TXT = 16
+_TYPE_AAAA = 28
 _CLASS_IN = 1
+
+#: Which record types this oracle serves. TXT is BEP 34's question and the
+#: addresses are T-037's: the probe asks for A and AAAA when this host's
+#: resolver has failed, and a resolver that answered TXT to that question would
+#: leave the divergence path untested.
+_SERVED = (_TYPE_A, _TYPE_TXT, _TYPE_AAAA)
 
 
 class DnsBehaviour(str, Enum):
@@ -84,10 +93,22 @@ def _encode_txt_rdata(text: str) -> bytes:
     return b"".join(bytes([len(p)]) + p for p in parts)
 
 
-def encode_txt_response(qid: int, question: bytes, texts: list[str],
-                        *, rcode: int = 0, truncated: bool = False,
-                        compress: bool = True) -> bytes:
-    """Build a response to a TXT question.
+def _encode_rdata(qtype: int, value: str) -> bytes:
+    """One record's rdata. An address is packed; anything else is TXT."""
+    if qtype in (_TYPE_A, _TYPE_AAAA):
+        return ipaddress.ip_address(value).packed
+    return _encode_txt_rdata(value)
+
+
+def encode_response(qid: int, question: bytes, values: list[str],
+                    *, qtype: int = _TYPE_TXT, rcode: int = 0,
+                    truncated: bool = False, compress: bool = True) -> bytes:
+    """Build a response to a question of `qtype`.
+
+    ⭐ **One encoder, several record types**, mirroring the decoder it is
+    tested against: `bep34.py` implements one DNS client and parameterises the
+    type, and a second encoder here would be the copy-pasted-codec defect T-033
+    spent a session removing.
 
     `compress` points each answer's name back at the question's, which is what
     a real resolver does and what makes the client's pointer handling load
@@ -98,12 +119,13 @@ def encode_txt_response(qid: int, question: bytes, texts: list[str],
         flags |= 0x0200
     answers = b"" if truncated else b"".join(
         (b"\xc0\x0c" if compress else question)
-        + struct.pack(">HHIH", _TYPE_TXT, _CLASS_IN, 300, len(_encode_txt_rdata(t)))
-        + _encode_txt_rdata(t)
-        for t in texts)
-    count = 0 if truncated else len(texts)
+        + struct.pack(">HHIH", qtype, _CLASS_IN, 300,
+                      len(_encode_rdata(qtype, v)))
+        + _encode_rdata(qtype, v)
+        for v in values)
+    count = 0 if truncated else len(values)
     header = struct.pack(">HHHHHH", qid, flags, 1, count, 0, 0)
-    return header + question + struct.pack(">HH", _TYPE_TXT, _CLASS_IN) + answers
+    return header + question + struct.pack(">HH", qtype, _CLASS_IN) + answers
 
 
 class FakeDnsServer:
@@ -112,20 +134,42 @@ class FakeDnsServer:
     `records` maps a lowercase hostname to the TXT strings it serves. A name
     that is absent answers NOERROR with no records, which is the ordinary
     "this host published nothing" case and must never be read as a refusal.
+
+    `addresses` maps a lowercase hostname to the addresses it serves, IPv4 and
+    IPv6 in one list, sorted onto A and AAAA by what each parses as. That is
+    T-037's oracle: a name this host's resolver cannot answer for and a
+    resolver we chose can.
     """
 
     def __init__(self, records: dict[str, list[str]] | None = None,
-                 behaviour: DnsBehaviour = DnsBehaviour.ANSWER) -> None:
+                 behaviour: DnsBehaviour = DnsBehaviour.ANSWER,
+                 addresses: dict[str, list[str]] | None = None,
+                 address_behaviour: DnsBehaviour | None = None) -> None:
         self.records = {k.lower(): v for k, v in (records or {}).items()}
+        self.addresses = {k.lower(): v for k, v in (addresses or {}).items()}
         self.behaviour = behaviour
-        #: Every question received, so a test can assert a lookup was cached
-        #: rather than repeated. Counting requests is the only way to prove the
+        #: How the resolver misbehaves on A and AAAA alone, leaving TXT to
+        #: `behaviour`. The two are separable because a probe asks both
+        #: questions and the answers are independent: consent is established
+        #: first, and only then is an address asked for. A single switch would
+        #: stop every probe at the BEP 34 gate and leave the resolution path
+        #: untested (T-037).
+        self.address_behaviour = address_behaviour
+        #: Every question received, as `(name, type)`, so a test can assert a
+        #: lookup was cached rather than repeated and can tell a consent query
+        #: from an address one. Counting requests is the only way to prove the
         #: per-run cache exists.
-        self.queries: list[str] = []
+        self.questions: list[tuple[str, int]] = []
         self._udp, self._tcp, self.port = self._bind_pair()
         self._tcp.listen(8)
         self._stop = threading.Event()
         self._threads: list[threading.Thread] = []
+
+    @property
+    def queries(self) -> list[str]:
+        """The names asked about, derived from `questions` rather than kept
+        beside it, so the two cannot disagree."""
+        return [name for name, _ in self.questions]
 
     @staticmethod
     def _try_port(port: int) -> tuple[socket.socket, socket.socket, int] | None:
@@ -249,10 +293,12 @@ class FakeDnsServer:
             return None
         (qid,) = struct.unpack(">H", data[:2])
         question = data[12:]
-        name = self._question_name(question)
-        self.queries.append(name)
+        name, qtype = self._question(question)
+        self.questions.append((name, qtype))
 
         behaviour = self.behaviour
+        if qtype in (_TYPE_A, _TYPE_AAAA) and self.address_behaviour is not None:
+            behaviour = self.address_behaviour
         if behaviour is DnsBehaviour.SILENT:
             return None
         if behaviour is DnsBehaviour.GARBAGE:
@@ -261,23 +307,46 @@ class FakeDnsServer:
             # A pointer at offset 12 aimed at offset 12: reading the name jumps
             # to itself forever unless the client bounds it.
             header = struct.pack(">HHHHHH", qid, 0x8180, 1, 1, 0, 0)
-            return header + b"\xc0\x0c" + struct.pack(">HH", _TYPE_TXT, _CLASS_IN)
+            return header + b"\xc0\x0c" + struct.pack(">HH", qtype, _CLASS_IN)
         if behaviour is DnsBehaviour.WRONG_ID:
             qid = (qid + 1) & 0xFFFF
 
-        question_wire = _encode_name(name) + struct.pack(">HH", _TYPE_TXT, _CLASS_IN)
+        question_wire = _encode_name(name) + struct.pack(">HH", qtype, _CLASS_IN)
         stripped = question_wire[:-4]
         if behaviour is DnsBehaviour.NXDOMAIN:
-            return encode_txt_response(qid, stripped, [], rcode=3)
+            return encode_response(qid, stripped, [], qtype=qtype, rcode=3)
         if behaviour is DnsBehaviour.SERVFAIL:
-            return encode_txt_response(qid, stripped, [], rcode=2)
-        texts = self.records.get(name, [])
+            return encode_response(qid, stripped, [], qtype=qtype, rcode=2)
+        values = self._values_for(name, qtype)
         if behaviour is DnsBehaviour.TRUNCATE_UDP and not over_tcp:
-            return encode_txt_response(qid, stripped, texts, truncated=True)
-        return encode_txt_response(qid, stripped, texts)
+            return encode_response(qid, stripped, values, qtype=qtype,
+                                   truncated=True)
+        return encode_response(qid, stripped, values, qtype=qtype)
+
+    def _values_for(self, name: str, qtype: int) -> list[str]:
+        """What this name has of the type asked for.
+
+        ⛔ **An A question is never answered with an AAAA record.** A resolver
+        that answered whatever it held would hide the type check `bep34.py`
+        makes before believing an answer, and that check is what stops an
+        unrelated record being read as the operator's refusal.
+        """
+        if qtype == _TYPE_TXT:
+            return self.records.get(name, [])
+        if qtype not in _SERVED:
+            return []
+        want = 4 if qtype == _TYPE_A else 6
+        return [a for a in self.addresses.get(name, [])
+                if ipaddress.ip_address(a).version == want]
 
     @staticmethod
-    def _question_name(question: bytes) -> str:
+    def _question(question: bytes) -> tuple[str, int]:
+        """The name asked about and the type asked for.
+
+        A question with no readable type is treated as TXT, which is the only
+        type this oracle served before T-037 and keeps a malformed question
+        answering the way it always did.
+        """
         labels: list[str] = []
         i = 0
         while i < len(question):
@@ -286,4 +355,20 @@ class FakeDnsServer:
                 break
             labels.append(question[i + 1:i + 1 + length].decode("ascii", "replace"))
             i += 1 + length
-        return ".".join(labels).lower()
+        qtype = _TYPE_TXT
+        if i + 3 <= len(question):
+            (qtype,) = struct.unpack(">H", question[i + 1:i + 3])
+        return ".".join(labels).lower(), qtype
+
+
+def resolver_for(dns: FakeDnsServer, timeout: float = 1.5) -> object:
+    """A `Resolver` that asks this oracle and nothing else.
+
+    Here rather than in a test file because two suites need it and a second
+    copy would be a second place for the port or the timeout to be wrong. The
+    import is inside the function so this module stays importable without
+    `src/` on the path.
+    """
+    from trackers.bep34 import Bep34Config, Resolver
+    return Resolver(Bep34Config(resolvers=("127.0.0.1",), port=dns.port,
+                                timeout=timeout))

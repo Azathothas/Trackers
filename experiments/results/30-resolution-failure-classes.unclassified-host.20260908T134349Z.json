@@ -1,0 +1,204 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "bb7b80b8f2b802fa38de6a3886ce06c7f03be935-dirty",
+    "sample_counts": {
+      "corpus_trackers": 1327,
+      "hosts_considered": 759,
+      "second_opinions_asked": 243
+    },
+    "utc": "2026-09-08T13:44:50Z"
+  },
+  "question": "Which kind of not-resolving is each unresolvable corpus host?",
+  "results": {
+    "classes_by_host": {
+      "gone_nxdomain_confirmed": 179,
+      "lookup_failed_undetermined": 10,
+      "no_address_records": 43,
+      "resolves_for_both": 516,
+      "resolves_only_for_the_public_resolver": 0,
+      "resolves_only_for_this_host": 0,
+      "resolves_to_an_unusable_address": 11
+    },
+    "classes_by_url": {
+      "gone_nxdomain_confirmed": 256,
+      "lookup_failed_undetermined": 18,
+      "no_address_records": 61,
+      "resolves_for_both": 739,
+      "resolves_only_for_the_public_resolver": 0,
+      "resolves_only_for_this_host": 0,
+      "resolves_to_an_unusable_address": 14
+    },
+    "hosts_asked_a_second_resolver": 243,
+    "hosts_considered": 759,
+    "no_health_state_was_written": true,
+    "null_addressed_hosts": [
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "bt1.xxxxbt.cc",
+        "urls": [
+          "http://bt1.xxxxbt.cc:6969/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "s1124554.ha012.t.mydomain.zone",
+        "urls": [
+          "http://s1124554.ha012.t.mydomain.zone:80/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "s1130638.ha016.t.mydomain.zone",
+        "urls": [
+          "http://s1130638.ha016.t.mydomain.zone:80/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "s1130639.ha009.t.mydomain.zone",
+        "urls": [
+          "http://s1130639.ha009.t.mydomain.zone:80/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "s1130642.ha014.t.mydomain.zone",
+        "urls": [
+          "http://s1130642.ha014.t.mydomain.zone:80/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "t.jaekr.sh",
+        "urls": [
+          "http://t.jaekr.sh:6969/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ]
+        },
+        "host": "tracker.computel.fr",
+        "urls": [
+          "http://tracker.computel.fr/announce",
+          "http://tracker.computel.fr:80/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "tracker.guguan.000.pe",
+        "urls": [
+          "http://tracker.guguan.000.pe:80/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ]
+        },
+        "host": "tracker.parrotsec.org",
+        "urls": [
+          "https://tracker.parrotsec.org/announce",
+          "https://tracker.parrotsec.org:443/announce"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "www.all4nothin.net",
+        "urls": [
+          "http://www.all4nothin.net/announce.php",
+          "http://www.all4nothin.net:80/announce.php"
+        ]
+      },
+      {
+        "addresses": {
+          "ipv4": [
+            "0.0.0.0"
+          ],
+          "ipv6": [
+            "::"
+          ]
+        },
+        "host": "zer0day.000webhostapp.com",
+        "urls": [
+          "https://zer0day.000webhostapp.com/announce"
+        ]
+      }
+    ],
+    "rescued_by_the_public_resolver": [],
+    "resolvers": {
+      "public": "trackers.bep34.Resolver -> 1.1.1.1, 8.8.8.8, 9.9.9.9",
+      "system": "socket.getaddrinfo on this host"
+    },
+    "system_errors": {
+      "gaierror 11001": 225,
+      "gaierror 11002": 7,
+      "gaierror 11004": 11,
+      "ok": 516
+    }
+  }
+}
