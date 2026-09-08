@@ -670,6 +670,33 @@ change that.
 ⚠ **One `refused_by_policy` in 197 contacts**, on the `absent` arm. That is the
 outcome class this entry exists to count, n=1, and nothing follows from it yet.
 
+**A second run, against subjects that answer.** `--from-sweep` over the two
+committed sweeps, `--exclude` over the pilot so nobody was asked twice inside
+the ceiling: **32 live HTTP trackers, 30 of which answered**, at **16% of the
+first run's load**. Result at
+`experiments/results/26-user-agent-block-rate.unclassified-host.20260908T155106Z.json`.
+
+| arm | answered | contacted | rate |
+| --- | --- | --- | --- |
+| absent | 5 | 7 | 0.714 |
+| descriptive | **15** | **15** | **1.000** |
+| client_like | 4 | 4 | 1.000 |
+| minimal | 6 | 6 | 1.000 |
+
+⭐ **The descriptive User-Agent -- the one RULES 4.1 was written about --
+answered 15 of 15.** On this evidence it is not being refused by these
+trackers at all. ⛔ **And it is still not a verdict**, which the instrument now
+says for itself: no arm reached the 20 contacted subjects the comparison needs,
+so `--expect-arms` reports the rates and refuses to compare them. Two failures
+in an arm of seven move a raw rate by 0.29, and a threshold that fires on that
+is precision on the wrong quantity.
+
+⚠ **The arms came out 15, 7, 6 and 4** because the assignment hashed each URL
+independently, which is unbalanced on 32 subjects. It now sorts by hash and
+slices into equal groups: 8, 8, 8, 8, with every tracker still seeing every arm
+across the four rotations. The two runs above used the earlier assignment and
+the rotation series restarts with the balanced one.
+
 ⚠ **Provenance.** The pilot ran from a working tree based on `0fecf12` and its
 conditions block says so. `src/trackers/probe.py` changed after it started
 ([T-038](../TODO/measurement.md)); the change refuses an answer whose socket

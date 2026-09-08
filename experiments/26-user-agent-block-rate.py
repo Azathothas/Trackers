@@ -38,11 +38,19 @@ WHY IT EXISTS
     measure whether the project is polite.
 
     ⭐ **The resolution is rotation.** One arm per tracker per run, assigned
-    deterministically from the URL and the run index, so that over four runs
-    every tracker has seen every arm exactly once and no run sends any tracker
-    more than one request. `--rotation` selects the run. The pairing is
-    recovered across runs rather than inside one, which costs the design its
-    within-run control and is the only version of it that is allowed to exist.
+    deterministically and in equal groups, so that over four runs every tracker
+    has seen every arm exactly once and no run sends any tracker more than one
+    request. `--rotation` selects the run. The pairing is recovered across runs
+    rather than inside one, which costs the design its within-run control and
+    is the only version of it that is allowed to exist.
+
+⛔ A SUBJECT THAT ANSWERS NOBODY CANNOT PREFER AN IDENTITY
+    The first run took the first 200 HTTP trackers in corpus order and **174 of
+    them answered nothing at all**, so four arms were compared on eight
+    informative rows. `--from-sweep` draws subjects from trackers a committed
+    sweep recorded `live`, which raises the power and lowers the load at the
+    same time, and `--exclude` keeps a rerun from asking anybody twice inside
+    RULES 4's ceiling.
 
 CONTROL
     tier 0  a tracker this process starts on loopback, which records the
@@ -67,6 +75,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import http.server
+import json
 import os
 import sys
 import threading
@@ -112,17 +121,60 @@ OUTCOMES = ("tracker_semantic", "refused_by_policy", "rate_limited",
             "not_a_tracker", "no_answer", "not_contacted")
 
 
-def arm_for(url: str, rotation: int) -> str:
-    """Which arm this tracker gets on this run.
+def assign_arms(urls: list[str], rotation: int) -> dict[str, str]:
+    """Which arm each tracker gets on this run. Deterministic and balanced.
 
-    ⛔ **Deterministic, so a run is reproducible and a tracker's arm is known
-    before the request is made.** The hash is of the URL alone; the rotation
-    offsets it, so over `len(ARMS)` runs every tracker sees every arm exactly
-    once and no tracker is asked twice in one run.
+    ⛔ **Deterministic**, so a run is reproducible and a tracker's arm is known
+    before the request is made. ⛔ **Balanced**, because the arms are compared
+    with each other and an arm of four against an arm of fifteen wastes the
+    subjects it did have.
+
+    ⚠ **An earlier version took the URL's hash modulo the number of arms**, and
+    on the 32 live subjects of 2026-09-08 that gave 15, 7, 6 and 4 -- the sizes
+    a fair coin gives when there are only 32 of them. Sorting by hash and
+    slicing into equal groups keeps every property that version had, except
+    that a subject leaving the set now shifts a neighbour's arm, which is the
+    price of the balance and is recorded rather than hidden.
+
+    Over `len(ARMS)` rotations every tracker sees every arm exactly once, and
+    no rotation asks any tracker twice.
     """
     names = sorted(ARMS)
-    digest = hashlib.sha256(url.encode("utf-8")).digest()
-    return names[(digest[0] + rotation) % len(names)]
+    ordered = sorted(urls, key=lambda u: hashlib.sha256(u.encode("utf-8")).digest())
+    out: dict[str, str] = {}
+    for index, url in enumerate(ordered):
+        group = (index * len(names)) // max(1, len(ordered))
+        out[url] = names[(group + rotation) % len(names)]
+    return out
+
+
+def read_live_urls(paths) -> set[str]:
+    """URLs a committed sweep recorded `live`.
+
+    ⛔ `live` only. `unknown` is the two ways of knowing nothing and neither
+    makes a subject informative here: this experiment compares what trackers
+    answer, and one that answers nobody answers every arm the same way.
+    """
+    out: set[str] = set()
+    for path in paths:
+        with open(path, encoding="utf-8") as handle:
+            doc = json.load(handle)
+        for record in doc.get("trackers", []):
+            if record.get("health_state") == "live":
+                out.add(str(record.get("url", "")))
+    return out - {""}
+
+
+def read_contacted_urls(paths) -> set[str]:
+    """Every URL an earlier run of this experiment contacted."""
+    out: set[str] = set()
+    for path in paths:
+        with open(path, encoding="utf-8") as handle:
+            doc = json.load(handle)
+        rows = (doc.get("results") or {}).get("rows") or []
+        for row in rows:
+            out.add(str(row.get("url", "")))
+    return out - {""}
 
 
 def classify_result(result) -> str:
@@ -210,6 +262,19 @@ def main() -> int:
                         help="probe at most this many HTTP trackers, in corpus "
                              "order. A pilot states its size rather than "
                              "implying a corpus")
+    parser.add_argument("--from-sweep", nargs="*", default=None,
+                        metavar="RESULT",
+                        help="draw subjects from trackers a committed sweep "
+                             "recorded `live`. ⭐ A tracker that answers "
+                             "nobody cannot express a preference about our "
+                             "identity, so this raises the power and lowers "
+                             "the load at the same time")
+    parser.add_argument("--exclude", nargs="*", default=None,
+                        metavar="RESULT",
+                        help="skip any URL these earlier results contacted. "
+                             "⛔ RULES 4's ceiling is per tracker per its "
+                             "stated interval, and two runs in one afternoon "
+                             "are two probes inside it")
     parser.add_argument("--timeout", type=float, default=8.0)
     parser.add_argument("--offline", action="store_true",
                         help="run the control only and contact no tracker")
@@ -220,6 +285,12 @@ def main() -> int:
     parser.add_argument("--difference-threshold", type=float, default=0.2,
                         help="how far two arms' answer rates may differ before "
                              "--expect-arms calls it material")
+    parser.add_argument("--min-per-arm", type=int, default=20,
+                        help="how many contacted subjects an arm needs before "
+                             "its rate is allowed to decide anything. ⛔ Two "
+                             "failures in an arm of seven move a raw rate by "
+                             "0.29 and mean nothing; a threshold that fires on "
+                             "that is precision on the wrong quantity")
     args = parser.parse_args()
 
     control = tier0()
@@ -234,14 +305,31 @@ def main() -> int:
             return C.EXIT_COULD_NOT_RUN
         subjects = [t for t in aggregate.trackers
                     if t.transport in (Transport.HTTP, Transport.HTTPS)]
+        if args.from_sweep:
+            wanted = read_live_urls(args.from_sweep)
+            if not wanted:
+                print("--from-sweep matched no live tracker; refusing to "
+                      "probe a set chosen by nothing", file=sys.stderr)
+                return C.EXIT_COULD_NOT_RUN
+            subjects = [t for t in subjects if t.url in wanted]
+        if args.exclude:
+            contacted = read_contacted_urls(args.exclude)
+            subjects = [t for t in subjects if t.url not in contacted]
         subjects.sort(key=lambda t: t.url)
         if args.limit:
             subjects = subjects[:args.limit]
+        if not subjects:
+            # ⛔ A run that probes nothing and exits 0 is the step that did
+            # nothing and reported success.
+            print("no subject survived the filters; nothing was probed",
+                  file=sys.stderr)
+            return C.EXIT_COULD_NOT_RUN
 
         vantage = detect_vantage()
         resolver = Resolver()
+        assignment = assign_arms([t.url for t in subjects], args.rotation)
         for tracker in subjects:
-            arm = arm_for(tracker.url, args.rotation)
+            arm = assignment[tracker.url]
             result = probe(tracker,
                            ProbeConfig(timeout=args.timeout, retries=0,
                                        user_agent=ARMS[arm]),
@@ -268,6 +356,12 @@ def main() -> int:
 
     measured = [r["rate"] for r in rates.values() if r["rate"] is not None]
     spread = round(max(measured) - min(measured), 4) if len(measured) > 1 else None
+    # ⛔ A verdict needs a sample in EVERY arm, not on average. One thin arm is
+    # enough to make a spread meaningless, and the spread is what the check
+    # would fire on: two failures in an arm of seven move a rate by 0.29.
+    thin = sorted(name for name, row in rates.items()
+                  if row["contacted"] < args.min_per_arm)
+    powered = not thin and len(measured) > 1
 
     results = {
         "control": control,
@@ -275,6 +369,9 @@ def main() -> int:
         "arms": rates,
         "spread": spread,
         "difference_threshold": args.difference_threshold,
+        "min_per_arm": args.min_per_arm,
+        "underpowered_arms": thin,
+        "supports_a_verdict": powered,
         "peer_id_axis": (
             "NOT MEASURED AND NOT MEASURABLE ON THIS PATH. A BEP 48 scrape "
             "carries info_hash and nothing else; peer_id is an announce "
@@ -288,6 +385,11 @@ def main() -> int:
             "run and the pairing is recovered across rotations."),
     }
 
+    results["subject_selection"] = {
+        "from_sweep": list(args.from_sweep or []),
+        "excluded_results": list(args.exclude or []),
+        "limit": args.limit,
+    }
     conditions = C.with_network_vantage(C.collect(sample_counts={
         "subjects": len(rows),
         "arms": len(ARMS),
@@ -304,6 +406,10 @@ def main() -> int:
         rate = "-" if row["rate"] is None else f"{row['rate']:.3f}"
         print(f"  {name:12s} {row['answered']:8d}  {row['contacted']:9d}  {rate}")
     print(f"\nSPREAD between arms: {spread if spread is not None else '-'}")
+    if thin:
+        print(f"⚠ NO VERDICT: {', '.join(thin)} contacted fewer than "
+              f"{args.min_per_arm} subjects. The rates above are reported and "
+              f"they are not compared.")
 
     print("\nWHAT THIS DOES NOT ESTABLISH")
     print("  - Anything about the peer_id axis. This project sends none, and")
@@ -317,7 +423,7 @@ def main() -> int:
             print("\nEXPECTATION FAILED: the control did not pass, so no arm")
             print("  row above can be quoted.")
             return C.EXIT_MEASURED_AND_FAILED
-        if spread is not None and spread > args.difference_threshold:
+        if powered and spread is not None and spread > args.difference_threshold:
             print(f"\nEXPECTATION FAILED: arms differ by {spread}, over the")
             print(f"  {args.difference_threshold} threshold. The identity is")
             print("  deciding what this project measures, which is T-012's")
