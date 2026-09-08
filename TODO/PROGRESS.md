@@ -89,10 +89,13 @@ blocked.**
 ⭐ **T-012's instrument exists and its design had to change to be runnable
 at all.** Four arms against one tracker in one run is four times RULES 4's
 ceiling, so each tracker gets one arm per run and the pairing is recovered
-across four rotations. Rotation 0 ran: the arms are within 0.044 of each other
-and that settles nothing, because 174 of the 200 subjects answered nobody. ⛔
-The crossed `peer_id` axis cannot be run at all -- a scrape has no such field
-and this project never sends one.
+across four rotations. Two runs: the first over 200 corpus HTTP trackers, where
+174 answered nobody and four arms were compared on eight informative rows; the
+second over **32 trackers a sweep recorded live**, at 16% of the load, where
+**30 answered** and the descriptive User-Agent answered **15 of 15**. ⛔ Still
+no verdict, and the instrument says so itself: no arm reached the 20 subjects
+a comparison needs. ⛔ The crossed `peer_id` axis cannot be run at all -- a
+scrape has no such field and this project never sends one.
 
 ⛔ **A probe could be answered by this machine and record it as a tracker.**
 `urlopen` resolves the hostname again and picks for itself, so a name offering
@@ -244,9 +247,12 @@ acceptance recorded, or open with what remains written into it.
 
 ## Start here next session
 
-1. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
-   cells over the HTTP corpus is roughly twelve thousand requests at somebody
-   else's expense: a workflow over days, not a command.
+1. **[T-012](claims.md)** - whether our identity gets us blocked. The
+   instrument exists and two runs have gone out. ⭐ **Run rotations 1 to 3
+   against the live subject set**, at least three hours apart, and the pairing
+   is complete. ⚠ Each arm needs 20 contacted subjects before the instrument
+   will compare them and the live set is 32, so what the verdict actually waits
+   on is a wider one: a fresh sweep's live trackers.
 2. **[T-064](publication.md)** - release channels. Its platform half is
    measured.
 3. **[T-084](operations.md)** - the schedule and the workflow architecture.
