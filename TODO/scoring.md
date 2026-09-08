@@ -15,7 +15,7 @@ Source:      the brief's section 14 (state, history and the housekeeping
 Category:    scoring
 Priority:    P1
 Effort:      L
-Status:      open
+Status:      done
 
 Problem:     Scoring needs history and none is stored. Nothing distinguishes a
              new tracker from one that has failed twice from one that has been
@@ -33,6 +33,66 @@ Decision:    **D3, open.** `K` and `D` are chosen from the arithmetic in T-042,
              working copy is not a lost dataset.
 Prove:       A test that a tracker's history survives a full pipeline run and
              that the state file is readable by a fresh process.
+
+**Done.** `python3 -m unittest tests.test_state -v` -> **25 tests**, no
+network, no clock. `python3 scripts/check-gate.py` -> 16 passed, 0 failed, 1
+expected skip. **D3 is closed** with its rejected alternatives in
+[`../HISTORY/decisions.md`](../HISTORY/decisions.md).
+
+`src/trackers/state.py` stores, per tracker: an EWMA rate, a ring of the last
+**K = 64** outcomes with timestamps, **D = 180** daily aggregates, lifetime
+counters that never roll, and `first_seen` / `last_seen` / `last_success` /
+`last_failure`. `scripts/update-state.py` is the stage that folds a sweep in,
+so this is a pipeline stage rather than a library nobody calls.
+
+⭐ **K and D came from arithmetic, as this entry demanded.**
+`experiments/31-state-size-projection.py` (T-042) builds a **full** record and
+takes its length rather than estimating JSON overhead, then projects the file
+over five years. The chosen pair is **23.4 MB at five years**; K=128/D=365 is
+46.2 MB, which is inside the range where a platform starts refusing a file.
+Result at `experiments/results/31-state-size-projection.unclassified-host.20260908T094845Z.json`.
+
+**Both halves of the `Prove` clause, and the second one is why it says "fresh
+process".**
+
+* *Survives a full pipeline run*: driven against the real committed sweeps,
+  not a fixture. Two sweeps, **299 observations, 282 distinct trackers** --
+  and 200 + 99 - 17 = 282, where 17 is exactly the overlap the value gate
+  measured independently. Run again, the file accumulates rather than resets:
+  the 17 shared trackers carry 4 observations each, `first_seen`
+  `2026-09-05`, `last_seen` `2026-09-08`.
+* *Readable by a fresh process*: `test_a_second_interpreter_reads_the_file_this_one_wrote`
+  spawns a second interpreter that reads the bytes off disk. An in-memory
+  round trip proves the objects agree with themselves; only a second process
+  proves the **file** is the contract, which is what the next run gets.
+
+**The refusals are the load-bearing half, and each was seen to fire.**
+Mutation-proved by planting the defect and reading the exit code unpiped:
+
+| planted | tests that failed |
+| --- | --- |
+| recover from a corrupt file by starting fresh | 2 |
+| a new tracker starts at rate 0.0 | 1 |
+| count every observation as a success | 4 |
+| cap daily aggregates without sorting first | 1 |
+
+⛔ **The first is the one that matters.** RULES 3.9 -- a clean rebuild that
+discards history is data loss wearing the costume of a fix -- and the tempting
+implementation is exactly `except CorruptState: return {}, []`. A bad header
+raises and `update-state.py` exits 1 with the file untouched; one bad line is
+quarantined and reported and the other records survive.
+
+⭐ **A new tracker's rate is `None`, not 0.0**, because otherwise "never
+checked" and "failed every check" are the same number -- the first and fourth
+of [T-041](scoring.md)'s seven shapes. RULES 1.5, applied to a field rather
+than to prose.
+
+**What it does not settle.** The scoring model is **D4** and stays open:
+choosing one now would fit it to zero samples. [T-041](scoring.md)'s seven
+shapes now have a store that can express them and are not yet computed from
+it, and [T-043](scoring.md)'s invariants are unwritten. Nothing writes this
+file in CI yet -- where it lives is [T-063](publication.md)'s decision, the
+same one the health records wait on.
 
 ---
 
@@ -64,7 +124,7 @@ Source:      the brief's section 14.3 -- "compute the size", not estimate it
 Category:    scoring
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     `trackers x bytes-per-record` at the intended `K` and `D`,
              projected over five years, is unknown and unpublished. **A state
@@ -78,6 +138,38 @@ Approach:    Compute it, publish the number, and **choose `K` and `D` from that
 Prove:       The computed projection is in `docs/` with its assumptions, and a
              test asserts the on-disk state stays under the stated bound for a
              synthetic corpus at the projected size.
+
+**Done.** `python3 experiments/31-state-size-projection.py --expect-under-mb 25`
+-> exit 0. Result at `experiments/results/31-state-size-projection.unclassified-host.20260908T094845Z.json`; the projection, the sweep and
+the reasoning are in [`../HISTORY/decisions.md`](../HISTORY/decisions.md) under
+**D3**, which is where a reader looking for why K and D are what they are will
+go.
+
+**Computed, not estimated**, as the source demanded: it builds a full record
+with `src/trackers/state.py` and takes `len()` of the serialised line. The
+bytes are not a guess about JSON overhead.
+
+| K | D | record bytes | 5-year MB | ring covers |
+| --- | --- | --- | --- | --- |
+| 32 | 90 | 3883 | 12.2 | 4.0 days |
+| **64** | **180** | **7449** | **23.4** | **8.0 days** |
+| 64 | 365 | 10964 | 34.5 | 8.0 days |
+| 128 | 365 | 14676 | 46.2 | 16.0 days |
+
+**The population is every tracker ever seen, not today's corpus.** RULES 11
+forbids deleting a tracker that fails, so the file only grows; the projection
+compounds an assumed 20%/year on top of that. ⚠ **That growth rate is assumed
+and labelled**, because this corpus has exactly one census and there is no rate
+in the tree to read -- `--growth` re-runs it against a different belief.
+
+`tests.test_state.TheBoundsHold` is the assertion half: the ring never exceeds
+K, keeps the **newest** outcomes rather than the oldest, the daily aggregates
+never exceed D, and the lifetime counters do not roll.
+
+⚠ **The `Prove` clause said `docs/` and the projection is in `HISTORY/`**,
+recorded rather than quietly substituted (RULES 9). It belongs beside the
+decision it decides, and `docs/` is for how the project is worked on; a reader
+asking "why 64" is asking about D3.
 
 ---
 

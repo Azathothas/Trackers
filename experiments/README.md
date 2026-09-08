@@ -39,6 +39,7 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `22-actions-platform-contract.py` | Does GitHub's documentation still say the things this project's schedule and publication design assume? | C-10, C-11, C-12, C-19b, C-55 |
 | `23-client-list-compatibility.py` | Does a real BitTorrent client accept the plaintext this project emits, and what does it do with a comment, a blank line and CRLF? | C-40, C-41, [T-001](../TODO/claims.md) |
 | `24-release-channel-behaviour.py` | Does a release move when its tag does, and is an asset readable at a stable URL right after it is replaced? | C-15, C-17 |
+| `31-state-size-projection.py` | How large does the history file get over five years, and what must K and D be? | D3, [T-042](../TODO/scoring.md) |
 | `30-resolution-failure-classes.py` | Which kind of not-resolving is each unresolvable corpus host, and does a second resolver disagree? | C-06, [T-007](../TODO/claims.md), [T-036](../TODO/measurement.md) |
 | `29-address-family-census.py` | How many corpus trackers are IPv6-only, and do any have an IPv4 sibling this vantage can already reach? | [T-031](../TODO/measurement.md) route (e), [T-036](../TODO/measurement.md) |
 | `27-value-gate.py` | Does this dataset add measurable value over redistributing `ngosang/trackerslist`? | the value gate, [T-027](../TODO/measurement.md) |

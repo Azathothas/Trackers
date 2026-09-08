@@ -1,0 +1,137 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "918bca68697d5f89415ff7c5bbef1eb496c9e68a-dirty",
+    "sample_counts": {
+      "corpus_today": 1327,
+      "daily_days": 180,
+      "ring_size": 64
+    },
+    "utc": "2026-09-08T09:48:46Z"
+  },
+  "question": "How large does the history file get over five years, and what do K and D have to be?",
+  "results": {
+    "assumptions": {
+      "growth_per_year": 0.2,
+      "note": "growth is ASSUMED -- the corpus has been measured once, so there is no rate in this tree to read. The other two are D7's cadence and the projection window.",
+      "probe_interval_hours": 3.0,
+      "years": 5.0
+    },
+    "corpus_today": 1327,
+    "daily_days_D": 180,
+    "derived": {
+      "checks_per_tracker_per_day": 8.0,
+      "daily_covers_days": 180,
+      "ring_covers_days": 8.0
+    },
+    "five_year_megabytes": 23.442935943603516,
+    "format": "trackers.state/1",
+    "k_and_d_trade_off": [
+      {
+        "D": 90,
+        "K": 32,
+        "five_year_megabytes": 12.220287322998047,
+        "record_bytes": 3883,
+        "ring_covers_days": 4.0
+      },
+      {
+        "D": 180,
+        "K": 32,
+        "five_year_megabytes": 17.601871490478516,
+        "record_bytes": 5593,
+        "ring_covers_days": 4.0
+      },
+      {
+        "D": 365,
+        "K": 32,
+        "five_year_megabytes": 22.50509262084961,
+        "record_bytes": 7151,
+        "ring_covers_days": 4.0
+      },
+      {
+        "D": 90,
+        "K": 64,
+        "five_year_megabytes": 18.061351776123047,
+        "record_bytes": 5739,
+        "ring_covers_days": 8.0
+      },
+      {
+        "D": 180,
+        "K": 64,
+        "five_year_megabytes": 23.442935943603516,
+        "record_bytes": 7449,
+        "ring_covers_days": 8.0
+      },
+      {
+        "D": 365,
+        "K": 64,
+        "five_year_megabytes": 28.34615707397461,
+        "record_bytes": 9007,
+        "ring_covers_days": 8.0
+      },
+      {
+        "D": 90,
+        "K": 128,
+        "five_year_megabytes": 29.743480682373047,
+        "record_bytes": 9451,
+        "ring_covers_days": 16.0
+      },
+      {
+        "D": 180,
+        "K": 128,
+        "five_year_megabytes": 35.125064849853516,
+        "record_bytes": 11161,
+        "ring_covers_days": 16.0
+      },
+      {
+        "D": 365,
+        "K": 128,
+        "five_year_megabytes": 40.02828598022461,
+        "record_bytes": 12719,
+        "ring_covers_days": 16.0
+      }
+    ],
+    "measured_record_bytes": {
+      "empty_record": 236,
+      "typical_url": 7405,
+      "worst_case_url": 7449
+    },
+    "projection": [
+      {
+        "bytes": 11858808,
+        "megabytes": 11.309440612792969,
+        "trackers_ever_seen": 1592,
+        "year": 1
+      },
+      {
+        "bytes": 14227590,
+        "megabytes": 13.568487167358398,
+        "trackers_ever_seen": 1910,
+        "year": 2
+      },
+      {
+        "bytes": 17073108,
+        "megabytes": 16.282184600830078,
+        "trackers_ever_seen": 2292,
+        "year": 3
+      },
+      {
+        "bytes": 20484750,
+        "megabytes": 19.53577995300293,
+        "trackers_ever_seen": 2750,
+        "year": 4
+      },
+      {
+        "bytes": 24581700,
+        "megabytes": 23.442935943603516,
+        "trackers_ever_seen": 3300,
+        "year": 5
+      }
+    ],
+    "ring_size_K": 64
+  }
+}

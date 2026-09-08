@@ -66,7 +66,7 @@ pretending to be one.
 | [T-029](measurement.md) | P1 | measurement | **done** | Probing has no concurrency control, timeout budget or cancellation behaviour |
 | [T-031](measurement.md) | P1 | measurement | open | Liveness for networks this vantage cannot reach -- the leverage entry |
 | [T-034](measurement.md) | P1 | measurement | **done** | The value gate rests on a 17-tracker arm, and a census would cost 82 probes |
-| [T-040](scoring.md) | P1 | scoring | open | There is no state or history, so nothing can be scored |
+| [T-040](scoring.md) | P1 | scoring | **done** | There is no state or history, so nothing can be scored |
 | [T-043](scoring.md) | P1 | scoring | open | The six scoring invariants are not enforced by anything |
 | [T-046](scoring.md) | P1 | scoring | open | The five required categories do not exist |
 | [T-060](publication.md) | P1 | publication | open | JSON and CSV outputs do not exist |
@@ -91,7 +91,7 @@ pretending to be one.
 | [T-037](measurement.md) | P1 | measurement | open | A `dns_failure` records our resolver's opinion, and a better one is already in the tree |
 | [T-036](measurement.md) | P2 | measurement | **done** | 351 tracker URLs do not resolve, and nobody has asked why |
 | [T-041](scoring.md) | P2 | scoring | open | History must distinguish seven shapes over time, not seven values |
-| [T-042](scoring.md) | P2 | scoring | open | The state size over five years has never been computed |
+| [T-042](scoring.md) | P2 | scoring | **done** | The state size over five years has never been computed |
 | [T-044](scoring.md) | P2 | scoring | open | No scoring model has been chosen |
 | [T-045](scoring.md) | P2 | scoring | open | Ranking must not use the latest instantaneous result |
 | [T-047](scoring.md) | P2 | scoring | open | A hardcoded tracker unreachable for 48 hours must raise an issue, not vanish |
@@ -124,7 +124,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 71 entries, 45 open, 0 blocked, 26 done
+**Counts:** 71 entries, 43 open, 0 blocked, 28 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -132,10 +132,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 2 | 0 | 5 | 7 |
-| P1 | 12 | 0 | 11 | 23 |
-| P2 | 25 | 0 | 9 | 34 |
+| P1 | 11 | 0 | 12 | 23 |
+| P2 | 24 | 0 | 10 | 34 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **45** | **0** | **26** | **71** |
+| **All** | **43** | **0** | **28** | **71** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

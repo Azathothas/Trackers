@@ -19,7 +19,7 @@ drifting count is a small lie that trains readers to ignore the document.
 | --- | --- | --- | --- |
 | D1 | Implementation language and runtime | P0 | **closed** |
 | D2 | Measurement vantage: runners only, or a second vantage | P0 | **closed** |
-| D3 | State/history storage format and location | P1 | open |
+| D3 | State/history storage format and location | P1 | **closed** |
 | D4 | Scoring model | P3 | open |
 | D5 | Publication topology: data branch vs. releases vs. both | P4 | open |
 | D6 | Whether unmeasurable-protocol trackers are published, and where | P2 | open |
@@ -33,7 +33,7 @@ drifting count is a small lie that trains readers to ignore the document.
 | D14 | What replaced the private-credential ceiling | P1 | **closed** |
 | D15 | Whether the UDP probe scrapes, or stops at connect | P2 | **closed** |
 
-**Counts:** 15 entries, 11 closed, 4 open, 0 blocked
+**Counts:** 15 entries, 12 closed, 3 open, 0 blocked
 
 **Nothing closes as "won't fix" or "out of scope"** (RULES 7). A blocked
 entry stays open with its blocker named and what would unblock it.
@@ -157,11 +157,58 @@ would survive into the phase where it matters.
 
 ---
 
-## D3 -- State/history storage, open, gate P1
+## D3 -- State/history storage, **closed**
 
-Blocked on nothing; not yet due. RULES 3.7's resolution (history
-lives in **files**, never inferred from git history) is a MUST and is treated as
-settled input to this decision, not as part of it.
+**Source** the brief's section 14, **Category** scoring, **Priority** P1,
+**Effort** L, **Gate** P1
+
+**Problem.** Scoring needs history and none was stored. Nothing distinguished a
+new tracker from one that had failed twice from one that had been degrading for
+a month, and those are shapes over time that no last-result field can hold.
+
+**Settled input, not part of the decision.** RULES 3.7: history lives in
+**files**, never inferred from git history, because the data branch is reset by
+design.
+
+**Decision.** `src/trackers/state.py`. **JSON Lines**, one record per tracker,
+sorted by URL, behind a version header that names the format and both bounds.
+Per tracker: an EWMA success rate, a ring of the last **K = 64** outcomes with
+their timestamps, **D = 180** daily aggregates, lifetime counters that never
+roll, and `first_seen` / `last_seen` / `last_success` / `last_failure`.
+
+⭐ **K and D are `experiments/31-state-size-projection.py`'s output, not a
+preference.** It builds a full record, measures its serialised length, and
+projects the file over five years against D7's cadence and a stated growth
+assumption:
+
+| K | D | record | 5-year MB | ring covers |
+| --- | --- | --- | --- | --- |
+| 32 | 180 | 5593 | 17.6 | 4.0 days |
+| **64** | **180** | **7449** | **23.4** | **8.0 days** |
+| 64 | 365 | 10964 | 34.5 | 8.0 days |
+| 128 | 365 | 14676 | 46.2 | 16.0 days |
+
+K = 64 is eight days at D7's 3 h default, so a tracker that fails once a
+weekend is still visible; D = 180 leaves five months of background behind a
+one-month "degrading" window. 46 MB is already inside the range where a
+platform starts refusing a file, which is what makes this arithmetic and not
+taste.
+
+**Rejected alternatives.**
+
+| rejected | why |
+| --- | --- |
+| One JSON document for the whole corpus | A 23 MB object parsed and re-serialised every run, whose diff is one line however little changed. JSON Lines gives per-tracker diffs, per-line corruption containment, and streaming, and costs nothing |
+| An append-only log replayed on read | A ring and daily aggregates are rewritten by every observation, so the log would be a second format with a replay step -- and the replay is where the corruption would live |
+| SQLite | Standard library, so D1 permits it. Rejected because the artefact has to be readable by a consumer with `curl` and a text editor, and because a binary file cannot be reviewed in a diff. The query load is one sequential pass |
+| `ewma` starting at 0.0 for a new tracker | Makes "never checked" and "failed every check" the same number, which is the first and fourth of T-041's seven shapes. It is `None`, and RULES 1.5 is the rule |
+| Recovering from a corrupt file by starting fresh | RULES 3.9 exactly: data loss wearing the costume of a fix. A bad header raises and `scripts/update-state.py` exits 1 leaving the file untouched; one bad line is quarantined and reported, and the other records survive |
+| Dropping a tracker that left the corpus | RULES 11: it destroys the record that makes the dataset valuable, and it is what makes "apparently gone" unanswerable |
+| Deriving history from git | RULES 3.7. The data branch is reset by design, so this is not a trade-off, it is a contradiction |
+
+**What it does not settle.** The scoring model is D4 and stays open: choosing
+one now would be fitting it to zero samples. T-041's seven shapes have a store
+that can express them and are not yet computed from it.
 
 ## D4 -- Scoring model, open, gate P3
 
