@@ -54,7 +54,7 @@ pretending to be one.
 | [T-002](claims.md) | P0 | claims | open | A public repository's schedule stops after 60 days and nothing here notices |
 | [T-012](claims.md) | P0 | claims | open | Nobody has measured whether our User-Agent gets us blocked |
 | [T-021](measurement.md) | P0 | measurement | done | The probe has no oracle, so a silently broken probe would mark everything dead |
-| [T-027](measurement.md) | P0 | measurement | open | The value gate is unanswered: uniqueness is measured, liveness is not |
+| [T-027](measurement.md) | P0 | measurement | **done** | The value gate is unanswered: uniqueness is measured, liveness is not |
 | [T-032](measurement.md) | P0 | measurement | **done** | The exclusion route the README promises operators is not implemented |
 | [T-140](foundation.md) | P0 | foundation | **done** | Runner network and protocol behaviour was never measured on a runner |
 | [T-003](claims.md) | P1 | claims | **done** | Release and tag behaviour is unverified, and it blocks the publication topology |
@@ -65,6 +65,7 @@ pretending to be one.
 | [T-026](measurement.md) | P1 | measurement | open | The politeness budget is neither computed nor published nor asserted |
 | [T-029](measurement.md) | P1 | measurement | **done** | Probing has no concurrency control, timeout budget or cancellation behaviour |
 | [T-031](measurement.md) | P1 | measurement | open | Liveness for networks this vantage cannot reach -- the leverage entry |
+| [T-034](measurement.md) | P1 | measurement | open | The value gate rests on a 17-tracker arm, and a census would cost 82 probes |
 | [T-040](scoring.md) | P1 | scoring | open | There is no state or history, so nothing can be scored |
 | [T-043](scoring.md) | P1 | scoring | open | The six scoring invariants are not enforced by anything |
 | [T-046](scoring.md) | P1 | scoring | open | The five required categories do not exist |
@@ -120,18 +121,18 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 67 entries, 48 open, 0 blocked, 19 done
+**Counts:** 68 entries, 48 open, 0 blocked, 20 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
 
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
-| P0 | 4 | 0 | 3 | 7 |
-| P1 | 11 | 0 | 10 | 21 |
+| P0 | 3 | 0 | 4 | 7 |
+| P1 | 12 | 0 | 10 | 22 |
 | P2 | 27 | 0 | 5 | 32 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **48** | **0** | **19** | **67** |
+| **All** | **48** | **0** | **20** | **68** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

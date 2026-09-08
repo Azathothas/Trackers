@@ -37,6 +37,8 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `20-newtrackon-api-surface.py` | What does newTrackon's API actually serve, and is machine-readable uptime obtainable? | C-23, C-24, C-26, C-53 |
 | `21-raw-github-consumption.py` | Does `raw.githubusercontent.com` behave the way the consumer contract assumes -- caching, content type, propagation? | C-16 |
 | `22-actions-platform-contract.py` | Does GitHub's documentation still say the things this project's schedule and publication design assume? | C-10, C-11, C-12, C-19b, C-55 |
+| `24-release-channel-behaviour.py` | Does a release move when its tag does, and is an asset readable at a stable URL right after it is replaced? | C-15, C-17 |
+| `27-value-gate.py` | Does this dataset add measurable value over redistributing `ngosang/trackerslist`? | the value gate, [T-027](../TODO/measurement.md) |
 
 **The numbering is the order they were written and a number is never reused.**
 It is deliberately *not* the numbering of the brief's twenty-item experiment
@@ -79,12 +81,18 @@ python3 experiments/02-udp-bep15-connect.py
 python3 experiments/05-http-tracker-protocol.py --expect-controls
 ```
 
-**`19` is the only one that runs offline**, from its committed fixture cache,
-which is why it is the one in the gate:
+**Two run offline**, from committed inputs, which is why they are the two in
+the gate:
 
 ```sh
 python3 experiments/19-scheme-census.py --offline --expect-known-schemes
+python3 experiments/27-value-gate.py --expect-answered
 ```
+
+⭐ **`27` measures no tracker.** It reads the health records `probe-corpus.py`
+already committed and compares them against the baseline list, so the value
+gate is re-derived on every push at the cost of no request to anybody. A number
+that decides whether this project should exist is not one to transcribe once.
 
 The rest touch a third party, so they run deliberately and not on every push
 (RULES 15.2). `20`, `21` and `22` read public documentation and APIs; `01`-`05`

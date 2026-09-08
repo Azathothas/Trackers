@@ -45,6 +45,14 @@ CARRIES = (
     "http://tracker.example/0123456789abcdef0123/announce",
     "http://tracker.example/announce/0123456789abcdef0123",
     "https://tracker.example/scrape?pass_key=0123456789abcdef0123",
+    # T-027 found these two shapes by trying to redact a real line from the
+    # prior art and getting it back unchanged: a different parameter name, and
+    # a value whose `|` separators the character class did not admit. The
+    # tokens are synthetic -- `check-no-secrets.py` refuses a credential-shaped
+    # literal anywhere this project writes, including in the test that proves
+    # the refusal works.
+    "https://tracker.example/announce.php?authkey=0123456789abcdef0123",
+    "https://tracker.example/announce.php?authkey=213|10003|0123456789abcdef",
 )
 PUBLIC = (
     "udp://tracker.example:6969/announce",

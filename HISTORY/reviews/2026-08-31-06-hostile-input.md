@@ -58,9 +58,19 @@ Running the emitted 1337-line file through RFC 3986's permitted character set:
 
 ```
 http://opentracker.acgnx.com:6869/announce"
-https://tracker.kitaujisub.site/announce.php?authkey=213|10003|j46n2q
-https://tracker.kitaujisub.site/announce.php?authkey=215|10003|j46n2q
+https://tracker.kitaujisub.site/announce.php?authkey=<redacted>
+https://tracker.kitaujisub.site/announce.php?authkey=<redacted>
 ```
+
+⛔ **The two tokens were quoted in full here until 2026-09-08 and are redacted
+rather than edited away.** They are somebody's private-tracker credential, and
+this review was one of four places in the tree republishing them -- the others
+being `tests/test_p1.py`, `src/trackers/exclusion.py` and a results file, all
+outside the fixture directories where a verbatim capture is expected. T-027
+found them by widening `PRIVATE_CREDENTIAL` to recognise `authkey=` and its
+`|` separators, which the pattern did not match. **Nothing about the finding
+below changes**: the three lines are still refused by the character check, for
+the character reason, and that is what this section reports.
 
 Three lines carrying a character **no URI may contain** -- a stray `"` that is
 an HTML attribute terminator leaked by somebody's scraper, and two `|`. Both

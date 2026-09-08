@@ -43,7 +43,16 @@ LOCAL = {"_conditions"}
 # sibling module in the SAME directory, so anything importing across
 # directories looked third-party. A checker that cries wolf gets switched off,
 # which would have been worse than not having it.
-PACKAGE_ROOTS = ("src", ".")
+#
+# `scripts` was added for the same reason and it is the same class of false
+# positive: `experiments/27-value-gate.py` imports `generate.load_corpus` so
+# that the value gate measures the corpus the pipeline actually publishes,
+# rather than carrying a second assembly path that could disagree with it. A
+# directory this checker itself walks as SHIPPED project code cannot also be a
+# third-party dependency, and refusing the import would have bought a copy of
+# `load_corpus` -- the copy-pasted-logic row in
+# `docs/conventions/forbidden-patterns.md`.
+PACKAGE_ROOTS = ("src", "scripts", ".")
 
 
 def _local_names(repo: str) -> set[str]:

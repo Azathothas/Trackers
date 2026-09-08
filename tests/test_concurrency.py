@@ -376,5 +376,70 @@ class RecordsSatisfyTheVantageGate(unittest.TestCase):
         self.assertEqual(states, {HealthState.UNKNOWN.value})
 
 
+class TheSweepScriptReportsTheCorpusItSampledFrom(unittest.TestCase):
+    """`scripts/probe-corpus.py` had no test, and this is what that cost.
+
+    It selected the sample itself and handed the SAMPLE to `sweep()`, which
+    records `corpus=len(trackers)`. So run 33938543488's committed record says
+    `corpus: 200` against a corpus of 1327, and `counts.corpus` and
+    `counts.selected` -- the pair whose whole purpose is to say "we probed 200
+    of 1327" -- were the same number.
+
+    ⚠ **The sample itself was never wrong.** `select()` is idempotent at the
+    boundary (a 200-tracker list with `sample_size` 200 returns whole), so the
+    double application changed nothing and the defect was invisible in every
+    health state. Only the denominator was wrong, which is the worse failure of
+    the two: a wrong state gets argued with, and a wrong denominator gets
+    divided by. RULES 3.11.
+
+    ⛔ **The record is not rewritten.** It says what the instrument said, which
+    is what makes it evidence; the correction lives under T-024's title
+    (RULES 7) and in `experiments/27-value-gate.py`, which derives the
+    denominator itself rather than reading that field.
+    """
+
+    def _script(self):
+        import importlib.util
+        path = os.path.join(REPO, "scripts", "probe-corpus.py")
+        spec = importlib.util.spec_from_file_location("probe_corpus", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    def test_sweep_is_handed_the_corpus_and_not_the_sample(self):
+        mod = self._script()
+        handed: list[int] = []
+
+        def recording_sweep(trackers, **kw):
+            handed.append(len(trackers))
+            return sweep(trackers, probe_fn=ok_result, **kw)
+
+        with tempfile.TemporaryDirectory() as out:
+            argv = ["probe-corpus.py", "--offline-corpus", "--out", out,
+                    "--generated-at", "2026-01-01T00:00:00Z"]
+            old_argv, sys.argv = sys.argv, argv
+            old_sweep, mod.sweep = mod.sweep, recording_sweep
+            old_detect, mod.detect_vantage = mod.detect_vantage, loopback_vantage
+            try:
+                self.assertEqual(mod.main(), 0)
+                with open(os.path.join(out, "health.json"),
+                          encoding="utf-8") as fh:
+                    doc = json.load(fh)
+            finally:
+                sys.argv = old_argv
+                mod.sweep = old_sweep
+                mod.detect_vantage = old_detect
+
+        corpus_size = handed[0]
+        self.assertGreater(
+            corpus_size, budget_for("ci").sample_size,
+            "the fixture corpus must be larger than the ci sample or this "
+            "test cannot distinguish the corpus from the sample")
+        self.assertEqual(doc["counts"]["corpus"], corpus_size)
+        self.assertEqual(doc["counts"]["selected"], budget_for("ci").sample_size)
+        self.assertGreater(doc["counts"]["corpus"], doc["counts"]["selected"],
+                           "counts.corpus is reporting the sample size")
+
+
 if __name__ == "__main__":
     unittest.main()

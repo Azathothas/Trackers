@@ -94,6 +94,11 @@ def main() -> int:
     budget = budget_for()
     vantage = detect_vantage()
     config = SweepConfig(timeout=args.timeout, deadline_seconds=args.deadline)
+    # ⛔ PREVIEW ONLY. `sweep()` selects; this script must not, or the corpus it
+    # hands over IS the sample and `counts.corpus` reports the sample size as
+    # the corpus. Run 33938543488 published `corpus: 200` against a corpus of
+    # 1327 for exactly that reason: the sample was correct and its denominator
+    # was not. One selector, one place (docs/conventions/code.md).
     chosen = select(agg.trackers, budget)
 
     print(f"profile:      {budget.profile}")
@@ -118,7 +123,7 @@ def main() -> int:
               file=sys.stderr)
         return 2
 
-    result = sweep(chosen, config=config, budget=budget, vantage=vantage,
+    result = sweep(agg.trackers, config=config, budget=budget, vantage=vantage,
                    resolver=Resolver(), observed_at=args.generated_at)
 
     doc = render_sweep(result, generated_at=args.generated_at,

@@ -7,9 +7,45 @@ execution environment legitimately permits, and is intended to rank by measured
 reliability rather than by reputation.
 
 ⛔ **Status: a skeleton. Nothing is published.** Aggregation, validation,
-normalization and deterministic generation work and are tested. Health
-measurement is built and has never been pointed at the corpus. **No dataset
-exists at any public URL, and nothing here claims any tracker is alive.**
+normalization and deterministic generation work and are tested. The corpus has
+been measured once, from one runner, on one day. **No dataset exists at any
+public URL.**
+
+---
+
+## ⭐ Is this worth using instead of an existing list? Partly, and here is the number
+
+This project exists only if it beats redistributing
+[`ngosang/trackerslist`](https://github.com/ngosang/trackerslist). That is a
+gate it is measured against rather than a claim, the instrument is
+[`experiments/27-value-gate.py`](experiments/27-value-gate.py), and it runs in
+the gate on every push so this section cannot go quietly stale.
+
+**The answer is two-sided, and the unflattering half is first.**
+
+⛔ **This list is worse than the baseline if you take it unfiltered.** It is
+**13.4x longer**, and only **12.0%** of it answered our probe against the
+baseline's **52.9%**. Piping our plaintext into a client instead of theirs
+gets you four times more entries that did nothing for you.
+
+⭐ **This list is better than the baseline if you take the measurement with
+it.** The trackers we carry and the baseline does not contain an estimated
+**107 live ones [67-169]**, against **52 [31-73]** in the whole baseline -- so
+filtering ours to what was measured live yields between **1.9x and 6.5x** as
+many working trackers, comparing our worst case against their best.
+
+**So: the value is in the labels, not in the URLs.** Publishing this plaintext
+without the health data alongside it would make this project the thing it
+exists to improve on, and the closest prior art is measured beside it in
+[`HISTORY/gates.md`](HISTORY/gates.md) -- including the three lines it publishes
+that are not URIs, two of them carrying a stranger's private-tracker
+credential.
+
+⚠ **Every figure above is a floor from one datacenter on one day**, from a
+200-tracker sample with **one observation each**, and the baseline arm of it is
+**17 trackers**. A tracker that timed out is `unknown`, not dead, so both
+percentages understate both lists. Read the next section before quoting any of
+them.
 
 ---
 

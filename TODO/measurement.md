@@ -378,6 +378,28 @@ D7's, the budget [T-026](measurement.md)'s and the architecture
                 requires the profile to travel with the result rather than the
                 result to be taken anywhere convenient.
 
+⛔ **One number in the record this entry produced is wrong, and the correction
+is here rather than in a silent edit (RULES 7).** Run `33938543488`'s committed
+`health.json` reports `counts.corpus: 200` against a corpus of **1327**.
+`scripts/probe-corpus.py` selected the sample and passed the *sample* to
+`sweep()`, which records `corpus=len(trackers)` -- so `counts.corpus` and
+`counts.selected`, the pair whose entire purpose is to say "200 of 1327", were
+the same number. Found by [T-027](measurement.md) while establishing the
+denominator for the value gate.
+
+⚠ **The sample itself was never affected**, which is why nothing caught it:
+`select()` returns a list whole when the sample size is not smaller than it, so
+applying it twice changed nothing, and every health state in the record stands.
+Only the denominator was wrong, and that is the worse half -- a wrong state gets
+argued with, a wrong denominator gets divided by.
+
+⛔ **The record is not rewritten.** It says what the instrument said, which is
+what makes it evidence. `scripts/probe-corpus.py` now hands `sweep()` the
+corpus, `tests.test_concurrency.TheSweepScriptReportsTheCorpusItSampledFrom` is
+the regression test and was mutation-proved by putting the defect back, and
+`experiments/27-value-gate.py` derives the corpus size itself rather than
+reading that field.
+
 ---
 
 ### T-025 The health state machine and failure classification are undefined
@@ -476,7 +498,7 @@ Source:      HISTORY/gates.md -- a gate, not an aspiration
 Category:    measurement
 Priority:    P0
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     The project is not justified unless the dataset adds measurable
              value over redistributing `ngosang/trackerslist`. **Half the
@@ -502,6 +524,57 @@ Prove:       `python3 experiments/27-value-gate.py --expect-answered` (planned)
              `HISTORY/gates.md` carries the answer with its conditions and
              sample counts, and the README states the verdict -- including if
              the verdict is that this project is not justified.
+
+**Done.** `python3 experiments/27-value-gate.py --expect-answered` -> exit 0,
+result committed at
+`experiments/results/27-value-gate.unclassified-host.20260908T083225Z.json`.
+It is in the gate as `offline-value-gate`, so the answer is re-derived from the
+committed records on every push rather than transcribed once.
+
+**Verdict: justified as a labelled dataset, NOT justified as a list.** The
+delta in count clears its bar (live yield 1.92x worst case, 3.05x point,
+6.50x best); the delta in density **fails** it (12.0% of ours answered against
+the baseline's 52.9%, for a list 13.4x longer). The full table, the control and
+both bars are in [`../HISTORY/gates.md`](../HISTORY/gates.md); the README
+carries the two-sided verdict with the unflattering half first, as the gate's
+`Decision` requires.
+
+⛔ **The first decision rule this entry used was wrong in our favour and is
+kept visible rather than edited away** (RULES 7): it compared our interval's
+lower bound against the baseline's *point* estimate, charging us our sampling
+error and forgiving theirs. The rule in `DECISION_RULE` now compares our worst
+case against their best, and the constant carries why.
+
+**Two findings came out of building it, both fixed here.**
+
+1. ⛔ **The committed sweep record's own `counts.corpus` said 200 against a
+   corpus of 1327.** `scripts/probe-corpus.py` selected the sample and handed
+   the *sample* to `sweep()`, which records `corpus=len(trackers)`, so the pair
+   of fields whose whole purpose is "200 of 1327" were the same number. The
+   sample was never wrong -- `select` is idempotent at that boundary -- so it was
+   invisible in every health state, and only the denominator was affected,
+   which is the worse half: a wrong state gets argued with and a wrong
+   denominator gets divided by. Fixed, mutation-proved, and regression-tested
+   by `tests.test_concurrency.TheSweepScriptReportsTheCorpusItSampledFrom`.
+   ⚠ **The record is not rewritten**; the correction is under
+   [T-024](measurement.md)'s title and experiment 27 derives the denominator
+   itself rather than reading that field.
+2. ⛔ **`PRIVATE_CREDENTIAL` could not see `authkey=`**, so trying to redact a
+   prior-art line returned it unchanged. Widening it -- measured first at **zero
+   change to every published count**, because those URLs are already refused by
+   the character check -- immediately found the same stranger's credential
+   written into **four places outside the capture directories**: a review under
+   `HISTORY/`, `tests/test_p1.py`, a comment in `src/trackers/exclusion.py`,
+   and an experiment result. All four are redacted and
+   [`../docs/security/secrets.md`](../docs/security/secrets.md) carries the
+   class. ⛔ **The credential is a third party's and this project cannot rotate
+   it**; the operator is told in [PROGRESS.md](PROGRESS.md).
+
+**What it does not settle.** The ngosang arm is **17 trackers** and the whole
+sweep is 200 of 1327 with one observation each. A stratified census of the
+baseline's 99 would remove the sampling error from the arm that *is* the
+comparison, and is the cheapest available strengthening -- 82 more trackers, one
+run. It is [T-034](measurement.md).
 
 ---
 
@@ -922,3 +995,51 @@ rather than consent.
 **What this unblocks is the point.** RULES 4's "until it is, no corpus-wide
 probe runs" is now satisfied, which is what T-012, T-027, T-028 and the corpus
 half of T-024/T-029 were all standing behind.
+
+---
+
+### T-034 The value gate rests on a 17-tracker arm, and a census would cost 82 probes
+
+Source:      [T-027](measurement.md)'s acceptance; RULES 2 on sample counts
+Category:    measurement
+Priority:    P1
+Effort:      S
+Status:      open
+
+Problem:     The value gate is answered, and the arm that **is** the comparison
+             is 17 trackers. `experiments/27` measures the baseline's live
+             floor at 9 of 17, a 95% interval of 31%-74% -- wide enough that the
+             baseline's whole live yield is known only to within a factor of
+             two, and every ratio in `HISTORY/gates.md` inherits that width.
+Premise:     **Measured, not assumed.** The 200-tracker sweep is a stride over
+             the sorted corpus, so it caught 17 of the baseline's 99 by
+             sampling fraction alone (expected 14.9, `p = 0.573` -- the sample
+             is unbiased, and thin on this arm).
+Approach:    Probe the **whole** baseline list rather than a sample of it: 99
+             trackers, of which 17 already have a record, so **82 probes**.
+             That turns the arm from a sample into a census and removes its
+             sampling error entirely -- the interval on the baseline's live
+             count collapses to the measurement's own uncertainty.
+
+             `scripts/probe-corpus.py` has no way to say "probe exactly these",
+             so it needs a selection input. ⛔ **A selection input is not a
+             gate bypass**: BEP 34 is consulted per host in `probe_udp` and
+             `probe_http` regardless of how the list was chosen, and the
+             concurrency, per-host and deadline bounds are `sweep()`'s. Anything
+             that reached a tracker by another route would be the door-sweep
+             defect again.
+Decision:    A census of the baseline, **not** a bigger random sample. 82
+             probes spent on the arm that decides the ratio buys more than 82
+             spent uniformly, because the unique-to-us arm is already n=183 and
+             its interval is a quarter as wide. RULES 15.2's budget is a
+             reason to aim the requests, not only to cap them.
+             Rejected: extrapolating harder from 17, which is what the wide
+             interval already says cannot be done; and re-running the whole
+             200-tracker sweep, which spends 200 requests to narrow one arm.
+Prove:       A sweep whose selection is the baseline's 99 URLs, committed under
+             `experiments/results/`, then
+             `python3 experiments/27-value-gate.py --expect-answered` exits 0
+             with the baseline arm reporting `measured` 99 and an interval
+             visibly narrower than 31%-74%. ⛔ **If the narrower interval moves
+             the verdict, `HISTORY/gates.md` and the README change with it** --
+             including if it moves to "not justified".

@@ -75,8 +75,22 @@ class ExclusionClass(str, Enum):
 # `scripts/check-no-secrets.py` imports it rather than carrying a second copy:
 # two patterns for one rule are two places for it to be wrong, and they will be
 # wrong differently (`docs/conventions/forbidden-patterns.md`).
+# ⚠ `auth` and the `|_-` in the value class were added by T-027, which found
+# the gap by trying to redact a line and getting it back unchanged. The prior
+# art publishes two `?authkey=<id>|<id>|<token>` URLs on one host: the same
+# credential shape wearing a different parameter name, with separators this
+# character class did not admit. The value is not written here, for the reason
+# this constant exists.
+#
+# ⭐ **Measured before it was widened: the accepted corpus moves by 0.** Those
+# two URLs are already refused upstream by `normalize.parse`'s character check,
+# because `|` is not a character a URI may hold -- so this changes no published
+# number and no consumer's list. What it changes is the REASON, from "contains
+# characters no URI may hold" to "carries somebody's credential", which is the
+# explainable one (RULES 3.10), and it makes `mask_credential` able to redact
+# them at all.
 PRIVATE_CREDENTIAL = re.compile(
-    r"[?&]pass(key|_key|kee)=[A-Za-z0-9]{16,}"
+    r"[?&](pass|auth)(key|_key|kee)=[A-Za-z0-9|_-]{16,}"
     r"|/[A-Za-z0-9]{20,}/(announce|scrape)\b"
     r"|/(announce|scrape)/[A-Za-z0-9]{20,}\b",
     re.IGNORECASE)

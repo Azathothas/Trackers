@@ -82,6 +82,14 @@ CHECKS = (
     ("offline-census",
      [PY, "experiments/19-scheme-census.py", "--offline",
       "--expect-known-schemes", "--out", "{OUT}/census.json"], True, False),
+    # The value gate (T-027), as a standing regression check rather than a
+    # one-off reading: it re-derives the answer from the committed health
+    # records every run, so the day a record changes and the verdict moves,
+    # the gate says so instead of the README quietly going stale.
+    # `--out` into scratch for the same reason as the census above.
+    ("offline-value-gate",
+     [PY, "experiments/27-value-gate.py", "--expect-answered",
+      "--out", "{OUT}/value-gate.json"], True, False),
 )
 
 PASS, FAIL, SKIP = "✅", "❌", "-"

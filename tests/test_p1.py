@@ -223,8 +223,12 @@ class TestTwoAxisModel(unittest.TestCase):
         endpoint on our guess about what they meant. The reason travels with
         the rejection so the disappearance is explainable (RULES 3.10).
         """
+        # The authkey token is synthetic. This case was written from a real
+        # corpus line and carried that line's real credential until T-027
+        # widened `PRIVATE_CREDENTIAL` to see it: the shape is what the test
+        # needs, and the value belonged to somebody.
         for raw in ('http://opentracker.example:6869/announce"',
-                    "https://x.example/announce.php?authkey=213|10003|j46n2q",
+                    "https://x.example/announce.php?authkey=213|10003|0123456789abcdef",
                     "udp://x.example/announce^",
                     "udp://x.example/announce{1}"):
             with self.subTest(raw=raw):

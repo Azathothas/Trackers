@@ -15,7 +15,7 @@ anyway to avoid delivering bad news is not.
 | --- | --- | --- | --- |
 | **P0 -- ground truth** | reference sweep, runner experiments, claims register, D1 and D2 decided | experiments committed and runnable; no `UNVERIFIED` row a later phase depends on; **the measurement gate answered** | **passed** |
 | **P1 -- acquire** | source registry, fetch, validate, normalize, deduplicate, provenance, plaintext. No health checking. D3 decided | a published plaintext list, generated end-to-end from fixtures with no network, byte-identical across two runs | **passed**, except D3 which is [T-040](../TODO/scoring.md) |
-| **P2 -- measure** | health checking to the ladder, JSON and CSV, vantage metadata, the fake-tracker oracle. D6 decided | probe validated against the local fake tracker for **every** failure mode; **the value gate answered** | not started |
+| **P2 -- measure** | health checking to the ladder, JSON and CSV, vantage metadata, the fake-tracker oracle. D6 decided | probe validated against the local fake tracker for **every** failure mode; **the value gate answered** | **both gate conditions met**; the phase's own deliverables are not all built |
 | **P3 -- score** | history and state, scoring, ranking, categories. D4 decided | the six invariants enforced by property tests; bootstrap-from-nothing passes | not started |
 | **P4 -- publish** | data branch and/or releases, channels, reports, atomic publication. D5 decided | a failed generation demonstrably leaves prior public data intact -- tested, not asserted | **the gate itself is already met**; the phase is not |
 | **P5 -- operate** | issue automation, housekeeping, self-healing, the long-term review | the fourteen questions answered with mechanisms, not intentions | not started |
@@ -77,7 +77,9 @@ decorative, and why [T-004](../TODO/claims.md) stays open.
 
 ---
 
-## The value gate -- **UNANSWERED**
+## The value gate -- **ANSWERED**, 2026-09-08
+
+**Verdict: justified as a labelled dataset, and NOT justified as a list.**
 
 **The question.** Measure the delta between this project's dataset and
 redistributing `ngosang/trackerslist`:
@@ -90,7 +92,75 @@ If the delta is negligible, say so in the README, prominently, and let the
 project be a well-documented mirror with provenance -- or recommend not shipping
 it. **Do not manufacture a difference to justify existence.**
 
-**What is measured.** The aggregation half, by `experiments/19`:
+### The answer
+
+**Instrument:** `experiments/27-value-gate.py`, offline, in the gate as
+`offline-value-gate`. **Evidence:** the 200-tracker sweep of workflow run
+`33938543488`, 2026-09-05, one GitHub-hosted runner, IPv4 only, **one
+observation per tracker**.
+
+| the gate's question | the answer |
+| --- | --- |
+| present here, absent there, **alive** | **16 of 183** sampled, a floor rate of 8.7% [5.5-13.7], scaling to **107 live [67-169]** of the 1228 we add |
+| present there, **dead** here | **0**, and it is zero *by construction*: `MIN_SAMPLES_FOR_DEATH` is 3 and this is one sample. The weaker claim the evidence supports is `not_live`, **8 of 17** |
+| health disagreements | vs `ngosang_all` **9 of 17** agree-live; vs `newtrackon_live` **11 of 15**. Neither side is presumed right: newTrackon **announces** and we scrape (`C-69`), so a disagreement is a methodology difference before it is a finding |
+
+**The control that makes the extrapolation legitimate.** The sweep takes a
+*stride* over a sorted corpus, not a random draw, so the arithmetic above
+assumes baseline membership is not correlated with `Tracker.sort_key` position.
+Measured: 17 baseline members observed against 14.9 expected, two-sided
+`p = 0.573`. Consistent with an unbiased sample. ⛔ **Had it not been, every
+figure in the table would have been invalid**, and the instrument fails
+`--expect-answered` on that condition rather than reporting anyway.
+
+### Two bars, and this project clears one of them
+
+⛔ **The first decision rule drafted for this was wrong in our favour**, and it
+is recorded rather than deleted because it is the exact shape the gate exists
+to catch: it compared our interval's *lower* bound against the baseline's
+*point* estimate -- charging us our sampling error and forgiving theirs. Under
+it the verdict read comfortably positive. The rule now compares our worst case
+against the baseline's best.
+
+| bar | measured | |
+| --- | --- | --- |
+| **count** -- our worst case against their best | live yield **1.92x** worst, 3.05x point, 6.50x best | **clears** |
+| **density** -- what share of each list answered us | ours **12.0%** of 1327, theirs **52.9%** of 99 | **fails** |
+
+**So the honest reading is two-sided and both halves belong in the README.** A
+consumer who takes our plaintext *unfiltered* gets a list 13.4x longer whose
+entries are **four times less likely** to answer -- a worse list. A consumer who
+takes it *filtered to what we measured live* gets between **1.9x and 6.5x** as
+many live trackers as the whole baseline contains.
+
+⭐ **Which makes the verdict conditional, and the condition is the deliverable:
+the value is in the labels, not the URLs.** Publishing the plaintext without
+the health data would be the prior art -- and the prior art is measured beside
+it here. `pkgforge-security/Trackers` publishes 1162 parseable entries, of
+which [`corpus-baseline.md`](corpus-baseline.md) measures **one** as content no
+primary source already has; **three** of its lines are not URIs at all, and two
+of those carry a stranger's private-tracker credential into a file the README
+tells consumers to pipe into a client.
+
+⚠ **A second axis of value, which is not a liveness one.** The baseline has
+**0** lines this project's parser refuses; the concatenation has **3**. That is
+the validation half doing work no liveness figure captures, and it needs no
+probe to demonstrate.
+
+### What the answer does not establish
+
+* **Not a liveness rate.** One datacenter, IPv4 only, one day, one observation.
+  `live` is a **floor** on both arms: a tracker that timed out is `unknown` and
+  some of those are up. The comparison survives this because both arms were
+  probed **in the same run by the same code**; the absolute rates do not.
+* **Not that the baseline is worse maintained.** The opposite is measured. Its
+  entries answered us at 52.9% against our unique additions' 8.7%.
+* **Not a settled verdict.** It rests on a 200-tracker sample and the ngosang
+  arm is **17 trackers**. `experiments/27-value-gate.py` runs in the gate, so
+  the day a further sweep moves the answer, the gate says so instead of this
+  page going quietly stale.
+
+**What is measured of the aggregation half**, by `experiments/19`:
 
 | | |
 | --- | --- |
@@ -105,14 +175,18 @@ of those unique entries is **alive**. Uniqueness is a string comparison; value
 is not. A dataset that is thirteen times larger and mostly dead is worse than a
 short accurate one.
 
-**This gate is deliberately not answered rather than answered optimistically.**
-It closes with [T-027](../TODO/measurement.md), which cannot start until
-[T-020](../TODO/measurement.md) exists.
+**This gate was deliberately not answered rather than answered optimistically**,
+and the paragraph above is what it said while [T-020](../TODO/measurement.md)
+was being built. [T-027](../TODO/measurement.md) closed it on 2026-09-08 and
+the answer is at the top of this section.
 
-**A negative answer is a real possible outcome and is not a failure of the
-work.** If the alive-delta turns out to be small, the correct response is the
-README statement and a recommendation, not a search for a different metric that
-makes the number look better.
+**A negative answer was a real possible outcome and would not have been a
+failure of the work.** The outcome is partly negative and is recorded as such:
+**bar 2 fails**, this project's list is four times less live-dense than the
+baseline, and the correct response was the README statement rather than a
+search for a different metric that makes the number look better. What the
+project may not now do is publish the plaintext alone and call the gate
+cleared -- that is the configuration the gate measured and rejected.
 
 ---
 
@@ -174,6 +248,6 @@ manual observation.**
 ### Justification
 
 - [x] The measurement gate answered with evidence
-- [ ] The value gate answered with numbers -- [T-027](../TODO/measurement.md)
+- [x] The value gate answered with numbers -- [T-027](../TODO/measurement.md), closed. **Justified as a labelled dataset, not as a list**; the verdict and both bars are above, and `experiments/27-value-gate.py` re-derives it in the gate
 - [x] The design brief corrected in place, with corrections visible, before it was retired -- see [`corrections.md`](corrections.md)
 - [x] The known-weaknesses record describes the *current* weaknesses and still ends with "assume more remain" -- [`corrections.md`](corrections.md)

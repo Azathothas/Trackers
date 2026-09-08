@@ -29,23 +29,51 @@ private system and they do not belong in a public repository either.
 them.**
 
 A private tracker authenticates by a token carried in the announce URL:
-`?passkey=<token>`, or a long opaque path component beside `announce`. They
-reach the upstream lists because a contributor pasted their own URL, and they
-belong to a real person whose tracker can see every use of them.
+`?passkey=<token>` or `?authkey=<token>`, or a long opaque path component
+beside `announce`. They reach the upstream lists because a contributor pasted
+their own URL, and they belong to a real person whose tracker can see every use
+of them.
 
-**Measured 2026-08-31 (C-70):** six distinct such credentials are in the
-captured source fixtures, on seven URLs, and
-`python3 scripts/generate.py --offline` publishes all seven into
-`trackers_all.txt`. Nothing between the fixture and the dataset refuses them.
+**Measured 2026-08-31 (C-70):** six distinct such credentials were in the
+captured source fixtures, on seven URLs, and `scripts/generate.py --offline`
+published all seven into `trackers_all.txt`. Nothing between the fixture and
+the dataset refused them.
+
+**That is closed.** [T-107](../../TODO/sources.md) made the pipeline refuse a
+credential-bearing URL outright, so the count in the published plaintext is
+**0** and the run report names each refusal with the token removed. The figures
+are [`corpus-baseline.md`](../../HISTORY/corpus-baseline.md)'s and are not
+restated here.
 
 ⚠ **The fixtures themselves are not edited.** They are verbatim captures, and a
-fixture somebody rewrote is not a capture. The defect is in the pipeline, and
-[T-107](../../TODO/sources.md) is the entry that closes it.
+fixture somebody rewrote is not a capture -- rewriting one would destroy the
+evidence that the refusal works. `check-no-secrets.py` therefore **counts**
+inside `tests/fixtures`, `experiments/fixtures` and `references`, and
+**fails** everywhere else, with no exemption. The ceiling that used to sit at
+the measured count is gone rather than raised, because an exemption nobody
+removes is a check that stopped checking.
 
-⛔ **The check holds a ceiling at the measured count and the ceiling comes off
-when the entry closes.** Until then a seventh distinct credential fails the
-gate, which is what matters: the corpus is re-fetched from upstreams that keep
-publishing these.
+### ⛔ The rule binds this project's own writing, not only its pipeline
+
+**Found 2026-09-08, by T-027.** `PRIVATE_CREDENTIAL` matched `passkey=` and a
+long path component, and did not match `authkey=<id>|<id>|<token>` -- a shape
+two corpus URLs use. Widening it to see that shape immediately found the same
+stranger's credential quoted **four times outside the capture directories**: in
+a review under `HISTORY/`, in `tests/test_p1.py`, in a comment in
+`src/trackers/exclusion.py`, and in an experiment's results file. All four were
+this project writing somebody's credential into its own documents while
+refusing to publish it in the dataset -- the one-gated-door class, with this
+project's own headline refusal on the wrong side of it.
+
+⚠ **Widening the pattern moved no published number**, measured before it was
+applied: the two URLs are already refused by `normalize.parse`'s character
+check, because `|` is not a character a URI may hold. So the fix was free of
+consequence for consumers, which is exactly why nothing had caught it -- the
+defect was invisible in every count anybody looks at.
+
+⛔ **The credential belongs to a third party and this project cannot rotate
+it.** Step 1 below is not available to us here; steps 2 and 3 are, and the
+operator is told in [`../../TODO/PROGRESS.md`](../../TODO/PROGRESS.md).
 
 ---
 
