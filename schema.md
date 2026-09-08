@@ -8,6 +8,20 @@ in both directions.
 The files are `trackers_all.json` and `trackers_all.csv`, and they carry the
 same rows. `trackers_all.txt` is the same tracker set with the labels stripped.
 
+**Five category files** sit beside them, each with a rule you can audit:
+
+| file | membership |
+| --- | --- |
+| `common.txt` | the other categories merged, plus every tracker whose most recent observation was `live`. ⭐ **Start here.** |
+| `anime.txt` | provenance from a source the registry classifies `anime`. |
+| `stable.txt` | measured only: at least 5 observations at a success rate of 0.95 or better. ⛔ **Empty until the history is deep enough**, and empty is the honest answer -- a reputation-seeded file pretending to be measured is not. |
+| `foss.txt` | derived from FOSS-ecosystem provenance, plus a seed labelled as curated. Neither half has content yet. |
+| `hardcoded.txt` | the maintainer's manual list, in their order, never sorted or ranked. |
+
+⚠ **An empty category file is not a defect.** `report.md` says for each one
+whether the rule matched nothing or the evidence it needs does not exist yet,
+because those are different states.
+
 ⛔ **The labels are the product.** Taken unfiltered this list is longer and
 less likely to answer than the baseline it aggregates; filtering it by what
 measured live is what makes it worth using
@@ -78,6 +92,8 @@ Outside `trackers`, the JSON document carries:
 | `schema_version` | The field set's version. Bumped when a field is added, removed or changes meaning, so a consumer detects a shape change without diffing rows. |
 | `normalization_version` | The version of the rules that produced the URLs. ⛔ Pinned by a golden table in [`../tests/test_versions.py`](../tests/test_versions.py): changing what normalization does without moving this number fails a gate, because an unpinned version is a number somebody remembers to update. |
 | `scoring_version` | ⛔ `null`, and that is the honest value: no scoring model is chosen ([T-044](../TODO/scoring.md)), so there is no methodology to version. A `1` here would tell you one exists and is stable. |
+| `publish_interval_seconds` | How often this dataset expects to be regenerated. ⭐ Present so you can decide it has gone stale **without us**: see below. |
+| `stale_after_intervals` | How many missed publications before treating the data as stale. Three, not one, because a scheduled run can be late and one was observed 163 minutes late. |
 | `digest` | `sha256:` over the rows, canonically serialised. ⭐ Two documents with one digest carry the same data whatever their `generated_at` says, which is how you tell a re-publication from a change. |
 | `vantage_note` | The limitation stated in the data itself, because the reader most likely to misread the file will never open this page. |
 
@@ -107,6 +123,29 @@ publish returned the older dataset, with no error and nothing to suggest it was
 stale. ⭐ **Compare `generated_at` inside the document**, never the time you
 fetched it. `C-16` in [`../HISTORY/claims.md`](../HISTORY/claims.md) carries the
 measurement.
+
+## Telling whether this project has stopped
+
+⛔ **The worst thing this project could do is stop quietly.** A public
+repository's scheduled workflows are disabled after 60 days without activity,
+and if that happens every file here keeps serving HTTP 200 with data that no
+longer moves.
+
+⭐ **You can detect that without us**, and that is deliberate: the two fields
+you need are in the bytes you already hold.
+
+```python
+import datetime, json, urllib.request
+url = "https://raw.githubusercontent.com/Azathothas/Trackers/data/trackers_all.json"
+doc = json.load(urllib.request.urlopen(url))
+stamped = datetime.datetime.fromisoformat(doc["generated_at"].replace("Z", "+00:00"))
+age = (datetime.datetime.now(datetime.timezone.utc) - stamped).total_seconds()
+stale = age > doc["publish_interval_seconds"] * doc["stale_after_intervals"]
+```
+
+A CSV or plaintext consumer reads the same two fields from `metadata.json`.
+⚠ **A watchdog of ours could not tell you this**, because it would run on the
+schedule that stopped.
 
 ## Cross-format consistency
 

@@ -3,26 +3,48 @@
   "count": 1334,
   "dataset_digest": "sha256:06c0daf0c8fd5bd9ca9c60adba25f6d94fa0c30a00c77cbea6954af25840d63f",
   "files": {
+    "anime.txt": {
+      "bytes": 40231,
+      "digest": "sha256:a3e4b023233ce75cb0168ab43d23ffc566ba50a1c43219bf0a857bef70474afa"
+    },
+    "common.txt": {
+      "bytes": 3928,
+      "digest": "sha256:63a18341e4ecb054567fdaf98d58e0c433d2e034288d6c841feef444d89c8637"
+    },
+    "foss.txt": {
+      "bytes": 0,
+      "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hardcoded.txt": {
+      "bytes": 0,
+      "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
     "report.md": {
       "bytes": 2499,
-      "digest": "sha256:8b8cb8d69da10ad32701d7a6ebc3b4d10f43da698fd48440bc6832def7d0b6c1"
+      "digest": "sha256:fc0e67cd3a77accf57f8a77b68135509762c1d6b1039db3023a1067027504b09"
+    },
+    "stable.txt": {
+      "bytes": 0,
+      "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "trackers_all.csv": {
       "bytes": 192677,
       "digest": "sha256:e5fcd5e1d3aa75dc68046bd502d4d76f8348278075a6da22bf813224c9e7cef9"
     },
     "trackers_all.json": {
-      "bytes": 786524,
-      "digest": "sha256:242f8afe1e3654e03172dde8d6e79444f63f6ac41808ff2c2b28e004cf0b2e48"
+      "bytes": 786591,
+      "digest": "sha256:de13a1688207768f19eff65db65fd278d3c5397e2c8456ca03154d6547b393b0"
     },
     "trackers_all.txt": {
       "bytes": 50500,
       "digest": "sha256:22b05af7a55000e67acf2f4991bf547358b7b08f3bd1432ad187a2f0a6235cff"
     }
   },
-  "generated_at": "2026-09-08T22:01:30Z",
+  "generated_at": "2026-09-08T22:31:17Z",
   "normalization_version": 1,
+  "publish_interval_seconds": 10800,
   "schema": "schema.md, published beside this file",
   "schema_version": 1,
-  "scoring_version": null
+  "scoring_version": null,
+  "stale_after_intervals": 3
 }

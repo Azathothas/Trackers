@@ -22,10 +22,12 @@
     "observed_from",
     "unmeasurable_reason"
   ],
-  "generated_at": "2026-09-08T22:01:30Z",
+  "generated_at": "2026-09-08T22:31:17Z",
   "normalization_version": 1,
+  "publish_interval_seconds": 10800,
   "schema_version": 1,
   "scoring_version": null,
+  "stale_after_intervals": 3,
   "trackers": [
     {
       "checks": 1,
