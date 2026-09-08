@@ -55,7 +55,8 @@ from typing import Any, Iterable, Mapping
 
 from . import NORMALIZATION_VERSION, SCHEMA_VERSION, SCORING_VERSION
 from .freshness import PUBLISH_INTERVAL_SECONDS, STALE_AFTER_INTERVALS
-from .model import HealthState, Tracker
+from .model import HealthState, Rung, Tracker
+from .probe import Failure, health_state
 from .state import TrackerHistory
 
 __all__ = ["FIELDS", "CSV_FIELDS", "row_for", "render_json", "render_csv",
@@ -154,13 +155,33 @@ def _health_of(history: TrackerHistory | None,
     ⚠ A tracker this vantage cannot measure at all is `unmeasurable` even with
     no observation, because that is a structural fact about our position rather
     than a missing measurement (RULES 3.1).
+
+    ⛔ **THE STATE IS ASKED FOR, NOT ECHOED, AND THAT WAS A REAL DEFECT.** This
+    returned `history.ring[-1].state` -- the state the sweep recorded for **one
+    observation**, where the sample count is 1 by construction. So no
+    accumulation could ever change it, and on 2026-09-09 the published dataset
+    carried **28 trackers with three observations and no successes, every one
+    of them `unknown`**. `MIN_SAMPLES_FOR_DEATH` was decorative: the state
+    machine that decides `dead` existed, was correct, and was never asked.
+
+    Found by looking at the published data on the first day the history was
+    deep enough for the question to have an answer.
     """
     if history is None or not history.ring:
         if not tracker.is_measurable_here:
             return HealthState.UNMEASURABLE.value, None, "unsupported"
         return HealthState.UNKNOWN.value, None, None
     last = history.ring[-1]
-    return last.state, last.rung, last.failure
+    failure = Failure(last.failure) if last.failure else Failure.NONE
+    rung = Rung(last.rung) if last.rung else Rung.NONE
+    state = health_state(
+        rung=rung, transport=tracker.transport, network=tracker.network,
+        # ⭐ The LIFETIME counts, which is the whole point: three failures
+        # across three runs is what `MIN_SAMPLES_FOR_DEATH` is counting.
+        sample_count=history.lifetime_checks,
+        success_count=history.lifetime_successes,
+        failure=failure, measurable=tracker.is_measurable_here)
+    return state.value, last.rung, last.failure
 
 
 def row_for(tracker: Tracker, *, sources: Iterable[str] = (),

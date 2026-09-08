@@ -36,9 +36,11 @@ each: [INDEX.md](INDEX.md).
   measured to **424 of 1334** and from 16 trackers with two observations to
   **56**. Three is what `dead` needs. Every measurement also lives under
   `experiments/results/` as evidence.
-- ⛔ **Nothing is `dead`, and nothing can be.** `MIN_SAMPLES_FOR_DEATH` is 3
-  and no tracker has three observations. The most any record says is
-  `unknown`.
+- ⭐ **The dataset says `dead` for the first time, and it is a fix rather than
+  a milestone.** `_health_of` echoed the last observation's state, where the
+  sample count is 1 by construction, so `MIN_SAMPLES_FOR_DEATH` was decorative
+  and no accumulation could ever reach `dead`. It asks the state machine now:
+  **26 dead** on 3 or 4 observations each, none of them unmeasurable.
 
 ## Measured baseline
 
@@ -66,7 +68,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **494** tests, no network |
+| Test suite | **498** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |

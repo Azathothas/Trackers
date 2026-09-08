@@ -105,6 +105,66 @@ class AnUnprobedTrackerIsUnknown(unittest.TestCase):
         self.assertIsNone(row["measurement_rung"])
         self.assertIsNone(row["observed_from"])
 
+    def test_three_failed_observations_reach_dead(self):
+        """⛔ The defect this exists to prevent, and it shipped.
+
+        `_health_of` returned the last observation's state, where the sample
+        count is 1 by construction, so no accumulation could ever reach `dead`
+        and `MIN_SAMPLES_FOR_DEATH` was decorative. On 2026-09-09 the published
+        dataset carried 28 trackers with three observations and no successes,
+        every one of them `unknown`.
+        """
+        from trackers.probe import MIN_SAMPLES_FOR_DEATH
+        url = "udp://gone.example:6969/announce"
+        history = TrackerHistory.new(url, "2026-09-01T00:00:00Z")
+        for index in range(MIN_SAMPLES_FOR_DEATH):
+            history = history.observe(
+                state="unknown", ok=False,
+                observed_at=f"2026-09-0{1 + index}T00:00:00Z",
+                rung="dns", failure="timeout")
+        row = row_for(parse(url), history=history)
+        self.assertEqual(row["health_state"], HealthState.DEAD.value)
+        self.assertEqual(row["checks"], MIN_SAMPLES_FOR_DEATH)
+
+    def test_one_short_of_the_threshold_is_not_dead(self):
+        """⚠ The boundary from below, so the threshold cannot quietly become
+        one."""
+        from trackers.probe import MIN_SAMPLES_FOR_DEATH
+        url = "udp://maybe.example:6969/announce"
+        history = TrackerHistory.new(url, "2026-09-01T00:00:00Z")
+        for index in range(MIN_SAMPLES_FOR_DEATH - 1):
+            history = history.observe(
+                state="unknown", ok=False,
+                observed_at=f"2026-09-0{1 + index}T00:00:00Z",
+                rung="dns", failure="timeout")
+        self.assertEqual(row_for(parse(url), history=history)["health_state"],
+                         HealthState.UNKNOWN.value)
+
+    def test_an_unmeasurable_tracker_never_reaches_dead_however_many_checks(self):
+        """⛔ RULES 3.1, asserted on the published state rather than only in
+        the state machine."""
+        url = "http://tracker.i2p/announce"
+        history = TrackerHistory.new(url, "2026-09-01T00:00:00Z")
+        for index in range(9):
+            history = history.observe(
+                state="unmeasurable", ok=False,
+                observed_at=f"2026-09-{1 + index:02d}T00:00:00Z",
+                rung="none", failure="unsupported")
+        self.assertEqual(row_for(parse(url), history=history)["health_state"],
+                         HealthState.UNMEASURABLE.value)
+
+    def test_a_refusal_aimed_at_us_never_reaches_dead(self):
+        """A 403 may be about our identity rather than the tracker (T-012)."""
+        url = "http://refuses.example:80/announce"
+        history = TrackerHistory.new(url, "2026-09-01T00:00:00Z")
+        for index in range(9):
+            history = history.observe(
+                state="unknown", ok=False,
+                observed_at=f"2026-09-{1 + index:02d}T00:00:00Z",
+                rung="transport_response", failure="blocked_by_policy")
+        self.assertNotEqual(row_for(parse(url), history=history)["health_state"],
+                            HealthState.DEAD.value)
+
     def test_a_tracker_that_failed_every_check_is_distinguishable(self):
         history = TrackerHistory.new("udp://tracker.example:6969/announce",
                                      "2026-09-09T00:00:00Z")

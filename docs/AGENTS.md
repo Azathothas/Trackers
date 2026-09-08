@@ -49,8 +49,10 @@ met.** The measurement core has been pointed at the corpus five times -- a
 DNS censuses, and the IPv6-only population probed from a vantage that has IPv6.
 Per-tracker history exists (D3) and what its series mean is decided (T-041).
 **The dataset is published** on the `data` branch and the sweep runs every
-three hours (T-063, T-084); nothing claims a tracker is `dead`:
-`MIN_SAMPLES_FOR_DEATH` is 3 and no tracker has three observations.
+three hours (T-063, T-084). ⭐ **The history is now deep enough to say `dead`,
+and it does**: `MIN_SAMPLES_FOR_DEATH` is 3, and on 2026-09-09 twenty-six
+trackers had three or more observations with no successes. A `dead` here means
+exactly that and nothing more.
 
 ---
 
@@ -236,7 +238,7 @@ instrument.
 | `src/trackers/` | the pipeline (`model`, `normalize`, `dedup`, `exclusion`, `registry`, `acquire`, `pipeline`), the measurement core (`bencode`, `bep15`, `bep34`, `vantage`, `probe`, `sweep`, `profile`, `politeness`), per-tracker history (`state`, `shapes`), release channels (`channels`), the published formats (`labelled`, `freshness`, `categories`), the scoring invariants (`scoring`), issue automation (`issues`), and evidence somebody else observed (`secondhand`) |
 | `scripts/` | the generator and the checks. [`../scripts/README.md`](../scripts/README.md) |
 | `scripts/vendor/toolkit/` | two helpers fetched from `Azathothas/ToolKit` at a pinned commit. Not this project's code |
-| `tests/` | 494 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
+| `tests/` | 498 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
 | `docs/` | this file and the documentation set. [`README.md`](README.md) is the map |
 | `.github/workflows/` | `gate.yml` (cheap, offline, every push), `p0-ground-truth.yml` (probes real trackers, only when experiments change), `health-sweep.yml` (**scheduled**, every three hours, one rotating slice), `publish.yml` (writes the `data` branch) and `issues.yml` (tells a human, and is quiet when nothing is wrong) |
 

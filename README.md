@@ -19,9 +19,11 @@ every entry unmeasured. [`docs/schema.md`](docs/schema.md) defines every field,
 and it travels with the data at
 `raw.githubusercontent.com/Azathothas/Trackers/data/schema.md`.
 
-⚠ **Most rows read `unknown` today**, which is honest rather than final: 282 of
-1334 carry an observation. ⛔ **Nothing reads `dead`**, because saying that
-needs three observations of one tracker.
+⚠ **Most rows read `unknown` today**, which is honest rather than final: 424
+of 1334 carry an observation. ⛔ **`dead` means three observations of one
+tracker, none of which succeeded**, from one datacenter, on this project's own
+threshold. 26 rows read it. It is not a claim that the tracker is gone from the
+internet.
 
 ---
 
@@ -213,9 +215,9 @@ asserted. The largest gaps:
 - **One torrent client has been run against this output, not five.** aria2
   1.37.0 accepts it; qBittorrent, Transmission, Deluge and BiglyBT are
   **absent, not passing** ([T-035](TODO/claims.md)).
-- **No tracker here can be called dead, and none is.** Saying so needs three
-  observations and the history is younger than that, so the honest state for a
-  tracker that did not answer is `unknown`.
+- **`dead` rests on three observations from one vantage**, which is this
+  project's own threshold rather than a standard. A tracker recorded `dead` may
+  answer you perfectly well from a residential connection.
 - **Every measurement comes from a datacenter or from one authoring host.**
   Neither is a residential connection, which is where the consumers of this
   data actually sit. A tracker that answers you may not answer us.
