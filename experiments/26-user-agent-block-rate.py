@@ -166,12 +166,27 @@ def read_live_urls(paths) -> set[str]:
 
 
 def read_contacted_urls(paths) -> set[str]:
-    """Every URL an earlier run of this experiment contacted."""
+    """Every URL somebody has already contacted, from any record this project
+    writes.
+
+    ⛔ **Both shapes, and the second one became load-bearing on 2026-09-08.**
+    This read only this experiment's own results, which was enough while the
+    experiment was the only thing contacting trackers on demand. The health
+    sweep is **scheduled** now, every three hours, so a tracker it just probed
+    is one this experiment must leave alone -- and a version of this function
+    that cannot read a sweep record cannot express that. Two instruments each
+    obeying D7 on their own and contacting one tracker between them is still a
+    breach of D7.
+
+        {"results": {"rows": [...]}}   an experiment result
+        {"trackers": [...]}            a sweep's health records
+    """
     out: set[str] = set()
     for path in paths:
         with open(path, encoding="utf-8") as handle:
             doc = json.load(handle)
-        rows = (doc.get("results") or {}).get("rows") or []
+        rows = list((doc.get("results") or {}).get("rows") or [])
+        rows += list(doc.get("trackers") or [])
         for row in rows:
             out.add(str(row.get("url", "")))
     return out - {""}

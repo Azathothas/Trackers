@@ -724,6 +724,45 @@ slices into equal groups: 8, 8, 8, 8, with every tracker still seeing every arm
 across the four rotations. The two runs above used the earlier assignment and
 the rotation series restarts with the balanced one.
 
+**Rotation 1, 2026-09-08T21:46Z**, six hours after the last contact so nobody
+was asked twice inside D7's interval. Result at
+`experiments/results/26-user-agent-block-rate.unclassified-host.20260908T214558Z.json`.
+23 subjects, **22 answered**, and the balanced assignment holds: 5, 6, 6, 6.
+
+| arm | answered | contacted | rate |
+| --- | --- | --- | --- |
+| absent | 5 | 5 | 1.000 |
+| client_like | 5 | 6 | 0.833 |
+| descriptive | **6** | **6** | **1.000** |
+| minimal | 6 | 6 | 1.000 |
+
+⭐ **The descriptive arm has now answered 21 of 21** across two subject sets on
+one day. ⛔ **Still no verdict**, and the instrument refuses one for itself: no
+arm has reached 20 contacted subjects in a run.
+
+⛔ **Scheduling the health sweep changed this experiment's arithmetic, and the
+exclusion could not express it.** `--exclude` read only this experiment's own
+results, which was enough while it was the only thing contacting trackers on
+demand. The sweep now runs every three hours, so a tracker it has probed within the
+interval is
+one this experiment must leave alone -- and **two instruments each obeying D7
+on their own, contacting one tracker between them, still breach D7.**
+`read_contacted_urls` reads a sweep's records as well now, and rotation 1 was
+run with the two most recent sweeps excluded: the 354 URLs they contacted,
+of which 2 would otherwise have been asked again inside the interval.
+
+⚠ **The first attempt at that invocation probed nothing**, correctly: passing
+the same sweeps as both the subject source and the exclusion leaves an empty
+set. Subjects come from sweeps **older** than the interval; exclusions are what
+was contacted **inside** it.
+
+**What remains, concretely:** rotations 2 and 3, each at least three hours
+after the last contact, and an aggregation across the series -- the design puts
+every tracker through every arm over four runs, so the comparison belongs to
+the series rather than to any one run of it. ⚠ At 46 live HTTP subjects today
+that is 11 per arm; the subject set grows as the sweep's rotation covers more
+of the corpus, which takes about 21 hours.
+
 ⚠ **Provenance.** The pilot ran from a working tree based on `0fecf12` and its
 conditions block says so. `src/trackers/probe.py` changed after it started
 ([T-038](../TODO/measurement.md)); the change refuses an answer whose socket
