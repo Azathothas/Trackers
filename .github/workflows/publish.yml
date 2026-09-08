@@ -151,8 +151,13 @@ jobs:
       # times a day. Without validators that is 64 full downloads a day nobody
       # needs. ⚠ A cache miss is a full fetch and never an error: an entry
       # expires, a first run has none, and `read_snapshots` degrades either way.
+      # ⚠ v6.1.0, and the version is not cosmetic: GitHub **hard-fails** a run
+      # that uses a deprecated `actions/cache`, so a pin nobody revisits stops
+      # the publisher rather than degrading it. Measured on 2026-09-09 -- run
+      # 34292037925 failed at `Set up job` on a v4.0.2 pin, before a single
+      # step ran. ⭐ It failed safely: the previous dataset stayed up.
       - name: Restore the source snapshots
-        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: snapshots
           key: source-snapshots-${{ github.run_id }}
