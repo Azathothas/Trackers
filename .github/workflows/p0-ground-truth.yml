@@ -38,6 +38,12 @@ on:
       - 'experiments/fixtures/probe-targets.tsv'
       - '.github/workflows/p0-ground-truth.yml'
   workflow_dispatch:
+    inputs:
+      dns_census:
+        description: "also run the corpus-wide DNS census (29 and 30). ~1000 lookups; touches no tracker"
+        required: false
+        default: false
+        type: boolean
 
 # Least privilege: this workflow reads the tree and nothing else.
 permissions:
@@ -126,6 +132,33 @@ jobs:
           python3 experiments/04-dns-resolver-divergence.py \
             --out "experiments/results/04.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
 
+      # ⛔ ON DISPATCH ONLY, and the reason is load rather than danger. These
+      # two touch no tracker at all -- they resolve names and stop -- but
+      # together they are roughly a thousand DNS lookups per image, and RULES
+      # 15.2 makes request noise a correctness rule rather than a tidiness
+      # one. A push that edits a probe does not need the corpus re-resolved.
+      #
+      # ⭐ What they answer needs THIS vantage specifically. `experiments/30`
+      # measured 11 of 244 hosts resolving for a public resolver and not for
+      # the authoring host -- and every committed health record was taken here,
+      # on a runner whose resolver has been compared with nothing. T-007 and
+      # `src/trackers/bep34.py`'s decision 5 both wait on this number.
+      - name: 29 address family census (dispatch only)
+        id: e29
+        if: inputs.dns_census
+        continue-on-error: true
+        run: |
+          python3 experiments/29-address-family-census.py \
+            --out "experiments/results/29.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
+
+      - name: 30 resolution failure classes (dispatch only)
+        id: e30
+        if: inputs.dns_census
+        continue-on-error: true
+        run: |
+          python3 experiments/30-resolution-failure-classes.py \
+            --out "experiments/results/30.${{ matrix.os }}.run${GITHUB_RUN_ID}.json"
+
       - name: 05 HTTP tracker protocol (scrape only, no announce)
         id: e05
         continue-on-error: true
@@ -150,8 +183,18 @@ jobs:
       # the step's outcome says.
       - name: Every experiment wrote a result
         run: |
+          # ⛔ The expected set depends on what was ASKED for, not on what
+          # happened to appear. Listing 29 and 30 unconditionally would fail
+          # every push-triggered run, and dropping them from the list entirely
+          # would let a dispatched census crash unnoticed -- which is the
+          # step-that-exits-0-having-done-nothing pattern this check exists to
+          # prevent, reintroduced by the check itself.
+          expected="01 02 03 04 05"
+          if [ "${{ inputs.dns_census }}" = "true" ]; then
+            expected="$expected 29 30"
+          fi
           missing=0
-          for n in 01 02 03 04 05; do
+          for n in $expected; do
             if ! ls experiments/results/${n}.*.run${GITHUB_RUN_ID}*.json >/dev/null 2>&1; then
               echo "::error::experiment ${n} wrote no result on ${{ matrix.os }}"
               missing=1
