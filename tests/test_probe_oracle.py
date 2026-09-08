@@ -19,12 +19,14 @@ from __future__ import annotations
 
 import os
 import socket
+import struct
 import sys
 import unittest
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__))), "src"))
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(REPO, "src"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(REPO, "experiments"))
 
 from fake_tracker import (Behaviour, FakeHttpTracker,  # noqa: E402
                           FakeUdpTracker, looks_like_a_torrent_client)
@@ -348,6 +350,64 @@ class ScrapeEthics(unittest.TestCase):
         self.assertTrue(r.used_synthetic_infohash)
         rec = r.as_record(HealthState.LIVE)
         self.assertTrue(rec["used_synthetic_infohash"])
+
+
+class TheExperimentsControlStillAnswersOnTheProductionCodec(unittest.TestCase):
+    """T-033's `Prove` clause, as a standing check instead of a one-off run.
+
+    `experiments/02-udp-bep15-connect.py` no longer carries its own BEP 15
+    codec: it imports `src/trackers/bep15.py`. Its `Prove` clause was
+    `02 --expect-control` exiting 0, and that script probes eleven real
+    trackers on its way there, so running it to check a refactor spends other
+    people's bandwidth on a question that does not need them.
+
+    ⭐ **What the clause is actually asking is answerable on loopback**: does
+    the experiment's own positive control still complete a connect now that the
+    bytes are built and parsed by the production codec? If it does not, every
+    subject row that script emits is meaningless -- which is what its tier-0
+    rule says in the first place.
+
+    ⚠ **This is not a substitute for running it on a runner.** It proves the
+    codec swap, not the vantage. The real run happens in `p0-ground-truth.yml`,
+    which the swap itself triggers.
+    """
+
+    def _experiment(self):
+        import importlib.util
+        path = os.path.join(REPO, "experiments", "02-udp-bep15-connect.py")
+        spec = importlib.util.spec_from_file_location("exp02", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    def test_the_loopback_control_completes_a_connect(self):
+        exp = self._experiment()
+        with exp.LoopbackBEP15Tracker() as fake:
+            first = exp.bep15_connect("127.0.0.1", fake.port, 2.0, 0)
+            second = exp.bep15_connect("127.0.0.1", fake.port, 2.0, 0)
+        # Run twice, as the experiment itself does: a control that answered
+        # once is a coincidence nobody has noticed yet (RULES 2).
+        for run in (first, second):
+            self.assertTrue(run["ok"], run)
+        self.assertEqual(fake.seen, 2)
+
+    def test_it_uses_the_production_codec_and_not_a_copy(self):
+        """The point of the swap. If this ever reads `exp02` again, the two
+        implementations are back and can drift."""
+        exp = self._experiment()
+        self.assertEqual(exp.build_connect_request.__module__, "trackers.bep15")
+        self.assertEqual(exp.parse_connect_response.__module__, "trackers.bep15")
+
+    def test_a_wrong_transaction_id_is_refused(self):
+        """The security property the codec exists for, exercised through the
+        experiment's own path: UDP is spoofable, so a reply whose transaction
+        id does not match must never read as a live tracker."""
+        exp = self._experiment()
+        ok, detail, conn = exp.parse_connect_response(
+            struct.pack(">IIQ", 0, 999, 0x0123456789ABCDEF), 12345)
+        self.assertFalse(ok)
+        self.assertIn("transaction id mismatch", detail)
+        self.assertIsNone(conn)
 
 
 if __name__ == "__main__":

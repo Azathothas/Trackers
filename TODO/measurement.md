@@ -66,6 +66,13 @@ codecs were **copied**, not lifted, so the two can drift and a fix
 to one never reaches the other -- which is the exact defect this
 paragraph claimed to have prevented. [T-033](measurement.md) is
 the entry that does the work; the rest of this acceptance stands.
+
+⭐ **T-033 closed on 2026-09-08 and the sentence above is true
+again.** Both experiments now import the codecs from `src/` and
+the copies are deleted, so the claim this acceptance made in
+advance is finally the claim the tree supports. It is left written
+out in full rather than tidied, because the interesting part is
+that it was asserted for eight days before it was true.
 Landed with it: T-023 and T-025. **Not** T-022 or T-024 -- see
 those entries for what is actually left.
 
@@ -806,7 +813,7 @@ Source:      review 2 of 2026-09-05, the door sweep; corrects [T-020](measuremen
 Category:    measurement
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `experiments/02-udp-bep15-connect.py` and
              `experiments/05-http-tracker-protocol.py` each carry their own
@@ -842,6 +849,77 @@ Prove:       `grep -rn "def build_connect_request\|def parse_connect_response\|d
              returns nothing, every experiment imports from `src/trackers/`,
              and `python3 experiments/02-udp-bep15-connect.py --expect-control`
              still exits 0 against the loopback control.
+
+**Done.** `grep -rn "def build_connect_request|def parse_connect_response|def
+bdecode" experiments/` -> exit 1, no matches. `python3 scripts/check-gate.py`
+-> 16 passed, 0 failed, 1 expected skip.
+
+`experiments/02` imports `build_connect_request`, `parse_connect_response` and
+the three BEP 15 constants from `src/trackers/bep15.py`; `experiments/05`
+imports `bdecode`, `classify_body`, `BencodeError` and `FAILURE_KEYS` from
+`src/trackers/bencode.py`. The copies are deleted.
+
+⭐ **The swap was licensed by a measurement, not by reading the two side by
+side**, because this entry's own `Decision` says a codec change under an
+instrument whose output is this project's evidence deserves its own reading.
+Over **5025 inputs**, including 5000 random byte strings: the BEP 15 pair
+differed on **0**; `bdecode` differed on **0** accept/reject decisions and
+**0** parsed values; `classify_body` differed on **0** `kind` values. The only
+differences were in error TEXT, where `src`'s messages are the more specific --
+`"string length 5 runs past end of input (2 bytes available)"` against
+`"string length out of range"`.
+
+⚠ **Confirmed by re-running the instrument**: `experiments/19 --offline`
+produces `distinct_urls`, `transports`, `networks` and `transport_x_network`
+**identical** to the committed run of 2026-08-31, so the swap moved no number
+this project has published. The committed results are **not** re-run and not
+rewritten -- they were taken by the copies, and their conditions block records
+the commit, which is what makes that checkable.
+
+**A third copy was found, and it was worse than the two this entry names.**
+`experiments/19-scheme-census.py` carried a line-for-line duplicate of
+`src/trackers/model.py`'s `classify_network`, under a comment claiming to be
+"the single place the constant lives" while `model.py:117` held the same
+`YGGDRASIL_NET`. ⛔ **That classifier is the first of the five failure modes in
+[`../docs/AGENTS.md`](../docs/AGENTS.md) section 5**: `.i2p` is a hostname
+suffix, not a scheme, and a drifted copy sends an i2p tracker to the clearnet
+prober and records it dead. It now imports the production one.
+
+⚠ **`parse_entries` in the same file is NOT the same defect and stays.** It
+deliberately accepts what `normalize.parse` rejects, because a census answers
+"what occurs in the wild" and the pipeline answers "what do we publish". Two
+functions answering two questions is not a copy;
+[`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md) records the
+cross-check that they agree where they should.
+
+**The `Prove` clause was wrong in one clause and is corrected rather than
+quietly satisfied (RULES 9).** It asked that *every* experiment import from
+`src/trackers/`, which is not the right bar: `01`, `03`, `04`, `20`, `21`, `22`
+and `24` have nothing in `src/` to share, and importing for its own sake would
+add a dependency to buy nothing. The bar that matters is **no experiment
+carries a second implementation of something `src/` owns**, and that is what
+was checked.
+
+⛔ **The clause's last third could not be run as written, and the reason is
+conduct, not convenience.** `02 --expect-control` probes eleven real trackers
+on its way to reporting the control, and this host is a residential
+`unclassified-host` -- the exact route [T-024](measurement.md) refused. Three
+routes were considered: run it here (**refused**, it spends strangers'
+bandwidth from a vantage whose records are not comparable with anything);
+run it on a runner (**taken** -- editing `02` triggers `p0-ground-truth.yml`,
+which is where it belongs); and prove the control offline (**taken, and it is
+the better half**). `tests.test_probe_oracle.TheExperimentsControlStillAnswersOn
+TheProductionCodec` starts the experiment's own `LoopbackBEP15Tracker`, runs
+its own `bep15_connect` against it twice, asserts the oracle received both
+datagrams, asserts both functions resolve to `trackers.bep15`, and asserts a
+wrong transaction id is still refused. ⭐ **That turns a one-off run into a
+standing check**: the drift this entry exists to prevent now fails the suite
+rather than waiting for somebody to re-read two files. Mutation-proved by
+putting a shadowing copy back, which fails it.
+
+**T-020's acceptance is now true.** The sentence corrected under its title --
+"the experiments and the production path are the same code and cannot drift" --
+was false when written and is true as of this entry.
 
 ### T-031 Liveness for networks this vantage cannot reach -- the leverage entry
 

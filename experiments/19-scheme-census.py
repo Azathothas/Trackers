@@ -75,7 +75,10 @@ from collections import Counter, defaultdict
 from urllib.parse import urlsplit
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "src"))
 import _conditions as C  # noqa: E402
+from trackers.model import YGGDRASIL_NET, classify_network as _classify  # noqa: E402
 
 USER_AGENT = (
     "trackers/0.1 "
@@ -126,29 +129,25 @@ SOURCES: list[tuple[str, str, str]] = [
 KNOWN_TRANSPORTS = {"udp", "http", "https", "ws", "wss"}
 KNOWN_NETWORKS = {"clearnet", "i2p", "yggdrasil", "onion"}
 
-# Yggdrasil uses the 0200::/7 IPv6 range. Recorded here as the single place the
-# constant lives, with its source, so it is checkable rather than folklore.
-YGGDRASIL_NET = ipaddress.ip_network("0200::/7")  # yggdrasil-network.github.io
-
-
+# ⛔ THE NETWORK CLASSIFIER IS IMPORTED, NEVER RESTATED HERE. T-033, found
+# after the codec copies and worse than either: this file carried a
+# line-for-line duplicate of `src/trackers/model.py`'s classifier, and the
+# comment above `YGGDRASIL_NET` claimed to be "the single place the constant
+# lives" while `model.py:117` held the same one.
+#
+# ⭐ **Getting this classifier wrong is the first of the five failure modes in
+# `docs/AGENTS.md` section 5**: `.i2p` is a HOSTNAME SUFFIX, not a scheme, so a
+# classifier that drifts sends an i2p tracker to the clearnet prober, the probe
+# fails, and the tracker is recorded dead. Two copies of the rule that prevents
+# that is exactly one copy too many.
+#
+# ⚠ **The permissive line parser below is NOT the same defect and stays.**
+# `parse_entries` deliberately accepts what `normalize.parse` rejects, because
+# a census answers "what occurs in the wild" and the pipeline answers "what do
+# we publish". Two functions, two questions.
 def classify_network(host: str) -> str:
-    """Which network does this hostname live on, hence can we reach it at all?
-
-    This is deliberately independent of the URL scheme -- see the module
-    docstring. Getting this wrong marks an unreachable-by-design tracker dead.
-    """
-    h = host.strip("[]").lower().rstrip(".")
-    if h.endswith(".i2p"):
-        return "i2p"
-    if h.endswith(".onion"):
-        return "onion"
-    try:
-        ip = ipaddress.ip_address(h)
-    except ValueError:
-        return "clearnet"
-    if ip.version == 6 and ip in YGGDRASIL_NET:
-        return "yggdrasil"
-    return "clearnet"
+    """The production classifier, as the census's string vocabulary."""
+    return _classify(host).value
 
 
 def parse_entries(text: str) -> tuple[list[str], dict]:

@@ -78,45 +78,27 @@ import threading
 from urllib.parse import urlsplit
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "src"))
 import _consent as consent  # noqa: E402
 import _conditions as C  # noqa: E402
 
-PROTOCOL_ID = 0x41727101980
-ACTION_CONNECT = 0
-ACTION_ERROR = 3
-
-
-# --- BEP 15 codec -------------------------------------------------------------
-def build_connect_request(transaction_id: int) -> bytes:
-    """Exactly 16 bytes: protocol_id, action, transaction_id. Nothing else fits."""
-    return struct.pack(">QII", PROTOCOL_ID, ACTION_CONNECT, transaction_id)
-
-
-def parse_connect_response(data: bytes, expect_txid: int) -> tuple[bool, str, int | None]:
-    """Return (ok, detail, connection_id).
-
-    Validation order is BEP 15's own: length, then transaction id, then action.
-    Checking the transaction id BEFORE trusting the action matters -- an
-    unsolicited or spoofed datagram must not be read as a live tracker.
-    """
-    if len(data) < 16:
-        if len(data) >= 8:
-            action, txid = struct.unpack(">II", data[:8])
-            if action == ACTION_ERROR and txid == expect_txid:
-                msg = data[8:].decode("utf-8", "replace")
-                # An error response is still a WORKING TRACKER: it parsed our
-                # datagram and answered in-protocol. That is a strictly stronger
-                # signal than a socket that merely accepted bytes.
-                return False, f"BEP15 error response: {msg!r}", None
-        return False, f"short response: {len(data)} bytes (BEP 15 requires >= 16)", None
-    action, txid, conn_id = struct.unpack(">IIQ", data[:16])
-    if txid != expect_txid:
-        return False, f"transaction id mismatch: got {txid}, sent {expect_txid}", None
-    if action == ACTION_ERROR:
-        return False, f"BEP15 error response: {data[8:].decode('utf-8', 'replace')!r}", None
-    if action != ACTION_CONNECT:
-        return False, f"unexpected action {action} (expected 0)", None
-    return True, f"connection_id=0x{conn_id:016x}", conn_id
+# ⛔ THE CODEC IS IMPORTED, NEVER RESTATED HERE. T-033. This script carried its
+# own `build_connect_request` and `parse_connect_response` beside
+# `src/trackers/bep15.py`'s, which is two implementations of one wire format:
+# each acquires its own defects and a fix to one never reaches the other. It is
+# worse here than in ordinary code, because this experiment is what the project
+# offers as evidence that the probe is correct -- an instrument that disagrees
+# with the thing it vouches for vouches for nothing.
+#
+# ⭐ **The two were measured equivalent before the copy was deleted**, not read
+# side by side: 5025 inputs including 5000 random byte strings, zero
+# differences in accept/reject or in the parsed value. The committed results
+# from before this change were taken by the copy, and are not re-run -- their
+# conditions block records the commit, which is what makes that checkable.
+from trackers.bep15 import (ACTION_CONNECT, ACTION_ERROR,  # noqa: E402,F401
+                            PROTOCOL_ID, build_connect_request,
+                            parse_connect_response)
 
 
 # --- the positive control: a BEP 15 responder we own --------------------------

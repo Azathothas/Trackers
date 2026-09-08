@@ -86,7 +86,7 @@ pretending to be one.
 | [T-023](measurement.md) | P2 | measurement | done | Yggdrasil trackers addressed by hostname are silently misclassified as clearnet |
 | [T-028](measurement.md) | P2 | measurement | **done** | newTrackon is available as an oracle and is not being used as one |
 | [T-030](measurement.md) | P2 | measurement | open | Experiments 3-18 from the original programme were never run |
-| [T-033](measurement.md) | P2 | measurement | open | The experiments and the probe carry two copies of one codec |
+| [T-033](measurement.md) | P2 | measurement | **done** | The experiments and the probe carry two copies of one codec |
 | [T-041](scoring.md) | P2 | scoring | open | History must distinguish seven shapes over time, not seven values |
 | [T-042](scoring.md) | P2 | scoring | open | The state size over five years has never been computed |
 | [T-044](scoring.md) | P2 | scoring | open | No scoring model has been chosen |
@@ -121,7 +121,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 68 entries, 47 open, 0 blocked, 21 done
+**Counts:** 68 entries, 46 open, 0 blocked, 22 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -130,9 +130,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 3 | 0 | 4 | 7 |
 | P1 | 12 | 0 | 10 | 22 |
-| P2 | 26 | 0 | 6 | 32 |
+| P2 | 25 | 0 | 7 | 32 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **47** | **0** | **21** | **68** |
+| **All** | **46** | **0** | **22** | **68** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

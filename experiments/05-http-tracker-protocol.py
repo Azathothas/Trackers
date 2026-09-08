@@ -71,8 +71,24 @@ import urllib.request
 from urllib.parse import urlsplit, urlunsplit
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "src"))
 import _consent as consent  # noqa: E402
 import _conditions as C  # noqa: E402
+
+# ⛔ THE DECODER AND THE DISCRIMINATOR ARE IMPORTED, NEVER RESTATED HERE.
+# T-033, and the same reasoning as `02-udp-bep15-connect.py`: this script's
+# negative control -- an HTML 200 that must NOT be called a tracker -- is the
+# evidence that the production discriminator is not the naive status-code check
+# RULES 11 forbids. It can only be that evidence if it tests the production
+# discriminator, and a copy is not one.
+#
+# ⭐ **Measured equivalent before the copy was deleted**: 5025 inputs including
+# 5000 random byte strings, zero differences in `bdecode`'s accept/reject or
+# parsed value and zero in `classify_body`'s `kind`. The copies differed only
+# in their error text, and `src`'s is the more specific of the two.
+from trackers.bencode import (FAILURE_KEYS, BencodeError,  # noqa: E402,F401
+                              bdecode, classify_body)
 
 PROJECT_URL = "https://github.com/Azathothas/Trackers"
 USER_AGENT = f"trackers/0.1 (+{PROJECT_URL}; tracker health probe; contact via repository issues)"
@@ -81,99 +97,6 @@ MAX_BYTES = 256 * 1024  # a tracker answer is small; anything larger is not one
 
 
 # --- bencode ------------------------------------------------------------------
-class BencodeError(ValueError):
-    pass
-
-
-def bdecode(data: bytes) -> tuple[object, int]:
-    """Strict-enough bencode decoder. Returns (value, bytes_consumed).
-
-    Strictness matters here: the whole point is to tell a tracker from a web
-    server, and a decoder that accepts sloppy input will happily 'parse' HTML.
-    """
-    def _dec(i: int) -> tuple[object, int]:
-        if i >= len(data):
-            raise BencodeError("truncated")
-        c = data[i:i + 1]
-        if c == b"i":
-            j = data.index(b"e", i)
-            raw = data[i + 1:j]
-            if raw in (b"-0",) or (len(raw) > 1 and raw.startswith(b"0")) or \
-               (len(raw) > 2 and raw.startswith(b"-0")):
-                raise BencodeError(f"non-canonical integer {raw!r}")
-            return int(raw), j + 1
-        if c == b"l":
-            i += 1
-            out = []
-            while data[i:i + 1] != b"e":
-                v, i = _dec(i)
-                out.append(v)
-            return out, i + 1
-        if c == b"d":
-            i += 1
-            out = {}
-            while data[i:i + 1] != b"e":
-                k, i = _dec(i)
-                if not isinstance(k, bytes):
-                    raise BencodeError("dictionary key is not a byte string")
-                v, i = _dec(i)
-                out[k] = v
-            return out, i + 1
-        if c.isdigit():
-            j = data.index(b":", i)
-            n = int(data[i:j])
-            if n < 0 or j + 1 + n > len(data):
-                raise BencodeError("string length out of range")
-            return data[j + 1:j + 1 + n], j + 1 + n
-        raise BencodeError(f"unexpected byte {c!r} at offset {i}")
-
-    try:
-        return _dec(0)
-    except BencodeError:
-        raise
-    except (ValueError, IndexError) as e:
-        raise BencodeError(str(e)) from e
-
-
-FAILURE_KEYS = (b"failure reason", b"failure_reason")
-
-
-def classify_body(body: bytes) -> dict:
-    """Decide what this response actually is. The heart of the discriminator."""
-    if not body:
-        return {"kind": "empty", "detail": "zero-length body"}
-    try:
-        value, consumed = bdecode(body)
-    except BencodeError as e:
-        head = body[:60]
-        looks_html = head.lstrip()[:1] in (b"<",) or b"<html" in body[:512].lower()
-        return {"kind": "html" if looks_html else "not_bencode",
-                "detail": f"bdecode failed: {e}", "head": head.decode("utf-8", "replace")}
-    if not isinstance(value, dict):
-        return {"kind": "bencode_not_dict", "detail": f"top level is {type(value).__name__}"}
-    trailing = len(body) - consumed
-    for k in FAILURE_KEYS:
-        if k in value:
-            msg = value[k]
-            return {"kind": "tracker_failure_response",
-                    "failure_key_spelling": k.decode(),
-                    "detail": (msg if isinstance(msg, bytes) else b"").decode("utf-8", "replace")[:200],
-                    "trailing_bytes": trailing}
-    if b"peers" in value or b"interval" in value:
-        return {"kind": "tracker_announce_response",
-                "detail": f"keys={sorted(x.decode('utf-8','replace') for x in value)[:8]}",
-                "interval": value.get(b"interval"), "trailing_bytes": trailing}
-    if b"files" in value:
-        files = value[b"files"]
-        return {"kind": "tracker_scrape_response",
-                "detail": f"files entries={len(files) if isinstance(files, dict) else '?'}",
-                "trailing_bytes": trailing}
-    return {"kind": "bencode_dict_unrecognised",
-            "detail": f"keys={sorted(x.decode('utf-8','replace') for x in value)[:8]}",
-            "trailing_bytes": trailing}
-
-
-# --- local controls -----------------------------------------------------------
 class _Handler(http.server.BaseHTTPRequestHandler):
     mode = "tracker"
 
