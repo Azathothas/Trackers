@@ -27,11 +27,15 @@ contract.
 
 Two ideas do most of the work.
 
-⭐ **It is not a mirror.** Concatenating upstream lists is what the prior art
-does, and improving on that is the entire justification. If the dataset cannot
-be shown to add measurable value over redistributing an existing list, the
-honest outcome is to say so. That gate is open and unanswered
-([`../HISTORY/gates.md`](../HISTORY/gates.md)).
+⭐ **It is not a mirror**, and that is now measured rather than asserted.
+Concatenating upstream lists is what the prior art does, and improving on it is
+the entire justification. **The value gate is answered**
+([`../HISTORY/gates.md`](../HISTORY/gates.md)): this dataset is **justified as
+a labelled dataset and NOT justified as a list**. Filtering it to what measured
+live yields 2.1x-3.7x as many working trackers as the whole baseline; taking it
+unfiltered gives a list 13.4x longer that is five times less likely to answer.
+⛔ **So publishing the plaintext without the health data would make this
+project the thing it exists to improve on.**
 
 ⛔ **It must not claim to know things it cannot know.** Every measurement comes
 from one cloud provider's address space. A protocol this environment cannot
@@ -39,9 +43,12 @@ reach is `unmeasurable`, never `dead`. The standard is not "it works": it is
 **"it remains correct when things go wrong, and it never claims to know what it
 cannot know."**
 
-**Current state: P0 and P1 are done. P2's measurement core is built and has
-never been pointed at the corpus.** No dataset exists at any public URL and
-nothing in the tree claims any tracker is alive.
+**Current state: P0 and P1 are done. P2's measurement core has been pointed at
+the corpus three times** -- a 200-tracker stride sample, a 99-tracker census of
+the baseline, and a corpus-wide DNS census -- and both of P2's gate conditions
+are met. Per-tracker history exists (D3). **No dataset exists at any public URL**,
+and nothing claims a tracker is `dead`: `MIN_SAMPLES_FOR_DEATH` is 3 and no
+tracker has three observations.
 
 ---
 
