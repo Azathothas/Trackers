@@ -40,9 +40,11 @@ on:
         type: boolean
 
 # Least privilege, and this is the one workflow that needs more than read:
-# it pushes the dataset. It touches no releases and no issues.
+# it pushes the dataset. `actions: read` is for downloading the triggering
+# sweep's records and nothing else. It touches no releases and no issues.
 permissions:
   contents: write
+  actions: read
 
 # ⛔ Never two publishers at once. `cancel-in-progress: false` on purpose:
 # cancelling a run mid-push is how a branch ends up with half a dataset, and a
@@ -91,10 +93,30 @@ jobs:
             echo "started a new orphan data branch"
           fi
 
-      # Fold whatever health the sweep recorded into the history the branch
-      # already carries. ⚠ Absent on the first run, which is not an error: a
-      # dataset with no measurements is honestly labelled `unknown`.
-      - name: Take the newest sweep records, if there are any
+      # ⛔ THE RECORDS THE SWEEP JUST TOOK, not only the committed ones.
+      # Without this the publisher folds the same two committed records on
+      # every run and **every scheduled sweep reaches nobody**: the labels
+      # would be frozen at the day they were committed while a workflow ran
+      # every three hours looking busy. Its artefact is the only copy, and it
+      # expires in 90 days, which is why it is folded into branch state here.
+      #
+      # `continue-on-error`: a dispatch has no triggering run and a failed
+      # sweep may have uploaded nothing. Neither is a reason to refuse to
+      # publish what is already known.
+      - name: Take the triggering sweep's records
+        if: github.event_name == 'workflow_run'
+        continue-on-error: true
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: health-sweep-${{ github.event.workflow_run.id }}
+          path: sweep-fresh
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      # Fold whatever health exists into the history the branch already
+      # carries. ⚠ Absent on a first run, which is not an error: a dataset with
+      # no measurements is honestly labelled `unknown`.
+      - name: Fold the health into the history
         id: records
         run: |
           mkdir -p sweep-in
@@ -102,16 +124,26 @@ jobs:
             cp published/state.jsonl sweep-in/state.jsonl
             echo "carried the existing history forward"
           fi
-          # Records committed as evidence are the ones this repository keeps
-          # forever; a sweep's own artefact expires. Folding is idempotent --
-          # `update-state.py` remembers which runs it has applied.
+          # Committed records are what this repository keeps forever; the fresh
+          # artefact is what the last sweep learned. Folding is idempotent --
+          # `update-state.py` remembers which runs it has applied, so a
+          # re-published run adds nothing twice.
+          records=""
           if ls experiments/results/health-sweep.*.json >/dev/null 2>&1; then
+            records="$records $(ls experiments/results/health-sweep.*.json)"
+          fi
+          if [ -f sweep-fresh/health.json ]; then
+            records="$records sweep-fresh/health.json"
+            echo "folding the sweep that triggered this run"
+          fi
+          if [ -n "$records" ]; then
+            # shellcheck disable=SC2086 - the list is built from `ls` above
             python3 scripts/update-state.py \
               --state sweep-in/state.jsonl \
               --generated-at "${PUBLISH_AT}" \
-              experiments/results/health-sweep.*.json
+              $records
           else
-            echo "no committed sweep records; every tracker will read unknown"
+            echo "no health records at all; every tracker will read unknown"
           fi
 
       - name: Generate, verify, and stage
