@@ -445,7 +445,7 @@ Source:      T-046 `hardcoded.txt`
 Category:    scoring
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     No mechanism exists.
 Premise:     Depends on T-040's history and on the issue automation in T-080.
@@ -458,3 +458,33 @@ Decision:    **MUST NOT auto-delete an entry for being unreachable.** That is
              "dead from CI".
 Prove:       A test that 48 hours of failure produces one issue and not a
              deletion, and that a second run updates rather than duplicates it.
+
+**Done.** `python3 -m unittest tests.test_issues -v` -> **29 tests, OK**, six of
+them this entry's. `tracker_conditions` in `src/trackers/issues.py`, wired into
+`scripts/raise-issues.py` and the `Issues` workflow.
+
+⛔ **Forty-eight hours, not three failures, and the two are not the same.** The
+first version of this used an observation count, which at a three-hour cadence
+is **nine** hours -- a bad afternoon rather than a tracker that has gone. Both
+conditions are required now: enough observations **and** enough elapsed time. A
+burst of six failures inside one hour raises nothing, and one day of failure
+raises nothing.
+
+⛔ **Nothing deletes the entry, and that is asserted where it could actually
+happen**: the categories and the renderer, over a tracker with three days of
+uninterrupted failure. It stays in `hardcoded.txt` and in the plaintext. RULES
+3.4 is the reason -- a tracker may be unreachable from one datacenter and fine
+everywhere else, so removal is the maintainer's decision.
+
+**The issue owes the vantage and carries it**, along with how long it has been
+unreachable, the last rung reached and the last failure class, so a maintainer
+can tell `dead` from `dead from CI` without leaving the issue.
+
+**A second run updates rather than duplicating**, which is the other half of the
+`Prove` clause and comes from [T-080](operations.md)'s pure `plan`.
+
+⚠ **It fires for the maintainer's hardcoded entries only.** Filing for every
+tracker that stops answering would be a thousand issues, which is the spam
+T-080 forbids. `hardcoded.txt` is empty today ([T-106](sources.md)), so this
+condition is wired and quiet -- the correct state rather than an untested one:
+the tests drive it with a synthetic watched list.

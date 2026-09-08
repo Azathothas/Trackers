@@ -248,5 +248,90 @@ class TheConditionsCarryTheEvidenceTheyOwe(unittest.TestCase):
             [])
 
 
+class FortyEightHoursNotThreeFailures(unittest.TestCase):
+    """T-047. ⛔ The number is the entry, and the two are not the same.
+
+    Three failed observations at a three-hour cadence is **nine** hours, which
+    is a bad afternoon. Forty-eight hours is a tracker that has gone.
+    """
+
+    URL = "udp://watched.example:6969/announce"
+
+    def _history(self, *, days: float, observations: int = 4):
+        history = TrackerHistory.new(self.URL, "2026-09-01T00:00:00Z")
+        step = (days * 24) / max(observations - 1, 1)
+        for index in range(observations):
+            hours = int(round(index * step))
+            stamp = (datetime.datetime(2026, 9, 1, tzinfo=datetime.timezone.utc)
+                     + datetime.timedelta(hours=hours))
+            history = history.observe(
+                state="unknown", ok=False,
+                observed_at=stamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                rung="dns", failure="timeout")
+        return history
+
+    def _conditions(self, history):
+        return tracker_conditions({self.URL: history}, watched=[self.URL],
+                                  vantage={"environment_class": "ci"})
+
+    def test_forty_eight_hours_of_failure_raises_one_issue(self):
+        conditions = self._conditions(self._history(days=2))
+        self.assertEqual(len(conditions), 1)
+        self.assertIn("48 hours", conditions[0].body())
+
+    def test_a_day_of_failure_raises_nothing(self):
+        """⚠ The boundary from below. Without this the threshold could be zero
+        and every test above would still pass."""
+        self.assertEqual(self._conditions(self._history(days=1)), [])
+
+    def test_a_burst_of_failures_in_one_hour_raises_nothing(self):
+        """⛔ Enough observations is not enough time. Six failures inside an
+        hour is an outage in progress, not a tracker that has gone."""
+        history = TrackerHistory.new(self.URL, "2026-09-01T00:00:00Z")
+        for minute in range(0, 60, 10):
+            history = history.observe(
+                state="unknown", ok=False,
+                observed_at=f"2026-09-01T00:{minute:02d}:00Z",
+                rung="dns", failure="timeout")
+        self.assertEqual(self._conditions(history), [])
+
+    def test_a_second_run_updates_rather_than_duplicating(self):
+        """The other half of T-047's `Prove` clause."""
+        conditions = self._conditions(self._history(days=3))
+        first = plan(conditions, [])
+        self.assertEqual(len(first.open_new), 1)
+        existing = [ExistingIssue(number=11, body=first.open_new[0].body())]
+        second = plan(conditions, existing)
+        self.assertEqual(second.open_new, [])
+        self.assertEqual([n for n, _ in second.update], [11])
+
+    def test_the_entry_is_never_deleted_for_being_unreachable(self):
+        """⛔ The decision this entry exists to enforce. RULES 3.4: a tracker
+        may be unreachable from one datacenter and fine everywhere else, so
+        removal is the maintainer's call and not ours.
+
+        Asserted where it could actually happen: the categories and the
+        renderer, over a tracker with three days of nothing but failure.
+        """
+        from trackers.categories import select_all
+        from trackers.normalize import parse
+        from trackers.pipeline import render_plaintext
+
+        tracker = parse(self.URL)
+        histories = {self.URL: self._history(days=3)}
+        cats = select_all([tracker], provenance={}, source_categories={},
+                          histories=histories, hardcoded=[tracker])
+        self.assertIn(self.URL,
+                      [t.url for t in cats["hardcoded"].trackers],
+                      "an unreachable hardcoded entry was dropped")
+        self.assertIn(self.URL, render_plaintext([tracker]))
+
+    def test_the_issue_says_how_long_and_from_where(self):
+        body = self._conditions(self._history(days=5))[0].body()
+        self.assertIn("unreachable for", body)
+        self.assertIn("environment_class=ci", body)
+        self.assertIn("one datacenter", body)
+
+
 if __name__ == "__main__":
     unittest.main()

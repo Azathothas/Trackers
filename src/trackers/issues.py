@@ -35,7 +35,10 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Iterable, Mapping, Sequence
 
-__all__ = ["MAX_BODY_BYTES", "MARKER_PREFIX", "Condition", "ExistingIssue",
+from .freshness import parse_instant
+
+__all__ = ["MAX_BODY_BYTES", "MARKER_PREFIX",
+           "UNREACHABLE_HOURS_BEFORE_ISSUE", "Condition", "ExistingIssue",
            "Plan", "marker_for", "key_of", "clamp", "plan",
            "source_conditions", "tracker_conditions", "staleness_condition"]
 
@@ -186,6 +189,24 @@ def plan(conditions: Iterable[Condition],
 
 # --- the conditions this project can observe today ---------------------------
 
+def _hours_between(first: str | None, last: str | None) -> float | None:
+    """Elapsed hours between two ISO 8601 instants, or `None` if unreadable.
+
+    ⚠ `None` rather than 0 on an unreadable stamp: zero would read as "no time
+    has passed", which would suppress the issue rather than admit it could not
+    be decided.
+    """
+    if not first or not last:
+        return None
+    try:
+        start = parse_instant(first)
+        end = parse_instant(last)
+    except ValueError:
+        return None
+    return (end - start).total_seconds() / 3600.0
+
+
+
 def source_conditions(agg, *, observed_at: str) -> list[Condition]:
     """A source that failed, was rejected, or returned nothing.
 
@@ -227,10 +248,25 @@ def source_conditions(agg, *, observed_at: str) -> list[Condition]:
     return out
 
 
+#: How long a watched tracker must have been failing before a human is told.
+#: T-047 sets it at 48 hours, and the number matters: three failed observations
+#: at a three-hour cadence is **nine** hours, which is a bad afternoon rather
+#: than a tracker that has gone.
+UNREACHABLE_HOURS_BEFORE_ISSUE = 48
+
+
 def tracker_conditions(histories: Mapping[str, object], *,
                        watched: Sequence[str], vantage: Mapping[str, object],
-                       min_observations: int = 3) -> list[Condition]:
-    """A watched tracker that has failed every recent check. T-047.
+                       min_observations: int = 3,
+                       hours: int = UNREACHABLE_HOURS_BEFORE_ISSUE
+                       ) -> list[Condition]:
+    """A watched tracker unreachable for more than `hours`. T-047.
+
+    ⛔ **Both conditions, not either.** Enough observations *and* enough elapsed
+    time: a burst of failures inside one hour is an outage in progress, and a
+    single failure 48 hours ago with nothing since is not evidence of anything.
+    Requiring both is what makes the issue mean "this has been gone for two
+    days" rather than "something went wrong recently".
 
     ⛔ **`watched` is the maintainer's own list, not the corpus.** Filing an
     issue for every tracker that stops answering would be a thousand issues and
@@ -251,6 +287,10 @@ def tracker_conditions(histories: Mapping[str, object], *,
             continue
         ring = getattr(history, "ring", ())
         last = ring[-1] if ring else None
+        span = _hours_between(getattr(history, "first_seen", None),
+                              getattr(history, "last_seen", None))
+        if span is None or span < hours:
+            continue
         out.append(Condition(
             key=f"tracker-sustained:{url}",
             title=f"Hardcoded tracker has failed every check: {url}",
@@ -259,6 +299,7 @@ def tracker_conditions(histories: Mapping[str, object], *,
                 ("first failure", getattr(history, "first_seen", "-")),
                 ("last failure", getattr(history, "last_failure", "-") or "-"),
                 ("observations", f"{checks}, none successful"),
+                ("unreachable for", f"{span:.0f} hours"),
                 ("last rung reached", getattr(last, "rung", "-") or "-"),
                 ("last failure class", getattr(last, "failure", "-") or "-"),
                 ("vantage", ", ".join(f"{k}={v}" for k, v in
