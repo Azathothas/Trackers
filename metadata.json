@@ -1,0 +1,28 @@
+{
+  "code_version": "0.1.0+norm1",
+  "count": 1334,
+  "dataset_digest": "sha256:06c0daf0c8fd5bd9ca9c60adba25f6d94fa0c30a00c77cbea6954af25840d63f",
+  "files": {
+    "report.md": {
+      "bytes": 2499,
+      "digest": "sha256:8b8cb8d69da10ad32701d7a6ebc3b4d10f43da698fd48440bc6832def7d0b6c1"
+    },
+    "trackers_all.csv": {
+      "bytes": 192677,
+      "digest": "sha256:e5fcd5e1d3aa75dc68046bd502d4d76f8348278075a6da22bf813224c9e7cef9"
+    },
+    "trackers_all.json": {
+      "bytes": 786524,
+      "digest": "sha256:242f8afe1e3654e03172dde8d6e79444f63f6ac41808ff2c2b28e004cf0b2e48"
+    },
+    "trackers_all.txt": {
+      "bytes": 50500,
+      "digest": "sha256:22b05af7a55000e67acf2f4991bf547358b7b08f3bd1432ad187a2f0a6235cff"
+    }
+  },
+  "generated_at": "2026-09-08T22:01:30Z",
+  "normalization_version": 1,
+  "schema": "schema.md, published beside this file",
+  "schema_version": 1,
+  "scoring_version": null
+}

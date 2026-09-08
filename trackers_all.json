@@ -1,6 +1,7 @@
 {
   "code_version": "0.1.0+norm1",
   "count": 1334,
+  "digest": "sha256:06c0daf0c8fd5bd9ca9c60adba25f6d94fa0c30a00c77cbea6954af25840d63f",
   "fields": [
     "url",
     "transport",
@@ -21,7 +22,10 @@
     "observed_from",
     "unmeasurable_reason"
   ],
-  "generated_at": "2026-09-08T21:34:16Z",
+  "generated_at": "2026-09-08T22:01:30Z",
+  "normalization_version": 1,
+  "schema_version": 1,
+  "scoring_version": null,
   "trackers": [
     {
       "checks": 1,

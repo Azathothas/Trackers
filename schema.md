@@ -75,7 +75,38 @@ Outside `trackers`, the JSON document carries:
 | `code_version` | The version of the code that produced the file. |
 | `count` | How many trackers the file carries. Cross-checked against the row count before publication. |
 | `fields` | The field list above, in order, so a consumer can detect a schema change without diffing rows. |
+| `schema_version` | The field set's version. Bumped when a field is added, removed or changes meaning, so a consumer detects a shape change without diffing rows. |
+| `normalization_version` | The version of the rules that produced the URLs. ⛔ Pinned by a golden table in [`../tests/test_versions.py`](../tests/test_versions.py): changing what normalization does without moving this number fails a gate, because an unpinned version is a number somebody remembers to update. |
+| `scoring_version` | ⛔ `null`, and that is the honest value: no scoring model is chosen ([T-044](../TODO/scoring.md)), so there is no methodology to version. A `1` here would tell you one exists and is stable. |
+| `digest` | `sha256:` over the rows, canonically serialised. ⭐ Two documents with one digest carry the same data whatever their `generated_at` says, which is how you tell a re-publication from a change. |
 | `vantage_note` | The limitation stated in the data itself, because the reader most likely to misread the file will never open this page. |
+
+## `metadata.json`, and why it exists
+
+⛔ **CSV cannot carry document metadata.** A version column repeated on every
+row is not a header, and a comment line breaks the format for the readers
+people choose CSV for. So the release describes itself in a file of its own,
+published beside the data:
+
+```bash
+curl -sS https://raw.githubusercontent.com/Azathothas/Trackers/data/metadata.json
+```
+
+It carries the four versions above and, for **each published file**, its size
+and a `sha256:` digest. ⭐ **That is how a consumer of the CSV or the plaintext
+answers the same question a JSON reader answers from the document itself**: hash
+the file you hold and compare. RULES 9 -- the requirement is not dropped for a
+format that cannot express it, it is met in the strongest form that format
+allows.
+
+## Reading it fresh
+
+⚠ **`raw.githubusercontent.com` caches, so a fetch right after a publish can
+return the previous document.** Measured on 2026-09-08: a fetch seconds after a
+publish returned the older dataset, with no error and nothing to suggest it was
+stale. ⭐ **Compare `generated_at` inside the document**, never the time you
+fetched it. `C-16` in [`../HISTORY/claims.md`](../HISTORY/claims.md) carries the
+measurement.
 
 ## Cross-format consistency
 
