@@ -760,6 +760,24 @@ def main() -> int:
               f"{cc['sampled_ci95'][1]:.1%}] (n={cc['sampled_n']})")
         print(f"    -> {cc['verdict']}")
 
+    # ⛔ AN UNANSWERABLE GATE IS NOT A CRASH, AND THE DIFFERENCE IS THE ONE
+    # THIS PROJECT CARES ABOUT MOST. `judge()` returns a verdict with no bars
+    # when an arm has no records -- which is the honest answer -- and printing
+    # the bars unconditionally turned that into a `KeyError`. Both exit 1, so
+    # `--expect-answered` looked proved while the operator saw a traceback
+    # instead of the sentence saying what was missing. Found by the guard
+    # mutation pass of 2026-09-08, which is exactly the "a guard that has never
+    # been seen to refuse" case in `docs/methodology/reviews.md`.
+    if verdict.get("conclusion") == "unanswerable":
+        print(f"\nVERDICT: UNANSWERABLE -- {verdict['reason']}")
+        print("  The gate is not answered and no bar is reported, because "
+              "there is nothing to compute one from.")
+        if args.expect_answered:
+            print("\nEXPECTATION FAILED: --expect-answered")
+            print(f"  {verdict['reason']}")
+            return C.EXIT_MEASURED_AND_FAILED
+        return C.EXIT_MEASURED
+
     b1, b2 = verdict["bar_1_count"], verdict["bar_2_density"]
     print("\nBAR 1  COUNT -- our worst case against the baseline's best")
     print(f"  live trackers we add   {b1['live_added_ci95'][0]:.0f} "
