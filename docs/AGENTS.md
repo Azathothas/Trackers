@@ -236,7 +236,7 @@ instrument.
 | `src/trackers/` | the pipeline (`model`, `normalize`, `dedup`, `exclusion`, `registry`, `acquire`, `pipeline`), the measurement core (`bencode`, `bep15`, `bep34`, `vantage`, `probe`, `sweep`, `profile`, `politeness`), per-tracker history (`state`, `shapes`), release channels (`channels`), the published formats (`labelled`, `freshness`, `categories`), the scoring invariants (`scoring`), issue automation (`issues`), and evidence somebody else observed (`secondhand`) |
 | `scripts/` | the generator and the checks. [`../scripts/README.md`](../scripts/README.md) |
 | `scripts/vendor/toolkit/` | two helpers fetched from `Azathothas/ToolKit` at a pinned commit. Not this project's code |
-| `tests/` | 486 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
+| `tests/` | 494 tests, no network, including `fake_tracker.py` and `fake_dns.py`, the oracles of trackers and resolvers this project controls |
 | `docs/` | this file and the documentation set. [`README.md`](README.md) is the map |
 | `.github/workflows/` | `gate.yml` (cheap, offline, every push), `p0-ground-truth.yml` (probes real trackers, only when experiments change), `health-sweep.yml` (**scheduled**, every three hours, one rotating slice), `publish.yml` (writes the `data` branch) and `issues.yml` (tells a human, and is quiet when nothing is wrong) |
 

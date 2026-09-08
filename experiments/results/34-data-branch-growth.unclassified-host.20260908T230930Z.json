@@ -1,0 +1,30 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "13556d6afe2b8c383dcab8c130cd21d3dcea7da3-dirty",
+    "sample_counts": {
+      "commits": 4,
+      "delta_commits_measured": 3
+    },
+    "utc": "2026-09-08T23:09:34Z"
+  },
+  "question": "How fast does the data branch's history grow?",
+  "results": {
+    "branch": "data",
+    "ceiling_mib": 250,
+    "commits": 4,
+    "derived_threshold_commits": 17853,
+    "full_kib": 144,
+    "history_kib": 43,
+    "inherited_threshold_was": 5000,
+    "kib_per_commit": 14.33,
+    "publishes_per_day": 8,
+    "snapshot_kib": 101,
+    "the_rate_is_not_constant": "every commit rewrites state.jsonl and that file grows; T-042 projects 23.4 MB at five years against ~145 KB today, so this projection understates the future and the threshold must be re-derived rather than trusted",
+    "years_at_current_cadence": 6.11
+  }
+}

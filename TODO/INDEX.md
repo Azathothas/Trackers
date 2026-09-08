@@ -101,7 +101,7 @@ pretending to be one.
 | [T-064](publication.md) | P2 | publication | **done** | Release channel semantics rest on three unverified platform claims |
 | [T-066](publication.md) | P2 | publication | **done** | Run reports do not answer the questions observability requires |
 | [T-080](operations.md) | P2 | operations | **done** | Issue automation does not exist |
-| [T-081](operations.md) | P2 | operations | open | History housekeeping is unimplemented and its threshold is unjustified |
+| [T-081](operations.md) | P2 | operations | **done** | History housekeeping is unimplemented and its threshold is unjustified |
 | [T-082](operations.md) | P2 | operations | open | Self-healing is unimplemented, and its limit matters more than its coverage |
 | [T-083](operations.md) | P2 | operations | open | The five-year operational review is unanswered |
 | [T-084](operations.md) | P2 | operations | **done** | No schedule exists and the workflow architecture is undecided |
@@ -126,7 +126,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 25 open, 0 blocked, 48 done
+**Counts:** 73 entries, 24 open, 0 blocked, 49 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -135,9 +135,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 1 | 0 | 6 | 7 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 18 | 0 | 18 | 36 |
+| P2 | 17 | 0 | 19 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **25** | **0** | **48** | **73** |
+| **All** | **24** | **0** | **49** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

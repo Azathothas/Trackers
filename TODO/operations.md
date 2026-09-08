@@ -100,7 +100,7 @@ Source:      the brief's section 14.5 (history housekeeping)
 Category:    operations
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     Continuous publication accumulates commits without bound.
 Premise:     **Safe by construction because of RULES 3.7** -- history lives in
@@ -124,6 +124,48 @@ Decision:    The original suggested ~5000. **That number needs deriving from
              pin target is a branch or a tag.
 Prove:       A test over a synthetic branch that the reset preserves the current
              dataset and never touches `main`.
+
+**Done.** `python3 -m unittest tests.test_housekeeping -v` -> **8 tests, OK**,
+driven against a real synthetic repository because the subject is git's
+behaviour under `checkout --orphan` and a stub would prove nothing about it.
+
+⭐ **The threshold is derived rather than inherited**, which is what the entry
+asked for. `experiments/34-data-branch-growth.py` clones the branch shallow and
+full and takes the difference: **14.3 KiB per commit** on 2026-09-09. For a
+full clone to stay under **250 MiB** that is **17,853 commits**, about **6.1
+years** at eight publishes a day. The prior art's 5000 would be **1.7 years**
+here.
+
+⛔ **And the count is a proxy whose validity expires**, which is the finding
+worth more than the number. Every commit rewrites `state.jsonl`, and
+[T-042](../TODO/scoring.md) projects that file at **23.4 MB** in five years
+against ~145 KB today -- so a late commit costs far more than an early one and
+any projection from today's rate **understates the future**. The script checks
+the **measured size** as well, and the size decides.
+
+**The `Prove` clause, and the refusals around it:** the reset keeps every
+published file byte for byte including `state.jsonl`, `main` is refused
+outright by checking the branch the checkout is actually on rather than the one
+it was told about, a branch already missing a file is refused because a reset
+would make that permanent, and it verifies **after** the rewrite before
+anything could be pushed.
+
+**The workflow the Approach asked for is a script instead (RULES 9).**
+*Requirement*: a workflow that resets the branch, holding a lock and refusing
+during publication. *Evidence it should change*: `docs/conventions/git.md`
+forbids force-pushing published history, the threshold is **six years** away,
+and an automated force-pusher that sits unused and untested for six years is
+the worst kind of automation to own. *Replacement*: the script does every
+`MUST` the entry lists -- never touches `main`, preserves the data, refuses
+while a publication is in flight, verifies before and after, fails safely,
+leaves its assessment as evidence -- and **prints the push rather than running
+it**, so the last step is the operator's, which is what git.md requires of a
+history rewrite. That page now names this as its **third** exception, with the
+RULES 3.7 argument for why it is safe.
+
+**The consumer consequence is documented where a consumer reads it**
+([`../docs/schema.md`](../docs/schema.md)): a commit SHA on the `data` branch is
+not a durable reference and breaks by design, so the pin target is the branch.
 
 ---
 

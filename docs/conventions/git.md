@@ -73,13 +73,21 @@ which the push is the seventh.
 ### History rewriting
 
 ⛔ **No force push, no rebase of anything published, no amend of a commit that
-has left the machine**, with two exceptions and both are the operator's to
+has left the machine**, with three exceptions and all of them the operator's to
 authorise:
 
 - a rewrite to remove a credential, which comes after the rotation and is not
   itself the fix ([`../security/secrets.md`](../security/secrets.md));
 - the first publication of this repository, which replaced a placeholder
-  commit that existed on the remote before the tree did.
+  commit that existed on the remote before the tree did;
+- ⭐ **a history reset of the `data` branch**, which is
+  [T-081](../../TODO/operations.md) and is the only *recurring* one. It is safe
+  for a reason that does not generalise: RULES 3.7 puts every measurement in a
+  **tracked file**, so the reset discards commits and not data, and
+  `scripts/housekeep-data-branch.py` verifies every published file is still
+  present before it will even print a push command. ⛔ It never pushes by
+  itself, and `main` is refused outright -- the script checks the branch it is
+  actually on rather than the one it was told about.
 
 ---
 
