@@ -124,7 +124,13 @@ class AFailedGenerationPublishesNothing(unittest.TestCase):
     """
 
     def setUp(self):
-        self.tmp = tempfile.mkdtemp(prefix="publication-", dir=os.path.join(REPO, ".tmp"))
+        # ⛔ `.tmp/` is gitignored, so it exists on the machine that wrote this
+        # and in **no clone**. Without the `makedirs` these four tests pass
+        # locally and error in CI, which is exactly the gap RULES 10.3 step 8
+        # names -- and they did, on 2026-09-09, in run 34277752016.
+        scratch = os.path.join(REPO, ".tmp")
+        os.makedirs(scratch, exist_ok=True)
+        self.tmp = tempfile.mkdtemp(prefix="publication-", dir=scratch)
         self.out = os.path.join(self.tmp, "out")
 
     def tearDown(self):

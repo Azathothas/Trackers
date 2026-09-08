@@ -98,6 +98,57 @@ class EveryScriptCanPrint(unittest.TestCase):
                     "this script is exempt from the reconfigure because its "
                     "output is ASCII, and it no longer is")
 
+    def test_no_test_assumes_the_ignored_scratch_directory_exists(self):
+        """⛔ Green here, red in every clone.
+
+        `.tmp/` is gitignored, so it exists on the machine that wrote a test
+        and in **no checkout**. `tests/test_publication.py` took a `mkdtemp`
+        inside it and four tests errored in CI while passing locally -- run
+        `34277752016`, the third time this project has shipped a red gate on a
+        green local one.
+
+        The rule is mechanical: a test that names the scratch directory
+        creates it.
+
+        ⚠ **Scoped to the function**, not the file. The first version asked
+        whether the file contained a `makedirs` anywhere, and a mutation that
+        deleted the one that mattered still passed -- an unrelated `makedirs`
+        three methods away satisfied it. That is the "a test whose name claims
+        more than it checks" pattern, caught by planting the defect.
+        """
+        offenders = []
+        tests_dir = os.path.dirname(os.path.abspath(__file__))
+        # ⚠ This file names the literal in order to search for it, so the
+        # check would otherwise report itself. Skipping the checker is the
+        # narrowest exemption available and it cannot hide a real offender:
+        # nothing else in this file touches the scratch directory.
+        myself = os.path.basename(__file__)
+        for name in sorted(os.listdir(tests_dir)):
+            if not name.startswith("test_") or not name.endswith(".py"):
+                continue
+            if name == myself:
+                continue
+            with open(os.path.join(tests_dir, name), encoding="utf-8") as fh:
+                tree = ast.parse(fh.read(), filename=name)
+            for node in ast.walk(tree):
+                if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                    continue
+                names = [n for n in ast.walk(node)
+                         if isinstance(n, ast.Constant) and n.value == ".tmp"]
+                if not names:
+                    continue
+                creates = any(
+                    isinstance(c, ast.Call)
+                    and getattr(c.func, "attr", getattr(c.func, "id", "")) == "makedirs"
+                    for c in ast.walk(node))
+                if not creates:
+                    offenders.append(f"{name}:{node.name}")
+        self.assertEqual(
+            offenders, [],
+            f"these use the gitignored scratch directory without creating it "
+            f"in the same function, so they pass here and error in a fresh "
+            f"clone: {offenders}")
+
     def test_the_scope_helper_says_it_is_deliberate(self):
         """An import for a side effect is one a tidy-up removes. `_scope`
         exports a named no-op so the dependency is stated."""
