@@ -1,0 +1,194 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "d639cc156dd5471fc60293ec57b00679e14af64d-dirty",
+    "sample_counts": {
+      "clients_read_not_run": 1,
+      "clients_run": 1,
+      "urls_per_variant": 3,
+      "variants": 5
+    },
+    "utc": "2026-09-08T09:10:34Z"
+  },
+  "question": "Does a real BitTorrent client accept the plaintext this project emits, and what does it do with the four ways it could be formatted?",
+  "results": {
+    "clients_read_not_run": [
+      {
+        "caveat": "read, not run. And its tolerance is partly incidental: the body is loaded through `TStringList.DelimitedText`, which splits on whitespace, so the parser never sees a line with a space in it.",
+        "classification": "externally dependent",
+        "client": "bittorrent-tracker-editor",
+        "file": "references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/torrent_miscellaneous.pas",
+        "language": "Object Pascal",
+        "lines": {
+          "SanitizeTrackerList": 174,
+          "ValidTrackerURL": 393
+        },
+        "what_it_does": "`SanitizeTrackerList` trims and truncates at the first space, so a trailing ` # reason` is stripped; `ValidTrackerURL` then accepts ONLY a string starting `udp://`, `http://`, `https://`, `ws://` or `wss://`. A whole-line `#` comment therefore fails `ValidTrackerURL` and is dropped rather than kept as a tracker."
+      }
+    ],
+    "findings": {
+      "as_the_pipeline_emits_it": {
+        "accepted_count": 3,
+        "carries_a_cr": [],
+        "every_good_url_survived": true,
+        "measured": true,
+        "non_url_entries_accepted": []
+      },
+      "blank": {
+        "accepted_count": 5,
+        "carries_a_cr": [],
+        "every_good_url_survived": true,
+        "measured": true,
+        "non_url_entries_accepted": [
+          ""
+        ]
+      },
+      "comment": {
+        "accepted_count": 6,
+        "carries_a_cr": [],
+        "every_good_url_survived": true,
+        "measured": true,
+        "non_url_entries_accepted": [
+          "# tracker.example -- requested by sysadmin"
+        ]
+      },
+      "crlf": {
+        "accepted_count": 3,
+        "carries_a_cr": [],
+        "every_good_url_survived": true,
+        "measured": true,
+        "non_url_entries_accepted": []
+      },
+      "plain": {
+        "accepted_count": 3,
+        "carries_a_cr": [],
+        "every_good_url_survived": true,
+        "measured": true,
+        "non_url_entries_accepted": []
+      }
+    },
+    "network": "none. `aria2c -S` parses and prints; no socket, no DHT, no peer, no tracker contacted. RULES 6.",
+    "variants": {
+      "as_the_pipeline_emits_it": {
+        "aria2": {
+          "accepted": [
+            "http://second.example:80/announce",
+            "https://third.example:443/announce",
+            "udp://plain.example:6969/announce"
+          ],
+          "available": true,
+          "classification": "guaranteed",
+          "client": "aria2c",
+          "exit_code": 0,
+          "path": "torrent announce-list, read back with -S",
+          "version": "aria2 version 1.37.0"
+        },
+        "offered": [
+          "http://second.example:80/announce",
+          "https://third.example:443/announce",
+          "udp://plain.example:6969/announce"
+        ],
+        "offered_lines": 3
+      },
+      "blank": {
+        "aria2": {
+          "accepted": [
+            "udp://plain.example:6969/announce",
+            "",
+            "http://second.example:80/announce",
+            "",
+            "https://third.example:443/announce"
+          ],
+          "available": true,
+          "classification": "guaranteed",
+          "client": "aria2c",
+          "exit_code": 0,
+          "path": "torrent announce-list, read back with -S",
+          "version": "aria2 version 1.37.0"
+        },
+        "offered": [
+          "udp://plain.example:6969/announce",
+          "",
+          "http://second.example:80/announce",
+          "",
+          "https://third.example:443/announce"
+        ],
+        "offered_lines": 5
+      },
+      "comment": {
+        "aria2": {
+          "accepted": [
+            "# tracker.example -- requested by sysadmin",
+            "udp://plain.example:6969/announce",
+            "# tracker.example -- requested by sysadmin",
+            "http://second.example:80/announce",
+            "# tracker.example -- requested by sysadmin",
+            "https://third.example:443/announce"
+          ],
+          "available": true,
+          "classification": "guaranteed",
+          "client": "aria2c",
+          "exit_code": 0,
+          "path": "torrent announce-list, read back with -S",
+          "version": "aria2 version 1.37.0"
+        },
+        "offered": [
+          "# tracker.example -- requested by sysadmin",
+          "udp://plain.example:6969/announce",
+          "# tracker.example -- requested by sysadmin",
+          "http://second.example:80/announce",
+          "# tracker.example -- requested by sysadmin",
+          "https://third.example:443/announce"
+        ],
+        "offered_lines": 6
+      },
+      "crlf": {
+        "aria2": {
+          "accepted": [
+            "udp://plain.example:6969/announce",
+            "http://second.example:80/announce",
+            "https://third.example:443/announce"
+          ],
+          "available": true,
+          "classification": "guaranteed",
+          "client": "aria2c",
+          "exit_code": 0,
+          "path": "torrent announce-list, read back with -S",
+          "version": "aria2 version 1.37.0"
+        },
+        "offered": [
+          "udp://plain.example:6969/announce",
+          "http://second.example:80/announce",
+          "https://third.example:443/announce"
+        ],
+        "offered_lines": 3
+      },
+      "plain": {
+        "aria2": {
+          "accepted": [
+            "udp://plain.example:6969/announce",
+            "http://second.example:80/announce",
+            "https://third.example:443/announce"
+          ],
+          "available": true,
+          "classification": "guaranteed",
+          "client": "aria2c",
+          "exit_code": 0,
+          "path": "torrent announce-list, read back with -S",
+          "version": "aria2 version 1.37.0"
+        },
+        "offered": [
+          "udp://plain.example:6969/announce",
+          "http://second.example:80/announce",
+          "https://third.example:443/announce"
+        ],
+        "offered_lines": 3
+      }
+    },
+    "what_the_pipeline_emits": "http://second.example:80/announce\nhttps://third.example:443/announce\nudp://plain.example:6969/announce\n"
+  }
+}

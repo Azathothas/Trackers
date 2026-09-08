@@ -37,6 +37,7 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `20-newtrackon-api-surface.py` | What does newTrackon's API actually serve, and is machine-readable uptime obtainable? | C-23, C-24, C-26, C-53 |
 | `21-raw-github-consumption.py` | Does `raw.githubusercontent.com` behave the way the consumer contract assumes -- caching, content type, propagation? | C-16 |
 | `22-actions-platform-contract.py` | Does GitHub's documentation still say the things this project's schedule and publication design assume? | C-10, C-11, C-12, C-19b, C-55 |
+| `23-client-list-compatibility.py` | Does a real BitTorrent client accept the plaintext this project emits, and what does it do with a comment, a blank line and CRLF? | C-40, C-41, [T-001](../TODO/claims.md) |
 | `24-release-channel-behaviour.py` | Does a release move when its tag does, and is an asset readable at a stable URL right after it is replaced? | C-15, C-17 |
 | `27-value-gate.py` | Does this dataset add measurable value over redistributing `ngosang/trackerslist`? | the value gate, [T-027](../TODO/measurement.md) |
 | `28-newtrackon-crosscheck.py` | Where do this project and newTrackon disagree, and what does an independent observer say about what this vantage cannot measure? | C-26, C-69, [T-028](../TODO/measurement.md) |
@@ -99,10 +100,18 @@ A number that decides whether this project should exist is not one to
 transcribe once. `28 --fetch` refreshes the snapshots, one request per route,
 and still touches no tracker.
 
-The rest touch a third party, so they run deliberately and not on every push
-(RULES 15.2). `20`, `21` and `22` read public documentation and APIs; `01`-`05`
-need a GitHub runner to mean anything at all, because the whole question they
-answer is what *that* vantage can do.
+The rest run deliberately and not on every push. `20`, `21` and `22` read
+public documentation and APIs; `01`-`05` need a GitHub runner to mean anything
+at all, because the whole question they answer is what *that* vantage can do
+(RULES 15.2).
+
+⚠ **`23` is out of the gate for a different reason and it is worth naming.** It
+touches no third party -- it runs a torrent client's parser offline -- but it
+needs that client **installed**, and a gate check that silently skips on every
+host without one is the exemption-nobody-removes row in
+[`../docs/conventions/forbidden-patterns.md`](../docs/conventions/forbidden-patterns.md).
+So it runs deliberately, its result is committed, and
+[T-035](../TODO/claims.md) carries the coverage that is still missing.
 
 Python 3.11+, standard library only. No dependency to install, and none to rot
 during the five years this project is meant to run.

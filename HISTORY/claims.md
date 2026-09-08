@@ -345,8 +345,8 @@ Corpus cloned and pinned; commits recorded in
 
 | id | claim | status | verify by | if false |
 | --- | --- | --- | --- | --- |
-| C-40 | Common clients accept newline-separated tracker lists; some upstreams separate entries with blank lines | **`VERIFIED` for the upstream half only** | `experiments/20` | The blank-line half is now measured. The **client** half is not, and it is the half the plaintext guarantee rests on. |
-| C-41 | Comments (`#`) in tracker list files break some clients | `UNVERIFIED` | Read client parsers; test | **Conservative default retained**: no comments in plaintext output. Cheap to check and still worth checking. |
+| C-40 | Common clients accept newline-separated tracker lists; some upstreams separate entries with blank lines | **`VERIFIED`, both halves, for one client** | `experiments/20`, `experiments/23` | Upstream half measured 2026-08-29. Client half measured 2026-09-08 against **aria2 1.37.0**: the pipeline's own plaintext survives its reader unchanged. One client, and the others are absent rather than passing. |
+| C-41 | Comments (`#`) in tracker list files break some clients | **`REFUTED` as worded, and the truth is worse** | `experiments/23` | They do not break aria2; aria2 **accepts a `#` line as an announce URL**. Two clients measured, and they disagree. **Conservative default retained** and now for a measured reason. |
 | C-42 | 0BSD requires no attribution or credit | **`VERIFIED`** | Read the committed `LICENSE` | Documentation may state "no attribution required" truthfully. |
 | C-43 | `pkgforge-dev/reverse-proxies`, `apify/impit`, `h4ckf0r0day/obscura`, `0x676e67/wreq-util` are candidate 401/403 mitigations | **`VERIFIED` as unnecessary so far**, and **weakened on 2026-08-31** | Observed status codes across all source fetches, `experiments/19` | **No mitigation adopted**, and none is warranted: nothing has refused a *source* fetch. But `C-64` records an intermediary refusing this project's descriptive User-Agent with HTTP 420 while accepting `curl/8.5.0` for the identical request, so "a plain descriptive User-Agent suffices" is now true of our sources and not true in general. `HISTORY/references/avalynsouvlaki-t-244-research.md` carries the shortlist and the argument if that changes. |
 | C-44 | Workflow artefacts have a retention limit, so an issue citing one will eventually cite nothing | **`VERIFIED`, and re-confirmed 2026-09-01** | Artefact metadata from run `33383406869` | Consequence applied: runner results are **committed to git**, not left in artefacts. ⛔ **The stronger form is now measured: a run URL does not outlive its repository either.** Every artefact and log from run `33246108348` went with this repository's prior history, and that link 404s. |
@@ -363,6 +363,38 @@ Corpus cloned and pinned; commits recorded in
   that the project emits the most conservative format (one URL per line, single
   `\n`, no comments, no blank lines) precisely *because* the client behaviour
   is unknown.
+* **C-40 and C-41, `experiments/23-client-list-compatibility.py`, 2026-09-08.**
+  The first time any torrent client was pointed at this project's output.
+  aria2 1.37.0, offline (`aria2c -S` parses and prints; no socket, no DHT, no
+  tracker contacted -- RULES 6), fed four formatting variants through the
+  client's own announce-list reader.
+
+  **The pipeline's plaintext survives unchanged**: 3 URLs offered, 3 accepted,
+  none mangled. So the deliverable is usable by at least one real client, which
+  is more than was known before.
+
+  ⛔ **C-41 is refuted as worded and the finding is sharper than the claim.**
+  A `#` comment does not "break" aria2 -- aria2 **accepts it as an announce
+  URL**, and a blank line likewise becomes an empty announce entry. A list
+  carrying either does not fail loudly in the consumer's client; it installs a
+  broken tracker there quietly, which is worse than breaking.
+
+  ⭐ **And two clients disagree.**
+  `references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/torrent_miscellaneous.pas:393`
+  `ValidTrackerURL` accepts only a string starting with one of the five
+  transport prefixes, so the same comment line is **dropped** there. One client
+  keeps it, one discards it, and nothing in either is a specification. That
+  disagreement is the whole argument for the conservative intersection
+  `render_plaintext` already emits -- which was a refusal to guess and is now a
+  measured choice.
+
+  ⚠ **CRLF survived aria2** -- surrounding whitespace including a trailing ``
+  is trimmed. That is one client's tolerance, it is exactly the kind that is
+  not portable, and it is not a licence to emit CRLF.
+
+  **What it does not establish:** qBittorrent, Transmission, Deluge and BiglyBT
+  were not run and are not installed here. Their rows are **absent, not
+  passing**. Result committed at `experiments/results/23-client-list-compatibility.unclassified-host.20260908T091033Z.json`.
 * **C-42, committed `LICENSE`, 2026-08-29.** The text grants "Permission to
   use, copy, modify, and/or distribute this software for any purpose with or
   without fee is hereby granted" and -- decisively -- **omits** the

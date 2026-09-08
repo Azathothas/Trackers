@@ -17,7 +17,7 @@ Source:      `C-40`, `C-41`; HISTORY/gates.md "the primary audience"
 Category:    claims
 Priority:    P0
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `render_plaintext` emits the format the primary consumers use, and
              nothing has ever fed that output to qBittorrent, Transmission,
@@ -45,6 +45,54 @@ Decision:    Until this closes, `render_plaintext` stays at the most
              a refusal to guess.
 Prove:       `python3 experiments/23-client-list-compatibility.py --expect-all`
              exits 0, and `HISTORY/claims.md` rows `C-40` and `C-41` cite it.
+
+**Done.** `python3 experiments/23-client-list-compatibility.py --expect-all`
+-> exit 0, result at `experiments/results/23-client-list-compatibility.unclassified-host.20260908T091033Z.json`. `C-40` and `C-41` cite it.
+
+**A torrent client has now been pointed at this project's output**, which is
+the sentence this entry existed to make true. aria2 1.37.0, on this host, fed
+all four variants through the client's own announce-list reader. ⛔ **Offline
+by construction**: `aria2c -S` parses and prints and exits, so no socket, no
+DHT, no peer and no tracker -- RULES 6 forbids this project becoming a client
+even to test itself, and the subject torrent names one 1-byte file with
+RFC 2606 reserved hostnames that belong to nobody.
+
+| variant | offered | accepted | what happened |
+| --- | --- | --- | --- |
+| what the pipeline emits | 3 | 3 | **unchanged** |
+| plain `
+` | 3 | 3 | unchanged |
+| blank-line separated | 5 | 5 | ⚠ the blank line became an **empty announce entry** |
+| `#` comments | 6 | 6 | ⚠ the comment became **an announce URL** |
+| CRLF | 3 | 3 | trailing `` trimmed |
+
+⛔ **`C-41` is refuted as worded, and the truth is worse than the claim.** It
+said comments "break some clients". They do not break aria2 -- aria2 **accepts
+one as a tracker**. A list carrying a comment does not fail loudly in the
+consumer's client; it installs a broken tracker there silently, which is the
+failure mode this project cares about most.
+
+⭐ **Two clients, and they disagree.** The captured
+`bittorrent-tracker-editor` parser
+(`../references/GerryFerdinandus__bittorrent-tracker-editor/tree/source/code/torrent_miscellaneous.pas:393`)
+accepts only the five transport prefixes, so it **drops** the same comment aria2
+keeps. Neither is a specification. ⭐ **That disagreement is the entire
+argument for the conservative intersection** `render_plaintext` already emits:
+the `Decision` above called it "a refusal to guess", and it is now a measured
+choice rather than a cautious one.
+
+**Not in the gate, deliberately.** It depends on a client being installed, and
+a gate check that silently skips on most hosts is an exemption nobody removes
+(`../docs/conventions/forbidden-patterns.md`). It runs like `01`-`05` do:
+deliberately, with its result committed. Mutation-proved -- making
+`render_plaintext` emit a blank line between entries fails `--expect-all` with
+the empty entry named.
+
+⚠ **Four clients are absent, not passing.** qBittorrent, Transmission, Deluge
+and BiglyBT are not installed here and were not run, and installing them is a
+system change on somebody else's machine that outlives the session
+(`../docs/agent-tooling.md`). [T-035](claims.md) carries what would close that
+gap.
 
 ---
 
@@ -465,3 +513,60 @@ Prove:       `python3 experiments/26-user-agent-block-rate.py --expect-arms` exi
              0, `HISTORY/claims.md` carries `C-56` with the per-arm rates and
              sample counts, and RULES 4.1 is rewritten to state the measured
              answer instead of an open question.
+
+---
+
+### T-035 Four of the five clients that matter are absent, not passing
+
+Source:      [T-001](claims.md)'s acceptance; RULES 1.4 on `unavailable`
+Category:    claims
+Priority:    P2
+Effort:      M
+Status:      open
+
+Problem:     [T-001](claims.md) measured the plaintext against **one** client.
+             qBittorrent, Transmission, Deluge and BiglyBT were not run, and a
+             row that is absent must never be read as a row that passed
+             (RULES 1.4). The two clients measured so far **disagree** about a
+             `#` comment -- aria2 accepts it as a tracker, the tracker-editor
+             drops it -- so a third client is not a formality; it is the only
+             way to know whether the conservative intersection is actually the
+             intersection.
+Premise:     **Measured, not assumed.** Probed by running rather than by
+             looking (`../docs/conventions/shell.md` section 6): `aria2c` is
+             1.37.0 on the authoring host and `transmission-remote`,
+             `transmission-cli`, `qbittorrent-nox` and `deluge-console` are all
+             absent from `PATH`. `podman` 5.8.6 and `wsl` 2.7.12 are present.
+Approach:    ⛔ **Not by installing anything on the operator's machine.**
+             `../docs/agent-tooling.md` names that as the first reflex to stop,
+             and a system change that outlives the session is not this
+             project's to make.
+
+             Three routes, in the order they should be tried:
+             1. **A container.** `CONTAINER_ENGINE` defaults to `docker` and
+                `podman` must work unchanged (RULES 15.5); `transmission-cli`
+                and `deluge-console` are ordinary distribution packages.
+                [`../docs/containers.md`](../docs/containers.md) is the page.
+                ⛔ The client must be run with **no network at all** -- the
+                measurement is of its parser, and RULES 6 forbids swarm
+                membership even in a test.
+             2. **Read the parser at a captured commit**, as T-001 did for the
+                tracker-editor: cite file and line, and label it
+                `externally dependent` rather than measured. Transmission's
+                and qBittorrent's list handling are both open source.
+             3. **A CI job on a runner**, where `apt-get install
+                transmission-cli` changes nothing anybody keeps.
+Decision:    P2 rather than P0 because the question T-001 was P0 for is
+             answered: the output IS usable by a real client, and the
+             conservative format is now a measured choice rather than a guess.
+             What is left is coverage, which is worth having and is not
+             blocking anything.
+             Rejected: installing clients on the authoring host; and treating
+             one client as sufficient, which the aria2-vs-tracker-editor
+             disagreement already refutes.
+Prove:       `python3 experiments/23-client-list-compatibility.py --expect-all`
+             reports at least **three** clients under a `guaranteed` or
+             `externally dependent` classification, each naming how it was
+             obtained, and `HISTORY/claims.md` `C-41` states whether the
+             conservative intersection is the true intersection or merely a
+             safe subset of it.
