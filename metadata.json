@@ -1,15 +1,15 @@
 {
   "code_version": "0.1.0+norm1",
   "count": 1334,
-  "dataset_digest": "sha256:06c0daf0c8fd5bd9ca9c60adba25f6d94fa0c30a00c77cbea6954af25840d63f",
+  "dataset_digest": "sha256:7a2ec29f356bb3c4e50b2b6a1c40360ff9e97313b499f6bb6250bb67eb1b7ce9",
   "files": {
     "anime.txt": {
       "bytes": 40231,
       "digest": "sha256:a3e4b023233ce75cb0168ab43d23ffc566ba50a1c43219bf0a857bef70474afa"
     },
     "common.txt": {
-      "bytes": 3928,
-      "digest": "sha256:63a18341e4ecb054567fdaf98d58e0c433d2e034288d6c841feef444d89c8637"
+      "bytes": 3969,
+      "digest": "sha256:bf98bd3567d2e67428b7ff65a5addc8ea505856363d4731be68579e8b43b1736"
     },
     "foss.txt": {
       "bytes": 0,
@@ -20,27 +20,28 @@
       "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "report.md": {
-      "bytes": 2499,
-      "digest": "sha256:fc0e67cd3a77accf57f8a77b68135509762c1d6b1039db3023a1067027504b09"
+      "bytes": 6730,
+      "digest": "sha256:6b91432039c2c6990e82015cb6624ee4f468871514d75fb105df0b3f29c18d87"
     },
     "stable.txt": {
       "bytes": 0,
       "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "trackers_all.csv": {
-      "bytes": 192677,
-      "digest": "sha256:e5fcd5e1d3aa75dc68046bd502d4d76f8348278075a6da22bf813224c9e7cef9"
+      "bytes": 192714,
+      "digest": "sha256:2d5de0f588eae7f15e9f76561494b128af68762ceb86a5d341b9fe55fa850f52"
     },
     "trackers_all.json": {
-      "bytes": 786591,
-      "digest": "sha256:de13a1688207768f19eff65db65fd278d3c5397e2c8456ca03154d6547b393b0"
+      "bytes": 786674,
+      "digest": "sha256:5c383131ffab22fbc2e85259ae1c2d341eadfe6b41edc5c3889d23dd9b8c0abd"
     },
     "trackers_all.txt": {
       "bytes": 50500,
       "digest": "sha256:22b05af7a55000e67acf2f4991bf547358b7b08f3bd1432ad187a2f0a6235cff"
     }
   },
-  "generated_at": "2026-09-08T22:31:17Z",
+  "generated_at": "2026-09-08T23:12:17Z",
+  "newest_observation": "2026-09-08T23:11:21Z",
   "normalization_version": 1,
   "publish_interval_seconds": 10800,
   "schema": "schema.md, published beside this file",
