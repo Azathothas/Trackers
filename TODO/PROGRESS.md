@@ -125,6 +125,13 @@ by a test rather than recalled.
 including in a committed sweep. Found by reading one record rather than by the
 suite.
 
+⛔ **And one push cost 34 endpoint contacts for nothing.** A one-line helper
+added to `experiments/_conditions.py` fired the P0 job on both images, because
+that file is in its path filter -- correctly, since every probing instrument
+imports it. The filter is not the defect and the sequencing was: a change there
+belongs in the same push as a measurement somebody wants. The file now says so
+at the top, which is where a session will read it.
+
 ⭐ **The runner census cost no tracker a request.** `p0-ground-truth.yml` grew
 `skip_tracker_probes`, so re-measuring the runner's resolver no longer drags
 17 endpoints per image along with it.

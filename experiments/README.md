@@ -117,6 +117,19 @@ public documentation and APIs; `01`-`05` need a GitHub runner to mean anything
 at all, because the whole question they answer is what *that* vantage can do
 (RULES 15.2).
 
+⚠ **Editing `_conditions.py` contacts trackers.** It is named in
+`.github/workflows/p0-ground-truth.yml`'s path filter, correctly: every probing
+instrument imports it, so a change there can change what they measure. The
+consequence is that a one-line helper added to it on 2026-09-08 fired the whole
+P0 job on both images and cost **34 endpoint contacts that could not have
+changed any number**. ⭐ **Batch a change to that file with one whose
+measurement you actually want.** The filter is not the defect and the
+sequencing was.
+
+⭐ **This warning is here rather than in `_conditions.py` for the reason it
+describes**: committing it into that file would have fired the job again, which
+is 34 more contacts to install a note about not spending them.
+
 ⚠ **`23` is out of the gate for a different reason and it is worth naming.** It
 touches no third party -- it runs a torrent client's parser offline -- but it
 needs that client **installed**, and a gate check that silently skips on every
