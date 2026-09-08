@@ -73,7 +73,7 @@ pretending to be one.
 | [T-061](publication.md) | P1 | publication | **done** | Cross-format consistency is unverified |
 | [T-063](publication.md) | P1 | publication | **done** | There is no data branch and nothing is published anywhere |
 | [T-085](operations.md) | P1 | operations | **done** | Overlapping runs are prevented in the gates but not in publication |
-| [T-086](operations.md) | P1 | operations | open | Security review has not been run against the acquisition path |
+| [T-086](operations.md) | P1 | operations | **done** | Security review has not been run against the acquisition path |
 | [T-141](foundation.md) | P1 | foundation | **done** | No reference had been read below README depth |
 | [T-142](foundation.md) | P1 | foundation | **done** | The protocol model was mis-factored and would have marked I2P trackers dead |
 | [T-143](foundation.md) | P1 | foundation | **done** | There was no pipeline, and determinism had never been demonstrated |
@@ -126,7 +126,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 32 open, 0 blocked, 41 done
+**Counts:** 73 entries, 31 open, 0 blocked, 42 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -134,10 +134,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 1 | 0 | 6 | 7 |
-| P1 | 3 | 0 | 20 | 23 |
+| P1 | 2 | 0 | 21 | 23 |
 | P2 | 22 | 0 | 14 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **32** | **0** | **41** | **73** |
+| **All** | **31** | **0** | **42** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

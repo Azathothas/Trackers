@@ -65,7 +65,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **405** tests, no network |
+| Test suite | **415** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |
@@ -145,7 +145,7 @@ with the numbers that decided it; `src/trackers/channels.py` is built on what
 `experiments/24` measured, and its tests read that result and fail if a design
 choice rests on something the run refuted.
 
-**Six reviews ran and every one found something**, under
+**Seven reviews ran and every one found something**, under
 [`../HISTORY/reviews/`](../HISTORY/reviews/):
 
 1. **Door sweep** -- the module written this session to be the one home for
@@ -166,6 +166,10 @@ choice rests on something the run refuted.
    regenerated. Two more landed: two slices at one instant collided in the
    idempotence guard and 190 observations would have been dropped, and a clock
    the workflow could not parse pinned every run to slice 0 silently.
+7. **The acquisition path** -- every hop from an upstream byte to a
+   filesystem path or a parser. ⭐ Two of the four threats are **unreachable
+   rather than mitigated**: no shell call exists in `src/`, and nothing
+   decompresses, so a bomb has no expansion step. Closed [T-086](operations.md).
 6. **Measured but never verified** -- ⛔ `C-73` was marked `VERIFIED` on a
    transcript, and the verification it named could not have separated a proxy
    with no IPv6 from a tracker that did not answer. It has a committed control

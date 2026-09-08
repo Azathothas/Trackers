@@ -312,7 +312,7 @@ Source:      RULES 5.1; HISTORY/gates.md
 Category:    operations
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     RULES 5.1 states the threat model. Some of it is enforced by
              construction -- `parse()` rejects control characters and hostnames
@@ -330,3 +330,35 @@ Approach:    Review every path from an upstream byte to a filesystem path, a
 Prove:       A committed review and a test for each threat: path traversal,
              oversized response, control characters, and a decompression bomb if
              compression is accepted.
+
+**Done.** `python3 -m unittest tests.test_acquisition_security -v` -> **10
+tests, OK**, and the review is
+[`../HISTORY/reviews/2026-09-09-12-acquisition-path.md`](../HISTORY/reviews/2026-09-09-12-acquisition-path.md).
+
+⭐ **The path is five hops and two of the four threats are unreachable rather
+than mitigated.** There is no shell call anywhere in `src/`, so command
+injection has nothing to inject into; and `fetch` sends no `Accept-Encoding`
+while `urllib` does not decompress on its own, so a decompression bomb has no
+expansion step to exploit. The entry asks for decompression handling "if
+compression is ever accepted" -- it is not, and the test is what would fail if
+somebody accepted it.
+
+**One test per threat**: every registry id is a bare path component, an
+oversized body is **rejected rather than truncated**, a control character is
+refused rather than stripped and says which class it was, and a gzip body is
+not expanded.
+
+⚠ **Two of the tests read the source of the function they test**, which is
+deliberate: `read(MAX + 1)` against `read()` then a length check is invisible
+in behaviour on any input small enough to run in a suite, and the ordering of
+the path computation against the body read is structural rather than
+observable.
+
+**Three things the review found that the tests do not cover**, recorded rather
+than left implicit: `errors="replace"` silently transforms a non-UTF-8 body,
+which is correct because the affected lines then become **recorded rejections**
+rather than disappearing; the 8 MiB ceiling is a 200x margin over the largest
+observed source, which is the right direction for an exhaustion bound and is
+the volume-swing check's job rather than this one's ([T-102](sources.md)); and
+`scripts/fetch-reference-comments.py` writes paths derived from remote data but
+never runs in the pipeline, so it needs its own pass rather than a sentence.
