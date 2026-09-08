@@ -140,9 +140,10 @@ acceptance recorded, or open with what remains written into it.
 4. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
    cells over the HTTP corpus is roughly twelve thousand requests at somebody
    else's expense: a workflow over days, not a command.
-5. **[T-026](measurement.md)** - the politeness budget, and it must now say
-   whether **DNS is inside it**. This session issued roughly four thousand
-   lookups naming other people's trackers and nothing counted them.
+5. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
+   settled: D7's cadence, and DNS inside the budget at **100,000 lookups per
+   run**. What is left is computing it, publishing it in the run report, and
+   asserting it in a test.
 6. **[T-064](publication.md)** - release channels. Its platform half is
    measured.
 
@@ -155,7 +156,7 @@ by priority. ⛔ Do not stop because the list above ran out.
 
 ## Questions the operator has answered
 
-All settled before 2026-08-29 unless dated. **Closed; do not re-raise.**
+**Closed; do not re-raise.**
 
 1. **May a session create throwaway releases here?** Yes, in this repository.
    D10 and RULES 13.1. Tag them `test-*` and delete them once the answer is
@@ -167,33 +168,36 @@ All settled before 2026-08-29 unless dated. **Closed; do not re-raise.**
    D7, settled in [T-026](measurement.md).
 4. **What is authorised outward-facing?** Every action belonging to this
    repository, and nothing outside it, ever. RULES 13.
+5. **One squashed commit per session, or a series?** A **clean series of
+   logical commits**, each passing the gate. **D16**, 2026-09-08. The squash
+   could not coexist with confirming CI at every push and with the
+   no-force-push rule.
+6. **Is DNS inside the politeness budget?** Yes, with a ceiling of **100,000
+   lookups per run on a GitHub runner**; local runs are not bounded by it.
+   2026-09-08. This session used roughly 4,000. [T-026](measurement.md) carries
+   it.
+7. **Schedule the health sweep?** Not until [T-037](measurement.md) lands.
+   2026-09-08. A scheduled sweep today would repeatedly record
+   `openbittorrent.com` as `dns_failure`, which this vantage cannot resolve and
+   public resolvers can.
+8. **The third party's credential in git history?** **Not our action.** The
+   operator will **reset this repository's history to a single commit** once
+   the tasks are complete and the prose has been rewritten, which removes it.
+   2026-09-08. Until then the working tree stays clean of it outside the
+   capture fixtures, where a verbatim capture is expected and where rewriting
+   one would destroy the evidence that the refusal works.
 
 ## Open questions for the operator
 
-**None blocking.** Four things to know rather than re-derive:
+**None.** All eight are answered above.
 
-1. ⛔ **RULES 10.3 step 7 and
-   [`../docs/conventions/git.md`](../docs/conventions/git.md) section 2
-   contradict each other, and this session could not satisfy both.** Step 7
-   requires **one squashed commit** for a session's work; step 8 requires
-   confirming CI green **"at every push and not only at the end"**, which
-   presupposes several; and `git.md` forbids rewriting anything published,
-   with two exceptions that do not apply here. This session pushed
-   incrementally and did **not** squash, because the no-force-push rule is the
-   more specific one and its exceptions are the operator's alone to grant.
-   **One of the two needs changing** (RULES 9), and it is not a session's call.
-2. ⛔ **A stranger's private-tracker credential is in this repository's git
-   history and cannot be rotated from here** -- it is a third party's.
-   [`../docs/security/secrets.md`](../docs/security/secrets.md)'s incident
-   order puts rotation first and that step is not available to us. The working
-   tree is clean of it outside the capture directories, and a history rewrite
-   is the operator's call and the operator's action.
-3. ⚠ **BEP 34 lookups send tracker hostnames to a public resolver.** A
-   deliberate trade recorded in `src/trackers/bep34.py`. ⭐ **The evidence for
-   it got stronger this session**: the host's own resolver was measured failing
-   on names public resolvers answer, which is exactly the silent failure the
-   trade was made to avoid.
-4. ⚠ **The health sweep still has no `schedule:` trigger**, so every tracker
-   contact is one somebody chose to make. Adding one is D7's cadence,
-   [T-026](measurement.md)'s budget and [T-084](operations.md)'s architecture,
-   and ⛔ [T-037](measurement.md) should land first.
+⚠ **Two standing facts to know rather than re-derive**, neither of which is a
+question:
+
+- **BEP 34 lookups send tracker hostnames to a public resolver**, a trade
+  recorded in `src/trackers/bep34.py`. The evidence for it strengthened on
+  2026-09-08: the host's own resolver was measured failing on names public
+  resolvers answer, which is the silent failure the trade avoids.
+- **A history reset to one commit is coming** (answer 8). Nothing should be
+  built that depends on this repository's commit history, which RULES 3.7
+  already forbids for measurement history.

@@ -627,8 +627,15 @@ acceptance:
 6. **Ensure the repository is clean.** `git status` empty, no scratch output
    outside `.gitignore`, no `ephemeral-*` branch left behind, no `TODO` count
    disagreeing with its rows.
-7. **Commit and push** to `main` -- **one squashed commit** for the session's
-   work, with a message that says what changed and why.
+7. **Commit and push** to `main`, in a **clean series of logical commits**,
+   each of which passes the gate and each with a message saying what changed
+   and why.
+
+   ⚠ **This said "one squashed commit" until 2026-09-08, and it could not be
+   satisfied.** Step 8 requires confirming CI at every push, which presupposes
+   several, and
+   [`docs/conventions/git.md`](../docs/conventions/git.md) section 2 forbids
+   rewriting anything published. Operator ruling: drop the squash. **D16.**
 8. **Confirm CI is green** on the pushed head. Not "should be" -- look, at
    every push and not only at the end. **A local gate and the same gate on a
    clone answer different questions**, and this project has paid for that gap

@@ -485,20 +485,16 @@ Approach:    Compute the budget from the real corpus size
              `classify_body` alongside `interval`; **the scheduler must prefer
              `max(min_interval, interval)` and this entry is what asserts it.**
 
-             ⛔ **The budget must say whether DNS is inside it or outside it.**
-             Found by the tracker-operator review of 2026-09-08: this session
-             issued roughly **four thousand DNS queries naming other people's
-             trackers** -- `experiments/29` resolves 965 hostnames and
-             `experiments/30` asks a second resolver about every one the first
-             could not answer for -- and **nothing counted them**. RULES 15.2
-             bounds requests to upstreams and trackers; a resolution is neither,
-             so the ceiling is silent on it, and `PROGRESS.md`'s open question 1
-             already records the related trade without its scale.
+             **DNS is inside the budget and its ceiling is 100,000 lookups
+             per run on a GitHub runner.** Operator ruling 2026-09-08, in
+             response to the tracker-operator review measuring this session at
+             roughly 4,000 -- `experiments/29` resolves 965 hostnames and
+             `experiments/30` asks a second resolver about each one the first
+             could not answer for. Local runs are not bounded by this.
 
-             ⚠ A resolution is close to free from an operator's side, so the
-             answer may well be "outside, and here is why". What is not
-             acceptable is the budget continuing not to mention it, because an
-             unmentioned load is one nobody notices multiplying.
+             ⚠ 4,000 is 4% of the ceiling, so nothing built so far is near it.
+             The number exists so a future census cannot grow into a load
+             nobody counted: publish the DNS figure beside the probe figure.
 Decision:    **D7 -- CLOSED by operator ruling 2026-08-29. Publish hourly; probe
              each tracker on its own stated `interval`, defaulting to 3 h.**
              Hourly *generation* touches no tracker and was never in question.

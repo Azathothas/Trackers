@@ -22,11 +22,15 @@
 #   * A whole-run deadline. Anything not reached is recorded `unknown`, never
 #     `dead`.
 #
-# ⛔ MANUAL ONLY, DELIBERATELY. There is no `schedule:` trigger and adding one
-# is not a detail: a workflow that runs hourly against other people's servers
-# is a load generator, the cadence is D7's and the budget is T-026's, and the
-# workflow architecture is T-084's open decision. Until those land, every run
-# here is a person choosing to make it.
+# ⛔ MANUAL ONLY. Operator ruling 2026-09-08: no `schedule:` trigger until
+# T-037 lands. This vantage cannot resolve `openbittorrent.com` -- measured on
+# both runner images, where public resolvers answer for it -- so a scheduled
+# sweep would repeatedly record one of the best-known public trackers as
+# `dns_failure`. Scheduling before that fix accumulates records known to be
+# wrong.
+#
+# After T-037: the cadence is D7's, the budget is T-026's, and the workflow
+# architecture is T-084's open decision.
 name: Health sweep
 
 on:

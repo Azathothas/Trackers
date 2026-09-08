@@ -32,8 +32,9 @@ drifting count is a small lie that trains readers to ignore the document.
 | D13 | What BEP 34 binds, and what it unblocks | P0 | **closed** |
 | D14 | What replaced the private-credential ceiling | P1 | **closed** |
 | D15 | Whether the UDP probe scrapes, or stops at connect | P2 | **closed** |
+| D16 | Whether a session's work is squashed into one commit | - | **closed** |
 
-**Counts:** 15 entries, 12 closed, 3 open, 0 blocked
+**Counts:** 16 entries, 13 closed, 3 open, 0 blocked
 
 **Nothing closes as "won't fix" or "out of scope"** (RULES 7). A blocked
 entry stays open with its blocker named and what would unblock it.
@@ -705,3 +706,37 @@ python3 -m unittest tests.test_probe.ProbeConfiguration
 `Ran 6 tests`, `OK`. Mutation-proved: adding a `build_scrape_request` call to
 `probe_udp` fails the guard.
 
+## D16 -- Whether a session's work is squashed into one commit, **closed**
+
+**Source** RULES 9, raised by a contradiction found at close-out,
+**Category** process, **Priority** -, **Effort** S, **Gate** -
+
+**The requirement as written.** RULES 10.3 step 7: *"Commit and push to `main`
+-- one squashed commit for the session's work."*
+
+**The evidence it is wrong.** It cannot be satisfied alongside two other rules
+that bind the same action:
+
+* step 8 requires confirming CI green *"at every push and not only at the
+  end"*, which presupposes more than one push;
+* [`../docs/conventions/git.md`](../docs/conventions/git.md) section 2 forbids
+  force-pushing or rebasing anything published, with two exceptions that are
+  the operator's to grant and neither of which covers a routine session.
+
+So a session that pushes incrementally -- which step 8 requires -- can only
+squash by rewriting published history, which git.md forbids.
+
+**The replacement.** A **clean series of logical commits**, each passing the
+gate, each with a message saying what changed and why. Operator ruling
+2026-09-08.
+
+**Rejected alternatives.**
+
+| rejected | why |
+| --- | --- |
+| Keep the squash; commit locally and push once at the end | Reduces step 8's per-push CI confirmation to one confirmation. That confirmation has already earned its place: it caught a red gate this session that the local gate had passed before a later edit broke it |
+| Add a third exception to git.md permitting a session to squash its own work | Weakens the no-rewrite rule, which currently has exactly two exceptions and both were granted deliberately. Buying tidier history with a weaker rule about destroying history is the wrong trade |
+
+**What it does not change.** Nothing about force-pushing, and nothing about
+step 8. Commits are still per task, small and logical, and the gate still
+passes at every one.
