@@ -238,11 +238,17 @@ def render_plaintext(trackers: list[Tracker], *, preserve_order: bool = False) -
     return "".join(f"{u}\n" for u in lines)
 
 
-def render_report(agg: Aggregate, *, generated_at: str, code_version: str) -> str:
+def render_report(agg: Aggregate, *, generated_at: str, code_version: str,
+                  categories=None) -> str:
     """A human-readable run report. T-066.
 
     `generated_at` is injected, never read from the clock here, so that the
     determinism test can hold it fixed and diff everything else byte for byte.
+
+    ⛔ **`categories` carries each category's rule and why it holds what it
+    holds** (T-046). Three of the five are legitimately empty, and an empty
+    file with no stated reason looks like a defect -- so the reason is
+    published rather than printed to a log nobody keeps.
     """
     from collections import Counter
 
@@ -318,4 +324,21 @@ def render_report(agg: Aggregate, *, generated_at: str, code_version: str) -> st
                     key=lambda x: (x.url, x.reason, x.sources)):
         lines.append(f"- `{e.url}` -- {e.reason} [{', '.join(e.sources)}]")
     lines.append("")
+
+    if categories:
+        lines += [
+            "## Categories",
+            "",
+            "Each file's membership rule, and why it holds what it holds.",
+            "⛔ An empty file is not a defect: it says below whether the rule",
+            "matched nothing or the evidence it needs does not exist yet.",
+            "",
+        ]
+        for name, selection in sorted(categories.items()):
+            marker = "" if selection.evidence_available else " (evidence absent)"
+            lines.append(f"### {name}.txt -- {selection.count}{marker}")
+            lines.append("")
+            lines.append(f"- rule: {selection.rule}")
+            lines.append(f"- why:  {selection.reason}")
+            lines.append("")
     return "\n".join(lines)
