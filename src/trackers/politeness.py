@@ -39,6 +39,7 @@ the first fails -- and none of them was counted before this module existed.
 
 from __future__ import annotations
 
+import ipaddress
 from dataclasses import dataclass
 from typing import Any, Iterable, Mapping
 from urllib.parse import urlsplit
@@ -76,6 +77,12 @@ class RunCost:
 
     trackers_probed: int
     hosts: int
+    #: Hosts that cost a DNS query. ⛔ Not the same as `hosts`: an address
+    #: literal is never looked up -- `bep34.Resolver.consult` returns ALLOW
+    #: without asking and `getaddrinfo` on a literal sends nothing -- and 206
+    #: of this corpus's 965 hosts are literals. Charging them a lookup
+    #: overstated a full sweep by 1648 queries.
+    resolvable_hosts: int
     runs_per_day: float
     #: One request per tracker per run. There is no retry against a real
     #: tracker and no second endpoint, so this is the count, not an estimate.
@@ -97,6 +104,7 @@ class RunCost:
         return {
             "trackers_probed": self.trackers_probed,
             "hosts": self.hosts,
+            "resolvable_hosts": self.resolvable_hosts,
             "runs_per_day": self.runs_per_day,
             "seconds_between_runs": self.seconds_between_runs,
             "probes_per_run": self.probes_per_run,
@@ -119,6 +127,20 @@ class RunCost:
                 f"records that carry no stated interval, which is different "
                 f"from every tracker being content."),
         }
+
+
+def _is_literal(host: str) -> bool:
+    """Whether this host is an address rather than a name.
+
+    ⛔ A literal costs no DNS. `bep34.Resolver.consult` returns ALLOW for one
+    without asking anybody, and `getaddrinfo` resolves it without a query, so
+    counting it into a lookup budget reports load nobody generates.
+    """
+    try:
+        ipaddress.ip_address(host.strip("[]"))
+        return True
+    except ValueError:
+        return False
 
 
 def stated_interval(record: Mapping[str, Any]) -> int | None:
@@ -181,15 +203,17 @@ def run_cost(records: Iterable[Mapping[str, Any]], *,
     # ⚠ `hostname`, not the authority: `one.example:6969` and `one.example:80`
     # are two endpoints on one host, and the resolver answer is cached per
     # host. Counting the port in would report DNS load nobody generates.
-    distinct = hosts if hosts is not None else len({
-        host for r in materialised
-        if (host := urlsplit(str(r.get("url", ""))).hostname)})
+    seen = {host for r in materialised
+            if (host := urlsplit(str(r.get("url", ""))).hostname)}
+    distinct = hosts if hosts is not None else len(seen)
+    resolvable = len({h for h in seen if not _is_literal(h)})
     runs = (SECONDS_PER_DAY / seconds_between_runs
             if seconds_between_runs > 0 else 0.0)
-    dns = distinct * DNS_QUERIES_PER_HOST_WORST_CASE
+    dns = resolvable * DNS_QUERIES_PER_HOST_WORST_CASE
     return RunCost(
         trackers_probed=probes,
         hosts=distinct,
+        resolvable_hosts=resolvable,
         runs_per_day=round(runs, 4),
         probes_per_run=probes,
         probes_per_day=int(round(probes * runs)),

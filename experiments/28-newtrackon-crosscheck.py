@@ -81,6 +81,7 @@ sys.path.insert(0, os.path.join(REPO, "scripts"))
 import _conditions as C  # noqa: E402
 from generate import load_corpus  # noqa: E402
 from trackers.normalize import parse  # noqa: E402
+from trackers.secondhand import Observation, Signal  # noqa: E402
 
 FIXTURES = os.path.join(REPO, "tests", "fixtures", "sources")
 SOURCE_CACHE = os.path.join(HERE, "fixtures", "source-cache")
@@ -252,7 +253,8 @@ def crosscheck(records: dict, oracle: set[str], oracle_all: set[str]) -> dict:
     }
 
 
-def indirect_liveness(records: dict, oracle: set[str]) -> dict:
+def indirect_liveness(records: dict, oracle: set[str],
+                      observed_at: str) -> dict:
     """T-031 route (c): what the observer says about what we could not measure.
 
     ⛔ SECOND-HAND, AND NEVER PROMOTED. These trackers stay `unmeasurable` or
@@ -265,16 +267,23 @@ def indirect_liveness(records: dict, oracle: set[str]) -> dict:
         state = rec["health_state"]
         if state not in out or url not in oracle:
             continue
-        out[state].append({
-            "url": url,
-            "our_state": state,
-            "our_failure": rec.get("failure"),
-            "network": rec.get("network"),
-            "transport": rec.get("transport"),
-            "observer": "newtrackon",
-            "observer_says": "live",
-            "provenance": SECOND_HAND,
-        })
+        # ⭐ Through `secondhand.Observation` rather than a dict written here.
+        # This experiment predates that module and hand-rolled the shape, which
+        # is the same concept in two places: the module refuses the keys a
+        # probe owns and cannot be given `direct=True`, and a dict can carry
+        # anything. Found by the door sweep of 2026-09-08.
+        observation = Observation(
+            url=url, observer="newtrackon", observed_at=observed_at,
+            method=("announces to the tracker and derives uptime; this "
+                    "project scrapes and never announces (C-69)"),
+            signal=Signal.ALIVE,
+            reach=("an observer measuring from its own vantage, which reaches "
+                   "what this one could not"))
+        record = observation.as_record()
+        record.update({"our_state": state, "our_failure": rec.get("failure"),
+                       "network": rec.get("network"),
+                       "transport": rec.get("transport")})
+        out[state].append(record)
     return {
         "unmeasurable_with_a_second_hand_signal": len(out["unmeasurable"]),
         "unknown_with_a_second_hand_signal": len(out["unknown"]),
@@ -354,7 +363,12 @@ def main() -> int:
                                   "10-day age floor. Read this row as how many "
                                   "of the trackers we reached also clear a "
                                   "historical bar, never as error.")),
-            "indirect_liveness_t031": indirect_liveness(rec, sets["live"]),
+            # ⚠ A committed snapshot carries no capture date, so the honest
+            # `observed_at` for one is a dash (RULES 1.5). `--fetch` knows when
+            # it asked, and that is the closest thing to when the observer saw
+            # it that exists.
+            "indirect_liveness_t031": indirect_liveness(
+                rec, sets["live"], C.utc() if args.fetch else "-"),
         })
 
     results = {

@@ -198,6 +198,33 @@ class TheRunCostIsComputed(unittest.TestCase):
         self.assertEqual(cost.probes_per_day, 1600)
         self.assertAlmostEqual(cost.runs_per_day, 8.0)
 
+    def test_an_address_literal_costs_no_dns(self):
+        """⛔ The wrong denominator, caught by the claim audit of 2026-09-08.
+
+        `bep34.Resolver.consult` returns ALLOW for a literal without asking
+        anybody and `getaddrinfo` resolves one without a query, so charging it
+        a lookup reports load nobody generates. 206 of this corpus's 965 hosts
+        are literals, and counting them overstated a full sweep by 1648
+        queries.
+        """
+        literals = [record(f"udp://[2a03:7220:8083:cd0{i}::1]:451/announce")
+                    for i in range(3)]
+        literals += [record(f"udp://203.0.113.{i}:6969/announce")
+                     for i in range(3)]
+        cost = run_cost(literals)
+        self.assertEqual(cost.hosts, 6)
+        self.assertEqual(cost.resolvable_hosts, 0)
+        self.assertEqual(cost.dns_worst_case_per_run, 0)
+
+    def test_a_mixed_run_charges_only_the_names(self):
+        records = [record("udp://203.0.113.7:6969/announce"),
+                   record("udp://a.example:6969/announce"),
+                   record("http://b.example:80/announce")]
+        cost = run_cost(records)
+        self.assertEqual(cost.hosts, 3)
+        self.assertEqual(cost.resolvable_hosts, 2)
+        self.assertEqual(cost.dns_worst_case_per_run, 16)
+
     def test_two_urls_on_one_host_are_one_host(self):
         """DNS is counted per host, because the resolver answer is cached per
         host per run. Counting per URL would report a load nobody generates."""

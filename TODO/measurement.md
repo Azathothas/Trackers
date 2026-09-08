@@ -487,13 +487,21 @@ tracker being content -- the report says so in its own note.
 | --- | --- | --- | --- | --- | --- |
 | `33938543488` | 200 | 196 | 1600 | 1568 | 100,000 |
 | `34207344996` | 99 | 83 | 792 | 664 | 100,000 |
-| a full corpus | 1327 | 965 | 10,616 | 7720 | 100,000 |
+| a full corpus | 1327 | 965 (**759** resolvable) | 10,616 | 6072 | 100,000 |
 
 DNS is counted **per host** rather than per URL, because the resolver answer is
 cached per host per run; counting the port in reported load nobody generates,
 which a test caught. The worst case per host is **8** -- one BEP 34 TXT lookup,
 one `getaddrinfo`, and up to six for T-037's second opinion when the first
-fails -- so a full-corpus sweep sits at **7.7% of the operator's ceiling**.
+fails -- so a full-corpus sweep sits at **6.1% of the operator's ceiling**.
+
+⛔ **The first figure published here was 7720 and it had the wrong
+denominator**, which the closing claim audit caught. **206 of the 965 hosts are
+address literals and cost no DNS at all**: `bep34.Resolver.consult` returns
+ALLOW for one without asking anybody and `getaddrinfo` resolves it without a
+query. The count is over the **759** name-addressed hosts, `run_cost` now
+reports `resolvable_hosts` beside `hosts`, and a test asserts a run of literals
+costs zero.
 
 ⭐ **`max(min_interval, interval)`, which the entry required and which is the
 opposite of the tempting reading.** A tracker sending both is asking for both,

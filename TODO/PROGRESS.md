@@ -22,13 +22,11 @@ each: [INDEX.md](INDEX.md).
 
 ## State
 
-- **This session:** started `2026-09-08T13:30:00Z`, running. A **resolution
-  pass**: the probe stopped publishing this machine's resolver as a property
-  of a name, and stopped being willing to dial a null address.
-- **Previous session:** started `2026-09-08T08:15:00Z`, ended on operator
-  instruction (RULES 10.2, first way). A measurement and justification pass:
-  the value gate was answered, the corpus was measured three more times, and
-  per-tracker history exists.
+- **Last session:** started `2026-09-08T13:30:00Z`, ended on operator
+  instruction (RULES 10.2, first way). A **reachability pass**: the probe
+  stopped publishing this machine's resolver as a property of a name, stopped
+  being willing to dial an address that points at itself, and reached a
+  category of tracker that every previous record called unmeasurable.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
 - ⛔ **Still nothing published as data.** No dataset exists at any public URL.
   Every measurement lives under `experiments/results/` as evidence.
@@ -62,8 +60,10 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **333** tests, no network |
+| Test suite | **335** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
+| Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
+| Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
 | Cold start | confirmed on a fresh clone: gate green, `references/` and `experiments/results/` identical |
@@ -79,176 +79,86 @@ Run `python3 scripts/check-todo.py`. It re-derives every number from the rows
 and fails a gate when [INDEX.md](INDEX.md)'s table disagrees. **Nothing is
 blocked.**
 
-## What this session has done so far
+## What the last session did
 
-**Seven entries closed -- [T-037](measurement.md), [T-041](scoring.md),
-[T-031](measurement.md), the leverage entry, [T-026](measurement.md),
-[T-038](measurement.md), [T-064](publication.md) and
-[T-084](operations.md)'s `Prove` clause -- and [T-039](measurement.md) opened
-because of them.**
+**Six entries closed**, including one **`L`**: [T-031](measurement.md)
+indirect liveness (**L**), [T-037](measurement.md) the resolver's opinion,
+[T-041](scoring.md) the seven shapes, [T-026](measurement.md) the politeness
+budget, [T-038](measurement.md) the prober's address, and
+[T-064](publication.md) the release channels. [T-084](operations.md)'s `Prove`
+clause is met and that entry stays open for the workflow architecture.
+**Three opened**: [T-038](measurement.md) and [T-039](measurement.md) from
+findings, and T-038 closed in the same session.
 
-⭐ **The release channels are defined against what the platform actually did.**
-`src/trackers/channels.py`: the rolling channel is **not** called `latest`,
-because a release tagged that lost `/releases/latest` to a newer one (`C-14`);
-a channel is updated by delete-and-recreate, because a moved tag left the
-release pointing at the old commit (`C-17`); and publication may not verify by
-reading a download URL back, because that URL served the previous bytes ten
-seconds later (`C-15`) -- made structural, since the module imports no network
-module at all.
+⭐ **Six IPv6-only trackers are alive.** That category was `unmeasurable` in
+every record this project had ever taken.
+`experiments/33-ipv6-only-liveness.py` reaches them two ways: directly from a
+vantage that has IPv6, and through the operator-approved read proxy, which was
+measured to have IPv6 egress of its own (`C-73`). ⛔ The entry's own route (a),
+NAT64, was **backwards** -- it makes an IPv4 server reachable from an IPv6
+client, which is the opposite problem.
 
-⭐ **T-012's instrument exists and its design had to change to be runnable
-at all.** Four arms against one tracker in one run is four times RULES 4's
-ceiling, so each tracker gets one arm per run and the pairing is recovered
-across four rotations. Two runs: the first over 200 corpus HTTP trackers, where
-174 answered nobody and four arms were compared on eight informative rows; the
-second over **32 trackers a sweep recorded live**, at 16% of the load, where
-**30 answered** and the descriptive User-Agent answered **15 of 15**. ⛔ Still
-no verdict, and the instrument says so itself: no arm reached the 20 subjects
-a comparison needs. ⛔ The crossed `peer_id` axis cannot be run at all -- a
-scrape has no such field and this project never sends one.
+⛔ **Probing IPv6 for the first time found two defects that would each have
+published a live tracker as gone.** A host resolving into `0200::/7` was
+reclassified as yggdrasil and **probed anyway** -- [T-023](measurement.md)'s
+bug one layer below [T-023](measurement.md)'s fix, and three observations is
+`dead`. And `ipv6.tracker.harry.lu` answers **`::1`**, so the probe connected
+to this machine and recorded the reset as the tracker's (`C-74`).
 
-⛔ **A probe could be answered by this machine and record it as a tracker.**
-`urlopen` resolves the hostname again and picks for itself, so a name offering
-a null address beside a routable one can be connected to at the null one --
-which on Linux is the local host. [T-038](measurement.md) reads the socket's
-actual peer and refuses an answer that came from here. ⭐ That is better than
-the route the entry proposed: instead of controlling which address is picked,
-the probe checks which one it reached.
-
-⛔ **One keystroke was a corrupted dataset, and it is fixed.** Folding a sweep
-into the history twice recorded two observations from one measurement; three
-folds reached `MIN_SAMPLES_FOR_DEATH`, which is every non-live tracker in that
-sweep published `dead` on a single probe. Re-running
-`scripts/update-state.py` over a directory it had already read did it. Two
-guards now: per observation, keyed on the instant, and per sweep, in the state
-header. [T-084](operations.md)'s `Prove` clause is met and the entry stays open
-for the workflow architecture.
+⛔ **One keystroke was a corrupted dataset.** Folding a sweep into the history
+twice recorded two observations from one measurement; three folds reached
+`MIN_SAMPLES_FOR_DEATH`, which is every non-live tracker in that sweep
+published `dead` on a single probe. Re-running `scripts/update-state.py` over a
+directory it had already read did it. Two guards now, per observation and per
+sweep, and the second one's first test could not tell them apart.
 
 ⛔ **The number D7's whole rule rests on was measured and thrown away.** A
 tracker's stated `interval` and `min interval` have been read by
 `classify_body` since `C-65` and dropped by `ProbeResult.as_record`, so nothing
 could have honoured a request the probe had already been told.
-[T-026](measurement.md) carries them onto the record, computes what a run
-costs, and publishes it: a full-corpus sweep is **7720 DNS lookups at worst
-against a ceiling of 100,000**. The test that asserts it reads the workflow
-rather than a constant.
-
-⭐ **Six IPv6-only trackers are alive**, in a category that was `unmeasurable`
-in every record this project had ever taken.
-`experiments/33-ipv6-only-liveness.py` probes them from a vantage that has
-IPv6 and, in a second arm, through the operator-approved read proxy, which was
-measured to have IPv6 egress of its own (`C-73`). The second arm is the one
-that transfers to CI, where the first is impossible by construction, and the
-two agreed on the one HTTP subject that answered.
-
-⛔ **Probing IPv6 for the first time found two defects in the prober, and both
-would have published a live tracker as gone.** A host resolving into
-`0200::/7` was reclassified as yggdrasil and probed anyway, which is
-[T-023](measurement.md)'s bug one layer down; and `ipv6.tracker.harry.lu`
-resolves to `::1`, so the probe connected to this machine and recorded the
-reset as the tracker's (`C-74`). Both fixed, both mutation-proven.
-
-⭐ **The seven shapes have definitions and a classifier.**
-`src/trackers/shapes.py` reads the series `state.py` stores and says which of
-the seven it is, with the numbers that decided it attached. The order of the
-rules is the specification, as in `health_state`, and an eighth value exists
-for a tracker that has no interesting shape so the other seven are not
-stretched to cover it. ⚠ Everything in the tree classifies as `new` today,
-which is the honest answer at four observations and is why **D4 stays open**.
-
-**[T-037](measurement.md) is what the rest of this was.** The probe asks a second resolver whenever `getaddrinfo`
-fails, and the answers split four ways instead of one. Two of the four are in
-`ABOUT_US` and can never reach `dead`.
-
-⛔ **Its premise did not survive being re-measured, and the correction is
-larger than the entry.** On this host, 0 of 243 unresolvable hosts are rescued
-by a public resolver rather than 11: every one of the eleven answers `0.0.0.0`
-or `::`. On a **runner** the same eleven resolve through `getaddrinfo`
-normally, reach the prober, and a Linux connect to that address goes to the
-local host -- so 14 corpus URLs would have been probed against the runner
-itself. Refused now, before any socket, with the platform difference measured
-by a test rather than recalled.
+[T-026](measurement.md) carries them onto the record and computes what a run
+costs: a full-corpus sweep is **6072 DNS lookups at worst against a ceiling of
+100,000**, over the 759 name-addressed hosts of 965.
 
 ⛔ **`used_synthetic_infohash` was `true` on records where nothing was sent**,
-including in a committed sweep. Found by reading one record rather than by the
-suite.
+including in a committed sweep. Found by reading one record, not by the suite.
 
-⛔ **And one push cost 34 endpoint contacts for nothing.** A one-line helper
-added to `experiments/_conditions.py` fired the P0 job on both images, because
-that file is in its path filter -- correctly, since every probing instrument
-imports it. The filter is not the defect and the sequencing was: a change there
-belongs in the same push as a measurement somebody wants. The file now says so
-at the top, which is where a session will read it.
+⭐ **The identity question has an instrument, and its design had to change to
+be runnable at all.** Four arms against one tracker in one run is four times
+RULES 4's ceiling, so each tracker gets one arm per run and the pairing is
+recovered across four rotations. Two runs: 200 corpus trackers, where 174
+answered nobody; then **32 trackers a sweep recorded live**, at 16% of the
+load, where 30 answered and the descriptive User-Agent answered **15 of 15**.
+⛔ Still no verdict, and the instrument refuses to give one below 20 subjects
+per arm. ⛔ The crossed `peer_id` axis **cannot be run**: a scrape has no such
+field and this project never sends one.
 
-⭐ **The runner census cost no tracker a request.** `p0-ground-truth.yml` grew
-`skip_tracker_probes`, so re-measuring the runner's resolver no longer drags
-17 endpoints per image along with it.
+⭐ **The seven shapes have definitions, and the release channels have
+semantics.** `src/trackers/shapes.py` says which of the seven a history is,
+with the numbers that decided it; `src/trackers/channels.py` is built on what
+`experiments/24` measured, and its tests read that result and fail if a design
+choice rests on something the run refuted.
 
-## What the last session did
+**Four reviews ran and every one found something**, under
+[`../HISTORY/reviews/`](../HISTORY/reviews/):
 
-**Ten entries closed**, including **two `L`** and both `P0`s in the work
-order: [T-027](measurement.md) the value gate, [T-001](claims.md) the client
-check, [T-040](scoring.md) state and history (**L**), [T-004](claims.md)
-vantage bias (**L**), [T-028](measurement.md) the oracle cross-check,
-[T-033](measurement.md) the duplicated codecs, [T-036](measurement.md)
-resolution classes, [T-034](measurement.md) the baseline census,
-[T-042](scoring.md) the state projection, [T-007](claims.md) resolver
-agreement. **D3 closed.**
+1. **Door sweep** -- the module written this session to be the one home for
+   second-hand evidence had a second implementation in an experiment that
+   predates it.
+2. **Guard mutation** -- 26 mutations, two survivors: a test whose name claimed
+   more than it checked, and a guard in the guard module that could not fail
+   because a dict copy had already done its work.
+3. **Claim audit** -- the DNS budget published in this session had the **wrong
+   denominator**: 206 of 965 hosts are address literals and cost no lookup.
+   7720 became 6072. Two record edits reported as made had never been written.
+4. **Tracker operator** -- 348 tracker-facing contacts, itemised. **68 of them
+   bought nobody anything**, because a one-line helper in
+   `experiments/_conditions.py` fired the probing workflow twice.
 
-⭐ **The value gate is answered and the answer is two-sided.** Bar 1 clears:
-filtering to what measured live yields 2.06x-3.68x as many working trackers as
-the whole baseline. Bar 2 **fails**: our list is 13.4x longer and five times
-less live-dense. ⛔ **So publishing the plaintext without the health data would
-make this project the thing it exists to improve on**, and the README says so
-with the unflattering half first.
-
-⛔ **The first decision rule drafted for that gate was wrong in our favour**
-and is kept visible in `DECISION_RULE` rather than edited away: it charged us
-our sampling error and forgave the baseline's.
-
-**Five findings that changed the tree.**
-
-1. ⛔ **A file named after a package switches off the dependency gate.**
-   Measured at exit 0 printing *"D1 holds"*. Fixed by refusing a local name
-   that also resolves outside the repository.
-2. ⛔ **This project wrote a stranger's private-tracker credential into four
-   of its own files** while refusing to publish it in the dataset. Found by
-   widening `PRIVATE_CREDENTIAL` to see `authkey=`; all four redacted.
-3. ⛔ **This vantage cannot resolve `openbittorrent.com`.** Both runner
-   images; public resolvers can. A full sweep would publish one of the
-   best-known public trackers as gone -- [T-037](measurement.md).
-4. ⛔ **The committed sweep record's own `counts.corpus` said 200 against a
-   corpus of 1327.** The sample was right and its denominator was not.
-5. ⛔ **One endpoint in five that this session contacted bought nobody
-   anything** -- 56 because a wildcard path filter fired a tracker probe for an
-   offline instrument, 11 because a dispatch cancelled an in-flight run after
-   it had already reached the trackers.
-
-**Five reviews ran and every one found something**, under
-[`../HISTORY/reviews/`](../HISTORY/reviews/): the door sweep (findings 1 and
-2), the claim audit (`corpus-baseline.md` had acquired a contradictory number,
-from this session), the tracker-operator pass (finding 5), the guard mutation,
-and the cold start.
-
-⛔ **`experiments/27 --expect-answered` did not fail, it raised.** Driven
-against the condition it exists for, it exited 1 with a `KeyError` traceback.
-A crash and a measured expectation failure share an exit code, so every check
-of the exit code agreed and nobody read the output. Fixed; both directions
-verified.
-
-⛔ **The work order sent a cold session at a command that does not exist.**
-T-012's `Prove` clause names an experiment that was never built and was not
-marked `(planned)`. `check-citations.py` could not see it: it skipped any
-backticked token containing a space, and **every `Prove:` clause is a
-command**. The check now splits a command and checks each path in it.
-
-⚠ **Two commits went out with the gate red**, both the same way: the gate was
-run, one more edit landed, and the reading was not repeated. Neither was
-carelessness about the rule -- both messages quote a real gate run.
-`scripts/install-hooks.py` is the structural answer, **opt-in and never
-automatic**. ⭐ Its first version broke on the hazard `shell.md` section 6
-documents: `command -v python3` finds the Windows stub, which then does not
-run.
+⚠ **`skip_tracker_probes` is the structural half of that last one.**
+Re-measuring the runner's resolver used to drag 17 endpoints per image along
+with it; the census that produced this session's canonical figures contacted
+**no tracker at all**.
 
 ## In progress
 
@@ -268,7 +178,7 @@ acceptance recorded, or open with what remains written into it.
    uses them; this is the entry that would.
 3. **[T-084](operations.md)** - the schedule and the workflow architecture.
    ⭐ **Both of its inputs are now settled**: D7's cadence, and a computed
-   budget that says a full sweep costs 7.7% of the DNS ceiling. It is the last
+   budget that says a full sweep costs 6.1% of the DNS ceiling. It is the last
    thing between the sweep and running on its own.
 4. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
    [T-031](measurement.md) did not move. ⚠ Route (d) is measured and the
@@ -302,15 +212,18 @@ by priority. ⛔ Do not stop because the list above ran out.
    no-force-push rule.
 6. **Is DNS inside the politeness budget?** Yes, with a ceiling of **100,000
    lookups per run on a GitHub runner**; local runs are not bounded by it.
-   2026-09-08. This session used roughly 4,000. [T-026](measurement.md) carries
-   it.
+   2026-09-08. [T-026](measurement.md) carries it and now computes it: a
+   full-corpus sweep is **6072 at worst**, 6.1% of the ceiling.
 7. **Schedule the health sweep?** Not until [T-037](measurement.md) lands.
    2026-09-08. A scheduled sweep would have recorded `openbittorrent.com` as
    `dns_failure` on a vantage that cannot resolve it while public resolvers
-   can. ⭐ **That condition is met**: the sweep now records
-   `resolver_divergence` there, which can never become `dead`. What still
-   argues for waiting is [T-026](measurement.md), because nothing yet computes
-   what a scheduled run spends.
+   can. ⭐ **Both of the conditions that were named are met**: the sweep now
+   records `resolver_divergence` there, which can never become `dead`, and
+   [T-026](measurement.md) computes what a run spends. ⚠ **Nothing is
+   scheduled**, and what remains is the workflow architecture
+   ([T-084](operations.md)) rather than another measurement. Adding a
+   `schedule:` is a standing commitment against other people's servers and it
+   was not made without that entry.
 8. **The third party's credential in git history?** **Not our action.** The
    operator will **reset this repository's history to a single commit** once
    the tasks are complete and the prose has been rewritten, which removes it.

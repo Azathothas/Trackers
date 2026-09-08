@@ -141,6 +141,10 @@ def annotate(health_record: dict[str, Any],
     """
     annotated = dict(health_record)
     annotated["second_hand"] = [o.as_record() for o in observations]
-    if "health_state" in health_record:
-        annotated["health_state"] = health_record["health_state"]
+    # ⚠ There is deliberately no line here re-asserting `health_state`. An
+    # earlier version had one and the guard mutation of 2026-09-08 showed it
+    # could not fail: the copy above had already carried the value, so deleting
+    # it changed nothing and it read as a guard while enforcing nothing. What
+    # actually holds the rule is that this function only ever ADDS a key, and
+    # `tests/test_secondhand.py` proves it by planting the promotion.
     return annotated
