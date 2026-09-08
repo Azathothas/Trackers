@@ -22,10 +22,13 @@ each: [INDEX.md](INDEX.md).
 
 ## State
 
-- **Last session:** started `2026-09-08T08:15:00Z`, ended on operator
-  instruction (RULES 10.2, first way). A **measurement and justification
-  pass**: the value gate was answered, the corpus was measured three more
-  times, and per-tracker history exists.
+- **This session:** started `2026-09-08T13:30:00Z`, running. A **resolution
+  pass**: the probe stopped publishing this machine's resolver as a property
+  of a name, and stopped being willing to dial a null address.
+- **Previous session:** started `2026-09-08T08:15:00Z`, ended on operator
+  instruction (RULES 10.2, first way). A measurement and justification pass:
+  the value gate was answered, the corpus was measured three more times, and
+  per-tracker history exists.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
 - ⛔ **Still nothing published as data.** No dataset exists at any public URL.
   Every measurement lives under `experiments/results/` as evidence.
@@ -52,7 +55,8 @@ be the failure that page exists to prevent.
 | First corpus sweep | run **`33938543488`**, 200 of 1327 by stride |
 | Baseline census | run **`34207344996`**, all **99**, **63 live** counted not estimated |
 | DNS census | run **`34210496112`**, both images. IPv6-only **16 URLs on 15 hosts** |
-| Resolver divergence | **3 of 239** on `ubuntu-24.04`, **2** on `22.04`. `openbittorrent.com` fails on both (`C-06`) |
+| Resolver divergence | **3 of 240** on `ubuntu-24.04`, **1** on `22.04`, run `34235047982`, addresses routable (`C-06`) |
+| Null-addressed hosts | **11 hosts, 14 URLs** answer `0.0.0.0` or `::`. Zero on a runner, where `getaddrinfo` returns them |
 | Oracle disagreement | **17 of 93** = 18.3%, methodology caveat attached (`C-03`, `C-69`) |
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
@@ -73,6 +77,30 @@ those are up.
 Run `python3 scripts/check-todo.py`. It re-derives every number from the rows
 and fails a gate when [INDEX.md](INDEX.md)'s table disagrees. **Nothing is
 blocked.**
+
+## What this session has done so far
+
+**[T-037](measurement.md) is closed and [T-038](measurement.md) is open
+because of it.** The probe asks a second resolver whenever `getaddrinfo`
+fails, and the answers split four ways instead of one. Two of the four are in
+`ABOUT_US` and can never reach `dead`.
+
+⛔ **Its premise did not survive being re-measured, and the correction is
+larger than the entry.** On this host, 0 of 243 unresolvable hosts are rescued
+by a public resolver rather than 11: every one of the eleven answers `0.0.0.0`
+or `::`. On a **runner** the same eleven resolve through `getaddrinfo`
+normally, reach the prober, and a Linux connect to that address goes to the
+local host -- so 14 corpus URLs would have been probed against the runner
+itself. Refused now, before any socket, with the platform difference measured
+by a test rather than recalled.
+
+⛔ **`used_synthetic_infohash` was `true` on records where nothing was sent**,
+including in a committed sweep. Found by reading one record rather than by the
+suite.
+
+⭐ **The runner census cost no tracker a request.** `p0-ground-truth.yml` grew
+`skip_tracker_probes`, so re-measuring the runner's resolver no longer drags
+17 endpoints per image along with it.
 
 ## What the last session did
 
@@ -147,23 +175,22 @@ acceptance recorded, or open with what remains written into it.
 
 ## Start here next session
 
-1. **[T-037](measurement.md)** - a `dns_failure` records our resolver's
-   opinion, and a better resolver is already in the tree. ⭐ **Do this before
-   any full-corpus sweep**, because five URLs would be published wrong.
-2. **[T-041](scoring.md)** - the seven shapes over time. The store that can
+1. **[T-041](scoring.md)** - the seven shapes over time. The store that can
    express them now exists ([T-040](scoring.md)) and nothing computes them.
-3. **[T-031](measurement.md)** - still the leverage entry. Route (c) returned
+2. **[T-031](measurement.md)** - still the leverage entry. Route (c) returned
    nothing for any `unmeasurable` tracker and route (e) dissolved 3 of 15;
    routes (a) NAT64, (b) a relay and (d) public gateways are untried.
-4. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
+3. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
    cells over the HTTP corpus is roughly twelve thousand requests at somebody
    else's expense: a workflow over days, not a command.
-5. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
+4. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
    settled: D7's cadence, and DNS inside the budget at **100,000 lookups per
-   run**. What is left is computing it, publishing it in the run report, and
-   asserting it in a test.
-6. **[T-064](publication.md)** - release channels. Its platform half is
+   run**. ⚠ The second resolver adds to it: two queries per failing host and
+   up to six where nobody answers, which is 480 to 1440 per run today.
+5. **[T-064](publication.md)** - release channels. Its platform half is
    measured.
+6. **[T-038](measurement.md)** - the HTTP prober does not choose its address,
+   so `resolved_ip` is an inference on that path.
 
 **Deliberately deferred:** [T-044](scoring.md), the scoring model. **D4** stays
 open on purpose: history exists now, but no tracker has more than four
@@ -195,9 +222,12 @@ by priority. ⛔ Do not stop because the list above ran out.
    2026-09-08. This session used roughly 4,000. [T-026](measurement.md) carries
    it.
 7. **Schedule the health sweep?** Not until [T-037](measurement.md) lands.
-   2026-09-08. A scheduled sweep today would repeatedly record
-   `openbittorrent.com` as `dns_failure`, which this vantage cannot resolve and
-   public resolvers can.
+   2026-09-08. A scheduled sweep would have recorded `openbittorrent.com` as
+   `dns_failure` on a vantage that cannot resolve it while public resolvers
+   can. ⭐ **That condition is met**: the sweep now records
+   `resolver_divergence` there, which can never become `dead`. What still
+   argues for waiting is [T-026](measurement.md), because nothing yet computes
+   what a scheduled run spends.
 8. **The third party's credential in git history?** **Not our action.** The
    operator will **reset this repository's history to a single commit** once
    the tasks are complete and the prose has been rewritten, which removes it.
