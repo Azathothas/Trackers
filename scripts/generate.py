@@ -47,7 +47,8 @@ from trackers.exclusion import (carries_private_credential,       # noqa: E402
 from trackers.pipeline import (aggregate, collect_exclusions,      # noqa: E402
                                enforced_exclusions, flagged_exclusions,
                                render_plaintext, render_report)
-from trackers.labelled import render_csv, render_json            # noqa: E402
+from trackers.labelled import (metadata_for, render_csv,        # noqa: E402
+                               render_json)
 from trackers.registry import SOURCES, Role, enabled_sources      # noqa: E402
 from trackers.state import read_state                            # noqa: E402
 
@@ -287,6 +288,21 @@ def main() -> int:
     with open(os.path.join(staging, "report.md"), "w",
               encoding="utf-8", newline="\n") as fh:
         fh.write(report)
+    # T-062. ⛔ CSV cannot carry document metadata, so the versions and a
+    # digest per file live in their own artefact and a consumer of any format
+    # can answer what they received. Written last, so its digests cover the
+    # files as they were actually staged rather than as they were in memory.
+    payloads = {}
+    for name in ("trackers_all.txt", "trackers_all.json", "trackers_all.csv",
+                 "report.md"):
+        with open(os.path.join(staging, name), "rb") as fh:
+            payloads[name] = fh.read()
+    with open(os.path.join(staging, "metadata.json"), "w",
+              encoding="utf-8", newline="\n") as fh:
+        fh.write(metadata_for(payloads, generated_at=args.generated_at,
+                              code_version=code_version,
+                              count=len(agg.trackers),
+                              digest=json.loads(labelled_json)["digest"]))
 
     previous = args.out + ".previous"
     if os.path.exists(args.out):

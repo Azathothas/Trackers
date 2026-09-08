@@ -48,14 +48,17 @@ are different facts, and `success_rate: 0.0` says the second about the first.
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 from typing import Any, Iterable, Mapping
 
+from . import NORMALIZATION_VERSION, SCHEMA_VERSION, SCORING_VERSION
 from .model import HealthState, Tracker
 from .state import TrackerHistory
 
-__all__ = ["FIELDS", "CSV_FIELDS", "row_for", "render_json", "render_csv"]
+__all__ = ["FIELDS", "CSV_FIELDS", "row_for", "render_json", "render_csv",
+           "digest_of", "metadata_for"]
 
 #: Every field emitted in JSON, in the order the schema defines them. The tuple
 #: is the contract: `tests/test_labelled.py` diffs it against `docs/schema.md`
@@ -86,6 +89,53 @@ FIELDS: tuple[str, ...] = (
 #: a CSV cell holding JSON is a format nobody can open in the tool they chose
 #: CSV for. `sources` joins on `;` -- never `,`, which is the delimiter.
 CSV_FIELDS: tuple[str, ...] = FIELDS
+
+
+def digest_of(rows) -> str:
+    """A stable sha256 over the rows, as `sha256:<hex>`.
+
+    ⭐ **What lets a consumer tell a re-publication from a change.** Every run
+    writes a new `generated_at`, so a reader comparing timestamps sees movement
+    on every publish whether or not anything moved. Two documents with one
+    digest carry the same data.
+
+    Hashed over the canonical JSON of the rows alone, so the digest does not
+    change when the document's own metadata does -- including when it changes
+    because the digest was added.
+    """
+    canonical = json.dumps(rows, sort_keys=True, separators=(",", ":"))
+    return "sha256:" + hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def metadata_for(paths_and_bytes, *, generated_at: str, code_version: str,
+                 count: int, digest: str) -> str:
+    """The release's own description, as `metadata.json`.
+
+    ⛔ **This exists because CSV cannot carry document metadata** and T-062
+    requires that a consumer of any published artefact can tell what they
+    received. A version column repeated on 1334 identical rows is not a header,
+    and a comment line breaks the format for the readers people choose CSV for.
+    So the versions and a digest **per file** live here, and a CSV consumer
+    checks the file they hold against this one. RULES 9: the requirement is not
+    dropped, it is met by the strongest form the format allows.
+    """
+    files = {}
+    for name, payload in sorted(paths_and_bytes.items()):
+        files[name] = {
+            "bytes": len(payload),
+            "digest": "sha256:" + hashlib.sha256(payload).hexdigest(),
+        }
+    return json.dumps({
+        "generated_at": generated_at,
+        "code_version": code_version,
+        "schema_version": SCHEMA_VERSION,
+        "normalization_version": NORMALIZATION_VERSION,
+        "scoring_version": SCORING_VERSION,
+        "count": count,
+        "dataset_digest": digest,
+        "files": files,
+        "schema": "schema.md, published beside this file",
+    }, indent=2, sort_keys=True) + "\n"
 
 
 def _health_of(history: TrackerHistory | None,
@@ -165,9 +215,23 @@ def render_json(trackers: list[Tracker], *, provenance: Mapping[str, list[str]],
     `generated_at` is injected (RULES 3.6). `sort_keys` and a fixed indent so
     two runs over one input are byte-identical, which `gate.yml` asserts.
     """
+    rows = _rows(trackers, provenance, histories or {}, observed_from)
     document = {
         "generated_at": generated_at,
         "code_version": code_version,
+        # T-062. Four questions a consumer must be able to answer about what
+        # they received: which dataset, when, under what rules, in what shape.
+        # ⛔ Versioned **independently**, because they change for different
+        # reasons: a field can be added without any normalization rule moving.
+        "schema_version": SCHEMA_VERSION,
+        "normalization_version": NORMALIZATION_VERSION,
+        # ⛔ `null` is the honest value while no model is chosen (T-044). A `1`
+        # would tell a consumer a methodology exists and is stable.
+        "scoring_version": SCORING_VERSION,
+        #: The rows, hashed. Two documents with one digest are the same data,
+        #: whatever their `generated_at` says, which is what lets a consumer
+        #: tell a re-publication from a change.
+        "digest": digest_of(rows),
         "count": len(trackers),
         "fields": list(FIELDS),
         # ⚠ Stated in the data rather than only in the documentation, because
@@ -176,7 +240,7 @@ def render_json(trackers: list[Tracker], *, provenance: Mapping[str, list[str]],
             "Health is measured from one cloud provider's address space and "
             "from one authoring host, never from a residential connection. A "
             "tracker recorded unknown may answer you."),
-        "trackers": _rows(trackers, provenance, histories or {}, observed_from),
+        "trackers": rows,
     }
     return json.dumps(document, indent=2, sort_keys=True) + "\n"
 

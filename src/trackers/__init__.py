@@ -30,4 +30,21 @@ __version__ = "0.1.0"
 
 #: Bumped when normalization or deduplication changes semantics, so a consumer
 #: can tell which rules produced a dataset (T-062).
+#:
+#: ⛔ **Pinned by `tests/test_versions.py`**, which holds a table of inputs and
+#: the outputs this version promises. Changing what `normalize.parse` does
+#: without changing this number fails that test, which is the only thing that
+#: makes a version mean anything: an unpinned version is a number somebody
+#: remembers to update.
 NORMALIZATION_VERSION = 1
+
+#: The field set of the published JSON and CSV. Bumped when a field is added,
+#: removed or changes meaning, so a consumer can detect a shape change without
+#: diffing rows. `docs/schema.md` defines the fields it names.
+SCHEMA_VERSION = 1
+
+#: ⛔ **`None`, and that is the honest value.** No scoring model has been chosen
+#: (T-044, decision D4 open), so there is no methodology to version. A `1` here
+#: would tell a consumer a methodology exists and is stable. RULES 1.5: where a
+#: value is unknown, write a dash -- and `null` is the dash a JSON reader gets.
+SCORING_VERSION = None

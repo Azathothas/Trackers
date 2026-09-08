@@ -161,7 +161,7 @@ jobs:
       # depend on a reader having noticed an earlier one's exit code.
       - name: Refuse to publish what was not generated
         run: |
-          for f in trackers_all.txt trackers_all.json trackers_all.csv report.md; do
+          for f in trackers_all.txt trackers_all.json trackers_all.csv report.md metadata.json; do
             if [ ! -s "build/data/$f" ]; then
               echo "::error::build/data/$f is missing or empty; not publishing"
               exit 1
@@ -180,7 +180,8 @@ jobs:
       - name: Publish
         run: |
           cp build/data/trackers_all.txt build/data/trackers_all.json \
-             build/data/trackers_all.csv build/data/report.md published/
+             build/data/trackers_all.csv build/data/report.md \
+             build/data/metadata.json published/
           cp sweep-in/state.jsonl published/state.jsonl 2>/dev/null || true
           cp docs/schema.md published/schema.md
           cd published

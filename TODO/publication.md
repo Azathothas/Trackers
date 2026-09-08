@@ -103,7 +103,7 @@ Source:      the brief's section 17.4 (versioning)
 Category:    publication
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     `NORMALIZATION_VERSION` exists in `src/trackers/__init__.py` and
              reaches only the run report. The schema and the scoring methodology
@@ -117,6 +117,42 @@ Approach:    Generated metadata must let a consumer determine **what dataset
 Prove:       A test that every published artefact carries all four, and that
              changing normalization semantics without bumping the version fails
              a gate.
+
+**Done.** `python3 -m unittest tests.test_versions -v` -> **9 tests, OK**.
+Three versions, independent because they change for different reasons:
+`schema_version` for the field set, `normalization_version` for the rules that
+produced the URLs, and `scoring_version` -- which is ⛔ **`null`, and that is
+the honest value**: no model is chosen ([T-044](scoring.md)), so there is no
+methodology to version and a `1` would tell a consumer one exists and is
+stable.
+
+⭐ **A `digest` over the rows answers the question the timestamp cannot.**
+Every run writes a new `generated_at`, so a consumer comparing timestamps sees
+movement on every publish whether or not anything moved. Two documents with one
+digest carry the same data. Hashed over the rows alone, so adding a document
+field does not change the digest of data that did not move.
+
+⛔ **CSV cannot carry document metadata, so `metadata.json` exists** and the
+requirement is met rather than dropped (RULES 9). A version column repeated on
+1334 identical rows is not a header and a comment line breaks the format for
+the readers people choose CSV for, so the release describes itself in a file
+beside the data, carrying the versions and a **size and `sha256:` per published
+file**. A consumer of the plaintext or the CSV hashes what they hold and
+compares.
+
+**The second half of the `Prove` clause is the one with teeth**, and it is a
+golden table: `NORMALIZATION_VERSION` is pinned to what version 1 promises, so
+changing normalization semantics without moving the number fails. ⭐ An
+unpinned version is a number somebody remembers to update, which is to say one
+that is eventually wrong while looking authoritative.
+
+⚠ **Mutation testing took four attempts to break it, and the first three
+failures were findings rather than gaps.** Two rules are enforced twice, so a
+single-line change to either does not alter behaviour: `normalize.py`'s
+`host.lower()` runs on a host `urlsplit().hostname` has **already** lowercased,
+and the whitespace strip runs on both sides of comment removal. The fourth
+mutation -- dropping an explicit `:80` when rendering the URL, which is a single
+decision point -- fails the table with the before and after printed.
 
 ---
 

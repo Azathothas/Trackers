@@ -65,7 +65,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **385** tests, no network |
+| Test suite | **394** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |
@@ -203,10 +203,10 @@ acceptance recorded, or open with what remains written into it.
    is complete. ⚠ Each arm needs 20 contacted subjects before the instrument
    will compare them and the live set is 32, so what the verdict actually waits
    on is a wider one: a fresh sweep's live trackers.
-2. **[T-062](publication.md)** - the dataset is public and carries no version
-   a consumer can pin, so nobody can say what they received. ⭐ The channel
-   semantics exist ([T-064](publication.md)) and nothing uses them; this is
-   the entry that would.
+2. **[T-066](publication.md)** - run reports. ⭐ The dataset is published and
+   versioned now, so what a run reports about itself is the remaining half of
+   observability, and [T-064](publication.md)'s channel semantics still exist
+   unused.
 3. **[T-084](operations.md)** - the rest of the workflow architecture. ⭐ The
    sweep **is scheduled** now, every three hours, rotating through seven
    slices. What remains is what else runs and how the pieces fit, not the
