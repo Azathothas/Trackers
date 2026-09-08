@@ -484,6 +484,21 @@ Approach:    Compute the budget from the real corpus size
              `src/trackers/bencode.py` now returns `min_interval` from
              `classify_body` alongside `interval`; **the scheduler must prefer
              `max(min_interval, interval)` and this entry is what asserts it.**
+
+             ⛔ **The budget must say whether DNS is inside it or outside it.**
+             Found by the tracker-operator review of 2026-09-08: this session
+             issued roughly **four thousand DNS queries naming other people's
+             trackers** -- `experiments/29` resolves 965 hostnames and
+             `experiments/30` asks a second resolver about every one the first
+             could not answer for -- and **nothing counted them**. RULES 15.2
+             bounds requests to upstreams and trackers; a resolution is neither,
+             so the ceiling is silent on it, and `PROGRESS.md`'s open question 1
+             already records the related trade without its scale.
+
+             ⚠ A resolution is close to free from an operator's side, so the
+             answer may well be "outside, and here is why". What is not
+             acceptable is the budget continuing not to mention it, because an
+             unmentioned load is one nobody notices multiplying.
 Decision:    **D7 -- CLOSED by operator ruling 2026-08-29. Publish hourly; probe
              each tracker on its own stated `interval`, defaulting to 3 h.**
              Hourly *generation* touches no tracker and was never in question.
@@ -1376,6 +1391,9 @@ the hosts the first could not answer for were asked twice; re-asking about the
 515 that already resolve would triple this project's DNS load to confirm
 something known (RULES 15.2).
 
+**On the authoring host** -- ⚠ **and the vantage is part of the number**, which
+the claim audit of the same day caught this table stating without:
+
 | class | hosts | URLs |
 | --- | --- | --- |
 | resolves for both | 515 | 737 |
@@ -1384,6 +1402,13 @@ something known (RULES 15.2).
 | gone, NXDOMAIN confirmed | **179** | **256** |
 | no address records | 43 | 61 |
 | lookup failed, undetermined | 11 | 20 |
+
+⭐ **The runner disagrees, and that is [T-007](../TODO/claims.md)'s finding
+rather than a discrepancy.** Run `34210496112` reports **3 of 239** rescued on
+`ubuntu-24.04` and **2** on `ubuntu-22.04` against this host's 11 of 244.
+[`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md) carries both
+columns side by side and names the runner as canonical, because that is the
+vantage every health record came from.
 
 ⭐ **The biggest class is real evidence about the trackers**: 179 hosts are
 NXDOMAIN by public resolvers, so 256 URLs name something that does not exist.

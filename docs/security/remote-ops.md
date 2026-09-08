@@ -22,6 +22,25 @@ Anything that changes state somebody depends on. Read the current state, make
 the change, confirm the system still works. Leaving a cascading failure live is
 the one outcome remote access exists to prevent.
 
+⛔ **Dispatching a workflow that contacts trackers: look at what is already
+running first.**
+
+```bash
+gh run list --workflow "P0 ground truth" --limit 1
+```
+
+**Measured cost of not doing it, 2026-09-08.** A dispatch landed twelve seconds
+after a push-triggered run of the same workflow. The `concurrency` group did
+its job and cancelled the in-flight run -- **after it had already contacted 11
+UDP trackers**. Eleven operators answered a probe whose result was thrown away,
+no artefact was kept, and nothing in the tree is better for it.
+
+⭐ **That is the worst trade available in this project**: the cost is borne
+entirely by somebody else, the benefit is zero, and it is invisible unless you
+read a cancelled run's log. The concurrency group is not the defect -- it is
+what stops two sweeps reaching one tracker at once. Looking first is the only
+route that reaches the failure, and it costs one command.
+
 ### Red line. Stop and record.
 
 ⛔ Anything irreversible or that risks data loss: deleting stored data,

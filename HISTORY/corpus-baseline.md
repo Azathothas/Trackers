@@ -161,43 +161,68 @@ Blacklist transports: `http` 208, `https` 28, `udp` 107, `ws` 1, `wss` 2.
 ⛔ **These are DNS figures, not health.** Nothing that produced them contacted
 a tracker, and none of them is a health state. They are here because the
 corpus's *shape* includes whether its names resolve, and because
-[`gates.md`](gates.md) carried a dash where the first row's number belongs.
+[`gates.md`](gates.md) carried a dash where the IPv6-only count belongs.
+
+⛔ **AND THEY ARE PER VANTAGE, WHICH IS THE FINDING RATHER THAN A CAVEAT.**
+Every other figure on this page is a property of the corpus and is the same
+everywhere. These are not: `experiments/30` measured a **runner's own resolver
+failing on `openbittorrent.com`** while public resolvers answer for it
+(`C-06`). So a single table here would be the three-contradictory-sets failure
+this whole page exists to prevent, wearing the shape of a reasonable
+simplification. ⭐ **The canonical column is the runner**, because that is the
+vantage every health record in this project was taken from.
 
 ```bash
 python3 experiments/29-address-family-census.py
 python3 experiments/30-resolution-failure-classes.py
 ```
 
-**965 distinct hostnames**, of which **206 are address literals** and need no
-lookup. `experiments/29`, this host's resolver:
+**965 distinct hostnames**, of which **206 are address literals** needing no
+lookup, and **759 name-addressed**. Those two are vantage-independent.
 
-| | hosts | tracker URLs |
+### Address family
+
+| | GitHub runner (canonical) | authoring host |
 | --- | --- | --- |
-| IPv4-capable | 706 | 960 |
-| **IPv6-only** | **15** | **16** |
-| did not resolve | 244 | 351 |
+| IPv4-capable | **711** hosts, **968** URLs | 706 hosts, 960 URLs |
+| **IPv6-only** | **15** hosts, **16** URLs | 15 hosts, 16 URLs |
+| did not resolve | **239** hosts, **343** URLs | 244 hosts, 351 URLs |
+
+⭐ **The IPv6-only figure is identical on both**, which is what makes it safe
+for [`gates.md`](gates.md) to quote as a corpus property: it is a fact about
+the names. Everything else in the table moves with the resolver.
 
 **Three of the fifteen IPv6-only hosts have an IPv4 host in this corpus under
 the same registrable domain**, already probed: `anna.bt.bontal.net`,
-`ipv6.govt.hu` and `ipv6.tracker.harry.lu`. Result at
-`experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json`.
+`ipv6.govt.hu` and `ipv6.tracker.harry.lu`. Identical on both vantages.
 
-`experiments/30` then asked a **second, independent resolver** about every
-name-addressed host, so that "does not resolve" and "does not resolve *for
-us*" are separate facts. 759 name-addressed hosts, 244 of which needed the
-second opinion:
+### Which kind of not-resolving
 
-| class | hosts | URLs |
-| --- | --- | --- |
-| resolves for both | 515 | 737 |
-| **resolves only for the public resolver** | **11** | **14** |
-| resolves only for this host | 0 | 0 |
-| gone, NXDOMAIN confirmed | 179 | 256 |
-| no address records | 43 | 61 |
-| lookup failed, undetermined | 11 | 20 |
+`experiments/30` asks a **second, independent resolver** about every host the
+first could not answer for, so that "does not resolve" and "does not resolve
+*for us*" are separate facts.
 
-⛔ **None of these is `dead`,** and the vocabulary is deliberately about the
-lookup rather than about the tracker. Result at `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T092405Z.json`.
+| class | runner `ubuntu-24.04` | runner `ubuntu-22.04` | authoring host |
+| --- | --- | --- | --- |
+| resolves for both | 520 / 745 | 520 / 745 | 515 / 737 |
+| **resolves only for the public resolver** | **3 / 7** | **2 / 5** | **11 / 14** |
+| resolves only for this host | 0 / 0 | 0 / 0 | 0 / 0 |
+| gone, NXDOMAIN confirmed | **183 / 259** | 183 / 259 | 179 / 256 |
+| no address records | 43 / 61 | 43 / 61 | 43 / 61 |
+| lookup failed, undetermined | 10 / 16 | 11 / 18 | 11 / 20 |
+
+*hosts / URLs. Runner figures from workflow run `34210496112`; authoring-host
+figures from `experiments/results/29-address-family-census.unclassified-host.20260908T091721Z.json` and `experiments/results/30-resolution-failure-classes.unclassified-host.20260908T092405Z.json`.*
+
+⛔ **None of these is `dead`.** The vocabulary is deliberately about the lookup
+rather than about the tracker, and `MIN_SAMPLES_FOR_DEATH` is 3.
+
+⚠ **The row that matters is the second one**, and the two runner images
+disagree with each other on it. `openbittorrent.com` and
+`tracker.openbittorrent.com` fail on **both** images and resolve for public
+resolvers; `tracker.parrotlinux.org` fails on `24.04` only. `C-06` carries it
+and [T-037](../TODO/measurement.md) is the entry that stops a probe publishing
+it as the tracker being gone.
 
 ## What these numbers are not
 
