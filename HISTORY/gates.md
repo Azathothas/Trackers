@@ -95,15 +95,25 @@ it. **Do not manufacture a difference to justify existence.**
 ### The answer
 
 **Instrument:** `experiments/27-value-gate.py`, offline, in the gate as
-`offline-value-gate`. **Evidence:** the 200-tracker sweep of workflow run
-`33938543488`, 2026-09-05, one GitHub-hosted runner, IPv4 only, **one
-observation per tracker**.
+`offline-value-gate`. **Evidence:** two GitHub-hosted runs, IPv4 only, **one
+observation per tracker** -- the 200-tracker stride sweep `33938543488` of
+2026-09-05, and the **census** of all 99 baseline trackers, `34207344996` of
+2026-09-08 ([T-034](../TODO/measurement.md)).
 
 | the gate's question | the answer |
 | --- | --- |
 | present here, absent there, **alive** | **16 of 183** sampled, a floor rate of 8.7% [5.5-13.7], scaling to **107 live [67-169]** of the 1228 we add |
-| present there, **dead** here | **0**, and it is zero *by construction*: `MIN_SAMPLES_FOR_DEATH` is 3 and this is one sample. The weaker claim the evidence supports is `not_live`, **8 of 17** |
-| health disagreements | vs `ngosang_all` **9 of 17** agree-live; vs `newtrackon_live` **11 of 15**. Neither side is presumed right: newTrackon **announces** and we scrape (`C-69`), so a disagreement is a methodology difference before it is a finding |
+| present there, **dead** here | **0**, and it is zero *by construction*: `MIN_SAMPLES_FOR_DEATH` is 3 and this is one observation each. The weaker claim the evidence supports is `not_live`, **36 of 99** |
+| health disagreements | vs `ngosang_all` **63 of 99** agree-live; vs `newtrackon_live` **36 of 46**. Neither side is presumed right: newTrackon **announces** and we scrape (`C-69`), so a disagreement is a methodology difference before it is a finding |
+
+⭐ **The baseline arm is a census, so it carries no sampling error at all**:
+**63 live of 99**, counted rather than estimated. The 17-tracker sample it
+replaced had put that rate at 52.9% with a 95% interval of 31.0-73.8, and the
+census landed at **63.6%** -- inside it. ⚠ **The two arms therefore come from
+different days**, which is a real confound and is not waved away: that
+consistency check is what licenses the seam, the instrument fails
+`--expect-answered` if the census ever falls outside the sample's interval, and
+each run is also reported on its own so a reader can decline the combination.
 
 **The control that makes the extrapolation legitimate.** The sweep takes a
 *stride* over a sorted corpus, not a random draw, so the arithmetic above
@@ -124,14 +134,21 @@ against the baseline's best.
 
 | bar | measured | |
 | --- | --- | --- |
-| **count** -- our worst case against their best | live yield **1.92x** worst, 3.05x point, 6.50x best | **clears** |
-| **density** -- what share of each list answered us | ours **12.0%** of 1327, theirs **52.9%** of 99 | **fails** |
+| **count** -- our worst case against their best | live yield **2.06x** worst, 2.70x point, 3.68x best | **clears** |
+| **density** -- what share of each list answered us | ours **12.8%** of 1327, theirs **63.6%** of 99 | **fails** |
 
 **So the honest reading is two-sided and both halves belong in the README.** A
 consumer who takes our plaintext *unfiltered* gets a list 13.4x longer whose
-entries are **four times less likely** to answer -- a worse list. A consumer who
-takes it *filtered to what we measured live* gets between **1.9x and 6.5x** as
+entries are **five times less likely** to answer -- a worse list. A consumer who
+takes it *filtered to what we measured live* gets between **2.1x and 3.7x** as
 many live trackers as the whole baseline contains.
+
+⚠ **The census moved both bars, and it moved the unflattering one further.**
+Measuring the baseline properly raised its live share from 52.9% to **63.6%**,
+so the density gap this project has to answer for is **wider** than the sample
+suggested, while the count ratio's worst case improved from 1.92x to 2.06x
+because the baseline's own upper bound collapsed onto a counted number. Both
+directions are the same correction, and neither was chosen.
 
 ⭐ **Which makes the verdict conditional, and the condition is the deliverable:
 the value is in the labels, not the URLs.** Publishing the plaintext without
@@ -155,10 +172,11 @@ probe to demonstrate.
   probed **in the same run by the same code**; the absolute rates do not.
 * **Not that the baseline is worse maintained.** The opposite is measured. Its
   entries answered us at 52.9% against our unique additions' 8.7%.
-* **Not a settled verdict.** It rests on a 200-tracker sample and the ngosang
-  arm is **17 trackers**. `experiments/27-value-gate.py` runs in the gate, so
-  the day a further sweep moves the answer, the gate says so instead of this
-  page going quietly stale.
+* **Not a settled verdict.** The baseline arm is now a census, but the arm
+  that carries the whole "what we add" figure is still **183 trackers of
+  1228**, and its interval is what the ratios above inherit.
+  `experiments/27-value-gate.py` runs in the gate, so the day a further sweep
+  moves the answer, the gate says so instead of this page going quietly stale.
 
 **What is measured of the aggregation half**, by `experiments/19`:
 

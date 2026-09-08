@@ -534,7 +534,7 @@ Prove:       `python3 experiments/27-value-gate.py --expect-answered` (planned)
 
 **Done.** `python3 experiments/27-value-gate.py --expect-answered` -> exit 0,
 result committed at
-`experiments/results/27-value-gate.unclassified-host.20260908T083225Z.json`.
+`experiments/results/27-value-gate.unclassified-host.20260908T090220Z.json`.
 It is in the gate as `offline-value-gate`, so the answer is re-derived from the
 committed records on every push rather than transcribed once.
 
@@ -619,7 +619,7 @@ Prove:       `python3 experiments/28-newtrackon-crosscheck.py` (planned) exits
 
 **Done.** `python3 experiments/28-newtrackon-crosscheck.py --expect-crosscheck`
 -> exit 0, result committed at
-`experiments/results/28-newtrackon-crosscheck.unclassified-host.20260908T084140Z.json`,
+`experiments/results/28-newtrackon-crosscheck.unclassified-host.20260908T090220Z.json`,
 and in the gate as `offline-oracle-crosscheck`. The methodology sentence is a
 module constant that travels into every emitted block rather than a line in a
 header somebody can drop.
@@ -641,6 +641,22 @@ evidence that the probe is conservative in the direction it should be: it
 under-claims rather than over-claims. ⚠ It is 41 trackers on one day and it is
 not a proof of anything; it is the first number this project has that bears on
 its own false-positive rate at all.
+
+⛔ **The zero did not survive a bigger sample, and the correction is here
+rather than in a silent edit (RULES 7).** The baseline census of
+[T-034](measurement.md), run `34207344996`, added 99 records and 52 more
+trackers assessed by both sides, and in those the cell is **3**, not 0. Across
+both runs it is **3 of 93**.
+
+⚠ **The hedge in the paragraph above is what held**: it said 41 trackers on one
+day is not a proof of anything, and it was not. The claim that does survive is
+the weaker one -- this project calls something live that the observer does not
+in roughly **3%** of the trackers both looked at -- and even that carries a
+confound worth naming: the committed newTrackon snapshot is from **2026-08-31**
+and the census is from **2026-09-08**, so a tracker that came up in between
+reads as our false positive when it is their staleness. `--fetch` closes that
+gap and was not run, because a refreshed snapshot cannot be compared with the
+committed one that every earlier number here used.
 
 ⛔ **The `vs stable` row is reported and explicitly labelled NOT an agreement
 rate.** Our `live` is one observation of current responsiveness; their
@@ -1173,7 +1189,7 @@ Source:      [T-027](measurement.md)'s acceptance; RULES 2 on sample counts
 Category:    measurement
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     The value gate is answered, and the arm that **is** the comparison
              is 17 trackers. `experiments/27` measures the baseline's live
@@ -1212,3 +1228,47 @@ Prove:       A sweep whose selection is the baseline's 99 URLs, committed under
              visibly narrower than 31%-74%. ⛔ **If the narrower interval moves
              the verdict, `HISTORY/gates.md` and the README change with it** --
              including if it moves to "not justified".
+
+**Done.** Workflow run **`34207344996`**, `ubuntu-24.04`, 2026-09-08, dispatched
+with `only_source=ngosang_all`. Its record is committed at
+`experiments/results/health-sweep.github-actions-hosted.run34207344996.json`
+and carries the selection block that says it is a census rather than a sample.
+`python3 experiments/27-value-gate.py --expect-answered` -> exit 0, result at
+`experiments/results/27-value-gate.unclassified-host.20260908T090220Z.json`.
+
+**The baseline arm is now counted, not estimated: 63 live of 99.** The
+17-tracker sample it replaced had said 52.9% with a 95% interval of
+31.0%-73.8%; the census says **63.6%**, which falls inside it. So the sample
+was not biased -- it was thin, exactly as this entry claimed -- and the
+interval on that arm is gone rather than narrowed.
+
+**It moved both bars, and it moved the unflattering one further.**
+
+| | sample | census |
+| --- | --- | --- |
+| baseline live | 52 [31-73] | **63**, counted |
+| live yield ratio, worst case | 1.92x | **2.06x** |
+| baseline live density | 52.9% | **63.6%** |
+| our live density | 12.0% | **12.8%** |
+
+⭐ **The verdict does not change and the argument gets harder.** Bar 1 still
+clears and bar 2 still fails -- by more, because a properly measured baseline
+turns out to be *better* than the sample suggested, so the density gap this
+project must answer for is wider. `HISTORY/gates.md` and the README carry both
+directions; neither was chosen.
+
+⚠ **What it cost, and it is a real cost.** The two arms now come from runs
+three days apart, which is the time confound the same-run design existed to
+avoid. It is not waved away: `best_evidence()` declares the seam in every field
+it produces, the consistency check above is what licenses it,
+`--expect-answered` **fails** if a future census ever falls outside the
+sample's interval, and every run is still reported on its own so a reader can
+decline the combination. Rejected: re-probing the whole 200-tracker sample in
+the same run as the census, which spends 200 requests to remove a confound the
+consistency check can test for 0.
+
+**What is still thin, and it is now the only thin thing.** The arm carrying the
+whole "what we add" figure is **183 trackers of 1228**, and every ratio above
+inherits its interval. A census of that arm is 1045 further probes, which is a
+different order of politeness cost and belongs with the scheduled-sweep
+decision ([T-084](operations.md)) rather than being fired ad hoc.

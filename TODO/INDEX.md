@@ -65,7 +65,7 @@ pretending to be one.
 | [T-026](measurement.md) | P1 | measurement | open | The politeness budget is neither computed nor published nor asserted |
 | [T-029](measurement.md) | P1 | measurement | **done** | Probing has no concurrency control, timeout budget or cancellation behaviour |
 | [T-031](measurement.md) | P1 | measurement | open | Liveness for networks this vantage cannot reach -- the leverage entry |
-| [T-034](measurement.md) | P1 | measurement | open | The value gate rests on a 17-tracker arm, and a census would cost 82 probes |
+| [T-034](measurement.md) | P1 | measurement | **done** | The value gate rests on a 17-tracker arm, and a census would cost 82 probes |
 | [T-040](scoring.md) | P1 | scoring | open | There is no state or history, so nothing can be scored |
 | [T-043](scoring.md) | P1 | scoring | open | The six scoring invariants are not enforced by anything |
 | [T-046](scoring.md) | P1 | scoring | open | The five required categories do not exist |
@@ -121,7 +121,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 68 entries, 46 open, 0 blocked, 22 done
+**Counts:** 68 entries, 45 open, 0 blocked, 23 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -129,10 +129,10 @@ a number here disagrees with them. Do not edit them by hand.
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
 | P0 | 3 | 0 | 4 | 7 |
-| P1 | 12 | 0 | 10 | 22 |
+| P1 | 11 | 0 | 11 | 22 |
 | P2 | 25 | 0 | 7 | 32 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **46** | **0** | **22** | **68** |
+| **All** | **45** | **0** | **23** | **68** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

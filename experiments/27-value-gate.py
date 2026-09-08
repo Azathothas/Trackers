@@ -22,11 +22,21 @@ WHY IT EXISTS
     one place, and the numbers are compared against it afterwards.
 
 WHAT MAKES THE COMPARISON VALID, AND WHAT IT DOES NOT SURVIVE
-    ⭐ Both arms were probed IN THE SAME RUN, by the same code, from the same
-    vantage, within the same fifteen minutes. So while neither arm's rate
-    generalises to your connection, the DIFFERENCE between them is not an
-    artefact of measuring the two at different times or from different places.
-    That is the whole reason a comparison is possible from one thin sweep.
+    ⭐ Every run is reported on its own first, and in a single run both arms
+    were probed by the same code from the same vantage within the same fifteen
+    minutes. So while neither arm's rate generalises to your connection, the
+    DIFFERENCE between them inside one run is not an artefact of measuring the
+    two at different times or from different places.
+
+    ⚠ **The COMBINED figures cross that seam, deliberately and visibly.** Once
+    a census of the baseline exists it is a strictly better measurement of that
+    arm than any sample of it, and refusing to use it would be preferring a
+    17-tracker estimate to a 99-tracker count for tidiness. The cost is that
+    the two arms then come from different days, and what licenses it is a
+    CONSISTENCY CHECK rather than an assumption: the census rate is compared
+    against the interval the earlier sample put around the same population, and
+    `--expect-answered` FAILS if it falls outside. The single-run analyses are
+    always printed too, so a reader can decline the seam.
 
     ⛔ `live` IS A FLOOR, NOT A RATE. A tracker that timed out is `unknown`,
     and some of those are alive. Every "live" figure here understates both arms
@@ -245,6 +255,10 @@ def load_records(paths: list[str]) -> dict[tuple, dict]:
             "environment_class": key[0], "execution_profile": key[1],
             "run_id": key[2], "generated_at": doc.get("generated_at", C.UNKNOWN),
             "reported_counts": doc.get("counts", {}),
+            # What the run was pointed at. A stride sample of the whole corpus
+            # and a census of one source support different arithmetic, and a
+            # record that did not say which is which could be read as either.
+            "selection": doc.get("selection") or {"mode": "unstated"},
             "files": [], "by_url": {},
         })
         g["files"].append(os.path.basename(path))
@@ -286,14 +300,29 @@ def arm(records: dict, urls: set[str]) -> dict:
 
 
 def extrapolate(a: dict) -> dict:
-    """Scale an arm's measured rate to its whole population, with its interval."""
+    """Scale an arm's measured rate to its whole population, with its interval.
+
+    ⭐ **A census is not extrapolated.** Where every member of the population
+    was measured there is no sampling error to carry, so the interval is the
+    count itself. Running a census through the sampling arithmetic would
+    manufacture an interval around a number that has none, which is the
+    opposite of the failure this file mostly guards against and just as wrong.
+    """
     if not a["measured"]:
         return {"point": None, "ci95": [None, None], "basis": "no records"}
+    if a["measured"] >= a["population"]:
+        return {
+            "point": float(a["live"]),
+            "ci95": [float(a["live"]), float(a["live"])],
+            "basis": f"census: all {a['population']} measured, {a['live']} live",
+            "is_census": True,
+        }
     lo, hi = a["live_floor_ci95"]
     return {
         "point": a["live_floor_rate"] * a["population"],
         "ci95": [lo * a["population"], hi * a["population"]],
         "basis": f"{a['live']}/{a['measured']} scaled to {a['population']}",
+        "is_census": False,
     }
 
 
@@ -336,6 +365,79 @@ def disagreements(records: dict, observer_urls: set[str], ours: set[str]) -> dic
         "agreement_ci95": wilson(len(both), n),
         "we_reached_and_they_do_not_list": len(neither),
         "detail_they_say_up_we_did_not_reach": they_only,
+    }
+
+
+def best_evidence(analyses: list[dict]) -> dict | None:
+    """Take each arm from the run that measured it best, and declare the seam.
+
+    ⛔ **THIS COMBINES TWO RUNS AND SAYS SO IN EVERY FIELD IT PRODUCES.** The
+    unique-to-us arm comes from a stride sample of the whole corpus; the
+    baseline arm, once a census of that source exists, comes from the census.
+    Neither is a better measurement of the other's population, so nothing is
+    averaged and nothing is pooled -- each arm keeps its own run, its own date
+    and its own basis string.
+
+    ⚠ **THE COST IS A TIME CONFOUND, AND IT IS NOT WAVED AWAY.** Taking two
+    arms from runs on different days means a tracker that changed in between
+    is counted differently on each side, which is exactly the artefact the
+    same-run comparison was chosen to avoid. What licenses it here is a
+    CONSISTENCY CHECK, not an assumption: the census's live rate is compared
+    against the interval the earlier sample put around the same population. If
+    it falls inside, the two runs agree about the arm they share and the seam
+    has not moved the answer. If it falls outside, that is a finding and the
+    single-run analyses -- which are always reported too -- are the ones to
+    read.
+    """
+    census = None
+    sample = None
+    for a in analyses:
+        sel = a["selection"]
+        if (sel.get("mode") == "one source, by provenance"
+                and sel.get("source") == BASELINE):
+            # Prefer the most recent census if several exist.
+            if census is None or a["vantage"]["generated_at"] > census["vantage"]["generated_at"]:
+                census = a
+        elif a["records"] > (sample["records"] if sample else 0):
+            sample = a
+    if sample is None or census is None:
+        return None
+
+    sampled_base = sample["baseline_whole_list"]["arm"]
+    census_base = census["baseline_whole_list"]["arm"]
+    lo, hi = sampled_base["live_floor_ci95"]
+    rate = census_base["live_floor_rate"]
+    consistent = rate is not None and lo <= rate <= hi
+
+    return {
+        "unique_to_us_from": {
+            "run_id": sample["vantage"]["run_id"],
+            "generated_at": sample["vantage"]["generated_at"],
+            "why": "the only run that sampled the whole corpus"},
+        "baseline_from": {
+            "run_id": census["vantage"]["run_id"],
+            "generated_at": census["vantage"]["generated_at"],
+            "why": f"a census of every tracker `{BASELINE}` contributed, so "
+                   "this arm carries no sampling error at all"},
+        "consistency_check": {
+            "question": ("does the census agree with what the earlier sample "
+                         "said about the same population?"),
+            "sampled_rate": sampled_base["live_floor_rate"],
+            "sampled_n": sampled_base["measured"],
+            "sampled_ci95": [lo, hi],
+            "census_rate": rate,
+            "census_n": census_base["measured"],
+            "census_falls_inside_the_sampled_interval": consistent,
+            "verdict": ("the two runs agree about the arm they share; the "
+                        "cross-run seam has not moved the answer"
+                        if consistent else
+                        "THE RUNS DISAGREE about the shared arm. Read the "
+                        "single-run analyses below and treat the combined "
+                        "figures as unsafe."),
+        },
+        "q1_unique_to_us_and_alive": sample["q1_unique_to_us_and_alive"],
+        "baseline_whole_list": census["baseline_whole_list"],
+        "q2_in_baseline_and_dead_here": census["q2_in_baseline_and_dead_here"],
     }
 
 
@@ -474,10 +576,38 @@ def main() -> int:
         # THE CONTROL. The sample is a stride, not a draw. If baseline
         # membership were correlated with sort position the extrapolation
         # below would be invalid, and this is what says whether it is.
+        #
+        # ⛔ **It applies only to a run that sampled the whole corpus.** A run
+        # aimed at one source by `--only-source` is 100% baseline members on
+        # purpose, so the same arithmetic would report a wild over-
+        # representation and call a deliberate, declared choice a bias. A
+        # control that fires on the thing it was told to do is not a control;
+        # it is a broken alarm, and the honest answer for a targeted run is
+        # `not applicable` rather than a number.
         measured_total = len(rec)
         fraction = measured_total / len(ours) if ours else 0.0
-        expected = len(overlap) * fraction
-        p = binom_two_sided_p(a_overlap["measured"], len(overlap), fraction)
+        whole_corpus_run = g["selection"].get("mode") != "one source, by provenance"
+        if whole_corpus_run:
+            expected = len(overlap) * fraction
+            p = binom_two_sided_p(a_overlap["measured"], len(overlap), fraction)
+            control = {
+                "applies": True,
+                "question": "is baseline membership independent of the stride?",
+                "expected_baseline_members_in_sample": expected,
+                "observed": a_overlap["measured"],
+                "two_sided_p": p,
+                "verdict": ("consistent with an unbiased sample" if p >= 0.05
+                            else "BIASED: the extrapolation below is not valid"),
+            }
+        else:
+            control = {
+                "applies": False,
+                "question": "is baseline membership independent of the stride?",
+                "verdict": ("not applicable: this run was aimed at "
+                            f"`{g['selection'].get('source')}` by provenance, so "
+                            "its composition is a declared choice and not a "
+                            "sample to test"),
+            }
 
         analyses.append({
             "vantage": {"environment_class": g["environment_class"],
@@ -491,16 +621,9 @@ def main() -> int:
             "corpus_size": len(ours),
             "records": measured_total,
             "sampling_fraction": fraction,
+            "selection": g["selection"],
             "reported_counts_in_record": g["reported_counts"],
-            "sample_representativeness_control": {
-                "question": "is baseline membership independent of the stride?",
-                "expected_baseline_members_in_sample": expected,
-                "observed": a_overlap["measured"],
-                "two_sided_p": p,
-                "verdict": ("consistent with an unbiased sample"
-                            if p >= 0.05 else
-                            "BIASED: the extrapolation below is not valid"),
-            },
+            "sample_representativeness_control": control,
             "q1_unique_to_us_and_alive": {
                 "arm": a_unique, "extrapolated_live": extrapolate(a_unique)},
             "q2_in_baseline_and_dead_here": {
@@ -519,8 +642,13 @@ def main() -> int:
         })
 
     # The verdict, against the rule stated once at the top of this file.
-    head = max(analyses, key=lambda a: a["records"])
-    verdict = judge(head, len(ours), len(theirs))
+    #
+    # ⭐ Judged on the best evidence per arm where a baseline census exists,
+    # and on the single best run otherwise. Which one was used is in the
+    # result, alongside the consistency check that licenses the seam.
+    combined = best_evidence(analyses)
+    basis = combined or max(analyses, key=lambda a: a["records"])
+    verdict = judge(basis, len(ours), len(theirs))
     negligible = verdict["delta_is_negligible"]
 
     results = {
@@ -541,6 +669,9 @@ def main() -> int:
                      "of what concatenation adds"),
         },
         "analyses": analyses,
+        "combined_best_evidence": combined,
+        "verdict_basis": ("best evidence per arm across runs"
+                          if combined else "one run"),
         "verdict": verdict,
         "enforced_exclusions": len(enforced),
     }
@@ -548,7 +679,8 @@ def main() -> int:
     conditions = C.collect(sample_counts={
         "health_record_files": len(paths),
         "vantage_groups": len(groups),
-        "records_in_headline_group": head["records"],
+        "records_total": sum(a["records"] for a in analyses),
+        "runs": len(analyses),
         "corpus": len(ours),
         "baseline": len(theirs),
     })
@@ -577,9 +709,12 @@ def main() -> int:
         print(f"  records {a['records']} of corpus {a['corpus_size']} "
               f"({a['sampling_fraction']:.1%})")
         c = a["sample_representativeness_control"]
-        print(f"  CONTROL  baseline members in sample: expected "
-              f"{c['expected_baseline_members_in_sample']:.1f}, observed "
-              f"{c['observed']}, p={c['two_sided_p']:.3f} -> {c['verdict']}")
+        if c["applies"]:
+            print(f"  CONTROL  baseline members in sample: expected "
+                  f"{c['expected_baseline_members_in_sample']:.1f}, observed "
+                  f"{c['observed']}, p={c['two_sided_p']:.3f} -> {c['verdict']}")
+        else:
+            print(f"  CONTROL  {c['verdict']}")
 
         for label, block in (("Q1 unique to us", a["q1_unique_to_us_and_alive"]),
                              ("   the baseline", a["baseline_whole_list"])):
@@ -608,6 +743,22 @@ def main() -> int:
                   f"they list {d['they_say_up_we_did_not_reach']} we did not "
                   f"reach; we reached {d['we_reached_and_they_do_not_list']} "
                   f"they do not list")
+
+    if combined:
+        cc = combined["consistency_check"]
+        print("\nCOMBINED -- each arm from the run that measured it best")
+        print(f"  unique-to-us  run {combined['unique_to_us_from']['run_id']} "
+              f"({combined['unique_to_us_from']['generated_at'][:10]}): "
+              f"{combined['unique_to_us_from']['why']}")
+        print(f"  the baseline  run {combined['baseline_from']['run_id']} "
+              f"({combined['baseline_from']['generated_at'][:10]}): "
+              f"{combined['baseline_from']['why']}")
+        print(f"  ⚠ the two arms come from different days. CONSISTENCY CHECK: "
+              f"the census measured {cc['census_rate']:.1%} "
+              f"(n={cc['census_n']}) where the earlier sample said "
+              f"{cc['sampled_rate']:.1%} [{cc['sampled_ci95'][0]:.1%}-"
+              f"{cc['sampled_ci95'][1]:.1%}] (n={cc['sampled_n']})")
+        print(f"    -> {cc['verdict']}")
 
     b1, b2 = verdict["bar_1_count"], verdict["bar_2_density"]
     print("\nBAR 1  COUNT -- our worst case against the baseline's best")
@@ -645,19 +796,36 @@ def main() -> int:
     print("    questions and a difference is methodology before it is finding.")
 
     if args.expect_answered:
+        # ⛔ The expectation is that THE GATE is answerable, not that every run
+        # answers every question. A run aimed at one source cannot speak to the
+        # arm it deliberately excluded, and failing it for that would be
+        # demanding evidence the run was never asked to produce. So each
+        # question is checked against the run that is supposed to answer it.
         problems = []
         for a in analyses:
-            if not a["q1_unique_to_us_and_alive"]["arm"]["measured"]:
-                problems.append(f"run {a['vantage']['run_id']}: q1 has no records")
+            rid = a["vantage"]["run_id"]
+            targeted = a["selection"].get("mode") == "one source, by provenance"
+            if not targeted and not a["q1_unique_to_us_and_alive"]["arm"]["measured"]:
+                problems.append(f"run {rid}: q1 has no records")
             if not a["q2_in_baseline_and_dead_here"]["arm"]["measured"]:
-                problems.append(f"run {a['vantage']['run_id']}: q2 has no records")
+                problems.append(f"run {rid}: q2 has no records")
             if not any(d["shared_and_measured"]
                        for d in a["q3_disagreement"].values()):
-                problems.append(f"run {a['vantage']['run_id']}: q3 has no "
-                                "shared measured trackers")
-            if a["sample_representativeness_control"]["two_sided_p"] < 0.05:
-                problems.append(f"run {a['vantage']['run_id']}: the sample is "
-                                "biased with respect to baseline membership")
+                problems.append(f"run {rid}: q3 has no shared measured trackers")
+            ctrl = a["sample_representativeness_control"]
+            if ctrl["applies"] and ctrl["two_sided_p"] < 0.05:
+                problems.append(f"run {rid}: the sample is biased with respect "
+                                "to baseline membership")
+        # ⛔ The seam between runs is itself an expectation. If the census and
+        # the earlier sample disagree about the population they share, the
+        # combined figures are not safe to quote and the gate must say so
+        # rather than publishing them anyway.
+        if combined and not combined["consistency_check"][
+                "census_falls_inside_the_sampled_interval"]:
+            problems.append(
+                "the baseline census falls outside the interval the earlier "
+                "sample put around the same population: the two runs disagree "
+                "and the combined figures are unsafe")
         if problems:
             print("\nEXPECTATION FAILED: --expect-answered")
             for p_ in problems:

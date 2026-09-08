@@ -1,0 +1,5108 @@
+{
+  "budget": {
+    "attempt_ipv6": false,
+    "attempt_router_networks": false,
+    "conditional_requests_required": true,
+    "full_corpus_sweep": false,
+    "max_concurrency": 8,
+    "profile": "ci",
+    "sample_size": 200
+  },
+  "code_version": "0.1.0",
+  "counts": {
+    "corpus": 99,
+    "health_states": {
+      "live": 63,
+      "unknown": 33,
+      "unmeasurable": 3
+    },
+    "not_reached_before_deadline": 0,
+    "probed": 96,
+    "refused_or_undetermined": 3,
+    "selected": 99,
+    "unmeasurable": 0
+  },
+  "generated_at": "2026-09-08T08:57:43Z",
+  "limits": {
+    "deadline_seconds": 900.0,
+    "timeout_seconds": 5.0,
+    "udp_attempt_seconds": 1.6666666666666667,
+    "udp_worst_case_seconds": 8.333333333333334
+  },
+  "selection": {
+    "corpus_before_selection": 1327,
+    "mode": "one source, by provenance",
+    "selected_by_provenance": 99,
+    "source": "ngosang_all"
+  },
+  "trackers": [
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "172.66.167.98",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://004430.xyz:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://0123456789nonexistent.com:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.72.244",
+      "rtt_ms": 413.585,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://1337.abcvg.info:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "HTTP 404; bdecode failed: unexpected byte b'<' at offset 0",
+      "failure": "not_a_tracker",
+      "health_state": "unknown",
+      "http_status": 404,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "transport_response",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.219.250.37",
+      "rtt_ms": 230.603,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "107.189.2.131",
+      "rtt_ms": 237.784,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://bt.poletracker.org:2710/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "94.23.207.177",
+      "rtt_ms": 221.867,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://ipv4announce.sktorrent.eu:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://jvavav.com:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://open.trackerlist.xyz:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://retracker.spark-rostov.ru:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://seeders-paradise.org:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "189.18.97.61",
+      "rtt_ms": 277.371,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://t.overflow.biz:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://torrent.hificode.in:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.41.188",
+      "rtt_ms": 125.612,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tr.nyacat.pw:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.bittor.pw:1337/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.bt-hash.com:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.57.182",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.bt4g.com:2095/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.bz:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.corpscorp.online:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "140.235.237.23",
+      "rtt_ms": 152.35,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.dhitechnical.com:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "211.75.205.187",
+      "rtt_ms": 403.672,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.dler.com:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "211.75.205.188",
+      "rtt_ms": 405.447,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.dler.org:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.ipv6tracker.org:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.lintk.me:2710/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.moxing.party:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "HTTP 404; zero-length body",
+      "failure": "not_a_tracker",
+      "health_state": "unknown",
+      "http_status": 404,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "transport_response",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "185.126.65.92",
+      "rtt_ms": 240.193,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.mywaifu.best:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "37.60.249.217",
+      "rtt_ms": 256.33,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.nexusstream.eu:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:1337",
+          "tcp:1337"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises TCP:1337",
+        "record": "BITTORRENT UDP:1337 TCP:1337",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "93.158.213.92",
+      "rtt_ms": 289.064,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.opentrackr.org:1337/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:1984",
+          "tcp:1984"
+        ],
+        "decision": "deny",
+        "detail": "record from 1.1.1.1: TCP:2710 is not advertised; the record names UDP:1984, TCP:1984",
+        "record": "BITTORRENT UDP:1984 TCP:1984",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "BEP 34 deny: record from 1.1.1.1: TCP:2710 is not advertised; the record names UDP:1984, TCP:1984",
+      "failure": "excluded_by_operator",
+      "health_state": "unmeasurable",
+      "http_status": null,
+      "ip_families_seen": [],
+      "ipv6_only": false,
+      "measurement_rung": "none",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "-",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.privateseedbox.xyz:2710/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:6969",
+          "tcp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises TCP:6969",
+        "record": "BITTORRENT UDP:6969 TCP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "43.250.54.126",
+      "rtt_ms": 190.166,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.qu.ax:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "tcp:8080"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises TCP:8080",
+        "record": "BITTORRENT TCP:8080",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.58.176",
+      "rtt_ms": 38.493,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.renfei.net:8080/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.sbsub.com:2710/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "tcp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises TCP:6969",
+        "record": "BITTORRENT TCP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "216.144.239.90",
+      "rtt_ms": 568.557,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.waaa.moe:6969/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.26.14.88",
+      "rtt_ms": 124.817,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.zhuqiy.com:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "keys=['interval', 'peers']",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "95.216.3.11",
+      "rtt_ms": 82.48,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker.zhuqiy.dgj055.icu:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "211.75.210.221",
+      "rtt_ms": 402.891,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker2.dler.org:80/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "OSError: [Errno 101] Network is unreachable",
+      "failure": "refused",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "http",
+      "url": "http://tracker810.xyz:11450/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.20.31.227",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://004430.xyz:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "HTTP 403; body kind=html",
+      "failure": "blocked_by_policy",
+      "health_state": "unknown",
+      "http_status": 403,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "transport_response",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.37.213",
+      "rtt_ms": 35.237,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://ht.therarbg.to:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "149.106.106.25",
+      "rtt_ms": 168.627,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://open.ftorrent.com:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "TimeoutError: timed out",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "37.27.218.237",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://pybittrack.retiolus.net:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.70.169",
+      "rtt_ms": 46.337,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://t.213891.xyz:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.41.188",
+      "rtt_ms": 250.893,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tr.nyacat.pw:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.52.177",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tr.zukizuki.org:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "172.67.136.77",
+      "rtt_ms": 137.885,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tracker.7471.top:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "172.67.165.72",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tracker.bt4g.com:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "HTTP 403; body kind=html",
+      "failure": "blocked_by_policy",
+      "health_state": "unknown",
+      "http_status": 403,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "transport_response",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "172.67.160.224",
+      "rtt_ms": 32.659,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tracker.gcrenwp.top:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.28.104",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tracker.leechshield.link:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "dns",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.17.120.178",
+      "rtt_ms": null,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tracker.nekomi.cn:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "HTTP 404; bdecode failed: unexpected byte b'<' at offset 0",
+      "failure": "not_a_tracker",
+      "health_state": "unknown",
+      "http_status": 404,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "transport_response",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.21.71.114",
+      "rtt_ms": 192.364,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tracker.pmman.tech:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "files entries=0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": 200,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "tracker_semantic",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "104.26.14.88",
+      "rtt_ms": 146.853,
+      "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+      "transport": "https",
+      "url": "https://tracker.zhuqiy.com:443/announce",
+      "used_synthetic_infohash": true,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x985b7600a1b8eb58",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "60.172.236.18",
+      "rtt_ms": 268.091,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://admin.52ywp.com:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x13edf713c81de6ba",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "107.189.2.131",
+      "rtt_ms": 728.749,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:6969",
+        "record": "BITTORRENT UDP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xf6e35c18008dcdf5",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "74.119.149.136",
+      "rtt_ms": 2.077,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://evan.im:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:6969",
+        "record": "BITTORRENT UDP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x5e86db269bfd58de",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "208.83.20.20",
+      "rtt_ms": 72.355,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://exodus.desync.com:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:6969",
+        "record": "BITTORRENT UDP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x4ea50f8a001032e3",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "23.157.120.14",
+      "rtt_ms": 97.182,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://explodie.org:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x70ddc46b7c190897",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "94.23.207.177",
+      "rtt_ms": 84.24,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://ipv4announce.sktorrent.eu:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x6a9fce0d54a632b6",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": 26.042,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://leet-tracker.moe:1337/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x12152150000789a8",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "65.109.28.33",
+      "rtt_ms": 112.352,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://mail.segso.net:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xdb78fac3d7aad972",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "185.216.179.62",
+      "rtt_ms": 93.282,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://martin-gebhardt.eu:25/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x6a9fce0e4b1a7909",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "51.222.82.36",
+      "rtt_ms": 14.749,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://ns575949.ip-51-222-82.net:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x01f68e6800102f3f",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "185.121.168.96",
+      "rtt_ms": 184.224,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://open.demonii.com:1337/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xd3ebe6a800102f3f",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "185.121.168.96",
+      "rtt_ms": 198.239,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://open.demonoid.ch:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x30b7a162000401e0",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "149.106.106.25",
+      "rtt_ms": 43.746,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://open.ftorrent.com:443/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xb56203e57f5378ff",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "151.242.104.187",
+      "rtt_ms": 98.169,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://open.stealth.si:80/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x000624449537ef77",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "37.120.182.83",
+      "rtt_ms": 98.132,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://rekcart.duckdns.org:15480/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xc1ee682e5a5d5651",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "83.102.180.21",
+      "rtt_ms": 131.035,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://retracker01-msk-virt.corbina.net:80/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x9200d31867187610",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "180.131.145.175",
+      "rtt_ms": 68.707,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://seedpeer.net:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x57fe0df416d8af44",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "189.18.97.61",
+      "rtt_ms": 116.741,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://t.overflow.biz:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "connected",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "44.233.250.75",
+      "rtt_ms": null,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://torrentclub.online:1984/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "connected",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "44.233.250.75",
+      "rtt_ms": null,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://torrentclub.online:54123/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 1 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xe09984dff73be125",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "192.99.100.68",
+      "rtt_ms": 14.702,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tr4ck3r.duckdns.org:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x16bad770d73ef99f",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "109.201.134.183",
+      "rtt_ms": 90.588,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker-udp.gbitt.info:80/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x48b96a13c316654a",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "23.153.248.128",
+      "rtt_ms": 62.632,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.0x7c0.com:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x6c26e0ac002f5e0b",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "15.235.207.99",
+      "rtt_ms": 222.157,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.aruku.ovh:8081/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:6969",
+          "tcp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:6969",
+        "record": "BITTORRENT UDP:6969 TCP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x4b0bf4b9d7978dc6",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "43.250.54.126",
+      "rtt_ms": 86.905,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.auctor.tv:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x6a9fce0effc47c82",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": 31.523,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.bittor.pw:1337/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x6a9fce0f3d888ee9",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "34.66.57.33",
+      "rtt_ms": 31.569,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.corpscorp.online:80/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xfd27fd9df8c3fdc2",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "193.187.90.12",
+      "rtt_ms": 100.164,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.ddunlimited.net:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xa38d1b8cc74c47fd",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "211.75.205.188",
+      "rtt_ms": 189.493,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.dler.org:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:1984",
+          "tcp:1984"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:1984",
+        "record": "BITTORRENT UDP:1984 TCP:1984",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x0009cbfe473b6ea1",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "135.125.198.235",
+      "rtt_ms": 90.837,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.ducks.party:1984/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x802b867dfab7f1d5",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "31.56.179.159",
+      "rtt_ms": 108.011,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.farted.net:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "connected",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "52.58.128.163",
+      "rtt_ms": null,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.filemail.com:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x2f7833d964e5d751",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "209.141.59.25",
+      "rtt_ms": 60.225,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.gmi.gd:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xbf3dc9d1000789a9",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "95.217.80.22",
+      "rtt_ms": 113.918,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.ilibr.org:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x6a9fce102b4e1c19",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "37.60.249.217",
+      "rtt_ms": 91.463,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.nexusstream.eu:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xc46387b4000789aa",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "95.217.80.20",
+      "rtt_ms": 112.454,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.opentrackr.com:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:1337",
+          "tcp:1337"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:1337",
+        "record": "BITTORRENT UDP:1337 TCP:1337",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x44a75f4d8b0a026e",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "93.158.213.92",
+      "rtt_ms": 89.627,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.opentrackr.org:1337/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xc46387b4000789aa",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "65.109.28.17",
+      "rtt_ms": 114.881,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.peerfect.org:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x87c7681a92cea81d",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "212.42.38.197",
+      "rtt_ms": 125.654,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.playground.ru:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:1337",
+          "tcp:1337"
+        ],
+        "decision": "deny",
+        "detail": "record from 1.1.1.1: UDP:6969 is not advertised; the record names UDP:1337, TCP:1337",
+        "record": "BITTORRENT UDP:1337 TCP:1337",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "BEP 34 deny: record from 1.1.1.1: UDP:6969 is not advertised; the record names UDP:1337, TCP:1337",
+      "failure": "excluded_by_operator",
+      "health_state": "unmeasurable",
+      "http_status": null,
+      "ip_families_seen": [],
+      "ipv6_only": false,
+      "measurement_rung": "none",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "-",
+      "rtt_ms": null,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.publictracker.xyz:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:6969",
+          "tcp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:6969",
+        "record": "BITTORRENT UDP:6969 TCP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x4b0bf4b9d7978dc6",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "43.250.54.126",
+      "rtt_ms": 93.41,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.qu.ax:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xdd16918166f1d503",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "91.177.126.188",
+      "rtt_ms": 89.333,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.teambelgium.net:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:1337",
+          "tcp:1337"
+        ],
+        "decision": "deny",
+        "detail": "record from 1.1.1.1: UDP:6969 is not advertised; the record names UDP:1337, TCP:1337",
+        "record": "BITTORRENT UDP:1337 TCP:1337",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "BEP 34 deny: record from 1.1.1.1: UDP:6969 is not advertised; the record names UDP:1337, TCP:1337",
+      "failure": "excluded_by_operator",
+      "health_state": "unmeasurable",
+      "http_status": null,
+      "ip_families_seen": [],
+      "ipv6_only": false,
+      "measurement_rung": "none",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "-",
+      "rtt_ms": null,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.therarbg.to:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "timeout after 1.6666666666666667s",
+      "failure": "timeout",
+      "health_state": "unknown",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "connected",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "91.216.110.52",
+      "rtt_ms": null,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.torrent.eu.org:451/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:6969"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:6969",
+        "record": "BITTORRENT UDP:6969",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x7642ce596e72358b",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "164.152.110.70",
+      "rtt_ms": 52.456,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker.wildkat.net:6969/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x4454c1bf96c584ea",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "211.75.210.221",
+      "rtt_ms": 189.326,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://tracker2.dler.org:80/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": null,
+        "decision": "allow",
+        "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+        "record": null,
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0xf0c1227e07029cfd",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "52.211.139.85",
+      "rtt_ms": 69.033,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://yuptracker-eu.gaijinent.com:27022/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    },
+    {
+      "bep34": {
+        "advertised": [
+          "udp:1337",
+          "tcp:1337"
+        ],
+        "decision": "allow",
+        "detail": "record from 1.1.1.1: advertises UDP:1337",
+        "record": "BITTORRENT UDP:1337 TCP:1337",
+        "resolver": "1.1.1.1"
+      },
+      "detail": "connection_id=0x44a75f4d8b0a026e",
+      "failure": "none",
+      "health_state": "live",
+      "http_status": null,
+      "ip_families_seen": [
+        "ipv4"
+      ],
+      "ipv6_only": false,
+      "measurement_rung": "protocol_valid",
+      "network": "clearnet",
+      "network_reclassified_from": null,
+      "observed_at": "2026-09-08T08:57:43Z",
+      "resolved_ip": "93.158.213.92",
+      "rtt_ms": 94.544,
+      "sent_user_agent": "-",
+      "transport": "udp",
+      "url": "udp://zer0day.ch:1337/announce",
+      "used_synthetic_infohash": false,
+      "vantage": {
+        "environment_class": "github-actions-hosted",
+        "execution_profile": "ci",
+        "ip_families": [
+          "ipv4"
+        ],
+        "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+        "ipv6_egress": "-",
+        "ipv6_route_present": false,
+        "ipv6_stack_present": true,
+        "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+        "probe_version": "0.1.0",
+        "region": "-",
+        "repo_commit": "-",
+        "runner": {
+          "arch": "X64",
+          "image": "ubuntu24",
+          "image_version": "20260831.293.1",
+          "os": "Linux",
+          "run_attempt": "1",
+          "run_id": "34207344996"
+        }
+      }
+    }
+  ],
+  "vantage": {
+    "environment_class": "github-actions-hosted",
+    "execution_profile": "ci",
+    "ip_families": [
+      "ipv4"
+    ],
+    "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+    "ipv6_egress": "-",
+    "ipv6_route_present": false,
+    "ipv6_stack_present": true,
+    "probe_code_sha256": "3727c3701c576256bf1e6f0ee34755d983dc38d1c368ce843f9a3373f1ae5e69",
+    "probe_version": "0.1.0",
+    "region": "-",
+    "repo_commit": "-",
+    "runner": {
+      "arch": "X64",
+      "image": "ubuntu24",
+      "image_version": "20260831.293.1",
+      "os": "Linux",
+      "run_attempt": "1",
+      "run_id": "34207344996"
+    }
+  }
+}

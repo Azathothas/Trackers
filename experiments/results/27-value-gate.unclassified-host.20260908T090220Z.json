@@ -1,0 +1,889 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "177d4c641f45c4a08cb1f66708245d8d2dc8164e-dirty",
+    "sample_counts": {
+      "baseline": 99,
+      "corpus": 1327,
+      "health_record_files": 2,
+      "records_total": 299,
+      "runs": 2,
+      "vantage_groups": 2
+    },
+    "utc": "2026-09-08T09:02:20Z"
+  },
+  "question": "Does this dataset add measurable value over redistributing ngosang_all?",
+  "results": {
+    "analyses": [
+      {
+        "baseline_whole_list": {
+          "arm": {
+            "dead": 0,
+            "failures": {
+              "blocked_by_policy": 1,
+              "excluded_by_operator": 2,
+              "none": 9,
+              "refused": 2,
+              "timeout": 3
+            },
+            "live": 9,
+            "live_floor_ci95": [
+              0.3096323506000443,
+              0.7383489355759056
+            ],
+            "live_floor_rate": 0.5294117647058824,
+            "measured": 17,
+            "not_live": 8,
+            "population": 99,
+            "states": {
+              "live": 9,
+              "unknown": 6,
+              "unmeasurable": 2
+            }
+          },
+          "extrapolated_live": {
+            "basis": "9/17 scaled to 99",
+            "ci95": [
+              30.653602709404385,
+              73.09654462201466
+            ],
+            "is_census": false,
+            "point": 52.411764705882355
+          }
+        },
+        "corpus_size": 1327,
+        "q1_unique_to_us_and_alive": {
+          "arm": {
+            "dead": 0,
+            "failures": {
+              "blocked_by_policy": 5,
+              "dns_failure": 39,
+              "excluded_by_operator": 6,
+              "exclusion_undetermined": 3,
+              "no_usable_address": 2,
+              "none": 16,
+              "not_a_tracker": 12,
+              "rate_limited": 1,
+              "refused": 20,
+              "timeout": 74,
+              "tls_failure": 3,
+              "unsupported": 2
+            },
+            "live": 16,
+            "live_floor_ci95": [
+              0.054533190464019526,
+              0.1372949993120518
+            ],
+            "live_floor_rate": 0.08743169398907104,
+            "measured": 183,
+            "not_live": 167,
+            "population": 1228,
+            "states": {
+              "degraded": 1,
+              "live": 16,
+              "unknown": 156,
+              "unmeasurable": 10
+            }
+          },
+          "extrapolated_live": {
+            "basis": "16/183 scaled to 1228",
+            "ci95": [
+              66.96675788981598,
+              168.5982591551996
+            ],
+            "is_census": false,
+            "point": 107.36612021857924
+          }
+        },
+        "q2_in_baseline_and_dead_here": {
+          "arm": {
+            "dead": 0,
+            "failures": {
+              "blocked_by_policy": 1,
+              "excluded_by_operator": 2,
+              "none": 9,
+              "refused": 2,
+              "timeout": 3
+            },
+            "live": 9,
+            "live_floor_ci95": [
+              0.3096323506000443,
+              0.7383489355759056
+            ],
+            "live_floor_rate": 0.5294117647058824,
+            "measured": 17,
+            "not_live": 8,
+            "population": 99,
+            "states": {
+              "live": 9,
+              "unknown": 6,
+              "unmeasurable": 2
+            }
+          },
+          "dead": 0,
+          "note": "structurally zero: MIN_SAMPLES_FOR_DEATH is 3 and this is one observation each. `not_live` is the weaker claim the evidence supports."
+        },
+        "q3_disagreement": {
+          "newtrackon_live": {
+            "agree_live": 11,
+            "agreement_ci95": [
+              0.4804956594401943,
+              0.8910254667430761
+            ],
+            "agreement_rate": 0.7333333333333333,
+            "detail_they_say_up_we_did_not_reach": [
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://wegkxfcivgx.ydns.eu:80/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tr.zukizuki.org:443/announce"
+              },
+              {
+                "our_failure": "blocked_by_policy",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "https://tracker.gcrenwp.top:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "connected",
+                "our_state": "unknown",
+                "url": "udp://tracker.nyaa.vc:6969/announce"
+              }
+            ],
+            "observer_list_size": 79,
+            "shared_and_measured": 15,
+            "shared_with_our_corpus": 78,
+            "they_say_up_we_did_not_reach": 4,
+            "we_reached_and_they_do_not_list": 14
+          },
+          "ngosang_all": {
+            "agree_live": 9,
+            "agreement_ci95": [
+              0.3096323506000443,
+              0.7383489355759056
+            ],
+            "agreement_rate": 0.5294117647058824,
+            "detail_they_say_up_we_did_not_reach": [
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://bt.poletracker.org:2710/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://retracker.spark-rostov.ru:80/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.corpscorp.online:80/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.sbsub.com:2710/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tr.zukizuki.org:443/announce"
+              },
+              {
+                "our_failure": "blocked_by_policy",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "https://tracker.gcrenwp.top:443/announce"
+              },
+              {
+                "our_failure": "excluded_by_operator",
+                "our_rung": "none",
+                "our_state": "unmeasurable",
+                "url": "udp://torrentclub.online:54123/announce"
+              },
+              {
+                "our_failure": "excluded_by_operator",
+                "our_rung": "none",
+                "our_state": "unmeasurable",
+                "url": "udp://tracker.publictracker.xyz:6969/announce"
+              }
+            ],
+            "observer_list_size": 99,
+            "shared_and_measured": 17,
+            "shared_with_our_corpus": 99,
+            "they_say_up_we_did_not_reach": 8,
+            "we_reached_and_they_do_not_list": 16
+          }
+        },
+        "records": 200,
+        "reported_counts_in_record": {
+          "corpus": 200,
+          "health_states": {
+            "degraded": 1,
+            "live": 25,
+            "unknown": 162,
+            "unmeasurable": 12
+          },
+          "not_reached_before_deadline": 0,
+          "probed": 187,
+          "refused_or_undetermined": 11,
+          "selected": 200,
+          "unmeasurable": 2
+        },
+        "sample_representativeness_control": {
+          "applies": true,
+          "expected_baseline_members_in_sample": 14.92087415222306,
+          "observed": 17,
+          "question": "is baseline membership independent of the stride?",
+          "two_sided_p": 0.5733269974911677,
+          "verdict": "consistent with an unbiased sample"
+        },
+        "sampling_fraction": 0.15071590052750566,
+        "selection": {
+          "mode": "unstated"
+        },
+        "vantage": {
+          "environment_class": "github-actions-hosted",
+          "execution_profile": "ci",
+          "files": [
+            "health-sweep.github-actions-hosted.run33938543488.json"
+          ],
+          "generated_at": "2026-09-05T02:15:16Z",
+          "run_id": "33938543488"
+        }
+      },
+      {
+        "baseline_whole_list": {
+          "arm": {
+            "dead": 0,
+            "failures": {
+              "blocked_by_policy": 2,
+              "excluded_by_operator": 3,
+              "none": 63,
+              "not_a_tracker": 3,
+              "refused": 9,
+              "timeout": 19
+            },
+            "live": 63,
+            "live_floor_ci95": [
+              0.5381589889509573,
+              0.7243810441214535
+            ],
+            "live_floor_rate": 0.6363636363636364,
+            "measured": 99,
+            "not_live": 36,
+            "population": 99,
+            "states": {
+              "live": 63,
+              "unknown": 33,
+              "unmeasurable": 3
+            }
+          },
+          "extrapolated_live": {
+            "basis": "census: all 99 measured, 63 live",
+            "ci95": [
+              63.0,
+              63.0
+            ],
+            "is_census": true,
+            "point": 63.0
+          }
+        },
+        "corpus_size": 1327,
+        "q1_unique_to_us_and_alive": {
+          "arm": {
+            "dead": 0,
+            "failures": {},
+            "live": 0,
+            "live_floor_ci95": [
+              0.0,
+              1.0
+            ],
+            "live_floor_rate": null,
+            "measured": 0,
+            "not_live": 0,
+            "population": 1228,
+            "states": {}
+          },
+          "extrapolated_live": {
+            "basis": "no records",
+            "ci95": [
+              null,
+              null
+            ],
+            "point": null
+          }
+        },
+        "q2_in_baseline_and_dead_here": {
+          "arm": {
+            "dead": 0,
+            "failures": {
+              "blocked_by_policy": 2,
+              "excluded_by_operator": 3,
+              "none": 63,
+              "not_a_tracker": 3,
+              "refused": 9,
+              "timeout": 19
+            },
+            "live": 63,
+            "live_floor_ci95": [
+              0.5381589889509573,
+              0.7243810441214535
+            ],
+            "live_floor_rate": 0.6363636363636364,
+            "measured": 99,
+            "not_live": 36,
+            "population": 99,
+            "states": {
+              "live": 63,
+              "unknown": 33,
+              "unmeasurable": 3
+            }
+          },
+          "dead": 0,
+          "note": "structurally zero: MIN_SAMPLES_FOR_DEATH is 3 and this is one observation each. `not_live` is the weaker claim the evidence supports."
+        },
+        "q3_disagreement": {
+          "newtrackon_live": {
+            "agree_live": 36,
+            "agreement_ci95": [
+              0.6442631262842105,
+              0.8773909467543746
+            ],
+            "agreement_rate": 0.782608695652174,
+            "detail_they_say_up_we_did_not_reach": [
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.bt4g.com:2095/announce"
+              },
+              {
+                "our_failure": "not_a_tracker",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "http://tracker.mywaifu.best:6969/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://004430.xyz:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://pybittrack.retiolus.net:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tr.zukizuki.org:443/announce"
+              },
+              {
+                "our_failure": "blocked_by_policy",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "https://tracker.gcrenwp.top:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tracker.leechshield.link:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tracker.nekomi.cn:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "connected",
+                "our_state": "unknown",
+                "url": "udp://torrentclub.online:1984/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "connected",
+                "our_state": "unknown",
+                "url": "udp://tracker.torrent.eu.org:451/announce"
+              }
+            ],
+            "observer_list_size": 79,
+            "shared_and_measured": 46,
+            "shared_with_our_corpus": 78,
+            "they_say_up_we_did_not_reach": 10,
+            "we_reached_and_they_do_not_list": 27
+          },
+          "ngosang_all": {
+            "agree_live": 63,
+            "agreement_ci95": [
+              0.5381589889509573,
+              0.7243810441214535
+            ],
+            "agreement_rate": 0.6363636363636364,
+            "detail_they_say_up_we_did_not_reach": [
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://004430.xyz:80/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://0123456789nonexistent.com:80/announce"
+              },
+              {
+                "our_failure": "not_a_tracker",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "http://aboutbeautifulgallopinghorsesinthegreenpasture.online:80/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://bt.poletracker.org:2710/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://jvavav.com:80/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://open.trackerlist.xyz:80/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://retracker.spark-rostov.ru:80/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://seeders-paradise.org:80/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://torrent.hificode.in:6969/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.bittor.pw:1337/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.bt-hash.com:80/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.bt4g.com:2095/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.bz:80/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.corpscorp.online:80/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.ipv6tracker.org:80/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.lintk.me:2710/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.moxing.party:6969/announce"
+              },
+              {
+                "our_failure": "not_a_tracker",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "http://tracker.mywaifu.best:6969/announce"
+              },
+              {
+                "our_failure": "excluded_by_operator",
+                "our_rung": "none",
+                "our_state": "unmeasurable",
+                "url": "http://tracker.privateseedbox.xyz:2710/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker.sbsub.com:2710/announce"
+              },
+              {
+                "our_failure": "refused",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "http://tracker810.xyz:11450/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://004430.xyz:443/announce"
+              },
+              {
+                "our_failure": "blocked_by_policy",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "https://ht.therarbg.to:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://pybittrack.retiolus.net:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tr.zukizuki.org:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tracker.bt4g.com:443/announce"
+              },
+              {
+                "our_failure": "blocked_by_policy",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "https://tracker.gcrenwp.top:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tracker.leechshield.link:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "dns",
+                "our_state": "unknown",
+                "url": "https://tracker.nekomi.cn:443/announce"
+              },
+              {
+                "our_failure": "not_a_tracker",
+                "our_rung": "transport_response",
+                "our_state": "unknown",
+                "url": "https://tracker.pmman.tech:443/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "connected",
+                "our_state": "unknown",
+                "url": "udp://torrentclub.online:1984/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "connected",
+                "our_state": "unknown",
+                "url": "udp://torrentclub.online:54123/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "connected",
+                "our_state": "unknown",
+                "url": "udp://tracker.filemail.com:6969/announce"
+              },
+              {
+                "our_failure": "excluded_by_operator",
+                "our_rung": "none",
+                "our_state": "unmeasurable",
+                "url": "udp://tracker.publictracker.xyz:6969/announce"
+              },
+              {
+                "our_failure": "excluded_by_operator",
+                "our_rung": "none",
+                "our_state": "unmeasurable",
+                "url": "udp://tracker.therarbg.to:6969/announce"
+              },
+              {
+                "our_failure": "timeout",
+                "our_rung": "connected",
+                "our_state": "unknown",
+                "url": "udp://tracker.torrent.eu.org:451/announce"
+              }
+            ],
+            "observer_list_size": 99,
+            "shared_and_measured": 99,
+            "shared_with_our_corpus": 99,
+            "they_say_up_we_did_not_reach": 36,
+            "we_reached_and_they_do_not_list": 0
+          }
+        },
+        "records": 99,
+        "reported_counts_in_record": {
+          "corpus": 99,
+          "health_states": {
+            "live": 63,
+            "unknown": 33,
+            "unmeasurable": 3
+          },
+          "not_reached_before_deadline": 0,
+          "probed": 96,
+          "refused_or_undetermined": 3,
+          "selected": 99,
+          "unmeasurable": 0
+        },
+        "sample_representativeness_control": {
+          "applies": false,
+          "question": "is baseline membership independent of the stride?",
+          "verdict": "not applicable: this run was aimed at `ngosang_all` by provenance, so its composition is a declared choice and not a sample to test"
+        },
+        "sampling_fraction": 0.0746043707611153,
+        "selection": {
+          "corpus_before_selection": 1327,
+          "mode": "one source, by provenance",
+          "selected_by_provenance": 99,
+          "source": "ngosang_all"
+        },
+        "vantage": {
+          "environment_class": "github-actions-hosted",
+          "execution_profile": "ci",
+          "files": [
+            "health-sweep.github-actions-hosted.run34207344996.json"
+          ],
+          "generated_at": "2026-09-08T08:57:43Z",
+          "run_id": "34207344996"
+        }
+      }
+    ],
+    "baseline": "ngosang_all",
+    "baseline_lines_our_parser_refuses": [],
+    "baseline_size": 99,
+    "combined_best_evidence": {
+      "baseline_from": {
+        "generated_at": "2026-09-08T08:57:43Z",
+        "run_id": "34207344996",
+        "why": "a census of every tracker `ngosang_all` contributed, so this arm carries no sampling error at all"
+      },
+      "baseline_whole_list": {
+        "arm": {
+          "dead": 0,
+          "failures": {
+            "blocked_by_policy": 2,
+            "excluded_by_operator": 3,
+            "none": 63,
+            "not_a_tracker": 3,
+            "refused": 9,
+            "timeout": 19
+          },
+          "live": 63,
+          "live_floor_ci95": [
+            0.5381589889509573,
+            0.7243810441214535
+          ],
+          "live_floor_rate": 0.6363636363636364,
+          "measured": 99,
+          "not_live": 36,
+          "population": 99,
+          "states": {
+            "live": 63,
+            "unknown": 33,
+            "unmeasurable": 3
+          }
+        },
+        "extrapolated_live": {
+          "basis": "census: all 99 measured, 63 live",
+          "ci95": [
+            63.0,
+            63.0
+          ],
+          "is_census": true,
+          "point": 63.0
+        }
+      },
+      "consistency_check": {
+        "census_falls_inside_the_sampled_interval": true,
+        "census_n": 99,
+        "census_rate": 0.6363636363636364,
+        "question": "does the census agree with what the earlier sample said about the same population?",
+        "sampled_ci95": [
+          0.3096323506000443,
+          0.7383489355759056
+        ],
+        "sampled_n": 17,
+        "sampled_rate": 0.5294117647058824,
+        "verdict": "the two runs agree about the arm they share; the cross-run seam has not moved the answer"
+      },
+      "q1_unique_to_us_and_alive": {
+        "arm": {
+          "dead": 0,
+          "failures": {
+            "blocked_by_policy": 5,
+            "dns_failure": 39,
+            "excluded_by_operator": 6,
+            "exclusion_undetermined": 3,
+            "no_usable_address": 2,
+            "none": 16,
+            "not_a_tracker": 12,
+            "rate_limited": 1,
+            "refused": 20,
+            "timeout": 74,
+            "tls_failure": 3,
+            "unsupported": 2
+          },
+          "live": 16,
+          "live_floor_ci95": [
+            0.054533190464019526,
+            0.1372949993120518
+          ],
+          "live_floor_rate": 0.08743169398907104,
+          "measured": 183,
+          "not_live": 167,
+          "population": 1228,
+          "states": {
+            "degraded": 1,
+            "live": 16,
+            "unknown": 156,
+            "unmeasurable": 10
+          }
+        },
+        "extrapolated_live": {
+          "basis": "16/183 scaled to 1228",
+          "ci95": [
+            66.96675788981598,
+            168.5982591551996
+          ],
+          "is_census": false,
+          "point": 107.36612021857924
+        }
+      },
+      "q2_in_baseline_and_dead_here": {
+        "arm": {
+          "dead": 0,
+          "failures": {
+            "blocked_by_policy": 2,
+            "excluded_by_operator": 3,
+            "none": 63,
+            "not_a_tracker": 3,
+            "refused": 9,
+            "timeout": 19
+          },
+          "live": 63,
+          "live_floor_ci95": [
+            0.5381589889509573,
+            0.7243810441214535
+          ],
+          "live_floor_rate": 0.6363636363636364,
+          "measured": 99,
+          "not_live": 36,
+          "population": 99,
+          "states": {
+            "live": 63,
+            "unknown": 33,
+            "unmeasurable": 3
+          }
+        },
+        "dead": 0,
+        "note": "structurally zero: MIN_SAMPLES_FOR_DEATH is 3 and this is one observation each. `not_live` is the weaker claim the evidence supports."
+      },
+      "unique_to_us_from": {
+        "generated_at": "2026-09-05T02:15:16Z",
+        "run_id": "33938543488",
+        "why": "the only run that sampled the whole corpus"
+      }
+    },
+    "decision_rule": "BAR 1 -- COUNT. Compare the live trackers we ADD, at the pessimistic end of our interval, against the baseline's WHOLE live yield at the optimistic end of its interval. Worst case against best case, never the reverse. The consumer's alternative is to take all of the baseline, so the baseline's whole list is what we must beat. BAR 2 -- DENSITY. Compare the share of each list that answered us. If ours is less live-dense than the baseline, then a consumer taking our list UNFILTERED gets a worse list, and every bit of the added value is in the LABELS rather than in the URLs. A project that clears bar 1 and fails bar 2 is justified only as a labelled dataset and is NOT justified as a longer list -- which is the prior art, and is measured here beside it.",
+    "enforced_exclusions": 15,
+    "in_baseline_and_dropped_by_us": {
+      "count": 0,
+      "reasons": {}
+    },
+    "our_dataset_size": 1327,
+    "prior_art_pkgforge": {
+      "lines_our_parser_refuses": [
+        "'http://opentracker.acgnx.com:6869/announce\"': contains characters no URI may hold: '\"'",
+        "'https://tracker.kitaujisub.site/announce.php?authkey=<redacted>': contains characters no URI may hold: '|'",
+        "'https://tracker.kitaujisub.site/announce.php?authkey=<redacted>': contains characters no URI may hold: '|'"
+      ],
+      "note": "the closest prior art is a concatenation of the same upstreams; what it holds that we do not is the measure of what concatenation adds",
+      "outside_our_corpus": 16,
+      "size": 1162
+    },
+    "unique_to_us": 1228,
+    "verdict": {
+      "bar_1_count": {
+        "baseline_live_ci95": [
+          63.0,
+          63.0
+        ],
+        "clears": true,
+        "comparison": "our lower bound against the baseline's upper bound",
+        "live_added_ci95": [
+          66.96675788981598,
+          168.5982591551996
+        ],
+        "live_yield_ratio_best_case": 3.676162843733327,
+        "live_yield_ratio_point": 2.704224130453639,
+        "live_yield_ratio_worst_case": 2.0629644109494603
+      },
+      "bar_2_density": {
+        "baseline_live_share": 0.6363636363636364,
+        "clears": false,
+        "list_length_ratio": 13.404040404040405,
+        "our_live_share": 0.12838441614060228
+      },
+      "conclusion": "justified as a labelled dataset, not as a list",
+      "delta_is_negligible": false,
+      "detail": "we add live trackers, but our list is LESS live-dense than the baseline, so a consumer taking it unfiltered gets a worse list. Every bit of the value is in publishing the measurement alongside the URLs. Publishing the plaintext without the health labels would be the prior art, which is measured beside this."
+    },
+    "verdict_basis": "best evidence per arm across runs"
+  }
+}
