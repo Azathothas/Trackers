@@ -61,7 +61,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **252** tests, no network |
+| Test suite | **273** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
@@ -80,8 +80,18 @@ blocked.**
 
 ## What this session has done so far
 
-**[T-037](measurement.md) is closed and [T-038](measurement.md) is open
-because of it.** The probe asks a second resolver whenever `getaddrinfo`
+**Two entries closed, [T-037](measurement.md) and [T-041](scoring.md), and
+[T-038](measurement.md) is open because of the first.**
+
+⭐ **The seven shapes have definitions and a classifier.**
+`src/trackers/shapes.py` reads the series `state.py` stores and says which of
+the seven it is, with the numbers that decided it attached. The order of the
+rules is the specification, as in `health_state`, and an eighth value exists
+for a tracker that has no interesting shape so the other seven are not
+stretched to cover it. ⚠ Everything in the tree classifies as `new` today,
+which is the honest answer at four observations and is why **D4 stays open**.
+
+**[T-037](measurement.md) is what the rest of this was.** The probe asks a second resolver whenever `getaddrinfo`
 fails, and the answers split four ways instead of one. Two of the four are in
 `ABOUT_US` and can never reach `dead`.
 
@@ -175,21 +185,19 @@ acceptance recorded, or open with what remains written into it.
 
 ## Start here next session
 
-1. **[T-041](scoring.md)** - the seven shapes over time. The store that can
-   express them now exists ([T-040](scoring.md)) and nothing computes them.
-2. **[T-031](measurement.md)** - still the leverage entry. Route (c) returned
+1. **[T-031](measurement.md)** - still the leverage entry. Route (c) returned
    nothing for any `unmeasurable` tracker and route (e) dissolved 3 of 15;
    routes (a) NAT64, (b) a relay and (d) public gateways are untried.
-3. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
+2. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
    cells over the HTTP corpus is roughly twelve thousand requests at somebody
    else's expense: a workflow over days, not a command.
-4. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
+3. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
    settled: D7's cadence, and DNS inside the budget at **100,000 lookups per
    run**. ⚠ The second resolver adds to it: two queries per failing host and
    up to six where nobody answers, which is 480 to 1440 per run today.
-5. **[T-064](publication.md)** - release channels. Its platform half is
+4. **[T-064](publication.md)** - release channels. Its platform half is
    measured.
-6. **[T-038](measurement.md)** - the HTTP prober does not choose its address,
+5. **[T-038](measurement.md)** - the HTTP prober does not choose its address,
    so `resolved_ip` is an inference on that path.
 
 **Deliberately deferred:** [T-044](scoring.md), the scoring model. **D4** stays

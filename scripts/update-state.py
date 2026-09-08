@@ -37,12 +37,14 @@ import argparse
 import json
 import os
 import sys
+from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))), "src"))
 
 from generate import display_path  # noqa: E402
+from trackers.shapes import classify  # noqa: E402
 from trackers.state import (CorruptState, apply_sweep, bootstrap,  # noqa: E402
                             write_state)
 
@@ -118,6 +120,18 @@ def main() -> int:
     print(f"records:      {before} -> {written}")
     print(f"observations: {observed} applied from {len(args.sweeps)} sweep(s)")
     print(f"quarantined:  {len(quarantined)}")
+
+    # T-041's shapes, over what was just written. Printed rather than stored:
+    # a shape is derived from the series and storing it would be a second copy
+    # that can disagree with the file it came from. ⚠ Almost everything is
+    # `new` today and that is the honest answer -- no tracker has more than
+    # four observations, which is also why D4 stays open.
+    counts = Counter(classify(h).shape.value for h in histories.values())
+    # Sorted by count then name, because a tie broken by dict order is not a
+    # total order and this line is read by a person comparing two runs.
+    summary = ", ".join(f"{shape} {counts[shape]}" for shape in
+                        sorted(counts, key=lambda s: (-counts[s], s)))
+    print(f"shapes:       {summary or '-'}")
     return 0
 
 

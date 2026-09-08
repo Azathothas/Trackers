@@ -89,7 +89,7 @@ Source:      the brief's section 14.2 (the shapes history must distinguish)
 Category:    scoring
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     The states that matter are: new tracker, temporarily unavailable,
              intermittently failing, consistently unreliable, degrading,
@@ -101,7 +101,67 @@ Premise:     Follows from T-040's shape. Recorded separately because it is the
              most easily lost when the storage gets simplified.
 Approach:    Each shape gets a definition in terms of the stored series, and a
              test with a synthetic series that exhibits it.
+Decision:    **`src/trackers/shapes.py`, an ordered table whose order is the
+             specification**, in the shape of `probe.health_state` because the
+             failure mode is the same: scattered conditionals over a series
+             produce a classification nobody can predict or audit. Every
+             threshold is a count of observations with a duration attached at
+             D7's cadence, and the verdict carries the numbers that decided it
+             (RULES 3.10).
+
+             ⛔ **No clock.** Rejected: taking `now` and calling a tracker gone
+             after a period of silence. It would make one state file classify
+             differently on two days, and a tracker nobody has checked since
+             March is a fact about our sweeping rather than about the tracker.
+             `last_seen` is on the record for a consumer who needs it.
+
+             Rejected: storing the shape in the state file, which would be a
+             second copy of something derived and free to disagree with the
+             series it came from. It is computed on read and printed by
+             `scripts/update-state.py`.
+
+             Rejected: making the shapes an eighth, ninth and tenth
+             `HealthState`. They answer a different question from different
+             inputs, and folding them in would let a pattern over a month
+             decide a value that means "what happened when we last looked".
+
+             Rejected: tuning the thresholds against this corpus. No tracker
+             has more than four observations, so there is nothing to tune
+             against and the numbers are stated as arithmetic instead.
 Prove:       Seven tests, one per shape, each over a synthetic history.
+
+**Done.** `python3 -m unittest tests.test_shapes -v` -> **21 tests, OK**.
+Seven of them are the seven shapes, each over a synthetic series written check
+by check through `state.observe` rather than assembled as a fixture.
+
+⭐ **The pairs are what the definitions had to survive.** Four failures
+scattered and four in a row are the same rate and are not the same fault; a
+new tracker and one that has failed everything both have no successes; a dip
+and a decline both end in failure. Each pair is a test asserting the two do
+not collapse, and `THE_SEVEN` is asserted to still have seven members so the
+vocabulary cannot quietly lose one.
+
+⭐ **The trend comes from the daily aggregates once there are enough days**,
+because the ring is 8 days and "degrading over a month" cannot be seen inside
+it. That claim is falsifiable rather than stated:
+`test_the_ring_alone_would_have_missed_it` asserts the ring's own two halves
+differ by less than the threshold for the same history the aggregates classify
+as degrading.
+
+⛔ **Five mutations were planted and one survived.** Widening
+`MAX_TEMPORARY_RUN` to 99 failed nothing, because every series in the file was
+caught by another rule first. The constant was not redundant -- a six-check
+outage on a spotless record would have been published as "temporarily
+unavailable" for as long as it lasted -- so the missing test was written and
+the mutation now fails it.
+
+⚠ **An eighth value exists and is not one of the seven.** `STEADY` is the
+residual for a tracker that works and keeps working. Naming it is what stops
+seven from being stretched to cover everything.
+
+⚠ **This is not `D4`.** A shape is a label with a definition a reader can
+check by hand; the scoring model stays open, and nothing here produces a
+number to rank on.
 
 ---
 
