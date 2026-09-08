@@ -77,6 +77,15 @@ Outside `trackers`, the JSON document carries:
 | `fields` | The field list above, in order, so a consumer can detect a schema change without diffing rows. |
 | `vantage_note` | The limitation stated in the data itself, because the reader most likely to misread the file will never open this page. |
 
+## Reading it fresh
+
+⚠ **`raw.githubusercontent.com` caches, so a fetch right after a publish can
+return the previous document.** Measured on 2026-09-08: a fetch seconds after a
+publish returned the older dataset, with no error and nothing to suggest it was
+stale. ⭐ **Compare `generated_at` inside the document**, never the time you
+fetched it. `C-16` in [`../HISTORY/claims.md`](../HISTORY/claims.md) carries the
+measurement.
+
 ## Cross-format consistency
 
 ⛔ **The three files carry the same tracker set, exactly**, and

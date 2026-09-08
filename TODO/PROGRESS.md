@@ -28,9 +28,12 @@ each: [INDEX.md](INDEX.md).
   being willing to dial an address that points at itself, and reached a
   category of tracker that every previous record called unmeasurable.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
-- ⭐ **The dataset is published.** `data` branch, run `34280454871`, six files
-  at `raw.githubusercontent.com/Azathothas/Trackers/data/`. 1334 trackers, 282
-  carrying a real observation, **79 live**. Every measurement also lives under
+- ⭐ **The dataset is published and it accumulates.** `data` branch, six files
+  at `raw.githubusercontent.com/Azathothas/Trackers/data/`. The chain sweep ->
+  artefact -> fold -> generate -> publish is driven end to end: run
+  `34281330192` folded **192 fresh observations**, taking the dataset from 276
+  measured to **424 of 1334** and from 16 trackers with two observations to
+  **56**. Three is what `dead` needs. Every measurement also lives under
   `experiments/results/` as evidence.
 - ⛔ **Nothing is `dead`, and nothing can be.** `MIN_SAMPLES_FOR_DEATH` is 3
   and no tracker has three observations. The most any record says is
