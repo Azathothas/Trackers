@@ -98,7 +98,7 @@ pretending to be one.
 | [T-045](scoring.md) | P2 | scoring | open | Ranking must not use the latest instantaneous result |
 | [T-047](scoring.md) | P2 | scoring | open | A hardcoded tracker unreachable for 48 hours must raise an issue, not vanish |
 | [T-062](publication.md) | P2 | publication | open | Nothing is versioned, so a consumer cannot tell what they received |
-| [T-064](publication.md) | P2 | publication | open | Release channel semantics rest on three unverified platform claims |
+| [T-064](publication.md) | P2 | publication | **done** | Release channel semantics rest on three unverified platform claims |
 | [T-066](publication.md) | P2 | publication | open | Run reports do not answer the questions observability requires |
 | [T-080](operations.md) | P2 | operations | open | Issue automation does not exist |
 | [T-081](operations.md) | P2 | operations | open | History housekeeping is unimplemented and its threshold is unjustified |
@@ -126,7 +126,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 39 open, 0 blocked, 34 done
+**Counts:** 73 entries, 38 open, 0 blocked, 35 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -135,9 +135,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 2 | 0 | 5 | 7 |
 | P1 | 7 | 0 | 16 | 23 |
-| P2 | 24 | 0 | 12 | 36 |
+| P2 | 23 | 0 | 13 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **39** | **0** | **34** | **73** |
+| **All** | **38** | **0** | **35** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

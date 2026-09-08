@@ -62,7 +62,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **316** tests, no network |
+| Test suite | **333** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
@@ -81,10 +81,20 @@ blocked.**
 
 ## What this session has done so far
 
-**Six entries closed -- [T-037](measurement.md), [T-041](scoring.md),
+**Seven entries closed -- [T-037](measurement.md), [T-041](scoring.md),
 [T-031](measurement.md), the leverage entry, [T-026](measurement.md),
-[T-038](measurement.md) and [T-084](operations.md)'s `Prove` clause -- and
-[T-039](measurement.md) opened because of them.**
+[T-038](measurement.md), [T-064](publication.md) and
+[T-084](operations.md)'s `Prove` clause -- and [T-039](measurement.md) opened
+because of them.**
+
+⭐ **The release channels are defined against what the platform actually did.**
+`src/trackers/channels.py`: the rolling channel is **not** called `latest`,
+because a release tagged that lost `/releases/latest` to a newer one (`C-14`);
+a channel is updated by delete-and-recreate, because a moved tag left the
+release pointing at the old commit (`C-17`); and publication may not verify by
+reading a download URL back, because that URL served the previous bytes ten
+seconds later (`C-15`) -- made structural, since the module imports no network
+module at all.
 
 ⭐ **T-012's instrument exists and its design had to change to be runnable
 at all.** Four arms against one tracker in one run is four times RULES 4's
@@ -253,8 +263,9 @@ acceptance recorded, or open with what remains written into it.
    is complete. ⚠ Each arm needs 20 contacted subjects before the instrument
    will compare them and the live set is 32, so what the verdict actually waits
    on is a wider one: a fresh sweep's live trackers.
-2. **[T-064](publication.md)** - release channels. Its platform half is
-   measured.
+2. **[T-063](publication.md)** - the data branch, which is what publishes.
+   ⭐ The channel semantics exist now ([T-064](publication.md)) and nothing
+   uses them; this is the entry that would.
 3. **[T-084](operations.md)** - the schedule and the workflow architecture.
    ⭐ **Both of its inputs are now settled**: D7's cadence, and a computed
    budget that says a full sweep costs 7.7% of the DNS ceiling. It is the last

@@ -121,7 +121,7 @@ Source:      the brief's section 18.2 (release channels); decision **D5**;
 Category:    publication
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     Three channels are specified -- `latest` (rolling, updated every
              successful generation, **never** replaced by a failed or suspicious
@@ -147,6 +147,43 @@ Decision:    **If a tag named `latest` collides with GitHub's own
              versioned releases.**
 Prove:       Each channel's semantics are asserted by a test against real
              platform behaviour, not against an assumption.
+
+**Done.** `python3 -m unittest tests.test_channels -v` -> **17 tests, OK**.
+`src/trackers/channels.py` is the semantics and every one of its shapes is
+decided by a measurement rather than by a preference.
+
+⭐ **The tests read `experiments/24`'s committed result and fail if the design
+rests on something that run refuted.** That is the `Prove` clause's "against
+real platform behaviour" in the strongest form available without creating a
+release per test run: the platform was measured once, the measurement is in the
+tree, and the design is re-checked against it on every push.
+
+**Three measured answers, three design consequences.**
+
+| measured | consequence |
+| --- | --- |
+| `C-14`: a release tagged `latest` **lost** `/releases/latest` to a newer one | the rolling channel is **not** called `latest`. D5 says rename rather than ship a naming coincidence, and the name promised a contract the platform does not deliver |
+| `C-17`: **refuted** -- a moved tag left `target_commitish` at the old commit | a channel is updated by **delete-and-recreate**, never a tag move. Otherwise the release object and the tag disagree and neither is wrong |
+| `C-15`: the stable asset URL served the **previous bytes** 10 s later, with the old `ETag` and no `Cache-Control` | publication **may not** verify by reading the download URL back. Made structural: the module imports no network module at all, and a test parses it to check |
+
+⭐ **A period is published once.** `daily-2026-09-08` is that day rather than
+the last run inside it, so a second run does not replace it; the rolling
+channel carries no such promise and always moves. Deciding this from the tags
+that exist on the remote rather than from a stored cursor is deliberate: the
+remote is what a consumer reads.
+
+⚠ **The ISO week is the explicit part D5 asked for.** `weekly-2027-W53` is what
+2027-01-01 gets, because ISO puts that Friday in 2026's week 53 and a tag built
+from the calendar year would sort before every week of the year it belongs to.
+A test asserts exactly that date.
+
+**Five mutations planted, five caught**: the rolling tag renamed to `latest`,
+the week taken from the calendar year, a timestamp without a zone accepted, an
+empty output allowed to take a channel, and a published period republished.
+
+⚠ **What this does not do is publish.** Where the artefacts go is
+[T-063](publication.md) and nothing here creates a release; the semantics exist
+so that when it does, they are not invented at the point of writing a workflow.
 
 ---
 
