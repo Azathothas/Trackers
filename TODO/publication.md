@@ -127,7 +127,7 @@ Source:      the brief's section 18.1 (repository data publication);
 Category:    publication
 Priority:    P1
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `scripts/generate.py` writes to a local `out/` that is gitignored.
              Nothing reaches a consumer.
@@ -147,6 +147,40 @@ Prove:       `curl -sS https://raw.githubusercontent.com/Azathothas/trackers/dat
              returns the generated content, and
              `python3 -m unittest tests.test_publication -v` (planned) asserts a
              failed generation never pushes.
+
+**Done.** The dataset is public. Workflow run `34280454871` created the
+`data` branch and published to it. The `Prove` command, run verbatim:
+
+```
+http://00.mercax.com:443/announce
+http://00.xxtor.com:443/announce
+http://004430.xyz:80/announce
+```
+
+1334 lines, and every one of the six files answers HTTP 200 at
+`raw.githubusercontent.com/Azathothas/Trackers/data/`: the plaintext, the JSON,
+the CSV, the report, `schema.md` beside the data it defines, and `state.jsonl`.
+
+⭐ **It is published as a labelled dataset**, which is the only form the value
+gate justifies. 1334 trackers: **79 live**, 1 degraded, 34 unmeasurable, 1220
+honestly `unknown`, and ⛔ **nothing `dead`**, because that needs three
+observations of one tracker and the history is younger.
+
+⚠ **1334 rather than the 1327 this repository's fixtures hold**, and the
+difference is the point: the workflow fetches the upstreams live, while the
+committed figure comes from a pinned snapshot. Neither is wrong and neither is
+the other.
+
+`python3 -m unittest tests.test_publication -v` -> **11 tests, OK**: a failed
+generation writes nothing and leaves the previous output byte-identical, driven
+through the real script against an empty fixture directory rather than by
+patching a function.
+
+**State lives on the branch**, not in an artefact. History is what makes a label
+worth reading and a workflow artefact expires after 90 days, so `state.jsonl`
+is fetched from `data`, folded, and pushed back with the dataset it produced.
+That is also the shared-across-runs state [T-084](operations.md) named as
+missing when it recorded the re-run hazard.
 
 ---
 

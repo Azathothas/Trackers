@@ -48,8 +48,9 @@ met.** The measurement core has been pointed at the corpus five times -- a
 200-tracker stride sample, a 99-tracker census of the baseline, two corpus-wide
 DNS censuses, and the IPv6-only population probed from a vantage that has IPv6.
 Per-tracker history exists (D3) and what its series mean is decided (T-041).
-**No dataset exists at any public URL**, and nothing claims a tracker is
-`dead`: `MIN_SAMPLES_FOR_DEATH` is 3 and no tracker has three observations.
+**The dataset is published** on the `data` branch and the sweep runs every
+three hours (T-063, T-084); nothing claims a tracker is `dead`:
+`MIN_SAMPLES_FOR_DEATH` is 3 and no tracker has three observations.
 
 ---
 

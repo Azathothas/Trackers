@@ -28,8 +28,10 @@ each: [INDEX.md](INDEX.md).
   being willing to dial an address that points at itself, and reached a
   category of tracker that every previous record called unmeasurable.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
-- ⛔ **Still nothing published as data.** No dataset exists at any public URL.
-  Every measurement lives under `experiments/results/` as evidence.
+- ⭐ **The dataset is published.** `data` branch, run `34280454871`, six files
+  at `raw.githubusercontent.com/Azathothas/Trackers/data/`. 1334 trackers, 282
+  carrying a real observation, **79 live**. Every measurement also lives under
+  `experiments/results/` as evidence.
 - ⛔ **Nothing is `dead`, and nothing can be.** `MIN_SAMPLES_FOR_DEATH` is 3
   and no tracker has three observations. The most any record says is
   `unknown`.
@@ -192,20 +194,25 @@ acceptance recorded, or open with what remains written into it.
 
 ## Start here next session
 
-1. **[T-012](claims.md)** - whether our identity gets us blocked. The
+1. **[T-085](operations.md)** - overlapping runs in publication. ⭐ The
+   publisher exists now and has a `concurrency` group; what is unasserted is
+   what happens when a sweep and a publish overlap, and state now lives on the
+   `data` branch where two writers could reach it.
+2. **[T-012](claims.md)** - whether our identity gets us blocked. The
    instrument exists and two runs have gone out. ⭐ **Run rotations 1 to 3
    against the live subject set**, at least three hours apart, and the pairing
    is complete. ⚠ Each arm needs 20 contacted subjects before the instrument
    will compare them and the live set is 32, so what the verdict actually waits
    on is a wider one: a fresh sweep's live trackers.
-2. **[T-063](publication.md)** - the data branch, which is what publishes.
-   ⭐ The channel semantics exist now ([T-064](publication.md)) and nothing
-   uses them; this is the entry that would.
-3. **[T-084](operations.md)** - the rest of the workflow architecture. ⭐ The
+3. **[T-062](publication.md)** - the dataset is public and carries no version
+   a consumer can pin, so nobody can say what they received. ⭐ The channel
+   semantics exist ([T-064](publication.md)) and nothing uses them; this is
+   the entry that would.
+4. **[T-084](operations.md)** - the rest of the workflow architecture. ⭐ The
    sweep **is scheduled** now, every three hours, rotating through seven
    slices. What remains is what else runs and how the pieces fit, not the
    cadence.
-4. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
+5. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
    [T-031](measurement.md) did not move. ⭐ **The consent question is
    answered**: contact is permitted, the asking route covers those operators.
    ⚠ Route (d) is measured and the public gateway is out of service, so what

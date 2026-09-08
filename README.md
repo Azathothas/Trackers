@@ -6,10 +6,22 @@ normalizes them as hostile input, measures tracker health as far as this
 execution environment legitimately permits, and is intended to rank by measured
 reliability rather than by reputation.
 
-⛔ **Status: a skeleton. Nothing is published.** Aggregation, validation,
-normalization and deterministic generation work and are tested. The corpus has
-been measured once, from one runner, on one day. **No dataset exists at any
-public URL.**
+**Status: published, and thinly labelled.** Aggregation, validation,
+normalization and deterministic generation work and are tested, the health
+sweep runs every three hours, and the dataset is on the `data` branch:
+
+```bash
+curl -sS https://raw.githubusercontent.com/Azathothas/Trackers/data/trackers_all.json
+```
+
+⛔ **Take the JSON or the CSV, not the plaintext**, unless you intend to accept
+every entry unmeasured. [`docs/schema.md`](docs/schema.md) defines every field,
+and it travels with the data at
+`raw.githubusercontent.com/Azathothas/Trackers/data/schema.md`.
+
+⚠ **Most rows read `unknown` today**, which is honest rather than final: 282 of
+1334 carry an observation. ⛔ **Nothing reads `dead`**, because saying that
+needs three observations of one tracker.
 
 ---
 
@@ -194,8 +206,10 @@ three of them copyleft, and nothing is copied from any of them.
 carries a severity per correction so the error rate is checkable rather than
 asserted. The largest gaps:
 
-- **Nothing is published at a public URL yet**, so everything above describes
-  a dataset you cannot fetch. [T-063](TODO/publication.md) is the entry.
+- **The published labels are thin.** 1334 trackers are published and 282 of
+  them carry a real observation, so most rows honestly read `unknown`. That
+  improves every time the sweep runs, and until it does the dataset is a list
+  with a few hundred labels rather than a labelled list.
 - **One torrent client has been run against this output, not five.** aria2
   1.37.0 accepts it; qBittorrent, Transmission, Deluge and BiglyBT are
   **absent, not passing** ([T-035](TODO/claims.md)).
