@@ -1434,8 +1434,10 @@ the canonical vantage those 11 hosts resolve normally and **reach the prober**.
 ⛔ **A connect to the unspecified address reaches the local host on Linux.** So
 14 corpus URLs would have had the probe open a socket to the runner itself, and
 whatever answered would have been recorded as that tracker. Windows refuses the
-same connect with `WinError 10049`, measured here, which is one endpoint
-producing two different wrong answers. `_resolve` drops unspecified addresses
+same connect with `WinError 10049`. Neither half is recalled: a test opens a
+loopback listener, connects to `0.0.0.0`, and asserts on each outcome, so the
+gate measures the platform it is running on -- one endpoint producing two
+different wrong answers. `_resolve` drops unspecified addresses
 and a name that has nothing else is `dns_failure` before any socket.
 `tests/test_probe.py` `ANullAddressIsNeverDialled` proves it with the oracle as
 a positive control on the same port in the same second, and both halves of the

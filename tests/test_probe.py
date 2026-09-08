@@ -19,6 +19,7 @@ Run:  python3 -m unittest tests.test_probe -v
 
 from __future__ import annotations
 
+import ipaddress
 import itertools
 import os
 import socket
@@ -466,6 +467,39 @@ class ANullAddressIsNeverDialled(unittest.TestCase):
         if "ipv4" not in v.ip_families:
             self.skipTest("no ipv4 route from this vantage")
         self.v = v
+
+    def test_what_the_null_address_actually_does_on_this_platform(self):
+        """The hazard itself, measured rather than recalled.
+
+        ⛔ A raw connect, deliberately not through the probe: with the guard in
+        place the probe never dials one, so nothing else in this suite can say
+        what would have happened. Both branches assert, because both are real
+        and the pair is the finding.
+
+        Measured 2026-09-08: **Linux connects, and the peer is the local
+        host**; **Windows refuses with `WinError 10049`**. One endpoint, two
+        wrong answers, neither about a tracker. Nothing leaves the machine.
+        """
+        listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        listener.bind(("127.0.0.1", 0))
+        port = listener.getsockname()[1]
+        listener.listen(1)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(3.0)
+        try:
+            try:
+                s.connect(("0.0.0.0", port))
+            except OSError as e:
+                self.assertIsInstance(e, OSError)
+                return
+            peer = s.getpeername()[0]
+            self.assertTrue(
+                ipaddress.ip_address(peer).is_loopback,
+                f"a connect to the unspecified address reached {peer}, which "
+                f"is neither refused nor the local host")
+        finally:
+            s.close()
+            listener.close()
 
     def test_the_control_a_real_tracker_on_loopback_is_recorded_live(self):
         from fake_tracker import Behaviour, FakeHttpTracker

@@ -469,9 +469,11 @@ def _is_unspecified(address: str) -> bool:
     ⛔ **On Linux a connect to the unspecified address reaches the local
     host**, so probing a name that resolves to one would open a socket to the
     runner itself and record whatever answered as the tracker. Windows refuses
-    it outright with `WinError 10049`, measured 2026-09-08, which is the same
-    endpoint producing two different failures on two vantages -- neither of
-    them a fact about the tracker.
+    it outright with `WinError 10049`. Both halves are measured by
+    `tests/test_probe.py`
+    `ANullAddressIsNeverDialled.test_what_the_null_address_actually_does_on_this_platform`,
+    which runs on both platforms in the gate: the same endpoint produces two
+    different failures on two vantages, and neither is a fact about a tracker.
 
     ⚠ **The corpus contains these.** 11 hosts and 14 URLs answer `0.0.0.0`,
     `::` or both, and on a runner they resolve for `getaddrinfo` and reach the
