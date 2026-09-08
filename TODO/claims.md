@@ -98,7 +98,7 @@ Source:      `C-12`, verified TRUE by `experiments/22`
 Category:    claims
 Priority:    P0
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     GitHub's own documentation: "In a public repository, scheduled
              workflows are automatically disabled when no repository activity
@@ -124,6 +124,40 @@ Decision:    (a) alone is insufficient. If publication is what keeps the
 Prove:       A test that feeds the watchdog a dataset timestamped older than the
              threshold and asserts it reports stale; plus
              `python3 experiments/22-actions-platform-contract.py --expect-all`.
+
+**Done.** `python3 -m unittest tests.test_freshness -v` -> **11 tests, OK**,
+and `python3 experiments/22-actions-platform-contract.py --expect-all` -> exit
+0. The `Prove` clause's watchdog case is
+`test_a_dataset_older_than_the_threshold_reports_stale`.
+
+⭐ **The load-bearing half is the consumer's, and that is the whole design.**
+`src/trackers/freshness.py` decides staleness from an instant and a cadence,
+and **both travel with the published data**: `generated_at`,
+`publish_interval_seconds` and `stale_after_intervals` are in the JSON
+document, and in `metadata.json` for a CSV or plaintext reader.
+[`../docs/schema.md`](../docs/schema.md) shows the six lines that do it.
+
+⛔ **A watchdog of ours could not report this**, which is why one is not the
+answer: it would run on the schedule that stopped. The consumer is the only
+party outside the failure, so the consumer gets what they need to see it.
+
+⚠ **Three missed publications, not one.** `C-11` says a run can be delayed and
+one was observed **163 minutes** late on 2026-09-08, more than half an
+interval. A marker that cried stale on a single late run is noise, and a noisy
+marker is one consumers learn to ignore -- which costs exactly the signal this
+exists to send.
+
+⛔ **A stamp from the future is its own fault and never freshness**, and an
+unreadable one raises rather than reading as fresh. Reporting either as healthy
+would hide a defect behind the field that exists to expose one.
+
+**Half (a) is honest about what it rests on.** The publisher commits to the
+`data` branch on every run, and whether a workflow's own push counts as the
+activity that keeps the schedule alive is **undocumented** -- recorded as
+`C-75`, `UNVERIFIED`, and **not relied on**. Only 60 days of silence verifies
+it. ⭐ **If it is false the schedule stops and the dataset says it stopped**,
+which is why the entry closes on half (b) rather than waiting two months for
+half (a).
 
 ---
 

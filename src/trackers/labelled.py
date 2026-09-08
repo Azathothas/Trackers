@@ -54,6 +54,7 @@ import json
 from typing import Any, Iterable, Mapping
 
 from . import NORMALIZATION_VERSION, SCHEMA_VERSION, SCORING_VERSION
+from .freshness import PUBLISH_INTERVAL_SECONDS, STALE_AFTER_INTERVALS
 from .model import HealthState, Tracker
 from .state import TrackerHistory
 
@@ -133,6 +134,8 @@ def metadata_for(paths_and_bytes, *, generated_at: str, code_version: str,
         "scoring_version": SCORING_VERSION,
         "count": count,
         "dataset_digest": digest,
+        "publish_interval_seconds": PUBLISH_INTERVAL_SECONDS,
+        "stale_after_intervals": STALE_AFTER_INTERVALS,
         "files": files,
         "schema": "schema.md, published beside this file",
     }, indent=2, sort_keys=True) + "\n"
@@ -232,6 +235,12 @@ def render_json(trackers: list[Tracker], *, provenance: Mapping[str, list[str]],
         #: whatever their `generated_at` says, which is what lets a consumer
         #: tell a re-publication from a change.
         "digest": digest_of(rows),
+        # T-002. ⛔ The cadence travels with the data because the consumer is
+        # the only party outside our own failure. If this project stops, every
+        # file still serves 200 and nothing but `generated_at` against this
+        # number says so.
+        "publish_interval_seconds": PUBLISH_INTERVAL_SECONDS,
+        "stale_after_intervals": STALE_AFTER_INTERVALS,
         "count": len(trackers),
         "fields": list(FIELDS),
         # ⚠ Stated in the data rather than only in the documentation, because

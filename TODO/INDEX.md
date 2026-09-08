@@ -51,7 +51,7 @@ pretending to be one.
 | ID | Priority | Category | Status | Item |
 | --- | --- | --- | --- | --- |
 | [T-001](claims.md) | P0 | claims | **done** | No torrent client has ever been run against our plaintext |
-| [T-002](claims.md) | P0 | claims | open | A public repository's schedule stops after 60 days and nothing here notices |
+| [T-002](claims.md) | P0 | claims | **done** | A public repository's schedule stops after 60 days and nothing here notices |
 | [T-012](claims.md) | P0 | claims | open | Nobody has measured whether our User-Agent gets us blocked |
 | [T-021](measurement.md) | P0 | measurement | done | The probe has no oracle, so a silently broken probe would mark everything dead |
 | [T-027](measurement.md) | P0 | measurement | **done** | The value gate is unanswered: uniqueness is measured, liveness is not |
@@ -126,18 +126,18 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 73 entries, 33 open, 0 blocked, 40 done
+**Counts:** 73 entries, 32 open, 0 blocked, 41 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
 
 | Priority | Open | Blocked | Done | Total |
 | --- | --- | --- | --- | --- |
-| P0 | 2 | 0 | 5 | 7 |
+| P0 | 1 | 0 | 6 | 7 |
 | P1 | 3 | 0 | 20 | 23 |
 | P2 | 22 | 0 | 14 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **33** | **0** | **40** | **73** |
+| **All** | **32** | **0** | **41** | **73** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

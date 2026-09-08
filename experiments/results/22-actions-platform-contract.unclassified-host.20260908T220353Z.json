@@ -1,0 +1,65 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "15d3de05ed682e0f0c10fa4e34116c87eaeea9c9-dirty",
+    "sample_counts": {
+      "assertions": 5,
+      "fetches": 1
+    },
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+    "user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; documentation assertion check; contact via repository issues)",
+    "utc": "2026-09-08T22:03:53Z"
+  },
+  "question": "Do GitHub's docs still state the four scheduling behaviours this project depends on?",
+  "results": {
+    "all_present": true,
+    "assertions": [
+      {
+        "claim": "C-10",
+        "pattern": "shortest\\s+interval\\s+you\\s+can\\s+run\\s+scheduled\\s+workflows\\s+is\\s+once\\s+every\\s+5\\s+minutes",
+        "present": true,
+        "quote": "aware scheduling. Scheduled workflows run on the latest commit on the default branch. The shortest interval you can run scheduled workflows is once every 5 minutes. Note For schedules that set timezone to a time zone that observes daylight saving time (",
+        "why_load_bearing": "Sets the floor on cadence. The chosen cadence is far above it, so this is a sanity bound rather than a constraint."
+      },
+      {
+        "claim": "C-11",
+        "pattern": "schedule.{0,40}event\\s+can\\s+be\\s+delayed\\s+during\\s+periods\\s+of\\s+high\\s+loads",
+        "present": true,
+        "quote": "B_REF Not applicable Not applicable Last commit on default branch Default branch Note The schedule event can be delayed during periods of high loads of GitHub Actions workflow runs. High load times include the start of every hour. If the",
+        "why_load_bearing": "Delayed runs are expected, not exceptional. State handling must be idempotent under late execution."
+      },
+      {
+        "claim": "C-11b",
+        "pattern": "some\\s+queued\\s+jobs\\s+may\\s+be\\s+dropped",
+        "present": true,
+        "quote": "High load times include the start of every hour. If the load is sufficiently high enough, some queued jobs may be dropped. To decrease the chance of delay, schedule your workflow to run at a different time of th",
+        "why_load_bearing": "Runs can be DROPPED entirely, not merely delayed. A missed cycle must never be read as 'all trackers went dead'."
+      },
+      {
+        "claim": "C-12",
+        "pattern": "scheduled\\s+workflows\\s+are\\s+automatically\\s+disabled\\s+when\\s+no\\s+repository\\s+activity\\s+has\\s+occurred\\s+in\\s+60\\s+days",
+        "present": true,
+        "quote": "branch. Scheduled workflows will only run on the default branch. In a public repository, scheduled workflows are automatically disabled when no repository activity has occurred in 60 days. For information on re-enabling a disabled workflow, see Disabling and enabling a workflo",
+        "why_load_bearing": "THE LOAD-BEARING ONE. A public repository's schedule stops after 60 days of inactivity. Without a mitigation the dataset silently stops updating, which TODO/RULES.md calls the worst failure mode available."
+      },
+      {
+        "claim": "C-19b",
+        "pattern": "GITHUB_TOKEN.{0,40}(events\\s+)?do\\s+not\\s+create\\s+workflow\\s+runs",
+        "present": true,
+        "quote": "ull request page. With the exception of workflow_dispatch and repository_dispatch , other GITHUB_TOKEN -triggered events do not create workflow runs at all. The value of GITHUB_REF varies for a closed pull request depending on whether the",
+        "why_load_bearing": "Commits pushed by a workflow with the default token do NOT trigger further workflows. Protects against infinite loops; breaks any design expecting a chained trigger."
+      }
+    ],
+    "fetch": {
+      "bytes": 1075104,
+      "http_status": 200,
+      "ok": true
+    },
+    "missing": [],
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows"
+  }
+}
