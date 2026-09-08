@@ -62,7 +62,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **302** tests, no network |
+| Test suite | **313** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
@@ -85,6 +85,15 @@ blocked.**
 [T-031](measurement.md), the leverage entry, and [T-026](measurement.md) -- and
 two opened because of them: [T-038](measurement.md) and
 [T-039](measurement.md).**
+
+⛔ **One keystroke was a corrupted dataset, and it is fixed.** Folding a sweep
+into the history twice recorded two observations from one measurement; three
+folds reached `MIN_SAMPLES_FOR_DEATH`, which is every non-live tracker in that
+sweep published `dead` on a single probe. Re-running
+`scripts/update-state.py` over a directory it had already read did it. Two
+guards now: per observation, keyed on the instant, and per sweep, in the state
+header. [T-084](operations.md)'s `Prove` clause is met and the entry stays open
+for the workflow architecture.
 
 ⛔ **The number D7's whole rule rests on was measured and thrown away.** A
 tracker's stated `interval` and `min interval` have been read by

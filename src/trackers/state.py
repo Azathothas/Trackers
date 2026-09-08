@@ -66,9 +66,9 @@ from typing import Any, Iterable, Iterator
 
 __all__ = [
     "STATE_FORMAT", "RING_SIZE", "DAILY_DAYS", "EWMA_ALPHA",
-    "CorruptState", "Outcome", "DayAggregate", "TrackerHistory",
-    "render_line", "parse_line", "write_state", "read_state",
-    "bootstrap", "apply_sweep",
+    "APPLIED_RUNS_KEPT", "CorruptState", "Outcome", "DayAggregate",
+    "TrackerHistory", "render_line", "parse_line", "write_state",
+    "read_state", "read_applied_runs", "bootstrap", "apply_sweep",
 ]
 
 #: The version, and it is first on the header line. A positional or implicit
@@ -99,6 +99,12 @@ STATE_FORMAT = "trackers.state/1"
 #: platform starts refusing files.
 RING_SIZE = 64
 DAILY_DAYS = 180
+
+#: How many sweep identities the header remembers, so a run already folded can
+#: be refused (T-084). The same 64 as the ring, for the same reason and with
+#: the same consequence: beyond it, a re-applied ancient sweep is not
+#: recognisable and `update-state.py` says so rather than pretending.
+APPLIED_RUNS_KEPT = 64
 
 #: How much one observation moves the rate. 0.15 gives a half-life of about
 #: 4.3 checks, so a tracker that comes back is believed within a day at D7's
@@ -214,7 +220,25 @@ class TrackerHistory:
 
         ⚠ **`observed_at` is the injected clock**, and it is the only source of
         time in this module.
+
+        ⛔ **An observation already recorded at this instant is ignored**, and
+        it is the difference between a scheduled run and a corrupted history.
+        T-084 requires that a duplicated run must not corrupt state, and
+        GitHub's own documentation says a schedule may fire late, not at all,
+        or more than once (`C-11`). Every record in one sweep carries that
+        run's injected clock, so `(url, observed_at)` identifies an observation
+        exactly -- and without this, folding one sweep in three times would
+        take every tracker to `MIN_SAMPLES_FOR_DEATH` on one measurement. That
+        is reachable by re-running `scripts/update-state.py` over a directory
+        it has already read.
+
+        ⚠ **The window is the ring.** An observation older than the oldest of
+        the last `RING_SIZE` outcomes cannot be recognised here, because the
+        evidence for it has rolled off. `update-state.py` carries the second
+        layer: the state header remembers which runs it has folded.
         """
+        if any(o.at == observed_at for o in self.ring):
+            return self
         outcome = Outcome(at=observed_at, state=state, ok=ok, rung=rung,
                           failure=failure)
         ring = (self.ring + (outcome,))[-RING_SIZE:]
@@ -308,21 +332,31 @@ def parse_line(line: str) -> TrackerHistory:
 
 
 def write_state(path: str, histories: Iterable[TrackerHistory],
-                *, generated_at: str) -> int:
+                *, generated_at: str,
+                applied_runs: Iterable[str] = ()) -> int:
     """Write the whole file, sorted by URL. Returns the number of records.
 
     ⚠ **Whole-file, not append.** A ring and a set of daily aggregates are
     rewritten by every observation, so an append-only file would be a log this
     module then had to replay -- which is a second format, and the replay is
     where the corruption would live.
+
+    ⛔ **`applied_runs` is the second layer of T-084's idempotence.** The first
+    is per observation, inside `observe`, and its window is the ring. This one
+    remembers which sweeps produced the file, so a caller can refuse one it has
+    already folded even after the evidence has rolled off. Bounded at
+    `APPLIED_RUNS_KEPT`: a header that grows forever is the unbounded file
+    `experiments/31` exists to prevent, wearing a different hat.
     """
     records = sorted(histories, key=lambda h: h.url)
+    kept = sorted(set(applied_runs))[-APPLIED_RUNS_KEPT:]
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(json.dumps({"format": STATE_FORMAT,
                              "generated_at": generated_at,
                              "records": len(records),
                              "ring_size": RING_SIZE,
-                             "daily_days": DAILY_DAYS},
+                             "daily_days": DAILY_DAYS,
+                             "applied_runs": kept},
                             sort_keys=True, separators=(",", ":")) + "\n")
         for h in records:
             fh.write(render_line(h) + "\n")
@@ -371,6 +405,25 @@ def read_state(path: str) -> tuple[dict[str, TrackerHistory], list[str]]:
                 continue
             by_url[h.url] = h
     return by_url, quarantined
+
+
+def read_applied_runs(path: str) -> list[str]:
+    """Which sweeps this state file has already folded in.
+
+    Empty for a file that does not exist or predates the field, which is the
+    honest answer: nothing is known about what it has seen, so a caller must
+    not treat an empty list as "this sweep is new".
+    """
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8") as fh:
+        first = fh.readline()
+    try:
+        header = json.loads(first)
+    except ValueError:
+        return []
+    runs = header.get("applied_runs") if isinstance(header, dict) else None
+    return [str(r) for r in runs] if isinstance(runs, list) else []
 
 
 def bootstrap(path: str) -> tuple[dict[str, TrackerHistory], list[str]]:

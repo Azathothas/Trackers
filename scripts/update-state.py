@@ -46,9 +46,25 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
 from generate import display_path  # noqa: E402
 from trackers.shapes import classify  # noqa: E402
 from trackers.state import (CorruptState, apply_sweep, bootstrap,  # noqa: E402
-                            write_state)
+                            read_applied_runs, write_state)
+
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def sweep_identity(doc: dict) -> str:
+    """What makes one sweep distinguishable from another.
+
+    The injected clock plus what the run was pointed at. ⚠ Not the file path:
+    the same sweep copied to a second name is the same measurement, and a
+    guard keyed on the path would fold it twice.
+    """
+    selection = doc.get("selection") or {}
+    parts = [str(doc.get("generated_at", "-")),
+             str(selection.get("mode", "-")),
+             str(selection.get("source") or selection.get("host") or "-"),
+             str(len(doc.get("trackers") or []))]
+    return "|".join(parts)
 
 
 def main() -> int:
@@ -88,6 +104,15 @@ def main() -> int:
 
     before = len(histories)
     observed = 0
+    # ⛔ T-084: a duplicated run must not corrupt state. GitHub's own
+    # documentation says a schedule may fire late, not at all, or more than
+    # once (`C-11`), and re-running this command over a directory it has
+    # already read is one keystroke. Folding one sweep three times would take
+    # every non-live tracker to `MIN_SAMPLES_FOR_DEATH` on a single
+    # measurement -- measured on 2026-09-08, before the guard existed.
+    already = list(read_applied_runs(args.state))
+    applied: list[str] = list(already)
+    skipped: list[str] = []
     for path in sorted(args.sweeps):
         try:
             with open(path, encoding="utf-8") as fh:
@@ -95,6 +120,11 @@ def main() -> int:
         except (OSError, ValueError) as exc:
             print(f"could not read {path}: {exc}", file=sys.stderr)
             return 2
+        identity = sweep_identity(doc)
+        if identity in already:
+            skipped.append(f"{display_path(path, REPO)} ({identity})")
+            continue
+        applied.append(identity)
         records = doc.get("trackers") or []
         if not records:
             # An empty sweep is not the same as a sweep that found nothing
@@ -114,12 +144,16 @@ def main() -> int:
     directory = os.path.dirname(os.path.abspath(args.state))
     os.makedirs(directory, exist_ok=True)
     written = write_state(args.state, histories.values(),
-                          generated_at=args.generated_at)
+                          generated_at=args.generated_at,
+                          applied_runs=applied)
 
     print(f"state:        {display_path(args.state, REPO)}")
     print(f"records:      {before} -> {written}")
     print(f"observations: {observed} applied from {len(args.sweeps)} sweep(s)")
     print(f"quarantined:  {len(quarantined)}")
+    print(f"already applied: {len(skipped)} sweep(s) skipped")
+    for entry in skipped:
+        print(f"    {entry}")
 
     # T-041's shapes, over what was just written. Printed rather than stored:
     # a shape is derived from the series and storing it would be a second copy

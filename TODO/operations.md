@@ -173,6 +173,40 @@ Decision:    **MUST NOT assume a scheduled run occurs on the minute, occurs at
 Prove:       A test that a duplicated run over the same inputs produces the same
              state, and that a skipped interval does not corrupt it.
 
+**The `Prove` clause is met and the entry stays open**, because it asks for two
+things and only one of them is a test.
+`python3 -m unittest tests.test_run_safety -v` -> **11 tests, OK**. The
+workflow architecture and the schedule itself are what remain.
+
+⛔ **The property did not hold, and it was one keystroke from a corrupted
+dataset.** Measured 2026-09-08: folding one sweep into the history twice
+recorded **two observations from one measurement**, and three folds reached
+`MIN_SAMPLES_FOR_DEATH` -- every non-live tracker in that sweep published
+`dead` on the strength of a single probe. Re-running
+`scripts/update-state.py` over a directory it had already read did it, which
+is what a retry is, and `C-11` says a schedule may fire more than once anyway.
+
+**Two layers, because they fail in different places.**
+
+1. **Per observation**, in `state.observe`, keyed on the instant. Every record
+   in one sweep carries that run's injected clock, so `(url, observed_at)`
+   identifies an observation exactly. Its window is the ring.
+2. **Per sweep**, in the state file's header: `applied_runs` remembers what
+   produced the file, so `update-state.py` refuses a sweep it has already
+   folded even after the evidence rolls off. Bounded at `APPLIED_RUNS_KEPT`,
+   because a header that grows forever is the unbounded file `experiments/31`
+   exists to prevent.
+
+⚠ **The second layer's test had to be written twice.** The first version drove
+the updater three times and passed with layer 2 disabled, because layer 1
+caught it -- a test whose name claimed more than it checked. The version that
+survives fills the ring past capacity first, which is the only case layer 2
+owns.
+
+**A skipped interval is not corruption**, and that half needed no fix: the
+daily aggregates are keyed by day, so a dropped run is an absent day, and an
+out-of-order run does not move `last_seen` backwards.
+
 ---
 
 ### T-085 Overlapping runs are prevented in the gates but not in publication
