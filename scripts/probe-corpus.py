@@ -78,6 +78,13 @@ def main() -> int:
                     help="INJECTED clock (RULES 3.6)")
     ap.add_argument("--dry-run", action="store_true",
                     help="print what would be probed and write nothing")
+    ap.add_argument("--only-source", default=None, metavar="SOURCE_ID",
+                    help="narrow the corpus to trackers this source "
+                         "contributed, by provenance. Aims the request budget "
+                         "at one question instead of spending it uniformly "
+                         "(T-034). It narrows WHAT is probed and changes "
+                         "nothing about HOW: BEP 34, the per-host rule, the "
+                         "concurrency bound and the deadline all still apply.")
     args = ap.parse_args()
 
     try:
@@ -91,6 +98,31 @@ def main() -> int:
               file=sys.stderr)
         return 2
 
+    corpus = agg.trackers
+    selection = {"mode": "whole corpus", "corpus_before_selection": len(corpus)}
+    if args.only_source:
+        known = sorted({s for srcs in agg.provenance.values() for s in srcs})
+        if args.only_source not in known:
+            # ⛔ Never silently probe nothing. A run that matched no tracker and
+            # exited 0 is the forbidden pattern about a step that exits 0
+            # having done nothing it was asked to do, and here it would also
+            # publish an empty sweep as if it were a measured one.
+            print(f"--only-source {args.only_source!r} contributed nothing to "
+                  f"this corpus. Known: {', '.join(known)}", file=sys.stderr)
+            return 2
+        corpus = [t for t in corpus
+                  if args.only_source in agg.provenance.get(t.url, ())]
+        selection = {
+            "mode": "one source, by provenance",
+            "source": args.only_source,
+            "corpus_before_selection": len(agg.trackers),
+            "selected_by_provenance": len(corpus),
+        }
+        if not corpus:
+            print(f"--only-source {args.only_source!r} matched no tracker",
+                  file=sys.stderr)
+            return 2
+
     budget = budget_for()
     vantage = detect_vantage()
     config = SweepConfig(timeout=args.timeout, deadline_seconds=args.deadline)
@@ -99,14 +131,19 @@ def main() -> int:
     # the corpus. Run 33938543488 published `corpus: 200` against a corpus of
     # 1327 for exactly that reason: the sample was correct and its denominator
     # was not. One selector, one place (docs/conventions/code.md).
-    chosen = select(agg.trackers, budget)
+    chosen = select(corpus, budget)
 
     print(f"profile:      {budget.profile}")
     print(f"vantage:      {vantage.environment_class}, "
           f"families {list(vantage.ip_families)}")
-    print(f"corpus:       {len(agg.trackers)}")
+    print(f"corpus:       {len(corpus)}"
+          f"{'' if not args.only_source else f' (of {len(agg.trackers)}, '
+            f'contributed by {args.only_source})'}")
+    # "a sample" is only true when something was left out. Saying it over a
+    # census is the same class of mislabelled denominator as `counts.corpus`
+    # reporting the sample size, and it is worth the extra branch to not.
     print(f"selected:     {len(chosen)}"
-          f"{'' if budget.full_corpus_sweep else ' (a sample; RULES 15.2)'}")
+          f"{'' if len(chosen) == len(corpus) else ' (a sample; RULES 15.2)'}")
     print(f"concurrency:  {budget.max_concurrency} hosts, 1 connection per host")
     print(f"udp budget:   {udp_budget(args.timeout):.2f}s worst case per tracker")
     print(f"deadline:     {args.deadline if args.deadline else 'none'}")
@@ -123,12 +160,16 @@ def main() -> int:
               file=sys.stderr)
         return 2
 
-    result = sweep(agg.trackers, config=config, budget=budget, vantage=vantage,
+    result = sweep(corpus, config=config, budget=budget, vantage=vantage,
                    resolver=Resolver(), observed_at=args.generated_at)
 
     doc = render_sweep(result, generated_at=args.generated_at,
                        vantage=vantage, budget=budget, config=config)
     doc["code_version"] = __version__
+    # What this run was pointed at, so a narrowed sweep can never be read as
+    # a sample of the whole corpus (RULES 3.4: the conditions travel with
+    # the records).
+    doc["selection"] = selection
 
     os.makedirs(args.out, exist_ok=True)
     path = os.path.join(args.out, "health.json")

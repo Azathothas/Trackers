@@ -440,6 +440,57 @@ class TheSweepScriptReportsTheCorpusItSampledFrom(unittest.TestCase):
         self.assertGreater(doc["counts"]["corpus"], doc["counts"]["selected"],
                            "counts.corpus is reporting the sample size")
 
+    def test_only_source_narrows_the_corpus_and_says_so_in_the_record(self):
+        """T-034. Aiming the request budget at one source is a corpus filter,
+        not a sampling mode, and the record has to be able to tell a reader
+        which it was -- a 99-tracker census and a 99-tracker sample of 1327
+        support completely different arithmetic."""
+        mod = self._script()
+
+        def recording_sweep(trackers, **kw):
+            return sweep(trackers, probe_fn=ok_result, **kw)
+
+        with tempfile.TemporaryDirectory() as out:
+            argv = ["probe-corpus.py", "--offline-corpus", "--out", out,
+                    "--only-source", "ngosang_all",
+                    "--generated-at", "2026-01-01T00:00:00Z"]
+            old_argv, sys.argv = sys.argv, argv
+            old_sweep, mod.sweep = mod.sweep, recording_sweep
+            old_detect, mod.detect_vantage = mod.detect_vantage, loopback_vantage
+            try:
+                self.assertEqual(mod.main(), 0)
+                with open(os.path.join(out, "health.json"),
+                          encoding="utf-8") as fh:
+                    doc = json.load(fh)
+            finally:
+                sys.argv = old_argv
+                mod.sweep = old_sweep
+                mod.detect_vantage = old_detect
+
+        sel = doc["selection"]
+        self.assertEqual(sel["mode"], "one source, by provenance")
+        self.assertEqual(sel["source"], "ngosang_all")
+        self.assertGreater(sel["corpus_before_selection"],
+                           sel["selected_by_provenance"])
+        # A census, not a sample: everything selected was probed.
+        self.assertEqual(doc["counts"]["corpus"], doc["counts"]["selected"])
+        self.assertEqual(len(doc["trackers"]), sel["selected_by_provenance"])
+
+    def test_an_unknown_source_refuses_rather_than_probing_nothing(self):
+        """A run that matched no tracker and exited 0 would publish an empty
+        sweep as a measured one -- the forbidden pattern about a step that exits
+        0 having done nothing it was asked to do."""
+        mod = self._script()
+        with tempfile.TemporaryDirectory() as out:
+            argv = ["probe-corpus.py", "--offline-corpus", "--out", out,
+                    "--only-source", "no-such-source"]
+            old_argv, sys.argv = sys.argv, argv
+            try:
+                self.assertEqual(mod.main(), 2)
+            finally:
+                sys.argv = old_argv
+            self.assertEqual(os.listdir(out), [], "it wrote a file anyway")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -921,6 +921,21 @@ putting a shadowing copy back, which fails it.
 "the experiments and the production path are the same code and cannot drift" --
 was false when written and is true as of this entry.
 
+**Confirmed on a runner**, which is the half the offline test cannot do. Push
+`29c11ef` triggered `p0-ground-truth.yml`; both images green, and experiment 02
+reported *"Control passed and real trackers answered -> BEP 15 probing WORKS"*
+with **2 datagrams received by the loopback control** on each of its two runs.
+
+⚠ **One subject moved and it is not the codec.** Experiment 05 proved **3 of 6**
+against the 2026-09-05 baseline's 4 of 6, and the single difference is
+`tracker.leechshield.link`. It failed at **`rung=dns`, `kind=no_response`** --
+it never opened a connection, so no body ever reached the decoder, so the
+decoder cannot be what changed its verdict. ⭐ **That is the ladder earning its
+keep**: without a recorded rung, "proved 4" becoming "proved 3" on the day a
+codec was swapped is indistinguishable from a regression, and with one it takes
+a minute to rule out. The other two were already failing at `dns_failure` and
+`transport_failure` in the baseline and still are.
+
 ### T-031 Liveness for networks this vantage cannot reach -- the leverage entry
 
 Source:      operator ruling 2026-08-29; RULES 10.1a

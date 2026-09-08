@@ -14,6 +14,11 @@
 #   * One connection per host at a time, in both profiles, not configurable.
 #   * The `ci` profile probes a SAMPLE, not the corpus, and `ci` is the default
 #     on every host. Choosing `local` here is a deliberate act.
+#   * `only_source` narrows the corpus to what one upstream contributed, so a
+#     question about one list costs the requests that list needs instead of a
+#     uniform sample of everything (T-034). It narrows WHAT is probed and
+#     changes nothing about HOW: every bound above still applies, and BEP 34
+#     is still consulted per host before any socket opens.
 #   * A whole-run deadline. Anything not reached is recorded `unknown`, never
 #     `dead`.
 #
@@ -37,6 +42,11 @@ on:
         description: "seconds for the whole run"
         required: false
         default: "900"
+        type: string
+      only_source:
+        description: "probe only what this source contributed (blank = whole corpus)"
+        required: false
+        default: ""
         type: string
 
 # Least privilege. It reads the tree, probes, and uploads an artefact. It does
@@ -77,7 +87,8 @@ jobs:
         env:
           TRACKERS_PROFILE: ${{ inputs.profile }}
         run: |
-          python3 scripts/probe-corpus.py --offline-corpus --dry-run
+          python3 scripts/probe-corpus.py --offline-corpus --dry-run \
+            ${{ inputs.only_source && format('--only-source {0}', inputs.only_source) || '' }}
 
       - name: Sweep
         id: sweep
@@ -88,6 +99,7 @@ jobs:
             --offline-corpus \
             --deadline "${{ inputs.deadline }}" \
             --generated-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            ${{ inputs.only_source && format('--only-source {0}', inputs.only_source) || '' }} \
             --out "sweep-out"
 
       # T-024's `Prove` clause, run where the records are real. It reads the
