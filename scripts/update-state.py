@@ -44,6 +44,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))), "src"))
 
 from generate import display_path  # noqa: E402
+import _scope  # noqa: E402 - reconfigures stdout on import
 from trackers.shapes import classify  # noqa: E402
 from trackers.state import (CorruptState, apply_sweep, bootstrap,  # noqa: E402
                             read_applied_runs, write_state)
@@ -77,6 +78,7 @@ def sweep_identity(doc: dict) -> str:
 
 
 def main() -> int:
+    _scope.printable_stdout()
     ap = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)

@@ -47,6 +47,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))), "src"))
 
+import _scope  # noqa: E402 - reconfigures stdout on import
 from generate import _NoSources, display_path, load_corpus  # noqa: E402
 from trackers import __version__  # noqa: E402
 from trackers.bep34 import Resolver  # noqa: E402
@@ -94,6 +95,7 @@ DEFAULT_OUT = os.path.join(REPO, "out", "health")
 
 
 def main() -> int:
+    _scope.printable_stdout()
     ap = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)

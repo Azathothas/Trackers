@@ -42,6 +42,9 @@ import os
 import stat
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _scope  # noqa: E402 - reconfigures stdout on import
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MARKER = "# trackers pre-commit hook v1"

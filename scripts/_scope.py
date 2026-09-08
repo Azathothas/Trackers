@@ -69,6 +69,22 @@ class CouldNotRun(Exception):
     """Raised where the check cannot run at all, which is exit 2, not exit 1."""
 
 
+def printable_stdout() -> None:
+    """Make this process able to print the project's own markers. A no-op call.
+
+    The reconfigure above happens on import, and this exists so a script can
+    **say** it depends on that rather than importing a module for a side
+    effect a later tidy-up would remove.
+
+    ⛔ Measured on 2026-09-09: `scripts/update-state.py --help` and
+    `scripts/probe-corpus.py --help` both died with `UnicodeEncodeError` on
+    Windows, because argparse prints the module docstring and those docstrings
+    carry ⛔. Neither imported this module. The failure is at print time, so it
+    passes every test that captures output and fails the moment a person runs
+    the command a document told them to run.
+    """
+
+
 def _git(*args: str) -> list[str]:
     try:
         out = subprocess.run(

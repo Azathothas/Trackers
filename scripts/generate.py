@@ -27,12 +27,18 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
+import csv
+import io
+import json
 import os
 import shutil
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))), "src"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import _scope  # noqa: E402 - reconfigures stdout on import
 
 from trackers import NORMALIZATION_VERSION, __version__          # noqa: E402
 from trackers.acquire import Outcome, fetch, read_cached          # noqa: E402
@@ -41,14 +47,18 @@ from trackers.exclusion import (carries_private_credential,       # noqa: E402
 from trackers.pipeline import (aggregate, collect_exclusions,      # noqa: E402
                                enforced_exclusions, flagged_exclusions,
                                render_plaintext, render_report)
+from trackers.labelled import render_csv, render_json            # noqa: E402
 from trackers.registry import SOURCES, Role, enabled_sources      # noqa: E402
+from trackers.state import read_state                            # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_FIXTURES = os.path.join(REPO, "tests", "fixtures", "sources")
 DEFAULT_OUT = os.path.join(REPO, "out")
 
 
-def verify(agg, plaintext: str, blacklist: set[str]) -> list[str]:
+def verify(agg, plaintext: str, blacklist: set[str], *,
+           labelled_json: str | None = None,
+           labelled_csv: str | None = None) -> list[str]:
     """Pre-publication checks. RULES 3.5.
 
     Returns a list of problems; empty means publishable. These run against the
@@ -91,6 +101,34 @@ def verify(agg, plaintext: str, blacklist: set[str]) -> list[str]:
             f"{len(creds)} URL(s) carrying a private-tracker credential "
             f"reached the output; refusing to publish (T-107). The URLs are "
             f"deliberately not printed here.")
+
+    # T-061. ⛔ The same tracker SET, not the same counts. Two formats holding
+    # the same number of different URLs is a silent corruption a consumer
+    # cannot detect, which is the one class worse than an error -- and a count
+    # check passes it. Comparing sets is barely more code and catches it.
+    expected = {t.url for t in agg.trackers}
+    if labelled_json is not None:
+        try:
+            rows = json.loads(labelled_json)["trackers"]
+        except (ValueError, KeyError, TypeError) as exc:
+            problems.append(f"the JSON output does not parse: {exc}")
+        else:
+            got = {r["url"] for r in rows}
+            if got != expected:
+                problems.append(
+                    f"JSON and the dataset disagree: {len(expected - got)} "
+                    f"missing, {len(got - expected)} unexpected")
+            if len(rows) != len(got):
+                problems.append(
+                    f"the JSON output repeats a URL: {len(rows)} rows, "
+                    f"{len(got)} distinct")
+    if labelled_csv is not None:
+        reader = csv.DictReader(io.StringIO(labelled_csv))
+        got = {r["url"] for r in reader}
+        if got != expected:
+            problems.append(
+                f"CSV and the dataset disagree: {len(expected - got)} missing, "
+                f"{len(got - expected)} unexpected")
 
     # If EVERY source failed we have no evidence at all. Publishing then would
     # replace good data with the consequences of an outage (T-083:
@@ -169,6 +207,13 @@ def main() -> int:
                          "over identical inputs are byte-identical.")
     ap.add_argument("--check-only", action="store_true",
                     help="stage and verify, but do not publish")
+    ap.add_argument("--state", default=None, metavar="PATH",
+                    help="a state file whose histories label the output. "
+                         "Without it every tracker is `unknown`, which is what "
+                         "a run with no measurement honestly says.")
+    ap.add_argument("--observed-from", default=None, metavar="CLASS",
+                    help="the environment class the observations in --state "
+                         "came from, recorded on every labelled row")
     args = ap.parse_args()
 
     try:
@@ -178,11 +223,29 @@ def main() -> int:
         return 2
     flagged = flagged_exclusions(exclusions)
 
-    plaintext = render_plaintext(agg.trackers)
-    report = render_report(agg, generated_at=args.generated_at,
-                           code_version=f"{__version__}+norm{NORMALIZATION_VERSION}")
+    code_version = f"{__version__}+norm{NORMALIZATION_VERSION}"
+    histories: dict = {}
+    if args.state and os.path.exists(args.state):
+        # ⚠ Read, never written here. The generator renders what the sweep
+        # recorded; folding an observation into a history is
+        # `scripts/update-state.py`'s job, and giving one file two writers is
+        # how a history gets corrupted.
+        histories, _ = read_state(args.state)
 
-    problems = verify(agg, plaintext, enforced)
+    plaintext = render_plaintext(agg.trackers)
+    labelled_json = render_json(agg.trackers, provenance=agg.provenance,
+                                histories=histories,
+                                generated_at=args.generated_at,
+                                code_version=code_version,
+                                observed_from=args.observed_from)
+    labelled_csv = render_csv(agg.trackers, provenance=agg.provenance,
+                              histories=histories,
+                              observed_from=args.observed_from)
+    report = render_report(agg, generated_at=args.generated_at,
+                           code_version=code_version)
+
+    problems = verify(agg, plaintext, enforced,
+                      labelled_json=labelled_json, labelled_csv=labelled_csv)
 
     print(f"sources ok={len(agg.sources_ok)} failed={len(agg.sources_failed)} "
           f"rejected={len(agg.sources_rejected)} empty={len(agg.sources_empty)}")
@@ -215,6 +278,12 @@ def main() -> int:
     with open(os.path.join(staging, "trackers_all.txt"), "w",
               encoding="utf-8", newline="\n") as fh:
         fh.write(plaintext)
+    with open(os.path.join(staging, "trackers_all.json"), "w",
+              encoding="utf-8", newline="\n") as fh:
+        fh.write(labelled_json)
+    with open(os.path.join(staging, "trackers_all.csv"), "w",
+              encoding="utf-8", newline="\n") as fh:
+        fh.write(labelled_csv)
     with open(os.path.join(staging, "report.md"), "w",
               encoding="utf-8", newline="\n") as fh:
         fh.write(report)

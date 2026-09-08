@@ -45,6 +45,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _scope  # noqa: E402 - reconfigures stdout on import
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #: Trees we do not own. Their citations are theirs, not ours.

@@ -16,7 +16,7 @@ Source:      the brief's section 17.2 (JSON and CSV outputs)
 Category:    publication
 Priority:    P1
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     Only plaintext is emitted. The richer formats are where health,
              provenance and vantage actually fit, and none of them exist.
@@ -38,6 +38,31 @@ Decision:    **Every field MUST have a defined meaning in the schema
 Prove:       Every emitted field appears in `docs/schema.md` (planned) with a definition,
              enforced by a test that diffs the field set against the schema.
 
+**Done.** `python3 -m unittest tests.test_labelled -v` -> **16 tests, OK**.
+`src/trackers/labelled.py` renders JSON and CSV,
+[`../docs/schema.md`](../docs/schema.md) defines all 18 fields, and the test
+diffs the two **in both directions**: a field emitted without a definition is
+one consumers will misread, and a definition with no field behind it is a
+promise the data does not keep. Checking one direction catches half.
+
+⭐ **Four candidate fields from this entry are deliberately absent**, and the
+schema says which and why rather than leaving a reader to wonder. `latency` and
+its statistics: the history ring keeps each observation's outcome and rung and
+not its round-trip time, so the column would be a number this project does not
+retain. `reliability_score` and `score_version`: no model is chosen
+([T-044](scoring.md)), deliberately. `confidence`: over an unchosen model that
+is an adjective with a decimal point. `category`: [T-046](scoring.md) has not
+built them.
+
+⛔ **An unprobed tracker is `unknown` with a `null` rate, never `0`.** A new
+tracker and one that failed every check are different facts and a zero says the
+second about the first. Asserted in both directions: a tracker with one failed
+observation renders `success_rate` 0.0, and one with none renders `null`.
+
+**The two axes stay two columns.** `transport` and `network` are separate, so
+`udp://tracker.i2p/announce` is `udp` and `i2p` rather than one collapsed
+`protocol` that would re-import the defect the classifier exists to prevent.
+
 ---
 
 ### T-061 Cross-format consistency is unverified
@@ -46,7 +71,7 @@ Source:      the brief's section 17.3 (cross-format consistency)
 Category:    publication
 Priority:    P1
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     JSON, CSV and plaintext must represent the same accepted dataset.
              Divergence between formats is a silent-corruption failure that
@@ -58,6 +83,17 @@ Approach:    Extend the pre-publication verifier to compare the three format's
              tracker sets exactly, not only their counts.
 Prove:       A test that mutating one format and not the others fails
              publication.
+
+**Done.** `python3 -m unittest tests.test_publication -v` -> **11 tests, OK**.
+`scripts/generate.py`'s `verify()` compares the three formats' **tracker sets**
+rather than their counts, and refuses to publish on any difference.
+
+⛔ **Sets, not counts, and the difference is the whole entry.** Two formats
+holding the same number of different URLs is a silent corruption a consumer
+cannot detect, and a count check passes it. Mutation-proved in both directions:
+dropping a row from the JSON fails, and swapping a URL for another while
+keeping the count identical fails too -- the second is the one a count check
+would have shipped.
 
 ---
 

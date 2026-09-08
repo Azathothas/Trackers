@@ -35,6 +35,12 @@ not substitute.
 ⚠ **What a session owes, and how one ends, is RULES 10**, not a page here. It
 is normative and it is the one thing that must not have two homes.
 
+## the published data
+
+| file | answers |
+| --- | --- |
+| ⭐ [`schema.md`](schema.md) | every field in the labelled dataset, what it means, and the four candidate fields deliberately absent. ⛔ A field not on that page is not emitted, and the test diffs both directions |
+
 ## tooling and security
 
 | file | answers |
