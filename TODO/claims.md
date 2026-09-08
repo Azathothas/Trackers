@@ -356,7 +356,7 @@ resolver has not been compared with anything. So what is established is that
 the failure class is real and that the corpus is a big enough sample to see it
 -- not that the runner diverges.
 
-**Done, and the runner answered.** `p0-ground-truth.yml` gained a
+**Done.** The runner answered. `p0-ground-truth.yml` gained a
 `dns_census` dispatch input; run **`34210496112`** ran `experiments/30` on
 both images. Results committed as
 `experiments/results/30.ubuntu-24.04.run34210496112.json` and its `22.04`
