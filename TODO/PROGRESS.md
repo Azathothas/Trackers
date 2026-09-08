@@ -66,7 +66,7 @@ be the failure that page exists to prevent.
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **479** tests, no network |
+| Test suite | **480** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
 | Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |

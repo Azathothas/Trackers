@@ -539,13 +539,21 @@ class NoTwoPublishersAtOnce(unittest.TestCase):
                    if not re.search(r"^concurrency:", self._text(n), re.M)]
         self.assertEqual(missing, [], f"no concurrency group: {missing}")
 
-    def test_a_workflow_that_writes_never_cancels_itself(self):
+    def test_a_workflow_that_writes_anything_never_cancels_itself(self):
         """⛔ The rule this entry exists for. A cancelled publish leaves half a
-        dataset on a branch people fetch; a queued one costs a few minutes."""
+        dataset on a branch people fetch; a queued one costs a few minutes.
+
+        ⚠ **Any write, not only `contents`.** The first version keyed on
+        `contents: write` alone, so the issue-automation workflow -- which holds
+        `issues: write` and can leave a plan half applied -- was invisible to
+        it. A rule that only sees the permission it was written for is a rule
+        with a hole the next workflow falls into.
+        """
         offenders = []
         for name in self._files():
             text = self._text(name)
-            if not self.WRITES.search(text):
+            block_match = re.search(r"^permissions:(?:\n[ \t]+.*)+", text, re.M)
+            if not block_match or ": write" not in block_match.group(0):
                 continue
             block = re.search(r"^concurrency:(?:\n[ \t]+.*)+", text, re.M)
             self.assertIsNotNone(block, f"{name} writes and has no group")
@@ -556,12 +564,33 @@ class NoTwoPublishersAtOnce(unittest.TestCase):
             f"these write and cancel a run in progress, so a publish can be "
             f"killed mid-write: {offenders}")
 
-    def test_the_publisher_is_the_only_workflow_that_writes(self):
-        """Least privilege, asserted rather than remembered. A second writer is
-        a second thing that can corrupt the branch and would need its own
-        argument."""
+    def test_the_publisher_is_the_only_workflow_that_writes_contents(self):
+        """Least privilege, asserted rather than remembered. A second writer of
+        the repository's contents is a second thing that can corrupt the data
+        branch and would need its own argument.
+
+        ⭐ The issue automation deliberately holds `issues: write` and **not**
+        this: one workflow with both is one job whose bug reaches the data and
+        the tracker together.
+        """
         writers = [n for n in self._files() if self.WRITES.search(self._text(n))]
         self.assertEqual(writers, ["publish.yml"], f"writers: {writers}")
+
+    def test_no_workflow_grants_a_permission_it_does_not_use(self):
+        """Least privilege per workflow, not only across them.
+
+        ⭐ The issue automation holds `issues: write` and **not** `contents`,
+        and the publisher the reverse. One workflow with both is one job whose
+        bug reaches the data and the tracker together.
+        """
+        expected = {"publish.yml": {"actions", "contents"},
+                    "issues.yml": {"contents", "issues"}}
+        for name, wanted in expected.items():
+            with self.subTest(workflow=name):
+                block = re.search(r"^permissions:(?:\n[ \t]+.*)+",
+                                  self._text(name), re.M).group(0)
+                granted = set(re.findall(r"^\s+(\w[\w-]*):", block, re.M))
+                self.assertEqual(granted, wanted, block)
 
     def test_the_writer_grants_nothing_it_does_not_use(self):
         """`actions: read` is for downloading the sweep's records. Anything

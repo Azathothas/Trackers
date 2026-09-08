@@ -1,0 +1,93 @@
+# Surface a failure to a human. T-080.
+#
+# ⛔ SEPARATE FROM THE PUBLISHER ON PURPOSE. The publisher holds
+# `contents: write` and nothing else; this holds `issues: write` and reads
+# contents. One workflow with both would be one job whose compromise or bug
+# reaches both the data and the tracker, and `tests/test_concurrency.py`
+# asserts the publisher stays the only writer of contents.
+#
+# ⭐ IT IS QUIET WHEN NOTHING IS WRONG, and that is the property that was
+# verified first. An automation that cries wolf gets muted, and then it is worse
+# than no automation. Driven against the real repository and the published
+# state on 2026-09-09: 0 conditions, nothing written.
+#
+# ⚠ The decision is `src/trackers/issues.py` and is a pure function, so one
+# issue per condition, closing when the condition clears, and a bounded body are
+# unit-tested rather than hoped for. This workflow is the thin layer that acts.
+name: Issues
+
+on:
+  # After a publish, because the conditions worth reporting are things a run
+  # observed. `workflow_run` fires on the default branch's file whatever the
+  # publish concluded, which is correct: a failed publish is itself worth
+  # knowing about and the conditions below are computed fresh either way.
+  workflow_run:
+    workflows: ["Publish"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "actually open, update and close issues"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  issues: write
+
+# ⛔ Never two of these at once, and never cancel one mid-run: a cancelled run
+# can leave a plan half applied, with some issues opened and the rest not.
+# Reconciling is idempotent, so queuing costs nothing and cancelling costs a
+# confusing tracker.
+concurrency:
+  group: issue-automation
+  cancel-in-progress: false
+
+jobs:
+  raise:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # The conditions are computed from what the published data says about
+      # itself, so this reads the `data` branch rather than re-measuring
+      # anything. ⚠ Absent on a first run, which is not an error.
+      - name: Take the published state
+        run: |
+          mkdir -p published
+          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+            git fetch origin data --depth 1
+            git show FETCH_HEAD:state.jsonl > published/state.jsonl || true
+            git show FETCH_HEAD:hardcoded.txt > published/hardcoded.txt || true
+          fi
+          ls -l published || true
+
+      - name: Decide, and say what would happen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/raise-issues.py \
+            --offline-corpus \
+            ${{ (github.event_name == 'workflow_dispatch' && inputs.apply) && '--apply' || '' }} \
+            $([ -f published/state.jsonl ] && echo "--state published/state.jsonl") \
+            $([ -f published/hardcoded.txt ] && echo "--watched published/hardcoded.txt")
+
+      # ⛔ The scheduled path applies. The dispatch path defaults to a dry run so
+      # a person can look before anything is written, which is the opposite of
+      # the usual default and is deliberate: a human running this by hand is
+      # usually checking, and the automation running itself is usually acting.
+      - name: Apply
+        if: github.event_name == 'workflow_run'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/raise-issues.py \
+            --offline-corpus --apply \
+            $([ -f published/state.jsonl ] && echo "--state published/state.jsonl") \
+            $([ -f published/hardcoded.txt ] && echo "--watched published/hardcoded.txt")
