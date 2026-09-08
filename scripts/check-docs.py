@@ -213,6 +213,52 @@ def inventory_drift():
     return out
 
 
+def stale_weaknesses():
+    """A README weakness that names a **closed** entry is stale by construction.
+
+    ⛔ Written as a check rather than as a rule because it is mechanical, which
+    is `docs/conventions/forbidden-patterns.md`'s own instruction.
+
+    Measured cost of not having it, 2026-09-09: **all four** bullets under the
+    README's "Known weaknesses" had become false -- a client had been run, the
+    corpus had been swept three times, the value gate had been answered 170
+    lines above in the same document, and the credential leak was fixed. The
+    section that carries the honest self-assessment is the worst one to let
+    drift, and no gate could see it.
+    """
+    out = []
+    try:
+        text = _scope.read("README.md")
+        index = _scope.read(os.path.join("TODO", "INDEX.md"))
+    except Exception:                # noqa: BLE001 - check-citations owns absence
+        return out
+
+    done = set(re.findall(r"\| \[(T-\d+)\]\([^)]*\) \|[^|]*\|[^|]*\| \*\*done\*\*", index))
+    if not done:
+        # ⛔ Never report clean over a scope that was never opened.
+        return ["check-docs could not read any closed entry from TODO/INDEX.md, "
+                "so the weakness check verified nothing"]
+
+    # ⚠ The section is the last one on the page, so the terminator has to be
+    # end-of-file as well as the next heading. Requiring a following `## `
+    # reported "no section" over a section that was right there.
+    section = re.search(r"^## Known weaknesses$(.*?)(?=^## |\Z)", text,
+                        re.M | re.S)
+    if not section:
+        return ["README.md has no 'Known weaknesses' section. It is what the "
+                "value gate's honesty rests on (RULES 17)."]
+    for line in section.group(1).splitlines():
+        if not line.lstrip().startswith("-"):
+            continue
+        for entry in re.findall(r"\[(T-\d+)\]", line):
+            if entry in done:
+                out.append(
+                    "README.md names %s as a known weakness and it is closed. "
+                    "A stale honesty section is the one nobody checks."
+                    % entry)
+    return out
+
+
 def main(argv):
     json_mode = "--json" in argv
     files = [f for f in _scope.repo_files() if f.endswith(".md")]
@@ -250,11 +296,13 @@ def main(argv):
                 "it is not corrected." % rel)
 
     report.extend(inventory_drift())
+    report.extend(stale_weaknesses())
 
     return _scope.emit(
         json_mode, "check-docs/1", len(report), report,
         "docs ok: %d documents, %d shell blocks, vocabulary clean, "
-        "every page linked, inventories current" % (len(files), nblocks),
+        "every page linked, inventories current, no weakness names a "
+        "closed entry" % (len(files), nblocks),
         files=len(files), shell_blocks=nblocks)
 
 

@@ -74,7 +74,7 @@ status, so a check that failed reads green.
 
 | script | what defect it catches |
 | --- | --- |
-| [`check-docs.py`](check-docs.py) | a fenced shell block nobody can paste, an angle-bracket placeholder a shell reads as a redirect, vocabulary that asserts quality instead of demonstrating it, and a page nothing links to |
+| [`check-docs.py`](check-docs.py) | a fenced shell block nobody can paste, an angle-bracket placeholder a shell reads as a redirect, vocabulary that asserts quality instead of demonstrating it, a page nothing links to, and a README weakness naming an entry that has since closed |
 | [`check-markers.py`](check-markers.py) | prose that reads as machine output. The five-character allowlist and the density ceiling, over **every** tracked text file rather than markdown alone |
 | [`check-control-bytes.py`](check-control-bytes.py) | a byte that makes a file invisible to both review tools at once |
 | [`check-one-home.py`](check-one-home.py) | the same sentence in two documents, which is where drift starts |

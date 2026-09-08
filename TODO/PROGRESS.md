@@ -243,13 +243,13 @@ by priority. ⛔ Do not stop because the list above ran out.
 7. **Schedule the health sweep?** Not until [T-037](measurement.md) lands.
    2026-09-08. A scheduled sweep would have recorded `openbittorrent.com` as
    `dns_failure` on a vantage that cannot resolve it while public resolvers
-   can. ⭐ **Both of the conditions that were named are met**: the sweep now
-   records `resolver_divergence` there, which can never become `dead`, and
-   [T-026](measurement.md) computes what a run spends. ⚠ **Nothing is
-   scheduled**, and what remains is the workflow architecture
-   ([T-084](operations.md)) rather than another measurement. Adding a
-   `schedule:` is a standing commitment against other people's servers and it
-   was not made without that entry.
+   can. ⛔ **Superseded the same day by answer 10 below**, once both
+   conditions it named were met: the sweep records `resolver_divergence`
+   there, which can never become `dead`, and [T-026](measurement.md) computes
+   what a run spends. The answer is kept because it is why the schedule waited,
+   and because the reasoning it gives -- that a `schedule:` is a standing
+   commitment against other people's servers -- is still the reason it was put
+   to the operator rather than decided by a session.
 8. **The third party's credential in git history?** **Not our action.** The
    operator will **reset this repository's history to a single commit** once
    the tasks are complete and the prose has been rewritten, which removes it.

@@ -194,15 +194,30 @@ three of them copyleft, and nothing is copied from any of them.
 carries a severity per correction so the error rate is checkable rather than
 asserted. The largest gaps:
 
-- **No torrent client has ever been run against this project's output.** One
-  client's parser was read. That is the weakest evidence relative to its
-  importance anywhere here.
-- **The probe has never been pointed at the corpus.** It is tested against an
-  oracle of trackers this project controls, and against nothing else.
-- **The value gate is unanswered.** Whether this dataset beats redistributing
-  an existing list is not yet measured on liveness. A negative answer is a
-  legitimate outcome and would be published as one.
-- **The pipeline republishes private-tracker credentials**: six of them reach
-  the generated plaintext today. [T-107](TODO/sources.md) is the fix.
+- **Nothing is published at a public URL yet**, so everything above describes
+  a dataset you cannot fetch. [T-063](TODO/publication.md) is the entry.
+- **One torrent client has been run against this output, not five.** aria2
+  1.37.0 accepts it; qBittorrent, Transmission, Deluge and BiglyBT are
+  **absent, not passing** ([T-035](TODO/claims.md)).
+- **No tracker here can be called dead, and none is.** Saying so needs three
+  observations and the history is younger than that, so the honest state for a
+  tracker that did not answer is `unknown`.
+- **Every measurement comes from a datacenter or from one authoring host.**
+  Neither is a residential connection, which is where the consumers of this
+  data actually sit. A tracker that answers you may not answer us.
+- **Whether our own identity gets us refused is unmeasured.** If trackers
+  filter the client string we send, a "did not answer" is partly a fact about
+  us ([T-012](TODO/claims.md)).
+- **Nothing is ranked.** The scoring model is unchosen, deliberately: there is
+  not enough history yet to fit one without fitting it to noise
+  ([T-044](TODO/scoring.md)).
+- **I2P, Yggdrasil and WebTorrent trackers are `unmeasurable` from here**, which
+  is a statement about this vantage and never about them.
 
 **Assume more remain.**
+
+⚠ **This list was itself stale on 2026-09-09**, and all four of its entries had
+become false: a client had been run, the corpus had been swept three times, the
+value gate had been answered in this same document 170 lines above, and the
+credential leak was fixed. A page that carries the honest self-assessment is
+the worst one to let drift, so it is checked when the value gate is.
