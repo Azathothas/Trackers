@@ -488,9 +488,39 @@ def main() -> int:
                             f"{os.path.relpath(candidates[0], REPO)} has "
                             f"{total} lines")))
                     continue
-                if not tok.startswith(TOP_LEVEL):
+                # ⛔ A BACKTICKED COMMAND CARRIES PATHS TOO, AND THEY WERE NOT
+                # CHECKED. Skipping every token with a space skipped every
+                # `Prove:` clause in `TODO/`, because a `Prove:` clause is a
+                # command. Found by the cold-start pass of 2026-09-08: T-012
+                # cited an experiment that does not exist --
+                # which does not exist and is not marked `(planned)` -- and a
+                # session following the work order would have run it and got
+                # "No such file".
+                #
+                # So a token with a space is split and each word that looks
+                # like a repository path is checked on its own. The `(planned)`
+                # and `(removed)` escapes below still apply, per line, exactly
+                # as before.
+                if any(ch in tok for ch in "*?<>|{}"):
                     continue
-                if any(ch in tok for ch in " *?<>|{}"):
+                if " " in tok:
+                    for word in tok.split():
+                        word = word.rstrip(",;").strip("`")
+                        if not word.startswith(TOP_LEVEL):
+                            continue
+                        if any(ch in word for ch in "*?<>|{}"):
+                            continue
+                        cand = word.partition(":")[0].rstrip("/")
+                        if path_exists(cand, reference_paths):
+                            continue
+                        if "(planned)" in line or "(removed)" in line:
+                            continue
+                        problems.append((rel, lineno, (
+                            f"backticked command names a path that does not "
+                            f"exist: {cand} -- mark the line (planned) if it "
+                            "is unbuilt work, (removed) if it was deleted")))
+                    continue
+                if not tok.startswith(TOP_LEVEL):
                     continue
                 base, _, suffix = tok.partition(":")
                 base = base.rstrip("/")

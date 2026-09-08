@@ -101,7 +101,7 @@ fixture this experiment does not carry.
 
 The lens requires it: *a guard that refuses everything is as useless as one
 that refuses nothing.* Every guard above was also run against the **real**
-evidence and exited **0** — including the three re-proved here, and including
+evidence and exited **0** -- including the three re-proved here, and including
 experiment 27 after the fix, which exits 0 on the committed records and 0 even
 without the flag on empty ones.
 

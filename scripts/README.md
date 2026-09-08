@@ -104,6 +104,7 @@ dirties the working tree makes RULES 10.3 step 6 unsatisfiable.
 | script | |
 | --- | --- |
 | [`generate.py`](generate.py) | builds the dataset. `--offline` runs the whole pipeline against the pinned fixtures, which is what makes the gate reproducible on any host |
+| [`install-hooks.py`](install-hooks.py) | installs a pre-commit hook that runs `check-gate.py --fast`. ⛔ **Opt-in and never automatic** -- a hook outlives the session that added it. It exists because two commits went out red on 2026-09-08, both the same way: the gate was run, one more edit landed, and the reading was not repeated |
 | [`update-state.py`](update-state.py) | folds a sweep's health records into the per-tracker history (T-040). ⛔ Never deletes a history, and **refuses to run against a corrupt state file** rather than starting a fresh one -- RULES 3.9, and it exits 1 leaving the file exactly as it was |
 | ⛔ [`probe-corpus.py`](probe-corpus.py) | **the one script that contacts trackers.** BEP 34 is consulted per host first and no flag skips it; concurrency, per-host serialisation, timeout and deadline all bound it, and `ci` probes a sample. No offline mode, deliberately: its docstring says why |
 | [`fetch-reference-comments.py`](fetch-reference-comments.py) | ⚠ **touches the network.** Corpus building, never a pipeline step, never in CI |

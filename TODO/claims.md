@@ -64,7 +64,8 @@ reserved hostnames.
 ` | 3 | 3 | unchanged |
 | blank-line separated | 5 | 5 | ⚠ the blank line became an **empty announce entry** |
 | `#` comments | 6 | 6 | ⚠ the comment became **an announce URL** |
-| CRLF | 3 | 3 | trailing `` trimmed |
+| CRLF | 3 | 3 | trailing `
+` trimmed |
 
 ⛔ **`C-41` is refuted as worded and the truth is worse.** Comments do not
 "break" aria2 -- aria2 **accepts one as a tracker**. A list carrying a comment
@@ -605,7 +606,8 @@ Decision:    Do not pre-commit to an outcome. **If arms differ materially, the
              which needs no UA) stays working and documented, and the one line
              that does not move is RULES 4.1's: never use any identity to evade
              an exclusion already given.
-Prove:       `python3 experiments/26-user-agent-block-rate.py --expect-arms` exits
+Prove:       `python3 experiments/26-user-agent-block-rate.py --expect-arms` (planned)
+             exits
              0, `HISTORY/claims.md` carries `C-56` with the per-arm rates and
              sample counts, and RULES 4.1 is rewritten to state the measured
              answer instead of an open question.
