@@ -240,6 +240,43 @@ class YggdrasilByResolvedAddress(unittest.TestCase):
                 self.assertIs(net, network)
                 self.assertIsNone(was)
 
+    def test_a_host_resolving_into_yggdrasil_is_not_probed(self):
+        """⛔ The bug this class was written about, one layer further down.
+
+        `classify_network_resolved` got the answer right and **nothing read
+        it**: the probe reclassified the tracker to yggdrasil and then opened a
+        socket anyway, recording a timeout that three runs would have turned
+        into `dead`. Measured on a real corpus host on 2026-09-08 --
+        `yggtracker.i2p.rocks` resolves to `200:1e2f:...` and
+        `experiments/33` probed it.
+
+        The assertion is that nothing is sent, not merely that the state is
+        right: a record can be correct while the packet still went out, and the
+        packet is what an operator sees.
+        """
+        from unittest import mock
+        from fake_tracker import Behaviour, FakeUdpTracker
+        v = detect()
+        if "ipv4" not in v.ip_families:
+            self.skipTest("no ipv4 route from this vantage")
+        with FakeUdpTracker(Behaviour.CORRECT) as fake, FakeDnsServer() as dns:
+            ygg = [(socket.AF_INET6, socket.SOCK_DGRAM, 17, "",
+                    ("200:1e2f:e608:eb3a:2bf:1e62:87ba:e2f7", fake.port, 0, 0))]
+            with mock.patch("socket.getaddrinfo", return_value=ygg):
+                r = probe(parse(f"udp://yggtracker.example:{fake.port}/announce"),
+                          ProbeConfig(timeout=1.5, retries=0), v,
+                          resolver=resolver_for(dns))
+            sent = list(fake.requests)
+        self.assertEqual(sent, [], "a datagram went to a network this vantage "
+                                   "cannot route to")
+        self.assertIs(r.network, Network.YGGDRASIL)
+        self.assertIs(r.network_reclassified_from, Network.CLEARNET)
+        self.assertIs(r.failure, Failure.UNSUPPORTED)
+        self.assertIs(
+            health_state(rung=r.rung, transport=r.transport, network=r.network,
+                         sample_count=99, success_count=0, failure=r.failure),
+            HealthState.UNMEASURABLE)
+
     def test_a_yggdrasil_tracker_is_unmeasurable_never_dead(self):
         self.assertIs(
             health_state(rung=Rung.DNS, transport=Transport.HTTP,
@@ -560,13 +597,52 @@ class ANullAddressIsNeverDialled(unittest.TestCase):
                 (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("127.0.0.1", fake.port)),
             ]
             with mock.patch("socket.getaddrinfo", return_value=mixed):
-                r = probe(parse(f"http://mixed.example:{fake.port}/announce"),
+                # `localhost` rather than a made-up name, because a name that
+                # resolves to loopback is itself refused now and the subject
+                # here is the null address beside a usable one.
+                r = probe(parse(f"http://localhost:{fake.port}/announce"),
                           ProbeConfig(timeout=2.0, retries=0), self.v,
                           resolver=resolver_for(dns))
         self.assertTrue(r.ok, f"{r.failure}: {r.detail}")
         self.assertEqual(r.resolved_ip, "127.0.0.1",
                          "the probe recorded a null address as the endpoint "
                          "it contacted")
+
+    def test_a_name_that_resolves_to_loopback_is_not_dialled(self):
+        """⛔ Measured on 2026-09-08, not imagined: `ipv6.tracker.harry.lu`, a
+        corpus host, answers `::1`.
+
+        The probe connected to this machine and recorded the reset as the
+        tracker's. A name is not an address literal and DNS pointing us at
+        ourselves is not a destination.
+        """
+        from unittest import mock
+        from fake_tracker import Behaviour, FakeHttpTracker
+        with FakeHttpTracker(Behaviour.CORRECT) as fake, FakeDnsServer() as dns:
+            answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "",
+                       ("127.0.0.1", fake.port))]
+            with mock.patch("socket.getaddrinfo", return_value=answer):
+                r = probe(parse(f"http://tracker.example:{fake.port}/announce"),
+                          ProbeConfig(timeout=2.0, retries=0), self.v,
+                          resolver=resolver_for(dns))
+            reached = list(fake.requests)
+        self.assertEqual(reached, [], "a name resolving to loopback reached a "
+                                      "listener on this machine")
+        self.assertIs(r.failure, Failure.DNS_FAILURE)
+        self.assertEqual(r.dns["class"], "resolves_to_an_unusable_address")
+
+    def test_the_two_ways_of_asking_for_loopback_still_work(self):
+        """The oracles use both, and a rule that carved out a test path would
+        be a rule the production code does not have."""
+        from fake_tracker import Behaviour, FakeHttpTracker
+        for host in ("127.0.0.1", "localhost"):
+            with self.subTest(host=host):
+                with FakeHttpTracker(Behaviour.CORRECT) as fake, \
+                        FakeDnsServer() as dns:
+                    r = probe(parse(f"http://{host}:{fake.port}/announce"),
+                              ProbeConfig(timeout=2.0, retries=0), self.v,
+                              resolver=resolver_for(dns))
+                self.assertTrue(r.ok, f"{r.failure}: {r.detail}")
 
     def test_it_is_a_dns_failure_and_not_unmeasurable(self):
         """`unmeasurable` says we cannot reach it from here. A name that

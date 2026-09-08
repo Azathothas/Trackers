@@ -42,6 +42,7 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `32-vantage-variation.py` | How much of what this project calls unreachable is a fact about the address it asked from? | C-03, C-69, [T-004](../TODO/claims.md) |
 | `31-state-size-projection.py` | How large does the history file get over five years, and what must K and D be? | D3, [T-042](../TODO/scoring.md) |
 | `30-resolution-failure-classes.py` | Which kind of not-resolving is each unresolvable corpus host, and does a second resolver disagree? | C-06, [T-007](../TODO/claims.md), [T-036](../TODO/measurement.md) |
+| `33-ipv6-only-liveness.py` | Are the IPv6-only trackers alive, from a vantage that has IPv6 -- directly, and through a relay that has one? | C-73, C-74, [T-031](../TODO/measurement.md) |
 | `29-address-family-census.py` | How many corpus trackers are IPv6-only, and do any have an IPv4 sibling this vantage can already reach? | [T-031](../TODO/measurement.md) route (e), [T-036](../TODO/measurement.md) |
 | `27-value-gate.py` | Does this dataset add measurable value over redistributing `ngosang/trackerslist`? | the value gate, [T-027](../TODO/measurement.md) |
 | `28-newtrackon-crosscheck.py` | Where do this project and newTrackon disagree, and what does an independent observer say about what this vantage cannot measure? | C-26, C-69, [T-028](../TODO/measurement.md) |
@@ -101,14 +102,15 @@ python3 experiments/28-newtrackon-crosscheck.py --expect-crosscheck
 and against an observer's committed snapshots, so the value gate and the
 cross-check are re-derived on every push at the cost of no request to anybody.
 
+A number that decides whether this project should exist is not one to
+transcribe once. `28 --fetch` refreshes the snapshots, one request per route,
+and still touches no tracker.
+
 ⛔ **Anything named `health-sweep.*.json` in `results/` is evidence in the
 value gate.** `27`, `28` and `32` glob the directory and merge every match, so
 a narrowed or demonstration sweep committed under that name joins the number
 that decides whether this project should exist. Keep one-host runs out of the
 tree: `scripts/probe-corpus.py --only-host` regenerates them in a second.
-A number that decides whether this project should exist is not one to
-transcribe once. `28 --fetch` refreshes the snapshots, one request per route,
-and still touches no tracker.
 
 The rest run deliberately and not on every push. `20`, `21` and `22` read
 public documentation and APIs; `01`-`05` need a GitHub runner to mean anything

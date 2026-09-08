@@ -254,6 +254,19 @@ resolved address, because those names do not resolve in the
 ordinary DNS at all. Confirmed to need only a DNS answer: no
 yggdrasil connectivity was required to close this.
 
+⛔ **The classification was right and nothing acted on it. Corrected
+2026-09-08 while working [T-031](measurement.md).** `probe` checks
+`is_measurable_here` **before** resolving, off the URL alone, so
+`yggtracker.i2p.rocks` passed as clearnet; resolution then produced
+`200:1e2f:e608:eb3a:2bf:1e62:87ba:e2f7`, `classify_network_resolved` said
+yggdrasil, and the prober opened a socket regardless and recorded `timeout`.
+Three of those is `dead`. The `Prove` clause was met and the test was passing:
+it asserted the **classifier**, and the defect was in the caller that ignored
+it. `reclassified_out_of_reach` now stops both probers, and the new test
+asserts **nothing was sent** rather than only that the state is right -- a
+record can be correct while the packet still leaves, and the packet is what an
+operator sees.
+
 ---
 
 ### T-024 No health record carries vantage metadata, because no health record exists
@@ -831,7 +844,7 @@ Source:      operator ruling 2026-08-29; RULES 10.1a
 Category:    measurement
 Priority:    P1
 Effort:      L
-Status:      open
+Status:      done
 
 Problem:     Four categories of tracker are currently labelled `unmeasurable`
              and left there: IPv6-only (no IPv6 egress), `i2p` (14), yggdrasil
@@ -935,6 +948,67 @@ bigger unexplored question than the one being worked. It is
 ⚠ **What route (e) did NOT do**: produce a liveness signal. Twelve IPv6-only
 hosts have no sibling and remain exactly as unmeasurable as before, so the
 `Prove` clause is still open on routes (a), (b) and (d).
+
+**Done.** 2026-09-08. `TRACKERS_PROFILE=local python3
+experiments/33-ipv6-only-liveness.py --expect-egress` -> exit 0, result at
+`experiments/results/33-ipv6-only-liveness.unclassified-host.20260908T144728Z.json`.
+**Six of the sixteen IPv6-only tracker URLs are alive**, measured, in a
+category that was `unmeasurable` in every record this project had ever taken.
+
+| | |
+| --- | --- |
+| alive, direct over IPv6 | **6** of 16 |
+| alive, second-hand through the proxy | **1** of 7 asked |
+| refused or timed out | 8 |
+| not contacted at all | 2 (`wss`, and one that resolves into yggdrasil) |
+
+⛔ **Route (a) as this entry described it was wrong, and naming it that way
+cost nothing only because the measurement came first.** NAT64 and DNS64 make
+an **IPv4 server reachable from an IPv6 client**, which is the opposite of the
+problem here. What this vantage needed was the other direction, and two things
+supply it: a host with its own IPv6 egress, and a relay that has one.
+
+⭐ **Route (b) is what closes this, and the measurement is `C-73`.** The
+operator-approved read proxy of RULES 16 has IPv6 egress: two IPv6-only
+controls answered 200 through it. That is the arm that transfers to CI, where
+the direct one is impossible by construction (`C-04`), and it agreed with the
+direct probe on the one HTTP subject that is alive.
+
+**The mechanism is one thing, not four.** `src/trackers/secondhand.py` records
+an observation somebody else made, with its observer, its method, the moment it
+was taken and what reach it had that we lack. ⛔ It **cannot** emit a health
+state: `as_record` refuses the keys a probe owns, `annotate` returns
+`health_state` unchanged, and `direct` is not a parameter any caller can set.
+`tests/test_secondhand.py` is the `Prove` clause's third requirement and every
+test in it is a refusal.
+
+⛔ **Probing IPv6 for the first time found two defects in the prober, and both
+would have published a live tracker as gone.**
+
+1. **A host that resolves into yggdrasil was probed anyway.**
+   `classify_network_resolved` reclassified `yggtracker.i2p.rocks` correctly
+   from its `200:1e2f:...` address and **nothing read the answer**, so the
+   probe opened a socket to a network this vantage cannot route to and recorded
+   `timeout`. Three of those is `dead` -- RULES 11's named anti-pattern,
+   reached through the code that exists to prevent it. This is [T-023](measurement.md)'s
+   bug one layer down.
+2. **`ipv6.tracker.harry.lu` resolves to `::1`.** The probe connected to this
+   machine and recorded the reset as the tracker's answer. `C-74`.
+
+Both are fixed, both are mutation-proven, and the first run's result file is
+kept because it is the evidence: it carries `timeout` for the yggdrasil host
+and a loopback `resolved_ip` for the other.
+
+**What is still unreachable, and it is not nothing.** i2p and yggdrasil have
+no route from here and route (d) was not attempted, so
+[T-039](measurement.md) carries them rather than this entry closing over them.
+`ws` and `wss` are [T-005](claims.md). The IPv6-only population is the category
+this entry moved, which is what its `Prove` clause asked for.
+
+⚠ **A runner still cannot do the direct arm**, and nothing here changes
+`C-04`. What changed is that the answer is now obtainable at all: from a
+contributor's machine under `TRACKERS_PROFILE=local`, and from CI through the
+proxy as second-hand evidence.
 
 ---
 
@@ -1278,6 +1352,53 @@ answer read as a rescue; it records both now.
 `resolves_only_for_the_public_resolver` replaces "a name that resolves
 elsewhere", `lookup_failed_undetermined` replaces "SERVFAIL or timeout", and
 the sibling case is not here because `experiments/29` already reports it.
+
+---
+
+### T-039 i2p and yggdrasil have no route, and route (d) was never attempted
+
+Source:      [T-031](measurement.md), closed 2026-09-08 on the IPv6-only
+             category
+Category:    measurement
+Priority:    P2
+Effort:      M
+Status:      open
+
+Problem:     [T-031](measurement.md) built the indirect-liveness mechanism and
+             moved the IPv6-only category with it. Two categories it names did
+             not move: **14 `.i2p` URLs and at least one yggdrasil host** are
+             `unmeasurable` and there is no route to them from any vantage this
+             project has. ⛔ Carried as its own entry rather than left inside a
+             closed one, because a category with nobody's name on it is a
+             category that stops being researched.
+Premise:     **Structural, and measured as far as it goes.** `C-37`: both
+             networks need their own router, and this vantage runs neither. The
+             two routes that do not need one are untried: T-031's route (d),
+             public gateways, and its route (c), an observer who has one --
+             which `experiments/28` showed newTrackon is not, because its list
+             does not cover these entries at all.
+Approach:    Route (d) first, because it is the cheaper of the two and it is
+             the one nobody has looked at:
+
+             1. **Public i2p HTTP gateways.** Whether any still operate, what
+                they proxy, and whether one would answer a scrape. A gateway is
+                a third party standing between us and the tracker, so anything
+                it returns is second-hand and goes through
+                `src/trackers/secondhand.py` -- the mechanism exists now.
+             2. **A yggdrasil public peer or gateway**, on the same terms.
+             3. **A router in a container**, which `docs/containers.md` is the
+                page for. It makes the measurement first-hand and it costs a
+                dependency and a runtime this project does not otherwise need,
+                so it is the route to evaluate last and to record either way.
+Decision:    Not settled. ⛔ Whatever the route, the same line holds: a signal
+             obtained through somebody else is recorded as theirs, and
+             `unmeasurable` stays the honest label until this vantage can
+             reach the tracker itself.
+Prove:       Either a recorded second-hand liveness signal for at least one
+             `.i2p` or yggdrasil tracker, with its observer and method; or
+             three routes attempted and recorded as failed with what each cost,
+             which is what RULES 10.1a asks before anything is called
+             not-doable.
 
 ---
 

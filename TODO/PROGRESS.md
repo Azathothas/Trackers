@@ -57,11 +57,12 @@ be the failure that page exists to prevent.
 | DNS census | run **`34210496112`**, both images. IPv6-only **16 URLs on 15 hosts** |
 | Resolver divergence | **3 of 240** on `ubuntu-24.04`, **1** on `22.04`, run `34235047982`, addresses routable (`C-06`) |
 | Null-addressed hosts | **11 hosts, 14 URLs** answer `0.0.0.0` or `::`. Zero on a runner, where `getaddrinfo` returns them |
+| IPv6-only liveness | **6 of 16** URLs alive, direct over IPv6, run `20260908T144728Z` ([T-031](measurement.md)) |
 | Oracle disagreement | **17 of 93** = 18.3%, methodology caveat attached (`C-03`, `C-69`) |
 | Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
 | Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **273** tests, no network |
+| Test suite | **284** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
 | Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
@@ -80,8 +81,24 @@ blocked.**
 
 ## What this session has done so far
 
-**Two entries closed, [T-037](measurement.md) and [T-041](scoring.md), and
-[T-038](measurement.md) is open because of the first.**
+**Three entries closed -- [T-037](measurement.md), [T-041](scoring.md) and
+[T-031](measurement.md), the leverage entry -- and two opened because of
+them: [T-038](measurement.md) and [T-039](measurement.md).**
+
+⭐ **Six IPv6-only trackers are alive**, in a category that was `unmeasurable`
+in every record this project had ever taken.
+`experiments/33-ipv6-only-liveness.py` probes them from a vantage that has
+IPv6 and, in a second arm, through the operator-approved read proxy, which was
+measured to have IPv6 egress of its own (`C-73`). The second arm is the one
+that transfers to CI, where the first is impossible by construction, and the
+two agreed on the one HTTP subject that answered.
+
+⛔ **Probing IPv6 for the first time found two defects in the prober, and both
+would have published a live tracker as gone.** A host resolving into
+`0200::/7` was reclassified as yggdrasil and probed anyway, which is
+[T-023](measurement.md)'s bug one layer down; and `ipv6.tracker.harry.lu`
+resolves to `::1`, so the probe connected to this machine and recorded the
+reset as the tracker's (`C-74`). Both fixed, both mutation-proven.
 
 ⭐ **The seven shapes have definitions and a classifier.**
 `src/trackers/shapes.py` reads the series `state.py` stores and says which of
@@ -185,20 +202,20 @@ acceptance recorded, or open with what remains written into it.
 
 ## Start here next session
 
-1. **[T-031](measurement.md)** - still the leverage entry. Route (c) returned
-   nothing for any `unmeasurable` tracker and route (e) dissolved 3 of 15;
-   routes (a) NAT64, (b) a relay and (d) public gateways are untried.
-2. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
+1. **[T-012](claims.md)** - whether our identity gets us blocked. ⚠ Twelve
    cells over the HTTP corpus is roughly twelve thousand requests at somebody
    else's expense: a workflow over days, not a command.
-3. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
+2. **[T-026](measurement.md)** - the politeness budget. Both inputs are now
    settled: D7's cadence, and DNS inside the budget at **100,000 lookups per
    run**. ⚠ The second resolver adds to it: two queries per failing host and
    up to six where nobody answers, which is 480 to 1440 per run today.
-4. **[T-064](publication.md)** - release channels. Its platform half is
+3. **[T-064](publication.md)** - release channels. Its platform half is
    measured.
-5. **[T-038](measurement.md)** - the HTTP prober does not choose its address,
+4. **[T-038](measurement.md)** - the HTTP prober does not choose its address,
    so `resolved_ip` is an inference on that path.
+5. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
+   [T-031](measurement.md) did not move. The mechanism to record a gateway's
+   answer exists now; no gateway has been tried.
 
 **Deliberately deferred:** [T-044](scoring.md), the scoring model. **D4** stays
 open on purpose: history exists now, but no tracker has more than four

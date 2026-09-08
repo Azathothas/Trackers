@@ -135,10 +135,20 @@ def has_ipv6_stack() -> bool:
         return False
 
 
+def utc() -> str:
+    """Now, in the one format every result in this directory is stamped with.
+
+    One home for it: an instrument that formats its own timestamp produces a
+    result that cannot be sorted against the others, and the conditions block
+    and a row inside the same file must not disagree about what time it is.
+    """
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def collect(sample_counts: dict[str, int] | None = None, extra: dict | None = None) -> dict:
     """Gather the conditions block. Cheap fields only; network fields are opt-in."""
     cond = {
-        "utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "utc": utc(),
         "environment_class": environment_class(),
         "hostname": socket.gethostname(),
         "platform": platform.platform(),

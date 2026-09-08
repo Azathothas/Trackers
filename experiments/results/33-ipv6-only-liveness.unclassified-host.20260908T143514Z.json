@@ -1,0 +1,464 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "public_ipv4": "111.119.48.171",
+    "public_ipv4_org": "-",
+    "python": "3.13.15",
+    "repo_commit": "64c18385c20c8842ddad9c19e0682531ad2bcd2f-dirty",
+    "sample_counts": {
+      "corpus_trackers": 1327,
+      "ipv6_only_subjects": 16,
+      "proxied_requests": 7
+    },
+    "utc": "2026-09-08T14:42:23Z"
+  },
+  "question": "Are the IPv6-only trackers alive, from a vantage that has IPv6?",
+  "results": {
+    "controls": {
+      "tier0_loopback_ipv6_bep15": {
+        "detail": "connection_id=0x123456789abcdef0",
+        "failure": "none",
+        "ok": true,
+        "rung": "protocol_valid",
+        "sent": 1
+      },
+      "tier1_ipv6_egress": {
+        "address": "2404:6800:4009:825::200e",
+        "detail": "TCP to ipv6.google.com over IPv6",
+        "ok": true,
+        "rtt_ms": 65.236
+      }
+    },
+    "direct_alive": 6,
+    "rows": [
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "keys=['complete', 'incomplete', 'interval', 'peers', 'peers6']",
+          "failure": "none",
+          "ok": true,
+          "resolved_ip": "2a0e:aa07:e15f::e",
+          "rtt_ms": 491.307,
+          "rung": "tracker_semantic"
+        },
+        "host": "echostar.ddnsfree.com",
+        "second_hand": {
+          "detail": "HTTP 200, tracker_announce_response",
+          "direct": false,
+          "method": "HTTP scrape issued by the proxy, not by this project. The proxy is the client and the measurement includes it (C-62)",
+          "observed_at": "2026-09-08T14:39:21Z",
+          "observer": "https://api.rv.pkgforge.dev/",
+          "provenance": "second-hand: observed by somebody else, not by this project. Recorded with its observer, its method and the moment it was taken, and never merged with a direct probe result.",
+          "reach": "a read proxy with IPv6 egress, which a GitHub runner does not have (C-04)",
+          "signal": "alive",
+          "url": "http://echostar.ddnsfree.com:8080/announce"
+        },
+        "transport": "http",
+        "url": "http://echostar.ddnsfree.com:8080/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "TimeoutError: timed out",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "2a0a:e5c0:10:3::a480",
+          "rtt_ms": null,
+          "rung": "dns"
+        },
+        "host": "tracker.beeimg.com",
+        "second_hand": {
+          "detail": "HTTP 522, body kind html",
+          "direct": false,
+          "method": "HTTP scrape issued by the proxy, not by this project. The proxy is the client and the measurement includes it (C-62)",
+          "observed_at": "2026-09-08T14:39:49Z",
+          "observer": "https://api.rv.pkgforge.dev/",
+          "provenance": "second-hand: observed by somebody else, not by this project. Recorded with its observer, its method and the moment it was taken, and never merged with a direct probe result.",
+          "reach": "a read proxy with IPv6 egress, which a GitHub runner does not have (C-04)",
+          "signal": "unassessed",
+          "url": "http://tracker.beeimg.com:6969/announce"
+        },
+        "transport": "http",
+        "url": "http://tracker.beeimg.com:6969/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "TimeoutError: timed out",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "2a00:ab00:1103:2e::100",
+          "rtt_ms": null,
+          "rung": "dns"
+        },
+        "host": "tracker.ipv6tracker.ru",
+        "second_hand": {
+          "detail": "HTTP 522, body kind html",
+          "direct": false,
+          "method": "HTTP scrape issued by the proxy, not by this project. The proxy is the client and the measurement includes it (C-62)",
+          "observed_at": "2026-09-08T14:40:17Z",
+          "observer": "https://api.rv.pkgforge.dev/",
+          "provenance": "second-hand: observed by somebody else, not by this project. Recorded with its observer, its method and the moment it was taken, and never merged with a direct probe result.",
+          "reach": "a read proxy with IPv6 egress, which a GitHub runner does not have (C-04)",
+          "signal": "unassessed",
+          "url": "http://tracker.ipv6tracker.ru:80/announce"
+        },
+        "transport": "http",
+        "url": "http://tracker.ipv6tracker.ru:80/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "TimeoutError: timed out",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "2a13:7c00:7:4:f816:3eff:fec9:3064",
+          "rtt_ms": null,
+          "rung": "dns"
+        },
+        "host": "tracker.tricitytorrents.com",
+        "second_hand": {
+          "detail": "HTTP 523, body kind html",
+          "direct": false,
+          "method": "HTTP scrape issued by the proxy, not by this project. The proxy is the client and the measurement includes it (C-62)",
+          "observed_at": "2026-09-08T14:40:32Z",
+          "observer": "https://api.rv.pkgforge.dev/",
+          "provenance": "second-hand: observed by somebody else, not by this project. Recorded with its observer, its method and the moment it was taken, and never merged with a direct probe result.",
+          "reach": "a read proxy with IPv6 egress, which a GitHub runner does not have (C-04)",
+          "signal": "unassessed",
+          "url": "http://tracker.tricitytorrents.com:2710/announce"
+        },
+        "transport": "http",
+        "url": "http://tracker.tricitytorrents.com:2710/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "TimeoutError: timed out",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "2a09:7c44::203f",
+          "rtt_ms": null,
+          "rung": "dns"
+        },
+        "host": "wg.mortis.me",
+        "second_hand": {
+          "detail": "TimeoutError: The read operation timed out",
+          "direct": false,
+          "method": "HTTP scrape issued by the proxy, not by this project. The proxy is the client and the measurement includes it (C-62)",
+          "observed_at": "2026-09-08T14:41:01Z",
+          "observer": "https://api.rv.pkgforge.dev/",
+          "provenance": "second-hand: observed by somebody else, not by this project. Recorded with its observer, its method and the moment it was taken, and never merged with a direct probe result.",
+          "reach": "a read proxy with IPv6 egress, which a GitHub runner does not have (C-04)",
+          "signal": "unassessed",
+          "url": "http://wg.mortis.me:6969/announce"
+        },
+        "transport": "http",
+        "url": "http://wg.mortis.me:6969/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 8.8.8.8",
+          "record": null,
+          "resolver": "8.8.8.8"
+        },
+        "direct": {
+          "detail": "TimeoutError: timed out",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "200:1e2f:e608:eb3a:2bf:1e62:87ba:e2f7",
+          "rtt_ms": null,
+          "rung": "dns"
+        },
+        "host": "yggtracker.i2p.rocks",
+        "second_hand": {
+          "detail": "TimeoutError: The read operation timed out",
+          "direct": false,
+          "method": "HTTP scrape issued by the proxy, not by this project. The proxy is the client and the measurement includes it (C-62)",
+          "observed_at": "2026-09-08T14:41:33Z",
+          "observer": "https://api.rv.pkgforge.dev/",
+          "provenance": "second-hand: observed by somebody else, not by this project. Recorded with its observer, its method and the moment it was taken, and never merged with a direct probe result.",
+          "reach": "a read proxy with IPv6 egress, which a GitHub runner does not have (C-04)",
+          "signal": "unassessed",
+          "url": "http://yggtracker.i2p.rocks:80/announce"
+        },
+        "transport": "http",
+        "url": "http://yggtracker.i2p.rocks:80/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "TimeoutError: timed out",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "2409:8a28:41fa:a473:b3:e24f:185:a7da",
+          "rtt_ms": null,
+          "rung": "dns"
+        },
+        "host": "tracker.dnlab.net",
+        "second_hand": {
+          "detail": "HTTP 522, body kind html",
+          "direct": false,
+          "method": "HTTP scrape issued by the proxy, not by this project. The proxy is the client and the measurement includes it (C-62)",
+          "observed_at": "2026-09-08T14:42:02Z",
+          "observer": "https://api.rv.pkgforge.dev/",
+          "provenance": "second-hand: observed by somebody else, not by this project. Recorded with its observer, its method and the moment it was taken, and never merged with a direct probe result.",
+          "reach": "a read proxy with IPv6 egress, which a GitHub runner does not have (C-04)",
+          "signal": "unassessed",
+          "url": "https://tracker.dnlab.net/announce"
+        },
+        "transport": "https",
+        "url": "https://tracker.dnlab.net/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "host is an IP literal; BEP 34 is keyed on a hostname",
+          "record": null,
+          "resolver": "-"
+        },
+        "direct": {
+          "detail": "connection_id=0xc94ab920c4a0ff66",
+          "failure": "none",
+          "ok": true,
+          "resolved_ip": "2a03:7220:8083:cd00::1",
+          "rtt_ms": 193.897,
+          "rung": "protocol_valid"
+        },
+        "host": "2a03:7220:8083:cd00::1",
+        "transport": "udp",
+        "url": "udp://[2a03:7220:8083:cd00::1]:451/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "host is an IP literal; BEP 34 is keyed on a hostname",
+          "record": null,
+          "resolver": "-"
+        },
+        "direct": {
+          "detail": "connection_id=0xe0ebca0cfd9d6ed1",
+          "failure": "none",
+          "ok": true,
+          "resolved_ip": "2a04:ac00:1:3dd8::1:2710",
+          "rtt_ms": 208.019,
+          "rung": "protocol_valid"
+        },
+        "host": "2a04:ac00:1:3dd8::1:2710",
+        "transport": "udp",
+        "url": "udp://[2a04:ac00:1:3dd8::1:2710]:2710/announce"
+      },
+      {
+        "bep34": {
+          "advertised": [
+            "udp:6969"
+          ],
+          "decision": "allow",
+          "detail": "record from 1.1.1.1: advertises UDP:6969",
+          "record": "BITTORRENT UDP:6969",
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "timeout after 8.0s",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "2a03:b0c0:2:f0::d8db:b001",
+          "rtt_ms": null,
+          "rung": "connected"
+        },
+        "host": "anna.bt.bontal.net",
+        "transport": "udp",
+        "url": "udp://anna.bt.bontal.net:6969/announce"
+      },
+      {
+        "bep34": {
+          "advertised": [
+            "udp:6969"
+          ],
+          "decision": "allow",
+          "detail": "record from 1.1.1.1: advertises UDP:6969",
+          "record": "BITTORRENT UDP:6969",
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "timeout after 8.0s",
+          "failure": "timeout",
+          "ok": false,
+          "resolved_ip": "2400:6180:0:d2:0:2:2bda:e000",
+          "rtt_ms": null,
+          "rung": "connected"
+        },
+        "host": "burmese.app",
+        "transport": "udp",
+        "url": "udp://burmese.app:6969/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "connection_id=0x6bcaefb6ebcc6428",
+          "failure": "none",
+          "ok": true,
+          "resolved_ip": "2a13:7c00:6:29:f816:3eff:feeb:fa7f",
+          "rtt_ms": 222.278,
+          "rung": "protocol_valid"
+        },
+        "host": "ipv6.govt.hu",
+        "transport": "udp",
+        "url": "udp://ipv6.govt.hu:6969/announce"
+      },
+      {
+        "bep34": {
+          "advertised": [
+            "udp:80"
+          ],
+          "decision": "allow",
+          "detail": "record from 1.1.1.1: advertises UDP:80",
+          "record": "BITTORRENT UDP:80",
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+          "failure": "refused",
+          "ok": false,
+          "resolved_ip": "::1",
+          "rtt_ms": null,
+          "rung": "connected"
+        },
+        "host": "ipv6.tracker.harry.lu",
+        "transport": "udp",
+        "url": "udp://ipv6.tracker.harry.lu/announce"
+      },
+      {
+        "bep34": {
+          "advertised": [
+            "udp:2710"
+          ],
+          "decision": "allow",
+          "detail": "record from 1.1.1.1: advertises UDP:2710",
+          "record": "BITTORRENT UDP:2710",
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "connection_id=0x5fd3432c590189c4",
+          "failure": "none",
+          "ok": true,
+          "resolved_ip": "2a04:ac00:1:3dd8::1:2710",
+          "rtt_ms": 212.894,
+          "rung": "protocol_valid"
+        },
+        "host": "retracker.hotplug.ru",
+        "transport": "udp",
+        "url": "udp://retracker.hotplug.ru:2710/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "connection_id=0x7d2bc365ea5afcc7",
+          "failure": "none",
+          "ok": true,
+          "resolved_ip": "2a01:4f8:1c18:5fca::1",
+          "rtt_ms": 202.13,
+          "rung": "protocol_valid"
+        },
+        "host": "v6.vito-tracker.space",
+        "transport": "udp",
+        "url": "udp://v6.vito-tracker.space:6969/announce"
+      },
+      {
+        "bep34": {
+          "advertised": null,
+          "decision": "allow",
+          "detail": "no BEP 34 record among 0 TXT record(s) from 1.1.1.1",
+          "record": null,
+          "resolver": "1.1.1.1"
+        },
+        "direct": {
+          "detail": "transport wss speaks WebTorrent, unverified (C-36)",
+          "failure": "unsupported",
+          "ok": false,
+          "resolved_ip": "-",
+          "rtt_ms": null,
+          "rung": "none"
+        },
+        "host": "tracker.dnlab.net",
+        "transport": "wss",
+        "url": "wss://tracker.dnlab.net:443/announce"
+      }
+    ],
+    "second_hand_alive": 1,
+    "subjects": 16,
+    "vantage": {
+      "environment_class": "unclassified-host",
+      "execution_profile": "local",
+      "ip_families": [
+        "ipv4",
+        "ipv6"
+      ],
+      "ip_families_method": "UDP connect() routing-table lookup, zero packets sent",
+      "ipv6_egress": true,
+      "ipv6_route_present": true,
+      "ipv6_stack_present": true,
+      "probe_code_sha256": "1466d9cbc97d0c0652a02a4407496aceef433791de62d916c40c971a78175d51",
+      "probe_version": "0.1.0",
+      "region": "-",
+      "repo_commit": "-",
+      "runner": {}
+    },
+    "what_this_is_not": "Not a health state. Nothing here writes one, the proxied arm cannot produce one, and a tracker unreachable from a runner stays `unmeasurable` there whatever this run found."
+  }
+}

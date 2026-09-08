@@ -85,8 +85,8 @@ from . import bep15
 from .bencode import TRACKER_KINDS, classify_body
 from .bep34 import (Decision, Resolver, classify_resolution,
                     protocol_for_transport)
-from .model import (Network, Rung, Tracker, Transport, YGGDRASIL_NET,
-                    HealthState)
+from .model import (Network, Rung, Tracker, Transport,
+                    UNREACHABLE_NETWORKS, YGGDRASIL_NET, HealthState)
 from .vantage import UNKNOWN, Vantage, detect as detect_vantage
 
 __all__ = [
@@ -426,6 +426,36 @@ def health_state(*, rung: Rung, transport: Transport, network: Network,
 
 
 # --- T-023: network from the resolved address ---------------------------------
+def reclassified_out_of_reach(network: Network, from_net: Network | None,
+                              tracker: Tracker, base: dict,
+                              resolved_ip: str,
+                              families: tuple[str, ...]) -> ProbeResult | None:
+    """A result when resolution moved a tracker into a network we cannot reach.
+
+    ⛔ **This is T-023's bug one layer down, and it was live.** `probe` checks
+    `tracker.is_measurable_here` before resolving, off the URL alone, so
+    `http://yggtracker.i2p.rocks:80/announce` passes: the name looks like
+    clearnet. Resolution then returns `200:1e2f:...`, inside `0200::/7`, and
+    `classify_network_resolved` correctly says yggdrasil -- and nothing read
+    that answer, so the probe opened a socket to a network this vantage cannot
+    route to and recorded `timeout`. Three of those and the state table would
+    have said `dead`, which is RULES 11's named anti-pattern and RULES 3.1's
+    absolute rule, reached through the fix that exists to prevent it.
+
+    Measured on 2026-09-08 by `experiments/33`, which is what a real probe of
+    that host from a vantage with IPv6 turned up.
+    """
+    if from_net is None or network not in UNREACHABLE_NETWORKS:
+        return None
+    return ProbeResult(
+        network=network, network_reclassified_from=from_net, rung=Rung.NONE,
+        ok=False, failure=Failure.UNSUPPORTED,
+        detail=(f"{tracker.host} resolves into {network.value} "
+                f"({resolved_ip}), which needs a router this vantage does not "
+                f"run. Nothing was sent."),
+        resolved_ip=resolved_ip, families=families, **base)
+
+
 def classify_network_resolved(url_network: Network,
                               addresses: list[str]) -> tuple[Network, Network | None]:
     """Refine the URL-derived network using addresses DNS actually returned.
@@ -463,8 +493,33 @@ def classify_network_resolved(url_network: Network,
 
 
 # --- resolution ---------------------------------------------------------------
-def _is_unspecified(address: str) -> bool:
-    """`0.0.0.0` or `::`, which is an answer and never a destination.
+def _asks_for_loopback(host: str) -> bool:
+    """Whether this URL means the local host, rather than being sent there.
+
+    Two ways to mean it, and both are the caller saying what it wants:
+
+    * an **address literal**, `127.0.0.1` or `[::1]`, which names exactly one
+      destination;
+    * **`localhost`** or a name under it, which RFC 6761 section 6.3 reserves
+      for the loopback address and requires resolvers to answer that way.
+
+    Everything else that resolves to loopback is DNS pointing the probe at
+    this machine, which is a different fact and not a destination. The oracles
+    in `tests/` use both permitted forms, so the rule below does not have to
+    carve out a test path -- which is the shape that makes a control decorative.
+    """
+    bare = host.strip("[]").lower().rstrip(".")
+    if bare == "localhost" or bare.endswith(".localhost"):
+        return True
+    try:
+        ipaddress.ip_address(bare)
+        return True
+    except ValueError:
+        return False
+
+
+def _undialable(address: str, *, from_a_name: bool) -> bool:
+    """Whether this address is one no probe may open a socket to.
 
     ⛔ **On Linux a connect to the unspecified address reaches the local
     host**, so probing a name that resolves to one would open a socket to the
@@ -479,11 +534,21 @@ def _is_unspecified(address: str) -> bool:
     `::` or both, and on a runner they resolve for `getaddrinfo` and reach the
     prober (`experiments/30`, run `34235047982` and the authoring-host run of
     the same day).
+
+    ⛔ **And one resolves to `::1`.** `ipv6.tracker.harry.lu` answered loopback
+    on 2026-09-08 and the probe connected to this machine, recording the reset
+    as the tracker's (`experiments/33`). An earlier revision of this function
+    excluded only the unspecified addresses and said loopback was deliberately
+    left out because it had not been measured in this corpus. It has been now,
+    so it is excluded too -- but only when a **name** resolved to it, because
+    the oracle probes `127.0.0.1` on purpose and a URL that names an address
+    means the address it names.
     """
     try:
-        return ipaddress.ip_address(address).is_unspecified
+        ip = ipaddress.ip_address(address)
     except ValueError:
         return False
+    return ip.is_unspecified or (from_a_name and ip.is_loopback)
 
 
 @dataclass(frozen=True, slots=True)
@@ -539,13 +604,15 @@ def _resolve(host: str, port: int, sock_type: int, vantage: Vantage) -> Resoluti
     than recording it (T-037).
     """
     infos = socket.getaddrinfo(host, port, socket.AF_UNSPEC, sock_type)
+    named = not _asks_for_loopback(host)
     families = tuple(sorted({
         "ipv6" if i[0] == socket.AF_INET6 else "ipv4" for i in infos}))
-    unspecified = tuple(i[4][0] for i in infos if _is_unspecified(i[4][0]))
+    unspecified = tuple(i[4][0] for i in infos
+                        if _undialable(i[4][0], from_a_name=named))
     usable = tuple(
         i for i in infos
         if ("ipv6" if i[0] == socket.AF_INET6 else "ipv4") in vantage.ip_families
-        and not _is_unspecified(i[4][0]))
+        and not _undialable(i[4][0], from_a_name=named))
     return Resolution(infos=tuple(infos),
                       addresses=tuple(i[4][0] for i in infos),
                       families=families, usable=usable,
@@ -706,6 +773,10 @@ def probe_udp(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     network, from_net = classify_network_resolved(tracker.network,
                                                   list(res.addresses))
     families = res.families
+    out_of_reach = reclassified_out_of_reach(network, from_net, tracker, base,
+                                             res.first, families)
+    if out_of_reach is not None:
+        return out_of_reach
 
     if res.only_unspecified:
         return ProbeResult(
@@ -821,6 +892,10 @@ def probe_http(tracker: Tracker, cfg: ProbeConfig, vantage: Vantage,
     network, from_net = classify_network_resolved(tracker.network,
                                                   list(res.addresses))
     families = res.families
+    out_of_reach = reclassified_out_of_reach(network, from_net, tracker, base,
+                                             res.first, families)
+    if out_of_reach is not None:
+        return out_of_reach
     addresses = list(res.addresses)
     # ⛔ Never `addresses[0]`. That is whatever DNS listed first, which
     # may be a null address this probe refuses to open (T-037).
