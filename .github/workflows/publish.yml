@@ -1,0 +1,177 @@
+# Publish the dataset to the `data` branch. T-063, decision D5.
+#
+# ⛔ THE LABELS ARE THE PRODUCT AND THE PLAINTEXT IS NOT. The value gate
+# answered that this project is justified as a labelled dataset and NOT as a
+# list: unfiltered, the plaintext is 13.4x longer than the baseline and five
+# times less likely to answer. So every run publishes `trackers_all.json` and
+# `trackers_all.csv` beside the text file, and a consumer who takes only the
+# text has taken the worse half. `docs/schema.md` defines every field.
+#
+# ⛔ ATOMIC, AND THE FAILURE DIRECTION IS THE POINT (RULES 3.5). Generation
+# stages, verifies and only then moves output into place; if verification
+# fails, nothing is committed and whatever is on `data` stays there. A failed
+# run leaves the previous dataset intact rather than replacing it with the
+# consequences of an outage.
+#
+# ⭐ WHY THE STATE LIVES ON THE DATA BRANCH. History is what makes a label
+# worth reading, and workflow artefacts expire after 90 days while a branch
+# does not. `state.jsonl` is fetched from `data`, the sweep's records are
+# folded into it, and it is pushed back with the dataset it produced. That also
+# gives the run something the sweep has never had: state shared across runs.
+#
+# ⚠ `C-55`: a scheduled workflow runs only on the default branch, so `data` can
+# never carry a cron of its own. This lives on `main` and writes there.
+name: Publish
+
+on:
+  # ⭐ After a sweep, so the dataset carries the health it just measured. A
+  # `workflow_run` fires on the default branch's workflow file regardless of
+  # what the sweep did, so the generation below is what decides whether
+  # anything is worth publishing -- not this trigger.
+  workflow_run:
+    workflows: ["Health sweep"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      offline:
+        description: "build from committed fixtures instead of fetching upstreams"
+        required: false
+        default: false
+        type: boolean
+
+# Least privilege, and this is the one workflow that needs more than read:
+# it pushes the dataset. It touches no releases and no issues.
+permissions:
+  contents: write
+
+# ⛔ Never two publishers at once. `cancel-in-progress: false` on purpose:
+# cancelling a run mid-push is how a branch ends up with half a dataset, and a
+# queued publish costs nothing but a few minutes.
+concurrency:
+  group: publish-data
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      # Pinned to a commit SHA, not a tag: tags are mutable (C-45).
+      - name: Checkout the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+
+      - name: Fix the instant this run is stamped with
+        run: echo "PUBLISH_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+
+      # The data branch may not exist yet. A first run creates it as an ORPHAN:
+      # it carries data and none of this repository's code history, so a
+      # consumer cloning it gets the dataset and nothing else.
+      - name: Fetch the data branch, or start one
+        run: |
+          # ⛔ The identity is derived, never written into the tree.
+          # `check-no-secrets.py --public` refused a hardcoded address here and
+          # it was right to: an email literal in a tracked file is personal
+          # data whether or not it is a credential. The noreply form attributes
+          # the commit to the operator, which is what
+          # docs/conventions/git.md requires, and publishes no address.
+          git config user.name "${GITHUB_REPOSITORY_OWNER}"
+          git config user.email "${GITHUB_REPOSITORY_OWNER}@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+            git fetch origin data:data --depth 1
+            git worktree add published data
+            echo "existing data branch checked out"
+          else
+            git worktree add --detach published
+            cd published
+            git checkout --orphan data
+            git rm -rf . >/dev/null 2>&1 || true
+            echo "started a new orphan data branch"
+          fi
+
+      # Fold whatever health the sweep recorded into the history the branch
+      # already carries. ⚠ Absent on the first run, which is not an error: a
+      # dataset with no measurements is honestly labelled `unknown`.
+      - name: Take the newest sweep records, if there are any
+        id: records
+        run: |
+          mkdir -p sweep-in
+          if [ -f published/state.jsonl ]; then
+            cp published/state.jsonl sweep-in/state.jsonl
+            echo "carried the existing history forward"
+          fi
+          # Records committed as evidence are the ones this repository keeps
+          # forever; a sweep's own artefact expires. Folding is idempotent --
+          # `update-state.py` remembers which runs it has applied.
+          if ls experiments/results/health-sweep.*.json >/dev/null 2>&1; then
+            python3 scripts/update-state.py \
+              --state sweep-in/state.jsonl \
+              --generated-at "${PUBLISH_AT}" \
+              experiments/results/health-sweep.*.json
+          else
+            echo "no committed sweep records; every tracker will read unknown"
+          fi
+
+      - name: Generate, verify, and stage
+        run: |
+          python3 scripts/generate.py \
+            ${{ inputs.offline && '--offline' || '' }} \
+            --generated-at "${PUBLISH_AT}" \
+            --state sweep-in/state.jsonl \
+            --observed-from github-actions-hosted \
+            --out build/data
+
+      # ⛔ The gate that makes this safe to schedule. `generate.py` exits 1 on
+      # a failed verification and this step never runs, so `data` keeps what it
+      # had. Asserted here as well because a step that publishes must not
+      # depend on a reader having noticed an earlier one's exit code.
+      - name: Refuse to publish what was not generated
+        run: |
+          for f in trackers_all.txt trackers_all.json trackers_all.csv report.md; do
+            if [ ! -s "build/data/$f" ]; then
+              echo "::error::build/data/$f is missing or empty; not publishing"
+              exit 1
+            fi
+          done
+          python3 - <<'PY'
+          import json
+          with open("build/data/trackers_all.json", encoding="utf-8") as fh:
+              doc = json.load(fh)
+          rows, count = len(doc["trackers"]), doc["count"]
+          assert rows == count, f"{rows} rows against a stated count of {count}"
+          assert rows > 0, "refusing to publish an empty dataset"
+          print(f"{rows} trackers, {len(doc['fields'])} fields per row")
+          PY
+
+      - name: Publish
+        run: |
+          cp build/data/trackers_all.txt build/data/trackers_all.json \
+             build/data/trackers_all.csv build/data/report.md published/
+          cp sweep-in/state.jsonl published/state.jsonl 2>/dev/null || true
+          cp docs/schema.md published/schema.md
+          cd published
+          git add -A
+          if git diff --cached --quiet; then
+            echo "the dataset is unchanged; nothing to publish"
+            exit 0
+          fi
+          git commit -m "Dataset generated at ${PUBLISH_AT}"
+          git push origin data
+
+      - name: Say what landed
+        if: always()
+        run: |
+          {
+            echo "## Published"
+            echo
+            echo '```'
+            head -3 build/data/trackers_all.csv 2>/dev/null || echo "(nothing generated)"
+            echo '```'
+            echo
+            echo "Raw: https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/data/trackers_all.txt"
+            echo
+            echo "A tracker recorded \`unknown\` was never measured or measured"
+            echo "too few times to say more. Nothing here is \`dead\`."
+          } >> "$GITHUB_STEP_SUMMARY"
