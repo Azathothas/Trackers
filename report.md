@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-09T04:30:41Z
+generated_at: 2026-09-09T10:46:25Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 1435 across 894 tracker(s)
-- never observed:      432
-- health states:       {'degraded': 4, 'live': 145, 'unknown': 698, 'unmeasurable': 47}
-- measurement rungs:   {'connected': 127, 'dns': 263, 'no_usable_address': 7, 'none': 273, 'protocol_valid': 67, 'tracker_semantic': 81, 'transport_response': 76}
+- health observations: 1629 across 1004 tracker(s)
+- never observed:      322
+- health states:       {'degraded': 6, 'live': 162, 'unknown': 782, 'unmeasurable': 54}
+- measurement rungs:   {'connected': 143, 'dns': 283, 'no_usable_address': 10, 'none': 312, 'protocol_valid': 71, 'tracker_semantic': 94, 'transport_response': 91}
 - observation depth:   median 1, deepest 4
-- sustained failures:  79 (3+ observations, none successful)
+- sustained failures:  86 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -108,9 +108,9 @@ the only place that decision is made.
 - sustained: `http://65.130.205.148:9000/announce`
 - sustained: `http://83.6.232.23:6969/announce`
 - sustained: `http://97.117.105.168:9000/announce`
+- sustained: `http://97.117.85.73:9000/announce`
 - sustained: `http://bithq.org:80/announce.php`
 - sustained: `http://bt.ktkj.com:8080/announce`
-- sustained: `http://cn.pcfreetime.com:6969/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 145
+### common.txt -- 162
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  0 from the other categories and 145 more that measured live
+- why:  0 from the other categories and 162 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
