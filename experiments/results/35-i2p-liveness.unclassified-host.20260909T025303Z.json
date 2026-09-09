@@ -1,0 +1,208 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "public_ipv4": "111.119.48.171",
+    "public_ipv4_org": "-",
+    "python": "3.13.15",
+    "repo_commit": "3c2d0f985677632771816b1bf79c5909602a391a-dirty",
+    "sample_counts": {
+      "contacted": 11,
+      "subjects": 13
+    },
+    "utc": "2026-09-09T02:54:11Z"
+  },
+  "question": "Are the corpus's .i2p trackers alive, from a vantage that has i2p?",
+  "results": {
+    "controls": {
+      "tier0": {
+        "body_kind": "tracker_scrape_response",
+        "detail": "loopback scrape classified as tracker_scrape_response",
+        "ok": true
+      },
+      "tier1": {
+        "bytes": 21063,
+        "detail": "reached a known eepsite, so the router has tunnels and a subject that does not answer is a fact about the subject",
+        "eepsite": "http://i2p-projekt.i2p/",
+        "error": null,
+        "http_status": 200,
+        "ok": true,
+        "rtt_ms": 2365.0
+      }
+    },
+    "counts": {
+      "destination_answered": 3,
+      "destination_unreachable": 1,
+      "no_answer": 1,
+      "router_name_unknown": 6,
+      "unmeasurable": 2
+    },
+    "names_resolved_to_a_destination": 129,
+    "naming_registries": [
+      {
+        "error": null,
+        "http_status": 200,
+        "names": 79,
+        "url": "http://reg.i2p/hosts.txt"
+      },
+      {
+        "error": null,
+        "http_status": 200,
+        "names": 50,
+        "url": "http://stats.i2p/cgi-bin/newhosts.txt"
+      }
+    ],
+    "proxy": "http://172.23.102.192:14444",
+    "router_image": "docker.io/purplei2p/i2pd@sha256:2835b8fcce5af28fc53d02ab886e5bdc774eea35874eeeb9a4430720349aa1b5",
+    "rows": [
+      {
+        "addressed_as": "name",
+        "detail": "the destination was resolved and no connection could be built; one observation, and never `dead` on its own",
+        "reached_scrape_endpoint": true,
+        "requested": "http://btrackrqkjp6kgelov5a3uxisis77ofxqt5nvy5hvvtoybjpmq4q.b32.i2p/scrape?info_hash=x%96_%A9%18%CF9%E1%BB%92%F2%D38%3BE%12%08q%B69",
+        "rtt_ms": 6448.4,
+        "rung": "none",
+        "url": "http://btrackrqkjp6kgelov5a3uxisis77ofxqt5nvy5hvvtoybjpmq4q.b32.i2p/announce",
+        "used_synthetic_infohash": true,
+        "verdict": "destination_unreachable"
+      },
+      {
+        "addressed_as": "name",
+        "detail": "the name is not in our router's addressbook; a fact about our naming, not about the destination",
+        "reached_scrape_endpoint": true,
+        "requested": "http://nyaaplus.i2p:80/scrape?info_hash=Q%DAOz%F1%C2%A0%C3%D9%89%B3%5E%CFx%00%DBq%F7W%0C",
+        "rtt_ms": 21.4,
+        "rung": "none",
+        "url": "http://nyaaplus.i2p:80/announce",
+        "used_synthetic_infohash": true,
+        "verdict": "router_name_unknown"
+      },
+      {
+        "addressed_as": "b32",
+        "detail": "HTTP 200, 217 bytes from the destination's root path; NOT a tracker claim (RULES 3.3)",
+        "http_status": 200,
+        "reached_scrape_endpoint": false,
+        "requested": "http://w7tpbzncbcocrqtwwm3nezhnnsw4ozadvi2hmvzdhrqzfxfum7wa.b32.i2p:80/",
+        "rtt_ms": 616.2,
+        "rung": "transport_response",
+        "url": "http://opentracker.dg2.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "destination_answered"
+      },
+      {
+        "addressed_as": "name",
+        "detail": "the name is not in our router's addressbook; a fact about our naming, not about the destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.eeptorrent.i2p:80/",
+        "rtt_ms": 13.6,
+        "rung": "none",
+        "url": "http://opentracker.eeptorrent.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_name_unknown"
+      },
+      {
+        "addressed_as": "name",
+        "detail": "the name is not in our router's addressbook; a fact about our naming, not about the destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.fattydove.i2p:80/",
+        "rtt_ms": 1.8,
+        "rung": "none",
+        "url": "http://opentracker.fattydove.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_name_unknown"
+      },
+      {
+        "addressed_as": "b32",
+        "detail": "HTTP 404, 25 bytes from the destination's root path; NOT a tracker claim (RULES 3.3)",
+        "http_status": 404,
+        "reached_scrape_endpoint": false,
+        "requested": "http://punzipidirfqspstvzpj6gb4tkuykqp6quurj6e23bgxcxhdoe7q.b32.i2p:80/",
+        "rtt_ms": 2091.9,
+        "rung": "transport_response",
+        "url": "http://opentracker.r4sas.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "destination_answered"
+      },
+      {
+        "addressed_as": "name",
+        "detail": "the name is not in our router's addressbook; a fact about our naming, not about the destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.simp.i2p:80/",
+        "rtt_ms": 18.1,
+        "rung": "none",
+        "url": "http://opentracker.simp.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_name_unknown"
+      },
+      {
+        "addressed_as": "b32",
+        "detail": "HTTP 200, 1677 bytes from the destination's root path; NOT a tracker claim (RULES 3.3)",
+        "http_status": 200,
+        "reached_scrape_endpoint": false,
+        "requested": "http://by7luzwhx733fhc5ug2o75dcaunblq2ztlshzd7qvptaoa73nqua.b32.i2p:80/",
+        "rtt_ms": 1190.8,
+        "rung": "transport_response",
+        "url": "http://opentracker.skank.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "destination_answered"
+      },
+      {
+        "addressed_as": "name",
+        "detail": "RemoteDisconnected: Remote end closed connection without response",
+        "reached_scrape_endpoint": false,
+        "requested": "http://qimlze77z7w32lx2ntnwkuqslrzlsqy7774v3urueuarafyqik5a.b32.i2p:80/",
+        "rtt_ms": 11406.5,
+        "rung": "none",
+        "url": "http://qimlze77z7w32lx2ntnwkuqslrzlsqy7774v3urueuarafyqik5a.b32.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "no_answer"
+      },
+      {
+        "addressed_as": "name",
+        "detail": "the name is not in our router's addressbook; a fact about our naming, not about the destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://sigmatracker.i2p:80/",
+        "rtt_ms": 26.0,
+        "rung": "none",
+        "url": "http://sigmatracker.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_name_unknown"
+      },
+      {
+        "addressed_as": "name",
+        "detail": "the name is not in our router's addressbook; a fact about our naming, not about the destination",
+        "reached_scrape_endpoint": true,
+        "requested": "http://tracker.nyaa2p.i2p:80/scrape?info_hash=%B7%B5%E9W%C9%AAw%0BuU%84%12%DA7%E2VO%1A%3F3",
+        "rtt_ms": 2.2,
+        "rung": "none",
+        "url": "http://tracker.nyaa2p.i2p:80/announce",
+        "used_synthetic_infohash": true,
+        "verdict": "router_name_unknown"
+      },
+      {
+        "detail": "udp over i2p needs a SAM session; an HTTP proxy carries no datagrams. Not attempted, and not a statement about the tracker",
+        "requested": null,
+        "rung": "none",
+        "url": "udp://opentracker.simp.i2p:6969/a",
+        "verdict": "unmeasurable"
+      },
+      {
+        "detail": "udp over i2p needs a SAM session; an HTTP proxy carries no datagrams. Not attempted, and not a statement about the tracker",
+        "requested": null,
+        "rung": "none",
+        "url": "udp://opentracker.skank.i2p:6969/a",
+        "verdict": "unmeasurable"
+      }
+    ],
+    "subjects": 13,
+    "vantage": {
+      "first_hand": true,
+      "network": "i2p",
+      "profile": "local",
+      "route": "an i2pd router in a throwaway container; this process speaks to its HTTP proxy"
+    },
+    "what_this_is_not": "Not an announce, on any row: 3 of 13 URLs carry a path BEP 48 can turn into a scrape endpoint and the other 8 are measured to TRANSPORT_RESPONSE against the destination's ROOT path instead. `destination_answered` is NOT tracker liveness (RULES 3.3). `router_could_not_reach` is a fact about our route and can never become `dead` (RULES 3.1). The 2 udp:// URLs were not attempted."
+  }
+}

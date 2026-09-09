@@ -1410,7 +1410,7 @@ Source:      [T-031](measurement.md), closed 2026-09-08 on the IPv6-only
 Category:    measurement
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     [T-031](measurement.md) built the indirect-liveness mechanism and
              moved the IPv6-only category with it. Two categories it names did
@@ -1470,6 +1470,86 @@ Prove:       Either a recorded second-hand liveness signal for at least one
              three routes attempted and recorded as failed with what each cost,
              which is what RULES 10.1a asks before anything is called
              not-doable.
+
+**Done.** 2026-09-09. ⭐ **Both categories were reached, and first-hand rather
+than through anybody's observer** -- the `Prove` clause asked for a *second*-hand
+signal or three recorded failures, and a router in a container turned out to be
+cheaper than either.
+
+```bash
+CONTAINER_ENGINE=podman python3 experiments/36-yggdrasil-liveness.py \
+  --engine podman --expect-control          # -> exit 0
+python3 experiments/35-i2p-liveness.py --proxy "http://$ROUTER_HOST:4444" \
+  --expect-control                          # -> exit 0
+```
+
+⭐ **i2p: three destinations answered.** An i2pd router (pinned by digest) in a
+throwaway container, this process speaking to its HTTP proxy. Of the 13 `.i2p`
+URLs:
+
+| outcome | n | what it means |
+| --- | --- | --- |
+| `destination_answered` | **3** | `opentracker.dg2.i2p`, `opentracker.r4sas.i2p`, `opentracker.skank.i2p`. `TRANSPORT_RESPONSE` -- ⛔ **not** a tracker claim, see below |
+| `router_name_unknown` | 6 | not in our addressbook **and not in the public registries**. About our naming, never about the destination |
+| `destination_unreachable` | 1 | a b32, which needs no addressbook, so the destination was resolved and no connection could be built |
+| `no_answer` | 1 | timed out |
+| `unmeasurable` | 2 | the `udp://` pair. An HTTP proxy carries no datagrams |
+
+⛔ **Only 3 of the 13 have a scrape endpoint at all**, and that is the finding
+this entry did not expect. Eight HTTP URLs end in `/a`, which BEP 48's path
+convention cannot turn into a scrape, so `Tracker.scrape_url` is `None` for
+them. ⛔ The instrument **does not invent `/s`**: guessing an endpoint and then
+reporting its 404 as the tracker's defect is a fabrication, and requesting `/a`
+itself would be an announce. They are measured to the destination's root path
+instead, which is one rung lower and is labelled as such -- `destination_answered`
+is **not** `live`, and RULES 3.3 forbids the promotion.
+
+⭐ **Addressing the destination rather than the name is what made it work.**
+Public naming registries (`reg.i2p`, `stats.i2p`) are fetched once per run
+through the proxy and used to turn a name into its b32. That is second-hand
+**naming**, not a second-hand liveness signal -- the request that measures the
+tracker is still ours. It turned `opentracker.skank.i2p` from a timeout into a
+1677-byte answer: without it we would have recorded our own addressbook as the
+tracker's silence.
+
+⭐ **yggdrasil: the node joined, the control answered, the tracker did not.**
+`yggtracker.i2p.rocks` is the only yggdrasil host in the corpus and there is
+**no yggdrasil URL** -- the network is decided after resolution, which is why
+the instrument resolves rather than pattern-matching on a scheme. A node on the
+overlay pinged a peer's own address successfully on **both** runs (RULES 2:
+run the control twice before publishing a cause), and the subject returned 0 of
+4 packets and refused TCP on both ports, twice.
+
+⛔ **That is one observation and it is not `dead`.** `MIN_SAMPLES_FOR_DEATH` is
+3, and RULES 3.1 is why the state machine cannot be short-circuited by a
+convincing negative.
+
+**Route (e), the cheap one, is measured closed and is re-runnable**
+(`--check-dual-stack`): `yggtracker.i2p.rocks` has **no A record** from this
+host's resolver or from `1.1.1.1`, `8.8.8.8` and `9.9.9.9`, and exactly one
+AAAA inside `0200::/7`. The parent domain `i2p.rocks` is ordinary clearnet
+IPv4, so this is a yggdrasil-only host rather than a resolver failing.
+
+⚠ **What each instrument costs, recorded because a route that costs something
+is still a route (RULES 10.1a).** Both need a container, and `36` needs a TUN
+device and `NET_ADMIN`; neither can run in CI, which is `docs/containers.md`'s
+whole premise rather than a limitation. Both take the engine as a variable and
+were driven with **podman on Windows**. Both were decommissioned and the
+teardown was **verified by counting**: containers 1 -> 0, images 9 -> 7, the
+two pulled ones removed and the engine left as found.
+
+⚠ **The 6 `router_name_unknown` rows are the honest remainder.** They are not
+a tracker's silence and must never be recorded as one; what would move them is
+a longer-lived router with a full addressbook subscription, or a registry that
+carries those names. The classification exists precisely so that a later
+session can tell them apart from the destinations that were actually asked.
+
+---
+
+**What follows is the record of how it got here, kept because RULES 7 says a
+disproved premise keeps its title. ⭐ Route (d), the public gateway, is still
+down -- the route that opened this was route (f), a router of our own, which
+the entry listed last and expected to cost the most.**
 
 **Route (d) is measured and it is down.** 2026-09-08, from the authoring host:
 

@@ -91,7 +91,7 @@ pretending to be one.
 | [T-035](claims.md) | P2 | claims | open | Four of the five clients that matter are absent, not passing |
 | [T-037](measurement.md) | P1 | measurement | **done** | A `dns_failure` records our resolver's opinion, and a better one is already in the tree |
 | [T-038](measurement.md) | P2 | measurement | **done** | The HTTP prober does not choose which address it connects to |
-| [T-039](measurement.md) | P2 | measurement | open | i2p and yggdrasil have no route, and route (d) was never attempted |
+| [T-039](measurement.md) | P2 | measurement | **done** | i2p and yggdrasil have no route, and route (d) was never attempted |
 | [T-036](measurement.md) | P2 | measurement | **done** | 351 tracker URLs do not resolve, and nobody has asked why |
 | [T-041](scoring.md) | P2 | scoring | **done** | History must distinguish seven shapes over time, not seven values |
 | [T-042](scoring.md) | P2 | scoring | **done** | The state size over five years has never been computed |
@@ -127,7 +127,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 74 entries, 22 open, 0 blocked, 52 done
+**Counts:** 74 entries, 21 open, 0 blocked, 53 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -136,9 +136,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 0 | 0 | 8 | 8 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 16 | 0 | 20 | 36 |
+| P2 | 15 | 0 | 21 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **22** | **0** | **52** | **74** |
+| **All** | **21** | **0** | **53** | **74** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

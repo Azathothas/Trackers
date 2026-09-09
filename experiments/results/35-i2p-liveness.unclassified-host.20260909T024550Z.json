@@ -1,0 +1,180 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "public_ipv4": "27.34.69.61",
+    "public_ipv4_org": "-",
+    "python": "3.13.15",
+    "repo_commit": "3c2d0f985677632771816b1bf79c5909602a391a-dirty",
+    "sample_counts": {
+      "contacted": 11,
+      "subjects": 13
+    },
+    "utc": "2026-09-09T02:47:31Z"
+  },
+  "question": "Are the corpus's .i2p trackers alive, from a vantage that has i2p?",
+  "results": {
+    "controls": {
+      "tier0": {
+        "body_kind": "tracker_scrape_response",
+        "detail": "loopback scrape classified as tracker_scrape_response",
+        "ok": true
+      },
+      "tier1": {
+        "bytes": 21063,
+        "detail": "reached a known eepsite, so the router has tunnels and a subject that does not answer is a fact about the subject",
+        "eepsite": "http://i2p-projekt.i2p/",
+        "error": null,
+        "http_status": 200,
+        "ok": true,
+        "rtt_ms": 2277.4
+      }
+    },
+    "counts": {
+      "destination_answered": 2,
+      "no_answer": 2,
+      "router_could_not_reach": 7,
+      "unmeasurable": 2
+    },
+    "proxy": "http://172.23.102.192:14444",
+    "router_image": "docker.io/purplei2p/i2pd@sha256:2835b8fcce5af28fc53d02ab886e5bdc774eea35874eeeb9a4430720349aa1b5",
+    "rows": [
+      {
+        "detail": "i2pd's own error page: the router could not resolve or reach this destination",
+        "reached_scrape_endpoint": true,
+        "requested": "http://btrackrqkjp6kgelov5a3uxisis77ofxqt5nvy5hvvtoybjpmq4q.b32.i2p/scrape?info_hash=%91W%15%F9%95%3CJ%FA%CE%84%AC%C9%20%26%0D%3F%8D%D9~%24",
+        "rtt_ms": 6107.8,
+        "rung": "none",
+        "url": "http://btrackrqkjp6kgelov5a3uxisis77ofxqt5nvy5hvvtoybjpmq4q.b32.i2p/announce",
+        "used_synthetic_infohash": true,
+        "verdict": "router_could_not_reach"
+      },
+      {
+        "detail": "i2pd's own error page: the router could not resolve or reach this destination",
+        "reached_scrape_endpoint": true,
+        "requested": "http://nyaaplus.i2p:80/scrape?info_hash=NU%B8%A3%C9%D8%17%1Ae%9F%3A%25%D7j%8F%3A%E0%20%00%F3",
+        "rtt_ms": 1.5,
+        "rung": "none",
+        "url": "http://nyaaplus.i2p:80/announce",
+        "used_synthetic_infohash": true,
+        "verdict": "router_could_not_reach"
+      },
+      {
+        "detail": "HTTP 200, 217 bytes from the destination's root path; NOT a tracker claim (RULES 3.3)",
+        "http_status": 200,
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.dg2.i2p:80/",
+        "rtt_ms": 3294.4,
+        "rung": "transport_response",
+        "url": "http://opentracker.dg2.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "destination_answered"
+      },
+      {
+        "detail": "i2pd's own error page: the router could not resolve or reach this destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.eeptorrent.i2p:80/",
+        "rtt_ms": 26.6,
+        "rung": "none",
+        "url": "http://opentracker.eeptorrent.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_could_not_reach"
+      },
+      {
+        "detail": "i2pd's own error page: the router could not resolve or reach this destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.fattydove.i2p:80/",
+        "rtt_ms": 15.5,
+        "rung": "none",
+        "url": "http://opentracker.fattydove.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_could_not_reach"
+      },
+      {
+        "detail": "HTTP 404, 25 bytes from the destination's root path; NOT a tracker claim (RULES 3.3)",
+        "http_status": 404,
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.r4sas.i2p:80/",
+        "rtt_ms": 21913.6,
+        "rung": "transport_response",
+        "url": "http://opentracker.r4sas.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "destination_answered"
+      },
+      {
+        "detail": "i2pd's own error page: the router could not resolve or reach this destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.simp.i2p:80/",
+        "rtt_ms": 11.2,
+        "rung": "none",
+        "url": "http://opentracker.simp.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_could_not_reach"
+      },
+      {
+        "detail": "TimeoutError: timed out",
+        "reached_scrape_endpoint": false,
+        "requested": "http://opentracker.skank.i2p:80/",
+        "rtt_ms": 60016.4,
+        "rung": "none",
+        "url": "http://opentracker.skank.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "no_answer"
+      },
+      {
+        "detail": "RemoteDisconnected: Remote end closed connection without response",
+        "reached_scrape_endpoint": false,
+        "requested": "http://qimlze77z7w32lx2ntnwkuqslrzlsqy7774v3urueuarafyqik5a.b32.i2p:80/",
+        "rtt_ms": 5692.0,
+        "rung": "none",
+        "url": "http://qimlze77z7w32lx2ntnwkuqslrzlsqy7774v3urueuarafyqik5a.b32.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "no_answer"
+      },
+      {
+        "detail": "i2pd's own error page: the router could not resolve or reach this destination",
+        "reached_scrape_endpoint": false,
+        "requested": "http://sigmatracker.i2p:80/",
+        "rtt_ms": 16.4,
+        "rung": "none",
+        "url": "http://sigmatracker.i2p:80/a",
+        "used_synthetic_infohash": false,
+        "verdict": "router_could_not_reach"
+      },
+      {
+        "detail": "i2pd's own error page: the router could not resolve or reach this destination",
+        "reached_scrape_endpoint": true,
+        "requested": "http://tracker.nyaa2p.i2p:80/scrape?info_hash=.%B2%C5%A2%3AQw%9E%238%FF%2A%AFh%13%A2%83%DA%23%0C",
+        "rtt_ms": 15.2,
+        "rung": "none",
+        "url": "http://tracker.nyaa2p.i2p:80/announce",
+        "used_synthetic_infohash": true,
+        "verdict": "router_could_not_reach"
+      },
+      {
+        "detail": "udp over i2p needs a SAM session; an HTTP proxy carries no datagrams. Not attempted, and not a statement about the tracker",
+        "requested": null,
+        "rung": "none",
+        "url": "udp://opentracker.simp.i2p:6969/a",
+        "verdict": "unmeasurable"
+      },
+      {
+        "detail": "udp over i2p needs a SAM session; an HTTP proxy carries no datagrams. Not attempted, and not a statement about the tracker",
+        "requested": null,
+        "rung": "none",
+        "url": "udp://opentracker.skank.i2p:6969/a",
+        "verdict": "unmeasurable"
+      }
+    ],
+    "subjects": 13,
+    "vantage": {
+      "first_hand": true,
+      "network": "i2p",
+      "profile": "local",
+      "route": "an i2pd router in a throwaway container; this process speaks to its HTTP proxy"
+    },
+    "what_this_is_not": "Not an announce, on any row: 3 of 13 URLs carry a path BEP 48 can turn into a scrape endpoint and the other 8 are measured to TRANSPORT_RESPONSE against the destination's ROOT path instead. `destination_answered` is NOT tracker liveness (RULES 3.3). `router_could_not_reach` is a fact about our route and can never become `dead` (RULES 3.1). The 2 udp:// URLs were not attempted."
+  }
+}

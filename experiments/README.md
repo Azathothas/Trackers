@@ -45,6 +45,8 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `30-resolution-failure-classes.py` | Which kind of not-resolving is each unresolvable corpus host, and does a second resolver disagree? | C-06, [T-007](../TODO/claims.md), [T-036](../TODO/measurement.md) |
 | `26-user-agent-block-rate.py` | Does the identity this project sends change what an HTTP tracker answers? ⭐ `--series` pools the committed rotations into the comparison, because one arm per tracker per run means no single run can answer | C-56, C-63, C-64, [T-012](../TODO/claims.md) |
 | `33-ipv6-only-liveness.py` | Are the IPv6-only trackers alive, from a vantage that has IPv6 -- directly, and through a relay that has one? | C-73, C-74, [T-031](../TODO/measurement.md) |
+| `35-i2p-liveness.py` | Are the corpus's `.i2p` trackers alive, from a vantage that has i2p? ⭐ An i2pd router in a throwaway container; the tier-1 control is a known eepsite and never a tracker | C-37, [T-039](../TODO/measurement.md) |
+| `36-yggdrasil-liveness.py` | Is the corpus's yggdrasil tracker alive, from a node on the overlay? ⭐ The subject is found by **resolving**, because no URL in the corpus says yggdrasil | C-37, [T-039](../TODO/measurement.md) |
 | `29-address-family-census.py` | How many corpus trackers are IPv6-only, and do any have an IPv4 sibling this vantage can already reach? | [T-031](../TODO/measurement.md) route (e), [T-036](../TODO/measurement.md) |
 | `27-value-gate.py` | Does this dataset add measurable value over redistributing `ngosang/trackerslist`? | the value gate, [T-027](../TODO/measurement.md) |
 | `28-newtrackon-crosscheck.py` | Where do this project and newTrackon disagree, and what does an independent observer say about what this vantage cannot measure? | C-26, C-69, [T-028](../TODO/measurement.md) |
@@ -54,6 +56,18 @@ It is deliberately *not* the numbering of the brief's twenty-item experiment
 programme, which is tracked separately by [T-030](../TODO/measurement.md) -- that
 list's items 3-18 are unrun, and conflating the two numbering schemes would
 make a citation ambiguous.
+
+⚠ **`35` and `36` need a container and cannot run in CI**, which is the point
+of them rather than a limitation: `docs/containers.md` exists because a
+contributor's machine can reach networks a GitHub runner cannot. Both take the
+engine as a variable (`CONTAINER_ENGINE`, `--engine`), both were driven with
+**podman on Windows**, and both **decommission what they started** -- the
+container count returned to its baseline and the two pulled images were
+removed.
+
+⛔ **Neither may be read as saying a tracker is dead.** `36`'s subject did not
+answer while its control did, which is **one observation** from one node on one
+day; `MIN_SAMPLES_FOR_DEATH` is 3 and RULES 3.1 governs the rest.
 
 ## The control hierarchy, and why every script has one
 

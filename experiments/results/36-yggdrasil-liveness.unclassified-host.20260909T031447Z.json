@@ -1,0 +1,91 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "public_ipv4": "111.119.48.171",
+    "public_ipv4_org": "-",
+    "python": "3.13.15",
+    "repo_commit": "3c2d0f985677632771816b1bf79c5909602a391a-dirty",
+    "sample_counts": {
+      "ports": 1,
+      "subjects": 1
+    },
+    "utc": "2026-09-09T03:15:44Z"
+  },
+  "question": "Is the corpus's yggdrasil tracker alive, from a node on yggdrasil?",
+  "results": {
+    "controls": {
+      "joined": {
+        "address": "200:3e5d:20f1:f673:4aea:c10c:1b72:a418",
+        "ok": true,
+        "routing_table": "1",
+        "seconds_to_join": "1",
+        "yggdrasil": "Build name: yggdrasil"
+      },
+      "peer_reachable": {
+        "detail": "a peer answered over the overlay, so a subject that does not answer is a fact about the subject",
+        "ok": true,
+        "peer": "21e:e795:8e82:a9e2:ff48:952d:55f2:f0bb",
+        "ping": "1 packets received"
+      }
+    },
+    "dual_stack": [
+      {
+        "detail": "no A record from this host's resolver or from the public ones; the overlay is the only route",
+        "has_clearnet_sibling": false,
+        "host": "yggtracker.i2p.rocks",
+        "public": {
+          "addresses": {
+            "ipv6": [
+              "200:1e2f:e608:eb3a:2bf:1e62:87ba:e2f7"
+            ]
+          },
+          "failures": [],
+          "families": [
+            "ipv6"
+          ],
+          "host": "yggtracker.i2p.rocks",
+          "nxdomain": false
+        },
+        "system_ipv4": [],
+        "system_ipv4_error": "gaierror: [Errno 11001] getaddrinfo failed"
+      }
+    ],
+    "engine": "podman",
+    "guest": {
+      "ok": true,
+      "returncode": 0,
+      "stderr_tail": []
+    },
+    "image": "alpine:3",
+    "peers_offered": [
+      "tls://ygg.mkg20001.io:443",
+      "tcp://ygg.mkg20001.io:80",
+      "tcp://vpn.itrus.su:7991",
+      "tls://vpn.itrus.su:7992",
+      "tcp://146.103.111.53:65535",
+      "tcp://51.15.204.214:12345",
+      "tls://51.15.204.214:54321",
+      "tcp://s2.i2pd.xyz:39565"
+    ],
+    "rung": "none",
+    "subject": {
+      "address": "200:1e2f:e608:eb3a:2bf:1e62:87ba:e2f7",
+      "addresses": [
+        "200:1e2f:e608:eb3a:2bf:1e62:87ba:e2f7"
+      ],
+      "found_by": "a committed sweep's classification",
+      "host": "yggtracker.i2p.rocks",
+      "port": 80,
+      "url": "http://yggtracker.i2p.rocks:80/announce"
+    },
+    "subject_ping_packets_received": 0,
+    "subject_tcp": {
+      "SUBJECT_TCP_80": "000/0.000000failed"
+    },
+    "verdict": "did_not_answer",
+    "what_this_is_not": "NOT `dead`. One observation from one node on one day, and MIN_SAMPLES_FOR_DEATH is 3 (RULES 3.1). It is also not a scrape: the subject has no derivable scrape endpoint, so this reaches CONNECTED at most and never announces."
+  }
+}

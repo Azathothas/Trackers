@@ -54,6 +54,26 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_DIRS = {".git", ".tmp", "out", "out.staging", "out.previous",
              "__pycache__", ".venv", "node_modules"}
 
+#: ⛔ **Windows reserved device names, skipped by name before anything touches
+#: them.** They are already in `.gitignore`, and that is not enough: this
+#: checker walks the working tree rather than the index, so a stray `NUL` was
+#: still reached -- and `os.path.relpath` on one raises
+#: `ValueError: path is on mount '\\\\.\\NUL'`, which took the whole gate down
+#: with a message naming no file a contributor could act on. Measured here on
+#: 2026-09-09, created by a redirect a shell did not map.
+#: `docs/conventions/shell.md` section 6 has why they appear at all.
+RESERVED_DEVICE_NAMES = frozenset(
+    {"con", "prn", "aux", "nul"}
+    | {f"com{d}" for d in range(1, 10)}
+    | {f"lpt{d}" for d in range(1, 10)})
+
+
+def _is_reserved_device(name: str) -> bool:
+    """Whether this filename is a Windows device, in any case and with any
+    extension. `NUL`, `nul.txt` and `Nul` are all the same device."""
+    return name.split(".")[0].lower() in RESERVED_DEVICE_NAMES
+
+
 #: `references/<owner>__<repo>/tree/` is somebody else's source, checked in as
 #: evidence. `issues.json` is a verbatim API capture. Neither is ours to fix.
 def _skip_path(rel: str) -> bool:
@@ -149,6 +169,8 @@ def _basenames() -> dict[str, list[str]]:
     for root, dirs, files in os.walk(REPO):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
         for name in files:
+            if _is_reserved_device(name):
+                continue
             index.setdefault(name, []).append(os.path.join(root, name))
     return index
 
@@ -343,6 +365,8 @@ def collect_files() -> list[str]:
     for root, dirs, files in os.walk(REPO):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
         for name in files:
+            if _is_reserved_device(name):
+                continue
             abs_path = os.path.join(root, name)
             rel = os.path.relpath(abs_path, REPO)
             if _skip_path(rel):
