@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-09T15:55:55Z
+generated_at: 2026-09-09T20:25:12Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,37 +80,37 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 1822 across 1108 tracker(s)
+- health observations: 2012 across 1108 tracker(s)
 - never observed:      218
-- health states:       {'degraded': 6, 'live': 171, 'unknown': 872, 'unmeasurable': 59}
-- measurement rungs:   {'connected': 162, 'dns': 322, 'no_usable_address': 11, 'none': 341, 'protocol_valid': 72, 'tracker_semantic': 102, 'transport_response': 98}
-- observation depth:   median 2, deepest 4
-- sustained failures:  98 (3+ observations, none successful)
+- health states:       {'degraded': 7, 'live': 168, 'unknown': 874, 'unmeasurable': 59}
+- measurement rungs:   {'connected': 162, 'dns': 323, 'no_usable_address': 11, 'none': 342, 'protocol_valid': 71, 'tracker_semantic': 100, 'transport_response': 99}
+- observation depth:   median 2, deepest 5
+- sustained failures:  194 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
 the only place that decision is made.
 
+- sustained: `http://106.14.254.164:6969/announce`
+- sustained: `http://116.252.176.125:6969/announce`
+- sustained: `http://157.90.169.123/announce`
+- sustained: `http://158.101.137.177:6969/announce`
 - sustained: `http://160.251.78.190:6969/announce`
 - sustained: `http://163.172.209.40/announce`
+- sustained: `http://163.172.29.130:80/announce`
 - sustained: `http://171.104.110.88:6969/announce`
+- sustained: `http://171.104.110.95:6969/announce`
 - sustained: `http://171.104.111.83:6969/announce`
 - sustained: `http://171.104.226.87:6969/announce`
 - sustained: `http://179.100.24.134:6969/announce`
+- sustained: `http://185.148.3.231/announce`
 - sustained: `http://185.185.40.95:6969/announce`
 - sustained: `http://185.197.195.20:1919/announce`
+- sustained: `http://185.230.4.150:1337/announce`
 - sustained: `http://189.110.233.96:6969/announce`
+- sustained: `http://34.89.30.59:2710/announce`
+- sustained: `http://38.145.197.79:6961/announce`
 - sustained: `http://45.154.253.4/announce`
-- sustained: `http://49.12.76.8:6961/announce`
-- sustained: `http://51.38.230.101/announce`
-- sustained: `http://54.39.98.124:80/announce`
-- sustained: `http://65.108.2.176:2710/announce`
-- sustained: `http://65.130.205.148:9000/announce`
-- sustained: `http://83.6.232.23:6969/announce`
-- sustained: `http://97.117.105.168:9000/announce`
-- sustained: `http://97.117.85.73:9000/announce`
-- sustained: `http://bithq.org:80/announce.php`
-- sustained: `http://bt.ktkj.com:8080/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 171
+### common.txt -- 168
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  0 from the other categories and 171 more that measured live
+- why:  3 from the other categories and 165 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 0 (evidence absent)
+### stable.txt -- 3
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  no tracker has 5 observations yet; the deepest history is 4. An empty file is the honest answer on day one and a reputation-seeded one would be a lie about methodology
+- why:  3 qualified; deepest history is 5
