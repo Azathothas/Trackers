@@ -29,6 +29,15 @@ them, so nothing downstream could have honoured a tracker's request even in
 principle. They are on the record now, which is what makes the assertions below
 possible.
 
+⛔ **PROJECTING THE CEILING IS NOT ENFORCING IT, AND FOR A DAY THIS MODULE ONLY
+PROJECTED.** `run_cost` and `schedule_violations` answer what a cadence *would*
+cost, from `seconds_between_runs` -- a number the caller states. The sweep's
+actual spacing came from its rotation instead, and the rotation is a wall-clock
+bucket: two runs inside one bucket take the same slice and contact the same
+trackers twice. That happened on 2026-09-08 and is published. `too_soon_after`
+is the enforcement that was missing -- it reads what was *recorded* rather than
+what was *assumed*, so no arithmetic anywhere else can breach D7 again. T-087.
+
 DNS IS INSIDE THE BUDGET
 
 Operator ruling, 2026-09-08: **100,000 lookups per run on a GitHub runner**,
@@ -39,6 +48,7 @@ the first fails -- and none of them was counted before this module existed.
 
 from __future__ import annotations
 
+import datetime
 import ipaddress
 from dataclasses import dataclass
 from typing import Any, Iterable, Mapping
@@ -47,7 +57,8 @@ from urllib.parse import urlsplit
 __all__ = [
     "DEFAULT_INTERVAL_SECONDS", "DNS_LOOKUPS_PER_RUN_CEILING",
     "SECONDS_PER_DAY", "RunCost", "stated_interval", "probes_per_day",
-    "run_cost", "schedule_violations",
+    "run_cost", "schedule_violations", "seconds_between", "contactable_at",
+    "too_soon_after",
 ]
 
 #: D7's default where a tracker has stated nothing. Three hours, in seconds.
@@ -129,6 +140,29 @@ class RunCost:
         }
 
 
+def _instant(text: str | None) -> datetime.datetime | None:
+    """One ISO 8601 UTC instant, or `None` where the text is not one.
+
+    ⚠ `fromisoformat` did not accept a trailing `Z` before Python 3.11, and
+    every instant this project writes ends in one. The supported floor is 3.11
+    (RULES 12) so it would parse either way; the substitution stays because it
+    is what makes that independent of the interpreter rather than a version
+    floor nobody re-checks.
+    """
+    if not isinstance(text, str) or not text.strip():
+        return None
+    raw = text.strip()
+    if raw.endswith("Z"):
+        raw = raw[:-1] + "+00:00"
+    try:
+        moment = datetime.datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=datetime.timezone.utc)
+    return moment
+
+
 def _is_literal(host: str) -> bool:
     """Whether this host is an address rather than a name.
 
@@ -158,6 +192,96 @@ def stated_interval(record: Mapping[str, Any]) -> int | None:
     stated = [value for key in ("min_interval", "interval")
               if isinstance(value := record.get(key), int) and value > 0]
     return max(stated) if stated else None
+
+
+def seconds_between(earlier: str | None, later: str | None) -> float | None:
+    """How long separates two ISO 8601 instants, or `None` if either is
+    unreadable.
+
+    ⛔ **Unreadable is `None`, never zero and never the epoch.** Both of those
+    are answers -- one says "no time has passed" and the other says "an age
+    has" -- and the caller's decision turns on which. A parser that guesses
+    hands a probe a permission nobody granted.
+    """
+    a, b = _instant(earlier), _instant(later)
+    if a is None or b is None:
+        return None
+    return (b - a).total_seconds()
+
+
+def too_soon_after(last_seen: str | None, now: str, *,
+                   interval_seconds: int = DEFAULT_INTERVAL_SECONDS) -> bool:
+    """Whether contacting this tracker again at `now` would breach D7.
+
+    ⛔ **THIS IS THE CEILING ITSELF, NOT AN ESTIMATE OF IT.** Everything else
+    in this module projects what a schedule *would* cost; this reads what was
+    actually recorded and answers the only question RULES 4 asks before a
+    socket opens. Until it existed the ceiling was a property of the sweep's
+    rotation arithmetic, and arithmetic over a wall clock is not a guarantee:
+    `rotation_for` maps an instant to the three-hour bucket it falls in, so two
+    runs inside one bucket take the identical slice. Measured 2026-09-08 --
+    runs `34281244142` (21:33:23Z) and `34289476724` (23:11:21Z) both reported
+    `slice 5 of 7`, and **192 trackers were contacted 5878 s apart**, inside
+    the 10800 s ceiling, with both observations published to the `data` branch.
+    T-087.
+
+    ⛔ **`interval_seconds` defaults to D7's default rather than to each
+    tracker's own number, and that is precise rather than lazy.** D7 is "the
+    tracker's stated interval, defaulting to three hours where none has been
+    observed". None has been observed: `stated_interval` reads two keys that
+    `classify_body` has populated since `C-65`, and **0 of 299 committed sweep
+    records carry either** -- the two committed sweeps predate `T-026` carrying
+    them onto the record at all. A caller holding a record that states one
+    passes it; inventing a field the history does not keep would be a ceiling
+    derived from nothing.
+
+    Three readings are pessimistic on purpose, because being wrong in one
+    direction costs a probe we could have made and in the other costs somebody
+    else a request they refused (`docs/conventions/code.md`):
+
+      * a `last_seen` that cannot be read is **too soon**. Corrupt state must
+        not buy a probe;
+      * a `last_seen` in the future -- clock skew, or a record from a run whose
+        injected instant ran ahead -- is **too soon**;
+      * `None` is **not** too soon, and that is the one permissive case: a
+        tracker with no history has never been contacted, and refusing it would
+        mean the sweep could never take a first measurement of anything.
+
+    A `now` that cannot be read **raises**, for the reason `rotation_for`
+    raises on one: a run that cannot tell when it is has not been told, and
+    guessing here silently disables the ceiling for the whole run.
+    """
+    if _instant(now) is None:
+        raise ValueError(
+            f"now={now!r} is not an ISO 8601 instant, so this run cannot tell "
+            f"which trackers it is still permitted to contact")
+    if last_seen is None:
+        return False
+    gap = seconds_between(last_seen, now)
+    if gap is None:
+        return True
+    return gap < interval_seconds
+
+
+def contactable_at(last_seen: Mapping[str, str], now: str, urls: Iterable[str],
+                   *, interval_seconds: int = DEFAULT_INTERVAL_SECONDS
+                   ) -> tuple[tuple[str, ...], tuple[str, ...]]:
+    """Split `urls` into the ones D7 permits contacting at `now`, and the rest.
+
+    Both halves are returned because the second is a count a run owes its
+    reader: a sweep that probed nobody because everybody was probed an hour ago
+    is the polite outcome, and one that probed nobody because it was pointed at
+    an empty corpus is a defect. A caller that only got the permitted half
+    could not tell them apart.
+    """
+    due: list[str] = []
+    held: list[str] = []
+    for url in urls:
+        target = held if too_soon_after(last_seen.get(url), now,
+                                        interval_seconds=interval_seconds) \
+            else due
+        target.append(url)
+    return tuple(due), tuple(held)
 
 
 def probes_per_day(record: Mapping[str, Any],

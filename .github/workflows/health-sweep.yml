@@ -35,8 +35,18 @@
 # the injected clock and takes one of seven disjoint slices, so a pass over
 # the corpus takes 21 hours and **each tracker is probed once per 21 hours**,
 # comfortably inside the three-hour ceiling rather than at it.
-# `tests/test_rotation.py` asserts the coverage and that two consecutive runs
-# share no tracker.
+#
+# ⛔ AND THE ROTATION IS THE SAMPLER, NOT THE CEILING -- a distinction this
+# workflow did not make until T-087. The rotation is a wall-clock bucket, so
+# two runs started inside one bucket take the **identical** slice; scheduled
+# runs firing 131 and 163 minutes late are measured here (T-009), and on
+# 2026-09-08 runs 34281244142 and 34289476724 both took slice 5 and contacted
+# 192 trackers 5878s apart, inside D7's 10800s interval. The ceiling is read
+# from the recorded history now -- `--state`, fetched below -- so no
+# arithmetic over a clock can breach it. `tests/test_rotation.py` asserts the
+# coverage, that two consecutive rotation integers share no tracker, and that
+# two consecutive RUNS share none either, which is the property that was
+# missing and the one the schedule actually needs.
 #
 # ⚠ `tests/test_politeness.py` reads this file and fails if any cron here is
 # faster than D7's interval. The workflow architecture -- what else runs, and
@@ -89,6 +99,34 @@ jobs:
         with:
           persist-credentials: false
 
+      # ⛔ D7's CEILING IS READ FROM WHAT WAS RECORDED, NOT ASSUMED FROM THE
+      # CADENCE. T-087. The rotation below samples the corpus; it never
+      # enforced anything, and for one day it was all that stood between this
+      # workflow and contacting somebody twice inside their interval. It is a
+      # wall-clock bucket, so two runs started inside one bucket take the
+      # identical slice -- runs 34281244142 (21:33:23Z) and 34289476724
+      # (23:11:21Z) both took slice 5, and 192 trackers carry observations
+      # 5878s apart in the published `state.jsonl` as a result.
+      #
+      # ⛔ A FETCH FAILURE STOPS THE JOB, and the direction is deliberate.
+      # Being wrong by not probing costs us a measurement; being wrong by
+      # probing costs an operator a request they had already answered. So the
+      # only case that proceeds without a history is the one where there
+      # genuinely is none: no `data` branch at all, which is a first run.
+      - name: Take the recorded history the ceiling is enforced from
+        run: |
+          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+            git fetch --depth 1 origin data
+            if git cat-file -e FETCH_HEAD:state.jsonl 2>/dev/null; then
+              git show FETCH_HEAD:state.jsonl > state.jsonl
+              echo "history: $(wc -l < state.jsonl) lines from the data branch"
+            else
+              echo "the data branch carries no state.jsonl yet"
+            fi
+          else
+            echo "no data branch; this run has no history to be polite against"
+          fi
+
       # ⛔ ONE instant for the whole job, and both steps below read it.
       # The dry run existed to state what is about to be contacted, and with
       # the rotation it stopped doing that: it defaulted the clock to the epoch
@@ -120,6 +158,7 @@ jobs:
         run: |
           python3 scripts/probe-corpus.py --offline-corpus --dry-run \
             --generated-at "${SWEEP_AT}" \
+            --state state.jsonl \
             ${{ inputs.only_source && format('--only-source {0}', inputs.only_source) || '' }}
 
       - name: Sweep
@@ -131,15 +170,28 @@ jobs:
             --offline-corpus \
             --deadline "${{ inputs.deadline || '900' }}" \
             --generated-at "${SWEEP_AT}" \
+            --state state.jsonl \
             ${{ inputs.only_source && format('--only-source {0}', inputs.only_source) || '' }} \
             --out "sweep-out"
 
       # T-024's `Prove` clause, run where the records are real. It reads the
       # sweep's own output rather than the tree, because the tree has no health
       # records and will not until T-063 decides where they live.
+      # ⚠ Guarded on the file existing, and only on that. A run in which D7
+      # held every slice contacts nobody and writes nothing -- which is the
+      # correct outcome, not a failure -- and this check exits 2 on a directory
+      # that is not there. Reporting a polite run as a red job is how a red job
+      # stops meaning anything. ⛔ The guard is `-f`, never a `continue-on-error`
+      # on the check itself: that would also swallow a record with no vantage,
+      # which is the thing this step exists to refuse.
       - name: Every record carries its vantage
         run: |
-          python3 scripts/check-vantage-metadata.py --path sweep-out
+          if [ -f sweep-out/health.json ]; then
+            python3 scripts/check-vantage-metadata.py --path sweep-out
+          else
+            echo "no records: every tracker in this run's slices had been"
+            echo "contacted inside D7's interval, so nobody was probed."
+          fi
 
       - name: Summarise
         if: always()
@@ -150,8 +202,14 @@ jobs:
             echo "profile: \`${{ inputs.profile || 'ci' }}\`, deadline ${{ inputs.deadline || '900' }}s, trigger \`${GITHUB_EVENT_NAME}\`"
             echo
             echo '```json'
-            python3 -c "import json;d=json.load(open('sweep-out/health.json'));print(json.dumps({'counts':d['counts'],'limits':d['limits'],'vantage':d['vantage']},indent=2))" || echo "(no output)"
+            python3 -c "import json;d=json.load(open('sweep-out/health.json'));print(json.dumps({'counts':d['counts'],'limits':d['limits'],'ceiling':d['ceiling'],'vantage':d['vantage']},indent=2))" || echo "(no records: D7 held every slice this run could have taken)"
             echo '```'
+            echo
+            echo "\`ceiling\` is T-087: which trackers D7 forbade contacting, read"
+            echo "from the recorded history rather than assumed from the cadence."
+            echo "\`enforced_from_history: false\` means no history was supplied and"
+            echo "the ceiling rested on the rotation's arithmetic, which is what"
+            echo "contacted 192 trackers twice in 98 minutes on 2026-09-08."
             echo
             echo "A tracker not reached before the deadline is \`unknown\`, never"
             echo "\`dead\`. A refusal is the operator's BEP 34 record and is not a"

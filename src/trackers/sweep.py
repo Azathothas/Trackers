@@ -56,19 +56,20 @@ import hashlib
 import threading
 import time
 from dataclasses import dataclass, field
-from typing import Any, Callable, Iterable, Sequence
+from typing import Any, Callable, Iterable, Mapping, Sequence
 
 from .bep34 import Resolver
 from .model import HealthState, Rung, Tracker
 from .probe import (Failure, ProbeConfig, ProbeResult, health_state, probe)
-from .politeness import DEFAULT_INTERVAL_SECONDS, run_cost
+from .politeness import (DEFAULT_INTERVAL_SECONDS, contactable_at,  # noqa: F401
+                         run_cost)
 from .profile import Budget, budget_for
 from .vantage import UNKNOWN, Vantage, detect as detect_vantage
 
 __all__ = [
     "UDP_ATTEMPT_FLOOR", "UDP_WORST_CASE_ATTEMPTS", "SweepConfig",
-    "SweepResult", "udp_attempt_timeout", "udp_budget", "select", "sweep",
-    "slices_for", "slice_of",
+    "SweepResult", "Selection", "udp_attempt_timeout", "udp_budget", "select",
+    "plan", "sweep", "slices_for", "slice_of",
 ]
 
 #: One attempt is never shorter than this, whatever the timeout. Below it the
@@ -131,6 +132,14 @@ class SweepResult:
     selected: int = 0
     corpus: int = 0
     deadline_hit: bool = False
+    #: ⛔ Trackers in this run's slice that D7 forbade contacting, and they are
+    #: a count rather than records **on purpose**: a tracker that was not
+    #: probed has not been observed, and writing a record for one is the
+    #: double-fold corruption in another costume -- a non-observation folded
+    #: into the history as an observation, three of which say `dead`.
+    held_by_ceiling: int = 0
+    #: What the run actually took, which is not always what it asked for.
+    selection: "Selection | None" = None
 
     def states(self) -> dict[str, int]:
         from collections import Counter
@@ -206,6 +215,129 @@ def select(trackers: Sequence[Tracker], budget: Budget,
     return [t for t in ordered if slice_of(t.url, slices) == keep]
 
 
+@dataclass(frozen=True, slots=True)
+class Selection:
+    """What a run will contact, and what it is holding back.
+
+    ⛔ **Both halves, and the second one is why this is a value rather than a
+    list.** A run that contacts nobody because D7 says everyone was contacted
+    an hour ago is the correct outcome; a run that contacts nobody because it
+    was pointed at an empty corpus is a defect. A caller handed only the first
+    half cannot tell those apart, and would report one as the other.
+    """
+
+    trackers: tuple[Tracker, ...]
+    #: The rotation actually used, which is not always the one asked for.
+    rotation: int
+    requested_rotation: int
+    slices: int
+    #: URLs this run may not contact yet, and the reason is always the same
+    #: one: D7's interval has not elapsed since the last recorded contact.
+    held_by_ceiling: tuple[str, ...] = ()
+    #: True where every slice from the requested one onward was fully held.
+    exhausted: bool = False
+    #: ⛔ Whether a recorded history was consulted at all. `False` is not a
+    #: neutral default: it says the ceiling rests on the rotation's arithmetic,
+    #: which is exactly the arrangement that published 192 double contacts.
+    #: A reader must be able to tell "nobody was held" from "nobody was
+    #: checked", and those are the same number.
+    from_history: bool = False
+
+    @property
+    def advanced(self) -> bool:
+        return self.rotation != self.requested_rotation
+
+    def as_record(self) -> dict[str, Any]:
+        """The block a run report carries so a consumer can check the ceiling
+        was applied rather than take it on trust."""
+        return {
+            "rotation": self.rotation,
+            "requested_rotation": self.requested_rotation,
+            "slice": self.rotation % max(1, self.slices),
+            "slices": self.slices,
+            "advanced_past_a_held_slice": self.advanced,
+            "held_by_politeness_ceiling": len(self.held_by_ceiling),
+            "interval_seconds": DEFAULT_INTERVAL_SECONDS,
+            "every_slice_held": self.exhausted,
+            "enforced_from_history": self.from_history,
+        }
+
+
+def plan(trackers: Sequence[Tracker], budget: Budget, rotation: int = 0, *,
+         last_seen: Mapping[str, str] | None = None,
+         now: str | None = None) -> Selection:
+    """Which trackers this run may contact, with D7 enforced from the record.
+
+    ⛔ **THE ROTATION SAMPLES; THIS ENFORCES.** `select` decides which slice of
+    the corpus a run looks at, and until 2026-09-09 that arithmetic *was* the
+    politeness ceiling: the claim "each tracker is probed once per 21 hours"
+    held only if consecutive runs took consecutive slices. They do not.
+    `rotation_for` maps an instant to the three-hour bucket containing it, so
+    two runs inside one bucket take the **same** slice -- measured, and
+    published: runs `34281244142` and `34289476724` both reported `slice 5 of
+    7`, and 192 trackers carry observations 5878 s apart in `state.jsonl`,
+    inside a 10800 s ceiling. `politeness.too_soon_after` reads what was
+    recorded instead of what was assumed, and this is where the sweep asks it.
+    T-087.
+
+    ⭐ **And it advances rather than idling.** Holding a whole slice back turns
+    a politeness breach into a coverage gap: the run makes no requests, the
+    slot is spent, and the corpus is walked more slowly than the seven-run pass
+    the schedule is sized for -- which is what `MIN_SAMPLES_FOR_DEATH` and
+    T-012's subject set both wait on. So a slice with nothing due yields to the
+    next one, up to a full turn of the rotation. Bounded by construction: at
+    most `slices` candidates are considered and each is examined once.
+
+    ⚠ **`last_seen` absent means no history was supplied, and then this
+    behaves exactly as `select` alone did.** That is not a hole to be closed by
+    defaulting: a first run has no history, and a run that refused to probe
+    because it could not find a file would be a sweep that stops measuring the
+    day a path changes. `scripts/probe-corpus.py` states in its output which of
+    the two happened, so an unenforced run is visible rather than assumed.
+
+    Idempotent in its own output: planning again from the rotation this
+    returned yields the same rotation, because a slice with work does not
+    yield. `probe-corpus.py` depends on that -- it previews once and sweeps
+    once, and the two must agree (RULES 3.6).
+    """
+    ordered = sorted(trackers, key=Tracker.sort_key)
+    slices = slices_for(len(ordered), budget.sample_size or len(ordered))
+    if last_seen is None or now is None:
+        chosen = select(ordered, budget, rotation)
+        return Selection(trackers=tuple(chosen), rotation=rotation,
+                         requested_rotation=rotation, slices=slices,
+                         from_history=False)
+
+    held_seen: list[str] = []
+    for step in range(max(1, slices)):
+        candidate = rotation + step
+        picked = select(ordered, budget, candidate)
+        due, held = contactable_at(last_seen, now, [t.url for t in picked])
+        held_seen.extend(held)
+        if due:
+            return Selection(
+                trackers=tuple(t for t in picked if t.url in set(due)),
+                rotation=candidate, requested_rotation=rotation,
+                # ⛔ EVERY slice this run passed over, not just the one it
+                # landed on. Reporting the last slice's holds alone made an
+                # advanced run say `held_by_politeness_ceiling: 0` while 192
+                # trackers had been held -- which is precisely the "nobody was
+                # held" / "nobody was checked" confusion this field exists to
+                # prevent, reintroduced inside the fix for it. Caught by
+                # `test_it_advances_rather_than_idling_through_the_slot`.
+                slices=slices, held_by_ceiling=tuple(held_seen),
+                from_history=True)
+        # ⛔ One slice is the whole corpus under `local` and under a corpus
+        # smaller than the sample, so there is nothing to advance to and the
+        # loop must not pretend otherwise by wrapping onto itself.
+        if slices <= 1:
+            break
+    return Selection(trackers=(), rotation=rotation,
+                     requested_rotation=rotation, slices=slices,
+                     held_by_ceiling=tuple(held_seen), exhausted=True,
+                     from_history=True)
+
+
 class _HostLocks:
     """One lock per host, created on demand.
 
@@ -266,6 +398,7 @@ def sweep(trackers: Sequence[Tracker], *,
           resolver: Resolver | None = None,
           observed_at: str = UNKNOWN,
           rotation: int = 0,
+          last_seen: Mapping[str, str] | None = None,
           monotonic: Callable[[], float] = time.monotonic,
           probe_fn: Callable[..., ProbeResult] = probe) -> SweepResult:
     """Probe a corpus and return one health record per selected tracker.
@@ -274,6 +407,14 @@ def sweep(trackers: Sequence[Tracker], *,
     the answer is cached on the resolver, so a corpus with many URLs on one
     host asks DNS once. Building one per probe would multiply the run's DNS
     load by the number of URLs per host, for nothing.
+
+    ⛔ **`last_seen` is D7's ceiling and it goes through `plan`**, which is the
+    only door into a selection. Passing the rotation alone selects a slice and
+    enforces nothing, which is what let two runs 98 minutes apart contact the
+    same 192 trackers (T-087). `observed_at` is the instant the ceiling is
+    measured against, because it is the instant every record in this run is
+    stamped with -- a run cannot be polite against a clock other than the one
+    it publishes.
 
     `monotonic` and `probe_fn` are injected so the deadline and the ordering
     can be tested without waiting and without a network. The production
@@ -285,8 +426,12 @@ def sweep(trackers: Sequence[Tracker], *,
     resolver = resolver or Resolver()
     cfg = config.probe_config()
 
-    chosen = select(trackers, budget, rotation)
-    out = SweepResult(corpus=len(trackers), selected=len(chosen))
+    selection = plan(trackers, budget, rotation, last_seen=last_seen,
+                     now=None if last_seen is None else observed_at)
+    chosen = list(selection.trackers)
+    out = SweepResult(corpus=len(trackers), selected=len(chosen),
+                      held_by_ceiling=len(selection.held_by_ceiling),
+                      selection=selection)
 
     started = monotonic()
     deadline = (started + config.deadline_seconds
@@ -384,9 +529,14 @@ def render_sweep(result: SweepResult, *, generated_at: str,
         # T-026: what this run cost the people it measured, computed from the
         # records it produced rather than from a corpus figure typed beside
         # them. `polite` is a verdict a consumer can check.
-        "politeness": run_cost(
-            result.records,
-            seconds_between_runs=DEFAULT_INTERVAL_SECONDS).as_record(),
+        # ⛔ T-087. `politeness` above is a **projection** from an assumed
+        # cadence; this is what the run was actually permitted to do, read from
+        # the recorded history. `enforced_from_history: false` means no history
+        # was supplied and the ceiling rests on the rotation's arithmetic alone
+        # -- the state that published 192 double contacts -- so it is stated
+        # rather than implied.
+        "ceiling": (result.selection.as_record() if result.selection
+                    else {"enforced_from_history": False}),
         "counts": {
             "corpus": result.corpus,
             "selected": result.selected,
@@ -394,6 +544,7 @@ def render_sweep(result: SweepResult, *, generated_at: str,
             "refused_or_undetermined": result.refused,
             "unmeasurable": result.unmeasurable,
             "not_reached_before_deadline": result.not_reached,
+            "held_by_politeness_ceiling": result.held_by_ceiling,
             "health_states": result.states(),
         },
         "trackers": result.records,

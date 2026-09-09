@@ -53,7 +53,8 @@ from trackers import __version__  # noqa: E402
 from trackers.bep34 import Resolver  # noqa: E402
 from trackers.politeness import DEFAULT_INTERVAL_SECONDS  # noqa: E402
 from trackers.profile import budget_for  # noqa: E402
-from trackers.sweep import (SweepConfig, render_sweep, select,  # noqa: E402
+from trackers.state import CorruptState, read_state  # noqa: E402
+from trackers.sweep import (SweepConfig, plan, render_sweep,  # noqa: E402
                             slices_for, sweep, udp_budget)
 from trackers.vantage import detect as detect_vantage  # noqa: E402
 
@@ -118,6 +119,15 @@ def main() -> int:
                     help="which slice of the corpus to probe. Derived from "
                          "--generated-at when absent, so consecutive scheduled "
                          "runs walk the corpus instead of re-probing one slice")
+    ap.add_argument("--state", default=None, metavar="STATE_JSONL",
+                    help="the recorded history, which is what D7's ceiling is "
+                         "enforced from (T-087). ⛔ Without it the ceiling "
+                         "rests on the rotation's arithmetic alone, and that "
+                         "arithmetic is a wall-clock bucket: two runs inside "
+                         "one bucket take the same slice, which contacted 192 "
+                         "trackers twice in 98 minutes on 2026-09-08. A run "
+                         "given no history says so in its output rather than "
+                         "implying a ceiling it did not apply.")
     ap.add_argument("--only-source", default=None, metavar="SOURCE_ID",
                     help="narrow the corpus to trackers this source "
                          "contributed, by provenance. Aims the request budget "
@@ -197,18 +207,63 @@ def main() -> int:
     except ValueError as exc:
         print(exc, file=sys.stderr)
         return 2
+    # ⛔ D7's ceiling, read from what was recorded rather than assumed from the
+    # cadence (T-087). A missing file is not an error -- a first run has no
+    # history and refusing to probe because a path is absent is a sweep that
+    # stops measuring the day a path changes -- but it is never silent, because
+    # "nobody was held" and "nobody was checked" are the same number.
+    last_seen: dict[str, str] | None = None
+    ceiling_note = ("⛔ no history supplied: D7 rests on the rotation alone, "
+                    "which is what let two runs contact one slice twice")
+    if args.state:
+        if os.path.exists(args.state):
+            try:
+                histories, quarantined = read_state(args.state)
+            except CorruptState as exc:
+                # RULES 3.9: never recover by discarding. A history this run
+                # cannot read is one it cannot be polite against, and probing
+                # anyway would spend the ceiling it just lost the record of.
+                print(f"--state {args.state}: {exc}", file=sys.stderr)
+                return 2
+            last_seen = {url: h.last_seen for url, h in histories.items()}
+            ceiling_note = (f"{len(last_seen)} trackers with a recorded last "
+                            f"contact"
+                            + (f", {len(quarantined)} lines quarantined"
+                               if quarantined else ""))
+        else:
+            # Stated, not assumed. A path that does not exist is how a first
+            # run looks and also how a typo looks, and only the reader can
+            # tell them apart.
+            ceiling_note = (f"⚠ {display_path(args.state, REPO)} does not "
+                            f"exist; treating this as a first run")
+
     config = SweepConfig(timeout=args.timeout, deadline_seconds=args.deadline)
     # ⛔ PREVIEW ONLY. `sweep()` selects; this script must not, or the corpus it
     # hands over IS the sample and `counts.corpus` reports the sample size as
     # the corpus. Run 33938543488 published `corpus: 200` against a corpus of
     # 1327 for exactly that reason: the sample was correct and its denominator
     # was not. One selector, one place (docs/conventions/code.md).
-    chosen = select(corpus, budget, rotation)
+    #
+    # ⚠ `plan` is what `sweep()` calls too, with these same inputs, and it is
+    # idempotent in its own output -- so the slice previewed here is the slice
+    # probed below. A preview of a different set is not a preview, which is the
+    # defect run 34252497106 exposed when the dry run defaulted its clock.
+    chosen_plan = plan(corpus, budget, rotation, last_seen=last_seen,
+                       now=args.generated_at)
+    chosen = list(chosen_plan.trackers)
 
     print(f"profile:      {budget.profile}")
     slices = slices_for(len(corpus), budget.sample_size or len(corpus))
-    print(f"rotation:     slice {rotation % slices} of {slices} "
-          f"(rotation {rotation})")
+    print(f"rotation:     slice {chosen_plan.rotation % slices} of {slices} "
+          f"(rotation {chosen_plan.rotation})"
+          + (f"  ⭐ advanced from {rotation}: slice "
+             f"{rotation % slices} was entirely inside D7's interval"
+             if chosen_plan.advanced else ""))
+    print(f"ceiling:      {ceiling_note}")
+    if chosen_plan.held_by_ceiling:
+        print(f"held back:    {len(chosen_plan.held_by_ceiling)} contacted "
+              f"within {DEFAULT_INTERVAL_SECONDS}s (D7); they are not probed "
+              f"and no record is written for them")
     print(f"vantage:      {vantage.environment_class}, "
           f"families {list(vantage.ip_families)}")
     print(f"corpus:       {len(corpus)}"
@@ -235,9 +290,20 @@ def main() -> int:
               file=sys.stderr)
         return 2
 
+    if chosen_plan.exhausted:
+        # ⭐ The correct outcome, and it must not read as the broken one. Every
+        # slice held means the whole corpus was contacted inside D7's interval,
+        # so there is nobody this run is permitted to ask. Exit 0 having probed
+        # nothing is normally the forbidden pattern; here the run did exactly
+        # what it was asked to do, and the alternative is breaching the ceiling.
+        print(f"\nevery slice is inside D7's {DEFAULT_INTERVAL_SECONDS}s "
+              f"interval: {len(chosen_plan.held_by_ceiling)} trackers were "
+              f"contacted too recently, so this run contacts nobody.")
+        return 0
+
     result = sweep(corpus, config=config, budget=budget, vantage=vantage,
                    resolver=Resolver(), observed_at=args.generated_at,
-                   rotation=rotation)
+                   rotation=chosen_plan.rotation, last_seen=last_seen)
 
     doc = render_sweep(result, generated_at=args.generated_at,
                        vantage=vantage, budget=budget, config=config)
@@ -245,9 +311,14 @@ def main() -> int:
     # What this run was pointed at, so a narrowed sweep can never be read as
     # a sample of the whole corpus (RULES 3.4: the conditions travel with
     # the records).
-    selection["rotation"] = rotation
-    selection["slice"] = rotation % slices
+    # ⛔ The rotation ACTUALLY taken, never the one asked for. `plan` advances
+    # past a slice D7 holds entirely, and a record naming the requested one
+    # would say this run probed a set it did not probe. `ceiling` above carries
+    # both numbers so the advance is auditable rather than invisible.
+    selection["rotation"] = chosen_plan.rotation
+    selection["slice"] = chosen_plan.rotation % slices
     selection["slices"] = slices
+    selection["requested_rotation"] = chosen_plan.requested_rotation
     doc["selection"] = selection
 
     os.makedirs(args.out, exist_ok=True)

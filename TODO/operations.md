@@ -480,3 +480,137 @@ observed source, which is the right direction for an exhaustion bound and is
 the volume-swing check's job rather than this one's ([T-102](sources.md)); and
 `scripts/fetch-reference-comments.py` writes paths derived from remote data but
 never runs in the pipeline, so it needs its own pass rather than a sentence.
+
+---
+
+### T-087 The rotation is a wall-clock bucket, so two runs took one slice
+
+Source:      the state of the published `data` branch, 2026-09-09
+Category:    operations
+Priority:    P0
+Effort:      M
+Status:      done
+
+Problem:     ⛔ **D7's ceiling was never enforced. It was inferred from
+             arithmetic, and the arithmetic does not hold.**
+             `probe-corpus.py:rotation_for` maps the injected instant to
+             `epoch // 10800`, so the slice a run takes is a property of which
+             three-hour wall-clock bucket the run *starts in* -- not of what
+             has already been probed. Two runs inside one bucket take the
+             **identical** slice, and nothing anywhere refused the second one.
+Premise:     **Measured, not reasoned.** Runs `34281244142`
+             (`2026-09-08T21:33:23Z`, dispatch) and `34289476724`
+             (`23:11:21Z`, schedule) each reported
+             `rotation: slice 5 of 7 (rotation 165639)` in their own logs, and
+             `state.jsonl` on the `data` branch carries **192 trackers whose
+             consecutive observations are 5878 s apart** -- inside D7's
+             10800 s interval, published, and paid for by the operators who
+             answered twice.
+
+             ⚠ **Reachable schedule-to-schedule, not only by dispatch.**
+             [T-009](../TODO/claims.md) has already measured this repository's
+             own scheduled sweeps firing **163** and **131** minutes late; a
+             slot delayed past the next slot's nominal instant puts two
+             scheduled runs in one bucket. The same skew skips a bucket in the
+             other direction, and a skipped bucket is a slice never probed in
+             that pass -- which is what `MIN_SAMPLES_FOR_DEATH` and
+             [T-012](claims.md)'s subject set are both waiting on.
+
+             ⛔ **The test that should have caught it asserted something
+             else.** `test_two_runs_in_a_row_share_no_tracker` compared
+             rotation `0` with rotation `1` and found them disjoint. That is a
+             property of two rotation *integers*; the schedule needs a property
+             of two *runs*, and nothing asserted that two runs get different
+             integers. The name carried the stronger claim and the assertion
+             did not, which is the "a test whose name claims more than it
+             checks" row of
+             [`../docs/conventions/forbidden-patterns.md`](../docs/conventions/forbidden-patterns.md).
+Approach:    Stop deriving the ceiling and start enforcing it. `politeness.py`
+             gets the one home for *may this tracker be contacted at this
+             instant*, answered from the recorded history's `last_seen` rather
+             than from an assumed cadence; `sweep.plan` is the only door into a
+             selection and applies it; the workflow fetches `state.jsonl` from
+             the `data` branch so the sweep has a history to be polite against.
+
+             ⭐ **And it advances rather than idling.** Holding a slice back
+             converts a politeness breach into a coverage gap -- no requests,
+             the slot spent, the corpus walked slower than the seven-run pass
+             the schedule is sized for. A slice with nothing due yields to the
+             next, bounded by one turn of the rotation.
+Decision:    **The rotation stays as it is.** It is a *sampler* and it is a
+             good one: `slice_of` already made membership a property of the
+             tracker rather than of its position. Rewriting it to advance by a
+             counter would need state the sweep does not have, and would leave
+             the ceiling resting on arithmetic -- one class of clock defect
+             traded for another. Two checks enforcing one rule is its own
+             forbidden row, so there is exactly one: the per-tracker one, which
+             is true whatever the sampler does.
+
+             ⛔ **Rejected: recording a held tracker as an observation.** A
+             `skipped_too_soon` health record would satisfy every schema in the
+             tree and would be a **non-observation folded into the history as
+             an observation** -- three of which say `dead`. Held trackers are a
+             count, never a record.
+
+             ⛔ **Rejected: `continue-on-error` on the history fetch.** A run
+             that cannot read the history cannot be polite against it, and
+             proceeding would spend a ceiling whose record it had lost.
+             The only case that probes without a history is the one where there
+             is none: no `data` branch, which is a first run.
+
+             ⚠ **The interval is D7's default, and that is precise rather than
+             lazy.** D7 is the tracker's own stated interval, defaulting to
+             three hours where none has been observed. **None has been
+             observed**: `stated_interval` reads two keys that `classify_body`
+             has populated since `C-65`, and 0 of 299 committed sweep records
+             carry either. `too_soon_after` takes the interval as a parameter,
+             so a caller holding a record that states one passes it; inventing
+             a history field for a value no tracker has yet sent would be a
+             ceiling derived from nothing.
+Prove:       `python3 -m unittest tests.test_rotation tests.test_politeness`
+             passes, including a test that plants the two measured instants and
+             asserts the second run contacts nobody the first one did; and
+             `python3 scripts/probe-corpus.py --offline-corpus --dry-run
+             --generated-at 2026-09-08T23:11:21Z --state <history as of 21:33>`
+             advances off slice 5 instead of re-taking it.
+
+**Done.** 2026-09-09. `python3 -m unittest tests.test_rotation
+tests.test_politeness` -> **51 tests, OK**, and the replay below advances off
+the slice the second run re-took. The ceiling is enforced from the recorded history in
+`src/trackers/politeness.py`, applied in `src/trackers/sweep.py`'s `plan`, and
+supplied to the scheduled sweep by `.github/workflows/health-sweep.yml`.
+
+**Both `Prove` clauses were run.** Replaying the collision against the
+history reconstructed as it stood between the two runs -- the published
+`state.jsonl` with the `23:11:21Z` observations removed, which rolled back
+exactly the **192** trackers -- gives:
+
+```
+rotation:     slice 6 of 7 (rotation 165640)  ⭐ advanced from 165639: slice 5
+              was entirely inside D7's interval
+ceiling:      430 trackers with a recorded last contact
+selected:     194 (a sample; RULES 15.2)
+```
+
+⛔ **The guard was mutation-proved, and one mutation survived the first
+attempt.** Five defects were planted and the suite run unpiped for each: the
+ceiling removed, the advance removed, an unreadable `last_seen` buying a probe,
+an unreadable clock guessed instead of raised, and the boundary comparison
+shifted by one second. The last **survived**, because `gap <= interval - 1` is
+indistinguishable from `gap < interval` over whole seconds and every instant in
+the tree is whole seconds -- so the test that pins the boundary now asserts a
+fractional gap as well. 5 of 5 caught.
+
+⛔ **Writing the fix reintroduced the defect it was written for, one layer
+down.** `plan` first reported only the slice it landed on, so an advanced run
+said `held_by_politeness_ceiling: 0` while 192 trackers had been held -- the
+"nobody was held" / "nobody was checked" confusion that `enforced_from_history`
+exists to prevent, inside the fix for it. Caught by
+`test_it_advances_rather_than_idling_through_the_slot`, which is the one test
+that read the count rather than the outcome.
+
+⚠ **What this does not fix.** The two observations already published are real
+contacts and they stay: RULES 3.9 forbids recovering by deleting valid data,
+and 192 trackers genuinely were asked twice. The record of it is
+[`../HISTORY/corrections.md`](../HISTORY/corrections.md) round 4, and the
+history's own spacing is now the evidence that it stopped.

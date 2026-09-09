@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.join(REPO, "src"))
 
 from trackers.normalize import parse  # noqa: E402
 from trackers.profile import budget_for  # noqa: E402
-from trackers.sweep import select, slices_for  # noqa: E402
+from trackers.sweep import plan, select, slices_for  # noqa: E402
 
 
 def corpus(size: int):
@@ -73,9 +73,17 @@ class TheRotationCoversTheCorpus(unittest.TestCase):
                 self.assertGreater(size, mean * 0.7, f"sizes {sizes}")
                 self.assertLess(size, mean * 1.3, f"sizes {sizes}")
 
-    def test_two_runs_in_a_row_share_no_tracker(self):
-        """⛔ The failure mode stated directly: consecutive runs three hours
-        apart must not contact the same operator twice."""
+    def test_two_runs_in_a_row_share_no_slice(self):
+        """Two consecutive rotation INTEGERS select disjoint sets.
+
+        ⚠ **Renamed 2026-09-09, because the old name claimed more than this
+        checks**, and the gap was load-bearing. It read `..._share_no_tracker`
+        and was taken for "two consecutive runs contact different trackers",
+        which is a property of runs; this is a property of integers, and
+        nothing asserted that two consecutive runs *get* different integers.
+        They do not. `TheRotationIsNotTheCeiling` below carries the run-level
+        property and the measurement that forced it. T-087.
+        """
         trackers = corpus(1327)
         budget = budget_for("ci")
         first = {t.url for t in select(trackers, budget, 0)}
@@ -181,6 +189,163 @@ class TheRotationCoversTheCorpus(unittest.TestCase):
         budget = budget_for("ci")
         self.assertEqual(slices_for(len(trackers), budget.sample_size), 1)
         self.assertEqual(len(select(trackers, budget, 4)), len(trackers))
+
+
+class TheRotationIsNotTheCeiling(unittest.TestCase):
+    """T-087. ⛔ **The class above asserts a property of rotation INTEGERS, and
+    the schedule needed a property of RUNS.**
+
+    `test_two_runs_in_a_row_share_no_slice` compares rotation 0 with rotation 1
+    and finds them disjoint, which is true and was read as "two consecutive
+    runs contact different trackers". Nothing anywhere asserted that two
+    consecutive runs *get* different rotations, and they do not:
+    `rotation_for` maps an instant to the three-hour bucket containing it, so
+    every run started inside one bucket takes one slice.
+
+    ⛔ **Measured, and published.** Runs `34281244142` (2026-09-08T21:33:23Z)
+    and `34289476724` (23:11:21Z) both reported `slice 5 of 7 (rotation
+    165639)`; `state.jsonl` on the `data` branch carries 192 trackers with
+    consecutive observations 5878 s apart, inside a 10800 s ceiling. The
+    ceiling is enforced from the recorded history now, so no arithmetic over a
+    wall clock can breach it again.
+    """
+
+    FIRST = "2026-09-08T21:33:23Z"
+    SECOND = "2026-09-08T23:11:21Z"
+
+    @staticmethod
+    def _rotation_for():
+        import runpy
+        return runpy.run_path(
+            os.path.join(REPO, "scripts", "probe-corpus.py"),
+            run_name="loaded_for_a_test")["rotation_for"]
+
+    def test_two_runs_in_one_bucket_really_do_get_the_same_rotation(self):
+        """⛔ The defect, asserted as a property rather than described in a
+        comment. It is kept green on purpose: `rotation_for` is a **sampler**,
+        and this is what a bucketed sampler does. Deleting this test because it
+        looks like it asserts a bug is how the ceiling would quietly go back to
+        resting on it."""
+        rotation_for = self._rotation_for()
+        self.assertEqual(rotation_for(self.FIRST), 165639)
+        self.assertEqual(rotation_for(self.SECOND), 165639)
+
+    def test_a_scheduled_run_two_hours_late_lands_in_the_earlier_bucket(self):
+        """⚠ Why it is reachable rather than a curiosity: T-009 measured this
+        repository's own scheduled sweeps firing **163** and **131** minutes
+        late. A slot delayed past the next one's nominal instant puts two runs
+        in one bucket."""
+        rotation_for = self._rotation_for()
+        on_time = rotation_for("2026-09-08T21:00:00Z")
+        two_hours_late = rotation_for("2026-09-08T23:00:00Z")
+        self.assertEqual(on_time, two_hours_late)
+
+    def _history(self, trackers, at):
+        return {t.url: at for t in trackers}
+
+    def test_the_repeated_slice_contacts_nobody_it_just_contacted(self):
+        """⭐ The property that actually had to hold, stated over runs."""
+        trackers = corpus(1327)
+        budget = budget_for("ci")
+        first = plan(trackers, budget, 165639)
+        self.assertEqual(first.rotation, 165639)
+        seen = self._history(first.trackers, self.FIRST)
+
+        second = plan(trackers, budget, 165639, last_seen=seen,
+                      now=self.SECOND)
+        contacted_twice = {t.url for t in second.trackers} & {
+            t.url for t in first.trackers}
+        self.assertEqual(contacted_twice, set(),
+                         "the second run re-contacted trackers the first one "
+                         "measured 98 minutes earlier")
+
+    def test_it_advances_rather_than_idling_through_the_slot(self):
+        """⭐ Holding the slice back would turn a politeness breach into a
+        coverage gap: no requests, the slot spent, and the corpus walked slower
+        than the seven-run pass the schedule is sized for. So a slice with
+        nothing due yields to the next."""
+        trackers = corpus(1327)
+        budget = budget_for("ci")
+        first = plan(trackers, budget, 165639)
+        second = plan(trackers, budget, 165639,
+                      last_seen=self._history(first.trackers, self.FIRST),
+                      now=self.SECOND)
+        self.assertTrue(second.advanced)
+        self.assertEqual(second.rotation, 165640)
+        self.assertGreater(len(second.trackers), 0)
+        self.assertEqual(len(second.held_by_ceiling), len(first.trackers))
+
+    def test_planning_again_from_the_rotation_it_returned_is_stable(self):
+        """⛔ `probe-corpus.py` previews once and sweeps once, and the two must
+        agree (RULES 3.6). A preview of a different 190 trackers is not a
+        preview -- run 34252497106 showed slice 0 and probed slice 3."""
+        trackers = corpus(1327)
+        budget = budget_for("ci")
+        seen = self._history(plan(trackers, budget, 165639).trackers,
+                             self.FIRST)
+        once = plan(trackers, budget, 165639, last_seen=seen, now=self.SECOND)
+        twice = plan(trackers, budget, once.rotation, last_seen=seen,
+                     now=self.SECOND)
+        self.assertEqual(once.rotation, twice.rotation)
+        self.assertEqual([t.url for t in once.trackers],
+                         [t.url for t in twice.trackers])
+
+    def test_a_corpus_contacted_end_to_end_contacts_nobody_and_says_so(self):
+        """⛔ Exit 0 having probed nothing is normally the forbidden pattern.
+        Here it is the only correct answer -- every tracker was contacted
+        inside the interval -- so it is reported as its own state rather than
+        being indistinguishable from an empty corpus."""
+        trackers = corpus(1327)
+        budget = budget_for("ci")
+        everyone = {t.url: self.FIRST for t in trackers}
+        held = plan(trackers, budget, 165639, last_seen=everyone,
+                    now=self.SECOND)
+        self.assertEqual(held.trackers, ())
+        self.assertTrue(held.exhausted)
+        self.assertEqual(len(held.held_by_ceiling), len(trackers))
+        self.assertTrue(held.as_record()["every_slice_held"])
+
+    def test_without_a_history_it_selects_exactly_what_select_selects(self):
+        """⚠ The change is additive: a caller that supplies no history gets
+        the behaviour that existed before it, and the record says so rather
+        than implying a ceiling that was never applied."""
+        trackers = corpus(1327)
+        budget = budget_for("ci")
+        for rotation in (0, 3, 165639):
+            with self.subTest(rotation=rotation):
+                unplanned = plan(trackers, budget, rotation)
+                self.assertEqual([t.url for t in unplanned.trackers],
+                                 [t.url for t in select(trackers, budget,
+                                                        rotation)])
+                self.assertFalse(unplanned.from_history)
+                self.assertFalse(unplanned.as_record()["enforced_from_history"])
+
+    def test_nobody_held_and_nobody_checked_are_told_apart(self):
+        """⛔ Both are zero held. A reader cannot tell a run that applied the
+        ceiling and found everyone due from one that never opened the history,
+        and the second is the arrangement that published 192 double contacts."""
+        trackers = corpus(1327)
+        budget = budget_for("ci")
+        long_ago = {t.url: "2026-01-01T00:00:00Z" for t in trackers}
+        checked = plan(trackers, budget, 0, last_seen=long_ago,
+                       now=self.SECOND)
+        unchecked = plan(trackers, budget, 0)
+        self.assertEqual(len(checked.held_by_ceiling),
+                         len(unchecked.held_by_ceiling))
+        self.assertNotEqual(checked.as_record()["enforced_from_history"],
+                            unchecked.as_record()["enforced_from_history"])
+
+    def test_the_local_profile_has_one_slice_and_cannot_advance(self):
+        """⚠ `local` takes the whole corpus, so there is nowhere to advance to
+        and the loop must not wrap onto the slice it just held."""
+        trackers = corpus(50)
+        budget = budget_for("local")
+        held = plan(trackers, budget, 0,
+                    last_seen={t.url: self.FIRST for t in trackers},
+                    now=self.SECOND)
+        self.assertEqual(held.trackers, ())
+        self.assertEqual(held.rotation, 0)
+        self.assertTrue(held.exhausted)
 
 
 if __name__ == "__main__":

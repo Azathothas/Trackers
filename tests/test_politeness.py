@@ -29,8 +29,9 @@ sys.path.insert(0, os.path.join(REPO, "src"))
 
 from trackers.politeness import (DEFAULT_INTERVAL_SECONDS,  # noqa: E402
                                  DNS_LOOKUPS_PER_RUN_CEILING, SECONDS_PER_DAY,
-                                 probes_per_day, run_cost, schedule_violations,
-                                 stated_interval)
+                                 contactable_at, probes_per_day, run_cost,
+                                 schedule_violations, seconds_between,
+                                 stated_interval, too_soon_after)
 
 SWEEP_WORKFLOW = os.path.join(REPO, ".github", "workflows", "health-sweep.yml")
 
@@ -305,6 +306,106 @@ class TheRunCostIsComputed(unittest.TestCase):
         self.assertFalse(emitted["polite"])
         self.assertEqual(emitted["probed_more_often_than_asked"],
                          ["udp://a.example:1/announce"])
+
+
+class TheCeilingIsReadFromTheRecordAndNotFromTheCadence(unittest.TestCase):
+    """T-087. ⛔ **Everything above this class is a PROJECTION.** `run_cost`
+    and `schedule_violations` answer what a cadence *would* cost, from a
+    `seconds_between_runs` the caller states -- and the caller stated
+    `DEFAULT_INTERVAL_SECONDS` while the sweep's actual spacing came from its
+    rotation, which is a wall-clock bucket. Two runs inside one bucket take the
+    same slice.
+
+    ⛔ **It is not hypothetical and it is published.** Runs `34281244142`
+    (2026-09-08T21:33:23Z) and `34289476724` (23:11:21Z) both reported
+    `slice 5 of 7 (rotation 165639)`, and `state.jsonl` on the `data` branch
+    carries 192 trackers whose consecutive observations are **5878 s** apart,
+    inside a 10800 s ceiling.
+    """
+
+    #: The two instants, verbatim from the runs' own logs.
+    FIRST = "2026-09-08T21:33:23Z"
+    SECOND = "2026-09-08T23:11:21Z"
+
+    def test_the_measured_collision_is_refused(self):
+        """The exact pair, so this test fails the day the guard stops holding
+        the case it was written for."""
+        self.assertEqual(seconds_between(self.FIRST, self.SECOND), 5878.0)
+        self.assertTrue(too_soon_after(self.FIRST, self.SECOND))
+
+    def test_the_boundary_is_the_interval_itself(self):
+        """Exactly one interval later is permitted; a second short is not. A
+        guard that is wrong at its own boundary is one nobody can reason about
+        at the boundary, which is where scheduled runs land."""
+        base = "2026-09-08T21:00:00Z"
+        self.assertTrue(too_soon_after(base, "2026-09-08T23:59:59Z"))
+        self.assertFalse(too_soon_after(base, "2026-09-09T00:00:00Z"))
+        self.assertFalse(too_soon_after(base, "2026-09-09T00:00:01Z"))
+        # ⛔ A fraction short is short, and this line is here because a
+        # mutation survived without it: `gap <= interval - 1` is identical
+        # over whole seconds and lets a tracker be contacted half a second
+        # early. Instants here are seconds today, so the sub-second case is
+        # not reachable from a sweep -- which is exactly why nothing else
+        # would have noticed the comparison drifting.
+        self.assertTrue(too_soon_after(base, "2026-09-08T23:59:59.500000Z"))
+        self.assertEqual(seconds_between(base, "2026-09-08T23:59:59.500000Z"),
+                         10799.5)
+
+    def test_a_tracker_with_no_history_is_the_one_permissive_case(self):
+        """⛔ And it must stay permissive: refusing a tracker nobody has ever
+        contacted is a sweep that can never take a first measurement."""
+        self.assertFalse(too_soon_after(None, "2026-09-09T00:00:00Z"))
+
+    def test_a_last_seen_it_cannot_read_refuses_rather_than_permits(self):
+        """⛔ Corrupt state must not buy a probe. Being wrong this way costs a
+        measurement; being wrong the other way costs somebody else a request
+        they had already been asked for (`docs/conventions/code.md`)."""
+        for bad in ("yesterday", "", "   ", "2026-13-45T99:99:99Z"):
+            with self.subTest(value=bad):
+                self.assertTrue(too_soon_after(bad, "2026-09-09T00:00:00Z"))
+
+    def test_a_last_seen_in_the_future_refuses(self):
+        """Clock skew, or a record stamped by a run whose injected instant ran
+        ahead. Either way the honest reading is that we cannot show an interval
+        has elapsed."""
+        self.assertTrue(too_soon_after("2026-09-10T00:00:00Z",
+                                       "2026-09-09T00:00:00Z"))
+
+    def test_a_now_it_cannot_read_raises_rather_than_guessing(self):
+        """⛔ The same rule `rotation_for` follows. A run that cannot tell when
+        it is has not been told, and a guess here disables the ceiling for
+        every tracker in the run at once -- silently."""
+        for bad in ("not-a-date", "", "tomorrow"):
+            with self.subTest(value=bad):
+                with self.assertRaises(ValueError):
+                    too_soon_after("2026-09-08T21:00:00Z", bad)
+
+    def test_a_stated_interval_longer_than_the_default_is_honoured(self):
+        """D7 is the tracker's own number where it stated one. Nothing in the
+        history keeps one today -- 0 of 299 committed sweep records carry
+        either key -- so the caller passes it, and this asserts the parameter
+        is read rather than decorative."""
+        six_hours = 6 * 3600
+        self.assertFalse(too_soon_after("2026-09-08T21:00:00Z",
+                                        "2026-09-09T01:00:00Z"))
+        self.assertTrue(too_soon_after("2026-09-08T21:00:00Z",
+                                       "2026-09-09T01:00:00Z",
+                                       interval_seconds=six_hours))
+
+    def test_both_halves_come_back_because_the_counts_mean_different_things(self):
+        """⛔ A run that contacted nobody because everyone was contacted an
+        hour ago is correct; one that contacted nobody because the corpus was
+        empty is a defect. A caller handed only the permitted half reports one
+        as the other."""
+        history = {"udp://a.example:1/announce": "2026-09-08T23:00:00Z",
+                   "udp://b.example:1/announce": "2026-09-08T12:00:00Z"}
+        due, held = contactable_at(history, "2026-09-09T00:00:00Z",
+                                   ["udp://a.example:1/announce",
+                                    "udp://b.example:1/announce",
+                                    "udp://c.example:1/announce"])
+        self.assertEqual(due, ("udp://b.example:1/announce",
+                               "udp://c.example:1/announce"))
+        self.assertEqual(held, ("udp://a.example:1/announce",))
 
 
 if __name__ == "__main__":
