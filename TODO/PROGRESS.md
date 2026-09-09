@@ -69,7 +69,7 @@ measured a runner's own resolver failing where a public one answers. That is
 | **Identity arms** | descriptive **34/35**, minimal **26/26**, client_like **23/24**, absent **22/26**, spread **0.154** ([T-012](claims.md), `C-56`) |
 | Oracle disagreement | **17 of 93** = 18.3%, methodology caveat attached (`C-03`, `C-69`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
-| Test suite | **547** tests, no network |
+| Test suite | **566** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
 | Politeness budget | full corpus **6072** DNS at worst of 100,000 ([T-026](measurement.md)) |
 | **Politeness ceiling** | enforced from `state.jsonl`'s `last_seen`, not from the rotation ([T-087](operations.md)) |

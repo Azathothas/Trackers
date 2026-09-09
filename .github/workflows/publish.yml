@@ -15,7 +15,10 @@
 #
 # ⭐ WHY THE STATE LIVES ON THE DATA BRANCH. History is what makes a label
 # worth reading, and workflow artefacts expire after 90 days while a branch
-# does not. `state.jsonl` is fetched from `data`, the sweep's records are
+# does not. `sources.jsonl` (T-103) rides along on the same reasoning: it is
+# what makes "why did this tracker disappear" answerable after the run that
+# lost it is over, and an artefact that expires cannot answer it.
+# `state.jsonl` is fetched from `data`, the sweep's records are
 # folded into it, and it is pushed back with the dataset it produced. That also
 # gives the run something the sweep has never had: state shared across runs.
 #
@@ -124,6 +127,12 @@ jobs:
             cp published/state.jsonl sweep-in/state.jsonl
             echo "carried the existing history forward"
           fi
+          # T-103. The per-source provenance, on the same terms as the state:
+          # the branch is the durable copy and an artefact is not (C-44).
+          if [ -f published/sources.jsonl ]; then
+            cp published/sources.jsonl sweep-in/sources.jsonl
+            echo "carried the source provenance forward"
+          fi
           # Committed records are what this repository keeps forever; the fresh
           # artefact is what the last sweep learned. Folding is idempotent --
           # `update-state.py` remembers which runs it has applied, so a
@@ -170,6 +179,7 @@ jobs:
             ${{ inputs.offline && '--offline' || '' }} \
             --generated-at "${PUBLISH_AT}" \
             --state sweep-in/state.jsonl \
+            --source-history sweep-in/sources.jsonl \
             --snapshots snapshots \
             --observed-from github-actions-hosted \
             --out build/data
@@ -216,6 +226,7 @@ jobs:
              build/data/anime.txt build/data/stable.txt \
              build/data/foss.txt build/data/hardcoded.txt published/
           cp sweep-in/state.jsonl published/state.jsonl 2>/dev/null || true
+          cp sweep-in/sources.jsonl published/sources.jsonl 2>/dev/null || true
           cp docs/schema.md published/schema.md
           cd published
           git add -A

@@ -1,0 +1,31 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "6c6f38a1f1585835c846058da50f92a745eef657-dirty",
+    "sample_counts": {
+      "daily": 365,
+      "ring": 240,
+      "sources": 8
+    },
+    "utc": "2026-09-09T04:04:50Z"
+  },
+  "question": "How large does the per-source provenance history get?",
+  "results": {
+    "daily_days": 365,
+    "days_to_fill_the_ring": 30.0,
+    "observations_per_year": 23360,
+    "publishes_per_day": 8.0,
+    "ring_size": 240,
+    "sample_line_head": "{\"daily\":[[\"2026-01-01\",8,1],[\"2026-02-02\",8,1],[\"2026-03-03\",8,1],[\"2026-04-04\",8,1],[\"2026-05-05\",8,1],[\"2026-06-06\",8,1],[\"2026-07-07\",8,1],[\"2026-08-08\",8,1],[\"2026-09-09\",8,1]",
+    "sources": 8,
+    "steady_state_bytes": 272872,
+    "steady_state_mb": 0.2602,
+    "unbounded_five_year_mb": 3799.37,
+    "what_this_is_not": "Not a measurement of a real file: no source history exists yet. It is the production writer's own output at the configured caps, which is what bounds the file once it is running.",
+    "widest_record_bytes": 34109
+  }
+}

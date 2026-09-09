@@ -51,6 +51,8 @@ from trackers.pipeline import (aggregate, collect_exclusions,      # noqa: E402
 from trackers.labelled import (metadata_for, newest_observation,  # noqa: E402
                                render_csv, render_json)
 from trackers.registry import SOURCES, Role, enabled_sources      # noqa: E402
+from trackers.provenance import (observe_fetch,  # noqa: E402
+                                 read_history, write_history)
 from trackers.state import read_state                            # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -282,6 +284,14 @@ def main() -> int:
                     help="a state file whose histories label the output. "
                          "Without it every tracker is `unknown`, which is what "
                          "a run with no measurement honestly says.")
+    ap.add_argument("--source-history", default=None, metavar="PATH",
+                    help="per-source provenance, folded from this run's own "
+                         "fetches and written back (T-103). ⛔ Hashes and "
+                         "counts, never bodies: it answers what a source "
+                         "returned and when, and it is what makes \"why did "
+                         "this tracker disappear\" answerable after the run "
+                         "that lost it is over. A missing file is a first "
+                         "run, never an error.")
     ap.add_argument("--snapshots", default=None, metavar="DIR",
                     help="where to keep each source's body and validators, so "
                          "the next run can send If-None-Match and take a 304 "
@@ -293,8 +303,8 @@ def main() -> int:
     args = ap.parse_args()
 
     try:
-        agg, exclusions, enforced = load_corpus(args.offline, args.fixtures,
-                                                args.snapshots)
+        agg, exclusions, enforced, results, _bodies = load_corpus(
+            args.offline, args.fixtures, args.snapshots, with_raw=True)
     except _NoSources as exc:
         print(exc, file=sys.stderr)
         return 2
@@ -308,6 +318,28 @@ def main() -> int:
         # `scripts/update-state.py`'s job, and giving one file two writers is
         # how a history gets corrupted.
         histories, _ = read_state(args.state)
+
+    # T-103. ⭐ **Written here and nowhere else.** This is the one place
+    # that holds a run's `FetchResult`s and an instant to stamp them with, so
+    # it is the one writer -- the same rule that keeps `state.jsonl` to
+    # `update-state.py`. ⚠ A missing file is a first run; a corrupt one
+    # stops the run rather than being reinitialised (RULES 3.9), because a
+    # history quietly rebuilt from nothing is the data loss that looks like a
+    # fix.
+    if args.source_history:
+        sources_seen: dict = {}
+        if os.path.exists(args.source_history):
+            sources_seen, quarantined = read_history(args.source_history)
+            if quarantined:
+                print(f"source history: {len(quarantined)} line(s) "
+                      f"quarantined and kept out of the fold")
+        sources_seen = observe_fetch(sources_seen, results,
+                                     at=args.generated_at)
+        write_history(args.source_history, sources_seen,
+                      generated_at=args.generated_at)
+        print(f"source history: {len(sources_seen)} sources, "
+              f"{sum(len(h.ring) for h in sources_seen.values())} "
+              f"observations retained")
 
     # T-046. Five categories, each with a rule a consumer can audit, and an
     # empty one says whether the rule matched nothing or the evidence it needs

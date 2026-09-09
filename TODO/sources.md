@@ -135,7 +135,7 @@ Source:      the brief's section 13.3 (provenance)
 Category:    sources
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `FetchResult` carries a `content_sha256` and it is discarded after
              the run. Nothing can answer, later: what did the source return,
@@ -154,6 +154,74 @@ Decision:    **MUST NOT retain unlimited raw upstream data in git.** Use hashes,
              is not durable evidence.
 Prove:       A test that the retained provenance answers "why did this tracker
              disappear" for a synthetic disappearance.
+
+
+**Done.** 2026-09-09.
+`python3 -m unittest tests.test_provenance` -> **19 tests, OK**, including the
+`Prove` clause's synthetic disappearance.
+
+⭐ **The question has an answer and the answer refuses the plausible wrong
+one.** `provenance.explain_absence` takes a URL, the sources recorded carrying
+it, and each source's fetch history, and returns whether it was **genuinely
+removed** or whether this is **our blind spot**:
+
+| what the history says | verdict |
+| --- | --- |
+| every carrying source fetched cleanly, none lists it | `genuinely_removed` |
+| a carrying source's last fetch `FAILED` | **not** removed -- we could not read it |
+| a carrying source's last fetch was `REJECTED` | **not** removed -- we refused the body, so we hold no listing to act on |
+| a carrying source returned `EMPTY` | removed: it *told* us it has nothing, which is evidence |
+| no source ever carried it | not a disappearance at all |
+
+⛔ **That table is RULES 3.2 extended through time**, and time is the only
+place a consumer can ask it: by the time anybody notices a tracker is missing,
+the run that lost it is over. Both pieces of prior art here get the one-run
+version wrong, in two languages; getting the across-time version wrong would
+tell a consumer a tracker is gone every time an upstream had a bad afternoon.
+
+⛔ **The module committed that exact conflation in its first draft**, and a
+test caught it: `SourceObservation.ok` excluded `EMPTY`, so a source that
+successfully reported having nothing was filed as a blind spot. `acquire.Outcome`
+says in as many words that `EMPTY` is information and `FAILED` is not.
+
+⭐ **The growth was computed before the shape was chosen**, which the
+`Decision` demands by name. `experiments/38-source-history-size.py` builds a
+full record **through the production writer** and measures it:
+
+| | |
+| --- | --- |
+| widest record | **34109 bytes**, at the configured caps |
+| steady-state file | **0.26 MB** across 8 sources |
+| days to fill the ring | **30**, at D7's eight publishes a day |
+| the same file **without** caps, over five years | **3799 MB** |
+
+A ring of 240 and 365 daily aggregates is what makes the difference between
+those last two numbers, and neither is a guess.
+
+⛔ **Hashes and counts, never bodies**, as the `Decision` requires: a
+digest answers "did it change", a count answers "by how much", and the raw
+bodies stay in the snapshot cache, which is not history.
+
+⛔ **The clock is injected, and it was not in the first draft.** Each
+observation was stamped with its own `FetchResult.fetched_at`, read from an
+ambient clock -- so two runs over identical inputs produced different bytes
+(RULES 3.6) and the idempotence guard could never recognise a repeat, because
+every timestamp was new. Every observation in a run carries the run's injected
+instant now, exactly as `state.py` stamps a sweep's records, and a test asserts
+two folds at one instant add one observation.
+
+⭐ **It accumulates where the state does**, for the reason `C-44` names: an
+artefact expires after 90 days and a branch does not. `generate.py` folds this
+run's own fetches and writes `sources.jsonl`; the publisher carries it off the
+`data` branch and back.
+
+⭐ **And it is what [T-102](sources.md) is waiting for.**
+`SourceHistory.entries_seen()` returns exactly the quantity the change detector
+compares against -- `validate_counts` is called with `len(accepted)`, and that
+is what is recorded -- so the bands can be derived from a real distribution
+rather than from one observation. A test asserts a failed fetch contributes
+**no** count to it.
+
 
 ---
 

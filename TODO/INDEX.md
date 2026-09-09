@@ -109,7 +109,7 @@ pretending to be one.
 | [T-100](sources.md) | P2 | sources | open | The source registry is missing fields the design requires |
 | [T-101](sources.md) | P2 | sources | open | Source quality is asserted per source and measured for none |
 | [T-102](sources.md) | P2 | sources | **done** | Change-detection thresholds are provisional and say so |
-| [T-103](sources.md) | P2 | sources | open | Provenance snapshots are not retained |
+| [T-103](sources.md) | P2 | sources | **done** | Provenance snapshots are not retained |
 | [T-104](sources.md) | P2 | sources | **done** | Conditional requests are not implemented |
 | [T-120](docs.md) | P2 | docs | open | The documentation set is a fraction of what is required |
 | [T-121](docs.md) | P2 | docs | **done** | Nothing checks that documentation citations still resolve |
@@ -127,7 +127,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 74 entries, 18 open, 0 blocked, 56 done
+**Counts:** 74 entries, 17 open, 0 blocked, 57 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -136,9 +136,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 0 | 0 | 8 | 8 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 12 | 0 | 24 | 36 |
+| P2 | 11 | 0 | 25 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **18** | **0** | **56** | **74** |
+| **All** | **17** | **0** | **57** | **74** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

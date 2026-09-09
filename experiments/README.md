@@ -42,6 +42,7 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `25-webtorrent-handshake.py` | Do the `wss` trackers answer an RFC 6455 handshake, and are any of them trackers rather than merely WebSocket endpoints? ⛔ Its **negative** control is the one that matters: a plain 200 must not be called a WebSocket | C-36, [T-005](../TODO/claims.md) |
 | `32-vantage-variation.py` | How much of what this project calls unreachable is a fact about the address it asked from? | C-03, C-69, [T-004](../TODO/claims.md) |
 | `31-state-size-projection.py` | How large does the history file get over five years, and what must K and D be? | D3, [T-042](../TODO/scoring.md) |
+| `38-source-history-size.py` | How large does the **per-source** provenance get, and what must the ring be? ⭐ Same arithmetic-before-choosing discipline as `31`, which T-103's `Decision` demands by name | [T-103](../TODO/sources.md) |
 | `34-data-branch-growth.py` | How fast does the `data` branch's history grow, and at what commit count does a full clone stop being reasonable? | [T-081](../TODO/operations.md) |
 | `37-schedule-delay.py` | How late does a scheduled workflow actually fire here, and how often does a slot produce no run? ⛔ It reads the cron **out of the workflow**, so it cannot report against a schedule the repository has changed | C-11, [T-009](../TODO/claims.md) |
 | `30-resolution-failure-classes.py` | Which kind of not-resolving is each unresolvable corpus host, and does a second resolver disagree? | C-06, [T-007](../TODO/claims.md), [T-036](../TODO/measurement.md) |
