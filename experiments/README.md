@@ -43,6 +43,7 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `32-vantage-variation.py` | How much of what this project calls unreachable is a fact about the address it asked from? | C-03, C-69, [T-004](../TODO/claims.md) |
 | `31-state-size-projection.py` | How large does the history file get over five years, and what must K and D be? | D3, [T-042](../TODO/scoring.md) |
 | `34-data-branch-growth.py` | How fast does the `data` branch's history grow, and at what commit count does a full clone stop being reasonable? | [T-081](../TODO/operations.md) |
+| `37-schedule-delay.py` | How late does a scheduled workflow actually fire here, and how often does a slot produce no run? ⛔ It reads the cron **out of the workflow**, so it cannot report against a schedule the repository has changed | C-11, [T-009](../TODO/claims.md) |
 | `30-resolution-failure-classes.py` | Which kind of not-resolving is each unresolvable corpus host, and does a second resolver disagree? | C-06, [T-007](../TODO/claims.md), [T-036](../TODO/measurement.md) |
 | `26-user-agent-block-rate.py` | Does the identity this project sends change what an HTTP tracker answers? ⭐ `--series` pools the committed rotations into the comparison, because one arm per tracker per run means no single run can answer | C-56, C-63, C-64, [T-012](../TODO/claims.md) |
 | `33-ipv6-only-liveness.py` | Are the IPv6-only trackers alive, from a vantage that has IPv6 -- directly, and through a relay that has one? | C-73, C-74, [T-031](../TODO/measurement.md) |

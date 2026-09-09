@@ -1,0 +1,67 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "repo_commit": "e83c9ee77ffc42feffe0c32b2ebea1c08f26367b-dirty",
+    "sample_counts": {
+      "scheduled_runs": 3,
+      "slots": 3
+    },
+    "utc": "2026-09-09T03:59:28Z"
+  },
+  "question": "How late does a scheduled workflow fire here, and how often does a slot produce no run?",
+  "results": {
+    "cron_hours": [
+      0,
+      3,
+      6,
+      9,
+      12,
+      15,
+      18,
+      21
+    ],
+    "delay_distribution": {
+      "max_seconds": 9784,
+      "mean_seconds": 5961,
+      "median_seconds": 7874,
+      "min_seconds": 226,
+      "n": 3,
+      "over_one_interval": 0
+    },
+    "non_scheduled_runs": 5,
+    "scheduled_runs": [
+      {
+        "conclusion": "success",
+        "created_at": "2026-09-08T20:43:04Z",
+        "delay_seconds": 9784,
+        "id": 34276432980,
+        "slot": "2026-09-08T18:00:00Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-09-08T23:11:14Z",
+        "delay_seconds": 7874,
+        "id": 34289476724,
+        "slot": "2026-09-08T21:00:00Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-09-09T03:03:46Z",
+        "delay_seconds": 226,
+        "id": 34305644232,
+        "slot": "2026-09-09T03:00:00Z"
+      }
+    ],
+    "slots_in_window": 3,
+    "slots_with_no_run": [
+      "2026-09-09T00:00:00Z"
+    ],
+    "supports_a_distribution": false,
+    "target_samples": 100,
+    "what_this_is_not": "`slots_with_no_run` is an UPPER BOUND on drops, not a drop count: a slot may be empty because a run was dropped, because the schedule did not exist yet, or because the API page does not reach it. And a delay measured soon after the schedule was pushed carries registration lag that GitHub does not publish separately."
+  }
+}

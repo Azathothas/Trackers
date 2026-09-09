@@ -571,6 +571,55 @@ Decision:    Treat delayed, dropped and duplicated runs as **load-bearing
 Prove:       A committed record of >=100 scheduled runs with the delay
              distribution and the drop count.
 
+⭐ **There is an instrument now**, so this stops being re-derived by hand:
+`experiments/37-schedule-delay.py` reads the cron **out of the workflow**,
+pairs every scheduled run with the slot at or before it, and reports the
+distribution plus the slots that produced no run. `--expect-samples 100` is the
+entry's own bar wired to an exit code.
+
+```bash
+python3 experiments/37-schedule-delay.py --expect-samples 100
+```
+
+**Three scheduled runs so far**, result committed under `experiments/results/`:
+
+| slot | fired | delay |
+| --- | --- | --- |
+| `2026-09-08T18:00Z` | `20:43:04Z` | **163 m** |
+| `2026-09-08T21:00Z` | `23:11:14Z` | **131 m** |
+| `2026-09-09T03:00Z` | `03:03:46Z` | **3 m** |
+
+⭐ **And one slot produced no run at all**: `2026-09-09T00:00Z`. That is
+`C-11`'s dropped queued job, observed here for the first time -- ⚠ as an
+**upper bound** rather than a drop count, because an empty slot is also what a
+schedule that did not exist yet looks like, and the instrument says so.
+
+⛔ **This entry's own claim that slices are "skipped, never repeated" is
+REFUTED**, and the refutation is the more useful half. It reasoned that a
+displaced run takes the *next* bucket's slice, which is true of one run in
+isolation and false of two: a dispatch and a late scheduled run inside one
+three-hour bucket take the **same** slice. Measured 2026-09-08 -- runs
+`34281244142` (21:33Z) and `34289476724` (23:11Z) both took slice 5, and **192
+trackers were contacted 5878 s apart**, inside D7's interval.
+
+⭐ **The entry had already named the mechanism and deferred it to a
+decision that was by then already made.** The paragraph below says a re-run
+inside one bucket repeats a slice, that refusing it "needs state shared across
+runs", and that this does not exist "until [T-063](publication.md) decides
+where records live". T-063 **had** decided -- records live on the `data`
+branch -- and nobody joined the two sentences. The state was there to be read
+for a day before the collision happened.
+[T-087](operations.md) closes it: the ceiling is read from `state.jsonl`'s
+`last_seen`, so no arithmetic over a clock can breach D7 whatever the delay
+does.
+
+⚠ **Still open, and the blocker is time rather than work.** The
+distribution needs the 100 runs the `Prove` clause asks for; at eight a day and
+three observed, that is about twelve more days. Nothing else is missing: the
+instrument is committed, it re-runs, and it fails its own expectation until the
+sample arrives.
+
+
 **The schedule exists now** (2026-09-08, operator ruling), so the observations
 this entry waits on have started arriving. ⭐ **The first one is a large
 delay.** `.github/workflows/health-sweep.yml` runs `0 */3 * * *`; the first
@@ -588,7 +637,8 @@ this entry asks for, which at eight a day is under a fortnight.
 ⭐ **The delay is self-correcting for the rotation and not for coverage.** The
 slice comes from the clock at run time rather than from the slot, so a run
 displaced into the next three-hour bucket takes that bucket's slice: slices are
-**skipped, never repeated**, and the trackers in a skipped slice wait another
+**skipped, never repeated** -- ⛔ **refuted 2026-09-09, see above: two runs in
+one bucket repeat a slice** -- and the trackers in a skipped slice wait another
 pass. That is a coverage cost and not a politeness one, which is the right
 direction for it to fail in.
 
