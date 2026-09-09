@@ -99,6 +99,39 @@ class Derivation:
         return (low, high)
 
 
+#: ⛔ **One parser, and the registry says so rather than implying it.**
+#: T-100's `Decision` forbids a plugin framework for eight sources: every one
+#: of them is newline-ish plaintext today and `normalize.parse_many` handles
+#: all of them. Naming it per source is what makes a future exception visible
+#: as a change to this table instead of as a branch buried in the fetcher.
+ONE_PARSER = "normalize.parse_many"
+
+#: The fetch strategy every source shares. T-104 made conditional requests
+#: mandatory in `ci`, so this is a statement of what the code does and not an
+#: aspiration.
+CONDITIONAL_GET = "conditional GET, If-None-Match and If-Modified-Since"
+
+#: The cache strategy every source shares: one snapshot per source, with the
+#: validators the server offered, so the next run can take a 304.
+SNAPSHOT_CACHE = "one snapshot per source id, with its validators"
+
+#: ⚠ **No source needs its own normalization, and that is a measured
+#: claim rather than a default.** `experiments/19` parses every source through
+#: the one parser and reports the unparseable lines per source; they are the
+#: same rejects everywhere. A source that grows a quirk gets a value here and
+#: the table shows it.
+NO_SPECIAL_NORMALIZATION = "none; the common normalizer handles it"
+
+#: The validation every fetched body goes through, in the order `acquire.py`
+#: applies it. ⛔ A rule listed here that nothing runs would be dead
+#: config, so this names the checks in `parse_body` and `validate_counts`.
+COMMON_VALIDATION = (
+    "not HTML",
+    "parses to at least one tracker",
+    "entry count inside the derived band",
+)
+
+
 @dataclass(frozen=True, slots=True)
 class Source:
     """One source. Every field is something that differs between sources."""
@@ -120,6 +153,21 @@ class Source:
     expected_min: int
     expected_max: int
     derivation: "Derivation"
+
+    #: T-100. The static description of how this source is handled. ⚠ The
+    #: entry's `Premise` is what decides which fields belong here: **last
+    #: successful fetch, last failure, failure count and health state are
+    #: per-run state, not configuration**, so they live in
+    #: `provenance.SourceHistory` on the `data` branch (T-103) and are not
+    #: duplicated into this table. A value in two places with no check that
+    #: they agree is drift, and the copy a reader trusts is the wrong one.
+    expected_format: str = "newline-delimited tracker URLs, blank lines and "\
+                           "`#` comments permitted"
+    parser: str = ONE_PARSER
+    fetch_strategy: str = CONDITIONAL_GET
+    cache_strategy: str = SNAPSHOT_CACHE
+    normalization: str = NO_SPECIAL_NORMALIZATION
+    validation_rules: tuple[str, ...] = COMMON_VALIDATION
 
     @property
     def observed(self) -> int:
@@ -213,6 +261,16 @@ SOURCES: tuple[Source, ...] = (
             "trackers. The reasons are evidence: 2 are 'requested by sysadmin', "
             "which is direct support for RULES 4's exclusion requirement."
         ),
+        # ⛔ The one source whose FORMAT differs, and the difference is
+        # load-bearing: a blacklist's exclusion REASONS live in its raw text
+        # and the ordinary parser strips them, so a caller that reads only the
+        # parsed URLs cannot tell an operator's request from an upstream's
+        # opinion. That is exactly the defect that published eight excluded
+        # URLs on 2026-09-09, and naming the format here is what stops the next
+        # reader assuming every source is interchangeable.
+        expected_format=("newline-delimited tracker URLs with `#` comment "
+                         "lines carrying the exclusion REASON, which the "
+                         "common parser strips and `exclusion.py` needs"),
         expected_min=100, expected_max=1200, derivation=Derivation(observations=(346,),
                               window=("2026-08-29",),
                               instrument="experiments/19-scheme-census.py"),

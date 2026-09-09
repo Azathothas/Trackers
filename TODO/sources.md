@@ -10,7 +10,7 @@ Source:      the brief's section 12 (source registry fields)
 Category:    sources
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     `src/trackers/registry.py` carries id, URL, role, trust, category,
              upstream, notes, expected range, observed count, required, enabled.
@@ -30,6 +30,35 @@ Decision:    **Avoid a plugin framework for six sources** -- that abstraction
 Prove:       A test that every registry entry has every required field
              populated, so adding a source without one fails.
 
+
+**Done.** 2026-09-09.
+`python3 -m unittest tests.test_quality` -> **12 tests, OK**, including the
+`Prove` clause: every entry populates every required field, and a source
+constructed without one raises.
+
+Six static fields added: `expected_format`, `parser`, `fetch_strategy`,
+`cache_strategy`, `normalization`, `validation_rules`.
+
+⭐ **And the four the `Premise` excludes are asserted ABSENT.** Last
+successful fetch, last failure, failure count and health state are per-run
+state, and they now genuinely exist -- in `provenance.SourceHistory` on the
+`data` branch ([T-103](sources.md)). A test fails if any of them appears on
+`Source`, because a value in two places with no check that they agree is drift
+and the copy a reader trusts is the wrong one.
+
+⛔ **A field with the same value everywhere is boilerplate nobody reads**,
+which is the dead-config forbidden pattern wearing a schema. One source's
+format genuinely differs and now says so: `ngosang_blacklist` carries its
+exclusion **reasons** in comment lines the common parser strips, and a caller
+that assumed every source was interchangeable is what published eight excluded
+URLs on 2026-09-09. A test asserts the formats are not all identical.
+
+⚠ No adapters and no plugin framework, as the `Decision` requires: eight
+sources, one parser, and the registry names it rather than implying it -- so a
+future exception shows up as a change to this table instead of a branch buried
+in the fetcher.
+
+
 ---
 
 ### T-101 Source quality is asserted per source and measured for none
@@ -38,7 +67,7 @@ Source:      the brief's section 19 (source quality)
 Category:    sources
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     `Trust` is assigned by hand in the registry from a reading of each
              project. **MUST NOT treat all sources equally** is satisfied; the
@@ -62,6 +91,55 @@ Decision:    **Two asymmetric findings drive action and neither is "drop it".**
              aggregator exists to capture. `desirefire_all` is that case.
 Prove:       A documented methodology plus a per-source quality report with
              sample counts, regenerated on a schedule.
+
+
+**Done.** 2026-09-09.
+`python3 -m unittest tests.test_quality` -> **12 tests, OK**, and
+`python3 scripts/source-quality.py --offline --history sources.jsonl` produces
+the per-source table with its sample counts.
+
+⭐ **The report re-derives this entry's own `Premise` from the corpus**
+rather than quoting it, which is the difference between a number and a
+citation:
+
+| source | trust | contributed | unique | corroborating |
+| --- | --- | --- | --- | --- |
+| `ngosang_all` | high | 99 | **2** | 97 |
+| `ngosang_ws` | high | 3 | 3 | 0 |
+| `ngosang_i2p` | high | 13 | 13 | 0 |
+| `newtrackon_all` | high | 260 | 146 | 114 |
+| `xiu2_all` | medium | 149 | 8 | 141 |
+| `desirefire_all` | low | 1074 | 978 | 96 |
+
+⭐ **`corroborating` is a column because of this entry's `Decision`.**
+Uniqueness alone makes `ngosang_all` at 2-of-99 look like dead weight; the 97
+URLs it *shares* are what make another source's claim evidence rather than a
+single point of failure. Collapsing the two into "contributed" is what would
+lose the argument for keeping it.
+
+⛔ **It reports and it never acts.** Where a measurement sits badly beside
+the asserted trust it prints a **question for a human**, and a test asserts
+the returned value never changes the trust it was given. Both of this entry's
+findings run opposite to the obvious action -- no unique entries may mean
+corroboration, many scruffy unique entries mean filtering rather than removal
+-- so an automation acting on either would delete the thing the project is
+for. `--expect-no-questions` exists and is **off by default and stays off in
+CI**: failing a build on a question is how somebody answers it by deleting the
+source.
+
+⚠ **Every dimension carries its sample count, and today that count is
+one.** Failure rate, format stability and freshness are properties of a series,
+so they read as **dashes** rather than zeroes until the history is deeper --
+an unknown rendered as `0%` reads as a perfect record (RULES 1.5). The
+questions that depend on a series refuse to fire below five observations, and a
+test plants a single failed fetch to prove they stay quiet.
+
+⭐ **"Source quality is not a one-time judgement" is now true in
+practice**, which is what this entry actually asked for. The report reads
+`sources.jsonl` ([T-103](sources.md)) and the corpus, touches no third party,
+and the publisher regenerates it into `source-quality.json` on the `data`
+branch after every sweep.
+
 
 ---
 

@@ -106,8 +106,8 @@ pretending to be one.
 | [T-082](operations.md) | P2 | operations | open | Self-healing is unimplemented, and its limit matters more than its coverage |
 | [T-083](operations.md) | P2 | operations | open | The five-year operational review is unanswered |
 | [T-084](operations.md) | P2 | operations | **done** | No schedule exists and the workflow architecture is undecided |
-| [T-100](sources.md) | P2 | sources | open | The source registry is missing fields the design requires |
-| [T-101](sources.md) | P2 | sources | open | Source quality is asserted per source and measured for none |
+| [T-100](sources.md) | P2 | sources | **done** | The source registry is missing fields the design requires |
+| [T-101](sources.md) | P2 | sources | **done** | Source quality is asserted per source and measured for none |
 | [T-102](sources.md) | P2 | sources | **done** | Change-detection thresholds are provisional and say so |
 | [T-103](sources.md) | P2 | sources | **done** | Provenance snapshots are not retained |
 | [T-104](sources.md) | P2 | sources | **done** | Conditional requests are not implemented |
@@ -127,7 +127,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 74 entries, 17 open, 0 blocked, 57 done
+**Counts:** 74 entries, 15 open, 0 blocked, 59 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -136,9 +136,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 0 | 0 | 8 | 8 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 11 | 0 | 25 | 36 |
+| P2 | 9 | 0 | 27 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **17** | **0** | **57** | **74** |
+| **All** | **15** | **0** | **59** | **74** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway
