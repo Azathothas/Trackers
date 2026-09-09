@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-09T02:17:08Z
+generated_at: 2026-09-09T03:04:47Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,37 +80,37 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 866 across 577 tracker(s)
-- never observed:      749
-- health states:       {'degraded': 2, 'live': 116, 'unknown': 430, 'unmeasurable': 29}
-- measurement rungs:   {'connected': 74, 'dns': 173, 'no_usable_address': 4, 'none': 157, 'protocol_valid': 59, 'tracker_semantic': 59, 'transport_response': 51}
+- health observations: 1435 across 894 tracker(s)
+- never observed:      432
+- health states:       {'degraded': 4, 'live': 145, 'unknown': 698, 'unmeasurable': 47}
+- measurement rungs:   {'connected': 127, 'dns': 263, 'no_usable_address': 7, 'none': 273, 'protocol_valid': 67, 'tracker_semantic': 81, 'transport_response': 76}
 - observation depth:   median 1, deepest 4
-- sustained failures:  29 (3+ observations, none successful)
+- sustained failures:  79 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
 the only place that decision is made.
 
+- sustained: `http://160.251.78.190:6969/announce`
+- sustained: `http://163.172.209.40/announce`
 - sustained: `http://171.104.110.88:6969/announce`
+- sustained: `http://171.104.111.83:6969/announce`
+- sustained: `http://171.104.226.87:6969/announce`
+- sustained: `http://179.100.24.134:6969/announce`
+- sustained: `http://185.185.40.95:6969/announce`
+- sustained: `http://185.197.195.20:1919/announce`
+- sustained: `http://189.110.233.96:6969/announce`
+- sustained: `http://45.154.253.4/announce`
 - sustained: `http://49.12.76.8:6961/announce`
 - sustained: `http://51.38.230.101/announce`
 - sustained: `http://54.39.98.124:80/announce`
+- sustained: `http://65.108.2.176:2710/announce`
+- sustained: `http://65.130.205.148:9000/announce`
+- sustained: `http://83.6.232.23:6969/announce`
+- sustained: `http://97.117.105.168:9000/announce`
 - sustained: `http://bithq.org:80/announce.php`
-- sustained: `http://mediaclub.tv/announce.php`
-- sustained: `http://opentracker.xyz:80/announce`
-- sustained: `http://retracker.spark-rostov.ru:80/announce`
-- sustained: `http://torrent-team.net/announce.php`
-- sustained: `http://torrents.hikarinokiseki.com:6969/announce`
-- sustained: `http://tracker.bz:80/announce`
-- sustained: `http://tracker.cbase.cc:6969/announce`
-- sustained: `http://tracker.privateseedbox.xyz:2710/announce`
-- sustained: `http://tracker.sbsub.com:2710/announce`
-- sustained: `http://wegkxfcivgx.ydns.eu:80/announce`
-- sustained: `http://www.yqzuji.com/announce`
-- sustained: `http://yggtracker.i2p.rocks:80/announce`
-- sustained: `https://021912.xyz:443/announce`
-- sustained: `https://bt.080609.xyz:443/announce`
-- sustained: `https://tracker.alaskantf.com:443/announce`
+- sustained: `http://bt.ktkj.com:8080/announce`
+- sustained: `http://cn.pcfreetime.com:6969/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 116
+### common.txt -- 145
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  0 from the other categories and 116 more that measured live
+- why:  0 from the other categories and 145 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
