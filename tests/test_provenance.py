@@ -199,12 +199,30 @@ class AFailedFetchIsNeverRecordedAsZero(unittest.TestCase):
 class TheHistoryIsBoundedAndDeterministic(unittest.TestCase):
 
     def test_the_ring_never_exceeds_its_cap(self):
-        record = history("a", *[obs(f"2026-09-01T{i:02d}:00:00Z")
-                                for i in range(24)])
-        for day in range(2, 40):
-            record = record.observe(obs(f"2026-09-{day:02d}T00:00:00Z"))
-        self.assertLessEqual(len(record.ring), RING_SIZE)
+        """⛔ **Written to reach the cap, and its first version did not.**
+        It built 62 observations against a ring of 240, so removing the slice
+        that bounds the ring changed nothing and the mutation survived --
+        `docs/methodology/reviews.md`'s "a scope rule needs a fixture, not a
+        comparison", in the shape of a test that could not fail.
+        """
+        record = SourceHistory.new("a", "https://example.invalid/a",
+                                   "2026-01-01T00:00:00Z")
+        wanted = RING_SIZE * 2
+        for i in range(wanted):
+            day, hour = divmod(i, 24)
+            record = record.observe(
+                obs(f"2026-{(day // 28) + 1:02d}-{(day % 28) + 1:02d}"
+                    f"T{hour:02d}:00:00Z"))
+        self.assertGreater(wanted, RING_SIZE,
+                           "this fixture no longer reaches the cap it tests")
+        self.assertEqual(len(record.ring), RING_SIZE)
         self.assertLessEqual(len(record.daily), DAILY_DAYS)
+        # ⭐ The newest observation survives and the oldest is gone, which is
+        # the direction a ring must roll.
+        self.assertEqual(record.ring[-1].at, record.last_seen)
+        self.assertGreater(record.lifetime_fetches, RING_SIZE,
+                           "the lifetime counter rolled with the ring, so a "
+                           "long-dead source would forget it ever worked")
 
     def test_an_observation_at_a_known_instant_is_ignored(self):
         """Folding one run twice must not record two observations, which is the

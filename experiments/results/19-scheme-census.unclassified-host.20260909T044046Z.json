@@ -7,14 +7,14 @@
     "offline": true,
     "platform": "Windows-11-10.0.26200-SP0",
     "python": "3.13.15",
-    "repo_commit": "26674e9d1f8bf3140672ef701d4cd91a2f4fa45b-dirty",
+    "repo_commit": "306959bf6e734855b3a405ea62f47b5a02b47094-dirty",
     "sample_counts": {
       "distinct_urls": 1346,
       "sources_configured": 16,
       "sources_fetched": 16
     },
     "user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker list census; contact via repository issues)",
-    "utc": "2026-09-08T16:17:20Z",
+    "utc": "2026-09-09T04:40:45Z",
     "yggdrasil_range": "200::/7"
   },
   "question": "Which URL schemes and reachability networks actually occur across every tracker source this project might consume?",

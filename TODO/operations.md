@@ -614,3 +614,56 @@ contacts and they stay: RULES 3.9 forbids recovering by deleting valid data,
 and 192 trackers genuinely were asked twice. The record of it is
 [`../HISTORY/corrections.md`](../HISTORY/corrections.md) round 4, and the
 history's own spacing is now the evidence that it stopped.
+
+---
+
+### T-088 D7 is a mechanism on the sweep path and a convention on the experiment path
+
+Source:      the door sweep of 2026-09-09
+             ([`../HISTORY/reviews/`](../HISTORY/reviews/))
+Category:    operations
+Priority:    P2
+Effort:      S
+Status:      open
+
+Problem:     [T-087](operations.md) made the politeness ceiling structural for
+             the health sweep: `sweep.plan` is the only door into a selection
+             and it consults `politeness.too_soon_after`. ⛔ **Nothing enforces
+             it on the other door.** An experiment calls `probe()` directly,
+             and the ceiling is whatever flags its author remembered to add --
+             which is the "a control gated on one of several paths into the
+             same action" row of
+             [`../docs/conventions/forbidden-patterns.md`](../docs/conventions/forbidden-patterns.md),
+             named there as the most recurring hole there is.
+Premise:     **Measured, and the hole is narrower than it looks today.** Of the
+             instruments that open a socket to a tracker, only
+             `experiments/26-user-agent-block-rate.py` draws from the same
+             population the sweep probes -- and it carries the ceiling, through
+             the same `too_soon_after` since 2026-09-09. The other three are
+             disjoint by construction: `probe()` returns `unsupported` for
+             `wss` and for `.i2p` **before opening a socket**, verified
+             2026-09-09, so `25`, `35` and `36` cannot collide with a sweep
+             however often they run.
+
+             ⚠ So no double-contact is reachable today. What is missing is
+             the **mechanism**: a new experiment probing HTTP trackers would
+             have nothing stopping it, and the reason it is safe now is a fact
+             about the current set of experiments rather than about the code.
+Approach:    One shared entry point for "may I contact this tracker now",
+             taking the recorded history, so an instrument gets the ceiling by
+             using the ordinary path rather than by remembering a flag. The
+             pieces exist -- `politeness.too_soon_after` is the rule and
+             `sources.jsonl`/`state.jsonl` are the record -- so this is wiring
+             and a test, not a design.
+Decision:    ⛔ **Not solved by documentation.** A note saying "remember to
+             pass --state" is exactly the guard-by-convention this entry is
+             about. Either the probe path consults the ceiling itself, or a
+             check refuses an experiment that reaches `probe()` without one.
+
+             ⚠ Rejected for now: making `probe()` itself refuse. It is
+             called by the fake-tracker oracle and by loopback controls, where
+             no ceiling applies and where a history does not exist, so a
+             refusal there would fail the tests that prove the probe works.
+Prove:       A test that an instrument reaching a tracker without consulting
+             the recorded history fails a check, and that the existing
+             loopback controls still pass.

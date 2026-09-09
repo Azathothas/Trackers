@@ -43,16 +43,28 @@ reach is `unmeasurable`, never `dead`. The standard is not "it works": it is
 **"it remains correct when things go wrong, and it never claims to know what it
 cannot know."**
 
-**Current state: P0 and P1 are done, and both of P2's gate conditions are
-met.** The measurement core has been pointed at the corpus five times -- a
-200-tracker stride sample, a 99-tracker census of the baseline, two corpus-wide
-DNS censuses, and the IPv6-only population probed from a vantage that has IPv6.
-Per-tracker history exists (D3) and what its series mean is decided (T-041).
-**The dataset is published** on the `data` branch and the sweep runs every
-three hours (T-063, T-084). ⭐ **The history is now deep enough to say `dead`,
-and it does**: `MIN_SAMPLES_FOR_DEATH` is 3, and on 2026-09-09 twenty-six
-trackers had three or more observations with no successes. A `dead` here means
-exactly that and nothing more.
+**Current state: every P0 and P1 is done, and both of P2's gate conditions are
+met.** **The dataset is published** on the `data` branch, the sweep runs every
+three hours, and its history accumulates (T-063, T-084). ⭐ **The history is
+deep enough to say `dead`, and it does**: `MIN_SAMPLES_FOR_DEATH` is 3, and on
+2026-09-09 seventy trackers had three or more observations with no successes. A
+`dead` here means exactly that and nothing more.
+
+⭐ **No transport is `unmeasurable` by default any more, and that changed on
+2026-09-09.** i2p, yggdrasil and `wss` had been unmeasured in every record this
+project ever took, and none of them was blocked -- the first two needed a
+router in a throwaway container ([`containers.md`](containers.md)) and the third
+needed somebody to attempt the handshake. ⚠ They are still unmeasurable
+**from CI**, which is what `unmeasurable` in a `ci` record correctly means, and
+the two container-backed instruments say so.
+
+⛔ **What the same day found is worth more than what it measured.** The
+sweep's politeness ceiling was a consequence of its rotation's arithmetic, and
+the arithmetic did not hold: two runs inside one three-hour clock bucket took
+the identical slice and **192 trackers were contacted 5878 s apart**, inside
+the interval this project promises them. The ceiling is read from the recorded
+history now (T-087). The two observations stay published, because deleting them
+would tidy away the evidence.
 
 ---
 
