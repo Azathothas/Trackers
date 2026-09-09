@@ -29,14 +29,16 @@ from trackers.exclusion import (ExclusionClass, classify_reason,  # noqa: E402
 from trackers.pipeline import (aggregate, collect_exclusions,  # noqa: E402
                                enforced_exclusions, flagged_exclusions,
                                render_plaintext, render_report)
-from trackers.registry import Role, Source, Trust  # noqa: E402
+from trackers.registry import Derivation, Role, Source, Trust  # noqa: E402
 
 
 def src(sid="s", role=Role.PRIMARY, lo=1, hi=10_000) -> Source:
     return Source(id=sid, url=f"https://example.invalid/{sid}", role=role,
                   trust=Trust.MEDIUM, category="test", upstream="test",
                   notes="", expected_min=lo, expected_max=hi,
-                  observed_20260829=1)
+                  derivation=Derivation(
+                      observations=(1,), window=("2026-08-29",),
+                      instrument="experiments/19-scheme-census.py"))
 
 
 # --------------------------------------------------------------------------

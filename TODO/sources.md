@@ -71,7 +71,7 @@ Source:      the brief's section 13.2 (change detection)
 Category:    sources
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     `expected_min` and `expected_max` are ~40% and ~3x of a **single**
              observation taken on 2026-08-29. They are wide on purpose and they
@@ -87,6 +87,45 @@ Decision:    **A magic number nobody can justify is a future outage.** Widen
              rather than narrow while the sample is one.
 Prove:       Each threshold cites the observation window it was derived from,
              and a test fails when a threshold has no derivation recorded.
+
+
+**Done.** 2026-09-09.
+`python3 -m unittest tests.test_thresholds` -> **10 tests, OK**, and the `Prove` clause is met in both halves: every band
+names the observations it came from, and a test fails when one does not.
+
+⛔ **Two of the eight bands did not satisfy the rule their own comment
+claimed.** The comment said "~40% of the single observation" and "~3x";
+`ngosang_all` was `(40, 300)` where 0.4x/3x of 99 is `(39, 298)`, and
+`xiu2_all` was `(60, 450)` where 3x of 150 is 451. Each was **one entry**
+narrower than its stated derivation -- which is harmless in itself and is
+RULES 2.1 in miniature: numbers typed *beside* a method drift from it
+silently. Both are widened to contain their derivation.
+
+⭐ **The derivation is the authority now, not the comment.** `Derivation`
+carries the observations, the instant each was taken at, and the committed
+instrument that measured them; `derived_band()` computes what the method
+justifies, and `tests/test_thresholds.py` fails when a registry band is
+**narrower** than that. Wider is always allowed and is usually right -- a small
+source's natural variation is bigger than a multiple of a small number -- but
+narrower is now unrepresentable without also narrowing the evidence.
+
+⚠ **The window is still one observation per source, and that is the
+honest state rather than a finished job.** `TheWindowIsHonestlySmall` asserts
+it and is **written to start failing**: the day a second observation is
+recorded for any source, it fails and sends the next session back here to
+derive that band from a real distribution. A wide band nobody revisits is the
+exemption-nobody-removes row of
+[`../docs/conventions/forbidden-patterns.md`](../docs/conventions/forbidden-patterns.md),
+and this is the alarm on it.
+
+⛔ **What would actually accumulate the window is not built, and it is not
+this entry.** Nothing records per-source volume over time: `experiments/19` has
+two committed runs and **both read the same pinned fixtures**, so they are one
+observation rather than two, and the publisher fetches every upstream eight
+times a day while keeping none of the counts. That is
+[T-103](sources.md)'s shape -- provenance snapshots are not retained -- and it
+is what turns this entry's alarm into work somebody can do.
+
 
 ---
 

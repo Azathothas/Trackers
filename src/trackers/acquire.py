@@ -168,12 +168,12 @@ def validate_counts(source: Source, n: int) -> tuple[Outcome, str]:
     if n < source.expected_min:
         return (Outcome.REJECTED,
                 f"{n} entries is below the provisional floor "
-                f"{source.expected_min} (observed {source.observed_20260829} "
+                f"{source.expected_min} (observed {source.observed} "
                 f"on 2026-08-29): suspicious reduction")
     if n > source.expected_max:
         return (Outcome.REJECTED,
                 f"{n} entries is above the provisional ceiling "
-                f"{source.expected_max} (observed {source.observed_20260829} "
+                f"{source.expected_max} (observed {source.observed} "
                 f"on 2026-08-29): suspicious increase")
     return Outcome.OK, ""
 

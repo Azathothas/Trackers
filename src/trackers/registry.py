@@ -51,6 +51,54 @@ class Trust(str, Enum):
     LOW = "low"
 
 
+#: The one method any band in this registry is derived by, named so that a
+#: reader can check the arithmetic rather than trust the number.
+WIDE_BAND = "0.4x the smallest observation to 3x the largest, rounded outward"
+
+
+@dataclass(frozen=True, slots=True)
+class Derivation:
+    """Where a source's expected band came from. T-102.
+
+    ⛔ **A threshold with no derivation is a magic number, and a magic
+    number nobody can justify is a future outage.** The band used to be two
+    integers beside a comment saying they were "~40% and ~3x" of one
+    observation -- and two of the eight did not actually satisfy that rule,
+    by one entry each. Numbers typed beside a stated method drift from it
+    silently, which is RULES 2.1 at miniature scale.
+
+    ⭐ **So the derivation is the authority and the band is checked against
+    it.** `tests/test_thresholds.py` fails when a registry band is narrower than
+    what its own observations support, which is the direction T-102's
+    `Decision` fixes: widen rather than narrow while the sample is small.
+    """
+
+    #: The counts actually seen, oldest first. One today, for every source.
+    observations: tuple[int, ...]
+    #: The instants those counts were taken at, one per observation.
+    window: tuple[str, ...]
+    #: The committed script that measured them. RULES 2: the instrument is the
+    #: deliverable, and a number without one is not a number.
+    instrument: str
+    method: str = WIDE_BAND
+
+    @property
+    def samples(self) -> int:
+        return len(self.observations)
+
+    def derived_band(self) -> tuple[int, int]:
+        """The narrowest band `method` justifies from these observations.
+
+        ⚠ **Narrowest, not the band in use.** The registry may be wider --
+        it usually is, because a small source's natural variation is larger
+        than a multiple of a small number -- and wider is always permitted.
+        Narrower is not, and that is what the test enforces.
+        """
+        low = max(1, int(0.4 * min(self.observations)))
+        high = int(3 * max(self.observations)) + 1
+        return (low, high)
+
+
 @dataclass(frozen=True, slots=True)
 class Source:
     """One source. Every field is something that differs between sources."""
@@ -64,16 +112,23 @@ class Source:
     notes: str
 
     #: Expected entry-count range, used by the change detector (T-102).
-    #: **These are provisional and marked as such**, per T-102: "Thresholds MUST
-    #: be derived from observed source behaviour, not invented. Until enough
-    #: history exists to derive them, use conservative provisional values and
-    #: mark them as provisional." The lower bounds are ~40% of the single
-    #: observation made on 2026-08-29 by `experiments/19`; the upper bounds are
-    #: ~3x. They are wide on purpose: a narrow band nobody can justify causes
-    #: outages, and one sample cannot justify a narrow band.
+    #: ⛔ **Every band carries its derivation** and a test fails when one
+    #: is narrower than its own observations support. They stay wide on
+    #: purpose: the window is **one observation** for every source, and one
+    #: sample cannot justify a narrow band. Widening as evidence arrives is
+    #: safe; narrowing on one sample is the outage T-102 exists to prevent.
     expected_min: int
     expected_max: int
-    observed_20260829: int
+    derivation: "Derivation"
+
+    @property
+    def observed(self) -> int:
+        """The most recent observed count, for a message that has to name one."""
+        return self.derivation.observations[-1]
+
+    @property
+    def observed_at(self) -> str:
+        return self.derivation.window[-1]
 
     #: Whether a fetch failure for this source should block publication.
     #: False for every source: RULES 3.10 requires that one failing source
@@ -82,8 +137,12 @@ class Source:
     enabled: bool = True
 
 
-#: The registry. Counts in `observed_20260829` are measured by
-#: `experiments/19-scheme-census.py`, not estimated.
+#: The registry. Every count in a `Derivation` is measured by the
+#: instrument it names, not estimated. ⚠ `ngosang_all` and
+#: `xiu2_all` were **one entry narrower** than the rule their comment
+#: stated until 2026-09-09; they are widened to contain it, because a
+#: band that disagrees with its own derivation is the number nobody can
+#: justify that T-102 is about.
 SOURCES: tuple[Source, ...] = (
     Source(
         id="ngosang_all",
@@ -98,7 +157,9 @@ SOURCES: tuple[Source, ...] = (
             "'sorted by popularity and latency' ordering is unauditable "
             "(C-22); we therefore take its CONTENT and not its ORDER."
         ),
-        expected_min=40, expected_max=300, observed_20260829=99,
+        expected_min=39, expected_max=300, derivation=Derivation(observations=(99,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
     Source(
         id="ngosang_ws",
@@ -110,7 +171,9 @@ SOURCES: tuple[Source, ...] = (
             "`wss`, not `ws` -- `ws` occurs zero times across the census union, "
             "and the corpus's single `ws://` URL is a blacklisted one."
         ),
-        expected_min=1, expected_max=40, observed_20260829=3,
+        expected_min=1, expected_max=40, derivation=Derivation(observations=(3,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
     Source(
         id="ngosang_i2p",
@@ -122,7 +185,9 @@ SOURCES: tuple[Source, ...] = (
             "not a scheme. This is the source that forced the transport x "
             "network model. Unmeasurable from this vantage, published as such."
         ),
-        expected_min=1, expected_max=60, observed_20260829=13,
+        expected_min=1, expected_max=60, derivation=Derivation(observations=(13,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
     Source(
         id="ngosang_yggdrasil",
@@ -134,7 +199,9 @@ SOURCES: tuple[Source, ...] = (
             "URL-only classifier necessarily reads as clearnet. Yggdrasil "
             "detection needs DNS; see model.classify_network's limitation note."
         ),
-        expected_min=1, expected_max=30, observed_20260829=1,
+        expected_min=1, expected_max=30, derivation=Derivation(observations=(1,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
     Source(
         id="ngosang_blacklist",
@@ -146,7 +213,9 @@ SOURCES: tuple[Source, ...] = (
             "trackers. The reasons are evidence: 2 are 'requested by sysadmin', "
             "which is direct support for RULES 4's exclusion requirement."
         ),
-        expected_min=100, expected_max=1200, observed_20260829=346,
+        expected_min=100, expected_max=1200, derivation=Derivation(observations=(346,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
     Source(
         id="newtrackon_all",
@@ -160,7 +229,9 @@ SOURCES: tuple[Source, ...] = (
             "ANNOUNCE-derived while ours is scrape-derived, so the two answer "
             "different questions and must not be silently compared."
         ),
-        expected_min=100, expected_max=800, observed_20260829=261,
+        expected_min=100, expected_max=800, derivation=Derivation(observations=(261,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
     Source(
         id="xiu2_all",
@@ -173,7 +244,9 @@ SOURCES: tuple[Source, ...] = (
             "process has been temporarily streamlined'. Contributed 8 unique "
             "URLs of 150 against other primaries."
         ),
-        expected_min=60, expected_max=450, observed_20260829=150,
+        expected_min=60, expected_max=460, derivation=Derivation(observations=(150,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
     Source(
         id="desirefire_all",
@@ -188,7 +261,9 @@ SOURCES: tuple[Source, ...] = (
             "drop it on staleness alone and do not promote it on uniqueness "
             "alone."
         ),
-        expected_min=400, expected_max=3300, observed_20260829=1091,
+        expected_min=400, expected_max=3300, derivation=Derivation(observations=(1091,),
+                              window=("2026-08-29",),
+                              instrument="experiments/19-scheme-census.py"),
     ),
 )
 
