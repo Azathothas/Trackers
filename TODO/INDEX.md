@@ -96,7 +96,7 @@ pretending to be one.
 | [T-041](scoring.md) | P2 | scoring | **done** | History must distinguish seven shapes over time, not seven values |
 | [T-042](scoring.md) | P2 | scoring | **done** | The state size over five years has never been computed |
 | [T-044](scoring.md) | P2 | scoring | open | No scoring model has been chosen |
-| [T-045](scoring.md) | P2 | scoring | open | Ranking must not use the latest instantaneous result |
+| [T-045](scoring.md) | P2 | scoring | **done** | Ranking must not use the latest instantaneous result |
 | [T-047](scoring.md) | P2 | scoring | **done** | A hardcoded tracker unreachable for 48 hours must raise an issue, not vanish |
 | [T-062](publication.md) | P2 | publication | **done** | Nothing is versioned, so a consumer cannot tell what they received |
 | [T-064](publication.md) | P2 | publication | **done** | Release channel semantics rest on three unverified platform claims |
@@ -127,7 +127,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 74 entries, 20 open, 0 blocked, 54 done
+**Counts:** 74 entries, 19 open, 0 blocked, 55 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -136,9 +136,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 0 | 0 | 8 | 8 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 14 | 0 | 22 | 36 |
+| P2 | 13 | 0 | 23 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **20** | **0** | **54** | **74** |
+| **All** | **19** | **0** | **55** | **74** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

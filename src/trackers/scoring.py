@@ -1,4 +1,4 @@
-"""The six scoring invariants, as executable properties. T-043.
+"""The seven scoring invariants, as executable properties. T-043 and T-045.
 
 ⛔ **There is no scoring model here, deliberately.** Choosing one is T-044 and
 decision D4, and it stays open because no tracker has enough history to fit a
@@ -11,12 +11,12 @@ the form
 
     scorer(checks: int, successes: int, measurable: bool) -> float | None
 
-can be put through `check_invariants` and told which of the six it breaks,
+can be put through `check_invariants` and told which of the seven it breaks,
 before anybody builds on it. `tests/test_scoring_invariants.py` runs the
 obvious candidates through it, and the result is a finding rather than a
 formality: the rate this project already computes **fails I2**.
 
-THE SIX
+THE SEVEN
 
     I1  more successes at the same rate never lowers the score
     I2  one success must not outrank hundreds at an equal-or-better rate
@@ -24,11 +24,22 @@ THE SIX
     I4  adding a failure never raises the score
     I5  an unmeasurable tracker is never scored as if measured
     I6  score is invariant to input ordering and to source ordering
+    I7  no single observation decides the order, and its power must
+        FALL as the evidence grows. ⭐ **T-045's prohibition,
+        made checkable**: "MUST NOT rank on the latest instantaneous
+        result" is a rule about inputs, and this is the consequence a
+        function handed only aggregates can be tested against
 
 ⚠ **I5 and I6 are checked here on the scoring path only.** `Tracker.sort_key`
 is already total and `aggregate()` already sorts by source id; re-testing those
 would be two checks enforcing one rule, which the entry's `Decision` says not
 to do.
+
+⛔ **The `Scorer` signature is itself a guard, and it is the
+stronger half of T-045.** It takes `(checks, successes, measurable)` and
+has no parameter that could carry the latest observation, so a model
+reaching this interface **cannot** rank on one. I7 is what survives
+somebody widening the signature.
 
 ⛔ **A scorer that returns `None` for "cannot say" is the honest shape**, and
 the invariants treat it as such rather than as a zero. A tracker nobody has
@@ -145,6 +156,62 @@ def _i6_ordering_is_invariant_to_presentation(scorer: Scorer) -> list[str]:
     return out
 
 
+def _i7_no_single_observation_decides(scorer: Scorer) -> list[str]:
+    """⛔ **T-045's prohibition, made checkable.**
+
+    *"MUST NOT rank on the latest instantaneous result"* is a rule about
+    *inputs*, and a rule about inputs cannot be enforced against a function
+    that is handed aggregates. What **can** be enforced is the property that
+    makes the prohibition matter: as the evidence grows, no one observation may
+    keep the same power over the score.
+
+    So the test is on the **sensitivity** `|score(c, s) - score(c, s - 1)|`,
+    and the requirement is that it does not grow with `c`. A model that reads
+    the last result has a sensitivity of 1 at every sample size; a model over
+    the history has one that decays like `1/c`. The difference is visible
+    without ever asking the scorer where its numbers came from.
+
+    ⚠ **This rejects a scorer somebody would plausibly write.** "Only trackers
+    that have never failed" -- `1.0 if s == c else 0.0` -- has a sensitivity of
+    1 forever: a single failure on a tracker with a thousand successes decides
+    the whole ordering, which is the pathology under a different name.
+
+    ⭐ **And it is one of two locks, not the only one.** The `Scorer` protocol
+    takes `(checks, successes, measurable)` and has **no way to express** "the
+    latest result", so a model reaching this interface cannot rank on one even
+    if its author wanted to. That is the structural half; this is the half that
+    survives somebody widening the signature.
+    """
+    out = []
+    sensitivities: list[tuple[int, float]] = []
+    for checks in (4, 10, 100, 1000):
+        with_all = _rank(scorer, checks, checks)
+        one_worse = _rank(scorer, checks, checks - 1)
+        for value in (with_all, one_worse):
+            if value in (float("-inf"), float("inf")):
+                # `None` scores are I5's business, not this one.
+                break
+        else:
+            sensitivities.append((checks, abs(with_all - one_worse)))
+    for (small, low), (large, high) in zip(sensitivities, sensitivities[1:]):
+        # ⚠ A tolerance, because a model may legitimately plateau; what is
+        # forbidden is one observation mattering MORE as evidence accumulates.
+        if high > low + 1e-9:
+            out.append(
+                f"one observation moves the score by {high} at {large} checks "
+                f"and only {low} at {small}: a single result gains power as "
+                f"the history grows, which is T-045's prohibition")
+    if sensitivities and len(sensitivities) > 1:
+        first, last = sensitivities[0][1], sensitivities[-1][1]
+        if first > 0 and last >= first:
+            out.append(
+                f"one observation moves the score by {last} at "
+                f"{sensitivities[-1][0]} checks, no less than the {first} it "
+                f"moves it at {sensitivities[0][0]}: the evidence never "
+                f"outweighs the newest result")
+    return out
+
+
 _CHECKS: dict[str, Callable[[Scorer], list[str]]] = {
     "I1": _i1_more_successes_never_lowers,
     "I2": _i2_one_success_never_outranks_hundreds,
@@ -152,6 +219,7 @@ _CHECKS: dict[str, Callable[[Scorer], list[str]]] = {
     "I4": _i4_a_failure_never_raises,
     "I5": _i5_unmeasurable_is_never_scored_as_measured,
     "I6": _i6_ordering_is_invariant_to_presentation,
+    "I7": _i7_no_single_observation_decides,
 }
 
 INVARIANT_NAMES: tuple[str, ...] = tuple(sorted(_CHECKS))
@@ -163,7 +231,7 @@ def violations_of(scorer: Scorer, invariant: str) -> list[str]:
 
 
 def check_invariants(scorer: Scorer) -> dict[str, list[str]]:
-    """All six, as `{invariant: violations}`. Empty lists throughout is a pass.
+    """All seven, as `{invariant: violations}`. Empty lists throughout is a pass.
 
     ⛔ **Returns the violations rather than a boolean.** A model that fails is
     not simply rejected: which invariant it fails is the argument for the next

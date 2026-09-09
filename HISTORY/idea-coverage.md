@@ -122,7 +122,7 @@ reference to `IDEA.md`, `IDEA.rev1.md` or `PROMPT.md` outside this file.
 | IDEA section 14.5 History housekeeping | T-081; T-122 (pin target consequence) |
 | IDEA section 15. Scoring and ranking | TODO/scoring.md |
 | IDEA section 15.1 Requirements | T-045 |
-| IDEA section 15.2 Invariants -- the part that actually matters | T-043, all six named |
+| IDEA section 15.2 Invariants -- the part that actually matters | T-043, all six named; T-045 added a seventh |
 | IDEA section 15.3 Model -- RECOMMENDED, and expected to be challenged | T-044 (D4) |
 | IDEA section 16. Categories | T-046; T-047; T-106 |
 | IDEA section`stable.txt` | T-046 (measured evidence; bootstrap problem) |

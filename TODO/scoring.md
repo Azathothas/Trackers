@@ -267,7 +267,7 @@ A tracker seen once and answering once ranks level with one seen five hundred
 times. Publishing that would be ranking a single lucky observation as
 equivalent to months of evidence, which is what I2 exists to forbid.
 
-**A Wilson lower bound passes all six**, and that is recorded as an observation
+**A Wilson lower bound passes all seven**, and that is recorded as an observation
 rather than as a choice -- [T-044](scoring.md) owns the decision and now
 inherits a shortlist with a reason attached. ⚠ The candidates live in the test
 file rather than in `src/`, because a scorer in the library is a model this
@@ -310,7 +310,7 @@ Prove:       The model is documented, versioned, and passes every T-043 test;
 ⭐ **The shortlist is narrower than it was, measured on 2026-09-09 by
 [T-043](scoring.md).** The plain success rate **fails invariant I2**: 1 of 1
 and 500 of 500 both score 1.0, so one lucky observation ranks level with months
-of evidence. A **Wilson lower bound** passes all six and has no free parameter
+of evidence. A **Wilson lower bound** passes all seven and has no free parameter
 beyond the confidence level. That is not a decision -- this entry still owns it,
 and D4 stays open until there is enough history to fit anything against -- but
 whatever is chosen now has to clear `tests/test_scoring_invariants.py` first.
@@ -324,7 +324,7 @@ Source:      the brief's section 15.1 (ranking requirements)
 Category:    scoring
 Priority:    P2
 Effort:      S
-Status:      open
+Status:      done
 
 Problem:     **MUST NOT rank on the latest instantaneous result.** Ranking on
              the most recent check is the failure mode that makes a reliability
@@ -338,6 +338,46 @@ Approach:    Ranking is deterministic, reproducible, documented, testable and
 Prove:       A test that two runs over identical history produce an identical
              ordering including ties, and that the scoring version is present in
              the output metadata.
+
+
+**Done.** 2026-09-09.
+`python3 -m unittest tests.test_scoring_invariants` -> **19 tests, OK**, and `scoring_version` is in the published `metadata.json`
+(currently `null`, which is the honest value while no model exists --
+`tests/test_versions.py` asserts both halves).
+
+⭐ **The prohibition is now enforced twice, and the stronger lock is
+structural.** `Scorer` takes `(checks, successes, measurable)` and has **no
+parameter that could carry the latest observation**, so a model reaching this
+interface cannot rank on one however much its author intended to. A test
+asserts that signature, so widening it fails loudly and sends somebody back to
+this entry.
+
+⛔ **I7 is the half that survives a wider signature**, and it works by
+testing the *consequence* rather than the input: the sensitivity
+`|score(c, s) - score(c, s-1)|` must not grow with `c`. A model reading the
+last result has sensitivity 1 at every sample size; a model over the history
+has one that decays like `1/c`, and the difference is visible without asking
+the scorer where its numbers came from.
+
+⭐ **It rejects a candidate somebody would plausibly write.** "Recommend
+only trackers that have never failed" -- `1.0 if successes == checks else 0.0`
+-- is a sentence that sounds prudent and has a sensitivity of **1.0 at a
+thousand checks**: one failure against a thousand successes decides the whole
+ordering, which is this entry's prohibition wearing a different name. The test
+that plants it is what stops I7 being vacuous.
+
+⚠ **What ranks today: nothing, and that is a finding rather than a gap.**
+The published order is `Tracker.sort_key`, which reads the URL and the
+transport and **cannot see health at all** -- so the latest instantaneous
+result is not ordering anything, by construction rather than by care. When
+[T-044](scoring.md) chooses a model, the test asserting that will have to
+change deliberately and visibly.
+
+⚠ **A Wilson lower bound passes all seven**, which is recorded as an
+observation about the candidate and **not** as a choice. D4 stays open: the
+deepest history in the published state is four observations, and fitting a
+model against that is fitting it to noise.
+
 
 ---
 
