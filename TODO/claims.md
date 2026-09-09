@@ -623,7 +623,7 @@ Source:      operator correction, 2026-08-29; RULES 4.1
 Category:    claims
 Priority:    P0
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     The probe sends a self-identifying User-Agent naming the project.
              **Trackers are reported to block clients whose UA does not resemble
@@ -681,6 +681,78 @@ Prove:       `python3 experiments/26-user-agent-block-rate.py --expect-arms`
              exits 0, `HISTORY/claims.md` carries `C-56` with the per-arm rates
              and sample counts, and RULES 4.1 is rewritten to state the
              measured answer instead of an open question.
+
+**Done.** 2026-09-09. `python3 experiments/26-user-agent-block-rate.py --series
+experiments/results/26-*.json --expect-arms` -> **exit 0**, `C-56` is
+`REFUTED`, and RULES 4.1 states the measured answer under its own heading.
+
+⭐ **THE ANSWER: the descriptive User-Agent is not being refused, and the
+weakest arm is sending none at all.** Three runs against trackers a committed
+sweep recorded `live`, **59 distinct subjects** between `2026-09-08T15:51Z` and
+`2026-09-09T02:23Z`, one arm per tracker per run:
+
+| arm | answered | contacted | rate |
+| --- | --- | --- | --- |
+| absent | 22 | 26 | **0.846** |
+| client_like | 23 | 24 | 0.958 |
+| descriptive | **34** | **35** | **0.971** |
+| minimal | 26 | 26 | 1.000 |
+
+Spread **0.154**, under the instrument's 0.2 threshold, and **every arm is at
+or above the 20 contacted subjects it requires before it will compare them** --
+which is the bar that had refused every earlier reading of this.
+
+⭐ **The paired half is the design's own control and it points the same
+way.** Over the **29** subjects seen under two or more arms, **no discordant
+pair favours a client-like identity over the descriptive one**: `client_like`
+vs `descriptive` is 13 both answered, 1 neither, **0 either way**. The only
+discordant cells run against `absent` -- two trackers answered `descriptive`
+and not `absent`, one answered `minimal` and not `absent`.
+
+⛔ **What closed this was not another probe; it was reading the series
+instead of the runs.** Each rotation gives a tracker one arm, because four in
+one run is four times RULES 4's ceiling, so the comparison belongs to the
+series and **no single run of it could ever have answered**. Every run before
+today was individually correct to refuse. `--series` aggregates the committed
+results, contacts nobody, and applies the same `min_per_arm` bar.
+
+⛔ **The strata are reported separately and never pooled.** The pilot drew
+200 subjects in corpus order and **174 answered nobody**; adding those to the
+live draws would produce an arm whose rate is decided by how many dead trackers
+fell into it -- a measurement of the corpus wearing the shape of a bigger
+sample. Its own numbers are kept and quotable on their own terms: absent
+1/50, client_like 3/47, descriptive 1/45, minimal 3/55, spread 0.044.
+
+⚠ **Three things this does not settle, and none of them is a deferral.**
+
+* **One residential vantage, about eleven hours.** `27.34.69.61`, not a
+  runner -- which is the first non-datacenter vantage this project has measured
+  anything from, and is a condition rather than a bonus. RULES 2: one machine
+  on one day.
+* **`C-63`'s second axis is unmeasured and unmeasurable on this path.** A
+  BEP 48 scrape carries `info_hash` and nothing else; there is no announce code
+  path to carry a `peer_id` (RULES 4). If trackers filter on the BEP 20 prefix,
+  ours carry **none at all**, and the consequence runs the other way from the
+  one this entry was opened to check.
+* **`C-68` is unexplained rather than refuted.** newTrackon impersonates
+  qBittorrent on both axes, deliberately, over years. This measurement does not
+  tell us what its operator saw, and a stronger prior than ours would be
+  somebody re-running `--series` from a second vantage.
+
+⚠ **Rotation 3 was not run and the entry does not wait on it.** The design
+puts every tracker through every arm over four rotations; 29 of 59 subjects
+have seen two or more, and the remaining rotation would tighten the paired half
+rather than change the pooled verdict, which already clears the instrument's
+own bar. The 56 subjects contacted at `02:23Z` are inside D7's interval, so the
+next rotation is a matter of waiting rather than of work -- and
+`--state`/`--exclude` now enforce that interval by the same
+`politeness.too_soon_after` the sweep uses ([T-087](operations.md)), rather
+than by naming sweep files by hand.
+
+
+---
+
+**What follows is the record of how it got here, kept because RULES 7 says a disproved premise keeps its title.**
 
 **The instrument exists and has run once. The entry stays open**, because one
 rotation over a subject set that mostly answers nobody does not settle a

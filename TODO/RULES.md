@@ -284,6 +284,14 @@ This project probes other people's servers. These are not preferences.
 
 ### 4.1 The User-Agent question is open, and an earlier version of this file got it wrong
 
+⭐ **ANSWERED 2026-09-09, and the title stays because RULES 7 says a disproved
+premise keeps its title.** The question below was open for eleven days and is
+not open now: **the descriptive User-Agent is not being refused**, and the
+weakest arm is sending none at all. The measurement, its conditions and the two
+things it does **not** settle are the first bullet under *So the rule is now*.
+Everything between here and there is the reasoning that made it a question,
+kept because it is why the requirement was withdrawn.
+
 An earlier revision asserted, as a non-negotiable, that "the probe identifies
 itself with a descriptive User-Agent containing the project URL, so an operator
 who objects can find us." **That was wrong twice over and is withdrawn.**
@@ -336,9 +344,33 @@ whose BEP 20 prefix is what a tracker's filtering rules are written against.
   gap in the argument below: withdrawing the UA requirement on the grounds that
   BEP 34 serves the end better only holds once BEP 34 serves it at all, and it
   now does.
-* **The UA string itself is an open empirical question**, not a rule.
-  [T-012](claims.md) measures the block rate by UA before anything is settled.
-  Until it reports, do not treat either choice as established.
+* **The UA string is measured, and the descriptive one is not being refused.**
+  [T-012](claims.md) reported on 2026-09-09. Three runs of `experiments/26-user-agent-block-rate.py`
+  against 59 trackers a committed sweep had recorded `live`, one arm per tracker
+  per run because four in one run is four times the ceiling this section sets:
+  descriptive **34/35 = 0.971**, minimal **26/26 = 1.000**, client_like
+  **23/24 = 0.958**, absent **22/26 = 0.846**, spread **0.154**. ⭐ **The weakest
+  arm is sending no User-Agent at all**, and over the 29 subjects seen under two
+  or more arms **no discordant pair favours a client-like identity over the
+  descriptive one**. So the descriptive string costs no measurement accuracy
+  here, and the "identifiable UA buys a measurement artefact" reasoning above,
+  which was reported rather than measured, does not hold against these
+  trackers. `C-56`.
+
+  ⚠ **What that does and does not settle.** It is one residential vantage
+  over about eleven hours, and the subjects are trackers that were answering --
+  deliberately, because a tracker that answers nobody cannot express a
+  preference, and reported separately from the pilot's corpus-order draw rather
+  than pooled with it. ⛔ `C-63`'s second axis stays **unmeasured and
+  unmeasurable on this path**: a BEP 48 scrape carries `info_hash` and nothing
+  else, this project sends no `peer_id`, and if trackers filter on the BEP 20
+  prefix then ours carry none at all. And `C-68` -- newTrackon impersonating
+  qBittorrent on both axes -- is **unexplained rather than refuted**: the
+  operator of the closest analogue still made the other choice, and this does
+  not tell us what they saw.
+
+  ⭐ **The end has not changed and does not depend on this.** BEP 34 is the
+  exclusion mechanism, it is automatable, and it needs no UA.
 * **The line that does not move**: never use any identity, UA or otherwise, to
   **evade an exclusion we have already been given** -- a BEP 34 denial, a
   blacklist "requested by sysadmin", or a direct request. Circumventing an

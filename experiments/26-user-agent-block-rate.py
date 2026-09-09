@@ -91,7 +91,10 @@ import _conditions as C  # noqa: E402
 from generate import load_corpus  # noqa: E402
 from trackers.bep34 import Resolver  # noqa: E402
 from trackers.model import Transport  # noqa: E402
+from trackers.politeness import (DEFAULT_INTERVAL_SECONDS,  # noqa: E402
+                                 too_soon_after)
 from trackers.probe import DEFAULT_USER_AGENT, ProbeConfig, probe  # noqa: E402
+from trackers.state import read_state  # noqa: E402
 from trackers.vantage import detect as detect_vantage  # noqa: E402
 
 FIXTURES = os.path.join(REPO, "tests", "fixtures", "sources")
@@ -165,9 +168,8 @@ def read_live_urls(paths) -> set[str]:
     return out - {""}
 
 
-def read_contacted_urls(paths) -> set[str]:
-    """Every URL somebody has already contacted, from any record this project
-    writes.
+def read_last_contact(paths) -> dict[str, str]:
+    """When each URL was last contacted, from any record this project writes.
 
     ⛔ **Both shapes, and the second one became load-bearing on 2026-09-08.**
     This read only this experiment's own results, which was enough while the
@@ -178,18 +180,155 @@ def read_contacted_urls(paths) -> set[str]:
     obeying D7 on their own and contacting one tracker between them is still a
     breach of D7.
 
-        {"results": {"rows": [...]}}   an experiment result
-        {"trackers": [...]}            a sweep's health records
+        {"conditions": {"utc": ...}, "results": {"rows": [...]}}   this
+        {"generated_at": ..., "trackers": [...]}                   a sweep
+
+    ⭐ **An instant, not a set, and that is T-087's rule reaching here.** The
+    earlier version returned "every URL these files mention" and excluded them
+    **forever**, which is stricter than D7 and wrong in the direction that
+    silently shrinks the subject set: a tracker contacted last Friday can be
+    asked today, and dropping it costs the comparison a subject for nothing.
+    D7's question is *how long ago*, so the answer has to be a time.
     """
-    out: set[str] = set()
+    out: dict[str, str] = {}
     for path in paths:
         with open(path, encoding="utf-8") as handle:
             doc = json.load(handle)
         rows = list((doc.get("results") or {}).get("rows") or [])
-        rows += list(doc.get("trackers") or [])
+        at = str((doc.get("conditions") or {}).get("utc") or "")
+        sweep_rows = list(doc.get("trackers") or [])
+        if sweep_rows:
+            rows += sweep_rows
+            at = str(doc.get("generated_at") or at)
         for row in rows:
-            out.add(str(row.get("url", "")))
-    return out - {""}
+            url = str(row.get("url", ""))
+            # A sweep record carries its own instant; an experiment row does
+            # not, so the run's is the honest stand-in for every row in it.
+            when = str(row.get("observed_at") or at)
+            if url and when and when > out.get(url, ""):
+                out[url] = when
+    return out
+
+
+def read_state_last_seen(path: str) -> dict[str, str]:
+    """`last_seen` per tracker from the published history.
+
+    ⭐ **This is why `--exclude` no longer has to name every sweep.** The
+    `data` branch's `state.jsonl` already records when every tracker was last
+    contacted by any sweep, so pointing at it covers the whole schedule --
+    including runs whose artefacts have expired. Rotation 1 had to be given two
+    sweep files by hand and would have missed a third.
+
+    ⛔ It does **not** cover this experiment's own contacts: results here are
+    not folded into the history, so `--exclude` still carries them.
+    """
+    histories, _ = read_state(path)
+    return {url: h.last_seen for url, h in histories.items()}
+
+
+def stratum_of(result: dict) -> str:
+    """Which subject population a run drew from.
+
+    ⛔ **The strata are not pooled, and refusing to pool them is the whole
+    point of this function.** The pilot took the first 200 HTTP trackers in
+    corpus order and **174 of them answered nobody**; every run since has drawn
+    from trackers a sweep recorded `live`. Adding those together gives an arm
+    whose rate is decided by how many dead trackers happened to fall in it,
+    which is a measurement of the corpus and not of the identity -- and it
+    would look like a bigger sample, which is exactly what makes it dangerous.
+
+    RULES 2: a number carries its conditions or it is not a number.
+    """
+    selection = result.get("subject_selection") or {}
+    return "live-from-sweep" if selection.get("from_sweep") else "corpus-order"
+
+
+def aggregate_series(paths) -> dict:
+    """Pool the rotations into the comparison the design actually specifies.
+
+    ⭐ **The pairing lives across runs, not inside one.** RULES 4's ceiling
+    permits one request per tracker per interval, so a run gives each tracker
+    exactly one arm; over `len(ARMS)` rotations every tracker has seen every
+    arm. That makes the series -- not any run in it -- the unit of comparison,
+    and until this existed each run was being read on its own and each was
+    correctly refusing to answer.
+
+    Two views come back, and they answer different questions:
+
+      `pooled`   answered/contacted per arm across the stratum. Simple, and
+                 confounded by which trackers happened to land in which arm.
+      `paired`   restricted to subjects seen under two or more arms, which is
+                 the design's own control: the same tracker, different
+                 identities. Discordant counts are reported and no test
+                 statistic is computed -- at these sample sizes a p-value
+                 would be precision on the wrong quantity.
+    """
+    by_stratum: dict[str, dict] = {}
+    for path in paths:
+        with open(path, encoding="utf-8") as handle:
+            doc = json.load(handle)
+        result = doc.get("results") or {}
+        stratum = by_stratum.setdefault(stratum_of(result), {
+            "runs": [], "arms": {name: Counter() for name in ARMS},
+            "by_url": {}})
+        stratum["runs"].append({
+            "path": os.path.basename(path),
+            "utc": (doc.get("conditions") or {}).get("utc"),
+            "rotation": result.get("rotation"),
+            "subjects": len(result.get("rows") or []),
+        })
+        for row in result.get("rows") or []:
+            arm, outcome = str(row.get("arm")), str(row.get("outcome"))
+            if arm not in ARMS or outcome not in OUTCOMES:
+                continue
+            stratum["arms"][arm][outcome] += 1
+            stratum["by_url"].setdefault(str(row.get("url")), {})[arm] = outcome
+
+    out: dict[str, dict] = {}
+    for name, stratum in sorted(by_stratum.items()):
+        pooled = {}
+        for arm, counts in stratum["arms"].items():
+            contacted = sum(v for k, v in counts.items() if k != "not_contacted")
+            answered = counts["tracker_semantic"]
+            pooled[arm] = {
+                "answered": answered, "contacted": contacted,
+                "rate": round(answered / contacted, 4) if contacted else None,
+                "outcomes": {k: counts[k] for k in OUTCOMES if counts[k]},
+            }
+        # The paired half: the same tracker under more than one identity.
+        paired_subjects = {url: arms for url, arms in stratum["by_url"].items()
+                           if len(arms) > 1}
+        discordant: dict[str, dict[str, int]] = {}
+        for url, arms in paired_subjects.items():
+            for a in sorted(arms):
+                for b in sorted(arms):
+                    if a >= b:
+                        continue
+                    key = f"{a} vs {b}"
+                    cell = discordant.setdefault(
+                        key, {"both_answered": 0, "neither": 0,
+                              f"only_{a}": 0, f"only_{b}": 0})
+                    ok_a = arms[a] == "tracker_semantic"
+                    ok_b = arms[b] == "tracker_semantic"
+                    if ok_a and ok_b:
+                        cell["both_answered"] += 1
+                    elif ok_a:
+                        cell[f"only_{a}"] += 1
+                    elif ok_b:
+                        cell[f"only_{b}"] += 1
+                    else:
+                        cell["neither"] += 1
+        rates = [r["rate"] for r in pooled.values() if r["rate"] is not None]
+        out[name] = {
+            "runs": stratum["runs"],
+            "pooled": pooled,
+            "spread": (round(max(rates) - min(rates), 4)
+                       if len(rates) > 1 else None),
+            "subjects": len(stratum["by_url"]),
+            "subjects_seen_under_two_or_more_arms": len(paired_subjects),
+            "discordant": discordant,
+        }
+    return out
 
 
 def classify_result(result) -> str:
@@ -286,10 +425,18 @@ def main() -> int:
                              "the load at the same time")
     parser.add_argument("--exclude", nargs="*", default=None,
                         metavar="RESULT",
-                        help="skip any URL these earlier results contacted. "
-                             "⛔ RULES 4's ceiling is per tracker per its "
-                             "stated interval, and two runs in one afternoon "
-                             "are two probes inside it")
+                        help="skip any URL these earlier results contacted "
+                             "within D7's interval. ⛔ RULES 4's ceiling is "
+                             "per tracker per its stated interval, and two "
+                             "runs in one afternoon are two probes inside it. "
+                             "⭐ It is an interval and not a blacklist: a "
+                             "tracker contacted last week is a subject again")
+    parser.add_argument("--state", default=None, metavar="STATE_JSONL",
+                        help="the published history, which records when every "
+                             "sweep last contacted each tracker. ⭐ Covers the "
+                             "whole schedule at once, so a rotation no longer "
+                             "has to be handed each sweep file by name and "
+                             "cannot miss one (T-087)")
     parser.add_argument("--timeout", type=float, default=8.0)
     parser.add_argument("--offline", action="store_true",
                         help="run the control only and contact no tracker")
@@ -300,6 +447,13 @@ def main() -> int:
     parser.add_argument("--difference-threshold", type=float, default=0.2,
                         help="how far two arms' answer rates may differ before "
                              "--expect-arms calls it material")
+    parser.add_argument("--series", nargs="*", default=None, metavar="RESULT",
+                        help="aggregate these committed results into the "
+                             "comparison the design specifies, and contact "
+                             "nobody. ⭐ The pairing lives ACROSS rotations "
+                             "because RULES 4 permits one arm per tracker per "
+                             "run, so the series is the unit of comparison and "
+                             "no single run of it could ever have answered")
     parser.add_argument("--min-per-arm", type=int, default=20,
                         help="how many contacted subjects an arm needs before "
                              "its rate is allowed to decide anything. ⛔ Two "
@@ -307,6 +461,66 @@ def main() -> int:
                              "0.29 and mean nothing; a threshold that fires on "
                              "that is precision on the wrong quantity")
     args = parser.parse_args()
+
+    if args.series:
+        # ⛔ Reads committed evidence and opens no socket. The control is not
+        # run: there is no request to control for, and reporting a tier-0 pass
+        # beside numbers nothing measured today would be a green tick over an
+        # experiment that did not happen.
+        series = aggregate_series(args.series)
+        thin_by_stratum = {}
+        for name, block in series.items():
+            thin = sorted(arm for arm, row in block["pooled"].items()
+                          if row["contacted"] < args.min_per_arm)
+            thin_by_stratum[name] = thin
+            block["underpowered_arms"] = thin
+            block["supports_a_verdict"] = not thin and len(block["pooled"]) > 1
+        conditions = C.collect(sample_counts={
+            "strata": len(series),
+            "runs": sum(len(b["runs"]) for b in series.values()),
+            "subjects": sum(b["subjects"] for b in series.values()),
+        })
+        C.emit("Does the identity this project sends change what a tracker "
+               "answers? (series aggregate, no tracker contacted)",
+               conditions,
+               {"series": series, "min_per_arm": args.min_per_arm,
+                "difference_threshold": args.difference_threshold,
+                "what_this_is_not": (
+                    "Not a fresh measurement. Every row was measured by a run "
+                    "committed under experiments/results/; this pools them "
+                    "and contacts nobody. Strata are NOT pooled with each "
+                    "other: the pilot drew subjects in corpus order and 174 "
+                    "of 200 answered nobody, so adding it to the live draws "
+                    "would measure the corpus rather than the identity.")},
+               args.out)
+        for name, block in sorted(series.items()):
+            print(f"\nSTRATUM {name}  "
+                  f"{len(block['runs'])} run(s), {block['subjects']} subjects")
+            print(f"ARM           answered  contacted  rate")
+            for arm in sorted(block["pooled"]):
+                row = block["pooled"][arm]
+                rate = "-" if row["rate"] is None else f"{row['rate']:.3f}"
+                print(f"  {arm:12s} {row['answered']:8d}  "
+                      f"{row['contacted']:9d}  {rate}")
+            print(f"  spread {block['spread']}, "
+                  f"{block['subjects_seen_under_two_or_more_arms']} subject(s) "
+                  f"seen under two or more arms")
+            for pair, cell in sorted(block["discordant"].items()):
+                print(f"    paired {pair}: {cell}")
+            if block["underpowered_arms"]:
+                print(f"  ⚠ NO VERDICT: "
+                      f"{', '.join(block['underpowered_arms'])} under "
+                      f"{args.min_per_arm} contacted subjects.")
+        if args.expect_arms:
+            for name, block in sorted(series.items()):
+                spread = block["spread"]
+                if (block["supports_a_verdict"] and spread is not None
+                        and spread > args.difference_threshold):
+                    print(f"\nEXPECTATION FAILED: in stratum {name} the arms "
+                          f"differ by {spread}, over the "
+                          f"{args.difference_threshold} threshold.")
+                    return C.EXIT_MEASURED_AND_FAILED
+        return C.EXIT_MEASURED
 
     control = tier0()
 
@@ -327,9 +541,28 @@ def main() -> int:
                       "probe a set chosen by nothing", file=sys.stderr)
                 return C.EXIT_COULD_NOT_RUN
             subjects = [t for t in subjects if t.url in wanted]
+        # ⛔ ONE RULE, TWO SOURCES OF WHEN. `politeness.too_soon_after` is
+        # what the health sweep enforces (T-087); this experiment contacts the
+        # same trackers and must not enforce a second, differently-wrong
+        # version of the same ceiling. `--state` carries every sweep's last
+        # contact, `--exclude` carries this experiment's own runs, and the
+        # later of the two wins per tracker.
+        contacted: dict[str, str] = {}
+        if args.state:
+            contacted.update(read_state_last_seen(args.state))
         if args.exclude:
-            contacted = read_contacted_urls(args.exclude)
-            subjects = [t for t in subjects if t.url not in contacted]
+            for url, when in read_last_contact(args.exclude).items():
+                if when > contacted.get(url, ""):
+                    contacted[url] = when
+        if contacted:
+            now = C.utc()
+            held = [t for t in subjects
+                    if too_soon_after(contacted.get(t.url), now)]
+            subjects = [t for t in subjects
+                        if not too_soon_after(contacted.get(t.url), now)]
+            print(f"D7 holds {len(held)} of {len(held) + len(subjects)} "
+                  f"subjects contacted within {DEFAULT_INTERVAL_SECONDS}s",
+                  file=sys.stderr)
         subjects.sort(key=lambda t: t.url)
         if args.limit:
             subjects = subjects[:args.limit]

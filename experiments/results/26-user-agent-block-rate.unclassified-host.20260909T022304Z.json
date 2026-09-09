@@ -1,0 +1,545 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "public_ipv4": "27.34.69.61",
+    "public_ipv4_org": "-",
+    "python": "3.13.15",
+    "repo_commit": "7d1a072be8dedce8192bab30b01c217277415bc4-dirty",
+    "sample_counts": {
+      "arms": 4,
+      "rotation": 2,
+      "subjects": 56
+    },
+    "utc": "2026-09-09T02:24:14Z"
+  },
+  "question": "Does the identity this project sends change what a tracker answers?",
+  "results": {
+    "arms": {
+      "absent": {
+        "answered": 12,
+        "contacted": 14,
+        "outcomes": {
+          "no_answer": 1,
+          "not_a_tracker": 1,
+          "tracker_semantic": 12
+        },
+        "rate": 0.8571
+      },
+      "client_like": {
+        "answered": 14,
+        "contacted": 14,
+        "outcomes": {
+          "tracker_semantic": 14
+        },
+        "rate": 1.0
+      },
+      "descriptive": {
+        "answered": 13,
+        "contacted": 14,
+        "outcomes": {
+          "no_answer": 1,
+          "tracker_semantic": 13
+        },
+        "rate": 0.9286
+      },
+      "minimal": {
+        "answered": 14,
+        "contacted": 14,
+        "outcomes": {
+          "tracker_semantic": 14
+        },
+        "rate": 1.0
+      }
+    },
+    "control": {
+      "detail": "4 of 4 arms reached the wire distinctly",
+      "distinct_user_agents": 4,
+      "expected": 4,
+      "ok": true,
+      "received": 4
+    },
+    "difference_threshold": 0.2,
+    "min_per_arm": 20,
+    "peer_id_axis": "NOT MEASURED AND NOT MEASURABLE ON THIS PATH. A BEP 48 scrape carries info_hash and nothing else; peer_id is an announce parameter and this project has no announce code path (RULES 4). C-63 still stands: a tracker's filtering may key on the prefix, and this project sends none at all.",
+    "rotation": 2,
+    "rows": [
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://107.189.2.131:1337/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://1337.abcvg.info/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://alltorrents.net:80/bt/announce.php"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://announce.sktorrent.eu:6969/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "not_a_tracker",
+        "http_status": 200,
+        "outcome": "not_a_tracker",
+        "sent_user_agent": null,
+        "url": "http://bluebird-hd.org/announce.php"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://bt.edwardk.info:12891/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://bt.edwardk.info:2710/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://bt.edwardk.info:4040/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://bt.zlofenix.org:81/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://bt2.edwardk.info:2710/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://ehtracker.org/2496841/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://ipv4announce.sktorrent.eu:6969/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://proaudiotorrents.org:80/announce.php"
+      },
+      {
+        "arm": "absent",
+        "failure": "timeout",
+        "http_status": null,
+        "outcome": "no_answer",
+        "sent_user_agent": null,
+        "url": "http://sukebei.tracker.wf:8888/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://t.nyaatracker.com:80/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://torrent.ubuntu.com:6969/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tr.nyacat.pw/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tr.nyacat.pw:80/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://tracker.acgnx.se:80/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://tracker.ali213.net:8000/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://tracker.anirena.com/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 404,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://tracker.anirena.com/announcehttp://tracker1.itzmx.com:8080/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tracker.anirena.com:80/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "timeout",
+        "http_status": null,
+        "outcome": "no_answer",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://tracker.bt4g.com:2095/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://tracker.dhitechnical.com:6969/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://tracker.dler.com:6969/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tracker.dler.org:6969/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tracker.dm258.cn:7070/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tracker.gigatorrents.ws:2710/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://tracker.linkomanija.org:2710/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://tracker.minglong.org:8080/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://tracker.nexusstream.eu:6969/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://tracker.opentrackr.org:1337/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tracker.qu.ax:6969/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://tracker.renfei.net:8080/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://tracker.torrentbytes.net/announce.php"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tracker.trancetraffic.com:80/announce.php"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://tracker.waaa.moe:6969/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://tracker.xfapi.top:7070/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://tracker.xfapi.top:9999/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://tracker.zhuqiy.com:80/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "http://tracker.zhuqiy.dgj055.icu:80/announce"
+      },
+      {
+        "arm": "absent",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": null,
+        "url": "http://tracker2.dler.org/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "http://tracker2.dler.org:80/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "http://tracker3.dler.org:2710/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "https://1337.abcvg.info/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "https://1337.abcvg.info:443/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "https://bt.beatrice-raws.org/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "https://open.ftorrent.com:443/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "https://t.213891.xyz:443/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "https://tr.nyacat.pw:443/announce"
+      },
+      {
+        "arm": "minimal",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "Mozilla/5.0",
+        "url": "https://tracker.7471.top:443/announce"
+      },
+      {
+        "arm": "descriptive",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "trackers/0.1 (+https://github.com/Azathothas/Trackers; tracker health probe)",
+        "url": "https://tracker.foreverpirates.co/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "https://tracker.qingwapt.org:443/announce"
+      },
+      {
+        "arm": "client_like",
+        "failure": "none",
+        "http_status": 200,
+        "outcome": "tracker_semantic",
+        "sent_user_agent": "qBittorrent/4.3.9",
+        "url": "https://tracker.zhuqiy.com:443/announce"
+      }
+    ],
+    "spread": 0.1429,
+    "subject_selection": {
+      "excluded_results": [
+        "experiments/results/26-user-agent-block-rate.unclassified-host.20260908T152335Z.json",
+        "experiments/results/26-user-agent-block-rate.unclassified-host.20260908T155106Z.json",
+        "experiments/results/26-user-agent-block-rate.unclassified-host.20260908T214558Z.json"
+      ],
+      "from_sweep": [
+        "experiments/results/health-sweep.github-actions-hosted.run33938543488.json",
+        "experiments/results/health-sweep.github-actions-hosted.run34207344996.json",
+        "experiments/results/health-sweep.github-actions-hosted.run34252497106.json",
+        "experiments/results/health-sweep.github-actions-hosted.run34276432980.json",
+        "experiments/results/health-sweep.github-actions-hosted.run34281244142.json",
+        "experiments/results/health-sweep.github-actions-hosted.run34289476724.json",
+        "experiments/results/health-sweep.github-actions-hosted.run34302529594.json"
+      ],
+      "limit": null
+    },
+    "supports_a_verdict": false,
+    "underpowered_arms": [
+      "absent",
+      "client_like",
+      "descriptive",
+      "minimal"
+    ],
+    "what_this_is_not": "Not a paired comparison within one run. RULES 4's ceiling is one probe per tracker per interval, so each tracker sees one arm per run and the pairing is recovered across rotations."
+  }
+}
