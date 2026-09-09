@@ -80,7 +80,7 @@ pretending to be one.
 | [T-143](foundation.md) | P1 | foundation | **done** | There was no pipeline, and determinism had never been demonstrated |
 | [T-146](foundation.md) | P1 | foundation | **done** | The README did not exist, so the honesty statements had nowhere to live |
 | [T-107](sources.md) | P1 | sources | **done** | The pipeline republishes private-tracker credentials |
-| [T-005](claims.md) | P2 | claims | open | WebTorrent trackers are unmeasurable by default and nobody has tried |
+| [T-005](claims.md) | P2 | claims | **done** | WebTorrent trackers are unmeasurable by default and nobody has tried |
 | [T-006](claims.md) | P2 | claims | open | Actions billing for public repositories is unverified |
 | [T-007](claims.md) | P2 | claims | **done** | Resolver agreement was measured at n=17 on one day |
 | [T-022](measurement.md) | P2 | measurement | **done** | UDP scrape needs a synthetic infohash and the ladder does not model that |
@@ -127,7 +127,7 @@ pretending to be one.
 
 ## Counts
 
-**Counts:** 74 entries, 21 open, 0 blocked, 53 done
+**Counts:** 74 entries, 20 open, 0 blocked, 54 done
 
 Derived from the rows above by `scripts/check-todo.py`, which fails a gate when
 a number here disagrees with them. Do not edit them by hand.
@@ -136,9 +136,9 @@ a number here disagrees with them. Do not edit them by hand.
 | --- | --- | --- | --- | --- |
 | P0 | 0 | 0 | 8 | 8 |
 | P1 | 0 | 0 | 23 | 23 |
-| P2 | 15 | 0 | 21 | 36 |
+| P2 | 14 | 0 | 22 | 36 |
 | P3 | 6 | 0 | 1 | 7 |
-| **All** | **21** | **0** | **53** | **74** |
+| **All** | **20** | **0** | **54** | **74** |
 
 **Nothing is blocked.** The two entries that were -- [T-003](claims.md) and
 [T-064](publication.md) -- were waiting on authorisation to create throwaway

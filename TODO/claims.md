@@ -326,7 +326,7 @@ Source:      `C-36`
 Category:    claims
 Priority:    P2
 Effort:      M
-Status:      open
+Status:      done
 
 Problem:     **10 `wss` entries** in the census union, and one `ws` entry that
              exists only inside ngosang's blacklist
@@ -359,8 +359,56 @@ Decision:    **Priority stays P2 and the reason is now evidence rather than
              the correct label today, **and** a WebTorrent probe is optional
              work rather than owed work. Ten URLs of 1346 is the size of the
              prize.
-Prove:       `python3 experiments/25-webtorrent-handshake.py` (planned) exits 0
-             and `C-36` cites it.
+Prove:       `python3 experiments/25-webtorrent-handshake.py
+             --expect-controls` exits 0 and `C-36` cites it.
+
+
+**Done.** 2026-09-09. `python3 experiments/25-webtorrent-handshake.py
+--expect-controls` -> **exit 0**, and `C-36` moves from `UNVERIFIED` to
+`VERIFIED` carrying the per-subject rungs.
+
+⭐ **The label was inertia, exactly as this entry said.** Five of the ten
+`wss` URLs complete an RFC 6455 handshake with a matching
+`Sec-WebSocket-Accept`, and **two answered a scrape**:
+
+| rung | n | which |
+| --- | --- | --- |
+| `tracker_semantic` | **2** | `open.ftorrent.com`, `tracker.webtorrent.dev` -- both returned `files` |
+| `protocol_valid` | 3 | all three `tracker.openwebtorrent.com` URLs: it upgrades, then **closes the connection** on a scrape |
+| `transport_response` | 2 | HTTP **404** (`spacetradersapi-chatbox.herokuapp.com`) and **403** (`tracker.files.fm:7073`) |
+| `connected` | 1 | TLS EOF before the handshake (`qot.abiir.top`) |
+| `none` | 2 | connection refused, and a timeout |
+
+⛔ **The three `protocol_valid` rows are the honest half of this.** A
+completed handshake proves a **WebSocket endpoint**, not a tracker, and
+promoting it would be RULES 3.3's rule in its `wss` form -- the same defect as
+reading HTTP 200 as a live tracker, which is RULES 11's first row. The
+instrument's negative control exists for that: a loopback server that answers
+200 and never upgrades **must not** be recorded as a WebSocket, wired to a
+non-zero exit so it cannot come back unnoticed.
+
+⭐ **The ceiling is a scrape and it was reachable, which the entry did not
+assume.** WebTorrent's tracker protocol carries a `scrape` action over the
+socket, so this reaches `TRACKER_SEMANTIC` without announcing -- the same
+trade the HTTP prober makes with a synthetic `info_hash` (RULES 4: connect >
+scrape > announce). ⛔ No announce message is built anywhere in this
+repository, so the announce rung is unreachable by construction rather than by
+restraint.
+
+⚠ **Client masking is not a detail.** RFC 6455 section 5.3 requires a
+client to mask every frame, and an RFC-following server closes the connection
+on an unmasked one -- which would have been recorded as the tracker refusing
+us. The loopback control exercises the masking, so a defect there fails the
+control rather than five subjects.
+
+⚠ **The 403 from `tracker.files.fm:7073` is an access failure first**
+(RULES 5.3) and is not evidence the tracker is gone. It is recorded at
+`transport_response` with its status, and nothing was disguised to get past it.
+
+⚠ **What this does not settle:** one vantage on one day, and the count is
+**10** `wss` URLs rather than the 12 an earlier revision of `C-36` claimed --
+that figure had no instrument behind it and the census reports ten.
+
 
 ---
 

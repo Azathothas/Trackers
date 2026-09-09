@@ -1,0 +1,182 @@
+{
+  "conditions": {
+    "environment_class": "unclassified-host",
+    "hostname": "Ajam",
+    "ipv6_stack_present": true,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "public_ipv4": "27.34.69.61",
+    "public_ipv4_org": "-",
+    "python": "3.13.15",
+    "repo_commit": "29c19e4346e5577c74fdf1496bbdbbe7cfb94e0a-dirty",
+    "sample_counts": {
+      "contacted": 10,
+      "subjects": 10
+    },
+    "utc": "2026-09-09T03:28:51Z"
+  },
+  "question": "Do the corpus's wss trackers answer a WebSocket handshake?",
+  "results": {
+    "controls": {
+      "tier0a_websocket_tracker": {
+        "detail": "the handshake, the client masking and the scrape classification all work",
+        "ok": true,
+        "rung": "protocol_valid",
+        "scrape": {
+          "detail": "answered a scrape with `files`",
+          "keys": [
+            "action",
+            "files"
+          ],
+          "ok": true
+        }
+      },
+      "tier0b_plain_server_is_not_a_websocket": {
+        "detail": "a plain 200 must not be recorded as a WebSocket (RULES 11, first row, in its wss form)",
+        "ok": true,
+        "rung": "transport_response",
+        "status_line": "HTTP/1.0 200 OK"
+      },
+      "tier1_tls_egress": {
+        "detail": "443 leaves this vantage",
+        "host": "github.com",
+        "ok": true,
+        "tls_version": "TLSv1.3"
+      }
+    },
+    "rows": [
+      {
+        "accept_matched": true,
+        "host": "open.ftorrent.com",
+        "port": 443,
+        "rtt_ms": 1852.6,
+        "rung": "tracker_semantic",
+        "scrape": {
+          "detail": "answered a scrape with `files`",
+          "keys": [
+            "action",
+            "files"
+          ],
+          "ok": true
+        },
+        "status_line": "HTTP/1.1 101 Switching Protocols",
+        "tls_version": "TLSv1.3",
+        "url": "wss://open.ftorrent.com:443"
+      },
+      {
+        "detail": "SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "host": "qot.abiir.top",
+        "port": 443,
+        "rtt_ms": 671.0,
+        "rung": "connected",
+        "url": "wss://qot.abiir.top:443/announce"
+      },
+      {
+        "accept_matched": false,
+        "detail": "no upgrade: 'HTTP/1.1 404 Not Found'; no accept header",
+        "host": "spacetradersapi-chatbox.herokuapp.com",
+        "port": 443,
+        "rtt_ms": 1940.1,
+        "rung": "transport_response",
+        "status_line": "HTTP/1.1 404 Not Found",
+        "tls_version": "TLSv1.2",
+        "url": "wss://spacetradersapi-chatbox.herokuapp.com:443/announce"
+      },
+      {
+        "detail": "ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it",
+        "host": "tracker.btorrent.xyz",
+        "port": 443,
+        "rtt_ms": 2209.4,
+        "rung": "none",
+        "url": "wss://tracker.btorrent.xyz:443/announce"
+      },
+      {
+        "detail": "TimeoutError: timed out",
+        "host": "tracker.dnlab.net",
+        "port": 443,
+        "rtt_ms": 15275.9,
+        "rung": "none",
+        "url": "wss://tracker.dnlab.net:443/announce"
+      },
+      {
+        "accept_matched": false,
+        "detail": "no upgrade: 'HTTP/1.1 403 Forbidden'; no accept header",
+        "host": "tracker.files.fm",
+        "port": 7073,
+        "rtt_ms": 990.8,
+        "rung": "transport_response",
+        "status_line": "HTTP/1.1 403 Forbidden",
+        "tls_version": "TLSv1.3",
+        "url": "wss://tracker.files.fm:7073/announce"
+      },
+      {
+        "accept_matched": true,
+        "host": "tracker.openwebtorrent.com",
+        "port": 443,
+        "rtt_ms": 537.7,
+        "rung": "protocol_valid",
+        "scrape": {
+          "detail": "ConnectionError: closed while reading a frame",
+          "ok": false
+        },
+        "status_line": "HTTP/1.1 101 Switching Protocols",
+        "tls_version": "TLSv1.3",
+        "url": "wss://tracker.openwebtorrent.com/announce"
+      },
+      {
+        "accept_matched": true,
+        "host": "tracker.openwebtorrent.com",
+        "port": 443,
+        "rtt_ms": 524.5,
+        "rung": "protocol_valid",
+        "scrape": {
+          "detail": "ConnectionError: closed while reading a frame",
+          "ok": false
+        },
+        "status_line": "HTTP/1.1 101 Switching Protocols",
+        "tls_version": "TLSv1.3",
+        "url": "wss://tracker.openwebtorrent.com:443"
+      },
+      {
+        "accept_matched": true,
+        "host": "tracker.openwebtorrent.com",
+        "port": 443,
+        "rtt_ms": 539.8,
+        "rung": "protocol_valid",
+        "scrape": {
+          "detail": "ConnectionError: closed while reading a frame",
+          "ok": false
+        },
+        "status_line": "HTTP/1.1 101 Switching Protocols",
+        "tls_version": "TLSv1.3",
+        "url": "wss://tracker.openwebtorrent.com:443/announce"
+      },
+      {
+        "accept_matched": true,
+        "host": "tracker.webtorrent.dev",
+        "port": 443,
+        "rtt_ms": 1098.7,
+        "rung": "tracker_semantic",
+        "scrape": {
+          "detail": "answered a scrape with `files`",
+          "keys": [
+            "action",
+            "files"
+          ],
+          "ok": true
+        },
+        "status_line": "HTTP/1.1 101 Switching Protocols",
+        "tls_version": "TLSv1.3",
+        "url": "wss://tracker.webtorrent.dev:443"
+      }
+    ],
+    "rungs": {
+      "connected": 1,
+      "none": 2,
+      "protocol_valid": 3,
+      "tracker_semantic": 2,
+      "transport_response": 2
+    },
+    "subjects": 10,
+    "what_this_is_not": "A handshake that completes proves a WebSocket ENDPOINT, not a tracker (RULES 3.3). Only a row at TRACKER_SEMANTIC answered a scrape. Nothing here announces: the WebTorrent announce message is not built anywhere in this repository."
+  }
+}

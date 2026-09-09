@@ -22,30 +22,26 @@ each: [INDEX.md](INDEX.md).
 
 ## State
 
-- **Last session:** started `2026-09-08T13:30:00Z`, ended on operator
-  instruction (RULES 10.2, first way). A **reachability pass**: the probe
-  stopped publishing this machine's resolver as a property of a name, stopped
-  being willing to dial an address that points at itself, and reached a
-  category of tracker that every previous record called unmeasurable.
-- ⭐ **Every P0 and P1 is closed except [T-012](claims.md)**, which waits on the sweep's rotation covering more of the corpus rather than on work.
+- **This session:** started `2026-09-09T01:50:00Z`. A **reach pass**: three
+  transport categories that had been `unmeasurable` in every record this
+  project ever took were measured, and the politeness ceiling stopped being a
+  by-product of arithmetic.
+- ⭐ **Every P0 and P1 is closed.** [T-012](claims.md) reported and
+  [T-087](operations.md) was opened and closed inside this session.
 - **Branch:** `main`, public at `https://github.com/Azathothas/Trackers`.
-- ⛔ **A live RULES 4 violation was found and fixed on 2026-09-09.** The
-  online path collected no upstream exclusions -- the raw bodies were populated
-  on the `--offline` branch only -- so **eight URLs an operator had asked to be
-  excluded were in the published dataset**. Both paths carry the body on the
-  result now; the dataset went 1334 -> 1326 with 0 remaining.
-- ⭐ **The dataset is published and it accumulates.** `data` branch, six files
-  at `raw.githubusercontent.com/Azathothas/Trackers/data/`. The chain sweep ->
-  artefact -> fold -> generate -> publish is driven end to end: run
-  `34281330192` folded **192 fresh observations**, taking the dataset from 276
-  measured to **424 of 1334** and from 16 trackers with two observations to
-  **56**. Three is what `dead` needs. Every measurement also lives under
-  `experiments/results/` as evidence.
-- ⭐ **The dataset says `dead` for the first time, and it is a fix rather than
-  a milestone.** `_health_of` echoed the last observation's state, where the
-  sample count is 1 by construction, so `MIN_SAMPLES_FOR_DEATH` was decorative
-  and no accumulation could ever reach `dead`. It asks the state machine now:
-  **26 dead** on 3 or 4 observations each, none of them unmeasurable.
+- ⛔ **A live RULES 4 violation was found, and it was published.** The sweep's
+  slice came from `epoch // 10800`, so two runs inside one three-hour bucket
+  took the **identical** slice: runs `34281244142` and `34289476724` both took
+  slice 5 and **192 trackers were contacted 5878 s apart**, inside D7's
+  10800 s interval, with both observations on the `data` branch. The ceiling is
+  read from the recorded history now and no arithmetic can breach it.
+  [T-087](operations.md).
+- ⭐ **The dataset accumulates and the rotation walks.** `state.jsonl` carries
+  **901** trackers, 96 with three observations and 15 with four; the published
+  set is **1326** trackers, **142 live, 70 dead, 8 degraded, 55 unmeasurable**
+  and 1051 not yet measured. The eight folded runs read
+  `slice3, slice4, slice5, slice5, slice6, slice0` -- the repeat is the defect
+  above, kept because it happened.
 
 ## Measured baseline
 
@@ -53,39 +49,37 @@ each: [INDEX.md](INDEX.md).
 [`../HISTORY/corpus-baseline.md`](../HISTORY/corpus-baseline.md)** and nowhere
 else, with the command behind each. Do not restate one here; cite it.
 
-⚠ **The DNS figures on that page are now PER VANTAGE**, because
-`experiments/30` measured a runner's own resolver failing where a public one
-answers. That is `C-06`'s finding, not a discrepancy, and a single table would
-be the failure that page exists to prevent.
+⚠ **The DNS figures on that page are PER VANTAGE**, because `experiments/30`
+measured a runner's own resolver failing where a public one answers. That is
+`C-06`'s finding, not a discrepancy.
 
 | | |
 | --- | --- |
 | Value gate | **ANSWERED**: justified as a labelled dataset, **not** as a list ([`gates.md`](../HISTORY/gates.md)) |
 | Live yield vs the baseline | **2.06x** worst case, 2.70x point, 3.68x best |
 | Live density | ours **12.8%** of 1327, baseline **63.6%** of 99 |
-| First corpus sweep | run **`33938543488`**, 200 of 1327 by stride |
+| Committed sweeps | **7**, all `github-actions-hosted`, all `ci`, slices 0 and 3-6 plus two censuses |
 | Baseline census | run **`34207344996`**, all **99**, **63 live** counted not estimated |
 | DNS census | run **`34210496112`**, both images. IPv6-only **16 URLs on 15 hosts** |
-| Resolver divergence | **3 of 240** on `ubuntu-24.04`, **1** on `22.04`, run `34235047982`, addresses routable (`C-06`) |
-| Null-addressed hosts | **11 hosts, 14 URLs** answer `0.0.0.0` or `::`. Zero on a runner, where `getaddrinfo` returns them |
+| Resolver divergence | **3 of 240** on `ubuntu-24.04`, **1** on `22.04`, run `34235047982` (`C-06`) |
 | IPv6-only liveness | **6 of 16** URLs alive, direct over IPv6, run `20260908T144728Z` ([T-031](measurement.md)) |
+| **i2p liveness** | **3 of 11** HTTP destinations answered, from an i2pd router in a container ([T-039](measurement.md), `C-37`) |
+| **yggdrasil liveness** | node joined, a peer answered **twice**, the one corpus host answered **neither time** -- one observation, never `dead` ([T-039](measurement.md)) |
+| **wss liveness** | **5 of 10** completed an RFC 6455 handshake; **2 answered a scrape** ([T-005](claims.md), `C-36`) |
+| **Identity arms** | descriptive **34/35**, minimal **26/26**, client_like **23/24**, absent **22/26**, spread **0.154** ([T-012](claims.md), `C-56`) |
 | Oracle disagreement | **17 of 93** = 18.3%, methodology caveat attached (`C-03`, `C-69`) |
-| Within-AS8075 variation | **0** of 34 subject-days, across **5** distinct addresses (`C-03`) |
-| Client compatibility | plaintext survives **aria2 1.37.0** unchanged (`C-40`, `C-41`) |
 | State projection | K=64, D=180, **23.4 MB** at five years (**D3**) |
 | Test suite | **530** tests, no network |
 | Reference corpus | **10** repositories, **980** files, identical in a fresh clone |
-| Politeness budget | full corpus **6072** DNS at worst of 100,000; **10,616** probes/day at D7 ([T-026](measurement.md)) |
-| Identity arms | descriptive UA **15 of 15** against live trackers, **no verdict** under 20 per arm ([T-012](claims.md)) |
-| Local gate | `python3 scripts/check-gate.py --strict`: 16 pass, 1 expected skip |
-| Pre-commit hook | available, **opt-in**: `python3 scripts/install-hooks.py` |
-| Cold start | confirmed on a fresh clone: gate green, `references/` and `experiments/results/` identical |
+| Politeness budget | full corpus **6072** DNS at worst of 100,000 ([T-026](measurement.md)) |
+| **Politeness ceiling** | enforced from `state.jsonl`'s `last_seen`, not from the rotation ([T-087](operations.md)) |
+| Local gate | `python3 scripts/check-gate.py`: 16 pass, 1 expected skip |
+| Cold start | ⚠ **not re-confirmed this session**; last confirmed 2026-09-08 |
 | CI | `gate.yml` green on the pushed head, confirmed by looking |
-| Health sweep | **scheduled** `0 */3 * * *`, `ci` profile, one of **7** rotating slices per run ([T-084](operations.md)) |
+| Health sweep | **scheduled** `0 */3 * * *`, `ci` profile, one of **7** rotating slices ([T-084](operations.md)) |
 
-⛔ **`live` is a floor, not a rate.** One datacenter, IPv4 only, one
-observation per tracker. A tracker that timed out is `unknown`, and some of
-those are up.
+⛔ **`live` is a floor, not a rate.** One datacenter, IPv4 only for the sweep.
+A tracker that timed out is `unknown`, and some of those are up.
 
 ## Counts
 
@@ -93,145 +87,96 @@ Run `python3 scripts/check-todo.py`. It re-derives every number from the rows
 and fails a gate when [INDEX.md](INDEX.md)'s table disagrees. **Nothing is
 blocked.**
 
-## What the last session did
+## What this session did
 
-**Six entries closed**, including one **`L`**: [T-031](measurement.md)
-indirect liveness (**L**), [T-037](measurement.md) the resolver's opinion,
-[T-041](scoring.md) the seven shapes, [T-026](measurement.md) the politeness
-budget, [T-038](measurement.md) the prober's address, and
-[T-064](publication.md) the release channels. [T-084](operations.md)'s `Prove`
-clause is met and that entry stays open for the workflow architecture.
-**Three opened**: [T-038](measurement.md) and [T-039](measurement.md) from
-findings, and T-038 closed in the same session.
+**Four entries closed, one of them opened here.**
 
-⭐ **Six IPv6-only trackers are alive.** That category was `unmeasurable` in
-every record this project had ever taken.
-`experiments/33-ipv6-only-liveness.py` reaches them two ways: directly from a
-vantage that has IPv6, and through the operator-approved read proxy, which was
-measured to have IPv6 egress of its own (`C-73`). ⛔ The entry's own route (a),
-NAT64, was **backwards** -- it makes an IPv4 server reachable from an IPv6
-client, which is the opposite problem.
+⛔ **[T-087](operations.md) -- the rotation was never the ceiling.** The slice
+came from the three-hour wall-clock bucket a run *starts in*, so two runs in
+one bucket take the same slice and nothing refused the second. It is measured
+and published: 192 trackers, 5878 s apart. ⭐ **The test that should have
+caught it asserted something else** -- it compared rotation `0` with rotation
+`1`, which is a property of two integers, while the schedule needs a property
+of two runs. `politeness.too_soon_after` reads what was recorded; `sweep.plan`
+is the only door into a selection and **advances past a slice held in full**,
+so a collision costs coverage rather than nobody. Five planted defects, five
+caught -- the boundary comparison survived the first attempt because
+`gap <= interval - 1` is indistinguishable over whole seconds.
 
-⛔ **Probing IPv6 for the first time found two defects that would each have
-published a live tracker as gone.** A host resolving into `0200::/7` was
-reclassified as yggdrasil and **probed anyway** -- [T-023](measurement.md)'s
-bug one layer below [T-023](measurement.md)'s fix, and three observations is
-`dead`. And `ipv6.tracker.harry.lu` answers **`::1`**, so the probe connected
-to this machine and recorded the reset as the tracker's (`C-74`).
+⭐ **[T-012](claims.md) -- the User-Agent question is answered, and what closed
+it was reading the series rather than the runs.** RULES 4 permits one arm per
+tracker per run, so the comparison belongs to the rotation series and **no
+single run of it could ever have answered**; every earlier run was individually
+right to refuse. `--series` pools them and clears the twenty-per-arm bar:
+descriptive **34/35**, absent **22/26**, spread 0.154. ⛔ **The descriptive
+string is not being refused and the weakest arm is sending none at all.**
+`C-56` is `REFUTED`; RULES 4.1 states the measured answer under its own
+heading, which stays because a disproved premise keeps its title.
 
-⛔ **One keystroke was a corrupted dataset.** Folding a sweep into the history
-twice recorded two observations from one measurement; three folds reached
-`MIN_SAMPLES_FOR_DEATH`, which is every non-live tracker in that sweep
-published `dead` on a single probe. Re-running `scripts/update-state.py` over a
-directory it had already read did it. Two guards now, per observation and per
-sweep, and the second one's first test could not tell them apart.
+⭐ **[T-039](measurement.md) -- i2p and yggdrasil reached, first-hand.** A
+router in a throwaway container cost one `podman run`, and the route the entry
+listed **last** is the one that worked while route (d), the public gateway, is
+still 503. i2p: **3 of 11** destinations answered. yggdrasil: the node joined
+in a second, a peer answered over the overlay twice, the one corpus host
+answered neither time. ⛔ Two findings inside it: only **3 of 13** `.i2p` URLs
+have a scrape endpoint at all (eight end in `/a`, which BEP 48 cannot turn into
+one, and nothing invents `/s`), and **addressing by name measures our own
+addressbook first** -- one tracker timed out by name and answered 1677 bytes by
+b32.
 
-⛔ **The number D7's whole rule rests on was measured and thrown away.** A
-tracker's stated `interval` and `min interval` have been read by
-`classify_body` since `C-65` and dropped by `ProbeResult.as_record`, so nothing
-could have honoured a request the probe had already been told.
-[T-026](measurement.md) carries them onto the record and computes what a run
-costs: a full-corpus sweep is **6072 DNS lookups at worst against a ceiling of
-100,000**, over the 759 name-addressed hosts of 965.
+⭐ **[T-005](claims.md) -- `wss` was inertia, exactly as the entry said.**
+**5 of 10** complete an RFC 6455 handshake with a matching accept token and
+**2 answered a scrape**. ⛔ The other three upgrade and then close the
+connection on a scrape: `protocol_valid` is a WebSocket endpoint and **not** a
+tracker, which is RULES 3.3 in its `wss` form. The instrument's **negative**
+control -- a plain 200 that must not be called a WebSocket -- is the one that
+matters.
 
-⛔ **`used_synthetic_infohash` was `true` on records where nothing was sent**,
-including in a committed sweep. Found by reading one record, not by the suite.
+**Recovered evidence.** Five sweeps had measured real trackers and their
+records were in no committed file; artefacts expire in 90 days and git does
+not. They are committed, which also folded two runs the publisher had never
+seen. ⭐ The value gate is **unmoved** by them, which is the property it should
+have: it takes each arm from the run that measured it best rather than pooling.
 
-⭐ **The identity question has an instrument, and its design had to change to
-be runnable at all.** Four arms against one tracker in one run is four times
-RULES 4's ceiling, so each tracker gets one arm per run and the pairing is
-recovered across four rotations. Two runs: 200 corpus trackers, where 174
-answered nobody; then **32 trackers a sweep recorded live**, at 16% of the
-load, where 30 answered and the descriptive User-Agent answered **15 of 15**.
-⛔ Still no verdict, and the instrument refuses to give one below 20 subjects
-per arm. ⛔ The crossed `peer_id` axis **cannot be run**: a scrape has no such
-field and this project never sends one.
-
-⭐ **The seven shapes have definitions, and the release channels have
-semantics.** `src/trackers/shapes.py` says which of the seven a history is,
-with the numbers that decided it; `src/trackers/channels.py` is built on what
-`experiments/24` measured, and its tests read that result and fail if a design
-choice rests on something the run refuted.
-
-**Seven reviews ran and every one found something**, under
-[`../HISTORY/reviews/`](../HISTORY/reviews/):
-
-1. **Door sweep** -- the module written this session to be the one home for
-   second-hand evidence had a second implementation in an experiment that
-   predates it.
-2. **Guard mutation** -- 26 mutations, two survivors: a test whose name claimed
-   more than it checked, and a guard in the guard module that could not fail
-   because a dict copy had already done its work.
-3. **Claim audit** -- the DNS budget published in this session had the **wrong
-   denominator**: 206 of 965 hosts are address literals and cost no lookup.
-   7720 became 6072. Two record edits reported as made had never been written.
-4. **Tracker operator** -- 348 tracker-facing contacts, itemised. **68 of them
-   bought nobody anything**, because a one-line helper in
-   `experiments/_conditions.py` fired the probing workflow twice.
-5. **Adversarial sweep** -- attack the newly scheduled sweep by running it.
-   ⛔ Adding **one** tracker to the corpus made the next run re-probe the
-   **identical** slice, so the rotation stopped rotating the day an upstream
-   regenerated. Two more landed: two slices at one instant collided in the
-   idempotence guard and 190 observations would have been dropped, and a clock
-   the workflow could not parse pinned every run to slice 0 silently.
-7. **The acquisition path** -- every hop from an upstream byte to a
-   filesystem path or a parser. ⭐ Two of the four threats are **unreachable
-   rather than mitigated**: no shell call exists in `src/`, and nothing
-   decompresses, so a bomb has no expansion step. Closed [T-086](operations.md).
-6. **Measured but never verified** -- ⛔ `C-73` was marked `VERIFIED` on a
-   transcript, and the verification it named could not have separated a proxy
-   with no IPv6 from a tracker that did not answer. It has a committed control
-   now. The i2p gateway finding is labelled an observation rather than a
-   measurement, with its command written down.
-
-⭐ **The sweep is scheduled**, at D7's three hours, after the operator settled
-the three questions this session raised, and **the first scheduled run has
-fired**: `34276432980`, `trigger: schedule`, 173 probed of 189 selected, slice
-4 one on from the dispatch's slice 3. That run is the only thing that could
-confirm the two workflow fixes below, because a dispatch always supplies its
-own inputs. ⭐ It also delivered [T-009](claims.md)'s **first observation**: the
-`18:00Z` slot fired **163 minutes late**. ⛔ Scheduling it exposed two defects
-only a schedule could have: a fixed sample would have probed the same 190
-trackers eight times a day and the other 1137 never, and a `schedule:` event
-carries **no inputs**, so `--deadline ""` would have made every scheduled run
-exit 2 having probed nothing. The selector rotates through seven slices now,
-and every input has a fallback that a test enforces.
-
-⚠ **`skip_tracker_probes` is the structural half of that last one.**
-Re-measuring the runner's resolver used to drag 17 endpoints per image along
-with it; the census that produced this session's canonical figures contacted
-**no tracker at all**.
+**Two smaller repairs.** A stray `NUL` took the whole gate down with a
+`ValueError` naming no file anyone could act on -- `.gitignore` covers it and
+that is not enough, because `check-citations.py` walks the tree rather than the
+index. And `experiments/26`'s exclusion was a second, differently-wrong copy of
+D7; it uses `politeness.too_soon_after` now, and it is an **interval** rather
+than a blacklist.
 
 ## In progress
 
-**Nothing half-finished.** Every entry touched is either closed with its
-acceptance recorded, or open with what remains written into it.
+**Nothing half-finished.** Every entry touched is closed with its acceptance
+recorded.
+
+⚠ **Two things this session did not do**, neither of them blocking:
+
+- **The three deep reviews** RULES 10.3 step 4 requires before a session may
+  end. None were written.
+- **The cold start on a fresh clone** (step 9). The local gate is green and CI
+  is green on the pushed head, and those answer a different question.
 
 ## Start here next session
 
-1. **[T-012](claims.md)** - whether our identity gets us blocked. The
-   instrument exists and two runs have gone out. ⭐ **Run rotations 1 to 3
-   against the live subject set**, at least three hours apart, and the pairing
-   is complete. ⚠ Each arm needs 20 contacted subjects before the instrument
-   will compare them and the live set is 32, so what the verdict actually waits
-   on is a wider one: a fresh sweep's live trackers.
-2. **[T-080](operations.md)** - issue automation. ⭐ Every unattended piece
-   now exists and nothing tells anybody when one fails: the report names
-   sustained failures and nobody reads a report. [T-047](scoring.md) and
-   [T-002](claims.md)'s watchdog both want this.
-3. **[T-081](operations.md)** - history housekeeping. ⭐ `state.jsonl` is on
-   the `data` branch and grows with every sweep; the entry says its threshold
-   is unjustified, and there is a projection to justify it against now
-   ([T-042](scoring.md)).
-4. **[T-039](measurement.md)** - i2p and yggdrasil, the two categories
-   [T-031](measurement.md) did not move. ⭐ **The consent question is
-   answered**: contact is permitted, the asking route covers those operators.
-   ⚠ Route (d) is measured and the public gateway is out of service, so what
-   is left is a router in a container.
+1. **[T-045](scoring.md)** - ranking must not use the latest instantaneous
+   result. ⭐ **The history can now support it**: 96 trackers have three
+   observations and 15 have four, where a week ago none had two. It is also
+   the entry [T-044](scoring.md) is deliberately waiting behind.
+2. **[T-102](sources.md)** - change-detection thresholds are provisional and
+   say so. Seven committed sweeps and eight folded runs are the volume history
+   that would justify them.
+3. **[T-009](claims.md)** - schedule delay and drop rates. ⭐ **Cheap now, and
+   it is load-bearing**: the delays are what made [T-087](operations.md)'s
+   collision reachable, and this session watched a `21:00Z` slot fire at
+   `23:11Z` and an `00:00Z` slot at `03:03Z`. Three observations exist and
+   nothing has written them down as a rate.
+4. **[T-103](sources.md)** - provenance snapshots are not retained, which is
+   the same shape as the five sweeps whose evidence was nearly lost.
 
 **Deliberately deferred:** [T-044](scoring.md), the scoring model. **D4** stays
-open on purpose: history exists now, but no tracker has more than four
-observations, and choosing a model against that is fitting it to noise.
+open on purpose: choosing a model against a history whose deepest series is
+four observations is fitting it to noise.
 
 **When this order is exhausted**, take the next entry from [INDEX.md](INDEX.md)
 by priority. ⛔ Do not stop because the list above ran out.
@@ -247,65 +192,52 @@ by priority. ⛔ Do not stop because the list above ran out.
    D9, settled in [T-046](scoring.md).
 3. **Is the roughly three-hour probe cadence acceptable?** Yes: publish hourly,
    probe each tracker on its own stated interval, defaulting to three hours.
-   D7, settled in [T-026](measurement.md).
+   D7, settled in [T-026](measurement.md). ⭐ **It is enforced from the record
+   now** rather than assumed from the cadence ([T-087](operations.md)).
 4. **What is authorised outward-facing?** Every action belonging to this
    repository, and nothing outside it, ever. RULES 13.
 5. **One squashed commit per session, or a series?** A **clean series of
-   logical commits**, each passing the gate. **D16**, 2026-09-08. The squash
-   could not coexist with confirming CI at every push and with the
-   no-force-push rule.
-6. **Is DNS inside the politeness budget?** Yes, with a ceiling of **100,000
-   lookups per run on a GitHub runner**; local runs are not bounded by it.
-   2026-09-08. [T-026](measurement.md) carries it and now computes it: a
-   full-corpus sweep is **6072 at worst**, 6.1% of the ceiling.
+   logical commits**, each passing the gate. **D16**, 2026-09-08.
+6. **Is DNS inside the politeness budget?** Yes, with a ceiling of **100,000**
+   lookups per run on a GitHub runner; local runs are not bounded by it.
+   2026-09-08. [T-026](measurement.md) computes it: **6072** at worst.
 7. **Schedule the health sweep?** Not until [T-037](measurement.md) lands.
-   2026-09-08. A scheduled sweep would have recorded `openbittorrent.com` as
-   `dns_failure` on a vantage that cannot resolve it while public resolvers
-   can. ⛔ **Superseded the same day by answer 10 below**, once both
-   conditions it named were met: the sweep records `resolver_divergence`
-   there, which can never become `dead`, and [T-026](measurement.md) computes
-   what a run spends. The answer is kept because it is why the schedule waited,
-   and because the reasoning it gives -- that a `schedule:` is a standing
-   commitment against other people's servers -- is still the reason it was put
-   to the operator rather than decided by a session.
+   2026-09-08. ⛔ **Superseded the same day by answer 10**, once both
+   conditions it named were met. It is kept because it is why the schedule
+   waited, and because its reasoning -- that a `schedule:` is a standing
+   commitment against other people's servers -- is still why it was put to the
+   operator rather than decided by a session. ⚠ **2026-09-09 proved that
+   reasoning right in a way nobody predicted**: the standing commitment was
+   kept and the *slice arithmetic* broke it anyway.
 8. **The third party's credential in git history?** **Not our action.** The
    operator will **reset this repository's history to a single commit** once
-   the tasks are complete and the prose has been rewritten, which removes it.
-   2026-09-08. Until then the working tree stays clean of it outside the
-   capture fixtures, where a verbatim capture is expected and where rewriting
-   one would destroy the evidence that the refusal works.
+   the tasks are complete, which removes it. 2026-09-08.
 9. **May this project contact a tracker whose operator it has no automatable
-   way to ask?** **Yes -- the asking route is enough.** 2026-09-08. A `.i2p`
-   name has no ordinary DNS record, so BEP 34 cannot be consulted for the 13
-   `.i2p` URLs; the documented request route in `src/trackers/exclusion.py`
-   covers those operators as it covers everyone else, and RULES 4 requires *a*
-   route rather than that one. ⛔ It does not weaken the consent gate for a
-   host whose name does resolve. [T-039](measurement.md) carries it.
-10. **Schedule the health sweep?** **Yes, at D7's cadence.** 2026-09-08, after
-   both conditions the earlier answer named were met.
-   `.github/workflows/health-sweep.yml` runs `0 */3 * * *`. ⭐ The selector
-   **rotates**, because a fixed sample scheduled every three hours would probe
-   the same 190 trackers eight times a day and the other 1137 never; a pass
-   over the corpus takes seven runs, so each tracker is probed once per 21
-   hours. `tests/test_rotation.py` asserts the coverage.
-11. **Should a commit credit the tool that helped write it?** **No.** 2026-09-08.
-   The harness asks for a co-author trailer;
-   [`../docs/conventions/git.md`](../docs/conventions/git.md) forbids crediting
-   any tool and says that overrides a harness default. The operator confirmed
-   the project rule wins, so the page stands unchanged and no commit carries
-   attribution.
+   way to ask?** **Yes -- the asking route is enough.** 2026-09-08. ⭐ This
+   session is what it authorised: 11 `.i2p` destinations were contacted once
+   each, and a `.i2p` name still has no DNS record for BEP 34 to read.
+10. **Schedule the health sweep?** **Yes, at D7's cadence.** 2026-09-08.
+    `.github/workflows/health-sweep.yml` runs `0 */3 * * *` and the selector
+    rotates; `tests/test_rotation.py` asserts the coverage **and**, since
+    [T-087](operations.md), that two consecutive *runs* share no tracker.
+11. **Should a commit credit the tool that helped write it?** **No.**
+    2026-09-08. [`../docs/conventions/git.md`](../docs/conventions/git.md)
+    forbids crediting any tool and that overrides a harness default.
 
 ## Open questions for the operator
 
 **None.** Eleven have been asked and eleven are answered above.
 
-⚠ **Two standing facts to know rather than re-derive**, neither of which is a
+⚠ **Three standing facts to know rather than re-derive**, none of which is a
 question:
 
 - **BEP 34 lookups send tracker hostnames to a public resolver**, a trade
-  recorded in `src/trackers/bep34.py`. The evidence for it strengthened on
-  2026-09-08: the host's own resolver was measured failing on names public
-  resolvers answer, which is the silent failure the trade avoids.
-- **A history reset to one commit is coming** (answer 8). Nothing should be
-  built that depends on this repository's commit history, which RULES 3.7
-  already forbids for measurement history.
+  recorded in `src/trackers/bep34.py`.
+- **A history reset to one commit is coming** (answer 8). Nothing should depend
+  on this repository's commit history, which RULES 3.7 already forbids for
+  measurement history.
+- ⭐ **Two instruments now need a container and cannot run in CI**
+  (`experiments/35`, `experiments/36`). That is
+  [`../docs/containers.md`](../docs/containers.md)'s premise rather than a
+  limitation, both take the engine as a variable, and both decommission what
+  they start -- verified by counting, not by remembering.

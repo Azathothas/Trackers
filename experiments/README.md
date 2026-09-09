@@ -39,6 +39,7 @@ between the two** -- adopted here in full and restated normatively in RULES 2:
 | `22-actions-platform-contract.py` | Does GitHub's documentation still say the things this project's schedule and publication design assume? | C-10, C-11, C-12, C-19b, C-55 |
 | `23-client-list-compatibility.py` | Does a real BitTorrent client accept the plaintext this project emits, and what does it do with a comment, a blank line and CRLF? | C-40, C-41, [T-001](../TODO/claims.md) |
 | `24-release-channel-behaviour.py` | Does a release move when its tag does, and is an asset readable at a stable URL right after it is replaced? | C-15, C-17 |
+| `25-webtorrent-handshake.py` | Do the `wss` trackers answer an RFC 6455 handshake, and are any of them trackers rather than merely WebSocket endpoints? ⛔ Its **negative** control is the one that matters: a plain 200 must not be called a WebSocket | C-36, [T-005](../TODO/claims.md) |
 | `32-vantage-variation.py` | How much of what this project calls unreachable is a fact about the address it asked from? | C-03, C-69, [T-004](../TODO/claims.md) |
 | `31-state-size-projection.py` | How large does the history file get over five years, and what must K and D be? | D3, [T-042](../TODO/scoring.md) |
 | `34-data-branch-growth.py` | How fast does the `data` branch's history grow, and at what commit count does a full clone stop being reasonable? | [T-081](../TODO/operations.md) |
