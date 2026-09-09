@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-08T23:49:32Z
+generated_at: 2026-09-09T02:17:08Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1326
 - rejected lines:    3
-- duplicates removed: 597 (239 removed)
+- duplicates removed: 600 (242 removed)
 
 ### Transport
 
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 672 across 424 tracker(s)
-- never observed:      902
-- health states:       {'degraded': 1, 'live': 101, 'unknown': 303, 'unmeasurable': 19}
-- measurement rungs:   {'connected': 51, 'dns': 132, 'no_usable_address': 1, 'none': 104, 'protocol_valid': 57, 'tracker_semantic': 46, 'transport_response': 33}
+- health observations: 866 across 577 tracker(s)
+- never observed:      749
+- health states:       {'degraded': 2, 'live': 116, 'unknown': 430, 'unmeasurable': 29}
+- measurement rungs:   {'connected': 74, 'dns': 173, 'no_usable_address': 4, 'none': 157, 'protocol_valid': 59, 'tracker_semantic': 59, 'transport_response': 51}
 - observation depth:   median 1, deepest 4
-- sustained failures:  28 (3+ observations, none successful)
+- sustained failures:  29 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -98,6 +98,7 @@ the only place that decision is made.
 - sustained: `http://bithq.org:80/announce.php`
 - sustained: `http://mediaclub.tv/announce.php`
 - sustained: `http://opentracker.xyz:80/announce`
+- sustained: `http://retracker.spark-rostov.ru:80/announce`
 - sustained: `http://torrent-team.net/announce.php`
 - sustained: `http://torrents.hikarinokiseki.com:6969/announce`
 - sustained: `http://tracker.bz:80/announce`
@@ -110,7 +111,6 @@ the only place that decision is made.
 - sustained: `https://021912.xyz:443/announce`
 - sustained: `https://bt.080609.xyz:443/announce`
 - sustained: `https://tracker.alaskantf.com:443/announce`
-- sustained: `https://tracker.nyaa.tk/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 101
+### common.txt -- 116
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  0 from the other categories and 101 more that measured live
+- why:  0 from the other categories and 116 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
