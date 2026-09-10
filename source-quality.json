@@ -2,25 +2,22 @@
   "sources": [
     {
       "asserted_trust": "high",
-      "contributed": 79,
-      "corroborating": 79,
-      "distinct_bodies": 1,
-      "entries_max": 79,
+      "contributed": 96,
+      "corroborating": 94,
+      "distinct_bodies": 2,
+      "entries_max": 96,
       "entries_min": 79,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
-      "latest_entries": 79,
-      "observations": 10,
+      "last_seen": "2026-09-10T22:57:08Z",
+      "latest_entries": 96,
+      "observations": 11,
       "parser": "normalize.parse_many",
-      "questions_for_a_human": [
-        "contributes 79 URLs and none uniquely: keep it only if it corroborates (79 shared), and say so rather than dropping it",
-        "the body has not changed across 10 fetches: is this list still maintained?"
-      ],
+      "questions_for_a_human": [],
       "role": "primary",
       "source_id": "ngosang_all",
-      "unique": 0,
-      "unique_share": 0.0
+      "unique": 2,
+      "unique_share": 0.0208
     },
     {
       "asserted_trust": "high",
@@ -31,12 +28,12 @@
       "entries_min": 3,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
+      "last_seen": "2026-09-10T22:57:08Z",
       "latest_entries": 3,
-      "observations": 10,
+      "observations": 11,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 10 fetches: is this list still maintained?"
+        "the body has not changed across 11 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "ngosang_ws",
@@ -52,12 +49,12 @@
       "entries_min": 13,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
+      "last_seen": "2026-09-10T22:57:08Z",
       "latest_entries": 13,
-      "observations": 10,
+      "observations": 11,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 10 fetches: is this list still maintained?"
+        "the body has not changed across 11 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "ngosang_i2p",
@@ -73,12 +70,12 @@
       "entries_min": 1,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
+      "last_seen": "2026-09-10T22:57:08Z",
       "latest_entries": 1,
-      "observations": 10,
+      "observations": 11,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 10 fetches: is this list still maintained?"
+        "the body has not changed across 11 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "ngosang_yggdrasil",
@@ -94,12 +91,12 @@
       "entries_min": 346,
       "expected_format": "newline-delimited tracker URLs with `#` comment lines carrying the exclusion REASON, which the common parser strips and `exclusion.py` needs",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
+      "last_seen": "2026-09-10T22:57:08Z",
       "latest_entries": 346,
-      "observations": 10,
+      "observations": 11,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 10 fetches: is this list still maintained?"
+        "the body has not changed across 11 fetches: is this list still maintained?"
       ],
       "role": "blacklist",
       "source_id": "ngosang_blacklist",
@@ -108,62 +105,62 @@
     },
     {
       "asserted_trust": "high",
-      "contributed": 265,
-      "corroborating": 108,
-      "distinct_bodies": 10,
+      "contributed": 256,
+      "corroborating": 104,
+      "distinct_bodies": 11,
       "entries_max": 266,
-      "entries_min": 265,
+      "entries_min": 257,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
-      "latest_entries": 266,
-      "observations": 10,
+      "last_seen": "2026-09-10T22:57:08Z",
+      "latest_entries": 257,
+      "observations": 11,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
       "source_id": "newtrackon_all",
-      "unique": 157,
-      "unique_share": 0.5925
+      "unique": 152,
+      "unique_share": 0.5938
     },
     {
       "asserted_trust": "medium",
       "contributed": 134,
-      "corroborating": 127,
+      "corroborating": 121,
       "distinct_bodies": 2,
       "entries_max": 135,
       "entries_min": 135,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
+      "last_seen": "2026-09-10T22:57:08Z",
       "latest_entries": 135,
-      "observations": 10,
+      "observations": 11,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
       "source_id": "xiu2_all",
-      "unique": 7,
-      "unique_share": 0.0522
+      "unique": 13,
+      "unique_share": 0.097
     },
     {
       "asserted_trust": "low",
       "contributed": 1074,
-      "corroborating": 89,
+      "corroborating": 102,
       "distinct_bodies": 1,
       "entries_max": 1088,
       "entries_min": 1088,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-10T20:25:59Z",
+      "last_seen": "2026-09-10T22:57:08Z",
       "latest_entries": 1088,
-      "observations": 10,
+      "observations": 11,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 10 fetches: is this list still maintained?"
+        "the body has not changed across 11 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "desirefire_all",
-      "unique": 985,
-      "unique_share": 0.9171
+      "unique": 972,
+      "unique_share": 0.905
     }
   ]
 }

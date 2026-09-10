@@ -1,15 +1,15 @@
 {
   "code_version": "0.1.0+norm1",
-  "count": 1327,
-  "dataset_digest": "sha256:dc0d556d780ec5742d3d00c3279ff5fe5ac361e42fb7b2fda4d10bac9f0345b8",
+  "count": 1325,
+  "dataset_digest": "sha256:bf88f1165ebb8d575703bdc369f25312177d2826a0328681a61ecfe81323bc72",
   "files": {
     "anime.txt": {
       "bytes": 39971,
       "digest": "sha256:65373014709000855c8ca087b68506c4f79d51b914d33d272c29b90570ad1d23"
     },
     "common.txt": {
-      "bytes": 7542,
-      "digest": "sha256:d7616bf72c06b64afa7c7c9d9305dc0758fc233ad8dc77d3cae9340309e18342"
+      "bytes": 7579,
+      "digest": "sha256:1a8a1740e0f8dacfaf255e7ece6874dde1ea7b6a94f8eb2def81642ca85a5d63"
     },
     "foss.txt": {
       "bytes": 0,
@@ -20,28 +20,28 @@
       "digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "report.md": {
-      "bytes": 7509,
-      "digest": "sha256:bc1a37b341667292bc7f1b900e08bbafe5f1f955eadc407c9c21d4d1634e8098"
+      "bytes": 7504,
+      "digest": "sha256:b4dafcafd75c70e573cc2ce93734014f8b1b30c5e4630c67f82791fa225dfe74"
     },
     "stable.txt": {
-      "bytes": 740,
-      "digest": "sha256:0f1d2b5003c2903bc72850494978c78d288d3aa0c6a9a28ac145d1773e363f90"
+      "bytes": 784,
+      "digest": "sha256:717cc5e8f8a4c13897027f6ab8ffbae7b6fe9bc56ebe16c753cbeecfce8fac82"
     },
     "trackers_all.csv": {
-      "bytes": 281137,
-      "digest": "sha256:a342dd4c9b40f94c0f35c787f2b6677068faee2622d6b5a7b4bd0611e5cc0c34"
+      "bytes": 280646,
+      "digest": "sha256:25e5c3e033c2b48d28dd2a41fe31aefe831daefdc97f1272383ecbdef5c779ce"
     },
     "trackers_all.json": {
-      "bytes": 857682,
-      "digest": "sha256:5e39b2fde3bab4e4aa2b7270434600644736bb216488a8bd9d78b6b1556b97d8"
+      "bytes": 856435,
+      "digest": "sha256:824f2ce761a461c5c3c4f3aede93bb0743ec9f354d7eaee1832706d3a6340538"
     },
     "trackers_all.txt": {
-      "bytes": 50254,
-      "digest": "sha256:78f4a7214136f587371db5ec01187ab95d56630c361a47b794123d694eefbc18"
+      "bytes": 50170,
+      "digest": "sha256:57ab6bd90af0af51df46f0e3247c869b6a9d8a20c4fbfdd79856a41cfd3666e8"
     }
   },
-  "generated_at": "2026-09-10T20:25:59Z",
-  "newest_observation": "2026-09-10T20:25:08Z",
+  "generated_at": "2026-09-10T22:57:08Z",
+  "newest_observation": "2026-09-10T22:56:12Z",
   "normalization_version": 1,
   "publish_interval_seconds": 10800,
   "schema": "schema.md, published beside this file",

@@ -323,6 +323,7 @@ http://irrenhaus.dyndns.dk/announce.php
 http://irrenhaus.dyndns.dk:80/announce.php
 http://joczo.duckdns.org:6969/announce
 http://jp.moeweb.pw:6969/announce
+http://jvavav.com:80/announce
 http://kamikazee.duckdns.org:7777/announce
 http://kinorun.com/announce.php
 http://kinorun.com:80/announce.php
@@ -408,6 +409,7 @@ http://s1130642.ha014.t.mydomain.zone:80/announce
 http://secure.pow7.com/announce
 http://secure.pow7.com:80/announce
 http://seeders-paradise.org/announce
+http://seeders-paradise.org:80/announce
 http://servandroidkino.ru/announce
 http://share.camoe.cn:8080/announce
 http://share.hkg-fansub.info/announce.php
@@ -420,7 +422,6 @@ http://siwserver.duckdns.org:9900/announce
 http://smurfsoft.com:6969/announce
 http://speedtest.iperson.xyz:6969/announce
 http://sukebei.tracker.wf:8888/announce
-http://supertracker.cc.cd:80/announce
 http://t.acg.rip:6699/announce
 http://t.al.uy:80/announce
 http://t.jaekr.sh:6969/announce
@@ -763,7 +764,6 @@ https://opentracker.i2p.rocks:443/announce
 https://opentracker.xyz/announce
 https://opentracker.xyz:443/announce
 https://orgtgju.org:443/announce
-https://php-bobcat.wasmer.app:443/announce
 https://pybittrack.retiolus.net:443/announce
 https://seeders-paradise.org/announce
 https://staticfile-bobcat.wasmer.app:443/announce
@@ -847,7 +847,6 @@ https://tracker.foreverpirates.co/announce
 https://tracker.foreverpirates.co:443/announce
 https://tracker.gbitt.info/announce
 https://tracker.gbitt.info:443/announce
-https://tracker.gcrenwp.top:443/announce
 https://tracker.guguan.us.kg:443/announce
 https://tracker.h3o2.me:443/announce
 https://tracker.imgoingto.icu/announce
@@ -1049,7 +1048,6 @@ udp://bt1.archive.org:6969/announce
 udp://bt2.archive.org:6969/announce
 udp://bubu.mapfactor.com:6969/announce
 udp://buddyfly.top:6969/announce
-udp://burmese.app:6969/announce
 udp://camera.lei001.com:6969/announce
 udp://carr.codes:6969/announce
 udp://cerf.cs.umd.edu:8000/announce
