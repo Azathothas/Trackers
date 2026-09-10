@@ -1,4 +1,12 @@
+http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
+http://bt2.edwardk.info:2710/announce
 http://ehtracker.org/2496841/announce
 http://t.overflow.biz:6969/announce
-https://tracker.zhuqiy.com:443/announce
-udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
+http://tracker.ali213.net:8000/announce
+http://tracker.gigatorrents.ws:2710/announce
+https://tr.nyacat.pw:443/announce
+udp://exodus.desync.com:6969/announce
+udp://open.ftorrent.com:443/announce
+udp://tracker.gmi.gd:6969/announce
+udp://tracker.wildkat.net:6969/announce
+udp://zer0day.ch:1337/announce
