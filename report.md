@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-09T22:55:39Z
+generated_at: 2026-09-10T03:04:57Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,17 +80,18 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 2206 across 1108 tracker(s)
-- never observed:      219
-- health states:       {'degraded': 7, 'live': 169, 'unknown': 873, 'unmeasurable': 59}
-- measurement rungs:   {'connected': 163, 'dns': 322, 'no_usable_address': 11, 'none': 341, 'protocol_valid': 72, 'tracker_semantic': 100, 'transport_response': 99}
+- health observations: 2380 across 1213 tracker(s)
+- never observed:      114
+- health states:       {'degraded': 7, 'live': 178, 'unknown': 963, 'unmeasurable': 65}
+- measurement rungs:   {'connected': 182, 'dns': 355, 'no_usable_address': 12, 'none': 376, 'protocol_valid': 74, 'tracker_semantic': 107, 'transport_response': 107}
 - observation depth:   median 2, deepest 5
-- sustained failures:  263 (3+ observations, none successful)
+- sustained failures:  270 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
 the only place that decision is made.
 
+- sustained: `http://0123456789nonexistent.com:80/announce`
 - sustained: `http://106.14.254.164:6969/announce`
 - sustained: `http://116.252.176.125:6969/announce`
 - sustained: `http://140.82.21.192:8080/announce`
@@ -110,7 +111,6 @@ the only place that decision is made.
 - sustained: `http://185.230.4.150:1337/announce`
 - sustained: `http://189.110.233.96:6969/announce`
 - sustained: `http://201.43.209.254:6969/announce`
-- sustained: `http://34.89.30.59:2710/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 169
+### common.txt -- 178
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  4 from the other categories and 165 more that measured live
+- why:  4 from the other categories and 174 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
