@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-11T03:00:05Z
+generated_at: 2026-09-11T07:59:10Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 3305 across 1316 tracker(s)
+- health observations: 3487 across 1316 tracker(s)
 - never observed:      3
-- health states:       {'degraded': 7, 'live': 193, 'unknown': 1045, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 194, 'dns': 385, 'no_usable_address': 13, 'none': 411, 'protocol_valid': 75, 'tracker_semantic': 121, 'transport_response': 117}
+- health states:       {'degraded': 8, 'live': 193, 'unknown': 1044, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 194, 'dns': 384, 'no_usable_address': 13, 'none': 411, 'protocol_valid': 75, 'tracker_semantic': 121, 'transport_response': 118}
 - observation depth:   median 2, deepest 6
-- sustained failures:  464 (3+ observations, none successful)
+- sustained failures:  520 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -97,6 +97,7 @@ the only place that decision is made.
 - sustained: `http://140.82.21.192:8080/announce`
 - sustained: `http://144.202.33.210:6961/announce`
 - sustained: `http://147job.com:6969/announce`
+- sustained: `http://151.115.49.115:1337/announce`
 - sustained: `http://155.248.200.105/announce`
 - sustained: `http://156.234.201.18/announce`
 - sustained: `http://157.90.169.123/announce`
@@ -110,7 +111,6 @@ the only place that decision is made.
 - sustained: `http://171.104.110.88:6969/announce`
 - sustained: `http://171.104.110.95:6969/announce`
 - sustained: `http://171.104.111.14:6969/announce`
-- sustained: `http://171.104.111.250:6969/announce`
 
 ## What this report cannot answer yet
 

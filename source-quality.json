@@ -9,9 +9,9 @@
       "entries_min": 79,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 96,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
         "contributes 96 URLs and none uniquely: keep it only if it corroborates (96 shared), and say so rather than dropping it"
@@ -30,12 +30,12 @@
       "entries_min": 3,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 3,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 12 fetches: is this list still maintained?"
+        "the body has not changed across 13 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "ngosang_ws",
@@ -51,12 +51,12 @@
       "entries_min": 13,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 13,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 12 fetches: is this list still maintained?"
+        "the body has not changed across 13 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "ngosang_i2p",
@@ -72,12 +72,12 @@
       "entries_min": 1,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 1,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 12 fetches: is this list still maintained?"
+        "the body has not changed across 13 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "ngosang_yggdrasil",
@@ -93,12 +93,12 @@
       "entries_min": 346,
       "expected_format": "newline-delimited tracker URLs with `#` comment lines carrying the exclusion REASON, which the common parser strips and `exclusion.py` needs",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 346,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 12 fetches: is this list still maintained?"
+        "the body has not changed across 13 fetches: is this list still maintained?"
       ],
       "role": "blacklist",
       "source_id": "ngosang_blacklist",
@@ -109,14 +109,14 @@
       "asserted_trust": "high",
       "contributed": 256,
       "corroborating": 103,
-      "distinct_bodies": 12,
+      "distinct_bodies": 13,
       "entries_max": 266,
       "entries_min": 257,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 257,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
@@ -133,9 +133,9 @@
       "entries_min": 133,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 133,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
@@ -152,12 +152,12 @@
       "entries_min": 1088,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-09-11T03:00:05Z",
+      "last_seen": "2026-09-11T07:59:10Z",
       "latest_entries": 1088,
-      "observations": 12,
+      "observations": 13,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 12 fetches: is this list still maintained?"
+        "the body has not changed across 13 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "desirefire_all",
