@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-11T18:10:49Z
+generated_at: 2026-09-11T22:58:23Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1319
+- accepted trackers: 1321
 - rejected lines:    3
-- duplicates removed: 614 (256 removed)
+- duplicates removed: 614 (255 removed)
 
 ### Transport
 
-- http: 711
+- http: 713
 - https: 240
 - udp: 358
 - wss: 10
 
 ### Network
 
-- clearnet: 1306
+- clearnet: 1308
 - i2p: 13
 
 ### Measurability
 
-- measurable from this vantage: 1296
+- measurable from this vantage: 1298
 - unmeasurable:                 23
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,23 +80,27 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 3867 across 1316 tracker(s)
+- health observations: 4054 across 1318 tracker(s)
 - never observed:      3
-- health states:       {'degraded': 8, 'live': 193, 'unknown': 1044, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 195, 'dns': 386, 'no_usable_address': 13, 'none': 410, 'protocol_valid': 75, 'tracker_semantic': 121, 'transport_response': 116}
+- health states:       {'degraded': 8, 'live': 191, 'unknown': 1048, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 195, 'dns': 391, 'no_usable_address': 13, 'none': 409, 'protocol_valid': 75, 'tracker_semantic': 119, 'transport_response': 116}
 - observation depth:   median 3, deepest 7
-- sustained failures:  616 (3+ observations, none successful)
+- sustained failures:  710 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
 the only place that decision is made.
 
+- sustained: `http://00.xxtor.com:443/announce`
 - sustained: `http://0123456789nonexistent.com:80/announce`
 - sustained: `http://106.14.254.164:6969/announce`
+- sustained: `http://107.189.31.134:6969/announce`
 - sustained: `http://116.252.176.125:6969/announce`
 - sustained: `http://116.9.207.121:6969/announce`
+- sustained: `http://13.115.115.32:6969/announce`
 - sustained: `http://140.82.21.192:8080/announce`
 - sustained: `http://144.202.33.210:6961/announce`
+- sustained: `http://144.76.118.107:6969/announce`
 - sustained: `http://147job.com:6969/announce`
 - sustained: `http://151.115.49.115:1337/announce`
 - sustained: `http://155.248.200.105/announce`
@@ -107,10 +111,6 @@ the only place that decision is made.
 - sustained: `http://159.69.65.157:6969/announce`
 - sustained: `http://160.251.78.190:6969/announce`
 - sustained: `http://163.172.209.40/announce`
-- sustained: `http://163.172.29.130:80/announce`
-- sustained: `http://171.104.110.193:6969/announce`
-- sustained: `http://171.104.110.21:6969/announce`
-- sustained: `http://171.104.110.88:6969/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 193
+### common.txt -- 191
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  37 from the other categories and 156 more that measured live
+- why:  40 from the other categories and 151 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 37
+### stable.txt -- 40
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  37 qualified; deepest history is 7
+- why:  40 qualified; deepest history is 7
