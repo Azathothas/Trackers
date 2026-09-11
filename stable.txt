@@ -8,10 +8,12 @@ http://ehtracker.org/2496841/announce
 http://proaudiotorrents.org:80/announce.php
 http://t.overflow.biz:6969/announce
 http://torrent.ubuntu.com:6969/announce
+http://tr.nyacat.pw:80/announce
 http://tracker.acgnx.se:80/announce
 http://tracker.ali213.net:8000/announce
 http://tracker.anirena.com:80/announce
 http://tracker.gigatorrents.ws:2710/announce
+http://tracker.linkomanija.org:2710/announce
 http://tracker.minglong.org:8080/announce
 http://tracker2.dler.org/announce
 https://bt.beatrice-raws.org/announce
