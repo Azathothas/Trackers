@@ -1,15 +1,15 @@
 {
   "code_version": "0.1.0+norm1",
   "count": 1319,
-  "dataset_digest": "sha256:813f4306afa9c3a060eba2d684b097ca4e6371cc226f840fa728380e54c07920",
+  "dataset_digest": "sha256:77bd986d87fca3af2c10b75b4fa3cfffebc016ff70e2785e4621148e6fa1039b",
   "files": {
     "anime.txt": {
       "bytes": 39971,
       "digest": "sha256:65373014709000855c8ca087b68506c4f79d51b914d33d272c29b90570ad1d23"
     },
     "common.txt": {
-      "bytes": 7659,
-      "digest": "sha256:97cefb1b369b03e5ccd0bc2ecc98b4562980971749efe1331ab58106ece842f2"
+      "bytes": 7714,
+      "digest": "sha256:b9c3f35cb702973e70011a14dc08827a0fb66dd26f93ad6048d0094ae19a7b79"
     },
     "foss.txt": {
       "bytes": 0,
@@ -21,27 +21,27 @@
     },
     "report.md": {
       "bytes": 7498,
-      "digest": "sha256:434b47a88e7b5bf8ca0fd748c1585115311b0a81b2f166c748e274ebb020e72c"
+      "digest": "sha256:be4b8420190c7c942ef561c7dc80bccf52ca883477469d884d02f490a53130b7"
     },
     "stable.txt": {
-      "bytes": 784,
-      "digest": "sha256:717cc5e8f8a4c13897027f6ab8ffbae7b6fe9bc56ebe16c753cbeecfce8fac82"
+      "bytes": 1353,
+      "digest": "sha256:f6fd8443ff809e445d0625dd499882b619f7d40f9bdc4f2c490da7680e9972f4"
     },
     "trackers_all.csv": {
-      "bytes": 279854,
-      "digest": "sha256:b1408212e09410ad07e7940779f42bdfbde089ca4245c1bb503c1c6e7ff6bba9"
+      "bytes": 279856,
+      "digest": "sha256:510fae68d130ad0c10ba86fe5b657b3f93b33292388a6e959312929276b9b730"
     },
     "trackers_all.json": {
-      "bytes": 853011,
-      "digest": "sha256:d7a006896e1fbd112d7e94a25b380015510a2f3130641a626e35a5624a2f8d5f"
+      "bytes": 853013,
+      "digest": "sha256:e336ef60e330c956f54f5b85007082199c020e0e443b4dabf01a650b8294c289"
     },
     "trackers_all.txt": {
       "bytes": 49939,
       "digest": "sha256:1f06991810695f927483f40921a0028e4fb04337622f0d1563f811eb3a92dbb5"
     }
   },
-  "generated_at": "2026-09-11T07:59:10Z",
-  "newest_observation": "2026-09-11T07:58:14Z",
+  "generated_at": "2026-09-11T13:14:21Z",
+  "newest_observation": "2026-09-11T13:13:26Z",
   "normalization_version": 1,
   "publish_interval_seconds": 10800,
   "schema": "schema.md, published beside this file",

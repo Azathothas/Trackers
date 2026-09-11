@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-11T07:59:10Z
+generated_at: 2026-09-11T13:14:21Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 3487 across 1316 tracker(s)
+- health observations: 3675 across 1316 tracker(s)
 - never observed:      3
-- health states:       {'degraded': 8, 'live': 193, 'unknown': 1044, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 194, 'dns': 384, 'no_usable_address': 13, 'none': 411, 'protocol_valid': 75, 'tracker_semantic': 121, 'transport_response': 118}
-- observation depth:   median 2, deepest 6
+- health states:       {'degraded': 8, 'live': 194, 'unknown': 1043, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 195, 'dns': 384, 'no_usable_address': 13, 'none': 410, 'protocol_valid': 75, 'tracker_semantic': 122, 'transport_response': 117}
+- observation depth:   median 2, deepest 7
 - sustained failures:  520 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 193
+### common.txt -- 194
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  20 from the other categories and 173 more that measured live
+- why:  35 from the other categories and 159 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 20
+### stable.txt -- 35
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  20 qualified; deepest history is 6
+- why:  35 qualified; deepest history is 7
