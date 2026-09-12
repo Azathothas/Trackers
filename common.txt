@@ -58,6 +58,7 @@ http://tracker.anirena.com/announce
 http://tracker.anirena.com/announcehttp://tracker1.itzmx.com:8080/announce
 http://tracker.anirena.com:80/announce
 http://tracker.bt4g.com:2095/announce
+http://tracker.ddunlimited.net:6969/announce
 http://tracker.dhitechnical.com:6969/announce
 http://tracker.dler.com:6969/announce
 http://tracker.dler.org:6969/announce
