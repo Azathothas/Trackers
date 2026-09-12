@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-12T20:11:41Z
+generated_at: 2026-09-12T22:50:52Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,37 +80,37 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 4981 across 1317 tracker(s)
+- health observations: 5174 across 1317 tracker(s)
 - never observed:      3
-- health states:       {'degraded': 8, 'live': 191, 'unknown': 1047, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 198, 'dns': 390, 'no_usable_address': 13, 'none': 408, 'protocol_valid': 73, 'tracker_semantic': 121, 'transport_response': 114}
+- health states:       {'degraded': 9, 'live': 192, 'unknown': 1045, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 197, 'dns': 389, 'no_usable_address': 13, 'none': 408, 'protocol_valid': 74, 'tracker_semantic': 121, 'transport_response': 115}
 - observation depth:   median 4, deepest 8
-- sustained failures:  803 (3+ observations, none successful)
+- sustained failures:  862 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
 the only place that decision is made.
 
+- sustained: `http://00.mercax.com:443/announce`
 - sustained: `http://00.xxtor.com:443/announce`
+- sustained: `http://0123456789nonexistent.com/announce`
 - sustained: `http://0123456789nonexistent.com:80/announce`
+- sustained: `http://104.143.10.186:8000/announce`
 - sustained: `http://106.14.254.164:6969/announce`
 - sustained: `http://107.152.127.9:6969/announce`
 - sustained: `http://107.189.31.134:6969/announce`
 - sustained: `http://116.252.176.125:6969/announce`
 - sustained: `http://116.9.207.121:6969/announce`
+- sustained: `http://116.9.207.226:6969/announce`
 - sustained: `http://13.115.115.32:6969/announce`
 - sustained: `http://1337.abcvg.info/announce+108`
 - sustained: `http://140.82.21.192:8080/announce`
+- sustained: `http://141.144.224.250:2710/announce`
 - sustained: `http://144.202.33.210:6961/announce`
 - sustained: `http://144.76.118.107:6969/announce`
 - sustained: `http://147job.com:6969/announce`
 - sustained: `http://151.115.49.115:1337/announce`
 - sustained: `http://155.248.200.105/announce`
-- sustained: `http://156.234.201.18/announce`
-- sustained: `http://156.234.201.18:80/announce`
-- sustained: `http://157.90.169.123/announce`
-- sustained: `http://158.101.137.177:6969/announce`
-- sustained: `http://159.69.65.157:6969/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 191
+### common.txt -- 192
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  76 from the other categories and 115 more that measured live
+- why:  77 from the other categories and 115 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 76
+### stable.txt -- 77
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  76 qualified; deepest history is 8
+- why:  77 qualified; deepest history is 8
