@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-13T15:37:19Z
+generated_at: 2026-09-13T20:19:44Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 5734 across 1317 tracker(s)
+- health observations: 5927 across 1317 tracker(s)
 - never observed:      3
-- health states:       {'degraded': 9, 'live': 195, 'unknown': 1042, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 195, 'dns': 391, 'no_usable_address': 13, 'none': 406, 'protocol_valid': 77, 'tracker_semantic': 121, 'transport_response': 114}
-- observation depth:   median 4, deepest 8
-- sustained failures:  925 (3+ observations, none successful)
+- health states:       {'degraded': 8, 'live': 194, 'unknown': 1044, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 196, 'dns': 390, 'no_usable_address': 13, 'none': 406, 'protocol_valid': 76, 'tracker_semantic': 121, 'transport_response': 115}
+- observation depth:   median 5, deepest 8
+- sustained failures:  1015 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 195
+### common.txt -- 194
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  93 from the other categories and 102 more that measured live
+- why:  96 from the other categories and 98 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 93
+### stable.txt -- 96
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  93 qualified; deepest history is 8
+- why:  96 qualified; deepest history is 8
