@@ -6,9 +6,13 @@ http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 http://bluebird-hd.org/announce.php
 http://bt.edwardk.info:4040/announce
 http://bt.zlofenix.org:81/announce
+http://bt2.archive.org:6969/announce
 http://bt2.edwardk.info:2710/announce
+http://ehtracker.org/1113709/announce
 http://ehtracker.org/1226599/1080494xo5eXcwFOBq/announce
 http://ehtracker.org/2496841/announce
+http://ehtracker.org/2541477/announce
+http://nyaa.tracker.wf:7777/announce
 http://opentracker.acgnx.se/announce
 http://opentracker.acgnx.se:80/announce
 http://proaudiotorrents.org/announce.php
@@ -27,10 +31,13 @@ http://tracker.dler.org:6969/announce
 http://tracker.gigatorrents.ws:2710/announce
 http://tracker.linkomanija.org:2710/announce
 http://tracker.minglong.org:8080/announce
+http://tracker.novaopcj.eu.org:6969/announce
 http://tracker.renfei.net:8080/announce
 http://tracker.trancetraffic.com/announce.php
+http://tracker.xfapi.top:6868/announce
 http://tracker2.dler.org/announce
 http://tracker3.dler.org:2710/announce
+http://www.tribalmixes.com:80/announce.php
 http://www.worldboxingvideoarchive.com/announce.php
 http://www.xwt-classics.net:80/announce.php
 https://1337.abcvg.info/announce
@@ -46,6 +53,7 @@ https://tracker.onetracker.net:443/announce
 https://tracker.qingwapt.org:443/announce
 udp://109.201.134.183:80/announce
 udp://51.81.222.188:6969/announce
+udp://91.211.5.21:6969/announce
 udp://evan.im:6969/announce
 udp://exodus.desync.com:6969/announce
 udp://ipv4announce.sktorrent.eu:6969/announce
@@ -79,5 +87,7 @@ udp://tracker.playground.ru:6969/announce
 udp://tracker.qu.ax:6969/announce
 udp://tracker.teambelgium.net:6969/announce
 udp://tracker.wildkat.net:6969/announce
+udp://tracker2.dler.com:80/announce
 udp://v2.iperson.xyz:6969/announce
+udp://yuptracker-us.gaijinent.com:27022/announce
 udp://zer0day.ch:1337/announce
