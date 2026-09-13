@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-13T03:09:28Z
+generated_at: 2026-09-13T11:05:59Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 5366 across 1317 tracker(s)
+- health observations: 5560 across 1317 tracker(s)
 - never observed:      3
-- health states:       {'degraded': 9, 'live': 193, 'unknown': 1044, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 198, 'dns': 390, 'no_usable_address': 13, 'none': 406, 'protocol_valid': 74, 'tracker_semantic': 122, 'transport_response': 114}
+- health states:       {'degraded': 9, 'live': 192, 'unknown': 1045, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 198, 'dns': 391, 'no_usable_address': 13, 'none': 406, 'protocol_valid': 74, 'tracker_semantic': 121, 'transport_response': 114}
 - observation depth:   median 4, deepest 8
 - sustained failures:  926 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 193
+### common.txt -- 192
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  77 from the other categories and 116 more that measured live
+- why:  83 from the other categories and 109 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 77
+### stable.txt -- 83
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  77 qualified; deepest history is 8
+- why:  83 qualified; deepest history is 8
