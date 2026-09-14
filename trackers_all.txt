@@ -407,7 +407,6 @@ http://s1130642.ha014.t.mydomain.zone:80/announce
 http://secure.pow7.com/announce
 http://secure.pow7.com:80/announce
 http://seeders-paradise.org/announce
-http://seeders-paradise.org:80/announce
 http://servandroidkino.ru/announce
 http://share.camoe.cn:8080/announce
 http://share.hkg-fansub.info/announce.php
@@ -699,6 +698,7 @@ http://xtremewrestlingtorrents.net:80/announce.php
 http://ydlkccp.dscloud.me:6969/announce
 http://yggtracker.i2p.rocks:80/announce
 http://btrackrqkjp6kgelov5a3uxisis77ofxqt5nvy5hvvtoybjpmq4q.b32.i2p/announce
+http://freetracker.i2p:7331/announce
 http://nyaaplus.i2p:80/announce
 http://opentracker.dg2.i2p:80/a
 http://opentracker.eeptorrent.i2p:80/a
@@ -708,7 +708,9 @@ http://opentracker.simp.i2p:80/a
 http://opentracker.skank.i2p:80/a
 http://qimlze77z7w32lx2ntnwkuqslrzlsqy7774v3urueuarafyqik5a.b32.i2p:80/a
 http://sigmatracker.i2p:80/a
+http://tracker.insulaocculta.i2p/a
 http://tracker.nyaa2p.i2p:80/announce
+http://yet-another-public-tracker.i2p/announce
 https://004430.xyz:443/announce
 https://021912.xyz:443/announce
 https://1.tracker.eu.org:443/announce
@@ -1305,6 +1307,7 @@ udp://yuptracker-us.gaijinent.com:27022/announce
 udp://yuptracker.gaijinent.com:27022/announce
 udp://zecircle.xyz:6969/announce
 udp://zer0day.ch:1337/announce
+udp://freetracker.i2p:1337/announce
 udp://opentracker.simp.i2p:6969/a
 udp://opentracker.skank.i2p:6969/a
 wss://open.ftorrent.com:443
