@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-14T11:48:06Z
+generated_at: 2026-09-14T17:42:40Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 6473 across 1314 tracker(s)
+- health observations: 6666 across 1314 tracker(s)
 - never observed:      8
-- health states:       {'degraded': 7, 'live': 194, 'unknown': 1042, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 197, 'dns': 388, 'no_usable_address': 13, 'none': 405, 'protocol_valid': 77, 'tracker_semantic': 120, 'transport_response': 114}
+- health states:       {'degraded': 7, 'live': 195, 'unknown': 1041, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 197, 'dns': 388, 'no_usable_address': 13, 'none': 405, 'protocol_valid': 77, 'tracker_semantic': 121, 'transport_response': 113}
 - observation depth:   median 5, deepest 9
 - sustained failures:  1011 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 194
+### common.txt -- 195
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  112 from the other categories and 82 more that measured live
+- why:  125 from the other categories and 70 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 112
+### stable.txt -- 125
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  112 qualified; deepest history is 9
+- why:  125 qualified; deepest history is 9
