@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-13T22:52:37Z
+generated_at: 2026-09-14T03:22:37Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1320
+- accepted trackers: 1319
 - rejected lines:    3
-- duplicates removed: 603 (245 removed)
+- duplicates removed: 606 (249 removed)
 
 ### Transport
 
-- http: 712
+- http: 711
 - https: 240
 - udp: 358
 - wss: 10
 
 ### Network
 
-- clearnet: 1307
+- clearnet: 1306
 - i2p: 13
 
 ### Measurability
 
-- measurable from this vantage: 1297
+- measurable from this vantage: 1296
 - unmeasurable:                 23
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 6109 across 1317 tracker(s)
-- never observed:      3
-- health states:       {'degraded': 7, 'live': 194, 'unknown': 1045, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 198, 'dns': 388, 'no_usable_address': 13, 'none': 406, 'protocol_valid': 76, 'tracker_semantic': 121, 'transport_response': 115}
-- observation depth:   median 5, deepest 8
-- sustained failures:  1014 (3+ observations, none successful)
+- health observations: 6286 across 1315 tracker(s)
+- never observed:      4
+- health states:       {'degraded': 7, 'live': 195, 'unknown': 1042, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 197, 'dns': 388, 'no_usable_address': 13, 'none': 405, 'protocol_valid': 77, 'tracker_semantic': 121, 'transport_response': 114}
+- observation depth:   median 5, deepest 9
+- sustained failures:  1012 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -94,7 +94,6 @@ the only place that decision is made.
 - sustained: `http://00.mercax.com:443/announce`
 - sustained: `http://00.xxtor.com:443/announce`
 - sustained: `http://0123456789nonexistent.com/announce`
-- sustained: `http://0123456789nonexistent.com:80/announce`
 - sustained: `http://104.143.10.186:8000/announce`
 - sustained: `http://106.14.254.164:6969/announce`
 - sustained: `http://107.152.127.9:6969/announce`
@@ -111,6 +110,7 @@ the only place that decision is made.
 - sustained: `http://140.82.21.192:8080/announce`
 - sustained: `http://141.144.224.250:2710/announce`
 - sustained: `http://144.202.33.210:6961/announce`
+- sustained: `http://144.76.118.107:6969/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 194
+### common.txt -- 195
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  102 from the other categories and 92 more that measured live
+- why:  102 from the other categories and 93 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -161,4 +161,4 @@ matched nothing or the evidence it needs does not exist yet.
 ### stable.txt -- 102
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  102 qualified; deepest history is 8
+- why:  102 qualified; deepest history is 9
