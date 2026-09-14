@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-14T17:42:40Z
+generated_at: 2026-09-14T21:29:09Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 6666 across 1314 tracker(s)
+- health observations: 6858 across 1314 tracker(s)
 - never observed:      8
-- health states:       {'degraded': 7, 'live': 195, 'unknown': 1041, 'unmeasurable': 71}
-- measurement rungs:   {'connected': 197, 'dns': 388, 'no_usable_address': 13, 'none': 405, 'protocol_valid': 77, 'tracker_semantic': 121, 'transport_response': 113}
+- health states:       {'degraded': 8, 'live': 195, 'unknown': 1040, 'unmeasurable': 71}
+- measurement rungs:   {'connected': 198, 'dns': 386, 'no_usable_address': 13, 'none': 405, 'protocol_valid': 77, 'tracker_semantic': 121, 'transport_response': 114}
 - observation depth:   median 5, deepest 9
-- sustained failures:  1011 (3+ observations, none successful)
+- sustained failures:  1105 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -94,7 +94,9 @@ the only place that decision is made.
 - sustained: `http://00.mercax.com:443/announce`
 - sustained: `http://00.xxtor.com:443/announce`
 - sustained: `http://0123456789nonexistent.com/announce`
+- sustained: `http://0d.kebhana.mx:443/announce`
 - sustained: `http://104.143.10.186:8000/announce`
+- sustained: `http://104.244.77.14:1337/announce`
 - sustained: `http://106.14.254.164:6969/announce`
 - sustained: `http://107.152.127.9:6969/announce`
 - sustained: `http://107.189.10.20.sslip.io:7777/announce`
@@ -102,15 +104,13 @@ the only place that decision is made.
 - sustained: `http://107.189.7.143:6969/announce`
 - sustained: `http://116.252.176.125:6969/announce`
 - sustained: `http://116.9.207.121:6969/announce`
+- sustained: `http://116.9.207.164:6969/announce`
 - sustained: `http://116.9.207.198:6969/announce`
 - sustained: `http://116.9.207.226:6969/announce`
 - sustained: `http://119.28.71.45:8080/announce`
+- sustained: `http://129.146.193.240:6699/announce`
 - sustained: `http://13.115.115.32:6969/announce`
 - sustained: `http://1337.abcvg.info/announce+108`
-- sustained: `http://140.82.21.192:8080/announce`
-- sustained: `http://141.144.224.250:2710/announce`
-- sustained: `http://144.202.33.210:6961/announce`
-- sustained: `http://144.76.118.107:6969/announce`
 
 ## What this report cannot answer yet
 
@@ -146,7 +146,7 @@ matched nothing or the evidence it needs does not exist yet.
 ### common.txt -- 195
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  125 from the other categories and 70 more that measured live
+- why:  127 from the other categories and 68 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 125
+### stable.txt -- 127
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  125 qualified; deepest history is 9
+- why:  127 qualified; deepest history is 9
