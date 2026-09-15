@@ -1,5 +1,6 @@
 http://00.mercax.com:443/announce
 http://00.xxtor.com:443/announce
+http://004430.xyz:80/announce
 http://0123456789nonexistent.com/announce
 http://0d.kebhana.mx:443/announce
 http://104.143.10.186:8000/announce
@@ -1249,6 +1250,7 @@ udp://tracker.tiny-vps.com:6969/announce
 udp://tracker.tnl.one:8000/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://tracker.torrentclaw.com:1337/announce
+udp://tracker.torrents.observer:80/announce
 udp://tracker.torrust-demo.com:6969/announce
 udp://tracker.trackarr.org:6969/announce
 udp://tracker.trackerfix.com:80/announce
