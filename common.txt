@@ -51,7 +51,6 @@ http://torrent.ubuntu.com:6969/announce
 http://torrent.unix-ag.uni-kl.de/announce
 http://torrent.unix-ag.uni-kl.de:80/announce
 http://tr.nyacat.pw/announce
-http://tr.nyacat.pw:80/announce
 http://tracker.acgnx.se/announce
 http://tracker.acgnx.se:80/announce
 http://tracker.ali213.net:8000/announce
@@ -114,7 +113,6 @@ https://t.213891.xyz:443/announce
 https://torrent.ubuntu.com/announce
 https://torrent.ubuntu.com:443/announce
 https://tr.nyacat.pw/announce
-https://tr.nyacat.pw:443/announce
 https://tracker.7471.top:443/announce
 https://tracker.bt4g.com/announce
 https://tracker.bt4g.com:443/announce
@@ -125,6 +123,7 @@ https://tracker.qingwapt.org:443/announce
 https://tracker.zhuqiy.com:443/announce
 udp://109.201.134.183:80/announce
 udp://51.81.222.188:6969/announce
+udp://52.58.128.163:6969/announce
 udp://91.211.5.21:6969/announce
 udp://93.158.213.92:1337//announce
 udp://93.158.213.92:1337/announce
