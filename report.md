@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-16T16:08:02Z
+generated_at: 2026-09-16T20:53:03Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,7 +19,7 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1314
+- accepted trackers: 1315
 - rejected lines:    3
 - duplicates removed: 589 (234 removed)
 
@@ -27,17 +27,17 @@ accepted data for it stands (RULES 3.10).
 
 - http: 709
 - https: 239
-- udp: 356
+- udp: 357
 - wss: 10
 
 ### Network
 
-- clearnet: 1297
+- clearnet: 1298
 - i2p: 17
 
 ### Measurability
 
-- measurable from this vantage: 1287
+- measurable from this vantage: 1288
 - unmeasurable:                 27
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 8291 across 1305 tracker(s)
-- never observed:      9
-- health states:       {'degraded': 9, 'live': 189, 'unknown': 1038, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 201, 'dns': 385, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 75, 'tracker_semantic': 117, 'transport_response': 119}
-- observation depth:   median 6, deepest 10
+- health observations: 8476 across 1305 tracker(s)
+- never observed:      10
+- health states:       {'degraded': 10, 'live': 186, 'unknown': 1040, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 202, 'dns': 386, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 74, 'tracker_semantic': 115, 'transport_response': 120}
+- observation depth:   median 6, deepest 11
 - sustained failures:  1095 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 189
+### common.txt -- 186
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  159 from the other categories and 30 more that measured live
+- why:  159 from the other categories and 27 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -161,4 +161,4 @@ matched nothing or the evidence it needs does not exist yet.
 ### stable.txt -- 159
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  159 qualified; deepest history is 10
+- why:  159 qualified; deepest history is 11
