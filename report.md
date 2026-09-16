@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-16T03:20:08Z
+generated_at: 2026-09-16T10:51:22Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 7907 across 1305 tracker(s)
+- health observations: 8099 across 1305 tracker(s)
 - never observed:      9
-- health states:       {'degraded': 7, 'live': 195, 'unknown': 1034, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 202, 'dns': 380, 'no_usable_address': 14, 'none': 395, 'protocol_valid': 75, 'tracker_semantic': 123, 'transport_response': 116}
+- health states:       {'degraded': 8, 'live': 194, 'unknown': 1034, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 203, 'dns': 381, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 75, 'tracker_semantic': 122, 'transport_response': 116}
 - observation depth:   median 6, deepest 10
 - sustained failures:  1095 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 195
+### common.txt -- 194
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  138 from the other categories and 57 more that measured live
+- why:  151 from the other categories and 43 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 138
+### stable.txt -- 151
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  138 qualified; deepest history is 10
+- why:  151 qualified; deepest history is 10

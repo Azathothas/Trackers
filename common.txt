@@ -49,7 +49,6 @@ http://t.overflow.biz:6969/announce
 http://torrent.fedoraproject.org:6969/announce
 http://torrent.ubuntu.com:6969/announce
 http://torrent.unix-ag.uni-kl.de/announce
-http://torrent.unix-ag.uni-kl.de:80/announce
 http://tr.nyacat.pw/announce
 http://tracker.acgnx.se/announce
 http://tracker.acgnx.se:80/announce
@@ -61,7 +60,6 @@ http://tracker.anirena.com:80/announce
 http://tracker.bt4g.com:2095/announce
 http://tracker.bz:80/announce
 http://tracker.ddunlimited.net:6969/announce
-http://tracker.dhitechnical.com:6969/announce
 http://tracker.dler.com:6969/announce
 http://tracker.dler.org:6969/announce
 http://tracker.dm258.cn:7070/announce
@@ -118,6 +116,7 @@ https://tracker.bt4g.com/announce
 https://tracker.bt4g.com:443/announce
 https://tracker.foreverpirates.co/announce
 https://tracker.foreverpirates.co:443/announce
+https://tracker.nekomi.cn:443/announce
 https://tracker.onetracker.net:443/announce
 https://tracker.qingwapt.org:443/announce
 https://tracker.zhuqiy.com:443/announce
