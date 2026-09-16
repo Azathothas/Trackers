@@ -25,7 +25,6 @@ http://bt2.edwardk.info:2710/announce
 http://bt2.edwardk.info:4040/announce
 http://bt2.edwardk.info:6969/announce
 http://bttracker.debian.org:6969/announce
-http://bz.tracker.bz/announce
 http://bz.tracker.bz:80/announce
 http://ehtracker.org/1/announce
 http://ehtracker.org/1104308/announce
@@ -67,13 +66,11 @@ http://tracker.fansub.id/announce
 http://tracker.fansub.id:80/announce
 http://tracker.gcvchp.com:2710/announce
 http://tracker.gigatorrents.ws:2710/announce
-http://tracker.ipv6tracker.org:80/announce
 http://tracker.kali.org:6969/announce
 http://tracker.linkomanija.org:2710/announce
 http://tracker.minglong.org:8080/announce
 http://tracker.nexusstream.eu:6969/announce
 http://tracker.novaopcj.eu.org:6969/announce
-http://tracker.nucozer-tracker.ml:2710/announce
 http://tracker.opentrackr.org:1337/announce
 http://tracker.openzim.org/announce
 http://tracker.pussytorrents.org:3000/announce
@@ -83,7 +80,6 @@ http://tracker.torrentbytes.net/announce.php
 http://tracker.torrentbytes.net:80/announce.php
 http://tracker.trancetraffic.com/announce.php
 http://tracker.trancetraffic.com:80/announce.php
-http://tracker.vanitycore.co:6969/announce
 http://tracker.waaa.moe:6969/announce
 http://tracker.xfapi.top:6868/announce
 http://tracker.xfapi.top:7070/announce
@@ -93,7 +89,6 @@ http://tracker.zhuqiy.dgj055.icu:80/announce
 http://tracker2.dler.org/announce
 http://tracker2.dler.org:80/announce
 http://tracker3.dler.org:2710/announce
-http://www.thetradersden.org/forums/tracker/announce.php
 http://www.tribalmixes.com/announce.php
 http://www.tribalmixes.com:80/announce.php
 http://www.worldboxingvideoarchive.com/announce.php
