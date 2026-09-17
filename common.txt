@@ -98,7 +98,6 @@ http://www.xwt-classics.net/announce.php
 http://www.xwt-classics.net:80/announce.php
 http://xtremewrestlingtorrents.net/announce.php
 http://xtremewrestlingtorrents.net:80/announce.php
-https://004430.xyz:443/announce
 https://1337.abcvg.info/announce
 https://1337.abcvg.info:443/announce
 https://bt.beatrice-raws.org/announce
