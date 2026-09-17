@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-17T16:14:54Z
+generated_at: 2026-09-17T20:57:38Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 9219 across 1306 tracker(s)
+- health observations: 9413 across 1306 tracker(s)
 - never observed:      10
-- health states:       {'degraded': 12, 'live': 190, 'unknown': 1035, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 199, 'dns': 387, 'no_usable_address': 14, 'none': 396, 'protocol_valid': 74, 'tracker_semantic': 118, 'transport_response': 118}
+- health states:       {'degraded': 12, 'live': 187, 'unknown': 1038, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 200, 'dns': 391, 'no_usable_address': 14, 'none': 395, 'protocol_valid': 73, 'tracker_semantic': 116, 'transport_response': 117}
 - observation depth:   median 7, deepest 12
 - sustained failures:  1094 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 190
+### common.txt -- 187
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  161 from the other categories and 29 more that measured live
+- why:  160 from the other categories and 27 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 161
+### stable.txt -- 160
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  161 qualified; deepest history is 12
+- why:  160 qualified; deepest history is 12

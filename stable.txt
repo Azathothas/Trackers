@@ -77,7 +77,6 @@ http://tracker2.dler.org:80/announce
 http://tracker3.dler.org:2710/announce
 http://www.tribalmixes.com/announce.php
 http://www.tribalmixes.com:80/announce.php
-http://www.worldboxingvideoarchive.com/announce.php
 http://www.worldboxingvideoarchive.com:80/announce.php
 http://www.xwt-classics.net/announce.php
 http://www.xwt-classics.net:80/announce.php
