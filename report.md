@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-17T23:27:05Z
+generated_at: 2026-09-18T03:11:56Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1316
 - rejected lines:    3
-- duplicates removed: 598 (241 removed)
+- duplicates removed: 595 (238 removed)
 
 ### Transport
 
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 9603 across 1306 tracker(s)
+- health observations: 9795 across 1306 tracker(s)
 - never observed:      10
-- health states:       {'degraded': 13, 'live': 188, 'unknown': 1036, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 201, 'dns': 389, 'no_usable_address': 14, 'none': 395, 'protocol_valid': 72, 'tracker_semantic': 118, 'transport_response': 117}
+- health states:       {'degraded': 11, 'live': 189, 'unknown': 1037, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 203, 'dns': 388, 'no_usable_address': 14, 'none': 395, 'protocol_valid': 71, 'tracker_semantic': 120, 'transport_response': 115}
 - observation depth:   median 7, deepest 12
-- sustained failures:  1092 (3+ observations, none successful)
+- sustained failures:  1091 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 188
+### common.txt -- 189
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  159 from the other categories and 29 more that measured live
+- why:  157 from the other categories and 32 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 159
+### stable.txt -- 157
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  159 qualified; deepest history is 12
+- why:  157 qualified; deepest history is 12
