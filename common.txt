@@ -92,6 +92,7 @@ http://tracker.zhuqiy.dgj055.icu:80/announce
 http://tracker2.dler.org/announce
 http://tracker2.dler.org:80/announce
 http://tracker3.dler.org:2710/announce
+http://www.thetradersden.org/forums/tracker/announce.php
 http://www.tribalmixes.com/announce.php
 http://www.tribalmixes.com:80/announce.php
 http://www.worldboxingvideoarchive.com:80/announce.php
