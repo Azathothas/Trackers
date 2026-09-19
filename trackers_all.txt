@@ -1,5 +1,6 @@
 http://00.mercax.com:443/announce
 http://00.xxtor.com:443/announce
+http://004430.xyz:80/announce
 http://0123456789nonexistent.com/announce
 http://0d.kebhana.mx:443/announce
 http://104.143.10.186:8000/announce
@@ -324,6 +325,7 @@ http://jp.moeweb.pw:6969/announce
 http://kamikazee.duckdns.org:7777/announce
 http://kinorun.com/announce.php
 http://kinorun.com:80/announce.php
+http://kolanopentracker.airdns.org:3392/announce
 http://li1406-230.members.linode.com:6969/announce
 http://li2021-95.members.linode.com:6969/announce
 http://lima-peru.subventas.com:443/announce
@@ -1076,6 +1078,7 @@ udp://ipv6.tracker.harry.lu/announce
 udp://jutone.com:6969/announce
 udp://keke.re:6969/announce
 udp://kokodayo.site:6969/announce
+udp://kolanopentracker.airdns.org:3392/announce
 udp://laestrygonian.ooguy.com:9001/announce
 udp://laze.cc:6969/announce
 udp://leefafa.tk:6969/announce

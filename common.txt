@@ -1,3 +1,4 @@
+http://004430.xyz:80/announce
 http://107.189.2.131:1337/announce
 http://1337.abcvg.info/announce
 http://1337.abcvg.info:80/announce
@@ -21,7 +22,6 @@ http://bt.edwardk.info:63124/announce
 http://bt.zlofenix.org:81/announce
 http://bt1.archive.org:6969/announce
 http://bt2.archive.org:6969/announce
-http://bt2.edwardk.info:2710/announce
 http://bt2.edwardk.info:4040/announce
 http://bt2.edwardk.info:6969/announce
 http://bttracker.debian.org:6969/announce
