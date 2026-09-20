@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-19T22:40:19Z
+generated_at: 2026-09-20T03:24:26Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1318
+- accepted trackers: 1319
 - rejected lines:    3
-- duplicates removed: 594 (237 removed)
+- duplicates removed: 596 (239 removed)
 
 ### Transport
 
 - http: 710
 - https: 240
-- udp: 358
+- udp: 359
 - wss: 10
 
 ### Network
 
-- clearnet: 1301
+- clearnet: 1302
 - i2p: 17
 
 ### Measurability
 
-- measurable from this vantage: 1291
+- measurable from this vantage: 1292
 - unmeasurable:                 27
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 11446 across 1304 tracker(s)
+- health observations: 11646 across 1305 tracker(s)
 - never observed:      14
-- health states:       {'degraded': 12, 'live': 191, 'unknown': 1032, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 200, 'dns': 388, 'no_usable_address': 14, 'none': 393, 'protocol_valid': 74, 'tracker_semantic': 120, 'transport_response': 115}
+- health states:       {'degraded': 12, 'live': 194, 'unknown': 1030, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 201, 'dns': 383, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 74, 'tracker_semantic': 123, 'transport_response': 116}
 - observation depth:   median 9, deepest 13
 - sustained failures:  1088 (3+ observations, none successful)
 
@@ -94,7 +94,6 @@ the only place that decision is made.
 - sustained: `http://00.mercax.com:443/announce`
 - sustained: `http://00.xxtor.com:443/announce`
 - sustained: `http://0123456789nonexistent.com/announce`
-- sustained: `http://0d.kebhana.mx:443/announce`
 - sustained: `http://104.143.10.186:8000/announce`
 - sustained: `http://104.244.77.14:1337/announce`
 - sustained: `http://106.14.254.164:6969/announce`
@@ -111,6 +110,7 @@ the only place that decision is made.
 - sustained: `http://129.146.193.240:6699/announce`
 - sustained: `http://13.115.115.32:6969/announce`
 - sustained: `http://1337.abcvg.info/announce+108`
+- sustained: `http://140.82.21.192:8080/announce`
 
 ## What this report cannot answer yet
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 191
+### common.txt -- 194
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  153 from the other categories and 38 more that measured live
+- why:  153 from the other categories and 41 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 

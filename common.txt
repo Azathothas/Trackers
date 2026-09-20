@@ -1,4 +1,5 @@
 http://004430.xyz:80/announce
+http://0d.kebhana.mx:443/announce
 http://107.189.2.131:1337/announce
 http://1337.abcvg.info/announce
 http://1337.abcvg.info:80/announce
@@ -25,6 +26,7 @@ http://bt2.archive.org:6969/announce
 http://bt2.edwardk.info:4040/announce
 http://bt2.edwardk.info:6969/announce
 http://bttracker.debian.org:6969/announce
+http://bz.tracker.bz/announce
 http://ehtracker.org/1/announce
 http://ehtracker.org/1104308/announce
 http://ehtracker.org/1113709/announce
@@ -69,6 +71,7 @@ http://tracker.fansub.id/announce
 http://tracker.fansub.id:80/announce
 http://tracker.gcvchp.com:2710/announce
 http://tracker.gigatorrents.ws:2710/announce
+http://tracker.ipv6tracker.org:80/announce
 http://tracker.kali.org:6969/announce
 http://tracker.linkomanija.org:2710/announce
 http://tracker.minglong.org:8080/announce
