@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-20T03:24:26Z
+generated_at: 2026-09-20T10:38:00Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 11646 across 1305 tracker(s)
+- health observations: 11840 across 1305 tracker(s)
 - never observed:      14
-- health states:       {'degraded': 12, 'live': 194, 'unknown': 1030, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 201, 'dns': 383, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 74, 'tracker_semantic': 123, 'transport_response': 116}
+- health states:       {'degraded': 13, 'live': 191, 'unknown': 1032, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 203, 'dns': 385, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 72, 'tracker_semantic': 122, 'transport_response': 115}
 - observation depth:   median 9, deepest 13
 - sustained failures:  1088 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 194
+### common.txt -- 191
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  153 from the other categories and 41 more that measured live
+- why:  151 from the other categories and 40 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 153
+### stable.txt -- 151
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  153 qualified; deepest history is 13
+- why:  151 qualified; deepest history is 13
