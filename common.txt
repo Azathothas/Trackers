@@ -60,8 +60,6 @@ http://tracker.anirena.com/announce
 http://tracker.anirena.com/announcehttp://tracker1.itzmx.com:8080/announce
 http://tracker.anirena.com:80/announce
 http://tracker.bt4g.com:2095/announce
-http://tracker.corpscorp.online/announce
-http://tracker.corpscorp.online:80/announce
 http://tracker.dhitechnical.com:6969/announce
 http://tracker.dler.com:6969/announce
 http://tracker.dler.org:6969/announce
@@ -85,6 +83,7 @@ http://tracker.torrentbytes.net:80/announce.php
 http://tracker.trancetraffic.com/announce.php
 http://tracker.trancetraffic.com:80/announce.php
 http://tracker.waaa.moe:6969/announce
+http://tracker.xfapi.top:6868/announce
 http://tracker.xfapi.top:7070/announce
 http://tracker.xfapi.top:9999/announce
 http://tracker.xn--djrq4gl4hvoi.top:80/announce
@@ -137,7 +136,6 @@ udp://ipv4announce.sktorrent.eu:6969/announce
 udp://mail.segso.net:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
-udp://obey.torrentonline.cc:42069/announce
 udp://open.demonii.com:1337/announce
 udp://open.ftorrent.com:443/announce
 udp://open.stealth.si/announce
