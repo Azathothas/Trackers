@@ -559,7 +559,6 @@ http://tracker.openbittorrent.com/announce
 http://tracker.openbittorrent.com:80/announce
 http://tracker.openbittorrrent.com/announce
 http://tracker.openbittorrrent.com:80/announce
-http://tracker.opentorrent.top:6969/announce
 http://tracker.opentrackr.org:1337/announce
 http://tracker.openzim.org/announce
 http://tracker.pcfreetime.com:6969/announce
