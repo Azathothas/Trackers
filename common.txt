@@ -1,5 +1,4 @@
 http://004430.xyz:80/announce
-http://0d.kebhana.mx:443/announce
 http://107.189.2.131:1337/announce
 http://1337.abcvg.info/announce
 http://1337.abcvg.info:80/announce
@@ -68,7 +67,6 @@ http://tracker.fansub.id/announce
 http://tracker.fansub.id:80/announce
 http://tracker.gcvchp.com:2710/announce
 http://tracker.gigatorrents.ws:2710/announce
-http://tracker.ipv6tracker.org:80/announce
 http://tracker.kali.org:6969/announce
 http://tracker.linkomanija.org:2710/announce
 http://tracker.minglong.org:8080/announce
@@ -82,6 +80,7 @@ http://tracker.torrentbytes.net/announce.php
 http://tracker.torrentbytes.net:80/announce.php
 http://tracker.trancetraffic.com/announce.php
 http://tracker.trancetraffic.com:80/announce.php
+http://tracker.vanitycore.co:6969/announce
 http://tracker.waaa.moe:6969/announce
 http://tracker.xfapi.top:6868/announce
 http://tracker.xfapi.top:7070/announce
