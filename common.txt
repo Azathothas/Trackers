@@ -27,6 +27,7 @@ http://bt2.edwardk.info:2710/announce
 http://bt2.edwardk.info:4040/announce
 http://bt2.edwardk.info:6969/announce
 http://bttracker.debian.org:6969/announce
+http://bz.tracker.bz:80/announce
 http://ehtracker.org/1/announce
 http://ehtracker.org/1104308/announce
 http://ehtracker.org/1113709/announce
@@ -34,6 +35,7 @@ http://ehtracker.org/1226599/1080494xo5eXcwFOBq/announce
 http://ehtracker.org/2496841/announce
 http://ehtracker.org/2541477/announce
 http://ehtracker.org/2566145/1159106xUfsJkT9Btg/announce
+http://h4.trakx.nibba.trade:80/announce
 http://ipv4announce.sktorrent.eu:6969/announce
 http://nyaa.tracker.wf:7777/announce
 http://opentracker.acgnx.se/announce
@@ -174,6 +176,7 @@ udp://tracker.nyaa.vc:6969/announce
 udp://tracker.opentorrent.top:6969/announce
 udp://tracker.opentrackr.com:6969/announce
 udp://tracker.opentrackr.org:1337/announce
+udp://tracker.orsvarn.com:6969/announce
 udp://tracker.peerfect.org:6969/announce
 udp://tracker.playground.ru:6969/announce
 udp://tracker.qu.ax:6969/announce
