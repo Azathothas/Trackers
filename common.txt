@@ -27,7 +27,6 @@ http://bt2.edwardk.info:2710/announce
 http://bt2.edwardk.info:4040/announce
 http://bt2.edwardk.info:6969/announce
 http://bttracker.debian.org:6969/announce
-http://bz.tracker.bz/announce
 http://ehtracker.org/1/announce
 http://ehtracker.org/1104308/announce
 http://ehtracker.org/1113709/announce
@@ -83,7 +82,6 @@ http://tracker.torrentbytes.net/announce.php
 http://tracker.torrentbytes.net:80/announce.php
 http://tracker.trancetraffic.com/announce.php
 http://tracker.trancetraffic.com:80/announce.php
-http://tracker.vanitycore.co:6969/announce
 http://tracker.waaa.moe:6969/announce
 http://tracker.xfapi.top:6868/announce
 http://tracker.xfapi.top:7070/announce
