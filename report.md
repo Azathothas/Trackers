@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-24T11:07:09Z
+generated_at: 2026-09-24T16:30:30Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 15152 across 1303 tracker(s)
+- health observations: 15337 across 1303 tracker(s)
 - never observed:      13
-- health states:       {'degraded': 15, 'live': 188, 'unknown': 1031, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 200, 'dns': 388, 'no_usable_address': 14, 'none': 393, 'protocol_valid': 71, 'tracker_semantic': 118, 'transport_response': 119}
-- observation depth:   median 12, deepest 15
-- sustained failures:  1081 (3+ observations, none successful)
+- health states:       {'degraded': 15, 'live': 184, 'unknown': 1035, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 201, 'dns': 391, 'no_usable_address': 14, 'none': 393, 'protocol_valid': 70, 'tracker_semantic': 115, 'transport_response': 119}
+- observation depth:   median 12, deepest 16
+- sustained failures:  1080 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 188
+### common.txt -- 184
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  149 from the other categories and 39 more that measured live
+- why:  148 from the other categories and 36 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 149
+### stable.txt -- 148
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  149 qualified; deepest history is 15
+- why:  148 qualified; deepest history is 16
