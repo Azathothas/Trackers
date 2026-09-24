@@ -750,7 +750,6 @@ https://nyaa.tracker.wf:7777/announce
 https://open.ftorrent.com:443/announce
 https://open.kickasstracker.com/announce
 https://open.kickasstracker.com:443/announce
-https://opentracker.8880085.xyz:443/announce
 https://opentracker.cc/announce
 https://opentracker.cc:443/announce
 https://opentracker.i2p.rocks/announce
