@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-25T11:09:06Z
+generated_at: 2026-09-25T16:32:30Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1316
 - rejected lines:    3
-- duplicates removed: 584 (228 removed)
+- duplicates removed: 583 (227 removed)
 
 ### Transport
 
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 15897 across 1302 tracker(s)
+- health observations: 16091 across 1302 tracker(s)
 - never observed:      14
-- health states:       {'degraded': 13, 'live': 180, 'unknown': 1040, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 203, 'dns': 392, 'no_usable_address': 14, 'none': 395, 'protocol_valid': 68, 'tracker_semantic': 114, 'transport_response': 116}
+- health states:       {'degraded': 14, 'live': 180, 'unknown': 1038, 'unmeasurable': 70}
+- measurement rungs:   {'connected': 204, 'dns': 388, 'no_usable_address': 14, 'none': 397, 'protocol_valid': 67, 'tracker_semantic': 115, 'transport_response': 117}
 - observation depth:   median 12, deepest 16
-- sustained failures:  1078 (3+ observations, none successful)
+- sustained failures:  1077 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -146,7 +146,7 @@ matched nothing or the evidence it needs does not exist yet.
 ### common.txt -- 180
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  147 from the other categories and 33 more that measured live
+- why:  146 from the other categories and 34 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 147
+### stable.txt -- 146
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  147 qualified; deepest history is 16
+- why:  146 qualified; deepest history is 16

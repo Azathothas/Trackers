@@ -89,7 +89,6 @@ https://tr.nyacat.pw:443/announce
 https://tracker.7471.top:443/announce
 https://tracker.foreverpirates.co/announce
 https://tracker.foreverpirates.co:443/announce
-https://tracker.onetracker.net:443/announce
 https://tracker.qingwapt.org:443/announce
 udp://109.201.134.183:80/announce
 udp://51.81.222.188:6969/announce
