@@ -1,7 +1,7 @@
 {
   "code_version": "0.1.0+norm1",
   "count": 1316,
-  "dataset_digest": "sha256:1c786a60c04c4721c32902c64ad7ab59b5be62a956abf85a13b237723880a8fc",
+  "dataset_digest": "sha256:92125d5aeedee0770ee70e8585dec939aea3659a8c331d3005345ca6ee2c1ef8",
   "files": {
     "anime.txt": {
       "bytes": 39971,
@@ -21,27 +21,27 @@
     },
     "report.md": {
       "bytes": 7512,
-      "digest": "sha256:4f5ead582e3a33d388107d3825871aad39b280b859e463b843d669e39650beb7"
+      "digest": "sha256:8dfcff5b2dfbdde63557e8f3b370daf252886036e07f61de7a2e20c887fb87c3"
     },
     "stable.txt": {
       "bytes": 5878,
       "digest": "sha256:86fef394b119eef66372bcf9d9ff6c4b51c5b21bea66eeed47d79b8561896343"
     },
     "trackers_all.csv": {
-      "bytes": 279576,
-      "digest": "sha256:aa4ec6954a2e97fb9abd0839100daa3cb9b40449d55f1aaaca1b8071f5cbb24e"
+      "bytes": 279525,
+      "digest": "sha256:b8b1cb85b1fd5d217d2cb9791532fa205fd96b2d6f744d11cd60877562b7cbb0"
     },
     "trackers_all.json": {
-      "bytes": 851194,
-      "digest": "sha256:a117cc2cd745389cb6dbe45106624985f13f4a074d27f7735001d254cefe26c8"
+      "bytes": 851143,
+      "digest": "sha256:b23767897969a3eca945197397caac393cf679d4bcbf44516ba4f8ffd492a329"
     },
     "trackers_all.txt": {
       "bytes": 49850,
       "digest": "sha256:16556e5f748ed0cf0baa490602d5cb2f6f412586945f3eff08d9bda3e827b022"
     }
   },
-  "generated_at": "2026-09-25T03:26:04Z",
-  "newest_observation": "2026-09-25T03:25:10Z",
+  "generated_at": "2026-09-25T11:09:06Z",
+  "newest_observation": "2026-09-25T11:08:02Z",
   "normalization_version": 1,
   "publish_interval_seconds": 10800,
   "schema": "schema.md, published beside this file",
