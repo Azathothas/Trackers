@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-24T21:09:20Z
+generated_at: 2026-09-25T03:26:04Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,13 +21,13 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1316
 - rejected lines:    3
-- duplicates removed: 585 (229 removed)
+- duplicates removed: 584 (228 removed)
 
 ### Transport
 
-- http: 709
+- http: 708
 - https: 239
-- udp: 358
+- udp: 359
 - wss: 10
 
 ### Network
@@ -76,16 +76,16 @@ counted separately above, which is the number that matters.
 - `https://tracker.jiesen.life:8443/announce` -- upstream exclusion: operator request or safety [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
-- `udp://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [newtrackon_all, xiu2_all]
+- `udp://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [newtrackon_all]
 
 ## Health
 
-- health observations: 15527 across 1303 tracker(s)
-- never observed:      13
-- health states:       {'degraded': 14, 'live': 180, 'unknown': 1040, 'unmeasurable': 69}
-- measurement rungs:   {'connected': 201, 'dns': 394, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 70, 'tracker_semantic': 112, 'transport_response': 118}
+- health observations: 15705 across 1302 tracker(s)
+- never observed:      14
+- health states:       {'degraded': 13, 'live': 180, 'unknown': 1040, 'unmeasurable': 69}
+- measurement rungs:   {'connected': 204, 'dns': 389, 'no_usable_address': 14, 'none': 394, 'protocol_valid': 68, 'tracker_semantic': 114, 'transport_response': 119}
 - observation depth:   median 12, deepest 16
-- sustained failures:  1080 (3+ observations, none successful)
+- sustained failures:  1078 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -146,7 +146,7 @@ matched nothing or the evidence it needs does not exist yet.
 ### common.txt -- 180
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  148 from the other categories and 32 more that measured live
+- why:  147 from the other categories and 33 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 148
+### stable.txt -- 147
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  148 qualified; deepest history is 16
+- why:  147 qualified; deepest history is 16
