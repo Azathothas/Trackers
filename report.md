@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-26T10:49:22Z
+generated_at: 2026-09-26T15:46:39Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1317
+- accepted trackers: 1318
 - rejected lines:    3
 - duplicates removed: 586 (229 removed)
 
 ### Transport
 
 - http: 708
-- https: 239
+- https: 240
 - udp: 360
 - wss: 10
 
 ### Network
 
-- clearnet: 1300
+- clearnet: 1301
 - i2p: 17
 
 ### Measurability
 
-- measurable from this vantage: 1290
+- measurable from this vantage: 1291
 - unmeasurable:                 27
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 16627 across 1302 tracker(s)
-- never observed:      15
-- health states:       {'degraded': 15, 'live': 185, 'unknown': 1032, 'unmeasurable': 70}
-- measurement rungs:   {'connected': 202, 'dns': 382, 'no_usable_address': 14, 'none': 396, 'protocol_valid': 69, 'tracker_semantic': 118, 'transport_response': 121}
+- health observations: 16817 across 1302 tracker(s)
+- never observed:      16
+- health states:       {'degraded': 15, 'live': 186, 'unknown': 1031, 'unmeasurable': 70}
+- measurement rungs:   {'connected': 201, 'dns': 381, 'no_usable_address': 14, 'none': 396, 'protocol_valid': 71, 'tracker_semantic': 118, 'transport_response': 121}
 - observation depth:   median 13, deepest 17
 - sustained failures:  1077 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 185
+### common.txt -- 186
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  146 from the other categories and 39 more that measured live
+- why:  146 from the other categories and 40 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
