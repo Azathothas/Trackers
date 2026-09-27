@@ -14,7 +14,6 @@ http://bt.beatrice-raws.org:80/announce
 http://bt.edwardk.info:676/announce
 http://bt.edwardk.info:2710/announce
 http://bt.edwardk.info:4040/announce
-http://bt.edwardk.info:6767/announce
 http://bt.edwardk.info:6969/announce
 http://bt.edwardk.info:12891/announce
 http://bt.edwardk.info:63124/announce
@@ -73,6 +72,7 @@ http://tracker.gigatorrents.ws:2710/announce
 http://tracker.kali.org:6969/announce
 http://tracker.linkomanija.org:2710/announce
 http://tracker.minglong.org:8080/announce
+http://tracker.moxing.party:6969/announce
 http://tracker.novaopcj.eu.org:6969/announce
 http://tracker.opentrackr.org:1337/announce
 http://tracker.openzim.org/announce
