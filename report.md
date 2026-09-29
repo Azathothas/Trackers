@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-09-29T12:08:23Z
+generated_at: 2026-09-29T19:47:44Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1318
 - rejected lines:    3
-- duplicates removed: 583 (226 removed)
+- duplicates removed: 584 (227 removed)
 
 ### Transport
 
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 19037 across 1302 tracker(s)
+- health observations: 19229 across 1302 tracker(s)
 - never observed:      16
-- health states:       {'degraded': 15, 'live': 189, 'unknown': 1030, 'unmeasurable': 68}
-- measurement rungs:   {'connected': 196, 'dns': 378, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 75, 'tracker_semantic': 117, 'transport_response': 126}
-- observation depth:   median 14, deepest 18
+- health states:       {'degraded': 14, 'live': 189, 'unknown': 1031, 'unmeasurable': 68}
+- measurement rungs:   {'connected': 196, 'dns': 379, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 75, 'tracker_semantic': 117, 'transport_response': 125}
+- observation depth:   median 15, deepest 18
 - sustained failures:  1073 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
