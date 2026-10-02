@@ -111,6 +111,7 @@ udp://open.stealth.si:80/announce
 udp://opentrackr.org:1337/announce
 udp://retracker01-msk-virt.corbina.net:80/announce
 udp://t.overflow.biz:6969/announce
+udp://torrent.tracker.durukanbal.com:6969/announce
 udp://torrents.artixlinux.org:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://tracker-udp.anirena.com:80/announce
