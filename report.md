@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-02T21:50:16Z
+generated_at: 2026-10-03T03:48:10Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,13 +21,13 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1316
 - rejected lines:    3
-- duplicates removed: 592 (234 removed)
+- duplicates removed: 594 (235 removed)
 
 ### Transport
 
-- http: 708
+- http: 709
 - https: 239
-- udp: 359
+- udp: 358
 - wss: 10
 
 ### Network
@@ -76,14 +76,14 @@ counted separately above, which is the number that matters.
 - `https://tracker.jiesen.life:8443/announce` -- upstream exclusion: operator request or safety [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
-- `udp://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [newtrackon_all]
+- `udp://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [newtrackon_all, xiu2_all]
 
 ## Health
 
-- health observations: 21227 across 1299 tracker(s)
-- never observed:      17
-- health states:       {'degraded': 16, 'live': 185, 'unknown': 1031, 'unmeasurable': 67}
-- measurement rungs:   {'connected': 203, 'dns': 375, 'no_usable_address': 12, 'none': 396, 'protocol_valid': 69, 'tracker_semantic': 119, 'transport_response': 125}
+- health observations: 21386 across 1298 tracker(s)
+- never observed:      18
+- health states:       {'degraded': 16, 'live': 183, 'unknown': 1032, 'unmeasurable': 67}
+- measurement rungs:   {'connected': 202, 'dns': 379, 'no_usable_address': 12, 'none': 395, 'protocol_valid': 69, 'tracker_semantic': 117, 'transport_response': 124}
 - observation depth:   median 16, deepest 22
 - sustained failures:  1069 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 186
+### common.txt -- 183
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  145 from the other categories and 41 more that measured live
+- why:  144 from the other categories and 39 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 145
+### stable.txt -- 144
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  145 qualified; deepest history is 22
+- why:  144 qualified; deepest history is 22
