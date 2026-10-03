@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-03T15:43:33Z
+generated_at: 2026-10-03T20:36:15Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 21761 across 1298 tracker(s)
+- health observations: 21931 across 1298 tracker(s)
 - never observed:      18
 - health states:       {'degraded': 17, 'live': 182, 'unknown': 1032, 'unmeasurable': 67}
-- measurement rungs:   {'connected': 201, 'dns': 382, 'no_usable_address': 12, 'none': 399, 'protocol_valid': 69, 'tracker_semantic': 116, 'transport_response': 119}
+- measurement rungs:   {'connected': 201, 'dns': 384, 'no_usable_address': 12, 'none': 399, 'protocol_valid': 69, 'tracker_semantic': 116, 'transport_response': 117}
 - observation depth:   median 17, deepest 22
 - sustained failures:  1069 (3+ observations, none successful)
 
@@ -146,7 +146,7 @@ matched nothing or the evidence it needs does not exist yet.
 ### common.txt -- 182
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  144 from the other categories and 38 more that measured live
+- why:  145 from the other categories and 37 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 144
+### stable.txt -- 145
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  144 qualified; deepest history is 22
+- why:  145 qualified; deepest history is 22
