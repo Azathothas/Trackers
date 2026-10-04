@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-04T16:26:14Z
+generated_at: 2026-10-04T20:52:37Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 22674 across 1298 tracker(s)
+- health observations: 22864 across 1298 tracker(s)
 - never observed:      19
-- health states:       {'degraded': 14, 'live': 182, 'unknown': 1035, 'unmeasurable': 67}
-- measurement rungs:   {'connected': 203, 'dns': 390, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 69, 'tracker_semantic': 116, 'transport_response': 110}
+- health states:       {'degraded': 17, 'live': 179, 'unknown': 1035, 'unmeasurable': 67}
+- measurement rungs:   {'connected': 202, 'dns': 391, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 70, 'tracker_semantic': 112, 'transport_response': 113}
 - observation depth:   median 17, deepest 23
 - sustained failures:  1069 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 182
+### common.txt -- 179
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  146 from the other categories and 36 more that measured live
+- why:  144 from the other categories and 35 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 146
+### stable.txt -- 144
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  146 qualified; deepest history is 23
+- why:  144 qualified; deepest history is 23
