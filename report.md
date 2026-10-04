@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-04T04:18:36Z
+generated_at: 2026-10-04T11:47:39Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 22312 across 1298 tracker(s)
+- health observations: 22504 across 1298 tracker(s)
 - never observed:      19
-- health states:       {'degraded': 16, 'live': 182, 'unknown': 1033, 'unmeasurable': 67}
-- measurement rungs:   {'connected': 204, 'dns': 388, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 68, 'tracker_semantic': 117, 'transport_response': 111}
-- observation depth:   median 17, deepest 22
+- health states:       {'degraded': 14, 'live': 181, 'unknown': 1036, 'unmeasurable': 67}
+- measurement rungs:   {'connected': 204, 'dns': 390, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 68, 'tracker_semantic': 116, 'transport_response': 110}
+- observation depth:   median 17, deepest 23
 - sustained failures:  1069 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 182
+### common.txt -- 181
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  145 from the other categories and 37 more that measured live
+- why:  146 from the other categories and 35 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 145
+### stable.txt -- 146
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  145 qualified; deepest history is 22
+- why:  146 qualified; deepest history is 23
