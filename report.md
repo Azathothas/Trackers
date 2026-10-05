@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-04T23:49:44Z
+generated_at: 2026-10-05T04:03:18Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1317
+- accepted trackers: 1315
 - rejected lines:    3
-- duplicates removed: 590 (231 removed)
+- duplicates removed: 590 (232 removed)
 
 ### Transport
 
-- http: 710
+- http: 708
 - https: 239
 - udp: 358
 - wss: 10
 
 ### Network
 
-- clearnet: 1300
+- clearnet: 1298
 - i2p: 17
 
 ### Measurability
 
-- measurable from this vantage: 1290
+- measurable from this vantage: 1288
 - unmeasurable:                 27
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 23044 across 1298 tracker(s)
-- never observed:      19
-- health states:       {'degraded': 17, 'live': 180, 'unknown': 1034, 'unmeasurable': 67}
-- measurement rungs:   {'connected': 202, 'dns': 389, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 70, 'tracker_semantic': 113, 'transport_response': 114}
-- observation depth:   median 17, deepest 23
-- sustained failures:  1069 (3+ observations, none successful)
+- health observations: 23229 across 1298 tracker(s)
+- never observed:      17
+- health states:       {'degraded': 19, 'live': 181, 'unknown': 1031, 'unmeasurable': 67}
+- measurement rungs:   {'connected': 201, 'dns': 388, 'no_usable_address': 12, 'none': 398, 'protocol_valid': 71, 'tracker_semantic': 113, 'transport_response': 115}
+- observation depth:   median 18, deepest 23
+- sustained failures:  1068 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 180
+### common.txt -- 181
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  144 from the other categories and 36 more that measured live
+- why:  146 from the other categories and 35 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 144
+### stable.txt -- 146
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  144 qualified; deepest history is 23
+- why:  146 qualified; deepest history is 23
