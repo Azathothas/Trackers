@@ -14,7 +14,6 @@ http://bt.edwardk.info:63124/announce
 http://bt.zlofenix.org:81/announce
 http://bt1.archive.org:6969/announce
 http://bt2.archive.org:6969/announce
-http://bt2.edwardk.info:4040/announce
 http://bt2.edwardk.info:6969/announce
 http://bttracker.debian.org:6969/announce
 http://ehtracker.org/1/announce
@@ -90,7 +89,6 @@ https://tracker.7471.top:443/announce
 https://tracker.foreverpirates.co/announce
 https://tracker.foreverpirates.co:443/announce
 https://tracker.qingwapt.org:443/announce
-https://tracker.zhuqiy.com:443/announce
 udp://109.201.134.183:80/announce
 udp://51.81.222.188:6969/announce
 udp://91.211.5.21:6969/announce
