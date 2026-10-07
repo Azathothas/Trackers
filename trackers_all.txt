@@ -176,7 +176,6 @@ http://88.99.189.199:6969/announce
 http://91.224.92.110:6969/announce
 http://93.158.213.92:1337/announce
 http://93.88.129.16/announce
-http://94.23.207.177:6969/announce
 http://95.107.48.115/announce
 http://95.107.48.115:80/announce
 http://95.217.161.135/announce
