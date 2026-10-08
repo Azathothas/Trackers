@@ -82,7 +82,6 @@ https://1337.abcvg.info:443/announce
 https://bt.beatrice-raws.org/announce
 https://open.ftorrent.com:443/announce
 https://t.213891.xyz:443/announce
-https://torrent.ubuntu.com/announce
 https://torrent.ubuntu.com:443/announce
 https://tr.nyacat.pw/announce
 https://tr.nyacat.pw:443/announce
