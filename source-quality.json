@@ -2,24 +2,22 @@
   "sources": [
     {
       "asserted_trust": "high",
-      "contributed": 73,
-      "corroborating": 73,
-      "distinct_bodies": 33,
+      "contributed": 76,
+      "corroborating": 75,
+      "distinct_bodies": 34,
       "entries_max": 97,
       "entries_min": 72,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
-      "latest_entries": 73,
-      "observations": 134,
+      "last_seen": "2026-10-09T22:27:42Z",
+      "latest_entries": 76,
+      "observations": 135,
       "parser": "normalize.parse_many",
-      "questions_for_a_human": [
-        "contributes 73 URLs and none uniquely: keep it only if it corroborates (73 shared), and say so rather than dropping it"
-      ],
+      "questions_for_a_human": [],
       "role": "primary",
       "source_id": "ngosang_all",
-      "unique": 0,
-      "unique_share": 0.0
+      "unique": 1,
+      "unique_share": 0.0132
     },
     {
       "asserted_trust": "high",
@@ -30,9 +28,9 @@
       "entries_min": 3,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
+      "last_seen": "2026-10-09T22:27:42Z",
       "latest_entries": 3,
-      "observations": 134,
+      "observations": 135,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
@@ -49,9 +47,9 @@
       "entries_min": 13,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
+      "last_seen": "2026-10-09T22:27:42Z",
       "latest_entries": 17,
-      "observations": 134,
+      "observations": 135,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
@@ -68,12 +66,12 @@
       "entries_min": 1,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
+      "last_seen": "2026-10-09T22:27:42Z",
       "latest_entries": 1,
-      "observations": 134,
+      "observations": 135,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 134 fetches: is this list still maintained?"
+        "the body has not changed across 135 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "ngosang_yggdrasil",
@@ -89,9 +87,9 @@
       "entries_min": 346,
       "expected_format": "newline-delimited tracker URLs with `#` comment lines carrying the exclusion REASON, which the common parser strips and `exclusion.py` needs",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
+      "last_seen": "2026-10-09T22:27:42Z",
       "latest_entries": 391,
-      "observations": 134,
+      "observations": 135,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "blacklist",
@@ -101,22 +99,22 @@
     },
     {
       "asserted_trust": "high",
-      "contributed": 257,
-      "corroborating": 104,
-      "distinct_bodies": 112,
+      "contributed": 258,
+      "corroborating": 107,
+      "distinct_bodies": 113,
       "entries_max": 266,
       "entries_min": 256,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
-      "latest_entries": 258,
-      "observations": 134,
+      "last_seen": "2026-10-09T22:27:42Z",
+      "latest_entries": 259,
+      "observations": 135,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
       "source_id": "newtrackon_all",
-      "unique": 153,
-      "unique_share": 0.5953
+      "unique": 151,
+      "unique_share": 0.5853
     },
     {
       "asserted_trust": "medium",
@@ -127,9 +125,9 @@
       "entries_min": 115,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
+      "last_seen": "2026-10-09T22:27:42Z",
       "latest_entries": 118,
-      "observations": 134,
+      "observations": 135,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [],
       "role": "primary",
@@ -140,23 +138,23 @@
     {
       "asserted_trust": "low",
       "contributed": 1074,
-      "corroborating": 81,
+      "corroborating": 82,
       "distinct_bodies": 1,
       "entries_max": 1088,
       "entries_min": 1088,
       "expected_format": "newline-delimited tracker URLs, blank lines and `#` comments permitted",
       "failure_rate": 0.0,
-      "last_seen": "2026-10-09T17:58:23Z",
+      "last_seen": "2026-10-09T22:27:42Z",
       "latest_entries": 1088,
-      "observations": 134,
+      "observations": 135,
       "parser": "normalize.parse_many",
       "questions_for_a_human": [
-        "the body has not changed across 134 fetches: is this list still maintained?"
+        "the body has not changed across 135 fetches: is this list still maintained?"
       ],
       "role": "primary",
       "source_id": "desirefire_all",
-      "unique": 993,
-      "unique_share": 0.9246
+      "unique": 992,
+      "unique_share": 0.9236
     }
   ]
 }

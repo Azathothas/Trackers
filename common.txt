@@ -61,7 +61,6 @@ http://tracker.anirena.com/announce
 http://tracker.anirena.com/announcehttp://tracker1.itzmx.com:8080/announce
 http://tracker.anirena.com:80/announce
 http://tracker.bittor.pw:1337/announce
-http://tracker.bt-hash.com/announce
 http://tracker.dhitechnical.com:6969/announce
 http://tracker.dler.com:6969/announce
 http://tracker.dler.org:6969/announce
@@ -85,7 +84,6 @@ http://tracker.torrentbytes.net:80/announce.php
 http://tracker.trancetraffic.com/announce.php
 http://tracker.trancetraffic.com:80/announce.php
 http://tracker.waaa.moe:6969/announce
-http://tracker.xfapi.top:6868/announce
 http://tracker.xfapi.top:7070/announce
 http://tracker.xfapi.top:9999/announce
 http://tracker.xn--djrq4gl4hvoi.top:80/announce
@@ -93,7 +91,6 @@ http://tracker.zhuqiy.dgj055.icu:80/announce
 http://tracker2.dler.org/announce
 http://tracker2.dler.org:80/announce
 http://tracker3.dler.org:2710/announce
-http://www.chouchou.club:8080/announce
 http://www.thetradersden.org/forums/tracker/announce.php
 http://www.tribalmixes.com/announce.php
 http://www.tribalmixes.com:80/announce.php
