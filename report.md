@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-14T19:10:43Z
+generated_at: 2026-10-14T23:41:27Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1318
 - rejected lines:    3
-- duplicates removed: 594 (236 removed)
+- duplicates removed: 591 (233 removed)
 
 ### Transport
 
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 29144 across 1297 tracker(s)
+- health observations: 29336 across 1297 tracker(s)
 - never observed:      21
-- health states:       {'degraded': 14, 'live': 182, 'unknown': 1036, 'unmeasurable': 65}
-- measurement rungs:   {'connected': 205, 'dns': 382, 'no_usable_address': 12, 'none': 400, 'protocol_valid': 64, 'tracker_semantic': 120, 'transport_response': 114}
-- observation depth:   median 22, deepest 28
+- health states:       {'degraded': 16, 'live': 182, 'unknown': 1034, 'unmeasurable': 65}
+- measurement rungs:   {'connected': 204, 'dns': 383, 'no_usable_address': 12, 'none': 400, 'protocol_valid': 65, 'tracker_semantic': 119, 'transport_response': 114}
+- observation depth:   median 22, deepest 29
 - sustained failures:  1063 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -161,4 +161,4 @@ matched nothing or the evidence it needs does not exist yet.
 ### stable.txt -- 144
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  144 qualified; deepest history is 28
+- why:  144 qualified; deepest history is 29
