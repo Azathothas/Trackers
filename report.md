@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-20T18:54:31Z
+generated_at: 2026-10-20T23:37:38Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1319
 - rejected lines:    3
-- duplicates removed: 592 (233 removed)
+- duplicates removed: 591 (232 removed)
 
 ### Transport
 
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 34518 across 1297 tracker(s)
+- health observations: 34703 across 1297 tracker(s)
 - never observed:      22
-- health states:       {'degraded': 13, 'live': 183, 'unknown': 1036, 'unmeasurable': 65}
-- measurement rungs:   {'connected': 204, 'dns': 385, 'no_usable_address': 12, 'none': 399, 'protocol_valid': 68, 'tracker_semantic': 118, 'transport_response': 111}
+- health states:       {'degraded': 13, 'live': 184, 'unknown': 1035, 'unmeasurable': 65}
+- measurement rungs:   {'connected': 204, 'dns': 384, 'no_usable_address': 12, 'none': 399, 'protocol_valid': 69, 'tracker_semantic': 118, 'transport_response': 111}
 - observation depth:   median 26, deepest 33
 - sustained failures:  1059 (3+ observations, none successful)
 
