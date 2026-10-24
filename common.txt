@@ -44,6 +44,7 @@ http://opentracker.acgnx.se:80/announce
 http://opentrackr.org:1337/announce
 http://proaudiotorrents.org/announce.php
 http://proaudiotorrents.org:80/announce.php
+http://retracker.spark-rostov.ru/announce
 http://retracker01-msk-virt.corbina.net:80/announce
 http://sukebei.tracker.wf:8888/announce
 http://t.nyaatracker.com/announce
@@ -51,6 +52,7 @@ http://t.nyaatracker.com:80/announce
 http://t.overflow.biz:6969/announce
 http://torrent.fedoraproject.org:6969/announce
 http://torrent.ubuntu.com:6969/announce
+http://torrent.unix-ag.uni-kl.de/announce
 http://tr.nyacat.pw/announce
 http://tr.nyacat.pw:80/announce
 http://tracker.acgnx.se/announce
