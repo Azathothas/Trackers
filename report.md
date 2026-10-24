@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-24T03:17:02Z
+generated_at: 2026-10-24T10:17:36Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 37302 across 1297 tracker(s)
+- health observations: 37487 across 1297 tracker(s)
 - never observed:      22
-- health states:       {'degraded': 14, 'live': 185, 'unknown': 1033, 'unmeasurable': 65}
-- measurement rungs:   {'connected': 208, 'dns': 374, 'no_usable_address': 12, 'none': 400, 'protocol_valid': 68, 'tracker_semantic': 120, 'transport_response': 115}
+- health states:       {'degraded': 15, 'live': 184, 'unknown': 1033, 'unmeasurable': 65}
+- measurement rungs:   {'connected': 209, 'dns': 373, 'no_usable_address': 12, 'none': 400, 'protocol_valid': 68, 'tracker_semantic': 119, 'transport_response': 116}
 - observation depth:   median 28, deepest 35
 - sustained failures:  1058 (3+ observations, none successful)
 
