@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-25T20:23:05Z
+generated_at: 2026-10-25T23:01:09Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 38778 across 1297 tracker(s)
+- health observations: 38958 across 1297 tracker(s)
 - never observed:      22
 - health states:       {'degraded': 18, 'live': 189, 'unknown': 1025, 'unmeasurable': 65}
-- measurement rungs:   {'connected': 206, 'dns': 373, 'no_usable_address': 12, 'none': 405, 'protocol_valid': 69, 'tracker_semantic': 123, 'transport_response': 109}
+- measurement rungs:   {'connected': 205, 'dns': 373, 'no_usable_address': 12, 'none': 406, 'protocol_valid': 69, 'tracker_semantic': 123, 'transport_response': 109}
 - observation depth:   median 29, deepest 37
-- sustained failures:  1053 (3+ observations, none successful)
+- sustained failures:  1052 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
