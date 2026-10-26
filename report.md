@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-25T23:01:09Z
+generated_at: 2026-10-26T03:12:43Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1319
 - rejected lines:    3
-- duplicates removed: 589 (231 removed)
+- duplicates removed: 590 (232 removed)
 
 ### Transport
 
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 38958 across 1297 tracker(s)
+- health observations: 39143 across 1297 tracker(s)
 - never observed:      22
 - health states:       {'degraded': 18, 'live': 189, 'unknown': 1025, 'unmeasurable': 65}
-- measurement rungs:   {'connected': 205, 'dns': 373, 'no_usable_address': 12, 'none': 406, 'protocol_valid': 69, 'tracker_semantic': 123, 'transport_response': 109}
-- observation depth:   median 29, deepest 37
+- measurement rungs:   {'connected': 207, 'dns': 369, 'no_usable_address': 12, 'none': 406, 'protocol_valid': 68, 'tracker_semantic': 124, 'transport_response': 111}
+- observation depth:   median 30, deepest 37
 - sustained failures:  1052 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -146,7 +146,7 @@ matched nothing or the evidence it needs does not exist yet.
 ### common.txt -- 190
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  141 from the other categories and 49 more that measured live
+- why:  140 from the other categories and 50 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 141
+### stable.txt -- 140
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  141 qualified; deepest history is 37
+- why:  140 qualified; deepest history is 37
