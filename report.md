@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-27T08:38:45Z
+generated_at: 2026-10-27T15:08:11Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,7 +19,7 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1318
+- accepted trackers: 1317
 - rejected lines:    3
 - duplicates removed: 592 (234 removed)
 
@@ -27,17 +27,17 @@ accepted data for it stands (RULES 3.10).
 
 - http: 707
 - https: 239
-- udp: 362
+- udp: 361
 - wss: 10
 
 ### Network
 
-- clearnet: 1302
+- clearnet: 1301
 - i2p: 16
 
 ### Measurability
 
-- measurable from this vantage: 1292
+- measurable from this vantage: 1291
 - unmeasurable:                 26
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 39838 across 1296 tracker(s)
+- health observations: 39985 across 1295 tracker(s)
 - never observed:      22
-- health states:       {'degraded': 19, 'live': 189, 'unknown': 1023, 'unmeasurable': 65}
-- measurement rungs:   {'connected': 198, 'dns': 382, 'no_usable_address': 12, 'none': 401, 'protocol_valid': 70, 'tracker_semantic': 122, 'transport_response': 111}
+- health states:       {'degraded': 20, 'live': 190, 'unknown': 1020, 'unmeasurable': 65}
+- measurement rungs:   {'connected': 197, 'dns': 381, 'no_usable_address': 12, 'none': 402, 'protocol_valid': 70, 'tracker_semantic': 123, 'transport_response': 110}
 - observation depth:   median 30, deepest 38
-- sustained failures:  1052 (3+ observations, none successful)
+- sustained failures:  1051 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
