@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-10-26T20:18:39Z
+generated_at: 2026-10-27T00:14:47Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1319
+- accepted trackers: 1320
 - rejected lines:    3
-- duplicates removed: 589 (231 removed)
+- duplicates removed: 591 (232 removed)
 
 ### Transport
 
 - http: 709
 - https: 239
-- udp: 361
+- udp: 362
 - wss: 10
 
 ### Network
 
-- clearnet: 1302
+- clearnet: 1303
 - i2p: 17
 
 ### Measurability
 
-- measurable from this vantage: 1292
+- measurable from this vantage: 1293
 - unmeasurable:                 27
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 39493 across 1297 tracker(s)
-- never observed:      22
-- health states:       {'degraded': 17, 'live': 188, 'unknown': 1027, 'unmeasurable': 65}
-- measurement rungs:   {'connected': 202, 'dns': 376, 'no_usable_address': 12, 'none': 405, 'protocol_valid': 68, 'tracker_semantic': 123, 'transport_response': 111}
+- health observations: 39678 across 1297 tracker(s)
+- never observed:      23
+- health states:       {'degraded': 18, 'live': 188, 'unknown': 1026, 'unmeasurable': 65}
+- measurement rungs:   {'connected': 200, 'dns': 379, 'no_usable_address': 12, 'none': 405, 'protocol_valid': 69, 'tracker_semantic': 122, 'transport_response': 110}
 - observation depth:   median 30, deepest 38
 - sustained failures:  1052 (3+ observations, none successful)
 
