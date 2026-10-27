@@ -176,7 +176,6 @@ http://88.99.189.199:6969/announce
 http://91.224.92.110:6969/announce
 http://93.158.213.92:1337/announce
 http://93.88.129.16/announce
-http://94.23.207.177:6969/announce
 http://95.107.48.115/announce
 http://95.107.48.115:80/announce
 http://95.217.161.135/announce
@@ -205,7 +204,6 @@ http://anidex.moe:6969/announce+
 http://anisource.spb.ru/announce
 http://announce.partis.si/announce
 http://announce.partis.si:80/announce
-http://announce.sktorrent.eu:6969/announce
 http://asiatorrent.ddns.net:51413/announce
 http://asiatorrent.giize.com:51413/announce
 http://atrack.pow7.com/announce
@@ -1203,6 +1201,7 @@ udp://tracker.dler.org:6969/announce
 udp://tracker.dorcus.digital:1337/announce
 udp://tracker.ducks.party:1984/announce
 udp://tracker.edkj.club:6969/announce
+udp://tracker.evergarden.uk:1914/announce
 udp://tracker.ex.ua:80/announce
 udp://tracker.farted.net:6969/announce
 udp://tracker.filemail.com:6969/announce
@@ -1305,7 +1304,6 @@ udp://yuptracker-sa.gaijinent.com:27022/announce
 udp://yuptracker-us.gaijinent.com:27022/announce
 udp://yuptracker.gaijinent.com:27022/announce
 udp://zecircle.xyz:6969/announce
-udp://freetracker.i2p:1337/announce
 udp://opentracker.simp.i2p:6969/a
 udp://opentracker.skank.i2p:6969/a
 wss://open.ftorrent.com:443
