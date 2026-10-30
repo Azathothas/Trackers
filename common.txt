@@ -85,7 +85,6 @@ http://tracker.trancetraffic.com/announce.php
 http://tracker.trancetraffic.com:80/announce.php
 http://tracker.vanitycore.co:6969/announce
 http://tracker.waaa.moe:6969/announce
-http://tracker.xfapi.top:6868/announce
 http://tracker.xfapi.top:7070/announce
 http://tracker.xfapi.top:9999/announce
 http://tracker.xiaoduola.xyz:6969/announce
@@ -97,6 +96,7 @@ http://tracker2.itzmx.com:6961/announce
 http://tracker3.dler.org:2710/announce
 http://tracker810.xyz:11450/announce
 http://www.thetradersden.org/forums/tracker/announce.php
+http://www.torrentsnipe.info:2701/announce
 http://www.tribalmixes.com/announce.php
 http://www.tribalmixes.com:80/announce.php
 http://www.worldboxingvideoarchive.com/announce.php
@@ -125,10 +125,12 @@ https://tracker.zhuqiy.com:443/announce
 udp://109.201.134.183:80/announce
 udp://51.81.222.188:6969/announce
 udp://52.58.128.163:6969/announce
+udp://91.211.5.21:6969/announce
 udp://93.158.213.92:1337//announce
 udp://93.158.213.92:1337/announce
 udp://93.158.213.92:6969/announce
 udp://admin.52ywp.com:6969/announce
+udp://anime-tracker.aruku.kro.kr:8081/announce
 udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce
 udp://coeus.torrentonline.cc:42069/announce
 udp://evan.im:6969/announce
@@ -137,6 +139,7 @@ udp://ipv4announce.sktorrent.eu:6969/announce
 udp://mail.segso.net:6969/announce
 udp://martin-gebhardt.eu:25/announce
 udp://ns575949.ip-51-222-82.net:6969/announce
+udp://obey.torrentonline.cc:42069/announce
 udp://open.demonii.com:1337/announce
 udp://open.ftorrent.com:443/announce
 udp://open.stealth.si/announce
