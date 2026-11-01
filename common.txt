@@ -1,4 +1,5 @@
 http://004430.xyz:80/announce
+http://0d.kebhana.mx:443/announce
 http://107.189.2.131:1337/announce
 http://1337.abcvg.info/announce
 http://1337.abcvg.info:80/announce
@@ -81,8 +82,8 @@ http://tracker.skyts.net:6969/announce
 http://tracker.torrentbytes.net/announce.php
 http://tracker.trancetraffic.com/announce.php
 http://tracker.trancetraffic.com:80/announce.php
+http://tracker.vanitycore.co:6969/announce
 http://tracker.waaa.moe:6969/announce
-http://tracker.xiaoduola.xyz:6969/announce
 http://tracker.zhuqiy.dgj055.icu:80/announce
 http://tracker1.itzmx.com:8080/announce
 http://tracker2.dler.org/announce
@@ -178,6 +179,7 @@ udp://tracker.orsvarn.com:6969/announce
 udp://tracker.peerfect.org:6969/announce
 udp://tracker.playground.ru:6969/announce
 udp://tracker.qu.ax:6969/announce
+udp://tracker.skyts.net:6969/announce
 udp://tracker.theoks.net:6969/announce
 udp://tracker.torrent.eu.org:451/announce
 udp://tracker.tryhackx.org:6969/announce
