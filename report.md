@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-02T21:24:23Z
+generated_at: 2026-11-03T05:21:22Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1317
+- accepted trackers: 1318
 - rejected lines:    3
-- duplicates removed: 589 (234 removed)
+- duplicates removed: 590 (234 removed)
 
 ### Transport
 
-- http: 706
+- http: 707
 - https: 241
 - udp: 360
 - wss: 10
 
 ### Network
 
-- clearnet: 1301
+- clearnet: 1302
 - i2p: 16
 
 ### Measurability
 
-- measurable from this vantage: 1291
+- measurable from this vantage: 1292
 - unmeasurable:                 26
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 43997 across 1293 tracker(s)
+- health observations: 44222 across 1294 tracker(s)
 - never observed:      24
-- health states:       {'degraded': 18, 'live': 182, 'unknown': 1029, 'unmeasurable': 64}
-- measurement rungs:   {'connected': 195, 'dns': 397, 'no_usable_address': 11, 'none': 396, 'protocol_valid': 75, 'tracker_semantic': 109, 'transport_response': 110}
+- health states:       {'degraded': 19, 'live': 180, 'unknown': 1031, 'unmeasurable': 64}
+- measurement rungs:   {'connected': 195, 'dns': 397, 'no_usable_address': 11, 'none': 398, 'protocol_valid': 74, 'tracker_semantic': 108, 'transport_response': 111}
 - observation depth:   median 33, deepest 41
 - sustained failures:  1046 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 187
+### common.txt -- 185
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  136 from the other categories and 51 more that measured live
+- why:  137 from the other categories and 48 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 136
+### stable.txt -- 137
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  136 qualified; deepest history is 41
+- why:  137 qualified; deepest history is 41
