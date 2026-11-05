@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-04T19:22:01Z
+generated_at: 2026-11-05T01:17:56Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1318
 - rejected lines:    3
-- duplicates removed: 589 (233 removed)
+- duplicates removed: 597 (241 removed)
 
 ### Transport
 
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 45166 across 1294 tracker(s)
+- health observations: 45356 across 1294 tracker(s)
 - never observed:      24
-- health states:       {'degraded': 17, 'live': 183, 'unknown': 1031, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 201, 'dns': 384, 'no_usable_address': 11, 'none': 399, 'protocol_valid': 71, 'tracker_semantic': 115, 'transport_response': 113}
-- observation depth:   median 34, deepest 41
+- health states:       {'degraded': 17, 'live': 185, 'unknown': 1029, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 201, 'dns': 380, 'no_usable_address': 11, 'none': 400, 'protocol_valid': 70, 'tracker_semantic': 118, 'transport_response': 114}
+- observation depth:   median 35, deepest 41
 - sustained failures:  1045 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 184
+### common.txt -- 186
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  131 from the other categories and 53 more that measured live
+- why:  130 from the other categories and 56 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 131
+### stable.txt -- 130
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  131 qualified; deepest history is 41
+- why:  130 qualified; deepest history is 41
