@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-05T19:29:35Z
+generated_at: 2026-11-06T01:22:35Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1318
 - rejected lines:    3
-- duplicates removed: 597 (241 removed)
+- duplicates removed: 602 (246 removed)
 
 ### Transport
 
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 45726 across 1294 tracker(s)
+- health observations: 45896 across 1294 tracker(s)
 - never observed:      24
-- health states:       {'degraded': 17, 'live': 185, 'unknown': 1029, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 202, 'dns': 381, 'no_usable_address': 11, 'none': 398, 'protocol_valid': 70, 'tracker_semantic': 118, 'transport_response': 114}
-- observation depth:   median 35, deepest 41
+- health states:       {'degraded': 18, 'live': 188, 'unknown': 1025, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 202, 'dns': 376, 'no_usable_address': 11, 'none': 399, 'protocol_valid': 70, 'tracker_semantic': 121, 'transport_response': 115}
+- observation depth:   median 35, deepest 42
 - sustained failures:  1045 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 186
+### common.txt -- 189
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  130 from the other categories and 56 more that measured live
+- why:  130 from the other categories and 59 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -161,4 +161,4 @@ matched nothing or the evidence it needs does not exist yet.
 ### stable.txt -- 130
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  130 qualified; deepest history is 41
+- why:  130 qualified; deepest history is 42
