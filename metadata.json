@@ -1,15 +1,15 @@
 {
   "code_version": "0.1.0+norm1",
   "count": 1319,
-  "dataset_digest": "sha256:a3574b73460a830f2e447bfc6882b2f87b5a5a944acdcd9361e935893bea8e70",
+  "dataset_digest": "sha256:503b6fba15b484be2e58403f2c66e1c7d21faa66668c1878f21ac6aec1a72a69",
   "files": {
     "anime.txt": {
       "bytes": 39971,
       "digest": "sha256:65373014709000855c8ca087b68506c4f79d51b914d33d272c29b90570ad1d23"
     },
     "common.txt": {
-      "bytes": 7560,
-      "digest": "sha256:e86987ea62a4b94ce92bb0bdebdf43f247afc0a6dbf2640c0847f7b4af015ed2"
+      "bytes": 7764,
+      "digest": "sha256:df7c800bf8b3aadb54249ea49c0477de8b0fbf9ef2c1c9c344229b00c06ac0ba"
     },
     "foss.txt": {
       "bytes": 0,
@@ -21,27 +21,27 @@
     },
     "report.md": {
       "bytes": 7517,
-      "digest": "sha256:9bfa017c3f1884d268ee8ac9693c14bc6295463703c8cfe827c3c694b3fa33db"
+      "digest": "sha256:0bdc1c03f6d8498ffba0340734680f477ecde59e88f92301205f4759a0457f5c"
     },
     "stable.txt": {
       "bytes": 5178,
       "digest": "sha256:b49bac16d96b5d82cd9493ffb17ccc6a85e0e528a42fcf0ddc740092abc3dbda"
     },
     "trackers_all.csv": {
-      "bytes": 280711,
-      "digest": "sha256:f417454df5bb42d184f1334b8dcb9911da0734f685484267369c00a50620c9bb"
+      "bytes": 280702,
+      "digest": "sha256:477bac784374cf27ff14245eede45428a4227d201e836534efb167d765c6bac9"
     },
     "trackers_all.json": {
-      "bytes": 853882,
-      "digest": "sha256:aa60eef99e8baca4f16ff3788bbe913134fba9a31885b278d9f6d16748bd88b7"
+      "bytes": 853871,
+      "digest": "sha256:5e0c8d87af4bfb7296a2542c56f477ee6c69bc158394e32eab639e8ce2562841"
     },
     "trackers_all.txt": {
       "bytes": 49933,
       "digest": "sha256:f7596b7fb36800d4d76157bfd3f9e1ea9ef003e565924c1f2077c9d5a01bc42d"
     }
   },
-  "generated_at": "2026-11-06T18:54:07Z",
-  "newest_observation": "2026-11-06T18:53:08Z",
+  "generated_at": "2026-11-07T00:37:21Z",
+  "newest_observation": "2026-11-07T00:36:29Z",
   "normalization_version": 1,
   "publish_interval_seconds": 10800,
   "schema": "schema.md, published beside this file",
