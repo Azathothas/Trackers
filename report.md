@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-07T21:27:31Z
+generated_at: 2026-11-08T04:27:13Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1319
 - rejected lines:    3
-- duplicates removed: 595 (239 removed)
+- duplicates removed: 587 (231 removed)
 
 ### Transport
 
@@ -76,14 +76,14 @@ counted separately above, which is the number that matters.
 - `https://tracker.jiesen.life:8443/announce` -- upstream exclusion: operator request or safety [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
 - `https://tracker.monikadesign.uk/announce/<redacted>` -- carries a private-tracker credential (T-107) [desirefire_all]
-- `udp://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [newtrackon_all, xiu2_all]
+- `udp://tracker.breizh.pm:6969/announce` -- upstream exclusion: operator request or safety [newtrackon_all]
 
 ## Health
 
-- health observations: 47029 across 1294 tracker(s)
+- health observations: 47220 across 1294 tracker(s)
 - never observed:      25
-- health states:       {'degraded': 21, 'live': 195, 'unknown': 1015, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 192, 'dns': 379, 'no_usable_address': 11, 'none': 405, 'protocol_valid': 77, 'tracker_semantic': 121, 'transport_response': 109}
+- health states:       {'degraded': 20, 'live': 195, 'unknown': 1016, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 190, 'dns': 382, 'no_usable_address': 11, 'none': 406, 'protocol_valid': 77, 'tracker_semantic': 121, 'transport_response': 107}
 - observation depth:   median 36, deepest 42
 - sustained failures:  1043 (3+ observations, none successful)
 

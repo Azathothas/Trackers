@@ -91,8 +91,8 @@ http://tracker2.dler.org/announce
 http://tracker2.dler.org:80/announce
 http://tracker3.dler.org:2710/announce
 http://tracker4.itzmx.com:6961/announce
-http://tracker810.xyz:11450/announce
 http://www.chouchou.club:8080/announce
+http://www.thetradersden.org/forums/tracker/announce.php
 http://www.tribalmixes.com/announce.php
 http://www.tribalmixes.com:80/announce.php
 http://www.worldboxingvideoarchive.com/announce.php
