@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-11T04:43:14Z
+generated_at: 2026-11-11T13:33:57Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1321
+- accepted trackers: 1322
 - rejected lines:    3
-- duplicates removed: 594 (238 removed)
+- duplicates removed: 593 (237 removed)
 
 ### Transport
 
 - http: 707
 - https: 242
-- udp: 362
+- udp: 363
 - wss: 10
 
 ### Network
 
-- clearnet: 1305
+- clearnet: 1306
 - i2p: 16
 
 ### Measurability
 
-- measurable from this vantage: 1295
+- measurable from this vantage: 1296
 - unmeasurable:                 26
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 48925 across 1294 tracker(s)
-- never observed:      27
-- health states:       {'degraded': 19, 'live': 189, 'unknown': 1023, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 185, 'dns': 389, 'no_usable_address': 11, 'none': 407, 'protocol_valid': 78, 'tracker_semantic': 114, 'transport_response': 110}
+- health observations: 49104 across 1294 tracker(s)
+- never observed:      28
+- health states:       {'degraded': 19, 'live': 187, 'unknown': 1025, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 184, 'dns': 392, 'no_usable_address': 11, 'none': 408, 'protocol_valid': 78, 'tracker_semantic': 112, 'transport_response': 109}
 - observation depth:   median 38, deepest 42
-- sustained failures:  1040 (3+ observations, none successful)
+- sustained failures:  1039 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 193
+### common.txt -- 191
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  133 from the other categories and 60 more that measured live
+- why:  133 from the other categories and 58 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
