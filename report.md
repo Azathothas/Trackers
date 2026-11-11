@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-11T13:33:57Z
+generated_at: 2026-11-11T21:49:27Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1322
 - rejected lines:    3
-- duplicates removed: 593 (237 removed)
+- duplicates removed: 594 (238 removed)
 
 ### Transport
 
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 49104 across 1294 tracker(s)
+- health observations: 49295 across 1294 tracker(s)
 - never observed:      28
-- health states:       {'degraded': 19, 'live': 187, 'unknown': 1025, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 184, 'dns': 392, 'no_usable_address': 11, 'none': 408, 'protocol_valid': 78, 'tracker_semantic': 112, 'transport_response': 109}
-- observation depth:   median 38, deepest 42
+- health states:       {'degraded': 20, 'live': 187, 'unknown': 1024, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 185, 'dns': 392, 'no_usable_address': 11, 'none': 408, 'protocol_valid': 77, 'tracker_semantic': 113, 'transport_response': 108}
+- observation depth:   median 38, deepest 43
 - sustained failures:  1039 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -146,7 +146,7 @@ matched nothing or the evidence it needs does not exist yet.
 ### common.txt -- 191
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  133 from the other categories and 58 more that measured live
+- why:  134 from the other categories and 57 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 133
+### stable.txt -- 134
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  133 qualified; deepest history is 42
+- why:  134 qualified; deepest history is 43
