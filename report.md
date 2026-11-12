@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-12T14:38:12Z
+generated_at: 2026-11-12T21:44:09Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1322
+- accepted trackers: 1323
 - rejected lines:    3
 - duplicates removed: 599 (243 removed)
 
 ### Transport
 
 - http: 707
-- https: 242
+- https: 243
 - udp: 363
 - wss: 10
 
 ### Network
 
-- clearnet: 1306
+- clearnet: 1307
 - i2p: 16
 
 ### Measurability
 
-- measurable from this vantage: 1296
+- measurable from this vantage: 1297
 - unmeasurable:                 26
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 49656 across 1294 tracker(s)
-- never observed:      28
-- health states:       {'degraded': 20, 'live': 186, 'unknown': 1025, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 186, 'dns': 396, 'no_usable_address': 11, 'none': 407, 'protocol_valid': 76, 'tracker_semantic': 113, 'transport_response': 105}
-- observation depth:   median 38, deepest 43
+- health observations: 49846 across 1294 tracker(s)
+- never observed:      29
+- health states:       {'degraded': 20, 'live': 188, 'unknown': 1023, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 187, 'dns': 393, 'no_usable_address': 11, 'none': 407, 'protocol_valid': 75, 'tracker_semantic': 116, 'transport_response': 105}
+- observation depth:   median 39, deepest 43
 - sustained failures:  1038 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 191
+### common.txt -- 189
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  134 from the other categories and 57 more that measured live
+- why:  134 from the other categories and 55 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
