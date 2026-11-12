@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-12T05:45:21Z
+generated_at: 2026-11-12T14:38:12Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 49465 across 1294 tracker(s)
+- health observations: 49656 across 1294 tracker(s)
 - never observed:      28
-- health states:       {'degraded': 19, 'live': 186, 'unknown': 1026, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 186, 'dns': 393, 'no_usable_address': 11, 'none': 408, 'protocol_valid': 76, 'tracker_semantic': 113, 'transport_response': 107}
+- health states:       {'degraded': 20, 'live': 186, 'unknown': 1025, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 186, 'dns': 396, 'no_usable_address': 11, 'none': 407, 'protocol_valid': 76, 'tracker_semantic': 113, 'transport_response': 105}
 - observation depth:   median 38, deepest 43
-- sustained failures:  1039 (3+ observations, none successful)
+- sustained failures:  1038 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 190
+### common.txt -- 191
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  134 from the other categories and 56 more that measured live
+- why:  134 from the other categories and 57 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
