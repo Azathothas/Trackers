@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-12T21:44:09Z
+generated_at: 2026-11-13T05:03:00Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1323
 - rejected lines:    3
-- duplicates removed: 599 (243 removed)
+- duplicates removed: 595 (239 removed)
 
 ### Transport
 
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 49846 across 1294 tracker(s)
+- health observations: 50035 across 1294 tracker(s)
 - never observed:      29
-- health states:       {'degraded': 20, 'live': 188, 'unknown': 1023, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 187, 'dns': 393, 'no_usable_address': 11, 'none': 407, 'protocol_valid': 75, 'tracker_semantic': 116, 'transport_response': 105}
+- health states:       {'degraded': 21, 'live': 187, 'unknown': 1023, 'unmeasurable': 63}
+- measurement rungs:   {'connected': 191, 'dns': 391, 'no_usable_address': 11, 'none': 407, 'protocol_valid': 73, 'tracker_semantic': 117, 'transport_response': 104}
 - observation depth:   median 39, deepest 43
 - sustained failures:  1038 (3+ observations, none successful)
 
@@ -146,7 +146,7 @@ matched nothing or the evidence it needs does not exist yet.
 ### common.txt -- 189
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  134 from the other categories and 55 more that measured live
+- why:  135 from the other categories and 54 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 134
+### stable.txt -- 135
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  134 qualified; deepest history is 43
+- why:  135 qualified; deepest history is 43
