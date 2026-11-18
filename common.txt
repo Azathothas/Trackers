@@ -59,11 +59,13 @@ http://tracker.dhitechnical.com:6969/announce
 http://tracker.dler.com:6969/announce
 http://tracker.dler.org:6969/announce
 http://tracker.dm258.cn:7070/announce
+http://tracker.fansub.id/announce
 http://tracker.gcvchp.com:2710/announce
 http://tracker.gigatorrents.ws:2710/announce
 http://tracker.internetwarriors.net:1337/announce
 http://tracker.kali.org:6969/announce
 http://tracker.linkomanija.org:2710/announce
+http://tracker.lintk.me:2710/announce
 http://tracker.minglong.org:8080/announce
 http://tracker.novaopcj.eu.org:6969/announce
 http://tracker.opentrackr.org:1337/announce
@@ -153,6 +155,7 @@ udp://tracker.cyberia.is:6969/announce
 udp://tracker.dler.com:6969/announce
 udp://tracker.dler.org:6969/announce
 udp://tracker.ducks.party:1984/announce
+udp://tracker.farted.net:6969/announce
 udp://tracker.filemail.com:6969/announce
 udp://tracker.flatuslifir.is:6969/announce
 udp://tracker.fnix.net:6969/announce
@@ -160,6 +163,7 @@ udp://tracker.gmi.gd:6969/announce
 udp://tracker.ilibr.org:80/announce
 udp://tracker.ilibr.org:6969/announce
 udp://tracker.internetwarriors.net:1337/announce
+udp://tracker.k.vu:6969/announce
 udp://tracker.nyaa.net:6969/announce
 udp://tracker.nyaa.vc:6969/announce
 udp://tracker.opentrackr.com:6969/announce
