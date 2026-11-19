@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-18T19:58:45Z
+generated_at: 2026-11-19T02:16:49Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,26 +19,26 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1320
+- accepted trackers: 1324
 - rejected lines:    3
-- duplicates removed: 586 (231 removed)
+- duplicates removed: 602 (242 removed)
 
 ### Transport
 
-- http: 704
+- http: 703
 - https: 243
-- udp: 363
+- udp: 368
 - wss: 10
 
 ### Network
 
-- clearnet: 1304
-- i2p: 16
+- clearnet: 1311
+- i2p: 13
 
 ### Measurability
 
-- measurable from this vantage: 1294
-- unmeasurable:                 26
+- measurable from this vantage: 1301
+- unmeasurable:                 23
 
 An unmeasurable tracker is one this vantage cannot reach at all
 (no IPv6 egress; i2p/yggdrasil/onion need routers; ws/wss unverified).
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 52882 across 1291 tracker(s)
-- never observed:      29
-- health states:       {'degraded': 24, 'live': 185, 'unknown': 1019, 'unmeasurable': 63}
-- measurement rungs:   {'connected': 191, 'dns': 377, 'no_usable_address': 11, 'none': 411, 'protocol_valid': 73, 'tracker_semantic': 115, 'transport_response': 113}
-- observation depth:   median 41, deepest 46
-- sustained failures:  1036 (3+ observations, none successful)
+- health observations: 52736 across 1283 tracker(s)
+- never observed:      41
+- health states:       {'degraded': 24, 'live': 184, 'unknown': 1020, 'unmeasurable': 55}
+- measurement rungs:   {'connected': 190, 'dns': 379, 'no_usable_address': 11, 'none': 403, 'protocol_valid': 74, 'tracker_semantic': 113, 'transport_response': 113}
+- observation depth:   median 42, deepest 46
+- sustained failures:  1028 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 187
+### common.txt -- 185
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  135 from the other categories and 52 more that measured live
+- why:  134 from the other categories and 51 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -158,7 +158,7 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: the maintainer's manual list, in their order, deduplicated against itself, never sorted and never ranked
 - why:  no input file exists yet (T-106); the renderer that preserves manual order is implemented and tested
 
-### stable.txt -- 135
+### stable.txt -- 134
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  135 qualified; deepest history is 46
+- why:  134 qualified; deepest history is 46
