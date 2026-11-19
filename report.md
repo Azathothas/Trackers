@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-19T11:08:01Z
+generated_at: 2026-11-19T19:57:17Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -80,11 +80,11 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 52914 across 1283 tracker(s)
+- health observations: 53100 across 1283 tracker(s)
 - never observed:      41
-- health states:       {'degraded': 26, 'live': 183, 'unknown': 1019, 'unmeasurable': 55}
-- measurement rungs:   {'connected': 190, 'dns': 377, 'no_usable_address': 11, 'none': 404, 'protocol_valid': 74, 'tracker_semantic': 112, 'transport_response': 115}
-- observation depth:   median 42, deepest 46
+- health states:       {'degraded': 27, 'live': 183, 'unknown': 1018, 'unmeasurable': 55}
+- measurement rungs:   {'connected': 189, 'dns': 378, 'no_usable_address': 11, 'none': 404, 'protocol_valid': 74, 'tracker_semantic': 112, 'transport_response': 115}
+- observation depth:   median 42, deepest 47
 - sustained failures:  1028 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
@@ -161,4 +161,4 @@ matched nothing or the evidence it needs does not exist yet.
 ### stable.txt -- 134
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  134 qualified; deepest history is 46
+- why:  134 qualified; deepest history is 47
