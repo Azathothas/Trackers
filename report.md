@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-19T19:57:17Z
+generated_at: 2026-11-20T02:01:09Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -19,25 +19,25 @@ accepted data for it stands (RULES 3.10).
 
 ## Dataset
 
-- accepted trackers: 1324
+- accepted trackers: 1323
 - rejected lines:    3
-- duplicates removed: 602 (242 removed)
+- duplicates removed: 603 (244 removed)
 
 ### Transport
 
-- http: 703
+- http: 702
 - https: 243
 - udp: 368
 - wss: 10
 
 ### Network
 
-- clearnet: 1311
+- clearnet: 1310
 - i2p: 13
 
 ### Measurability
 
-- measurable from this vantage: 1301
+- measurable from this vantage: 1300
 - unmeasurable:                 23
 
 An unmeasurable tracker is one this vantage cannot reach at all
@@ -80,10 +80,10 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 53100 across 1283 tracker(s)
-- never observed:      41
-- health states:       {'degraded': 27, 'live': 183, 'unknown': 1018, 'unmeasurable': 55}
-- measurement rungs:   {'connected': 189, 'dns': 378, 'no_usable_address': 11, 'none': 404, 'protocol_valid': 74, 'tracker_semantic': 112, 'transport_response': 115}
+- health observations: 53268 across 1283 tracker(s)
+- never observed:      40
+- health states:       {'degraded': 25, 'live': 184, 'unknown': 1019, 'unmeasurable': 55}
+- measurement rungs:   {'connected': 188, 'dns': 383, 'no_usable_address': 11, 'none': 402, 'protocol_valid': 75, 'tracker_semantic': 112, 'transport_response': 112}
 - observation depth:   median 42, deepest 47
 - sustained failures:  1028 (3+ observations, none successful)
 
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 185
+### common.txt -- 186
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  134 from the other categories and 51 more that measured live
+- why:  134 from the other categories and 52 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
