@@ -65,6 +65,7 @@ http://tracker.internetwarriors.net:1337/announce
 http://tracker.kali.org:6969/announce
 http://tracker.linkomanija.org:2710/announce
 http://tracker.minglong.org:8080/announce
+http://tracker.moxing.party:6969/announce
 http://tracker.novaopcj.eu.org:6969/announce
 http://tracker.opentrackr.org:1337/announce
 http://tracker.openzim.org/announce
@@ -107,7 +108,9 @@ https://torrent.ubuntu.com/announce
 https://torrent.ubuntu.com:443/announce
 https://tr.nyacat.pw/announce
 https://tr.nyacat.pw:443/announce
+https://track3r.site:443/announce
 https://tracker.7471.top:443/announce
+https://tracker.aburaya.live:443/announce
 https://tracker.anibt.net:443/announce
 https://tracker.foreverpirates.co/announce
 https://tracker.foreverpirates.co:443/announce
@@ -117,6 +120,7 @@ https://tracker.qingwapt.org:443/announce
 https://tracker.vectahosting.eu/announce
 https://tracker.vectahosting.eu:443/announce
 https://tracker.zhuqiy.com:443/announce
+https://w.wwwww.wtf:443/announce
 udp://109.201.134.183:80/announce
 udp://51.81.222.188:6969/announce
 udp://52.58.128.163:6969/announce
