@@ -36,7 +36,6 @@ http://open.touki.ru:80/announce.php
 http://opentrackr.org:1337/announce
 http://proaudiotorrents.org/announce.php
 http://proaudiotorrents.org:80/announce.php
-http://retracker.spark-rostov.ru:80/announce
 http://retracker01-msk-virt.corbina.net:80/announce
 http://sukebei.tracker.wf:8888/announce
 http://t.nyaatracker.com/announce
@@ -57,6 +56,7 @@ http://tracker.bz:80/announce
 http://tracker.dhitechnical.com:6969/announce
 http://tracker.dler.com:6969/announce
 http://tracker.dler.org:6969/announce
+http://tracker.edkj.club:6969/announce
 http://tracker.fansub.id/announce
 http://tracker.fansub.id:80/announce
 http://tracker.gcvchp.com:2710/announce
@@ -64,6 +64,7 @@ http://tracker.gigatorrents.ws:2710/announce
 http://tracker.internetwarriors.net:1337/announce
 http://tracker.kali.org:6969/announce
 http://tracker.linkomanija.org:2710/announce
+http://tracker.lintk.me:2710/announce
 http://tracker.minglong.org:8080/announce
 http://tracker.moxing.party:6969/announce
 http://tracker.novaopcj.eu.org:6969/announce
@@ -104,6 +105,7 @@ https://1337.abcvg.info:443/announce
 https://bt.beatrice-raws.org/announce
 https://open.ftorrent.com:443/announce
 https://t.213891.xyz:443/announce
+https://t1.hloli.org:443/announce
 https://torrent.ubuntu.com/announce
 https://torrent.ubuntu.com:443/announce
 https://tr.nyacat.pw/announce
@@ -153,7 +155,6 @@ udp://torrents.artixlinux.org:6969/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://tracker-udp.anirena.com:80/announce
 udp://tracker-udp.gbitt.info:80/announce
-udp://tracker.aruku.ovh:8081/announce
 udp://tracker.auctor.tv:6969/announce
 udp://tracker.bittor.pw:1337/announce
 udp://tracker.bluefrog.pw:2710/announce
@@ -171,6 +172,7 @@ udp://tracker.gmi.gd:6969/announce
 udp://tracker.ilibr.org:80/announce
 udp://tracker.ilibr.org:6969/announce
 udp://tracker.internetwarriors.net:1337/announce
+udp://tracker.ixuexi.click:6969/announce
 udp://tracker.k.vu:6969/announce
 udp://tracker.nyaa.net:6969/announce
 udp://tracker.nyaa.vc:6969/announce
