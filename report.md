@@ -1,6 +1,6 @@
 # Run report
 
-generated_at: 2026-11-23T11:48:03Z
+generated_at: 2026-11-23T23:23:57Z
 code_version: 0.1.0+norm1
 
 ## Sources
@@ -21,7 +21,7 @@ accepted data for it stands (RULES 3.10).
 
 - accepted trackers: 1325
 - rejected lines:    3
-- duplicates removed: 623 (263 removed)
+- duplicates removed: 624 (264 removed)
 
 ### Transport
 
@@ -80,12 +80,12 @@ counted separately above, which is the number that matters.
 
 ## Health
 
-- health observations: 55119 across 1283 tracker(s)
+- health observations: 55310 across 1283 tracker(s)
 - never observed:      42
-- health states:       {'degraded': 30, 'live': 203, 'unknown': 995, 'unmeasurable': 55}
-- measurement rungs:   {'connected': 196, 'dns': 368, 'no_usable_address': 11, 'none': 387, 'protocol_valid': 76, 'tracker_semantic': 130, 'transport_response': 115}
-- observation depth:   median 44, deepest 48
-- sustained failures:  1015 (3+ observations, none successful)
+- health states:       {'degraded': 30, 'live': 198, 'unknown': 1000, 'unmeasurable': 55}
+- measurement rungs:   {'connected': 195, 'dns': 375, 'no_usable_address': 11, 'none': 387, 'protocol_valid': 75, 'tracker_semantic': 126, 'transport_response': 114}
+- observation depth:   median 44, deepest 49
+- sustained failures:  1014 (3+ observations, none successful)
 
 ⛔ A tracker that did not answer is `unknown`, never `dead`: saying
 dead needs 3 observations of one tracker and the state machine is
@@ -143,10 +143,10 @@ matched nothing or the evidence it needs does not exist yet.
 - rule: provenance from a source the registry classifies `anime`
 - why:  1074 contributed by desirefire_all
 
-### common.txt -- 204
+### common.txt -- 199
 
 - rule: the other categories merged and deduplicated, plus every tracker whose most recent observation was `live`
-- why:  133 from the other categories and 71 more that measured live
+- why:  133 from the other categories and 66 more that measured live
 
 ### foss.txt -- 0 (evidence absent)
 
@@ -161,4 +161,4 @@ matched nothing or the evidence it needs does not exist yet.
 ### stable.txt -- 133
 
 - rule: at least 5 observations and a success rate of 0.95 or better, measured
-- why:  133 qualified; deepest history is 48
+- why:  133 qualified; deepest history is 49
