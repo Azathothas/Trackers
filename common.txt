@@ -37,6 +37,7 @@ http://opentrackr.org:1337/announce
 http://proaudiotorrents.org/announce.php
 http://proaudiotorrents.org:80/announce.php
 http://retracker01-msk-virt.corbina.net:80/announce
+http://shubt.net:2710/announce
 http://sukebei.tracker.wf:8888/announce
 http://t.nyaatracker.com/announce
 http://t.nyaatracker.com:80/announce
@@ -154,7 +155,6 @@ udp://t.overflow.biz:6969/announce
 udp://torrent.tracker.durukanbal.com:6969/announce
 udp://torrentclub.space:6969/announce
 udp://torrents.artixlinux.org:6969/announce
-udp://tr3.ysagin.top:2715/announce
 udp://tr4ck3r.duckdns.org:6969/announce
 udp://tracker-udp.anirena.com:80/announce
 udp://tracker-udp.gbitt.info:80/announce
