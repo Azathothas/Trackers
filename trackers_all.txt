@@ -741,6 +741,7 @@ https://http1.torrust-tracker-demo.com:443/announce
 https://inferno.demonoid.is/announce
 https://k.avc.cx/announce.php
 https://k.avc.cx:443/announce.php
+https://lattice.peerrelay.workers.dev:443/announce
 https://nyaa.tracker.wf:7777/announce
 https://open.ftorrent.com:443/announce
 https://open.kickasstracker.com/announce
