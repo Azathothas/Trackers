@@ -128,6 +128,5 @@ udp://tracker2.dler.com:80/announce
 udp://tracker2.dler.org:80/announce
 udp://v2.iperson.xyz:6969/announce
 udp://yuptracker-eu.gaijinent.com:27022/announce
-udp://yuptracker-sa.gaijinent.com:27022/announce
 udp://yuptracker-us.gaijinent.com:27022/announce
 udp://yuptracker.gaijinent.com:27022/announce

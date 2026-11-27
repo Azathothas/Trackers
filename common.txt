@@ -58,7 +58,6 @@ http://tracker.dler.com:6969/announce
 http://tracker.dler.org:6969/announce
 http://tracker.edkj.club:6969/announce
 http://tracker.fansub.id/announce
-http://tracker.fansub.id:80/announce
 http://tracker.gcvchp.com:2710/announce
 http://tracker.gigatorrents.ws:2710/announce
 http://tracker.internetwarriors.net:1337/announce
@@ -190,6 +189,5 @@ udp://tracker4.itzmx.com:2710/announce
 udp://v2.iperson.xyz:6969/announce
 udp://whybother.torrentonline.cc:42069/announce
 udp://yuptracker-eu.gaijinent.com:27022/announce
-udp://yuptracker-sa.gaijinent.com:27022/announce
 udp://yuptracker-us.gaijinent.com:27022/announce
 udp://yuptracker.gaijinent.com:27022/announce
